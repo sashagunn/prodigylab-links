@@ -1,76 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ProdigyLab</title>
 
 <style>
 
-body{
-background:#0b0b0c;
-color:white;
-font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-text-align:center;
-padding:40px;
+:root{
+--bg:#0b0b0c;
+--panel:#121214;
+--stroke:rgba(255,255,255,.08);
+--text:#ffffff;
+--muted:rgba(255,255,255,.65);
+--brand:#00ff9c;
+--brand2:#00d986;
+--radius:18px;
 }
 
-.container{
-max-width:600px;
-margin:auto;
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
+display:flex;
+justify-content:center;
+padding:40px 16px;
+}
+
+.wrap{
+max-width:720px;
+width:100%;
+}
+
+.hero{
+border:1px solid var(--stroke);
+background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+border-radius:24px;
+padding:26px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:14px;
 }
 
 .logo{
-font-size:32px;
-font-weight:700;
-margin-bottom:10px;
-}
-
-.tagline{
-color:#aaa;
-margin-bottom:30px;
-}
-
-.stats{
+width:56px;
+height:56px;
+border-radius:14px;
+overflow:hidden;
+border:1px solid var(--stroke);
 display:flex;
+align-items:center;
 justify-content:center;
-gap:20px;
-margin-bottom:30px;
-color:#bbb;
+}
+
+.logo img{
+width:100%;
+height:100%;
+object-fit:contain;
+padding:8px;
+}
+
+h1{
+margin:0;
+font-size:30px;
+}
+
+.subtitle{
+color:var(--muted);
+margin-top:4px;
 font-size:14px;
 }
 
+.chips{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:14px;
+}
+
+.chip{
+border:1px solid var(--stroke);
+border-radius:999px;
+padding:8px 12px;
+font-size:13px;
+color:var(--muted);
+}
+
 .cta{
+margin-top:18px;
 display:block;
-background:#00ff9c;
-color:black;
+background:linear-gradient(180deg,var(--brand),var(--brand2));
+color:#001b11;
 padding:16px;
-border-radius:12px;
-font-weight:600;
+text-align:center;
+border-radius:14px;
+font-weight:700;
 text-decoration:none;
-margin-bottom:40px;
-}
-
-.card{
-background:#151515;
-padding:18px;
-border-radius:12px;
-margin-bottom:15px;
-text-decoration:none;
-color:white;
-display:block;
-}
-
-.card:hover{
-background:#1e1e1e;
 }
 
 .section{
-margin-top:40px;
+margin-top:18px;
+border:1px solid var(--stroke);
+border-radius:22px;
+padding:14px;
+}
+
+.section-title{
+font-size:12px;
+letter-spacing:.12em;
+text-transform:uppercase;
+color:rgba(255,255,255,.7);
 margin-bottom:10px;
-color:#777;
+}
+
+.card{
+display:flex;
+justify-content:space-between;
+align-items:center;
+border:1px solid var(--stroke);
+border-radius:16px;
+padding:14px;
+margin-bottom:10px;
+text-decoration:none;
+color:white;
+background:rgba(255,255,255,.02);
+}
+
+.card:hover{
+background:rgba(255,255,255,.05);
+}
+
+.title{
+font-weight:700;
+}
+
+.meta{
 font-size:13px;
+color:var(--muted);
+margin-top:3px;
+}
+
+.badge{
+font-size:12px;
+border:1px solid var(--stroke);
+padding:6px 10px;
+border-radius:999px;
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.contact{
+border:1px solid var(--stroke);
+border-radius:16px;
+padding:12px;
+text-decoration:none;
+color:white;
+background:rgba(255,255,255,.02);
+}
+
+.contact:hover{
+background:rgba(255,255,255,.05);
+}
+
+.contact-title{
+font-weight:700;
+}
+
+.contact-sub{
+font-size:13px;
+color:var(--muted);
 }
 
 </style>
@@ -78,53 +186,110 @@ font-size:13px;
 
 <body>
 
-<div class="container">
+<main class="wrap">
 
-<div class="logo">ProdigyLab</div>
-<div class="tagline">
-Shopify stores that actually sell
+<section class="hero">
+
+<div class="brand">
+<div class="logo">
+<img src="logo.PNG">
 </div>
 
-<div class="stats">
-<div>⚡ Launch in 14 days</div>
-<div>🧠 Strategy</div>
-<div>📈 Growth</div>
+<div>
+<h1>ProdigyLab</h1>
+<div class="subtitle">
+Shopify stores that actually sell<br>
+Интернет-магазины Shopify которые реально продают
+</div>
+</div>
 </div>
 
-<a class="cta"
-href="https://tally.so/r/9qdLyE?source=linkpage">
-Free Store Audit
+<div class="chips">
+<div class="chip">⚡ Launch in 14 days / Запуск за 14 дней</div>
+<div class="chip">🧠 Strategy / Стратегия</div>
+<div class="chip">📈 Growth / Рост продаж</div>
+</div>
+
+<a class="cta" href="https://tally.so/r/9qdLyE" target="_blank">
+Get Free Store Audit<br>
+Получить бесплатный аудит магазина
 </a>
 
-<div class="section">Projects</div>
+</section>
 
-<a class="card" href="#">
-Cultura PMU  
-Beauty / Permanent Makeup
+<section class="section">
+
+<div class="section-title">
+Projects / Проекты
+</div>
+
+<a class="card" href="https://culturapmu.com" target="_blank">
+<div>
+<div class="title">Cultura PMU</div>
+<div class="meta">Permanent Makeup / Перманентный макияж</div>
+</div>
+<div class="badge">Website</div>
 </a>
 
-<a class="card" href="#">
-Podarki.US  
-Gift Box E-commerce
+<a class="card" href="https://podarki.us" target="_blank">
+<div>
+<div class="title">Podarki.US</div>
+<div class="meta">Gift Box E-commerce / Подарочные боксы</div>
+</div>
+<div class="badge">Store</div>
 </a>
 
-<a class="card" href="#">
-Platonaire  
-Credit Repair
+<a class="card" href="https://platonaire.com" target="_blank">
+<div>
+<div class="title">Platonaire</div>
+<div class="meta">Credit Repair / Исправление кредитной истории</div>
+</div>
+<div class="badge">Website</div>
 </a>
 
-<a class="card" href="#">
-AutoShurik  
-Auto Auctions
+<a class="card" href="https://instagram.com/autoshurik" target="_blank">
+<div>
+<div class="title">AutoShurik</div>
+<div class="meta">Auto Auctions / Автоаукционы</div>
+</div>
+<div class="badge">Instagram</div>
 </a>
 
-<div class="section">Resources</div>
+</section>
 
-<a class="card" href="#">
-Shopify Revenue Playbook
+<section class="section">
+
+<div class="section-title">
+Contact / Связь
+</div>
+
+<div class="contact-grid">
+
+<a class="contact" href="https://instagram.com/prodigylab.studio" target="_blank">
+<div class="contact-title">Instagram</div>
+<div class="contact-sub">@prodigylab.studio</div>
+</a>
+
+<a class="contact" href="https://t.me/sashagunn" target="_blank">
+<div class="contact-title">Telegram</div>
+<div class="contact-sub">@sashagunn</div>
+</a>
+
+<a class="contact" href="tel:+18182690416">
+<div class="contact-title">Phone</div>
+<div class="contact-sub">+1-818-269-0416</div>
+</a>
+
+<a class="contact" href="https://tally.so/r/9qdLyE" target="_blank">
+<div class="contact-title">Free Audit</div>
+<div class="contact-sub">Бесплатный аудит магазина</div>
 </a>
 
 </div>
+
+</section>
+
+</main>
 
 </body>
 </html>
