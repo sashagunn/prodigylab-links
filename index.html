@@ -1574,48 +1574,114 @@ function initCanvas() {
     build();
   }
 
+  // ── Word morphing: particles periodically gather into words, then scatter ──
+  const WORDS = ['prodigy', 'lab', 'prodigylab', 'studio', 'growth'];
+  const PHASE = { drift: 3600, form: 1700, hold: 2300, scatter: 1200 };
+  let mode = 'drift', phaseStart = performance.now(), wordIdx = 0;
+  const tnow = () => performance.now();
+
   function build() {
     const isMobile = window.innerWidth < 768;
-  const N = isMobile ? Math.min(20, Math.floor(W * H / 26000)) : Math.min(46, Math.floor(W * H / 15000));
+    const N = isMobile ? 200 : 420;
     particles = Array.from({length: N}, () => ({
       x: Math.random() * W,
       y: Math.random() * H,
       vx: (Math.random() - .5) * .4,
       vy: (Math.random() - .5) * .4,
-      r:  Math.random() * 1.5 + .5,
-      teal: Math.random() > .75,
+      r:  Math.random() * 1.4 + .6,
+      teal: Math.random() > .7,
+      tx: Math.random() * W,
+      ty: Math.random() * H,
     }));
+    mode = 'drift'; phaseStart = tnow();
+  }
+
+  // Render a word offscreen and assign each particle a pixel target
+  function assignWord(word) {
+    const oc = document.createElement('canvas');
+    oc.width = W; oc.height = H;
+    const o = oc.getContext('2d');
+    o.fillStyle = '#fff';
+    o.textAlign = 'center';
+    o.textBaseline = 'middle';
+    const isMobile = window.innerWidth < 768;
+    const cx = isMobile ? W * 0.5 : W * 0.81;   // desktop: clear zone right of the headline
+    const cy = isMobile ? H * 0.74 : H * 0.45;
+    const maxW = isMobile ? W * 0.82 : W * 0.32;
+    const fsCap = isMobile ? 92 : 118;
+    const fs = Math.min(fsCap, maxW / (word.length * 0.58));
+    o.font = `900 ${fs}px Unbounded, Arial, sans-serif`;
+    o.fillText(word.toUpperCase(), cx, cy);
+    let img;
+    try { img = o.getImageData(0, 0, W, H).data; } catch (e) { return false; }
+    const pts = [], step = 4;
+    for (let y = 0; y < H; y += step)
+      for (let x = 0; x < W; x += step)
+        if (img[(y * W + x) * 4 + 3] > 130) pts.push({ x, y });
+    if (!pts.length) return false;
+    for (let i = pts.length - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; const t = pts[i]; pts[i] = pts[j]; pts[j] = t; }
+    particles.forEach((p, i) => { const t = pts[i % pts.length]; p.tx = t.x; p.ty = t.y; });
+    return true;
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
 
-    // Draw connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 140) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(34,197,94,${(.25 * (1 - dist/150)).toFixed(3)})`;
-          ctx.lineWidth = .5;
-          ctx.stroke();
+    // ── state machine ──
+    const el = tnow() - phaseStart;
+    if (mode === 'drift' && el > PHASE.drift) {
+      if (assignWord(WORDS[wordIdx])) { mode = 'form'; phaseStart = tnow(); }
+      else { phaseStart = tnow(); }
+    } else if (mode === 'form' && el > PHASE.form) {
+      mode = 'hold'; phaseStart = tnow();
+    } else if (mode === 'hold' && el > PHASE.hold) {
+      mode = 'scatter'; phaseStart = tnow();
+      particles.forEach(p => { p.vx = (Math.random() - .5) * .9; p.vy = (Math.random() - .5) * .9; });
+    } else if (mode === 'scatter' && el > PHASE.scatter) {
+      mode = 'drift'; phaseStart = tnow(); wordIdx = (wordIdx + 1) % WORDS.length;
+      particles.forEach(p => { p.vx = (Math.random() - .5) * .4; p.vy = (Math.random() - .5) * .4; });
+    }
+
+    const forming = (mode === 'form' || mode === 'hold');
+
+    // Connection lines only in steady drift — letters stay crisp; scatter dissolves cleanly
+    if (mode === 'drift') {
+      const linkDist = 78;
+      for (let i = 0; i < particles.length; i++) {
+        const pi = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const pj = particles[j];
+          const dx = pi.x - pj.x, dy = pi.y - pj.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < linkDist) {
+            ctx.beginPath();
+            ctx.moveTo(pi.x, pi.y);
+            ctx.lineTo(pj.x, pj.y);
+            ctx.strokeStyle = `rgba(34,197,94,${(.2 * (1 - dist/linkDist)).toFixed(3)})`;
+            ctx.lineWidth = .5;
+            ctx.stroke();
+          }
         }
       }
-      // Draw dot
+    }
+
+    // Dots + movement
+    for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fillStyle = p.teal ? 'rgba(14,165,233,.6)' : 'rgba(34,197,94,.7)';
+      ctx.arc(p.x, p.y, forming ? 2.1 : p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.teal ? `rgba(56,189,248,${forming ? 1 : .6})` : `rgba(34,197,94,${forming ? 1 : .7})`;
       ctx.fill();
 
-      // Move
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > W) p.vx *= -1;
-      if (p.y < 0 || p.y > H) p.vy *= -1;
+      if (forming) {
+        const e = mode === 'form' ? 0.11 : 0.20;
+        p.x += (p.tx - p.x) * e;
+        p.y += (p.ty - p.y) * e;
+      } else {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+      }
     }
     if (paused) { animId = null; return; }
     animId = requestAnimationFrame(draw);
