@@ -1061,8 +1061,6 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
   </symbol>
   </defs>
 </svg>
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
 <nav>
   <div onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})" style="display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;">
     <svg width="32" height="32" viewBox="0 0 1024 1024" style="flex-shrink:0;"><use href="#logo-sym"/></svg>
@@ -1313,7 +1311,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
           <div class="cs-body">
             <div class="cs-niche">Фитнес / Home Gym</div>
             <div class="cs-name">HealthHustle Academy</div>
-            <div style="font-size:11.5px;color:var(--gray);margin-bottom:10px;">healthhustleacademy.com</div>
+            <a href="https://healthhustleacademy.com" target="_blank" rel="noopener noreferrer" style="display:inline-block;font-size:11.5px;color:var(--green);margin-bottom:10px;text-decoration:none;">healthhustleacademy.com ↗</a>
             <div class="cs-q">Система продаж под ключ — Shopify, Meta Ads, воронка, аналитика.</div>
             <div class="cs-m">
               <div><div class="mv counter" data-target="12500" data-suffix="+" style="color:var(--green);">12500+</div><div class="ml">покупателей</div></div>
@@ -1328,7 +1326,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
           <div class="cs-body">
             <div class="cs-niche">Pets / Single Product</div>
             <div class="cs-name">Set4Pets</div>
-            <div style="font-size:11.5px;color:var(--gray);margin-bottom:10px;">set4pets.com</div>
+            <a href="https://set4pets.com" target="_blank" rel="noopener noreferrer" style="display:inline-block;font-size:11.5px;color:var(--teal);margin-bottom:10px;text-decoration:none;">set4pets.com ↗</a>
             <div class="cs-q">Shopify, конверсионный лендинг, видео, реклама. Отправка за 24ч.</div>
             <div class="cs-m">
               <div><div class="mv counter" data-target="500" data-suffix="+" style="color:var(--teal);">500+</div><div class="ml">покупателей</div></div>
@@ -1343,7 +1341,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
           <div class="cs-body">
             <div class="cs-niche">Косметика / Beauty</div>
             <div class="cs-name">Petalia</div>
-            <div style="font-size:11.5px;color:var(--gray);margin-bottom:10px;">petaliashop.com</div>
+            <a href="https://petaliashop.com" target="_blank" rel="noopener noreferrer" style="display:inline-block;font-size:11.5px;color:var(--purple);margin-bottom:10px;text-decoration:none;">petaliashop.com ↗</a>
             <div class="cs-q">Shopify магазин под ключ, система продаж.</div>
             <div class="cs-m">
               <div><div class="mv" style="color:var(--purple);">Beauty</div><div class="ml">ниша</div></div>
@@ -1966,7 +1964,6 @@ setTimeout(() => {
 document.addEventListener('DOMContentLoaded', () => {
   initCanvas();
   // initSplitText(); // replaced with CSS animation
-  initCursor();
   initMagnetic();
   initTilt();
   runMotion();
