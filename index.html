@@ -1576,7 +1576,7 @@ function initCanvas() {
 
   // ── Word morphing: particles periodically gather into words, then scatter ──
   const WORDS = ['prodigy', 'lab', 'prodigylab', 'studio', 'growth'];
-  const PHASE = { drift: 3600, form: 1700, hold: 2300, scatter: 1200 };
+  const PHASE = { drift: 6000, form: 5200, hold: 4200, scatter: 4500 };
   let mode = 'drift', phaseStart = performance.now(), wordIdx = 0;
   const tnow = () => performance.now();
 
@@ -1586,8 +1586,8 @@ function initCanvas() {
     particles = Array.from({length: N}, () => ({
       x: Math.random() * W,
       y: Math.random() * H,
-      vx: (Math.random() - .5) * .4,
-      vy: (Math.random() - .5) * .4,
+      vx: (Math.random() - .5) * .14,
+      vy: (Math.random() - .5) * .14,
       r:  Math.random() * 1.4 + .6,
       teal: Math.random() > .7,
       tx: Math.random() * W,
@@ -1636,10 +1636,10 @@ function initCanvas() {
       mode = 'hold'; phaseStart = tnow();
     } else if (mode === 'hold' && el > PHASE.hold) {
       mode = 'scatter'; phaseStart = tnow();
-      particles.forEach(p => { p.vx = (Math.random() - .5) * .9; p.vy = (Math.random() - .5) * .9; });
+      particles.forEach(p => { p.vx = (Math.random() - .5) * .22; p.vy = (Math.random() - .5) * .22; });
     } else if (mode === 'scatter' && el > PHASE.scatter) {
       mode = 'drift'; phaseStart = tnow(); wordIdx = (wordIdx + 1) % WORDS.length;
-      particles.forEach(p => { p.vx = (Math.random() - .5) * .4; p.vy = (Math.random() - .5) * .4; });
+      particles.forEach(p => { p.vx = (Math.random() - .5) * .14; p.vy = (Math.random() - .5) * .14; });
     }
 
     const forming = (mode === 'form' || mode === 'hold');
@@ -1669,12 +1669,12 @@ function initCanvas() {
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
       ctx.beginPath();
-      ctx.arc(p.x, p.y, forming ? 2.1 : p.r, 0, Math.PI*2);
-      ctx.fillStyle = p.teal ? `rgba(56,189,248,${forming ? 1 : .6})` : `rgba(34,197,94,${forming ? 1 : .7})`;
+      ctx.arc(p.x, p.y, forming ? 1.8 : p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.teal ? `rgba(56,189,248,${forming ? .92 : .6})` : `rgba(34,197,94,${forming ? .92 : .7})`;
       ctx.fill();
 
       if (forming) {
-        const e = mode === 'form' ? 0.11 : 0.20;
+        const e = mode === 'form' ? 0.018 : 0.045;  // slow, smooth glide into the word
         p.x += (p.tx - p.x) * e;
         p.y += (p.ty - p.y) * e;
       } else {
@@ -1704,17 +1704,16 @@ function initCanvas() {
   }, {threshold: 0});
   io.observe(canvas);
 
-  // Subtle mouse parallax influence on particles (only while visible)
+  // Very subtle mouse parallax — only during free drift, kept slow
   document.addEventListener('mousemove', e => {
-    if (paused) return;
+    if (paused || mode !== 'drift') return;
     const cx = e.clientX / window.innerWidth  - .5;
     const cy = e.clientY / window.innerHeight - .5;
     particles.forEach(p => {
-      p.vx += cx * .003;
-      p.vy += cy * .003;
-      // clamp speed
+      p.vx += cx * .0008;
+      p.vy += cy * .0008;
       const spd = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
-      if (spd > .8) { p.vx *= .8/spd; p.vy *= .8/spd; }
+      if (spd > .2) { p.vx *= .2/spd; p.vy *= .2/spd; }  // hard cap keeps it slow
     });
   }, {passive:true});
 }
