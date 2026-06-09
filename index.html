@@ -168,6 +168,17 @@ hr{border:none;height:1px;background:var(--border);margin:0;}
 .fcrd-4::before{background:#FF9900;}
 .fcrd-4:hover{border-color:rgba(255,153,0,.45);}
 .fc-icon{font-size:36px;margin-bottom:16px;}
+/* ── Outline icon badges ── */
+.cicon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;border:1px solid;}
+.cicon svg{width:23px;height:23px;}
+.cicon-g{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.28);color:var(--green);}
+.cicon-t{background:rgba(14,165,233,.1);border-color:rgba(14,165,233,.28);color:var(--teal);}
+.cicon-a{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.28);color:var(--amber);}
+.cicon-c{background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.28);color:var(--coral);}
+.cicon-p{background:rgba(168,85,247,.1);border-color:rgba(168,85,247,.28);color:var(--purple);}
+.cicon-sm{width:34px;height:34px;border-radius:9px;margin-bottom:0;}
+.cicon-sm svg{width:18px;height:18px;}
+.cs-top svg{width:54px;height:54px;}
 .fc-title{font-family:'Unbounded',sans-serif;font-size:26px;font-weight:900;margin-bottom:10px;line-height:1.1;}
 .fc-desc{font-size:13.5px;color:var(--gray);line-height:1.6;margin-bottom:20px;}
 .fc-products{display:flex;flex-direction:column;gap:6px;margin-bottom:20px;}
@@ -1116,6 +1127,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
       <div class="funnel-grid" style="grid-template-columns:repeat(3,1fr);">
         <!-- Step 1 -->
         <div class="fcrd fcrd-1 tilt-card" data-motion="up" data-delay="1" onclick="openModal()">
+          <div class="cicon cicon-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8 11h2.5M11 8.5v5"/></svg></div>
           <div class="tag tag-g" style="margin-bottom:16px;">Шаг 1 · Бесплатно</div>
           <div class="fc-title" style="font-size:23px;">Free Growth Audit</div>
           <div class="fc-desc">Не аудит сайта. Аудит бизнеса. Смотрим где ты теряешь деньги прямо сейчас.</div>
@@ -1128,6 +1140,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
         </div>
         <!-- Step 2 -->
         <div class="fcrd fcrd-2 tilt-card" data-motion="up" data-delay="2" onclick="openModal()">
+          <div class="cicon cicon-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>
           <div class="tag tag-t" style="margin-bottom:16px;">Шаг 2 · $200</div>
           <div class="fc-title" style="font-size:23px;">Strategy Audit</div>
           <div class="fc-desc">Полный разбор. Без воды. Что уже работает, что сливает бюджет, что делать в ближайшие 90 дней.</div>
@@ -1140,6 +1153,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
         </div>
         <!-- Step 3 -->
         <div class="fcrd fcrd-3 tilt-card" data-motion="up" data-delay="3" onclick="openModal()">
+          <div class="cicon cicon-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H5s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg></div>
           <div class="tag tag-c" style="margin-bottom:16px;">Шаг 3 · Индивидуально</div>
           <div class="fc-title" style="font-size:23px;">Growth Plan</div>
           <div class="fc-desc">После аудита выбираешь направление — мы реализуем. Магазин, реклама, креатив, аналитика — или всё вместе.</div>
@@ -1166,21 +1180,25 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
       </div>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
         <div class="card card-p tilt-card" data-motion="up" data-delay="1">
+          <div class="cicon cicon-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
           <div class="tag tag-g" style="margin-bottom:14px;">Shopify Growth</div>
           <h3 style="font-size:20px;margin-bottom:10px;">Магазин который продаёт</h3>
           <p style="font-size:14px;color:var(--gray);line-height:1.7;">Новый магазин, редизайн, конверсия, UX, мобайл, скорость. Магазин который продаёт — а не просто висит в интернете.</p>
         </div>
         <div class="card card-p tilt-card" data-motion="up" data-delay="2">
+          <div class="cicon cicon-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16v-4M12 16V8M17 16v-6"/></svg></div>
           <div class="tag tag-t" style="margin-bottom:14px;">Analytics &amp; Tracking</div>
           <h3 style="font-size:20px;margin-bottom:10px;">Знаешь каждый цент</h3>
           <p style="font-size:14px;color:var(--gray);line-height:1.7;">GA4, GTM, Meta Pixel, Clarity, воронки, дашборды. Знаешь каждый цент — откуда пришёл и куда ушёл.</p>
         </div>
         <div class="card card-p tilt-card" data-motion="up" data-delay="3">
+          <div class="cicon cicon-a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/></svg></div>
           <div class="tag tag-a" style="margin-bottom:14px;">Paid Advertising</div>
           <h3 style="font-size:20px;margin-bottom:10px;">Реклама которая окупается</h3>
           <p style="font-size:14px;color:var(--gray);line-height:1.7;">Meta Ads, TikTok Ads, ретаргетинг, масштабирование. Реклама которая окупается — не просто крутится.</p>
         </div>
         <div class="card card-p tilt-card" data-motion="up" data-delay="4">
+          <div class="cicon cicon-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
           <div class="tag tag-c" style="margin-bottom:14px;">Marketplace Expansion</div>
           <h3 style="font-size:20px;margin-bottom:10px;">Больше каналов — больше продаж</h3>
           <p style="font-size:14px;color:var(--gray);line-height:1.7;">Amazon, Etsy, TikTok Shop, Instagram Shop. Один каталог, везде синхронизировано.</p>
@@ -1202,6 +1220,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
         <!-- Creative Production -->
         <div class="card card-p tilt-card" data-motion="up" data-delay="1">
+          <div class="cicon cicon-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg></div>
           <div class="tag tag-c" style="margin-bottom:14px;">Creative Production</div>
           <h3 style="font-size:21px;margin-bottom:10px;">Креативы которые конвертируют</h3>
           <p style="font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:16px;">Не красивые картинки — а контент который продаёт.</p>
@@ -1211,6 +1230,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
         </div>
         <!-- AI Video Studio -->
         <div class="card card-p tilt-card" data-motion="up" data-delay="2">
+          <div class="cicon cicon-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="12" rx="2"/><path d="M15.5 10l6-3v10l-6-3z"/><path d="M7 12l3 1.8-3 1.8z" fill="currentColor" stroke="none"/></svg></div>
           <div class="tag tag-t" style="margin-bottom:14px;">AI Video Studio</div>
           <h3 style="font-size:21px;margin-bottom:10px;">Видео за $20,000 — теперь любому бренду</h3>
           <p style="font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:16px;">Используем самые мощные AI-инструменты на рынке.</p>
@@ -1221,6 +1241,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
         </div>
         <!-- ProdigyLAB Music — purple accent, full width -->
         <div class="card card-p tilt-card" data-motion="up" data-delay="3" style="grid-column:1/-1;background:linear-gradient(160deg,rgba(168,85,247,.09) 0%,var(--bg2) 55%);border-color:rgba(168,85,247,.22);">
+          <div class="cicon cicon-p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
           <div style="display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:100px;font-size:11.5px;font-weight:600;letter-spacing:.3px;background:rgba(168,85,247,.15);color:var(--purple);border:1px solid rgba(168,85,247,.3);margin-bottom:14px;">ProdigyLAB Music</div>
           <h3 style="font-size:23px;margin-bottom:10px;">Для артистов которые хотят выйти на уровень</h3>
           <p style="font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:16px;max-width:620px;">Отдельное направление студии. Полный цикл — от продакшна до дистрибуции и промо.</p>
@@ -1248,25 +1269,25 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
         <div class="card card-p" data-motion="up" data-delay="1">
-          <div class="cs-niche" style="margin-bottom:14px;">E-commerce</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><div class="cicon cicon-g cicon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"/><path d="M3.5 9h17"/></svg></div><div class="cs-niche">E-commerce</div></div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
             <span class="tag tag-g">Shopify Partner</span><span class="tag tag-g">GA4</span><span class="tag tag-g">GTM</span><span class="tag tag-g">Meta</span><span class="tag tag-g">Clarity</span>
           </div>
         </div>
         <div class="card card-p" data-motion="up" data-delay="2">
-          <div class="cs-niche" style="margin-bottom:14px;">AI Creation</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><div class="cicon cicon-c cicon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18 9.3l-4.3 1.7L12 15.6l-1.7-4.6L6 9.3l4.3-1.7z"/><path d="M18.5 14.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></div><div class="cs-niche">AI Creation</div></div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
             <span class="tag tag-c">Higgsfield</span><span class="tag tag-c">Suno</span><span class="tag tag-c">ElevenLabs</span><span class="tag tag-c">Kling</span><span class="tag tag-c">Runway</span><span class="tag tag-c">Veo</span>
           </div>
         </div>
         <div class="card card-p" data-motion="up" data-delay="3">
-          <div class="cs-niche" style="margin-bottom:14px;">Analytics</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><div class="cicon cicon-t cicon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16v-4M12 16V8M17 16v-6"/></svg></div><div class="cs-niche">Analytics</div></div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
             <span class="tag tag-t">Supermetrics</span><span class="tag tag-t">Looker Studio</span><span class="tag tag-t">GA4</span>
           </div>
         </div>
         <div class="card card-p" data-motion="up" data-delay="4">
-          <div class="cs-niche" style="margin-bottom:14px;">Automation</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><div class="cicon cicon-a cicon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10H13z"/></svg></div><div class="cs-niche">Automation</div></div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
             <span class="tag tag-a">AI Agents</span><span class="tag tag-a">Lead Automation</span><span class="tag tag-a">CRM</span><span class="tag tag-a">Email</span><span class="tag tag-a">SMS</span>
           </div>
@@ -1288,7 +1309,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
       <div class="cases">
         <!-- HealthHustle -->
         <div class="cs tilt-card" data-motion="up" data-delay="1">
-          <div class="cs-top" style="background:linear-gradient(160deg,rgba(34,197,94,.14),var(--bg2));">🏋️</div>
+          <div class="cs-top" style="background:linear-gradient(160deg,rgba(34,197,94,.14),var(--bg2));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--green);"><path d="M4 9v6M7 7v10M17 7v10M20 9v6M7 12h10"/></svg></div>
           <div class="cs-body">
             <div class="cs-niche">Фитнес / Home Gym</div>
             <div class="cs-name">HealthHustle Academy</div>
@@ -1303,7 +1324,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
         </div>
         <!-- Set4Pets -->
         <div class="cs tilt-card" data-motion="up" data-delay="2">
-          <div class="cs-top" style="background:linear-gradient(160deg,rgba(14,165,233,.14),var(--bg2));">🐾</div>
+          <div class="cs-top" style="background:linear-gradient(160deg,rgba(14,165,233,.14),var(--bg2));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--teal);"><circle cx="6.5" cy="11" r="1.7"/><circle cx="10" cy="7.5" r="1.7"/><circle cx="14" cy="7.5" r="1.7"/><circle cx="17.5" cy="11" r="1.7"/><path d="M12 12.5c-2.3 0-4.2 1.9-4.2 3.8 0 1.4.9 2.4 2.3 2.4.85 0 1.25-.4 1.9-.4s1.05.4 1.9.4c1.4 0 2.3-1 2.3-2.4 0-1.9-1.9-3.8-4.2-3.8z"/></svg></div>
           <div class="cs-body">
             <div class="cs-niche">Pets / Single Product</div>
             <div class="cs-name">Set4Pets</div>
@@ -1318,7 +1339,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
         </div>
         <!-- Petalia -->
         <div class="cs tilt-card" data-motion="up" data-delay="3">
-          <div class="cs-top" style="background:linear-gradient(160deg,rgba(168,85,247,.14),var(--bg2));">💄</div>
+          <div class="cs-top" style="background:linear-gradient(160deg,rgba(168,85,247,.14),var(--bg2));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--purple);"><rect x="9" y="12.5" width="6" height="8.5" rx="1"/><path d="M9.2 12.5l1.3-3.5h3l1.3 3.5"/><path d="M10.6 9V4.5L13.6 3v6"/></svg></div>
           <div class="cs-body">
             <div class="cs-niche">Косметика / Beauty</div>
             <div class="cs-name">Petalia</div>
