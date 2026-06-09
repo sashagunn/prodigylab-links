@@ -1053,311 +1053,280 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 <nav>
-  <div onclick="go('home')" style="display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;">
+  <div onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})" style="display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;">
     <svg width="32" height="32" viewBox="0 0 1024 1024" style="flex-shrink:0;"><use href="#logo-sym"/></svg>
     <span style="font-family:'Unbounded',sans-serif;font-size:14px;font-weight:800;letter-spacing:-.4px;white-space:nowrap;line-height:1;">PRODIGY<em style="font-style:normal;color:var(--green);">LAB</em></span>
   </div>
   <div class="nav-pills">
-    <button onclick="go('funnel1')">Запуск с нуля</button>
-    <button onclick="go('funnel2')">Аудит и рост</button>
-    <button onclick="go('funnel3')">Реклама</button>
-    <button onclick="go('funnel4')" style="color:#FF9900;font-weight:600;">Маркетплейсы</button>
-    <button onclick="go('portfolio')">Кейсы</button>
-    <button onclick="go('about')">О нас</button>
+    <button onclick="document.getElementById('growth').scrollIntoView({behavior:'smooth'})">Growth</button>
+    <button onclick="document.getElementById('creative').scrollIntoView({behavior:'smooth'})">Creative</button>
+    <button onclick="document.getElementById('tech').scrollIntoView({behavior:'smooth'})">Tech Stack</button>
+    <button onclick="document.getElementById('cases').scrollIntoView({behavior:'smooth'})">Кейсы</button>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Контакт</button>
   </div>
   <div class="nav-r">
-    <button class="nbtn nbtn-green" onclick="scrollToAudit()" style="font-size:12px;padding:6px 13px;">Бесплатный аудит →</button>
+    <button class="nbtn nbtn-green" onclick="openModal()" style="font-size:12px;padding:6px 13px;">Бесплатный аудит →</button>
   </div>
 </nav>
 
-
-<!-- ══════════════════════════════════════════
-     HOME
-══════════════════════════════════════════ -->
 <div class="page active" id="page-home">
 
-  <!-- Hero -->
-  <div class="hero-wrap" style="min-height:calc(100vh - 58px);display:flex;align-items:center;position:relative;overflow:hidden;">
+  <!-- ═══ 1. HERO ═══ -->
+  <div class="hero-wrap" id="top" style="min-height:calc(100vh - 58px);display:flex;align-items:center;position:relative;overflow:hidden;">
     <canvas id="hero-canvas"></canvas>
     <div class="noise-overlay"></div>
-    <div style="position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 50% 60% at 20% 50%,rgba(34,197,94,.06) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 80% 30%,rgba(14,165,233,.04) 0%,transparent 60%);"></div>
+    <div style="position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 50% 60% at 20% 50%,rgba(34,197,94,.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 80% 30%,rgba(14,165,233,.05) 0%,transparent 60%);"></div>
     <div class="wrap" style="position:relative;z-index:1;padding-top:56px;padding-bottom:56px;">
-      <div style="max-width:820px;">
-        <div class="tag tag-g hero-animate d1" style="margin-bottom:26px;"><span class="dot dot-g"></span> Shopify Partner · Русскоязычные предприниматели в США</div>
-        <h1 style="margin-bottom:22px;">
-          <span class="hero-line" style="display:block;overflow:hidden;"><span class="hero-animate d1" style="display:inline-block;">Строим</span></span>
-          <span class="hero-line" style="display:block;overflow:hidden;"><span class="hero-animate d2" style="display:inline-block;">систему,</span></span>
-          <span class="hero-line" style="display:block;overflow:hidden;"><span class="hero-animate d3" style="display:inline-block;">которая</span></span>
-          <span class="hero-line" style="display:block;overflow:hidden;"><span class="hero-animate d4" style="display:inline-block;"><span id="typeword" class="grad-text">продаёт.</span></span></span>
+      <div style="max-width:880px;">
+        <div class="tag tag-g hero-animate d1" style="margin-bottom:26px;"><span class="dot dot-g"></span> Growth Studio · Русскоязычные предприниматели в США</div>
+        <h1 style="margin-bottom:24px;">
+          <span class="hero-line" style="display:block;overflow:hidden;"><span class="hero-animate d1" style="display:inline-block;">Мы не делаем сайты.</span></span>
+          <span class="hero-line" style="display:block;overflow:hidden;"><span class="hero-animate d3" style="display:inline-block;">Мы выращиваем <span class="grad-text">бизнес.</span></span></span>
         </h1>
-        <p class="sub hero-animate d3" style="margin-bottom:38px;">E-commerce под ключ — от первого клика до повторной продажи. В США. На русском.</p>
+        <p class="sub hero-animate d3" style="margin-bottom:34px;font-size:clamp(15px,2vw,19px);max-width:640px;">Shopify · Реклама · Аналитика · AI Видео · Креатив</p>
         <div class="bgroup hero-animate d4" style="margin-bottom:20px;">
           <div>
-            <button class="btn btn-g btn-lg cta-pulse" onclick="openModal()">Получить бесплатный аудит →</button>
-            <span class="btn-micro">✔ Перезвоним в течение рабочего дня</span>
+            <button class="btn btn-g btn-lg" onclick="openModal()">Бесплатный аудит →</button>
+            <span class="btn-micro" style="display:block;font-size:12px;color:var(--gray);margin-top:9px;">Перезвоним в течение рабочего дня</span>
           </div>
-          <button class="btn btn-o" onclick="go('portfolio')">Смотреть кейсы</button>
+          <button class="btn btn-o" onclick="document.getElementById('growth').scrollIntoView({behavior:'smooth'})">Смотреть направления</button>
         </div>
       </div>
     </div>
-  <div class="scroll-hint"><div class="scroll-hint-line"></div><span>scroll</span></div>
+    <div class="scroll-hint"><div class="scroll-hint-line"></div><span>scroll</span></div>
   </div>
 
   <div class="glow-line"></div>
 
-  <!-- Stats -->
-  <div class="wrap" style="padding:0;">
-    <div class="stats" data-motion="up">
-      <div class="st"><div class="st-n" style="color:var(--green);font-size:clamp(12px,1.8vw,16px);letter-spacing:.5px;font-weight:700;">Shopify<br>Partner</div><div class="st-l">Официальный партнёр</div></div>
-      <div class="st"><div class="st-n counter" data-suffix="ч" data-target="48" style="color:var(--teal);">48ч</div><div class="st-l">Запуск Zero Point</div></div>
-      <div class="st"><div class="st-n" style="color:var(--amber);font-size:clamp(12px,1.8vw,16px);font-weight:700;line-height:1.4;">США<br>русскоязычные</div><div class="st-l">Наша аудитория</div></div>
-      <div class="st"><div class="st-n" style="color:var(--white);font-size:clamp(10px,1.5vw,13px);font-weight:800;line-height:1.4;">Цена на<br>звонке</div><div class="st-l">Под твой проект</div></div>
-    </div>
-  </div>
-
-
   <!-- Marquee -->
   <div class="marquee-wrap" data-motion="fade">
-    <div class="marquee-track"><div class="marquee-item"><div class="marquee-dot"></div>Shopify Partner</div><div class="marquee-item"><div class="marquee-dot"></div>Meta Ads</div><div class="marquee-item accent"><div class="marquee-dot"></div>Instagram Shop</div><div class="marquee-item"><div class="marquee-dot"></div>Google Shopping</div><div class="marquee-item"><div class="marquee-dot"></div>Zero Point Free</div><div class="marquee-item"><div class="marquee-dot"></div>Email Automation</div><div class="marquee-item"><div class="marquee-dot"></div>Системы продаж</div><div class="marquee-item accent"><div class="marquee-dot"></div>Amazon интеграция</div><div class="marquee-item"><div class="marquee-dot"></div>Конверсия</div><div class="marquee-item"><div class="marquee-dot"></div>Ретаргетинг</div><div class="marquee-item"><div class="marquee-dot"></div>Shopify Partner</div><div class="marquee-item"><div class="marquee-dot"></div>Meta Ads</div><div class="marquee-item accent"><div class="marquee-dot"></div>Instagram Shop</div><div class="marquee-item"><div class="marquee-dot"></div>Google Shopping</div><div class="marquee-item"><div class="marquee-dot"></div>Zero Point Free</div><div class="marquee-item"><div class="marquee-dot"></div>Email Automation</div><div class="marquee-item"><div class="marquee-dot"></div>Системы продаж</div><div class="marquee-item accent"><div class="marquee-dot"></div>Amazon интеграция</div><div class="marquee-item"><div class="marquee-dot"></div>Конверсия</div><div class="marquee-item"><div class="marquee-dot"></div>Ретаргетинг</div></div>
+    <div class="marquee-track">
+      <div class="marquee-item"><div class="marquee-dot"></div>Shopify Partner</div><div class="marquee-item"><div class="marquee-dot"></div>Meta Ads</div><div class="marquee-item accent"><div class="marquee-dot"></div>AI Video</div><div class="marquee-item"><div class="marquee-dot"></div>TikTok Ads</div><div class="marquee-item"><div class="marquee-dot"></div>Analytics</div><div class="marquee-item"><div class="marquee-dot"></div>Creative Production</div><div class="marquee-item accent"><div class="marquee-dot"></div>Amazon · Etsy</div><div class="marquee-item"><div class="marquee-dot"></div>Конверсия</div><div class="marquee-item"><div class="marquee-dot"></div>ProdigyLAB Music</div><div class="marquee-item"><div class="marquee-dot"></div>Ретаргетинг</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Shopify Partner</div><div class="marquee-item"><div class="marquee-dot"></div>Meta Ads</div><div class="marquee-item accent"><div class="marquee-dot"></div>AI Video</div><div class="marquee-item"><div class="marquee-dot"></div>TikTok Ads</div><div class="marquee-item"><div class="marquee-dot"></div>Analytics</div><div class="marquee-item"><div class="marquee-dot"></div>Creative Production</div><div class="marquee-item accent"><div class="marquee-dot"></div>Amazon · Etsy</div><div class="marquee-item"><div class="marquee-dot"></div>Конверсия</div><div class="marquee-item"><div class="marquee-dot"></div>ProdigyLAB Music</div><div class="marquee-item"><div class="marquee-dot"></div>Ретаргетинг</div>
+    </div>
   </div>
 
-  <!-- FOUR FUNNELS -->
-  <div class="sec" id="funnels-anchor">
+  <!-- ═══ 2. ВОРОНКА ═══ -->
+  <div class="sec" id="funnel">
     <div class="wrap">
-      <h2 data-motion="up" style="margin-bottom:12px;">Какая ситуация у тебя?</h2>
-      <p style="color:var(--gray);margin-bottom:36px;font-size:16px;">Каждый путь разный — нажми на свой, и мы покажем точную систему.</p>
-
-      <div class="funnel-grid">
-
-        <!-- FUNNEL 1: Запуск с нуля -->
-        <div class="fcrd fcrd-1 tilt-card" data-motion="scale" data-delay="1" onclick="go('funnel1')">
-          <div class="fc-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="rgba(34,197,94,.3)" stroke-width="1"/><circle cx="20" cy="20" r="8" fill="rgba(34,197,94,.15)"/><circle cx="20" cy="20" r="3" fill="#22C55E"/></svg></div>
-          <div class="fc-title">Нет магазина.<br>Хочу запустить.</div>
-          <div class="fc-desc">Есть идея или товар. Хочешь профессиональный интернет-магазин — без технической боли и лишних расходов.</div>
+      <div style="text-align:center;max-width:680px;margin:0 auto 48px;" data-motion="up">
+        <span class="ey ey-g">Как мы работаем</span>
+        <h2>Три шага от проблемы до роста</h2>
+      </div>
+      <div class="funnel-grid" style="grid-template-columns:repeat(3,1fr);">
+        <!-- Step 1 -->
+        <div class="fcrd fcrd-1 tilt-card" data-motion="up" data-delay="1" onclick="openModal()">
+          <div class="tag tag-g" style="margin-bottom:16px;">Шаг 1 · Бесплатно</div>
+          <div class="fc-title" style="font-size:23px;">Free Growth Audit</div>
+          <div class="fc-desc">Не аудит сайта. Аудит бизнеса. Смотрим где ты теряешь деньги прямо сейчас.</div>
           <div class="fc-products">
-            <div class="fc-prod"><span class="pn">Zero Point</span><span class="pp" style="color:var(--green);font-weight:700;">FREE</span></div>
-            <div class="fc-prod"><span class="pn">Zero Point Pro</span><span class="pp">$150</span></div>
-            <div class="fc-prod"><span class="pn">Сайт услуг</span><span class="pp">Обсудить</span></div>
-            <div class="fc-prod"><span class="pn">Shopify-магазин</span><span class="pp">Обсудить</span></div>
+            <div class="fc-prod"><span class="pn">Shopify · Meta Ads · Google</span></div>
+            <div class="fc-prod"><span class="pn">Pixel · GA4 · Clarity</span></div>
+            <div class="fc-prod"><span class="pn">Email · Креативы · Конверсия</span></div>
           </div>
-          <div class="fc-cta">Запустить магазин →</div>
+          <div class="fc-cta">Получить бесплатно →</div>
         </div>
-
-        <!-- FUNNEL 2: Аудит и рост -->
-        <div class="fcrd fcrd-2 tilt-card" data-motion="scale" data-delay="2" onclick="go('funnel2')">
-          <div class="fc-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="8" y="8" width="24" height="24" rx="6" stroke="rgba(14,165,233,.3)" stroke-width="1"/><rect x="14" y="14" width="12" height="12" rx="3" fill="rgba(14,165,233,.15)"/><circle cx="20" cy="20" r="3" fill="#0EA5E9"/></svg></div>
-          <div class="fc-title">Магазин есть.<br>Нужен рост.</div>
-          <div class="fc-desc">Есть магазин, но продаж мало или нет. Хочешь понять почему — и получить чёткий план что делать.</div>
+        <!-- Step 2 -->
+        <div class="fcrd fcrd-2 tilt-card" data-motion="up" data-delay="2" onclick="openModal()">
+          <div class="tag tag-t" style="margin-bottom:16px;">Шаг 2 · $200</div>
+          <div class="fc-title" style="font-size:23px;">Strategy Audit</div>
+          <div class="fc-desc">Полный разбор. Без воды. Что уже работает, что сливает бюджет, что делать в ближайшие 90 дней.</div>
           <div class="fc-products">
-            <div class="fc-prod"><span class="pn">Экспресс-аудит</span><span class="pp" style="color:var(--teal);font-weight:700;">FREE</span></div>
-            <div class="fc-prod"><span class="pn">Полный аудит</span><span class="pp">Платный</span></div>
-            <div class="fc-prod"><span class="pn">Редизайн / Fix</span><span class="pp">по пакетам</span></div>
+            <div class="fc-prod"><span class="pn">PDF-документ</span></div>
+            <div class="fc-prod"><span class="pn">Zoom-разбор</span></div>
+            <div class="fc-prod"><span class="pn">Roadmap на 90 дней</span></div>
           </div>
-          <div class="fc-hover"></div>
-          <div class="fc-hover"></div>
-          <div class="fc-cta" style="color:var(--teal);">Получить аудит →</div>
+          <div class="fc-cta">Заказать за $200 →</div>
         </div>
-
-        <!-- FUNNEL 3: Реклама -->
-        <div class="fcrd fcrd-3 tilt-card" data-motion="scale" data-delay="3" onclick="go('funnel3')">
-          <div class="fc-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="rgba(249,115,22,.3)" stroke-width="1"/><path d="M8 20h24M20 8v24" stroke="rgba(249,115,22,.2)" stroke-width="1"/><circle cx="20" cy="20" r="4" fill="#F97316"/></svg></div>
-          <div class="fc-title">Магазин готов.<br>Нужна реклама.</div>
-          <div class="fc-desc">Shopify настроен. Нужны покупатели. Хочешь запустить Meta Ads, Google Shopping, Instagram Shop — и окупить вложения.</div>
+        <!-- Step 3 -->
+        <div class="fcrd fcrd-3 tilt-card" data-motion="up" data-delay="3" onclick="openModal()">
+          <div class="tag tag-c" style="margin-bottom:16px;">Шаг 3 · Индивидуально</div>
+          <div class="fc-title" style="font-size:23px;">Growth Plan</div>
+          <div class="fc-desc">После аудита выбираешь направление — мы реализуем. Магазин, реклама, креатив, аналитика — или всё вместе.</div>
           <div class="fc-products">
-            <div class="fc-prod"><span class="pn">Настройка рекламы</span><span class="pp" style="color:var(--coral);font-weight:700;">Обсудить</span></div>
-            <div class="fc-prod"><span class="pn">+ рекламный бюджет</span><span class="pp">твой</span></div>
-            <div class="fc-prod"><span class="pn">Сопровождение</span><span class="pp">ежемесячно</span></div>
+            <div class="fc-prod"><span class="pn">E-commerce система</span></div>
+            <div class="fc-prod"><span class="pn">Реклама + Креатив</span></div>
+            <div class="fc-prod"><span class="pn">Аналитика + Автоматизация</span></div>
           </div>
-          <div class="fc-hover"></div>
-          <div class="fc-cta" style="color:var(--coral);">Запустить рекламу →</div>
+          <div class="fc-cta">Обсудить →</div>
         </div>
-
-        <!-- FUNNEL 4: Amazon продавцы -->
-        <div class="fcrd fcrd-4 tilt-card" data-motion="scale" data-delay="4" onclick="go('funnel4')">
-          <div class="fc-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="10" y="12" width="20" height="18" rx="3" stroke="rgba(255,153,0,.3)" stroke-width="1"/><path d="M10 18h20M20 18v12" stroke="rgba(255,153,0,.2)" stroke-width="1"/><circle cx="20" cy="18" r="2.5" fill="#FF9900"/></svg></div>
-          <div class="fc-title">Amazon или Etsy.<br>Хочешь больше.</div>
-          <div class="fc-desc">Amazon и Etsy забирают до 40% комиссиями, могут заблокировать в любой момент — и рядом сотни конкурентов с тем же товаром. Пора строить своё.</div>
-          <div class="fc-products">
-            <div class="fc-prod"><span class="pn">Свой Shopify + Amazon</span><span class="pp" style="color:#FF9900;font-weight:700;">связка</span></div>
-            <div class="fc-prod"><span class="pn">+ Etsy</span><span class="pp" style="color:#F36A3E;font-weight:600;">интеграция</span></div>
-            <div class="fc-prod"><span class="pn">+ Instagram Shop</span><span class="pp">все каналы</span></div>
-            <div class="fc-prod"><span class="pn">+ Facebook Shop</span><span class="pp">единый каталог</span></div>
-          </div>
-          <div class="fc-hover"></div>
-          <div class="fc-cta" style="color:#FF9900;">Выйти за пределы маркетплейсов →</div>
-        </div>
-
       </div>
     </div>
   </div>
 
-  <!-- Cases preview -->
-  <div class="sec" style="padding-top:0;">
+  <div class="glow-line"></div>
+
+  <!-- ═══ 3. GROWTH ENGINE ═══ -->
+  <div class="sec" id="growth">
     <div class="wrap">
-      <div class="ey ey-g" data-motion="up">● КЕЙСЫ</div>
-      <h2 data-motion="up" data-delay="1" style="margin-bottom:36px;">Реальные результаты</h2>
+      <div style="max-width:680px;margin-bottom:44px;" data-motion="up">
+        <span class="ey ey-g">Направление 01</span>
+        <h2>E-commerce система под ключ</h2>
+        <p class="sub" style="margin-top:18px;">Строим не просто магазин — строим машину, которая продаёт. Shopify, реклама, аналитика, маркетплейсы — всё в одной системе.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+        <div class="card card-p tilt-card" data-motion="up" data-delay="1">
+          <div class="tag tag-g" style="margin-bottom:14px;">Shopify Growth</div>
+          <h3 style="font-size:20px;margin-bottom:10px;">Магазин который продаёт</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.7;">Новый магазин, редизайн, конверсия, UX, мобайл, скорость. Магазин который продаёт — а не просто висит в интернете.</p>
+        </div>
+        <div class="card card-p tilt-card" data-motion="up" data-delay="2">
+          <div class="tag tag-t" style="margin-bottom:14px;">Analytics &amp; Tracking</div>
+          <h3 style="font-size:20px;margin-bottom:10px;">Знаешь каждый цент</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.7;">GA4, GTM, Meta Pixel, Clarity, воронки, дашборды. Знаешь каждый цент — откуда пришёл и куда ушёл.</p>
+        </div>
+        <div class="card card-p tilt-card" data-motion="up" data-delay="3">
+          <div class="tag tag-a" style="margin-bottom:14px;">Paid Advertising</div>
+          <h3 style="font-size:20px;margin-bottom:10px;">Реклама которая окупается</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.7;">Meta Ads, TikTok Ads, ретаргетинг, масштабирование. Реклама которая окупается — не просто крутится.</p>
+        </div>
+        <div class="card card-p tilt-card" data-motion="up" data-delay="4">
+          <div class="tag tag-c" style="margin-bottom:14px;">Marketplace Expansion</div>
+          <h3 style="font-size:20px;margin-bottom:10px;">Больше каналов — больше продаж</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.7;">Amazon, Etsy, TikTok Shop, Instagram Shop. Один каталог, везде синхронизировано.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="glow-line"></div>
+
+  <!-- ═══ 4. CREATIVE STUDIO ═══ -->
+  <div class="sec" id="creative">
+    <div class="wrap">
+      <div style="max-width:680px;margin-bottom:44px;" data-motion="up">
+        <span class="ey ey-c">Направление 02</span>
+        <h2>Контент который останавливает скролл</h2>
+        <p class="sub" style="margin-top:18px;">Баннеры, видео, AI-ролики, музыкальные клипы. Делаем то, что большинство агентств не умеют даже объяснить.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+        <!-- Creative Production -->
+        <div class="card card-p tilt-card" data-motion="up" data-delay="1">
+          <div class="tag tag-c" style="margin-bottom:14px;">Creative Production</div>
+          <h3 style="font-size:21px;margin-bottom:10px;">Креативы которые конвертируют</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:16px;">Не красивые картинки — а контент который продаёт.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="tag tag-c">Баннеры</span><span class="tag tag-c">UGC</span><span class="tag tag-c">Фото продуктов</span><span class="tag tag-c">Видео</span><span class="tag tag-c">Ad Creatives</span><span class="tag tag-c">AI Creatives</span>
+          </div>
+        </div>
+        <!-- AI Video Studio -->
+        <div class="card card-p tilt-card" data-motion="up" data-delay="2">
+          <div class="tag tag-t" style="margin-bottom:14px;">AI Video Studio</div>
+          <h3 style="font-size:21px;margin-bottom:10px;">Видео за $20,000 — теперь любому бренду</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:16px;">Используем самые мощные AI-инструменты на рынке.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+            <span class="tag tag-t">AI Рекламные ролики</span><span class="tag tag-t">Product Videos</span><span class="tag tag-t">Brand Videos</span><span class="tag tag-t">Social Media</span>
+          </div>
+          <div style="font-size:12px;color:var(--gray);letter-spacing:.3px;">Higgsfield · Veo · Runway · Kling · Sora</div>
+        </div>
+        <!-- ProdigyLAB Music — purple accent, full width -->
+        <div class="card card-p tilt-card" data-motion="up" data-delay="3" style="grid-column:1/-1;background:linear-gradient(160deg,rgba(168,85,247,.09) 0%,var(--bg2) 55%);border-color:rgba(168,85,247,.22);">
+          <div style="display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:100px;font-size:11.5px;font-weight:600;letter-spacing:.3px;background:rgba(168,85,247,.15);color:var(--purple);border:1px solid rgba(168,85,247,.3);margin-bottom:14px;">ProdigyLAB Music</div>
+          <h3 style="font-size:23px;margin-bottom:10px;">Для артистов которые хотят выйти на уровень</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:16px;max-width:620px;">Отдельное направление студии. Полный цикл — от продакшна до дистрибуции и промо.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;">
+            <span style="font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(168,85,247,.13);color:var(--purple);border:1px solid rgba(168,85,247,.25);">Artist Development</span><span style="font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(168,85,247,.13);color:var(--purple);border:1px solid rgba(168,85,247,.25);">Music Production</span><span style="font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(168,85,247,.13);color:var(--purple);border:1px solid rgba(168,85,247,.25);">Visual Identity</span><span style="font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(168,85,247,.13);color:var(--purple);border:1px solid rgba(168,85,247,.25);">AI Music Videos</span><span style="font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(168,85,247,.13);color:var(--purple);border:1px solid rgba(168,85,247,.25);">Distribution</span><span style="font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(168,85,247,.13);color:var(--purple);border:1px solid rgba(168,85,247,.25);">Promotion</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+            <div style="font-size:12px;color:var(--gray);">Spotify · Apple Music · YouTube Music · Amazon Music</div>
+            <button class="btn btn-o" onclick="openModal()" style="border-color:rgba(168,85,247,.4);color:var(--purple);">Узнать подробнее →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="glow-line"></div>
+
+  <!-- ═══ 5. TECH STACK ═══ -->
+  <div class="sec" id="tech">
+    <div class="wrap">
+      <div style="max-width:680px;margin-bottom:44px;" data-motion="up">
+        <span class="ey ey-t">Под капотом</span>
+        <h2>Our Technology Stack</h2>
+        <p class="sub" style="margin-top:18px;">Работаем с инструментами, которые используют лучшие команды в мире.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
+        <div class="card card-p" data-motion="up" data-delay="1">
+          <div class="cs-niche" style="margin-bottom:14px;">E-commerce</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="tag tag-g">Shopify Partner</span><span class="tag tag-g">GA4</span><span class="tag tag-g">GTM</span><span class="tag tag-g">Meta</span><span class="tag tag-g">Clarity</span>
+          </div>
+        </div>
+        <div class="card card-p" data-motion="up" data-delay="2">
+          <div class="cs-niche" style="margin-bottom:14px;">AI Creation</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="tag tag-c">Higgsfield</span><span class="tag tag-c">Suno</span><span class="tag tag-c">ElevenLabs</span><span class="tag tag-c">Kling</span><span class="tag tag-c">Runway</span><span class="tag tag-c">Veo</span>
+          </div>
+        </div>
+        <div class="card card-p" data-motion="up" data-delay="3">
+          <div class="cs-niche" style="margin-bottom:14px;">Analytics</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="tag tag-t">Supermetrics</span><span class="tag tag-t">Looker Studio</span><span class="tag tag-t">GA4</span>
+          </div>
+        </div>
+        <div class="card card-p" data-motion="up" data-delay="4">
+          <div class="cs-niche" style="margin-bottom:14px;">Automation</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="tag tag-a">AI Agents</span><span class="tag tag-a">Lead Automation</span><span class="tag tag-a">CRM</span><span class="tag tag-a">Email</span><span class="tag tag-a">SMS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="glow-line"></div>
+
+  <!-- ═══ 6. КЕЙСЫ ═══ -->
+  <div class="sec" id="cases">
+    <div class="wrap">
+      <div style="max-width:680px;margin-bottom:44px;" data-motion="up">
+        <span class="ey ey-g">Результаты</span>
+        <h2>Реальные магазины. Реальные цифры.</h2>
+        <p class="sub" style="margin-top:18px;">Не концепты. Не мокапы. Живые бизнесы которые продают каждый день.</p>
+      </div>
       <div class="cases">
-        <div class="cs tilt-card" data-motion="up" data-delay="1"><div class="cs-top" style="background:linear-gradient(135deg,#1a0814,#3d1028);"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="rgba(255,100,150,.4)" stroke-width="1"/><circle cx="24" cy="24" r="10" fill="rgba(255,100,150,.15)"/><circle cx="24" cy="24" r="4" fill="rgba(255,120,160,.6)"/></svg><span class="cs-pill">Shopify + POS + рассрочка</span></div><div class="cs-body"><div class="cs-niche">Beauty PMU · Sacramento, CA</div><div class="cs-name">culturapmu.com</div><div class="cs-q">«Сайт с видео-портфолио, Shopify POS вместо дорогого терминала и рассрочка на дорогие процедуры — всё в одном.»</div><div class="cs-m"><div><div class="mv" style="color:var(--green);">Сэкономили</div><div class="ml">На терминале</div></div><div><div class="mv" style="color:var(--teal);">48ч</div><div class="ml">До запуска</div></div></div></div></div>
-        <div class="cs tilt-card" data-motion="up" data-delay="2"><div class="cs-top" style="background:linear-gradient(135deg,#0a0a1a,#1a1a3d);"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="10" y="10" width="28" height="28" rx="8" stroke="rgba(100,120,255,.4)" stroke-width="1"/><rect x="17" y="17" width="14" height="14" rx="4" fill="rgba(100,120,255,.15)"/><circle cx="24" cy="24" r="4" fill="rgba(120,140,255,.6)"/></svg><span class="cs-pill">Аудит + редизайн</span></div><div class="cs-body"><div class="cs-niche">Fashion · NYC</div><div class="cs-name">Vera Style</div><div class="cs-q">«Сломанный checkout на iPhone. Казалось очевидным — но никто до нас не нашёл.»</div><div class="cs-m"><div><div class="mv" style="color:var(--green);">+180%</div><div class="ml">Конверсия</div></div><div><div class="mv" style="color:var(--amber);">2.4x</div><div class="ml">ROAS</div></div></div></div></div>
-        <div class="cs tilt-card" data-motion="up" data-delay="3"><div class="cs-top" style="background:linear-gradient(135deg,#0a180a,#0d3d14);"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 8 L38 20 L38 38 L10 38 L10 20 Z" stroke="rgba(34,197,94,.4)" stroke-width="1" fill="rgba(34,197,94,.08)"/><circle cx="24" cy="26" r="6" fill="rgba(34,197,94,.2)"/><circle cx="24" cy="26" r="3" fill="rgba(34,197,94,.6)"/></svg><span class="cs-pill">Growth + реклама</span></div><div class="cs-body"><div class="cs-niche">Fitness · Miami</div><div class="cs-name">HealthHustle</div><div class="cs-q">«Проблемный поставщик + настроенная реклама. Теперь $9K/мес стабильно.»</div><div class="cs-m"><div><div class="mv" style="color:var(--green);">$9K</div><div class="ml">В месяц</div></div><div><div class="mv" style="color:var(--coral);">2.4x</div><div class="ml">ROAS</div></div></div></div></div>
-      </div>
-      <div style="text-align:center;margin-top:24px;"><button class="btn btn-o" onclick="go('portfolio')">Все кейсы →</button></div>
-    </div>
-  </div>
-
-  <!-- Testimonials -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap">
-
-      <!-- AMAZON BANNER -->
-      <div data-motion="up" onclick="go('funnel4')" style="cursor:pointer;background:linear-gradient(135deg,rgba(255,153,0,.1) 0%,rgba(255,153,0,.04) 60%,var(--bg2) 100%);border:1px solid rgba(255,153,0,.35);border-radius:16px;padding:32px 36px;margin-bottom:40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;transition:all .25s;" onmouseenter="this.style.borderColor='rgba(255,153,0,.7)'" onmouseleave="this.style.borderColor='rgba(255,153,0,.35)'">
-        <div style="display:flex;align-items:center;gap:20px;">
-          <div style="width:44px;height:44px;background:rgba(255,153,0,.15);border:1px solid rgba(255,153,0,.3);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Unbounded',sans-serif;font-weight:800;font-size:16px;color:#FF9900;">A</div>
-          <div>
-            <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#FF9900;margin-bottom:6px;">● ДЛЯ ПРОДАВЦОВ НА МАРКЕТПЛЕЙСАХ</div>
-            <div style="font-family:'Unbounded',sans-serif;font-size:26px;font-weight:900;line-height:1.1;margin-bottom:6px;">Продаёшь на Amazon или Etsy?<br>Ты отдаёшь им <span style="color:#FF9900;">до 40% своей выручки.</span></div>
-            <div style="font-size:14px;color:var(--gray);max-width:520px;line-height:1.6;">Amazon и Etsy забирают комиссии, не дают данные о покупателях и могут заблокировать без предупреждения. Shopify + маркетплейсы — это твой магазин, твои покупатели, твои правила.</div>
-          </div>
-        </div>
-        <div style="flex-shrink:0;">
-          <div style="background:#FF9900;color:#000;font-size:14px;font-weight:700;padding:12px 22px;border-radius:9px;white-space:nowrap;">Узнать как выйти →</div>
-        </div>
-      </div>
-
-      <div class="testis" data-motion="up">
-        <div class="tst"><div class="tst-stars">★★★★★</div><div class="tst-text">«Сделали фантастически красивый сайт с моими видео-работами. Но главное — сэкономили огромные деньги: вместо дорогого терминала настроили Shopify POS прямо на телефон, и теперь клиенты могут оформить рассрочку на дорогие процедуры. В США это существенная разница.»</div><div class="tst-author"><div class="tst-av" style="background:linear-gradient(135deg,#3d0828,#1a0814);color:rgba(255,120,160,.8);font-size:11px;font-weight:700;font-family:'Unbounded',sans-serif;">АР</div><div><div class="tst-name">Алина Р.</div><div class="tst-biz">culturapmu.com · Sacramento</div></div></div></div>
-        <div class="tst"><div class="tst-stars">★★★★★</div><div class="tst-text">«Аудит был настолько подробным и доступно объяснённым, что я наконец поняла почему не было продаж — хотя до этого обращалась к двум другим специалистам. Всё разложили по полочкам, без воды.»</div><div class="tst-author"><div class="tst-av" style="background:linear-gradient(135deg,#0a0a2a,#1a1a3d);color:rgba(120,140,255,.8);font-size:11px;font-weight:700;font-family:'Unbounded',sans-serif;">НМ</div><div><div class="tst-name">Наталья М.</div><div class="tst-biz">E-commerce · New York</div></div></div></div>
-        <div class="tst"><div class="tst-stars">★★★★★</div><div class="tst-text">«Сначала не доверяла и подключила просто бесплатный Zero Point. Была поражена качеством — добавила Pro, а потом перешла на максимальный пакет. Теперь просто не заморачиваюсь и доверяю профессионалам.»</div><div class="tst-author"><div class="tst-av" style="background:linear-gradient(135deg,#0a1620,#0d2f4a);color:rgba(14,165,233,.8);font-size:11px;font-weight:700;font-family:'Unbounded',sans-serif;">ОК</div><div><div class="tst-name">Ольга К.</div><div class="tst-biz">Beauty · Los Angeles</div></div></div></div>
-        <div class="tst"><div class="tst-stars">★★★★★</div><div class="tst-text">«Больше трёх недель мучалась с Meta Ads сама — слила бюджет, получила 2 продажи от знакомых и постоянный стресс. Ребята всё проанализировали, написали сценарии креативов, настроили — и продажи пошли на третий день. Сейчас они на сопровождении, у меня появилось время на бизнес и на семью.»</div><div class="tst-author"><div class="tst-av" style="background:linear-gradient(135deg,#0a1a0a,#0d3a14);color:rgba(34,197,94,.8);font-size:11px;font-weight:700;font-family:'Unbounded',sans-serif;">ЕВ</div><div><div class="tst-name">Елена В.</div><div class="tst-biz">Skincare · Miami</div></div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Audit anchor on home -->
-  <div class="sec" id="audit-anchor" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-    <div class="wrap">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
-        <div>
-          <div class="ey ey-g" data-motion="left">● БЕСПЛАТНО</div>
-          <h2 data-motion="left" data-delay="1" style="margin-bottom:14px;">Начни с<br><span style="color:var(--green);">бесплатного аудита</span></h2>
-          <p style="color:var(--gray);font-size:16px;line-height:1.75;margin-bottom:24px;">Оставь имя и телефон — мы перезвоним и разберём твою ситуацию.</p>
-          <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:var(--gray);">
-            <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" style="margin-right:6px;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg>Только русскоязычные предприниматели в США</div>
-            <div>✔ Перезвоним в течение рабочего дня</div>
-            <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" style="margin-right:6px;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg>Без давления — только честная оценка</div>
-          </div>
-        </div>
-        <div class="lf-wrap" data-motion="right">
-          <div class="lf">
-            <input class="li" type="text" id="lf-name" placeholder="Имя *" required>
-            <input class="li" type="tel" id="lf-phone" placeholder="Телефон *" required>
-            <input class="li" type="email" id="lf-email" placeholder="Email (необязательно)">
-            <button class="btn btn-g" style="justify-content:center;padding:14px;" onclick="submitInlineForm(this)">Получить бесплатный аудит →</button>
-            <p class="ln">✔ Перезвоним в течение рабочего дня</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div><!-- /home -->
-
-
-<!-- ══════════════════════════════════════════
-     FUNNEL 1: ЗАПУСК С НУЛЯ
-══════════════════════════════════════════ -->
-<div class="page" id="page-funnel1">
-
-  <!-- Hero -->
-  <div class="phero">
-    <div class="glow" style="background:var(--green);width:600px;height:600px;top:-20%;left:-10%;"></div>
-    <div class="wrap">
-      <button class="btn btn-o btn-sm" onclick="go('home')" style="margin-bottom:28px;">← Назад</button>
-      
-      <h1 style="margin-bottom:16px;">От идеи до<br>магазина — <span style="color:var(--green);">быстро.</span></h1>
-      <p class="sub" style="margin-bottom:36px;">Четыре продукта — от бесплатного старта до полноценного e-commerce. Выбери свой уровень.</p>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- ─── ZERO POINT ─── -->
-  <div class="sec" id="zp">
-    <div class="wrap">
-      
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
-        <div>
-          <h2 style="margin-bottom:6px;">Zero Point</h2>
-          <div class="price-hero"><span class="ph-num" style="color:var(--green);">FREE</span><span class="ph-lbl">Без оплаты.<br>Без скрытых условий.</span></div>
-          <p style="color:var(--gray);font-size:15px;line-height:1.75;margin-bottom:28px;">Готовый базовый Shopify-магазин — структура, шаблон под нишу, все страницы. Ты получаешь профессиональную основу, которую остаётся заполнить своим контентом.</p>
-
-          <div style="background:var(--bg2);border:1px solid rgba(34,197,94,.25);border-radius:12px;padding:20px;margin-bottom:24px;">
-            <div style="font-weight:700;font-size:14px;margin-bottom:12px;color:var(--green);">Как нам это выгодно (честно):</div>
-            <p style="font-size:13.5px;color:var(--gray);line-height:1.75;">Мы инвестируем 2–3 часа своей работы авансом. Наш расчёт: ты получаешь магазин, видишь качество нашей работы, понимаешь ценность — и становишься клиентом на платные услуги. Если нет — ничего страшного, магазин всё равно остаётся твоим. Это наш способ познакомиться.</p>
-          </div>
-
-          <button class="btn btn-g btn-lg" onclick="scrollToAudit()">Получить Zero Point →</button>
-        </div>
-        <div>
-          <div class="split2">
-            <div class="ibox ibox-g">
-              <div class="ibox-hd ibox-hd-g">✓ ВХОДИТ</div>
-              <div class="clist">
-                <div class="ci"><div class="ci-ico ic-g">✓</div><div>Shopify-аккаунт через партнёрскую программу</div></div>
-                <div class="ci"><div class="ci-ico ic-g">✓</div><div>Нишевый шаблон (beauty, fashion, fitness, gifts, brand)</div></div>
-                <div class="ci"><div class="ci-ico ic-g">✓</div><div>Главная страница — hero, каталог, about, footer</div></div>
-                <div class="ci"><div class="ci-ico ic-g">✓</div><div>Страницы About, Contact, FAQ, Policies</div></div>
-                <div class="ci"><div class="ci-ico ic-g">✓</div><div>Базовые цвета, шрифты, навигация</div></div>
-                <div class="ci"><div class="ci-ico ic-g">✓</div><div>PDF-гайд «Что делать дальше»</div></div>
-              </div>
-            </div>
-            <div class="ibox ibox-r">
-              <div class="ibox-hd ibox-hd-r">✗ НЕ ВХОДИТ</div>
-              <div class="clist">
-                <div class="ci"><div class="ci-ico ic-r">✗</div><div>Платёжные системы</div></div>
-                <div class="ci"><div class="ci-ico ic-r">✗</div><div>Загрузка товаров</div></div>
-                <div class="ci"><div class="ci-ico ic-r">✗</div><div>Тексты и копирайтинг</div></div>
-                <div class="ci"><div class="ci-ico ic-r">✗</div><div>Домен (.com)</div></div>
-                <div class="ci"><div class="ci-ico ic-r">✗</div><div>Meta Pixel, аналитика</div></div>
-                <div class="ci"><div class="ci-ico ic-r">✗</div><div>SEO, приложения</div></div>
-              </div>
+        <!-- HealthHustle -->
+        <div class="cs tilt-card" data-motion="up" data-delay="1">
+          <div class="cs-top" style="background:linear-gradient(160deg,rgba(34,197,94,.14),var(--bg2));">🏋️</div>
+          <div class="cs-body">
+            <div class="cs-niche">Фитнес / Home Gym</div>
+            <div class="cs-name">HealthHustle Academy</div>
+            <div style="font-size:11.5px;color:var(--gray);margin-bottom:10px;">healthhustleacademy.com</div>
+            <div class="cs-q">Система продаж под ключ — Shopify, Meta Ads, воронка, аналитика.</div>
+            <div class="cs-m">
+              <div><div class="mv counter" data-target="12500" data-suffix="+" style="color:var(--green);">12500+</div><div class="ml">покупателей</div></div>
+              <div><div class="mv" style="color:var(--teal);">$9K</div><div class="ml">в месяц</div></div>
+              <div><div class="mv" style="color:var(--amber);">4.9★</div><div class="ml">рейтинг</div></div>
             </div>
           </div>
-          <div style="background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:16px;margin-top:14px;font-size:13px;color:var(--gray);">
-            <strong style="color:var(--white);">Zero Point — это скелет.</strong> Всё остальное добавляется через Zero Point Pro ($150) или через платные пакеты. Это сделано намеренно: ты видишь реальную работу и решаешь сам.
+        </div>
+        <!-- Set4Pets -->
+        <div class="cs tilt-card" data-motion="up" data-delay="2">
+          <div class="cs-top" style="background:linear-gradient(160deg,rgba(14,165,233,.14),var(--bg2));">🐾</div>
+          <div class="cs-body">
+            <div class="cs-niche">Pets / Single Product</div>
+            <div class="cs-name">Set4Pets</div>
+            <div style="font-size:11.5px;color:var(--gray);margin-bottom:10px;">set4pets.com</div>
+            <div class="cs-q">Shopify, конверсионный лендинг, видео, реклама. Отправка за 24ч.</div>
+            <div class="cs-m">
+              <div><div class="mv counter" data-target="500" data-suffix="+" style="color:var(--teal);">500+</div><div class="ml">покупателей</div></div>
+              <div><div class="mv" style="color:var(--amber);">4.9★</div><div class="ml">рейтинг</div></div>
+              <div><div class="mv" style="color:var(--white);font-size:15px;line-height:1.3;padding-top:4px;">CBS<br>News</div><div class="ml">в прессе</div></div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- ─── ZERO POINT PRO ─── -->
-  <div class="sec" id="zpp">
-    <div class="wrap">
-      
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
-        <div>
-          <h2 style="margin-bottom:6px;">Zero Point Pro</h2>
-          <div class="price-hero"><span class="ph-num" style="color:var(--green);">$150</span><span class="ph-lbl">Один раз.<br>Магазин готов к продажам.</span></div>
-          <p style="color:var(--gray);font-size:15px;line-height:1.75;margin-bottom:20px;">Получил Zero Point — увидел пустой скелет — понял что не хочешь разбираться неделями. Zero Point Pro закрывает всё техническое и запускает магазин за 24 часа.</p>
-          <p style="color:var(--gray);font-size:15px;line-height:1.75;margin-bottom:28px;">Аналогичная работа у фрилансера — <span style="color:var(--white);">$300–500</span>. У нас — $150, потому что у нас поставлен процесс и мы заинтересованы в твоём долгосрочном росте.</p>
-          <div class="bgroup">
-            <button class="btn btn-g btn-lg" onclick="scrollToAudit()">Начать — $150 →</button>
-            <button class="btn btn-o btn-sm" onclick="document.getElementById('zp').scrollIntoView({behavior:'smooth'})">← Сначала бесплатный Zero Point</button>
-          </div>
-        </div>
-        <div>
-          <div style="background:var(--bg2);border:1px solid rgba(34,197,94,.25);border-radius:14px;overflow:hidden;">
-            <div style="padding:16px 22px;border-bottom:1px solid var(--border);font-weight:700;font-size:14px;">Что мы делаем в Zero Point Pro:</div>
-            <div style="padding:8px 22px 8px;">
-              <div class="steps">
-                <div class="srow"><div class="snum sn-g">1</div><div><div class="st-ttl">Тексты hero и About</div><div class="st-dsc">Написание продающего заголовка, описания бренда и CTA по брифу.</div></div></div>
-                <div class="srow"><div class="snum sn-g">2</div><div><div class="st-ttl">Загрузка 10 первых товаров</div><div class="st-dsc">Ты присылаешь фото и описания — мы загружаем, оформляем, ставим цены.</div></div></div>
-                <div class="srow"><div class="snum sn-g">3</div><div><div class="st-ttl">Подключение платёжной системы</div><div class="st-dsc">Shopify Payments или PayPal — магазин принимает деньги.</div></div></div>
-                <div class="srow"><div class="snum sn-g">4</div><div><div class="st-ttl">Meta Pixel + Google Analytics</div><div class="st-dsc">Видишь каждый визит и каждую покупку.</div></div></div>
-                <div class="srow" style="padding-bottom:4px;"><div class="snum sn-g">5</div><div><div class="st-ttl">30-минутный онбординг-звонок</div><div class="st-dsc">Показываем что сделано, объясняем что делать дальше.</div></div></div>
-              </div>
+        <!-- Petalia -->
+        <div class="cs tilt-card" data-motion="up" data-delay="3">
+          <div class="cs-top" style="background:linear-gradient(160deg,rgba(168,85,247,.14),var(--bg2));">💄</div>
+          <div class="cs-body">
+            <div class="cs-niche">Косметика / Beauty</div>
+            <div class="cs-name">Petalia</div>
+            <div style="font-size:11.5px;color:var(--gray);margin-bottom:10px;">petaliashop.com</div>
+            <div class="cs-q">Shopify магазин под ключ, система продаж.</div>
+            <div class="cs-m">
+              <div><div class="mv" style="color:var(--purple);">Beauty</div><div class="ml">ниша</div></div>
+              <div><div class="mv" style="color:var(--green);">Live</div><div class="ml">работает</div></div>
             </div>
           </div>
         </div>
@@ -1365,786 +1334,122 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
     </div>
   </div>
 
-  <hr>
+  <div class="glow-line"></div>
 
-  <!-- ─── ПЛАТНЫЕ ПАКЕТЫ ─── -->
-  <div class="sec" id="packages">
-    <div class="wrap">
-      
-      <h2 style="margin-bottom:12px;">Пакеты — под любую задачу</h2>
-      <p style="color:var(--gray);font-size:15px;margin-bottom:36px;max-width:580px;">Если нужно сделать один раз и правильно — не заполнять шаблон, а получить готовый профессиональный сайт.</p>
-
-      <div class="site-grid">
-
-        <!-- Сайт услуг -->
-        <div class="sp">
-          <div class="sp-name">Сайт услуг</div>
-          <div class="sp-for">Мастера, специалисты, сервисный бизнес</div>
-          <div class="sp-price" style="color:var(--teal);font-size:28px;line-height:1.3;">Цена<br>после консультации</div>
-          <div class="sp-per">Фиксированная стоимость</div>
-          <ul class="sp-list">
-            <li>Shopify как платформа для сайта + онлайн-бронирование</li>
-            <li>Кастомный нишевый дизайн</li>
-            <li>Страница услуг с ценами</li>
-            <li>Форма заявки / запись онлайн</li>
-            <li>Gallery / портфолио работ</li>
-            <li>SEO базовый + Google Business</li>
-            <li>1 неделя поддержки</li>
-          </ul>
-          <button class="btn btn-t" style="width:100%;justify-content:center;" onclick="scrollToAudit()">Обсудить →</button>
-          <div style="font-size:11px;color:var(--gray);margin-top:8px;text-align:center;">Nail-мастера, lash, косметологи, коучи, beauty-студии</div>
-        </div>
-
-        <!-- Shopify Starter -->
-        <div class="sp">
-          <div class="sp-name">Shopify Starter</div>
-          <div class="sp-for">Первый магазин с небольшим каталогом</div>
-          <div class="sp-price" style="color:var(--green);font-size:28px;line-height:1.3;">Цена<br>после консультации</div>
-          <div class="sp-per">Зависит от объёма</div>
-          <ul class="sp-list">
-            <li>Кастомный нишевый шаблон</li>
-            <li>До 20 товаров с описаниями</li>
-            <li>Домен + платёжные системы</li>
-            <li>Базовый SEO всех страниц</li>
-            <li>Meta Pixel + Google Analytics</li>
-            <li>Email-форма подписки</li>
-            <li>2 недели поддержки</li>
-          </ul>
-          <button class="btn btn-g" style="width:100%;justify-content:center;" onclick="scrollToAudit()">Обсудить →</button>
-        </div>
-
-        <!-- Shopify Growth (featured) -->
-        <div class="sp featured">
-          <div class="sp-badge">Популярный выбор</div>
-          <div class="sp-name">Shopify Growth</div>
-          <div class="sp-for">Серьёзный бренд с линейкой товаров</div>
-          <div class="sp-price" style="color:var(--green);font-size:28px;line-height:1.3;">Цена<br>после консультации</div>
-          <div class="sp-per">Зависит от объёма</div>
-          <ul class="sp-list">
-            <li>Всё из Starter</li>
-            <li>До 50 товаров + копирайтинг</li>
-            <li>Кастомный дизайн под бренд</li>
-            <li>Email-автоматизация (Klaviyo) — 2 потока</li>
-            <li>Upsell + cross-sell система</li>
-            <li>Instagram Shop + Facebook Shop</li>
-            <li>Google Shopping</li>
-            <li>1 месяц поддержки</li>
-          </ul>
-          <button class="btn btn-g" style="width:100%;justify-content:center;" onclick="scrollToAudit()">Обсудить →</button>
-        </div>
-
-        <!-- Shopify Pro -->
-        <div class="sp">
-          <div class="sp-name">Shopify Pro</div>
-          <div class="sp-for">Амбициозный бренд, готовый к масштабу</div>
-          <div class="sp-price" style="color:var(--amber);font-size:28px;line-height:1.3;">Цена<br>после консультации</div>
-          <div class="sp-per">Индивидуально</div>
-          <ul class="sp-list">
-            <li>Всё из Growth</li>
-            <li>Уникальный дизайн (custom theme)</li>
-            <li>Неограниченно товаров (батчами 50)</li>
-            <li>5+ email-flows в Klaviyo</li>
-            <li>Настройка Meta Ads кабинета</li>
-            <li>Google Ads Shopping базовая кампания</li>
-            <li>Полная аналитика GA4 + Hotjar</li>
-            <li>A/B тестирование ключевых страниц</li>
-            <li>2 месяца поддержки</li>
-          </ul>
-          <button class="btn btn-a" style="width:100%;justify-content:center;" onclick="scrollToAudit()">Обсудить →</button>
-        </div>
-      </div>
-
-      <!-- Сравнение -->
-      <div style="margin-top:48px;">
-        <h3 style="margin-bottom:20px;font-size:26px;">Сравнение пакетов</h3>
-        <table class="tbl">
-          <tr><th>Параметр</th><th>Сайт услуг</th><th>Shopify Starter</th><th>Shopify Growth</th><th>Shopify Pro</th></tr>
-          <tr><td>Товаров</td><td class="nop">—</td><td>До 20</td><td>До 50</td><td>Без лимита</td></tr>
-          <tr><td>Кастомный дизайн</td><td><span class="yes">✓</span></td><td class="nop">Базовый</td><td><span class="yes">✓</span></td><td><span class="yes">Custom</span></td></tr>
-          <tr><td>Email-автоматизация</td><td class="nop">—</td><td class="nop">—</td><td><span class="yes">2 потока</span></td><td><span class="yes">5+ потоков</span></td></tr>
-          <tr><td>Instagram / FB Shop</td><td class="nop">—</td><td class="nop">—</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-          <tr><td>Реклама (настройка)</td><td class="nop">—</td><td class="nop">—</td><td class="nop">—</td><td><span class="yes">Meta + Google</span></td></tr>
-          <tr><td>Поддержка после</td><td>1 нед</td><td>2 нед</td><td>1 мес</td><td>2 мес</td></tr>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap">
-
-      <!-- Почему нет фиксированных цен -->
-      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:36px;margin-bottom:28px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;">
-          <div>
-            <div class="ey ey-g" style="margin-bottom:12px;">● ИНДИВИДУАЛЬНЫЙ ПОДХОД</div>
-            <h3 style="font-size:clamp(22px,3vw,30px);margin-bottom:14px;">Почему мы не публикуем цены?</h3>
-            <p style="color:var(--gray);font-size:14px;line-height:1.75;">Одному клиенту нужно загрузить 20 товаров, другому — 200. У одного есть логотип, фото и всё готово. У другого нет ничего. Фиксированная цена — это переплата для одних и недоплата для других.<br><br>Мы смотрим на твою задачу и называем конкретную цифру. Без скрытых доплат после.</p>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;gap:12px;align-items:flex-start;padding:14px;background:rgba(34,197,94,.06);border-radius:10px;">
-              <span style="width:28px;height:28px;background:rgba(255,153,0,.15);border:1px solid rgba(255,153,0,.3);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Unbounded',sans-serif;font-weight:800;font-size:10px;color:#FF9900;">A</span>
-              <div><div style="font-weight:600;font-size:14px;margin-bottom:3px;">Количество товаров</div><div style="font-size:13px;color:var(--gray);">20, 50 или 200 — разная работа, разная цена</div></div>
-            </div>
-            <div style="display:flex;gap:12px;align-items:flex-start;padding:14px;background:rgba(34,197,94,.06);border-radius:10px;">
-              <span style="width:28px;height:28px;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg></span>
-              <div><div style="font-weight:600;font-size:14px;margin-bottom:3px;">Что уже есть</div><div style="font-size:13px;color:var(--gray);">Логотип, фото, тексты — всё влияет на объём</div></div>
-            </div>
-            <div style="display:flex;gap:12px;align-items:flex-start;padding:14px;background:rgba(34,197,94,.06);border-radius:10px;">
-              <span style="width:28px;height:28px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-              <div><div style="font-weight:600;font-size:14px;margin-bottom:3px;">Интеграции и функции</div><div style="font-size:13px;color:var(--gray);">Реклама, автоматизация, мультиканал — по запросу</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div style="background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(34,197,94,.03));border:1px solid rgba(34,197,94,.25);border-radius:16px;padding:40px;text-align:center;">
-        <h2 style="margin-bottom:12px;">Расскажи о своём проекте —<br>назовём цену на звонке</h2>
-        <p style="color:var(--gray);max-width:480px;margin:0 auto 28px;font-size:15px;">Бесплатный звонок: разберём что нужно, сколько это займёт и во сколько обойдётся. Никаких размытых «от X до Y».</p>
-        <button class="btn btn-g btn-lg" onclick="scrollToAudit()">Бесплатная консультация →</button>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /funnel1 -->
-
-
-<!-- ══════════════════════════════════════════
-     FUNNEL 2: АУДИТ И РОСТ
-══════════════════════════════════════════ -->
-<div class="page" id="page-funnel2">
-
-  <div class="phero">
-    <div class="glow" style="background:var(--teal);width:500px;height:500px;top:-15%;right:-5%;left:auto;"></div>
-    <div class="wrap">
-      <button class="btn btn-o btn-sm" onclick="go('home')" style="margin-bottom:28px;">← Назад</button>
-      
-      <h1 style="margin-bottom:16px;">Магазин есть.<br><span style="color:var(--teal);">Находим</span><br>почему нет продаж.</h1>
-      <p class="sub" style="margin-bottom:36px;">Два уровня аудита — быстрый взгляд бесплатно, или полный платный разбор с планом роста на 90 дней.</p>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- Два уровня аудита -->
-  <div class="sec">
-    <div class="wrap">
-      <div class="ey ey-t">● ДВА УРОВНЯ</div>
-      <h2 style="margin-bottom:32px;">Экспресс-аудит или Полный —<br>выбирай под свою задачу</h2>
-
-      <div class="audit-tiers">
-
-        <!-- FREE АУДИТ -->
-        <div class="at at-free">
-          <div class="at-badge" style="color:var(--green);">● БЕСПЛАТНО</div>
-          <div class="at-price" style="color:var(--green);">FREE</div>
-          <div class="at-name">Экспресс-аудит</div>
-          <div class="at-tagline">«Текущее состояние магазина и главные точки роста»</div>
-          <div class="clist" style="margin-bottom:24px;">
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Анализ текущего состояния магазина</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Ключевые метрики конверсии и трафика</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Топ-3 проблемы, которые мешают продажам</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Главные точки роста — куда смотреть первым</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>30-минутный звонок с выводами</div></div>
-          </div>
-          <div style="background:rgba(34,197,94,.08);border-radius:8px;padding:14px;font-size:13px;color:var(--gray);margin-bottom:20px;line-height:1.65;">
-            <strong style="color:var(--white);">Зачем это нам?</strong> Экспресс-аудит — это наш способ показать тебе ценность работы с нами. Если после аудита захочешь продолжить — у тебя уже будет полная картина, что делать.
-          </div>
-          <button class="btn btn-g" style="width:100%;justify-content:center;" onclick="scrollToAudit()">Получить бесплатный аудит →</button>
-        </div>
-
-        <!-- ПОЛНЫЙ АУДИТ $250 -->
-        <div class="at at-paid">
-          <div class="at-badge" style="color:var(--teal);">● ПОЛНЫЙ РАЗБОР</div>
-          <div class="at-price" style="color:var(--teal);">$250</div>
-          <div class="at-name">Полный аудит</div>
-          <div class="at-tagline">«Полноценная стратегия роста — готовый план на 90 дней»</div>
-          <div class="clist" style="margin-bottom:24px;">
-            <div class="ci"><div class="ci-ico" style="background:rgba(14,165,233,.15);color:var(--teal);">✓</div><div><strong>Всё из Экспресс-аудита</strong>, плюс:</div></div>
-            <div class="ci"><div class="ci-ico" style="background:rgba(14,165,233,.15);color:var(--teal);">✓</div><div>Глубокий анализ болей клиентов твоей ниши</div></div>
-            <div class="ci"><div class="ci-ico" style="background:rgba(14,165,233,.15);color:var(--teal);">✓</div><div>Анализ конкурентов — что работает у них</div></div>
-            <div class="ci"><div class="ci-ico" style="background:rgba(14,165,233,.15);color:var(--teal);">✓</div><div>Стратегия роста — конкретные шаги, не теория</div></div>
-            <div class="ci"><div class="ci-ico" style="background:rgba(14,165,233,.15);color:var(--teal);">✓</div><div>Подготовка конверсионной воронки</div></div>
-            <div class="ci"><div class="ci-ico" style="background:rgba(14,165,233,.15);color:var(--teal);">✓</div><div>Подбор правильного лендинга под нишу</div></div>
-            <div class="ci"><div class="ci-ico" style="background:rgba(14,165,233,.15);color:var(--teal);">✓</div><div>Тексты и офферы — что писать и как</div></div>
-            <div class="ci"><div class="ci-ico" style="background:rgba(14,165,233,.15);color:var(--teal);">✓</div><div><strong>Роадмэп на 90 дней</strong> — что делать каждый месяц</div></div>
-            <div class="ci"><div class="ci-ico" style="background:rgba(14,165,233,.15);color:var(--teal);">✓</div><div>Все изменения описаны — дальше работаешь сам по схеме</div></div>
-          </div>
-          <button class="btn btn-t" style="width:100%;justify-content:center;" onclick="scrollToAudit()">Заказать платный аудит →</button>
-          <div style="font-size:12px;color:var(--gray);margin-top:10px;text-align:center;">Срок: 5–7 рабочих дней · Результат: PDF + звонок</div>
-        </div>
-
-      </div>
-
-      <!-- Что ты получаешь на руки (Полный аудит) -->
-      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:32px;margin-top:28px;">
-        <div class="ey ey-t">● ЧТО ПОЛУЧАЕШЬ ПОСЛЕ ПОЛНОГО АУДИТА</div>
-        <h3 style="margin-bottom:20px;font-size:26px;">Роадмэп на 90 дней — и дальше сам по схеме</h3>
-        <div class="roadmap">
-          <div class="rm-item">
-            <div class="rm-day" style="color:var(--teal);">Мес 1</div>
-            <div class="rm-content">
-              <div class="rm-title">Фундамент: исправляем критические проблемы</div>
-              <div class="rm-desc">Список конкретных правок на сайте — UX, тексты, техника. Что починить первым, чтобы покупатели перестали уходить.</div>
-            </div>
-          </div>
-          <div class="rm-item">
-            <div class="rm-day" style="color:var(--teal);">Мес 2</div>
-            <div class="rm-content">
-              <div class="rm-title">Конверсия: запускаем воронку продаж</div>
-              <div class="rm-desc">Страницы товаров, checkout, email-захват, социальное доказательство. Конкретные тексты и структура.</div>
-            </div>
-          </div>
-          <div class="rm-item">
-            <div class="rm-day" style="color:var(--teal);">Мес 3</div>
-            <div class="rm-content">
-              <div class="rm-title">Трафик: привлекаем покупателей</div>
-              <div class="rm-desc">Стратегия по каналам — органика, реклама, email. Что запускать первым, какой бюджет, как измерять результат.</div>
-            </div>
-          </div>
-        </div>
-        <div style="margin-top:20px;padding:16px;background:rgba(14,165,233,.08);border-radius:10px;font-size:13.5px;color:var(--gray);line-height:1.7;">
-          <strong style="color:var(--white);">После полного аудита:</strong> у тебя на руках полный PDF-документ — анализ, стратегия, роадмэп и конкретные тексты. По нему работаешь сам, или заказываешь реализацию у нас.
+  <!-- ═══ 7. О СТУДИИ ═══ -->
+  <div class="sec" id="about">
+    <div class="wrap" style="max-width:820px;">
+      <div data-motion="up">
+        <span class="ey ey-g">Кто мы</span>
+        <h2 style="margin-bottom:24px;">Одна студия. Два направления. Полная система.</h2>
+        <p class="sub" style="max-width:760px;margin-bottom:18px;">Prodigy LAB — это не агентство с менеджерами, которые передают задачи подрядчикам. Это студия, где каждый проект делается руками людей, которые понимают e-commerce, аналитику, рекламу и AI-продакшн.</p>
+        <p class="sub" style="max-width:760px;margin-bottom:28px;">Работаем с русскоязычными предпринимателями в США. Официальный Shopify Partner. Базируемся в Калифорнии.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tag tag-g"><span class="dot dot-g"></span> Shopify Partner</span>
+          <span class="tag tag-t">California, USA</span>
+          <span class="tag tag-a">E-commerce</span>
+          <span class="tag tag-c">AI Production</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Почему нет продаж — частые причины -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap">
-      <div class="ey ey-t">● 90% СЛУЧАЕВ</div>
-      <h2 style="margin-bottom:32px;">Почему магазин не продаёт</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:40px;">
-        <div class="card card-p"><div style="width:32px;height:32px;border-radius:8px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div style="font-weight:600;margin-bottom:6px;">Нет доверия</div><div style="font-size:13px;color:var(--gray);line-height:1.6;">Нет отзывов, нет фото «вживую», сайт выглядит как шаблон без характера.</div></div>
-        <div class="card card-p"><div style="width:32px;height:32px;border-radius:8px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div style="font-weight:600;margin-bottom:6px;">Слабые описания</div><div style="font-size:13px;color:var(--gray);line-height:1.6;">«Хорошая вещь, стоит купить» — это не продаёт. Нужны тексты, которые отвечают на вопросы.</div></div>
-        <div class="card card-p"><div style="width:32px;height:32px;border-radius:8px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div style="font-weight:600;margin-bottom:6px;">Сложный checkout</div><div style="font-size:13px;color:var(--gray);line-height:1.6;">Сломан на телефоне, слишком много шагов, непонятные ошибки при оплате.</div></div>
-        <div class="card card-p"><div style="width:32px;height:32px;border-radius:8px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div style="font-weight:600;margin-bottom:6px;">Нет трафика</div><div style="font-size:13px;color:var(--gray);line-height:1.6;">10 визитов в день не дадут продаж. Магазин — это инструмент, не источник трафика.</div></div>
-      </div>
-      <div style="text-align:center;">
-        <button class="btn btn-t btn-lg" onclick="scrollToAudit()">Найти мои причины — бесплатный аудит →</button>
-      </div>
-    </div>
-  </div>
+  <div class="glow-line"></div>
 
-  <!-- FAQ -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap" style="max-width:720px;">
-      <h3 style="margin-bottom:24px;">Частые вопросы про аудит</h3>
-      <div class="faqs">
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Чем отличается бесплатный аудит от платного?<span class="fi-ic">+</span></div><div class="fa">Бесплатный — это быстрый взгляд: что работает, что нет, топ-3 проблемы. Платный ($250) — это полноценный документ: анализ конкурентов, боли клиентов, конверсионная воронка, тексты и роадмэп на 90 дней. По нему работаешь сам или заказываешь реализацию у нас.</div></div>
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Что получаю после полного аудита физически?<span class="fi-ic">+</span></div><div class="fa">PDF-документ 15–25 страниц + звонок для разбора. В документе: анализ твоего магазина, анализ конкурентов, боли ЦА, стратегия роста, конкретные правки с примерами текстов, роадмэп на 90 дней что делать каждый месяц.</div></div>
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Обязательно ли заказывать реализацию у вас после аудита?<span class="fi-ic">+</span></div><div class="fa">Нет. Роадмэп написан так, чтобы ты мог работать по нему самостоятельно. Если захочешь помощи с реализацией — мы рядом, но это отдельное решение.</div></div>
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Сколько времени занимает полный аудит?<span class="fi-ic">+</span></div><div class="fa">5–7 рабочих дней. Сначала мы изучаем магазин, конкурентов и нишу. Потом готовим документ и проводим звонок для разбора.</div></div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /funnel2 -->
-
-
-<!-- ══════════════════════════════════════════
-     FUNNEL 3: РЕКЛАМА
-══════════════════════════════════════════ -->
-<div class="page" id="page-funnel3">
-
-  <div class="phero">
-    <div class="glow" style="background:var(--coral);width:500px;height:500px;bottom:-10%;right:-5%;top:auto;left:auto;"></div>
-    <div class="wrap">
-      <button class="btn btn-o btn-sm" onclick="go('home')" style="margin-bottom:28px;">← Назад</button>
-      
-      <h1 style="margin-bottom:16px;">Магазин готов.<br>Нужны <span style="color:var(--coral);">покупатели.</span></h1>
-      <p class="sub" style="margin-bottom:36px;">Настраиваем Meta Ads, Google Shopping, Instagram Shop — рекламный бюджет твой, мы только настраиваем и ведём.</p>
-      <button class="btn btn-c btn-lg" onclick="scrollToAudit()">Обсудить рекламу →</button>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- Что входит в $600 -->
-  <div class="sec">
-    <div class="wrap">
-      <div class="ey ey-c">● ЧТО ВХОДИТ</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
-        <div>
-          <h2 style="margin-bottom:16px;">Настройка рекламы<br><span style="color:var(--coral);">под твой бизнес</span></h2>
-          <p style="color:var(--gray);font-size:15px;line-height:1.75;margin-bottom:24px;">Это разовая оплата за настройку. Рекламный бюджет — твой, платишь напрямую в Meta или Google. Мы берём деньги только за работу.</p>
-          <div style="background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.25);border-radius:10px;padding:16px;margin-bottom:24px;font-size:13.5px;color:var(--gray);line-height:1.65;">
-            <strong style="color:var(--white);">Важно:</strong> Реклама работает только на готовом, конверсионном магазине. Если магазин не готов — сначала делаем его, потом запускаем рекламу. Бюджет на рекламу без хорошего сайта — выброшенные деньги.
-          </div>
-          <button class="btn btn-c btn-lg" onclick="scrollToAudit()">Обсудить рекламу →</button>
+  <!-- ═══ 8. CTA + ФОРМА ═══ -->
+  <div class="sec" id="contact">
+    <div class="wrap" style="max-width:560px;">
+      <div class="lf-wrap" data-motion="up">
+        <div style="text-align:center;margin-bottom:24px;">
+          <span class="ey ey-g">Начни здесь</span>
+          <h2 style="font-size:clamp(24px,3.5vw,38px);margin-bottom:12px;">Бесплатный аудит бизнеса</h2>
+          <p class="sub" style="margin:0 auto;">Не аудит сайта. Смотрим весь бизнес — где теряешь деньги и что с этим делать. Без давления. Без обязательств.</p>
         </div>
-        <div>
-          <div class="clist">
-            <div class="ci"><div class="ci-ico sn-c" style="background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:var(--coral);">✓</div><div><strong>Технический аудит перед запуском</strong> — убедимся что магазин готов к трафику</div></div>
-            <div class="ci"><div class="ci-ico sn-c" style="background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:var(--coral);">✓</div><div><strong>Meta Pixel</strong> — полная настройка событий (ViewContent, AddToCart, Purchase)</div></div>
-            <div class="ci"><div class="ci-ico sn-c" style="background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:var(--coral);">✓</div><div><strong>Рекламный кабинет Meta</strong> — Business Manager, аудитории, каталог</div></div>
-            <div class="ci"><div class="ci-ico sn-c" style="background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:var(--coral);">✓</div><div><strong>Первые кампании</strong> — Cold (новая аудитория) + Retargeting (вернуть ушедших)</div></div>
-            <div class="ci"><div class="ci-ico sn-c" style="background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:var(--coral);">✓</div><div><strong>Google Shopping</strong> (если подходит для ниши) — фид товаров, кампания</div></div>
-            <div class="ci"><div class="ci-ico sn-c" style="background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:var(--coral);">✓</div><div><strong>Instagram Shop + Facebook Shop</strong> — подключение и синхронизация каталога</div></div>
-            <div class="ci"><div class="ci-ico sn-c" style="background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:var(--coral);">✓</div><div><strong>Рекомендации по бюджету</strong> — сколько вкладывать на старте, как масштабировать</div></div>
-            <div class="ci"><div class="ci-ico sn-c" style="background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:var(--coral);">✓</div><div><strong>Обучение</strong> — как читать результаты и что оптимизировать</div></div>
-          </div>
-        </div>
+        <form class="lf" id="lead-form" onsubmit="return submitLead(event)">
+          <input class="li" id="lf-name" type="text" placeholder="Имя" required>
+          <input class="li" id="lf-phone" type="tel" placeholder="Телефон" required>
+          <select class="ls" id="lf-need">
+            <option value="" disabled selected>Что нужно</option>
+            <option>Новый магазин</option>
+            <option>Аудит</option>
+            <option>Реклама</option>
+            <option>Креатив</option>
+            <option>Music</option>
+            <option>Пока не знаю</option>
+          </select>
+          <button class="btn btn-g btn-lg" type="submit" id="lf-btn" style="justify-content:center;margin-top:6px;">Отправить заявку →</button>
+          <div class="ln" style="text-align:center;margin-top:8px;">✔ Перезвоним в течение рабочего дня · Без давления — только честная оценка</div>
+        </form>
       </div>
     </div>
   </div>
 
-  <!-- Сопровождение -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap">
-      <div class="ey ey-c">● ЕЖЕМЕСЯЧНОЕ СОПРОВОЖДЕНИЕ</div>
-      <h2 style="margin-bottom:16px;">Сопровождение рекламы</h2>
-      <div style="display:grid;grid-template-columns:2fr 1fr;gap:32px;align-items:start;">
-        <div>
-          <p style="color:var(--gray);font-size:15px;line-height:1.75;margin-bottom:24px;">После настройки реклама требует постоянного внимания: анализа результатов, отключения неработающего, масштабирования победителей. Можешь делать сам (мы обучим) — или мы ведём за тебя.</p>
-          <div class="clist" style="margin-bottom:24px;">
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Еженедельная оптимизация кампаний</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>A/B тест объявлений и аудиторий</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Еженедельный отчёт: что потрачено, что вернулось</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Новые креативы — 2 варианта в месяц</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Консультации в WhatsApp</div></div>
-          </div>
-        </div>
-        <div style="background:var(--bg2);border:1px solid rgba(249,115,22,.3);border-radius:14px;padding:28px;text-align:center;">
-          <div style="font-size:13px;color:var(--gray);margin-bottom:8px;">Сопровождение</div>
-          <div style="font-family:'Unbounded',sans-serif;font-size:28px;font-weight:900;color:var(--coral);line-height:1.3;">Цена<br>после консультации</div>
-          <div style="font-size:13px;color:var(--gray);margin-bottom:20px;">рекламный бюджет отдельно</div>
-          <button class="btn btn-c" style="width:100%;justify-content:center;" onclick="scrollToAudit()">Обсудить →</button>
-          <div style="font-size:11px;color:var(--gray);margin-top:10px;">Минимальный рекламный бюджет: $500/мес</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Process -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap">
-      <div class="ey ey-c">● ПРОЦЕСС ЗАПУСКА</div>
-      <h2 style="margin-bottom:32px;">От разговора до первых результатов</h2>
-      <div class="steps">
-        <div class="srow"><div class="snum sn-c">1</div><div><div class="st-ttl">Аудит готовности магазина</div><div class="st-dsc">Проверяем: конверсия, скорость, мобильная версия, checkout. Если есть проблемы — сначала исправляем, потом запускаем трафик.</div></div></div>
-        <div class="srow"><div class="snum sn-c">2</div><div><div class="st-ttl">Техническая настройка (неделя 1)</div><div class="st-dsc">Meta Pixel, Business Manager, каталог товаров, Google Shopping фид. Всё, чтобы реклама видела покупки.</div></div></div>
-        <div class="srow"><div class="snum sn-c">3</div><div><div class="st-ttl">Запуск первых кампаний (неделя 2)</div><div class="st-dsc">Cold аудитория + Retargeting. Сначала тест — потом масштаб на то, что работает.</div></div></div>
-        <div class="srow"><div class="snum sn-c">4</div><div><div class="st-ttl">Первые данные и оптимизация (неделя 3–4)</div><div class="st-dsc">Смотрим результаты, выключаем неработающее, масштабируем победителей.</div></div></div>
-        <div class="srow" style="padding-bottom:0;"><div class="snum sn-c">5</div><div><div class="st-ttl">Стабильный ROAS (месяц 2–3)</div><div class="st-dsc">Устойчивый возврат на рекламный бюджет. Стратегия масштабирования.</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FAQ реклама -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap" style="max-width:720px;">
-      <h3 style="margin-bottom:22px;">Частые вопросы про рекламу</h3>
-      <div class="faqs">
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Сколько вкладывать в рекламный бюджет?<span class="fi-ic">+</span></div><div class="fa">Рекомендуем стартовать с $500/мес на сам рекламный бюджет — это минимум для получения достаточного количества данных. Платишь напрямую в Meta или Google. Наш гонорар обсуждается на консультации — зависит от масштаба и задач. Это отдельно от рекламного бюджета.</div></div>
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Когда будут первые результаты?<span class="fi-ic">+</span></div><div class="fa">Первые данные — через 7–14 дней. Устойчивый ROAS — со второго месяца. Реклама требует периода обучения алгоритмов. Мы не обещаем результат сразу — обещаем профессиональную работу по данным.</div></div>
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Вы гарантируете результат?<span class="fi-ic">+</span></div><div class="fa">Честно — нет. Никто не может гарантировать ROAS заранее. Результат зависит от продукта, рынка, конкуренции. Мы гарантируем профессиональную настройку, прозрачную отчётность и оптимизацию по данным. Если магазин не готов к рекламе — скажем об этом сразу.</div></div>
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Мой магазин готов к рекламе?<span class="fi-ic">+</span></div><div class="fa">Проверим бесплатно на первом звонке. Реклама работает только на конверсионном сайте — если есть критические проблемы, сначала исправим их, потом запустим трафик. Иначе бюджет уйдёт впустую.</div></div>
-      </div>
-      <div style="margin-top:36px;text-align:center;">
-        <button class="btn btn-c btn-lg" onclick="scrollToAudit()">Обсудить рекламную стратегию →</button>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /funnel3 -->
-
-
-<!-- ══════════════════════════════════════════
-     PORTFOLIO
-══════════════════════════════════════════ -->
-<div class="page" id="page-portfolio">
-  <div style="padding:72px 0 48px;">
-    <div class="wrap">
-      <button class="btn btn-o btn-sm" onclick="go('home')" style="margin-bottom:28px;">← Главная</button>
-      <div class="ey ey-g">● ПОРТФОЛИО</div>
-      <h1 style="font-size:clamp(40px,7vw,80px);margin-bottom:14px;">Реальные<br><span style="color:var(--green);">результаты</span></h1>
-      <p class="sub">Не концепты. Живые магазины с живыми цифрами.</p>
-    </div>
-  </div>
-  <hr>
-  <div class="sec">
-    <div class="wrap">
-      <div class="cases" style="grid-template-columns:repeat(auto-fit,minmax(310px,1fr));">
-        <div class="cs"><div class="cs-top" style="background:linear-gradient(135deg,#1a0814,#3d1028);"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="rgba(255,100,150,.4)" stroke-width="1"/><circle cx="24" cy="24" r="10" fill="rgba(255,100,150,.15)"/><circle cx="24" cy="24" r="4" fill="rgba(255,120,160,.6)"/></svg><span class="cs-pill">Zero Point → Shopify Starter</span></div><div class="cs-body"><div class="cs-niche">Beauty PMU · Sacramento, CA</div><div class="cs-name">culturapmu.com</div><div class="cs-q">«Красивый сайт с видео-работами, Shopify POS вместо дорогого терминала и рассрочка для клиентов. Сэкономили и на старте и каждый месяц.»</div><div class="cs-m"><div><div class="mv" style="color:var(--green);">Экономия</div><div class="ml">На терминале</div></div><div><div class="mv" style="color:var(--teal);">48ч</div><div class="ml">До запуска</div></div><div><div class="mv" style="color:var(--amber);">POS + рассрочка</div><div class="ml">Инструменты</div></div></div></div></div>
-        <div class="cs"><div class="cs-top" style="background:linear-gradient(135deg,#0a0a1a,#1a1a3d);"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="10" y="10" width="28" height="28" rx="8" stroke="rgba(100,120,255,.4)" stroke-width="1"/><rect x="17" y="17" width="14" height="14" rx="4" fill="rgba(100,120,255,.15)"/><circle cx="24" cy="24" r="4" fill="rgba(120,140,255,.6)"/></svg><span class="cs-pill">Полный аудит + редизайн</span></div><div class="cs-body"><div class="cs-niche">Fashion · New York, NY</div><div class="cs-name">Vera Style</div><div class="cs-q">«Аудит нашёл 4 причины. Главная — checkout не работал на iPhone. За 2 недели исправили всё.»</div><div class="cs-m"><div><div class="mv" style="color:var(--green);">+180%</div><div class="ml">Конверсия</div></div><div><div class="mv" style="color:var(--amber);">2.4x</div><div class="ml">ROAS</div></div><div><div class="mv" style="color:var(--teal);">$4.8K</div><div class="ml">1-й месяц после</div></div></div></div></div>
-        <div class="cs"><div class="cs-top" style="background:linear-gradient(135deg,#0a180a,#0d3d14);"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 8 L38 20 L38 38 L10 38 L10 20 Z" stroke="rgba(34,197,94,.4)" stroke-width="1" fill="rgba(34,197,94,.08)"/><circle cx="24" cy="26" r="6" fill="rgba(34,197,94,.2)"/><circle cx="24" cy="26" r="3" fill="rgba(34,197,94,.6)"/></svg><span class="cs-pill">Shopify Growth + Meta Ads</span></div><div class="cs-body"><div class="cs-niche">Fitness / Supplements · Miami, FL</div><div class="cs-name">HealthHustle</div><div class="cs-q">«Высокий процент возвратов мешал расти. Нашли причину — проблемный поставщик. Поменяли, настроили рекламу.»</div><div class="cs-m"><div><div class="mv" style="color:var(--green);">$9K</div><div class="ml">В месяц</div></div><div><div class="mv" style="color:var(--red);">↓40%</div><div class="ml">Возвраты</div></div></div></div></div>
-        <div class="cs"><div class="cs-top" style="background:linear-gradient(135deg,#1a130a,#3d2a0d);"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="16" width="32" height="22" rx="4" stroke="rgba(245,158,11,.4)" stroke-width="1" fill="rgba(245,158,11,.08)"/><path d="M24 16 L24 10 M16 10 C16 10 18 14 24 14 C30 14 32 10 32 10" stroke="rgba(245,158,11,.4)" stroke-width="1.2"/><circle cx="24" cy="27" r="4" fill="rgba(245,158,11,.3)"/></svg><span class="cs-pill">Сайт услуг + Instagram Shop</span></div><div class="cs-body"><div class="cs-niche">Gifts / Handmade · Los Angeles, CA</div><div class="cs-name">Mila's Crafts</div><div class="cs-q">«Продавала через DM — всё вручную, без системы. Instagram Shop дал стабильный поток заказов.»</div><div class="cs-m"><div><div class="mv" style="color:var(--green);">×2.5</div><div class="ml">Заказов</div></div><div><div class="mv" style="color:var(--teal);">Сайт услуг</div><div class="ml">Продукт</div></div></div></div></div>
-        <div class="cs"><div class="cs-top" style="background:linear-gradient(135deg,#0a1620,#0d2f4a);"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 38 C24 38 10 30 10 20 C10 14 16 10 24 14 C32 10 38 14 38 20 C38 30 24 38 24 38Z" stroke="rgba(14,165,233,.4)" stroke-width="1" fill="rgba(14,165,233,.08)"/><circle cx="24" cy="24" r="5" fill="rgba(14,165,233,.3)"/></svg><span class="cs-pill">Shopify Growth</span></div><div class="cs-body"><div class="cs-niche">Skincare / Wellness · San Francisco</div><div class="cs-name">NaturaSkin</div><div class="cs-q">«Запуск с нуля — без опыта и технических знаний. Запустились с нуля, через 6 недель вышли в плюс.»</div><div class="cs-m"><div><div class="mv" style="color:var(--green);">$5.4K</div><div class="ml">2-й месяц</div></div><div><div class="mv" style="color:var(--amber);">3.1x</div><div class="ml">Email ROAS</div></div></div></div></div>
-        <div class="cs" style="display:flex;align-items:center;justify-content:center;min-height:280px;border-style:dashed;border-color:var(--border);background:rgba(22,27,34,.5);backdrop-filter:blur(8px);"><div style="text-align:center;color:var(--gray);padding:24px;"><div style="font-size:40px;margin-bottom:12px;">+</div><div style="font-size:16px;font-weight:700;margin-bottom:6px;color:var(--white);">Твой проект здесь</div><div style="font-size:13px;margin-bottom:20px;max-width:200px;margin-left:auto;margin-right:auto;line-height:1.6;">Расскажи о задаче — обсудим что нужно</div><button class="btn btn-o btn-sm" onclick="openModal()">Обсудить проект →</button></div></div>
-      </div>
-      <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:10px;">
-        <span style="background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 15px;font-size:13px;">· Beauty & Nail</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 15px;font-size:13px;">· Lash & Brow</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 15px;font-size:13px;">· Fashion</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 15px;font-size:13px;">· Fitness</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 15px;font-size:13px;">· Gifts & Handmade</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 15px;font-size:13px;">· Skincare & Wellness</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 15px;font-size:13px;">· Home Decor</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 15px;font-size:13px;">· Personal Brand</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 15px;font-size:13px;">· Kids & Toys</span>
-      </div>
-    </div>
-  </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     FUNNEL 4: AMAZON → SHOPIFY
-══════════════════════════════════════════ -->
-<div class="page" id="page-funnel4">
-
-  <!-- Hero -->
-  <div class="phero" style="position:relative;overflow:hidden;">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 80% 40%,rgba(255,153,0,.12) 0%,transparent 70%);pointer-events:none;"></div>
-    <div class="wrap" style="position:relative;z-index:1;">
-      <button class="btn btn-o btn-sm" onclick="go('home')" style="margin-bottom:28px;">← Назад</button>
-      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.3);color:#FF9900;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 13px;border-radius:100px;margin-bottom:18px;">● Amazon · Etsy · Маркетплейсы</div>
-      <h1 style="margin-bottom:18px;">Amazon. Etsy.<br>Работают на <span style="color:#FF9900;">себя.</span><br>Пора — на <span style="color:var(--green);">тебя.</span></h1>
-      <p class="sub" style="margin-bottom:36px;max-width:640px;">Продаёшь на Amazon или Etsy? Платишь комиссии, рискуешь блокировкой, конкурируешь с сотнями. Shopify даёт собственный магазин — маркетплейсы остаются, но уже как один из каналов.</p>
-      <div class="bgroup">
-        <button class="btn btn-lg" style="background:#FF9900;color:#000;" onclick="scrollToAudit()">Обсудить стратегию бесплатно →</button>
-        <button class="btn btn-o" onclick="document.getElementById('amz-pain').scrollIntoView({behavior:'smooth'})">Сначала покажи цифры ↓</button>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- СКОЛЬКО ТЫ ТЕРЯЕШЬ -->
-  <div class="sec" id="amz-pain">
-    <div class="wrap">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#FF9900;margin-bottom:16px;">● РЕАЛЬНЫЕ ЦИФРЫ</div>
-      <h2 style="margin-bottom:36px;">Что маркетплейсы<br>забирают у тебя</h2>
-      <!-- Комиссии: 2 колонки -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-        <div style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:22px;">
-          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:14px;">📦 AMAZON</div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="display:flex;justify-content:space-between;padding:9px 12px;background:rgba(239,68,68,.08);border-radius:7px;font-size:13px;">
-              <span>Referral fee</span><strong style="color:var(--red);">8–15%</strong>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding:9px 12px;background:rgba(239,68,68,.08);border-radius:7px;font-size:13px;">
-              <span>FBA (хранение+доставка)</span><strong style="color:var(--red);">10–20%</strong>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding:9px 12px;background:rgba(239,68,68,.08);border-radius:7px;font-size:13px;">
-              <span>Amazon Ads</span><strong style="color:var(--red);">10–20%</strong>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding:11px 12px;background:rgba(239,68,68,.15);border-radius:7px;border:1px solid rgba(239,68,68,.3);">
-              <span style="font-weight:700;">Итого</span><strong style="color:var(--red);font-size:18px;">30–40%</strong>
-            </div>
-          </div>
-        </div>
-        <div style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:22px;">
-          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:14px;">🧶 ETSY</div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="display:flex;justify-content:space-between;padding:9px 12px;background:rgba(239,68,68,.08);border-radius:7px;font-size:13px;">
-              <span>Transaction fee</span><strong style="color:var(--red);">6.5%</strong>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding:9px 12px;background:rgba(239,68,68,.08);border-radius:7px;font-size:13px;">
-              <span>Listing fee (за каждый товар)</span><strong style="color:var(--red);">$0.20</strong>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding:9px 12px;background:rgba(239,68,68,.08);border-radius:7px;font-size:13px;">
-              <span>Etsy Ads + offsite ads</span><strong style="color:var(--red);">12–15%</strong>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding:11px 12px;background:rgba(239,68,68,.15);border-radius:7px;border:1px solid rgba(239,68,68,.3);">
-              <span style="font-weight:700;">Итого</span><strong style="color:var(--red);font-size:18px;">20–25%</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Общие риски обеих платформ -->
-      <div style="background:rgba(255,153,0,.06);border:1px solid rgba(255,153,0,.25);border-radius:14px;padding:22px;margin-bottom:32px;">
-        <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FF9900;margin-bottom:14px;">⚠ ОБЩИЕ РИСКИ — Amazon И Etsy</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div class="clist">
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div><strong>Блокировка без предупреждения.</strong> Нарушил правило — прощай бизнес. Апелляция — месяцами.</div></div>
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div><strong>Покупатели не твои.</strong> Ни email, ни имя — всё принадлежит платформе.</div></div>
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div><strong>Бренд невидим.</strong> Для покупателя это «Amazon» или «Etsy», не ты.</div></div>
-          </div>
-          <div class="clist">
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div><strong>Конкуренция рядом.</strong> Следующий листинг с тем же товаром — прямо под тобой.</div></div>
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div><strong>Нет ретаргетинга.</strong> Ушёл без покупки — ты его потерял навсегда.</div></div>
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div><strong>Правила меняются.</strong> Алгоритм обновился — твои продажи упали в ноль.</div></div>
-          </div>
-        </div>
-      </div>
-      <div style="background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(255,153,0,.05));border:1px solid rgba(34,197,94,.25);border-radius:16px;padding:32px;">
-        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px;">● РЕШЕНИЕ</div>
-        <div style="font-family:'Unbounded',sans-serif;font-size:clamp(22px,4vw,36px);font-weight:900;line-height:1.1;margin-bottom:14px;">Shopify — твой магазин.<br>Amazon — <span style="color:#FF9900;">один из каналов.</span></div>
-        <p style="font-size:15px;color:var(--gray);line-height:1.75;max-width:680px;">Ты не уходишь с Amazon — ты перестаёшь <em>зависеть</em> от него. Shopify становится центром с твоими покупателями и твоим брендом. Amazon, Instagram Shop, Facebook Shop — дополнительные каналы, которые ты контролируешь.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- СХЕМА КАНАЛОВ -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#FF9900;margin-bottom:16px;">● СИСТЕМА</div>
-      <h2 style="margin-bottom:36px;">Один каталог —<br>все каналы продаж</h2>
-      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:36px;margin-bottom:32px;">
-        <div style="text-align:center;margin-bottom:28px;">
-          <div style="display:inline-block;background:linear-gradient(135deg,rgba(34,197,94,.15),rgba(34,197,94,.05));border:2px solid var(--green);border-radius:12px;padding:14px 22px;font-family:'Unbounded',sans-serif;font-size:22px;font-weight:900;margin-bottom:6px;">Твой Shopify-магазин</div>
-          <div style="font-size:13px;color:var(--gray);">Один каталог · Все заказы в одном месте · Твои покупатели и данные</div>
-        </div>
-        <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;min-width:120px;"><div style="width:1px;height:24px;background:var(--border2);"></div><div style="background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.4);border-radius:10px;padding:12px 14px;text-align:center;width:100%;"><div style="font-size:22px;margin-bottom:3px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="#FF9900" stroke-width="1.5"/><path d="M7 12h10M12 8v8" stroke="#FF9900" stroke-width="1.5"/></svg></div><div style="font-weight:700;font-size:12px;color:#FF9900;">Amazon</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">Sync остатков</div></div></div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;min-width:120px;"><div style="width:1px;height:24px;background:var(--border2);"></div><div style="background:rgba(243,106,62,.12);border:1px solid rgba(243,106,62,.4);border-radius:10px;padding:12px 14px;text-align:center;width:100%;"><div style="font-size:22px;margin-bottom:3px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 3h18v3H3zM3 6v15h18V6" stroke="#F36A3E" stroke-width="1.5"/><path d="M8 10h8M8 14h5" stroke="#F36A3E" stroke-width="1.5"/></svg></div><div style="font-weight:700;font-size:12px;color:#F36A3E;">Etsy</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">Sync остатков</div></div></div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;min-width:120px;"><div style="width:1px;height:24px;background:var(--border2);"></div><div style="background:rgba(225,48,108,.12);border:1px solid rgba(225,48,108,.4);border-radius:10px;padding:12px 14px;text-align:center;width:100%;"><div style="font-size:22px;margin-bottom:3px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#e1306c" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="#e1306c" stroke-width="1.5"/><circle cx="17" cy="7" r="1.5" fill="#e1306c"/></svg></div><div style="font-weight:700;font-size:12px;color:#e1306c;">Instagram Shop</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">Теги · Stories · Reels</div></div></div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;min-width:120px;"><div style="width:1px;height:24px;background:var(--border2);"></div><div style="background:rgba(24,119,242,.12);border:1px solid rgba(24,119,242,.4);border-radius:10px;padding:12px 14px;text-align:center;width:100%;"><div style="font-size:22px;margin-bottom:3px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#1877f2" stroke-width="1.5"/><path d="M15 8h-2a2 2 0 0 0-2 2v2H9v3h2v7h3v-7h2l.5-3H14v-2a1 1 0 0 1 1-1z" fill="#1877f2"/></svg></div><div style="font-weight:700;font-size:12px;color:#1877f2;">Facebook Shop</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">Marketplace · Реклама</div></div></div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;min-width:120px;"><div style="width:1px;height:24px;background:var(--border2);"></div><div style="background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.4);border-radius:10px;padding:12px 14px;text-align:center;width:100%;"><div style="font-size:22px;margin-bottom:3px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="var(--teal)" stroke-width="1.5"/><path d="M20 20l-3-3" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"/></svg></div><div style="font-weight:700;font-size:12px;color:var(--teal);">Google Shopping</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">Поиск → покупка</div></div></div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;min-width:120px;"><div style="width:1px;height:24px;background:var(--border2);"></div><div style="background:rgba(34,197,94,.10);border:1px solid rgba(34,197,94,.4);border-radius:10px;padding:12px 14px;text-align:center;width:100%;"><div style="font-size:22px;margin-bottom:3px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="var(--green)" stroke-width="1.5"/><path d="M12 3c0 0-4 4-4 9s4 9 4 9M12 3c0 0 4 4 4 9s-4 9-4 9M3 12h18" stroke="var(--green)" stroke-width="1.2"/></svg></div><div style="font-weight:700;font-size:12px;color:var(--green);">Свой сайт</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">0% комиссий</div></div></div>
-        </div>
-        <div style="margin-top:22px;padding:14px;background:rgba(34,197,94,.06);border-radius:9px;text-align:center;font-size:13.5px;color:var(--gray);line-height:1.6;"><strong style="color:var(--white);">Одно действие = везде.</strong> Добавил товар в Shopify — он появился на сайте, Amazon, Instagram и Facebook одновременно. Один заказ, откуда бы он ни пришёл — в твоём Shopify Admin.</div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-        <div style="background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:22px;">
-          <div style="font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:12px;">СЕЙЧАС — только маркетплейсы</div>
-          <div class="clist">
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div>1 канал — весь бизнес зависит от алгоритма</div></div>
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div>30–40% уходит платформе</div></div>
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div>Покупатели не твои — email неизвестен</div></div>
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div>Нет ретаргетинга и email-маркетинга</div></div>
-            <div class="ci"><div class="ci-ico ic-r">✗</div><div>Бренд не строится — продаёт Amazon</div></div>
-          </div>
-        </div>
-        <div style="background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2);border-radius:12px;padding:22px;">
-          <div style="font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:12px;">ПОСЛЕ — Shopify + все каналы</div>
-          <div class="clist">
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>5 каналов — Amazon лишь один из них</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>0% комиссий на продажи через свой сайт</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>База покупателей — email, повторные продажи</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Meta Ads ретаргетинг по своим данным</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Бренд растёт — покупают у тебя, не у Amazon</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ПРОЦЕСС -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#FF9900;margin-bottom:16px;">● КАК МЫ ДЕЛАЕМ</div>
-      <h2 style="margin-bottom:32px;">Переход от Amazon к мультиканалу<br>за 3 недели</h2>
-      <div class="steps">
-        <div class="srow"><div class="snum" style="background:rgba(255,153,0,.1);border:1px solid rgba(255,153,0,.3);color:#FF9900;">1</div><div><div class="st-ttl">Аудит твоего Amazon-аккаунта</div><div class="st-dsc">Смотрим категории, комиссии, объём. Считаем точно сколько уходит Amazon и что можно оставить себе.</div></div></div>
-        <div class="srow"><div class="snum" style="background:rgba(255,153,0,.1);border:1px solid rgba(255,153,0,.3);color:#FF9900;">2</div><div><div class="st-ttl">Создание Shopify-магазина</div><div class="st-dsc">Подбираем структуру под твой каталог и задачи — бренд, дизайн, количество товаров. Стоимость обсуждаем на звонке.</div></div></div>
-        <div class="srow"><div class="snum" style="background:rgba(255,153,0,.1);border:1px solid rgba(255,153,0,.3);color:#FF9900;">3</div><div><div class="st-ttl">Интеграция Amazon Sales Channel</div><div class="st-dsc">Официальная интеграция Shopify ↔ Amazon Seller Central. Синхронизация каталога, остатков и заказов. Amazon работает дальше, просто через Shopify.</div></div></div>
-        <div class="srow"><div class="snum" style="background:rgba(255,153,0,.1);border:1px solid rgba(255,153,0,.3);color:#FF9900;">4</div><div><div class="st-ttl">Instagram Shop + Facebook Shop</div><div class="st-dsc">Meta Commerce Manager. Теги товаров на фото, покупка прямо в Stories и Reels. Каждый пост — магазин.</div></div></div>
-        <div class="srow"><div class="snum" style="background:rgba(255,153,0,.1);border:1px solid rgba(255,153,0,.3);color:#FF9900;">5</div><div><div class="st-ttl">Meta Pixel + ретаргетинг</div><div class="st-dsc">Теперь можешь показывать рекламу тем, кто смотрел твои товары. То, чего не даёт Amazon — полностью работает через Shopify.</div></div></div>
-        <div class="srow" style="padding-bottom:0;"><div class="snum" style="background:rgba(255,153,0,.1);border:1px solid rgba(255,153,0,.3);color:#FF9900;">6</div><div><div class="st-ttl">Email-маркетинг по своей базе</div><div class="st-dsc">Первая покупка на сайте — email в твоей базе. Welcome sequence, повторные продажи, допродажи. Этого Amazon никогда не даст.</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Кейс -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap">
-      <div style="background:var(--bg2);border:1px solid rgba(255,153,0,.3);border-radius:16px;padding:32px;margin-bottom:36px;">
-        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#FF9900;margin-bottom:12px;">● КЕЙС</div>
-        <div style="font-family:'Unbounded',sans-serif;font-size:26px;font-weight:900;margin-bottom:10px;">KitchenCraft Supplies — Chicago, IL</div>
-        <p style="font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:12px;">Кухонные аксессуары только на Amazon. Выручка $18K/мес — из них Amazon забирал около $6,500. Нет базы покупателей, нет бренда, нет ретаргетинга.</p>
-        <p style="font-size:14px;color:var(--gray);line-height:1.7;font-style:italic;margin-bottom:22px;">«Сделали Shopify Growth, подключили Amazon как один из каналов, запустили Instagram Shop и Meta Ads. За 3 месяца 35% продаж переехало на свой сайт — это $6,300/мес, с которых Amazon больше ничего не берёт.»</p>
-        <div style="display:flex;gap:32px;flex-wrap:wrap;">
-          <div><div style="font-family:'Unbounded',sans-serif;font-size:40px;font-weight:900;color:var(--green);">+$3.8K</div><div style="font-size:12px;color:var(--gray);">Экономия на комиссиях/мес</div></div>
-          <div><div style="font-family:'Unbounded',sans-serif;font-size:40px;font-weight:900;color:#FF9900;">5 каналов</div><div style="font-size:12px;color:var(--gray);">Вместо 1</div></div>
-          <div><div style="font-family:'Unbounded',sans-serif;font-size:40px;font-weight:900;color:var(--teal);">×2.4</div><div style="font-size:12px;color:var(--gray);">Общая выручка за 6 мес</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="sec" style="padding-top:0;">
-    <div class="wrap" style="max-width:720px;">
-      <h3 style="margin-bottom:22px;">Частые вопросы</h3>
-      <div class="faqs">
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Нужно ли уходить с Amazon или Etsy?<span class="fi-ic">+</span></div><div class="fa">Нет. Amazon и Etsy остаются как каналы продаж — просто перестают быть единственными. Ты добавляешь свой сайт, Instagram Shop, Facebook Shop, Google Shopping — и управляешь всем через Shopify. Маркетплейсы работают дальше, но теперь ты от них не зависишь.</div></div>
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Как Shopify интегрируется с Amazon?<span class="fi-ic">+</span></div><div class="fa">Через официальное приложение Amazon Sales Channel в Shopify App Store. Каталог товаров синхронизируется — управляешь ценами и остатками в Shopify, изменения автоматически идут на Amazon. Заказы с Amazon тоже попадают в Shopify Admin.</div></div>
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">Что будет с FBA, если я добавлю Shopify?<span class="fi-ic">+</span></div><div class="fa">FBA продолжает работать для Amazon-заказов как раньше. Для заказов через Shopify-сайт и Instagram — либо своя доставка, либо Amazon MCF (Multi-Channel Fulfillment): обрабатывает заказы не с Amazon через ту же FBA-инфраструктуру. Обсудим что лучше в твоей ситуации на звонке.</div></div>
-        <div class="fi"><div class="fq" onclick="toggleFaq(this)">С чего начать?<span class="fi-ic">+</span></div><div class="fa">Начни с бесплатной консультации — расскажем что конкретно подходит под твою нишу и объём продаж. Дальше: Shopify-магазин по нужному пакету → Amazon интеграция → Instagram + Facebook Shop. Обычно всё занимает 2–3 недели.</div></div>
-      </div>
-      <div style="margin-top:36px;text-align:center;">
-        <button class="btn btn-lg" style="background:#FF9900;color:#000;" onclick="scrollToAudit()">Обсудить переход → бесплатно</button>
-        <p style="color:var(--gray);font-size:13px;margin-top:10px;">30 минут · Посчитаем сколько ты отдаёшь Amazon и что можно изменить</p>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /funnel4 -->
-
-
-<!-- ══════════════════════════════════════════
-     PORTFOLIO
-══════════════════════════════════════════ -->
-  <div style="padding:72px 0 48px;">
-    <div class="wrap">
-      <button class="btn btn-o btn-sm" onclick="go('home')" style="margin-bottom:28px;">← Главная</button>
-      <div class="ey ey-g">● О НАС</div>
-      <h1 style="font-size:clamp(40px,7vw,80px);margin-bottom:14px;">Мы — <span style="color:var(--green);">Prodigy LAB</span></h1>
-      <p class="sub">E-commerce студия — строим системы продаж. Для русскоязычных предпринимателей в США.</p>
-    </div>
-  </div>
-  <hr>
-  <div class="sec">
-    <div class="wrap">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;" class="about-g">
-        <div>
-          <div class="ey ey-g">● НАША ФИЛОСОФИЯ</div>
-          <h2 style="margin-bottom:18px;">Партнёры,<br>а не подрядчики</h2>
-          <p style="color:var(--gray);font-size:15px;line-height:1.8;margin-bottom:18px;">Мы не берём деньги за работу, которая не принесёт результат. Если видим, что проект не будет работать — говорим об этом честно, не берём заказ.</p>
-          <p style="color:var(--gray);font-size:15px;line-height:1.8;margin-bottom:20px;">Мы строим <strong style="color:var(--white);">системы продаж</strong>, выбирая. Не делаем сайты «вообще», не берём всех подряд. Это делает нас глубже любого универсального агентства.</p>
-          <div class="clist">
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Строим системы продаж правильными инструментами</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Только русскоязычные предприниматели в США</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Объясняем всё по-русски, без жаргона</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Фокус на продажах, а не на «красивом сайте»</div></div>
-            <div class="ci"><div class="ci-ico ic-g">✓</div><div>Честны когда что-то не сработает</div></div>
-          </div>
-        </div>
-        <div>
-          <div class="stats" style="margin-bottom:16px;">
-            <div class="st"><div class="st-n" style="color:var(--green);font-size:20px;line-height:1.4;">Shopify<br>Partner</div><div class="st-l">Официально</div></div>
-            <div class="st"><div class="st-n" style="color:var(--teal);">48ч</div><div class="st-l">Запуск Zero Point</div></div>
-          </div>
-          <div class="stats" style="margin-bottom:16px;">
-            <div class="st"><div class="st-n" style="color:var(--amber);font-size:13px;font-weight:800;">США<br>русскоязычные</div><div class="st-l">Наша аудитория</div></div>
-            <div class="st"><div class="st-n" style="color:var(--white);font-size:12px;font-weight:800;line-height:1.4;">Цена на<br>звонке</div><div class="st-l">Под твой проект</div></div>
-          </div>
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px;">
-            <div style="font-weight:600;margin-bottom:8px;">Контакты</div>
-            <div style="font-size:14px;color:var(--gray);display:flex;flex-direction:column;gap:7px;">
-              <div>Instagram: <strong style="color:var(--white);">@prodigylab.studio</strong></div>
-              <div>· Телефон — в форме ниже</div>
-              <div>prodigylab.studio</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:48px;">
-        <table class="tbl">
-          <tr><th>Параметр</th><th style="color:var(--gray);">Обычный фрилансер</th><th style="color:var(--green);">Prodigy LAB</th></tr>
-          <tr><td>Специализация</td><td class="nop">«Делаю всё» — без глубины</td><td class="yes">Системы продаж, Shopify, e-commerce</td></tr>
-          <tr><td>Язык</td><td class="nop">Английский + термины</td><td class="yes">Русский, объясняем понятно</td></tr>
-          <tr><td>Фокус</td><td class="nop">«Красивый сайт»</td><td class="yes">Конверсия и продажи</td></tr>
-          <tr><td>Поддержка после</td><td class="nop">Обычно нет</td><td class="yes">Включена в каждый пакет</td></tr>
-          <tr><td>Реклама</td><td class="nop">Отдельный специалист</td><td class="yes">Meta Ads + Google в команде</td></tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════
-     GLOBAL AUDIT SECTION
-══════════════════════════════════════════ -->
-<div id="audit-section" style="background:var(--bg2);border-top:1px solid var(--border);padding:80px 0;">
+<!-- ═══ FOOTER ═══ -->
+<footer style="border-top:1px solid var(--border);padding:48px 0 80px;">
   <div class="wrap">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:flex-start;">
+      <div style="max-width:360px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <svg width="28" height="28" viewBox="0 0 1024 1024" style="flex-shrink:0;"><use href="#logo-sym"/></svg>
+          <span style="font-family:'Unbounded',sans-serif;font-size:14px;font-weight:800;letter-spacing:-.4px;">PRODIGY<em style="font-style:normal;color:var(--green);">LAB</em></span>
+        </div>
+        <p style="font-size:13px;color:var(--gray);line-height:1.7;">Growth Studio для русскоязычных предпринимателей в США.</p>
+      </div>
       <div>
-        <div class="tag tag-g" style="margin-bottom:20px;"><span class="dot dot-g"></span> Бесплатно · Без обязательств</div>
-        <h2 style="margin-bottom:14px;">Начни с честного<br><span style="color:var(--green);">бесплатного аудита</span></h2>
-        <p style="color:var(--gray);font-size:16px;line-height:1.75;margin-bottom:28px;">Оставь имя и телефон — мы перезвоним и разберём твою ситуацию.</p>
-        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:var(--gray);">
-          <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" style="margin-right:6px;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg>Только русскоязычные предприниматели в США</div>
-          <div>✔ Перезвоним в течение рабочего дня</div>
-          <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" style="margin-right:6px;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg>Без давления — только честная оценка</div>
-          <div>✔ Instagram: <strong style="color:var(--white);">@prodigylab.studio</strong></div>
+        <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">Услуги</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--white);">
+          <span style="cursor:pointer;" onclick="document.getElementById('growth').scrollIntoView({behavior:'smooth'})">Growth Engine</span>
+          <span style="cursor:pointer;" onclick="document.getElementById('creative').scrollIntoView({behavior:'smooth'})">Creative Studio</span>
+          <span style="cursor:pointer;" onclick="document.getElementById('creative').scrollIntoView({behavior:'smooth'})">ProdigyLAB Music</span>
         </div>
       </div>
-      <div class="lf-wrap">
-        <div class="ey ey-g" style="margin-bottom:16px;">● ЗАПИСАТЬСЯ НА АУДИТ</div>
-        <div class="lf">
-          <input class="li" type="text" id="lf2-name" placeholder="Имя *" required>
-          <input class="li" type="tel" id="lf2-phone" placeholder="Телефон *" required>
-          <input class="li" type="email" id="lf2-email" placeholder="Email (необязательно)">
-          <button class="btn btn-g" style="justify-content:center;padding:14px;" onclick="submitInlineForm2(this)">Получить бесплатный аудит →</button>
-          <p class="ln">✔ Перезвоним в течение рабочего дня</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <!-- CTA block -->
-  <div style="border-bottom:1px solid var(--border);padding:48px 28px;background:linear-gradient(135deg,rgba(34,197,94,.06),transparent);">
-    <div style="max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
       <div>
-        <div style="font-family:'Unbounded',sans-serif;font-size:clamp(22px,4vw,38px);font-weight:900;line-height:1.1;margin-bottom:8px;">Готов начать?<br><span style="color:var(--green);">Первый шаг — бесплатно.</span></div>
-        <p style="color:var(--gray);font-size:14px;">Оставь контакт — перезвоним и расскажем что подойдёт.</p>
-      </div>
-      <button class="btn btn-g btn-lg" onclick="scrollToAudit()">Получить бесплатный аудит →</button>
-    </div>
-  </div>
-
-  <div class="ft" style="padding-top:40px;">
-    <div class="ft-top">
-
-      <div class="ft-brand" style="max-width:240px;">
-        <div onclick="go('home')" style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-bottom:12px;">
-        <svg width="24" height="24" viewBox="0 0 1024 1024"><use href="#logo-sym"/></svg>
-        <span style="font-family:'Unbounded',sans-serif;font-size:14px;font-weight:800;letter-spacing:-.3px;">PRODIGY<em style="font-style:normal;color:var(--green);">LAB</em></span>
-      </div>
-        <p>Shopify-студия для русскоязычных предпринимателей в США.</p>
-        <div style="display:flex;gap:8px;margin-top:16px;">
-          <div style="width:32px;height:32px;background:var(--bg3);border:1px solid var(--border);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:border-color .2s;" onmouseenter="this.style.borderColor='rgba(225,48,108,.5)'" onmouseleave="this.style.borderColor='var(--border)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:rgba(225,48,108,.7)"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></div>
-          <div style="width:32px;height:32px;background:var(--bg3);border:1px solid var(--border);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:border-color .2s;" onmouseenter="this.style.borderColor='rgba(34,197,94,.5)'" onmouseleave="this.style.borderColor='var(--border)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:rgba(34,197,94,.7)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">Контакт</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--white);">
+          <a href="https://instagram.com/prodigylab.agency" target="_blank" rel="noopener" style="color:var(--white);text-decoration:none;">@prodigylab.agency</a>
+          <span style="color:var(--gray);">California, USA</span>
+          <button class="btn btn-g btn-sm" onclick="openModal()" style="margin-top:4px;">Бесплатный аудит →</button>
         </div>
       </div>
-
-      <div class="ft-col">
-        <h4>Услуги</h4>
-        <ul>
-          <li><button onclick="go('funnel1');setTimeout(()=>document.getElementById('zp').scrollIntoView({behavior:'smooth'}),200)">Zero Point — бесплатно</button></li>
-          <li><button onclick="go('funnel1');setTimeout(()=>document.getElementById('packages').scrollIntoView({behavior:'smooth'}),200)">Сайт услуг</button></li>
-          <li><button onclick="go('funnel1');setTimeout(()=>document.getElementById('packages').scrollIntoView({behavior:'smooth'}),200)">Shopify-магазин</button></li>
-          <li><button onclick="go('funnel2')">Аудит магазина</button></li>
-          <li><button onclick="go('funnel3')">Настройка рекламы</button></li>
-          <li><button onclick="go('funnel4')">Amazon / Etsy → свой канал</button></li>
-        </ul>
-      </div>
-
-      <div class="ft-col">
-        <h4>Студия</h4>
-        <ul>
-          <li><button onclick="go('about')">О нас</button></li>
-          <li><button onclick="go('portfolio')">Кейсы</button></li>
-          <li><button onclick="scrollToAudit()">Бесплатный аудит</button></li>
-          <li><button onclick="scrollToAudit()">Начать проект</button></li>
-        </ul>
-      </div>
-
-      <div class="ft-col">
-        <h4>Контакты</h4>
-        <ul>
-          <li><button>Instagram: @prodigylab.studio</button></li>
-          <li><button>Телефон / Instagram</button></li>
-          <li><button>prodigylab.studio</button></li>
-          <li><button>California, USA</button></li>
-        </ul>
-        <div style="margin-top:18px;padding:12px 14px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:8px;font-size:12px;color:var(--gray);line-height:1.6;">
-          <strong style="color:var(--white);">Перезвоним в течение рабочего дня</strong><br>Пн–Пт · 9:00–18:00 PST
-        </div>
-      </div>
-
     </div>
-
-    <div class="ft-bot">
-      <p>© 2026 Prodigy LAB · prodigylab.studio</p>
-      <div style="display:flex;gap:16px;">
-        <button style="background:none;border:none;color:var(--gray);font-family:'Onest',sans-serif;font-size:12px;cursor:pointer;padding:0;">Политика конфиденциальности</button>
-        <button style="background:none;border:none;color:var(--gray);font-family:'Onest',sans-serif;font-size:12px;cursor:pointer;padding:0;">Shopify Partner · California</button>
-      </div>
-    </div>
+    <hr style="margin:32px 0 20px;">
+    <div style="font-size:12px;color:var(--gray);">© 2026 Prodigy LAB · Shopify Partner</div>
   </div>
 </footer>
 
-<!-- ══ STICKY BAR ══ -->
+<script>
+// Inline lead form → Formspree (same endpoint as modal)
+function submitLead(e){
+  e.preventDefault();
+  const name=document.getElementById('lf-name').value.trim();
+  const phone=document.getElementById('lf-phone').value.trim();
+  const need=document.getElementById('lf-need').value||'—';
+  if(!name||!phone)return false;
+  const btn=document.getElementById('lf-btn');
+  btn.textContent='Отправляем...';btn.disabled=true;
+  fetch('https://formspree.io/f/xbdzvdyb',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({name,phone,need,_subject:`Новая заявка от ${name} (${need})`})
+  })
+  .then(r=>({ok:r.ok}))
+  .then(({ok})=>{
+    if(ok){
+      document.getElementById('lead-form').innerHTML=
+        `<div class="modal-success"><div class="check" style="font-size:48px;line-height:1;">✓</div><h3>Заявка принята!</h3><p>Перезвоним в течение рабочего дня.<br>Спасибо, ${name}!</p></div>`;
+    }else{btn.textContent='Ошибка — попробуй ещё раз';btn.disabled=false;}
+  })
+  .catch(()=>{
+    const body=encodeURIComponent(`Имя: ${name}\nТелефон: ${phone}\nЧто нужно: ${need}`);
+    window.location.href=`mailto:platonairellc@gmail.com?subject=Заявка от ${encodeURIComponent(name)}&body=${body}`;
+    btn.textContent='Отправляем через почту...';btn.disabled=false;
+  });
+  return false;
+}
+</script>
+
 <div id="sticky-bar">
   <div class="sb-inner">
     <span class="sb-copy"><strong>Prodigy LAB</strong> — бесплатный аудит</span>
