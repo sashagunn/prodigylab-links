@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс — Делай сайты на AI и зарабатывай удалённо | Prodigy LAB</title>
+<meta name="description" content="Онлайн-курс на русском: научись собирать продающие сайты и магазины с помощью AI и брать за них от $400 — удалённо, из любой страны. Решаем и проблему доступа к инструментам.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://prodigylab.studio/course.html">
+<meta property="og:title" content="Курс — Делай сайты на AI и зарабатывай удалённо">
+<meta property="og:description" content="Профессия, которая кормит из любой точки мира. Собирай сайты на AI, бери заказы от $400. На русском.">
+<meta property="og:image" content="https://prodigylab.studio/og-image.svg">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230D1117'/%3E%3Cpath d='M7 26 Q9 24.5 12 25 Q14 25.5 16 25.5 Q18 25.5 20 25 Q23 24.5 25 26 Q23 27.5 16 27.5 Q9 27.5 7 26Z' fill='%2316a34a'/%3E%3Cpath d='M8.5 22.5 Q11 21 13.5 21.5 Q16 22 18.5 21.5 Q21 21 23.5 22.5 Q21.5 24 16 24 Q10.5 24 8.5 22.5Z' fill='%2322C55E'/%3E%3Ccircle cx='16' cy='9' r='1.8' fill='%2322C55E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;800;900&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1F5; --bg2:#FFFFFF; --bg3:#F1F4F8; --bg4:#E3E8ED;
+  --green:#16A34A; --teal:#0EA5E9; --amber:#F59E0B; --purple:#9333EA; --coral:#F97316;
+  --white:#0F1722; --gray:#5A6573;
+  --border:rgba(15,23,34,0.10); --border2:rgba(15,23,34,0.17);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'Onest',sans-serif;font-size:16px;line-height:1.65;overflow-x:hidden;padding-bottom:58px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;text-decoration:none;color:var(--white);}
+.logo span{font-family:'Unbounded',sans-serif;font-size:14px;font-weight:800;letter-spacing:-.4px;white-space:nowrap;}
+.logo em{font-style:normal;color:var(--green);}
+.nav-pills{display:flex;gap:2px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:3px;}
+.nav-pills button{font-family:'Onest',sans-serif;font-size:12.5px;font-weight:500;padding:5px 11px;border-radius:5px;border:none;background:transparent;color:var(--gray);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.nav-pills button:hover{color:var(--white);background:#fff;}
+.nbtn{font-family:'Onest',sans-serif;font-size:13px;font-weight:600;padding:7px 15px;border-radius:7px;border:none;cursor:pointer;background:var(--green);color:#fff;transition:all .2s;}
+.nbtn:hover{background:#15803d;transform:translateY(-1px);}
+
+/* LAYOUT */
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px;}
+.sec{padding:80px 0;}
+h1,h2,h3{font-family:'Unbounded',sans-serif;font-weight:900;line-height:1.02;}
+h1{font-size:clamp(34px,5.5vw,68px);letter-spacing:-2px;line-height:1;}
+h2{font-size:clamp(25px,3.6vw,44px);letter-spacing:-1px;}
+h3{font-size:clamp(17px,2vw,22px);letter-spacing:-.4px;}
+.sub{font-size:clamp(15px,2vw,18px);color:var(--gray);line-height:1.75;max-width:600px;}
+.ey{display:inline-block;font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;color:var(--green);}
+.ey-p{color:var(--purple);}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:9px;font-family:'Onest',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:none;text-decoration:none;transition:all .2s;white-space:nowrap;}
+.btn-g{background:var(--green);color:#fff;} .btn-g:hover{background:#15803d;transform:translateY(-2px);box-shadow:0 8px 20px rgba(22,163,74,.25);}
+.btn-p{background:var(--purple);color:#fff;} .btn-p:hover{background:#7e22ce;transform:translateY(-2px);box-shadow:0 8px 20px rgba(147,51,234,.25);}
+.btn-o{background:transparent;color:var(--white);border:1px solid var(--border2);} .btn-o:hover{border-color:var(--white);}
+.btn-lg{padding:15px 30px;font-size:16px;}
+
+/* TAGS / CARDS */
+.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:11.5px;font-weight:600;}
+.tag-g{background:rgba(22,163,74,.12);color:var(--green);border:1px solid rgba(22,163,74,.22);}
+.tag-p{background:rgba(147,51,234,.1);color:var(--purple);border:1px solid rgba(147,51,234,.22);}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:0 1px 2px rgba(15,23,34,.04),0 8px 24px rgba(15,23,34,.04);transition:transform .2s,box-shadow .2s;}
+.card:hover{transform:translateY(-3px);box-shadow:0 4px 8px rgba(15,23,34,.05),0 16px 40px rgba(15,23,34,.07);}
+.grid{display:grid;gap:14px;}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+.cicon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;border:1px solid;background:rgba(22,163,74,.1);border-color:rgba(22,163,74,.25);color:var(--green);}
+.cicon.p{background:rgba(147,51,234,.09);border-color:rgba(147,51,234,.25);color:var(--purple);}
+.cicon svg{width:22px;height:22px;}
+hr{border:none;height:1px;background:var(--border);margin:0;}
+
+/* HERO */
+.hero{padding:120px 0 70px;position:relative;overflow:hidden;}
+.hero .glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;opacity:.5;z-index:0;}
+
+/* MODULES */
+.mod{display:flex;gap:18px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--border);}
+.mod:last-child{border-bottom:none;}
+.mod-n{width:46px;height:46px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Unbounded',sans-serif;font-weight:900;font-size:17px;background:rgba(22,163,74,.1);color:var(--green);border:1px solid rgba(22,163,74,.25);}
+.mod-t{font-weight:700;font-size:16.5px;margin-bottom:5px;}
+.mod-d{font-size:14px;color:var(--gray);line-height:1.6;}
+
+/* PRICING */
+.price{position:relative;display:flex;flex-direction:column;}
+.price.feat{border-color:var(--purple);box-shadow:0 0 0 1px rgba(147,51,234,.25),0 16px 40px rgba(147,51,234,.1);}
+.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font-size:11px;font-weight:700;padding:3px 13px;border-radius:100px;white-space:nowrap;}
+.price-name{font-family:'Unbounded',sans-serif;font-size:19px;font-weight:900;margin-bottom:4px;}
+.price-for{font-size:12.5px;color:var(--gray);margin-bottom:16px;}
+.price-num{font-family:'Unbounded',sans-serif;font-size:42px;font-weight:900;line-height:1;margin-bottom:18px;}
+.price ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;flex:1;}
+.price li{font-size:13.5px;display:flex;gap:8px;align-items:flex-start;line-height:1.45;}
+.price li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;}
+
+/* FAQ */
+.fi{background:#fff;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;}
+.fq{padding:16px 20px;font-weight:500;font-size:14.5px;cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center;}
+.fq span.ic{color:var(--green);transition:transform .25s;flex-shrink:0;font-size:18px;}
+.fi.open .ic{transform:rotate(45deg);}
+.fa{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:13.5px;color:var(--gray);line-height:1.7;padding:0 20px;}
+.fi.open .fa{max-height:300px;padding:0 20px 16px;}
+
+/* FORM */
+.formbox{background:#fff;border:1px solid var(--border);border-radius:18px;padding:36px;box-shadow:0 10px 40px rgba(15,23,34,.06);max-width:520px;margin:0 auto;}
+.lf{display:flex;flex-direction:column;gap:10px;}
+.li,.ls{background:var(--bg3);border:1px solid var(--border);color:var(--white);border-radius:10px;padding:13px 15px;font-size:15px;font-family:'Onest',sans-serif;outline:none;transition:border-color .2s;}
+.li:focus,.ls:focus{border-color:var(--green);}
+.li::placeholder{color:var(--gray);}
+.ln{font-size:12px;color:var(--gray);text-align:center;margin-top:6px;}
+
+/* STICKY */
+#sticky{position:fixed;bottom:0;left:0;right:0;height:58px;z-index:400;background:rgba(255,255,255,.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(--border);box-shadow:0 -2px 16px rgba(15,23,34,.06);display:flex;align-items:center;justify-content:center;gap:16px;padding:0 20px;}
+#sticky .c{font-size:13px;color:var(--gray);white-space:nowrap;}
+#sticky .c b{color:var(--white);}
+@media(max-width:640px){#sticky .c{display:none;}}
+
+footer{background:#fff;border-top:1px solid var(--border);padding:40px 0 70px;font-size:13px;color:var(--gray);}
+footer a{color:var(--white);text-decoration:none;}
+
+@media(max-width:760px){
+  .nav-pills{display:none;}
+  .wrap{padding:0 18px;}
+  .hero{padding:96px 0 50px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">
+    <svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0F1722"/><path d="M7 26 Q9 24.5 12 25 Q14 25.5 16 25.5 Q18 25.5 20 25 Q23 24.5 25 26 Q23 27.5 16 27.5 Q9 27.5 7 26Z" fill="#16a34a"/><path d="M8.5 22.5 Q11 21 13.5 21.5 Q16 22 18.5 21.5 Q21 21 23.5 22.5 Q21.5 24 16 24 Q10.5 24 8.5 22.5Z" fill="#22C55E"/><circle cx="16" cy="9" r="1.8" fill="#22C55E"/></svg>
+    <span>PRODIGY<em>LAB</em></span>
+  </a>
+  <div class="nav-pills">
+    <button onclick="location.href='index.html'">← Студия</button>
+    <button onclick="go('program')">Программа</button>
+    <button onclick="go('access')">Доступ к AI</button>
+    <button onclick="go('pricing')">Тарифы</button>
+  </div>
+  <button class="nbtn" onclick="openModal()">Записаться →</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="glow" style="width:480px;height:480px;background:rgba(22,163,74,.12);top:-120px;left:-100px;"></div>
+  <div class="glow" style="width:420px;height:420px;background:rgba(147,51,234,.1);top:-80px;right:-120px;"></div>
+  <div class="wrap" style="position:relative;z-index:1;">
+    <div style="max-width:860px;">
+      <div class="tag tag-g" style="margin-bottom:24px;"><span class="dot"></span> Онлайн-курс · на русском · из любой страны</div>
+      <h1 style="margin-bottom:22px;">Делай сайты на AI —<br>зарабатывай <span style="color:var(--green);">удалённо</span></h1>
+      <p class="sub" style="margin-bottom:18px;max-width:660px;">AI сейчас — как интернет в 90-х. В США им уже зарабатывают, а у тебя к инструментам, возможно, даже нет доступа. Научу собирать продающие сайты и магазины с помощью AI и брать за них <b style="color:var(--white);font-weight:600;">от $400</b> — из любой точки мира.</p>
+      <div class="tag tag-p" style="margin-bottom:30px;">🔓 Нет доступа к Claude, как в России? Решаем это в первом же модуле</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        <button class="btn btn-g btn-lg" onclick="openModal()">Записаться на курс →</button>
+        <button class="btn btn-o btn-lg" onclick="go('pricing')">Тарифы</button>
+      </div>
+      <div style="display:flex;gap:22px;flex-wrap:wrap;margin-top:30px;font-size:13px;color:var(--gray);">
+        <span>✦ Профессия с нуля</span><span>✦ Доход в валюте</span><span>✦ Практика, не теория</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- БОЛЬ -->
+<div class="sec" style="padding-top:30px;">
+  <div class="wrap">
+    <div style="max-width:680px;margin-bottom:34px;">
+      <span class="ey">Знакомо?</span>
+      <h2>Хочешь удалённый доход, но…</h2>
+    </div>
+    <div class="grid g3">
+      <div class="card"><h3 style="font-size:18px;margin-bottom:8px;">Нет доступа к инструментам</h3><p style="font-size:14px;color:var(--gray);line-height:1.6;">Claude и ChatGPT заблокированы, карты не проходят, VPN не помогает.</p></div>
+      <div class="card"><h3 style="font-size:18px;margin-bottom:8px;">Не знаешь, с чего начать</h3><p style="font-size:14px;color:var(--gray);line-height:1.6;">Куча курсов «про нейросети», а конкретной профессии и денег — нет.</p></div>
+      <div class="card"><h3 style="font-size:18px;margin-bottom:8px;">Нет профессии, которая кормит</h3><p style="font-size:14px;color:var(--gray);line-height:1.6;">Хочется зарабатывать из любой точки, но непонятно — на чём именно.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ЧТО ПОЛУЧИШЬ -->
+<div class="sec" style="padding-top:0;">
+  <div class="wrap">
+    <div style="max-width:680px;margin-bottom:34px;">
+      <span class="ey">Результат</span>
+      <h2>Что у тебя будет после курса</h2>
+    </div>
+    <div class="grid g3">
+      <div class="card"><div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><h3 style="margin-bottom:6px;">Профессия</h3><p style="font-size:14px;color:var(--gray);line-height:1.6;">Умеешь собирать продающие сайты и магазины на AI — навык, за который платят.</p></div>
+      <div class="card"><div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5a2.5 2 0 0 1 5 0c0 1.4-1.2 1.8-2.5 2.3-1.3.5-2.5.9-2.5 2.4a2.5 2 0 0 0 5 0"/></svg></div><h3 style="margin-bottom:6px;">Доход в валюте</h3><p style="font-size:14px;color:var(--gray);line-height:1.6;">Берёшь заказы от $400 за сайт. Удалённо, на западных площадках и среди русскоязычных.</p></div>
+      <div class="card"><div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4z"/><path d="M2 20h20M9 8l2 2 4-4"/></svg></div><h3 style="margin-bottom:6px;">Первый проект в портфолио</h3><p style="font-size:14px;color:var(--gray);line-height:1.6;">К концу курса — готовый рабочий сайт, который не стыдно показать клиенту.</p></div>
+      <div class="card"><div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h3 style="margin-bottom:6px;">Рабочий доступ к AI</h3><p style="font-size:14px;color:var(--gray);line-height:1.6;">Настроенный стек инструментов, который работает из твоей страны.</p></div>
+      <div class="card"><div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div><h3 style="margin-bottom:6px;">Путь к масштабу</h3><p style="font-size:14px;color:var(--gray);line-height:1.6;">Понимаешь, как из фриланса вырасти в студию — или отдать рутину нам.</p></div>
+      <div class="card"><div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3 style="margin-bottom:6px;">Сообщество и поддержка</h3><p style="font-size:14px;color:var(--gray);line-height:1.6;">Чат потока, разборы, ответы на вопросы — ты не один на один с экраном.</p></div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ПРОГРАММА -->
+<div class="sec" id="program">
+  <div class="wrap">
+    <div style="max-width:680px;margin-bottom:34px;">
+      <span class="ey">Программа</span>
+      <h2>От нуля до первого заказа</h2>
+      <p class="sub" style="margin-top:16px;">Никакой теории ради теории — только то, что нужно, чтобы собрать сайт и взять за него деньги.</p>
+    </div>
+    <div class="card" style="padding:8px 26px;">
+      <div class="mod"><div class="mod-n">0</div><div><div class="mod-t">Рабочее место из любой страны</div><div class="mod-d">Доступ к AI там, где он заблокирован: правильный VPN, зарубежная виртуальная карта, создание аккаунта. Какие модели реально работают (Claude, DeepSeek, прокси-сервисы).</div></div></div>
+      <div class="mod"><div class="mod-n">1</div><div><div class="mod-t">Как устроен продающий сайт</div><div class="mod-d">Оффер, структура, путь клиента. Почему один магазин продаёт, а другой — нет. Разбираем на реальных примерах.</div></div></div>
+      <div class="mod"><div class="mod-n">2</div><div><div class="mod-t">Сборка сайта на AI</div><div class="mod-d">Современный стек: AI + конструкторы (Shopify, Framer, no-code). Собираем рабочий сайт с нуля под руководством, шаг за шагом.</div></div></div>
+      <div class="mod"><div class="mod-n">3</div><div><div class="mod-t">Тексты и креатив на AI</div><div class="mod-d">Копирайтинг, который продаёт. Баннеры, фото товаров, AI-видео — на тех же инструментах, что используют топовые бренды.</div></div></div>
+      <div class="mod"><div class="mod-n">4</div><div><div class="mod-t">Запуск и аналитика</div><div class="mod-d">Домен, хостинг, пиксель, GA4. Базовая настройка, чтобы сайт жил и было видно, что работает.</div></div></div>
+      <div class="mod"><div class="mod-n">5</div><div><div class="mod-t">Реклама для старта</div><div class="mod-d">Базовый запуск Meta / Google: как привести первых клиентов на сайт и не слить бюджет.</div></div></div>
+      <div class="mod"><div class="mod-n">6</div><div><div class="mod-t">Как находить клиентов и брать заказы</div><div class="mod-d">Где искать заказы (фриланс-площадки, русскоязычные предприниматели), как упаковать услугу и сколько брать.</div></div></div>
+      <div class="mod"><div class="mod-n">7</div><div><div class="mod-t">Масштаб: из фриланса в студию</div><div class="mod-d">Как расти, делегировать рутину и зарабатывать больше. Сопровождение и рекламу можно отдать нам — white-label.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ДОСТУП К AI -->
+<div class="sec" id="access">
+  <div class="wrap">
+    <div class="grid g2" style="align-items:center;">
+      <div>
+        <span class="ey ey-p">Честно про доступ</span>
+        <h2 style="margin-bottom:18px;">«А как же доступ к инструментам?»</h2>
+        <p class="sub" style="margin-bottom:16px;">Я не обещаю «выдать тебе Claude» — это было бы нечестно. Вместо этого ты получаешь то, на что у других уходят месяцы:</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--purple);font-weight:700;">→</span><div style="font-size:14.5px;line-height:1.55;"><b>Рабочую настройку</b> — VPN, который не режут, зарубежная карта, аккаунт. Доводим до результата.</div></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--purple);font-weight:700;">→</span><div style="font-size:14.5px;line-height:1.55;"><b>Стек, который работает из твоей страны</b> — включая бесплатные модели вроде DeepSeek и прокси-сервисы за рубли.</div></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--purple);font-weight:700;">→</span><div style="font-size:14.5px;line-height:1.55;"><b>Живую сессию настройки</b> (на тарифе с менторством) — лично довожу тебя до рабочего доступа за один созвон.</div></div>
+        </div>
+      </div>
+      <div class="card" style="background:linear-gradient(160deg,rgba(147,51,234,.06),#fff 60%);border-color:rgba(147,51,234,.2);">
+        <div class="cicon p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><path d="M12 15v2"/></svg></div>
+        <h3 style="margin-bottom:10px;">Доступ — это навык, а не подписка</h3>
+        <p style="font-size:14px;color:var(--gray);line-height:1.65;">Один раз настроил — пользуешься всегда. Этот модуль идёт первым: пока другие застряли на «не могу зарегистрироваться», ты уже работаешь.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ТАРИФЫ -->
+<div class="sec" id="pricing">
+  <div class="wrap">
+    <div style="max-width:680px;margin-bottom:38px;">
+      <span class="ey">Тарифы</span>
+      <h2>Выбери, как удобнее учиться</h2>
+      <p class="sub" style="margin-top:16px;">Старт — бесплатный. Дальше — сам или с моим личным сопровождением.</p>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:stretch;">
+      <div class="card price">
+        <div class="price-name">Интенсив</div>
+        <div class="price-for">Попробовать на вкус</div>
+        <div class="price-num" style="color:var(--green);">Free</div>
+        <ul>
+          <li>Бесплатный мини-интенсив</li>
+          <li>Собери первый простой сайт за выходные</li>
+          <li>Поймёшь, твоё это или нет</li>
+        </ul>
+        <button class="btn btn-o" onclick="openModal()" style="justify-content:center;">Начать бесплатно</button>
+      </div>
+      <div class="card price">
+        <div class="price-name">Самостоятельный</div>
+        <div class="price-for">Учишься в своём темпе</div>
+        <div class="price-num" style="color:var(--green);">$99</div>
+        <ul>
+          <li>Все видео-модули (0–7)</li>
+          <li>Шаблоны, чек-листы, материалы</li>
+          <li>Модуль по доступу к AI</li>
+          <li>Чат потока и обновления</li>
+        </ul>
+        <button class="btn btn-g" onclick="openModal()" style="justify-content:center;">Купить курс</button>
+      </div>
+      <div class="card price feat">
+        <div class="price-badge">С менторством</div>
+        <div class="price-name">Личный</div>
+        <div class="price-for">Быстрее и за руку</div>
+        <div class="price-num" style="color:var(--purple);">$390</div>
+        <ul>
+          <li>Всё из «Самостоятельного»</li>
+          <li>Живые сессии со мной</li>
+          <li>Личная настройка доступа к AI</li>
+          <li>Разбор твоего первого проекта</li>
+          <li>Помощь с первым заказом</li>
+        </ul>
+        <button class="btn btn-p" onclick="openModal()" style="justify-content:center;">Хочу с ментором</button>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:12.5px;color:var(--gray);margin-top:18px;">Цены ориентировочные — финальные подтвердим на созвоне.</p>
+  </div>
+</div>
+
+<hr>
+
+<!-- КТО ВЕДЁТ -->
+<div class="sec">
+  <div class="wrap" style="max-width:820px;">
+    <span class="ey">Кто ведёт</span>
+    <h2 style="margin-bottom:20px;">Практик, а не теоретик</h2>
+    <p class="sub" style="max-width:760px;margin-bottom:16px;">Я веду студию Prodigy LAB — мы делаем сайты, рекламу и креатив для реальных брендов. Учу ровно тому, что делаю каждый день руками, а не пересказываю чужие курсы.</p>
+    <p class="sub" style="max-width:760px;margin-bottom:24px;">Среди проектов — <a href="https://healthhustleacademy.com" target="_blank" rel="noopener noreferrer" style="color:var(--green);text-decoration:none;">HealthHustle Academy</a>, <a href="https://set4pets.com" target="_blank" rel="noopener noreferrer" style="color:var(--teal);text-decoration:none;">Set4Pets</a> (попал в CBS News), <a href="https://petaliashop.com" target="_blank" rel="noopener noreferrer" style="color:var(--purple);text-decoration:none;">Petalia</a> и другие живые магазины.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      <span class="tag tag-g"><span class="dot"></span> Shopify Partner</span>
+      <span class="tag tag-g">Реальные клиенты</span>
+      <span class="tag tag-g">AI каждый день</span>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- FAQ -->
+<div class="sec">
+  <div class="wrap" style="max-width:780px;">
+    <span class="ey">Вопросы</span>
+    <h2 style="margin-bottom:28px;">Частые вопросы</h2>
+    <div class="fi"><div class="fq" onclick="toggleFaq(this)">Нужен ли опыт в коде или дизайне?<span class="ic">+</span></div><div class="fa">Нет. Курс с нуля — современные AI-инструменты и конструкторы позволяют собирать сайты без программирования. Нужны только желание и компьютер.</div></div>
+    <div class="fi"><div class="fq" onclick="toggleFaq(this)">У меня правда нет доступа к Claude/ChatGPT. Получится?<span class="ic">+</span></div><div class="fa">Да — это первый модуль курса. Покажу, как настроить рабочий доступ из заблокированной страны и какие инструменты работают без него. На тарифе с менторством настраиваю лично.</div></div>
+    <div class="fi"><div class="fq" onclick="toggleFaq(this)">Сколько реально можно зарабатывать?<span class="ic">+</span></div><div class="fa">Один сайт — от $400. Дальше зависит от тебя: кто-то делает 1–2 проекта в месяц как подработку, кто-то вырастает в студию. Я даю навык и путь — доход строишь ты.</div></div>
+    <div class="fi"><div class="fq" onclick="toggleFaq(this)">Сколько длится курс?<span class="ic">+</span></div><div class="fa">Проходишь в своём темпе. В среднем 4–6 недель при паре часов в день, чтобы дойти до готового первого проекта.</div></div>
+    <div class="fi"><div class="fq" onclick="toggleFaq(this)">Откуда я возьму первых клиентов?<span class="ic">+</span></div><div class="fa">Отдельный модуль — где искать заказы, как упаковать услугу и назвать цену. На личном тарифе помогаю довести до первого заказа.</div></div>
+  </div>
+</div>
+
+<!-- CTA / ФОРМА -->
+<div class="sec" id="join" style="padding-top:30px;">
+  <div class="wrap">
+    <div class="formbox">
+      <div style="text-align:center;margin-bottom:22px;">
+        <span class="ey ey-p">Старт ближе, чем кажется</span>
+        <h2 style="font-size:clamp(24px,3.5vw,36px);margin-bottom:10px;">Записаться на курс</h2>
+        <p class="sub" style="margin:0 auto;">Оставь контакт — расскажу про потоки, отвечу на вопросы и помогу выбрать тариф. Без давления.</p>
+      </div>
+      <form class="lf" id="lead-form" onsubmit="return submitLead(event)">
+        <input class="li" id="lf-name" type="text" placeholder="Имя" required>
+        <input class="li" id="lf-phone" type="tel" placeholder="Телефон / Telegram" required>
+        <select class="ls" id="lf-tier">
+          <option value="" disabled selected>Что интересно</option>
+          <option>Бесплатный интенсив</option>
+          <option>Самостоятельный — $99</option>
+          <option>С менторством — $390</option>
+          <option>Пока просто узнать</option>
+        </select>
+        <button class="btn btn-p btn-lg" type="submit" id="lf-btn" style="justify-content:center;margin-top:6px;">Записаться →</button>
+        <div class="ln">✔ Отвечу в течение рабочего дня · без спама</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <svg width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0F1722"/><path d="M7 26 Q9 24.5 12 25 Q14 25.5 16 25.5 Q18 25.5 20 25 Q23 24.5 25 26 Q23 27.5 16 27.5 Q9 27.5 7 26Z" fill="#16a34a"/><circle cx="16" cy="9" r="1.8" fill="#22C55E"/></svg>
+      <span style="font-family:'Unbounded',sans-serif;font-size:13px;font-weight:800;color:var(--white);">PRODIGY<span style="color:var(--green);">LAB</span></span>
+    </div>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;">
+      <a href="index.html">Студия</a>
+      <a href="https://instagram.com/prodigylab.agency" target="_blank" rel="noopener">@prodigylab.agency</a>
+    </div>
+    <div>© 2026 Prodigy LAB</div>
+  </div>
+</footer>
+
+<!-- STICKY -->
+<div id="sticky">
+  <div class="c"><b>Курс «Сайты на AI»</b> · профессия + доход в валюте</div>
+  <button class="btn btn-p" onclick="openModal()" style="padding:8px 20px;">Записаться →</button>
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" onclick="if(event.target===this)closeModal()" style="position:fixed;inset:0;z-index:500;background:rgba(15,23,42,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;padding:20px;">
+  <div id="modal-box" style="background:#fff;border:1px solid var(--border);border-radius:20px;padding:38px 34px;width:100%;max-width:440px;box-shadow:0 24px 64px rgba(15,23,34,.2);transform:translateY(14px) scale(.97);transition:transform .28s cubic-bezier(.4,0,.2,1);position:relative;">
+    <button onclick="closeModal()" style="position:absolute;top:16px;right:18px;background:var(--bg3);border:none;width:30px;height:30px;border-radius:50%;color:var(--gray);font-size:16px;cursor:pointer;">✕</button>
+    <div id="modal-content">
+      <div class="tag tag-p" style="margin-bottom:16px;">Курс · Prodigy LAB</div>
+      <h2 style="font-size:30px;margin-bottom:8px;">Записаться<br>на <span style="color:var(--purple);">курс</span></h2>
+      <p class="sub" style="font-size:14px;margin-bottom:22px;">Оставь контакт — расскажу про потоки и помогу выбрать тариф.</p>
+      <div class="lf">
+        <input class="li" id="m-name" type="text" placeholder="Имя *">
+        <input class="li" id="m-phone" type="tel" placeholder="Телефон / Telegram *">
+        <input class="li" id="m-email" type="email" placeholder="Email (необязательно)">
+        <button class="btn btn-p modal-submit" onclick="submitModal(event)" style="justify-content:center;padding:14px;">Записаться →</button>
+        <div class="ln">✔ Отвечу в течение рабочего дня · без давления</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
+function toggleFaq(el){const i=el.closest('.fi');document.querySelectorAll('.fi.open').forEach(x=>{if(x!==i)x.classList.remove('open');});i.classList.toggle('open');}
+const ov=document.getElementById('modal-overlay'),box=document.getElementById('modal-box');
+function openModal(){ov.style.opacity='1';ov.style.pointerEvents='all';box.style.transform='translateY(0) scale(1)';document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('m-name')?.focus(),250);}
+function closeModal(){ov.style.opacity='0';ov.style.pointerEvents='none';box.style.transform='translateY(14px) scale(.97)';document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+const FS='https://formspree.io/f/xbdzvdyb', MAIL='platonairellc@gmail.com';
+function send(payload,btn,okHtml,fallbackBody){
+  btn.textContent='Отправляем...';btn.disabled=true;
+  fetch(FS,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
+  .then(r=>({ok:r.ok})).then(({ok})=>{if(ok){okHtml();}else{btn.textContent='Ошибка — ещё раз';btn.disabled=false;}})
+  .catch(()=>{window.location.href=`mailto:${MAIL}?subject=Курс — заявка&body=${encodeURIComponent(fallbackBody)}`;btn.textContent='Через почту...';btn.disabled=false;});
+}
+function submitModal(e){
+  const name=document.getElementById('m-name').value.trim(),phone=document.getElementById('m-phone').value.trim(),email=document.getElementById('m-email').value.trim();
+  if(!name||!phone){if(!name)document.getElementById('m-name').style.borderColor='var(--red)';if(!phone)document.getElementById('m-phone').style.borderColor='var(--red)';return;}
+  send({name,phone,email:email||'—',_subject:`Курс — заявка от ${name}`},document.querySelector('.modal-submit'),
+    ()=>{document.getElementById('modal-content').innerHTML=`<div style="text-align:center;padding:10px 0;"><div style="font-size:48px;color:var(--green);">✓</div><h2 style="font-size:26px;margin:10px 0 6px;color:var(--green);">Записал!</h2><p class="sub" style="font-size:14px;">Свяжусь с тобой в течение рабочего дня. Спасибо, ${name}!</p></div>`;setTimeout(closeModal,3000);},
+    `Имя: ${name}\nКонтакт: ${phone}\nEmail: ${email||'—'}`);
+}
+function submitLead(e){
+  e.preventDefault();
+  const name=document.getElementById('lf-name').value.trim(),phone=document.getElementById('lf-phone').value.trim(),tier=document.getElementById('lf-tier').value||'—';
+  if(!name||!phone)return false;
+  send({name,phone,tier,_subject:`Курс — заявка от ${name} (${tier})`},document.getElementById('lf-btn'),
+    ()=>{document.getElementById('lead-form').innerHTML=`<div style="text-align:center;padding:10px 0;"><div style="font-size:48px;color:var(--green);">✓</div><h2 style="font-size:26px;margin:10px 0 6px;color:var(--green);">Записал!</h2><p class="sub" style="font-size:14px;">Свяжусь в течение рабочего дня. Спасибо, ${name}!</p></div>`;},
+    `Имя: ${name}\nКонтакт: ${phone}\nТариф: ${tier}`);
+  return false;
+}
+</script>
+</body>
+</html>
