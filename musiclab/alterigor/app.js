@@ -591,7 +591,6 @@ let carrierTrk=null;
 function start(){
   S.started=true;
   initAudio();
-  startBed();
   if(bodyvid){ bodyvid.play().catch(()=>{}); }
   initDust();
   $('#gate').classList.add('hidden');
