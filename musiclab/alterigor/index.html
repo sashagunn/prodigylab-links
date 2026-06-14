@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+<meta name="theme-color" content="#070708" />
+<title>42.0 FM — you weren't supposed to find this frequency</title>
+<meta name="description" content="A signal that doesn't officially exist. Radio wave and dance are the same phenomenon — a way for emotion to cross the distance between bodies that don't touch. Tune in. ALTER IGOR · 42.0 FM · Prodigy LAB Music." />
+<meta property="og:title" content="42.0 FM — ALTER IGOR" />
+<meta property="og:description" content="Tune the band. Catch the signal. Become part of it. An art-object by ALTER IGOR — Prodigy LAB Music." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://prodigylab.studio/musiclab/alterigor/" />
+<meta property="og:image" content="https://prodigylab.studio/og-image.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Unbounded:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ DESIGN TOKENS — 42.0 FM ============ */
+:root{
+  --bg-deep:#070708;
+  --bg-raised:#0B0B0D;
+  --accent:#E8B04B;            /* amber signal */
+  --accent-dim:#7a5d28;
+  --text:#EDEDED;
+  --text-dim:#6B6B70;
+  --mono:'Space Mono',ui-monospace,monospace;
+  --display:'Unbounded',system-ui,sans-serif;
+  --strength:0;                /* 0..1 live signal, driven by JS */
+  --noise:1;                   /* 1..0 inverse of strength */
+}
+/* Side B universe recolours the accent */
+body.sideB{ --accent:#C6FF3A; --accent-dim:#5d7a1f; }
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:var(--bg-deep);color:var(--text);
+  font-family:var(--mono);-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+body{position:fixed;inset:0;touch-action:none;user-select:none;-webkit-user-select:none}
+a{color:inherit}
+canvas{display:block}
+
+/* ============ STAGE ============ */
+#stage{position:fixed;inset:0;z-index:2}
+.layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s linear;will-change:opacity}
+.layer.live{pointer-events:auto}
+.wrap{width:min(1080px,90vw);position:relative}
+
+/* signal-driven legibility: blur + desaturate when weak */
+#signalfx{position:fixed;inset:0;z-index:2;pointer-events:none;
+  backdrop-filter:saturate(calc(.3 + var(--strength)*.7));}
+
+/* ============ ETHER NOISE OVERLAY ============ */
+#ether{position:fixed;inset:0;z-index:6;pointer-events:none;mix-blend-mode:screen;
+  opacity:calc(var(--noise)*.35)}
+#grain{position:fixed;inset:0;z-index:7;pointer-events:none;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain .4s steps(2) infinite}
+@keyframes grain{0%{transform:translate(0,0)}50%{transform:translate(-4%,3%)}100%{transform:translate(2%,-2%)}}
+#scan{position:fixed;inset:0;z-index:7;pointer-events:none;opacity:.25;
+  background:repeating-linear-gradient(to bottom,transparent 0 2px,rgba(0,0,0,.18) 2px 3px)}
+
+/* ============ GATE ============ */
+#gate{position:fixed;inset:0;z-index:30;background:var(--bg-deep);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;
+  transition:opacity 1.1s ease}
+#gate .hint{font-size:12px;letter-spacing:.32em;color:var(--text-dim);text-transform:uppercase;
+  animation:pulse 2.4s ease-in-out infinite}
+#gate .small{margin-top:14px;font-size:10px;letter-spacing:.3em;color:#33333a}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:.85}}
+.hidden{opacity:0!important;pointer-events:none!important}
+
+/* ============ HUD ============ */
+#hud{position:fixed;top:0;left:0;right:0;z-index:12;display:flex;justify-content:space-between;
+  align-items:flex-start;padding:18px 22px;pointer-events:none;font-size:11px;letter-spacing:.22em}
+#hud .id{color:var(--text-dim)}
+#hud .id b{color:var(--accent);font-weight:700}
+#hud .station{text-align:right;color:var(--text-dim)}
+#freqName{color:var(--accent);font-weight:700;min-height:14px;letter-spacing:.34em}
+
+/* signal strength bars */
+#bars{display:flex;gap:3px;margin-top:8px;justify-content:flex-end}
+#bars i{width:3px;height:11px;background:#22222a;display:block;transition:background .15s}
+#bars i.on{background:var(--accent)}
+
+/* ============ TUNING DIAL ============ */
+#dial{position:fixed;left:0;right:0;bottom:0;z-index:12;height:96px;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent);
+          mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent)}
+#needle{position:absolute;left:50%;top:8px;bottom:26px;width:1px;background:var(--accent);
+  box-shadow:0 0 12px var(--accent);transform:translateX(-.5px);z-index:2}
+#needle::after{content:'';position:absolute;top:-1px;left:-3px;width:7px;height:7px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 12px var(--accent)}
+#band{position:absolute;left:0;top:0;height:100%;will-change:transform}
+.tick{position:absolute;bottom:26px;width:1px;background:#2a2a31}
+.tick.major{height:18px}.tick.minor{height:9px;opacity:.6}
+.tick .lab{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
+  font-size:10px;color:var(--text-dim);letter-spacing:.12em}
+.stnmark{position:absolute;bottom:48px;transform:translateX(-50%);font-size:9px;letter-spacing:.2em;
+  color:var(--accent-dim);white-space:nowrap}
+#dialhint{position:fixed;left:50%;bottom:104px;transform:translateX(-50%);z-index:12;
+  font-size:9.5px;letter-spacing:.34em;color:var(--text-dim);text-transform:uppercase;
+  text-align:center;pointer-events:none;transition:opacity .6s}
+
+/* ============ CARRIER (42.0) ============ */
+#carrier .copy{position:relative;z-index:2;text-align:center}
+#carrier .line{font-family:var(--display);font-weight:400;font-size:clamp(22px,4.4vw,46px);
+  line-height:1.18;opacity:0;letter-spacing:-.01em;
+  text-shadow:calc(var(--gl,0)*-5px) 0 rgba(198,255,58,.5), calc(var(--gl,0)*5px) 0 rgba(120,170,255,.5), 0 2px 28px rgba(0,0,0,.7)}
+#carrier .line.dim{font-size:clamp(13px,1.7vw,17px);color:var(--text-dim);font-family:var(--mono);
+  letter-spacing:.04em;margin-top:26px;max-width:560px;margin-left:auto;margin-right:auto}
+#silhouette{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;
+  opacity:.5}
+#silhouette svg{width:min(420px,62vw);height:auto}
+#carrier{overflow:hidden}
+#bodyvid{width:min(720px,96vw);height:92vh;object-fit:cover;
+  filter:contrast(1.15) brightness(.5);
+  -webkit-mask-image:radial-gradient(ellipse 50% 62% at 50% 45%,#000 32%,transparent 74%);
+          mask-image:radial-gradient(ellipse 50% 62% at 50% 45%,#000 32%,transparent 74%)}
+#cdust{position:absolute;inset:0;z-index:1;pointer-events:none}
+/* movie-poster composition on wide screens: figure right, headline left */
+@media (min-width:900px){
+  #carrier #silhouette{justify-content:flex-end}
+  #carrier #bodyvid{margin-right:-2vw}
+  #carrier .wrap{width:min(1120px,94vw)}
+  #carrier .copy{text-align:left;max-width:540px;margin-right:auto}
+  #carrier .line.dim{margin-left:0;margin-right:0;max-width:480px}
+}
+/* CARRIER cinematic overlays */
+#carrier .c-vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 58% 70% at 50% 44%,transparent 26%,rgba(7,7,8,.5) 58%,#070708 88%)}
+#carrier .c-beam{position:absolute;left:8%;right:8%;height:2px;z-index:1;pointer-events:none;opacity:.4;
+  background:linear-gradient(90deg,transparent,rgba(232,176,75,.85),transparent);filter:blur(1px);
+  animation:cbeam 7s ease-in-out infinite}
+@keyframes cbeam{0%,100%{top:16%;opacity:.12}50%{top:78%;opacity:.5}}
+#carrier .copy::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:150%;height:160%;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(7,7,8,.74) 34%,transparent 72%)}
+
+/* ============ PRELOADER ============ */
+#pre{position:fixed;inset:0;z-index:50;background:var(--bg-deep);display:flex;align-items:center;
+  justify-content:center;flex-direction:column;transition:opacity .9s ease}
+#pre .t{font-size:11px;letter-spacing:.4em;color:var(--accent);text-transform:uppercase;
+  animation:pulse 1.6s ease-in-out infinite}
+#pre .pbar{width:180px;height:2px;background:#1a1a1f;margin-top:18px;overflow:hidden}
+#pre .pfill{height:100%;width:0;background:var(--accent);box-shadow:0 0 10px var(--accent);
+  transition:width .3s ease}
+#pre .pct{margin-top:10px;font-size:9px;letter-spacing:.3em;color:var(--text-dim)}
+
+/* ============ TRANSMISSIONS (41.2) ============ */
+.sectlabel{font-size:11px;letter-spacing:.4em;color:var(--accent);text-transform:uppercase;margin-bottom:6px}
+.secthead{font-family:var(--display);font-weight:600;font-size:clamp(20px,3vw,30px);margin-bottom:4px}
+.sectsub{font-size:12px;color:var(--text-dim);letter-spacing:.05em;margin-bottom:26px;max-width:520px}
+#tx .grid{display:flex;flex-direction:column;gap:2px}
+.tx-row{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:15px;
+  padding:11px 14px;border:1px solid transparent;border-radius:8px;cursor:pointer;
+  transition:background .2s,border-color .2s;background:rgba(255,255,255,.012)}
+.tx-cover{position:relative;width:46px;height:46px;border-radius:7px;background-size:cover;background-position:center;
+  background-color:#15130d;border:1px solid rgba(232,176,75,.18);overflow:hidden}
+.tx-cover .num{position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:9px;color:#fff;letter-spacing:.08em;
+  background:linear-gradient(transparent,rgba(0,0,0,.72));padding:7px 0 2px}
+.tx-cover .eq{display:none;position:absolute;inset:0;align-items:flex-end;justify-content:center;gap:2.5px;
+  padding-bottom:9px;background:rgba(7,7,8,.42)}
+.tx-row.foc .tx-cover .eq{display:flex}
+.tx-row.foc .tx-cover .num{display:none}
+.tx-row:hover,.tx-row.foc{background:rgba(232,176,75,.05);border-color:rgba(232,176,75,.22)}
+.tx-row.flip-row{background:rgba(232,176,75,.06);border:1px dashed rgba(232,176,75,.35);margin-top:8px}
+.tx-row.flip-row .ttl{color:var(--accent);font-family:var(--mono);font-size:12px;letter-spacing:.18em}
+.tx-row.flip-row .tag{border-style:dashed}
+.tx-row .idx{font-size:11px;color:var(--text-dim)}
+.tx-row .ttl{font-family:var(--display);font-weight:400;font-size:15px;letter-spacing:-.01em}
+.tx-row.recovering .ttl{animation:datamosh .5s steps(3) 2}
+@keyframes datamosh{0%{transform:translateX(0);filter:none}
+  20%{transform:translateX(-3px) skewX(6deg);filter:hue-rotate(40deg)}
+  40%{transform:translateX(4px);clip-path:inset(20% 0 30% 0)}
+  60%{transform:translateX(-2px) skewX(-4deg)}100%{transform:none}}
+.tx-row .meta{font-size:9.5px;color:var(--text-dim);letter-spacing:.12em;margin-top:3px;
+  text-transform:uppercase;opacity:.0;height:0;overflow:hidden;transition:opacity .25s}
+.tx-row.foc .meta{opacity:1;height:auto;margin-top:5px}
+.tx-row .tag{font-size:9px;letter-spacing:.16em;color:var(--accent);border:1px solid var(--accent-dim);
+  padding:3px 8px;border-radius:20px;text-transform:uppercase;white-space:nowrap}
+.tx-row .links{display:flex;gap:7px;opacity:0;max-width:0;overflow:hidden;transition:opacity .25s;align-items:center}
+.tx-row.foc .links{opacity:1;max-width:300px}
+.plat{width:27px;height:27px;border-radius:50%;border:1px solid var(--accent-dim);display:flex;align-items:center;
+  justify-content:center;color:var(--text-dim);pointer-events:auto;transition:color .2s,border-color .2s,background .2s,transform .15s}
+.plat:hover{color:var(--accent);border-color:var(--accent);background:rgba(232,176,75,.12);transform:translateY(-1px)}
+.plat svg{display:block;width:15px;height:15px}
+/* now-playing equalizer bars (inside cover) */
+.tx-cover .eq i{width:2.5px;height:5px;background:var(--accent);border-radius:1px;animation:eqb .9s ease-in-out infinite}
+.tx-cover .eq i:nth-child(2){animation-delay:.25s}.tx-cover .eq i:nth-child(3){animation-delay:.5s}
+@keyframes eqb{0%,100%{height:3px}50%{height:14px}}
+.tx-row.foc{box-shadow:inset 2px 0 0 var(--accent);background:rgba(232,176,75,.06)}
+/* now-decoding header with video monitor */
+.tx-now{display:flex;align-items:center;gap:13px;margin-bottom:18px;padding:11px 14px;border-radius:9px;
+  background:rgba(232,176,75,.05);border:1px solid rgba(232,176,75,.16)}
+.np-mon{width:66px;height:40px;border-radius:6px;overflow:hidden;border:1px solid rgba(232,176,75,.28);background:#000;flex:none}
+.np-mon video{width:100%;height:100%;object-fit:cover;display:block;
+  filter:sepia(.35) saturate(1.5) hue-rotate(-8deg) brightness(.95)}
+.np-meta{display:flex;flex-direction:column;gap:2px;min-width:0}
+.np-eq{display:inline-flex;gap:2.5px;height:14px;align-items:flex-end}
+.np-eq i{width:2.5px;height:4px;background:var(--accent);border-radius:1px;animation:eqb .9s ease-in-out infinite}
+.np-eq i:nth-child(2){animation-delay:.2s}.np-eq i:nth-child(3){animation-delay:.4s}.np-eq i:nth-child(4){animation-delay:.6s}
+.np-lab{font-size:9px;letter-spacing:.26em;color:var(--text-dim);text-transform:uppercase}
+.np-ttl{font-family:var(--display);font-size:14px;color:var(--accent);letter-spacing:.01em}
+/* album fill progress (the body finding the rhythm) */
+#txprog{display:flex;gap:3px;margin-top:24px}
+#txprog i{flex:1;height:4px;background:#18181d;border-radius:2px;overflow:hidden;position:relative}
+#txprog i.on::after{content:'';position:absolute;inset:0;background:var(--accent);
+  box-shadow:0 0 8px var(--accent)}
+
+/* ============ TRANSMITTER (42.8) — album tower art ============ */
+#tw{position:absolute;inset:0;background:#070708;overflow:hidden}
+#twcanvas{display:none}
+#twbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 36%;
+  z-index:0;animation:twpulse 6s ease-in-out infinite}
+@keyframes twpulse{0%,100%{opacity:.92}50%{opacity:1}}
+/* live wavefronts radiating from the beacon */
+#tw .tw-waves{position:absolute;left:46.5%;top:31%;z-index:1;pointer-events:none}
+#tw .tw-waves span{position:absolute;left:0;top:0;width:60px;height:60px;margin:-30px 0 0 -30px;
+  border:1px solid rgba(232,176,75,.45);border-radius:50%;transform:scale(0);opacity:0;
+  filter:blur(.5px);animation:twring 15s ease-out infinite}
+#tw .tw-waves span:nth-child(2){animation-delay:3.75s}
+#tw .tw-waves span:nth-child(3){animation-delay:7.5s}
+#tw .tw-waves span:nth-child(4){animation-delay:11.25s}
+@keyframes twring{0%{transform:scale(0);opacity:0}16%{opacity:.18}60%{opacity:.06}100%{transform:scale(22);opacity:0}}
+#tw .center{position:absolute;left:0;right:0;bottom:11%;z-index:3;text-align:center;pointer-events:none;padding:0 20px}
+#tw .center .secthead{text-shadow:0 2px 24px #000,0 0 40px #000}
+#tw .center .sectsub{margin:6px auto 0;max-width:520px;text-shadow:0 1px 16px #000}
+
+/* ============ LINEAGE (43.5) — cinematic full-bleed ============ */
+#ln{align-items:stretch;justify-content:flex-start}
+.ln-stage{display:flex;width:100%;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.ln-stage::-webkit-scrollbar{display:none}
+.ln-slide{flex:0 0 100%;height:100%;scroll-snap-align:center;display:flex;flex-direction:column;
+  justify-content:center;padding:58px clamp(24px,5vw,72px) 116px}
+.ln-meta{margin-bottom:14px}
+.ln-title{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,56px);letter-spacing:-.01em;line-height:1}
+.ln-q{font-family:var(--mono);font-size:13px;color:var(--text);font-style:italic;margin-top:10px}
+.ln-sub{font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-top:4px;max-width:560px}
+.ln-vis{position:relative;flex:1;min-height:0;margin-top:18px;border:1px solid rgba(232,176,75,.18);
+  border-radius:12px;overflow:hidden;background:#0a0906}
+.ln-vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ln-vis::after{content:'';position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 140px 36px #070708;
+  background:repeating-linear-gradient(to bottom,transparent 0 3px,rgba(0,0,0,.10) 3px 4px)}
+.ln-vis .slot{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:#3a3a42;font-size:11px;letter-spacing:.3em;text-transform:uppercase}
+.ln-slide.final .ln-title{color:var(--accent)}
+.ln-legend{position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:4;text-align:right;
+  font-size:9px;letter-spacing:.26em;color:var(--text-dim);text-transform:uppercase;line-height:1.5;pointer-events:none}
+.ln-legend .ln-bar{width:8px;height:130px;margin:8px 0 0 auto;border:1px solid rgba(232,176,75,.3);
+  background:linear-gradient(to top,#070708,#7a5d28,#E8B04B,#fff3d6)}
+.ln-hint{position:absolute;left:50%;bottom:108px;transform:translateX(-50%);z-index:4;
+  font-size:9px;letter-spacing:.3em;color:var(--text-dim);text-transform:uppercase;pointer-events:none}
+.ln-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:46px;height:46px;border-radius:50%;
+  border:1px solid var(--accent-dim);background:rgba(10,9,6,.55);color:var(--accent);font-family:var(--display);
+  font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  pointer-events:auto;transition:background .2s,opacity .2s}
+.ln-nav:hover{background:rgba(232,176,75,.18)}
+#lnPrev{left:18px}#lnNext{right:56px}
+@media (max-width:640px){.ln-nav{width:40px;height:40px;font-size:19px}#lnNext{right:46px}}
+
+/* ============ CASSETTE ============ */
+#cassette{position:fixed;right:20px;bottom:118px;z-index:13;width:74px;height:48px;cursor:pointer;
+  pointer-events:auto;transition:transform .5s cubic-bezier(.7,0,.2,1);filter:drop-shadow(0 4px 10px #000)}
+#cassette:hover{transform:scale(1.06)}
+#cassette.flip{transform:rotateY(180deg) scale(1.06)}
+#cassette svg{width:100%;height:100%}
+#cassidehint{position:fixed;right:18px;bottom:170px;z-index:13;font-size:8.5px;letter-spacing:.24em;
+  color:var(--text-dim);text-transform:uppercase;pointer-events:none}
+
+/* ============ CTA / DECODE ============ */
+#decode{position:fixed;left:20px;bottom:118px;z-index:13;pointer-events:auto;
+  font-size:10px;letter-spacing:.28em;color:var(--accent);text-transform:uppercase;cursor:pointer;
+  border:1px solid var(--accent-dim);padding:9px 14px;border-radius:30px;background:rgba(232,176,75,.04);
+  transition:background .2s}
+#decode:hover{background:rgba(232,176,75,.12)}
+#mute{position:fixed;left:20px;bottom:162px;z-index:13;pointer-events:auto;cursor:pointer;
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--accent-dim);color:var(--accent);
+  background:rgba(232,176,75,.04);display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+#mute:hover{background:rgba(232,176,75,.12)}
+#mute.off{color:var(--text-dim)}
+
+/* ============ CALLSIGN MODAL ============ */
+#modal{position:fixed;inset:0;z-index:40;background:rgba(4,4,5,.86);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:20px}
+#modal.show{display:flex}
+#card{width:min(380px,92vw);background:linear-gradient(160deg,#0d0d10,#070708);
+  border:1px solid var(--accent-dim);border-radius:16px;padding:34px 30px;position:relative;overflow:hidden}
+#card::before{content:'';position:absolute;inset:0;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#card .k{font-size:10px;letter-spacing:.34em;color:var(--text-dim);text-transform:uppercase}
+#card .big{font-family:var(--display);font-weight:800;font-size:30px;color:var(--accent);margin:6px 0 2px;
+  letter-spacing:.02em}
+#card .loc{font-size:12px;color:var(--text);letter-spacing:.18em;margin-bottom:20px}
+#card .rowk{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.14em;
+  padding:9px 0;border-top:1px solid rgba(255,255,255,.06);color:var(--text-dim)}
+#card .rowk b{color:var(--text);font-weight:700}
+#card .seal{margin-top:22px;font-size:11px;letter-spacing:.26em;color:var(--accent);text-align:center}
+#card .fm{position:absolute;right:18px;top:18px;font-size:10px;letter-spacing:.2em;color:var(--accent-dim)}
+.mbtns{display:flex;gap:10px;margin-top:18px;justify-content:center}
+.mbtns button{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text);background:transparent;border:1px solid var(--accent-dim);padding:9px 14px;
+  border-radius:30px;cursor:pointer;transition:background .2s}
+.mbtns button:hover{background:rgba(232,176,75,.12)}
+#mclose{position:fixed;top:20px;right:24px;z-index:41;color:var(--text-dim);font-size:20px;cursor:pointer;
+  display:none}#mclose.show{display:block}
+
+/* ============ ORIGIN (420) ============ */
+#origin{position:fixed;inset:0;z-index:35;background:#020203;display:none;
+  align-items:center;justify-content:center;text-align:center;padding:30px}
+#origin.show{display:flex}
+#origin .o{max-width:620px}
+#origin .k{font-size:11px;letter-spacing:.4em;color:var(--accent);text-transform:uppercase}
+#origin p{font-family:var(--display);font-weight:400;font-size:clamp(18px,3vw,30px);
+  line-height:1.4;margin-top:24px;color:var(--text)}
+#origin .x{margin-top:40px;font-size:10px;letter-spacing:.3em;color:var(--text-dim);cursor:pointer}
+
+/* dead-frequency whisper */
+#whisper{position:fixed;left:50%;top:46%;transform:translate(-50%,-50%);z-index:11;
+  text-align:center;font-size:13px;letter-spacing:.05em;color:var(--accent);max-width:460px;
+  opacity:0;transition:opacity 1s;pointer-events:none;font-style:italic}
+
+@media (max-width:640px){
+  #hud{padding:14px 16px;font-size:10px}
+  #cassette{width:62px;height:40px;bottom:120px}
+  #decode{font-size:9px;padding:8px 11px}
+  #ln .stop{padding:0 18px}
+  /* keep section copy clear of the bottom control band */
+  #tw .center{bottom:26%;padding:0 24px}
+  #tw .center .secthead{font-size:21px}
+  #tw .center .sectsub{font-size:11px;max-width:300px}
+  #carrier .copy{padding-bottom:120px}
+  #carrier .line.dim{font-size:12px;padding:0 10px}
+  #dialhint{bottom:118px}
+  /* transmissions rows: drop the tag column, give the title room */
+  .tx-row{grid-template-columns:40px 1fr;gap:11px;padding:9px 10px}
+  .tx-cover{width:40px;height:40px}
+  .tx-row .ttl{font-size:13.5px}
+  .tx-row .tag{display:none}
+  .plat{width:24px;height:24px}.plat svg{width:13px;height:13px}
+  .tx-now .np-mon{width:54px;height:32px}
+  .np-ttl{font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  #grain{animation:none}
+  #carrier .c-beam{animation:none;display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- preloader -->
+<div id="pre">
+  <div class="t">acquiring signal…</div>
+  <div class="pbar"><div class="pfill" id="pfill"></div></div>
+  <div class="pct" id="ppct">0%</div>
+</div>
+
+<!-- noise / signal layers -->
+<canvas id="ether"></canvas>
+<div id="signalfx"></div>
+<div id="grain"></div>
+<div id="scan"></div>
+
+<!-- HUD -->
+<div id="hud">
+  <div class="id">LISTENER <b id="lid">—</b><div id="visit" style="margin-top:6px;color:#33333a;font-size:9px"></div></div>
+  <div class="station">
+    <div id="freqVal">42.0 MHz</div>
+    <div id="freqName">CARRIER</div>
+    <div id="bars"></div>
+  </div>
+</div>
+
+<!-- STAGE -->
+<div id="stage">
+
+  <!-- 42.0 CARRIER -->
+  <section class="layer" id="carrier" data-freq="42.0">
+    <div id="silhouette" aria-hidden="true">
+      <video id="bodyvid" muted loop playsinline preload="auto" poster="./visuals/blizhe_heat_poster.jpg">
+        <source src="./visuals/blizhe_heat.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <canvas id="cdust" aria-hidden="true"></canvas>
+    <div class="c-vig" aria-hidden="true"></div>
+    <div class="c-beam" aria-hidden="true"></div>
+    <div class="wrap"><div class="copy">
+      <div class="line" id="c1">We weren't broadcasting to anyone.</div>
+      <div class="line" id="c2" style="margin-top:16px">But you're here.</div>
+      <div class="line dim" id="c3">Every signal you've ever received — wifi, a voice, a heartbeat across a room — descends from one wave. This is the frequency it came from.</div>
+    </div></div>
+  </section>
+
+  <!-- 41.2 TRANSMISSIONS -->
+  <section class="layer" id="tx" data-freq="41.2">
+    <div class="wrap">
+      <div class="sectlabel">41.2 · transmissions</div>
+      <div class="secthead">Recovered intercepts</div>
+      <div class="sectsub">Not a release list. Each one a signal that was damaged, then restored — a body getting closer to the rhythm.</div>
+      <div class="tx-now" id="txnow">
+        <div class="np-mon"><video id="npvid" muted loop playsinline preload="none" disablepictureinpicture></video></div>
+        <span class="np-eq"><i></i><i></i><i></i><i></i></span>
+        <div class="np-meta"><span class="np-lab">now decoding</span><span class="np-ttl" id="txnowttl">tune in to begin</span></div>
+      </div>
+      <div class="grid" id="txgrid"></div>
+      <div id="txprog"></div>
+    </div>
+  </section>
+
+  <!-- 42.8 THE TRANSMITTER -->
+  <section class="layer" id="tw" data-freq="42.8">
+    <canvas id="twcanvas"></canvas>
+    <img id="twbg" src="./visuals/transmitter.jpg?v=3" alt="42.0 FM transmitter tower" />
+    <div class="tw-waves" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="center">
+      <div class="sectlabel">42.8 · the transmitter</div>
+      <div class="secthead">The source of the wave</div>
+      <div class="sectsub">The centre of the universe is the tower. Every intercept hangs on a wavefront leaving it.</div>
+    </div>
+  </section>
+
+  <!-- 43.5 THE LINEAGE -->
+  <section class="layer" id="ln" data-freq="43.5">
+    <div class="ln-stage" id="lntrack"></div>
+    <button id="lnPrev" class="ln-nav" aria-label="previous stop">‹</button>
+    <button id="lnNext" class="ln-nav" aria-label="next stop">›</button>
+    <div class="ln-legend">signal<br>heatmap<div class="ln-bar"></div></div>
+    <div class="ln-hint">‹ › or scroll to move · drag away to retune</div>
+  </section>
+
+</div>
+
+<!-- dial -->
+<div id="dialhint">scroll · drag · ← → to tune</div>
+<div id="dial"><div id="band"></div><div id="needle"></div></div>
+
+<!-- objects -->
+<div id="mute" title="mute / unmute" aria-label="mute"></div>
+<div id="decode">◉ decode the signal</div>
+<div id="cassidehint">Side A</div>
+<div id="cassette" title="turn cassette over">
+  <svg viewBox="0 0 74 48"><rect x="1" y="1" width="72" height="46" rx="5" fill="#0d0d10" stroke="#E8B04B" stroke-opacity=".5"/><rect x="9" y="9" width="56" height="20" rx="3" fill="#000" stroke="#E8B04B" stroke-opacity=".25"/><circle cx="26" cy="19" r="6" fill="none" stroke="#E8B04B" stroke-opacity=".6"/><circle cx="48" cy="19" r="6" fill="none" stroke="#E8B04B" stroke-opacity=".6"/><circle cx="26" cy="19" r="1.6" fill="#E8B04B"/><circle cx="48" cy="19" r="1.6" fill="#E8B04B"/><text x="37" y="42" font-family="monospace" font-size="7" fill="#E8B04B" text-anchor="middle" letter-spacing="1">42.0 FM</text></svg>
+</div>
+
+<!-- whisper -->
+<div id="whisper"></div>
+
+<!-- gate -->
+<div id="gate">
+  <div class="hint">click to receive signal</div>
+  <div class="small">42.0 FM · ALTER IGOR</div>
+</div>
+
+<!-- modal -->
+<div id="mclose">✕</div>
+<div id="modal">
+  <div id="card">
+    <div class="fm">42.0 FM</div>
+    <div class="k">listener</div>
+    <div class="big" id="cardId">0x000</div>
+    <div class="loc" id="cardLoc">UNKNOWN ORIGIN</div>
+    <div class="rowk"><span>BODY SYNCED AT</span><b id="cardTime">--:--</b></div>
+    <div class="rowk"><span>FREQUENCIES TUNED</span><b id="cardFreqs">0</b></div>
+    <div class="rowk"><span>SIDE</span><b id="cardSide">A</b></div>
+    <div class="seal">YOU ARE NOW PART OF THE SIGNAL</div>
+    <div class="mbtns"><button id="saveImg">save image</button><button id="shareBtn">share</button></div>
+  </div>
+</div>
+
+<!-- origin 420 -->
+<div id="origin"><div class="o">
+  <div class="k">origin transmission · 42.0 FM</div>
+  <p>before the wire, there was the wave.<br>before the wave, there was the body.</p>
+  <div class="x" id="originX">close</div>
+</div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
