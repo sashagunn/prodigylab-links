@@ -121,7 +121,7 @@ function playTrack(file){
     currentTrack=a;
   }catch(e){}
 }
-function stopTrack(){ if(currentTrack){ const a=currentTrack; let v=a.volume; const f=setInterval(()=>{v=Math.max(0,v-.08);a.volume=v;if(v<=0){a.pause();clearInterval(f);}},50); currentTrack=null; } }
+function stopTrack(){ if(currentTrack){ try{ currentTrack.pause(); currentTrack.src=''; }catch(e){} currentTrack=null; } }
 
 /* ambient bed — live layer by local time of day (Phase 9) */
 let bed=null, bedBase=0.16;
@@ -206,7 +206,7 @@ function renderTX(){
         <div class="meta">RECOVERED ${tr.rec} · ORIGIN 42.0 FM · SIGNATURE ${tr.sig}</div>
         <div class="links">${platHTML(tr.link)}</div></div>
         <div class="tag">${tr.tag}</div>`;
-      row.addEventListener('mouseenter',()=>selectIntercept(i));
+      if(!('ontouchstart' in window)) row.addEventListener('mouseenter',()=>selectIntercept(i));
       row.addEventListener('click',()=>selectIntercept(i));
     }
     g.appendChild(row);
@@ -239,8 +239,12 @@ function playIntercept(i){
   const data=curData();
   if(i<0||i>=data.length) i=0;
   if(data[i] && data[i].flip) i=nextRealIdx(i);
+  const tr=data[i]; if(!tr||!tr.file){ focusedIdx=i; highlightRow(i); return; }
+  // already playing this exact track? just refocus — never start a 2nd copy (kills mobile double-audio)
+  if(currentTrack && currentTrack._file===tr.file && !currentTrack.paused && !currentTrack.ended){
+    focusedIdx=i; highlightRow(i); return;
+  }
   focusedIdx=i; highlightRow(i);
-  const tr=data[i]; if(!tr||!tr.file) return;
   stopTrack();
   const a=new Audio('./audio/'+tr.file); a._file=tr.file; a.loop=false; a.volume=0; a.muted=muted;
   a.addEventListener('ended',()=>{ if(albumOn) playIntercept(nextRealIdx(focusedIdx)); });
