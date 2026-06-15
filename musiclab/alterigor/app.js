@@ -292,9 +292,26 @@ function up(){ dragging=false; }
 window.addEventListener('mousedown',e=>down(e.clientX));
 window.addEventListener('mousemove',e=>move(e.clientX));
 window.addEventListener('mouseup',up);
-window.addEventListener('touchstart',e=>down(e.touches[0].clientX),{passive:true});
-window.addEventListener('touchmove',e=>{ if(dragging){e.preventDefault();} move(e.touches[0].clientX); },{passive:false});
-window.addEventListener('touchend',up);
+/* touch tuning is axis-aware: a horizontal swipe tunes the dial, while a
+   vertical swipe over a scrollable section (the TRANSMISSIONS list on mobile)
+   is left alone so the list scrolls natively. */
+function scrollableAncestor(node){
+  for(let n=node; n && n!==document.body; n=n.parentElement){
+    const oy=getComputedStyle(n).overflowY;
+    if((oy==='auto'||oy==='scroll') && n.scrollHeight>n.clientHeight+1) return n;
+  }
+  return null;
+}
+let tDrag=false,tStartX=0,tStartY=0,tAxis=null,tScroll=null;
+window.addEventListener('touchstart',e=>{ if(!S.started)return; const t=e.touches[0];
+  tDrag=true; tStartX=lastX=t.clientX; tStartY=t.clientY; tAxis=null; tScroll=scrollableAncestor(e.target); },{passive:true});
+window.addEventListener('touchmove',e=>{ if(!tDrag)return; const t=e.touches[0];
+  const dx=t.clientX-tStartX, dy=t.clientY-tStartY;
+  if(tAxis===null){ if(Math.abs(dx)<6 && Math.abs(dy)<6) return; tAxis=Math.abs(dy)>Math.abs(dx)?'y':'x'; }
+  if(tAxis==='y' && tScroll) return;            // vertical over a list → native scroll
+  e.preventDefault();                            // horizontal → tune the dial
+  nudge(-(t.clientX-lastX)*0.0042); lastX=t.clientX; },{passive:false});
+window.addEventListener('touchend',()=>{ tDrag=false; tAxis=null; tScroll=null; });
 
 let hintHidden=false;
 function hideHint(){ if(hintHidden)return; hintHidden=true; gsap.to('#dialhint',{opacity:0,duration:.6}); }
