@@ -333,7 +333,16 @@ canvas{display:block}
   #tw .center .sectsub{font-size:11px;max-width:300px}
   #carrier .copy{padding-bottom:120px}
   #carrier .line.dim{font-size:12px;padding:0 10px}
-  #dialhint{bottom:118px}
+  /* lift the tuning hint ABOVE the left/right control columns so it never
+     crosses the DECODE button / cassette on narrow screens */
+  #dialhint{bottom:210px}
+  /* transmissions: top-align + cap height so the list clears the bottom
+     control band instead of sliding under it; taps + auto-advance reveal
+     lower rows via scrollIntoView */
+  #tx{align-items:flex-start}
+  #tx .wrap{padding-top:52px;max-height:calc(100% - 250px);
+    overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+  #tx .wrap::-webkit-scrollbar{display:none}
   /* transmissions rows: drop the tag column, give the title room */
   .tx-row{grid-template-columns:40px 1fr;gap:11px;padding:9px 10px}
   .tx-cover{width:40px;height:40px}
