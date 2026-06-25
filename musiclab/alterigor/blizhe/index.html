@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#070708" />
+<title>ALTER IGOR — Ближе · 42.0 FM · premiere 26.06</title>
+<meta name="description" content="ALTER IGOR — «Ближе». Премьера 26.06, 9:30 AM PT. Tape-warm, cinematic, ru-vocal. Слушай и сохраняй на Spotify, Apple Music, YouTube. 42.0 FM · Prodigy LAB Music." />
+<meta property="og:title" content="ALTER IGOR — Ближе · 42.0 FM" />
+<meta property="og:description" content="incoming signal · premiere 26.06 · 9:30 AM PT · tune in, listen / save." />
+<meta property="og:type" content="music.song" />
+<meta property="og:url" content="https://prodigylab.studio/musiclab/alterigor/blizhe/" />
+<meta property="og:image" content="https://prodigylab.studio/musiclab/alterigor/visuals/blizhe-poster.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://prodigylab.studio/musiclab/alterigor/blizhe/" />
+<style>
+  html,body{ margin:0; padding:0; background:#070708; }
+  .fm-premiere{ margin:0; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     42.0 FM · ПОСАДОЧНАЯ ПОД ПРЕМЬЕРУ «БЛИЖЕ»
+     Вставляется как секция в сайт или открывается как есть.
+     ─────────────────────────────────────────────
+     ЧТО ПОДСТАВИТЬ (внизу, в блоке CONFIG):
+       VIDEO_ID    — уже вшит (SLUMezdgZjo)
+       SPOTIFY_URL — вставь, когда альбом встанет ночью
+       APPLE_URL   — вставь, когда альбом встанет ночью
+     Пока SPOTIFY_URL / APPLE_URL пустые — иконки ведут
+     на HyperFollow (он сам раздаёт на площадки). Не мёртвые.
+     ============================================================ -->
+<section class="fm-premiere" id="blizhe">
+  <style>
+    .fm-premiere{
+      --bg:#070708; --ink:#e8e6e1; --dim:#6b6b70;
+      --line:#1c1c20; --signal:#d9a441; /* tape-warm amber */
+      background:var(--bg); color:var(--ink);
+      font-family:"SF Mono",ui-monospace,"Roboto Mono",Menlo,monospace;
+      padding:clamp(28px,6vw,72px) clamp(18px,5vw,64px);
+      min-height:100vh; box-sizing:border-box;
+      display:flex; flex-direction:column; align-items:center;
+      letter-spacing:.02em; position:relative; overflow:hidden;
+    }
+    .fm-premiere::before{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:repeating-linear-gradient(0deg,
+        rgba(255,255,255,.012) 0 1px, transparent 1px 3px);
+      mix-blend-mode:overlay; opacity:.6;
+    }
+    .fm-premiere>*{ position:relative; z-index:1; width:100%; max-width:920px; }
+
+    .fm-tag{
+      font-size:11px; letter-spacing:.34em; text-transform:uppercase;
+      color:var(--signal); display:flex; align-items:center; gap:10px; margin:0 0 18px;
+    }
+    .fm-tag .dot{ width:7px; height:7px; border-radius:50%; background:var(--signal);
+      animation:pulse 2s infinite; }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(217,164,65,.5)}
+      70%{box-shadow:0 0 0 9px rgba(217,164,65,0)}
+      100%{box-shadow:0 0 0 0 rgba(217,164,65,0)}
+    }
+
+    .fm-title{ font-size:clamp(28px,6vw,52px); font-weight:500; line-height:1.04;
+      margin:0 0 6px; letter-spacing:.01em; }
+    .fm-sub{ color:var(--dim); font-size:13px; letter-spacing:.06em; margin:0 0 30px; }
+    .fm-sub b{ color:var(--ink); font-weight:500; }
+
+    .fm-screen{ width:100%; aspect-ratio:16/9; background:#000;
+      border:1px solid var(--line); position:relative; }
+    .fm-screen iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .fm-screen .placeholder{ position:absolute; inset:0; display:flex;
+      flex-direction:column; align-items:center; justify-content:center; gap:8px;
+      color:var(--dim); font-size:12px; letter-spacing:.22em; text-transform:uppercase; }
+
+    /* ---- platform icons ---- */
+    .fm-listen-label{ font-size:11px; letter-spacing:.28em; text-transform:uppercase;
+      color:var(--dim); margin:34px 0 16px; }
+    .fm-icons{ display:flex; gap:14px; flex-wrap:wrap; }
+    .fm-ico{ display:flex; align-items:center; gap:12px; text-decoration:none;
+      color:var(--ink); border:1px solid var(--line); padding:16px 22px;
+      flex:1 1 240px; transition:.25s; background:transparent; }
+    .fm-ico svg{ width:24px; height:24px; fill:currentColor; flex:none; }
+    .fm-ico .lbl{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; }
+    .fm-ico .lbl small{ display:block; color:var(--dim); font-size:10px;
+      letter-spacing:.1em; margin-top:3px; text-transform:none; }
+    .fm-ico:hover{ border-color:var(--signal); color:var(--signal); }
+    .fm-ico.spotify:hover{ border-color:#1DB954; color:#1DB954; }
+    .fm-ico.youtube:hover{ border-color:#FF0000; color:#FF0000; }
+    .fm-ico.apple:hover{ border-color:#FA57C1; color:#FA57C1; }
+
+    .fm-all{ display:inline-block; margin:18px 0 0; text-decoration:none;
+      color:var(--dim); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+      border-bottom:1px solid var(--line); padding-bottom:2px; }
+    .fm-all:hover{ color:var(--ink); border-color:var(--ink); }
+
+    .fm-meta{ color:var(--dim); font-size:11px; letter-spacing:.18em;
+      text-transform:uppercase; margin:38px 0 0; display:flex; gap:8px; align-items:center; }
+    .fm-meta a{ color:var(--dim); text-decoration:none; border-bottom:1px solid var(--line); }
+    .fm-meta a:hover{ color:var(--ink); border-color:var(--ink); }
+  </style>
+
+  <p class="fm-tag"><span class="dot"></span> 42.0 FM · live transmission</p>
+
+  <h1 class="fm-title">ALTER IGOR — Ближе</h1>
+  <p class="fm-sub">incoming signal · premiere <b>26.06 · 9:30 AM PT</b> · tape-warm, cinematic, ru-vocal</p>
+
+  <div class="fm-screen" id="fm-screen">
+    <div class="placeholder">awaiting signal — paste video id</div>
+  </div>
+
+  <p class="fm-listen-label">tune in — listen / save</p>
+  <div class="fm-icons">
+    <a class="fm-ico spotify" id="ico-spotify" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.622.622 0 1 1-.277-1.215c3.809-.871 7.077-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.78.78 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166A.78.78 0 1 1 6.34 11.6c3.632-1.102 8.147-.568 11.234 1.328a.78.78 0 0 1 .235 1.074zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.865 13.115 1.338a.936.936 0 0 1-.96 1.606z"/></svg>
+      <span class="lbl">Spotify<small>stream / save</small></span>
+    </a>
+    <a class="fm-ico apple" id="ico-apple" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+      <span class="lbl">Apple Music<small>stream</small></span>
+    </a>
+    <a class="fm-ico youtube" id="ico-youtube" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      <span class="lbl">YouTube<small>watch premiere</small></span>
+    </a>
+  </div>
+
+  <a class="fm-all" id="link-all" href="#" target="_blank" rel="noopener">+ all platforms ▸</a>
+
+  <p class="fm-meta">
+    <a href="/musiclab/alterigor/epk/">press kit / epk ▸</a>
+    <span>·</span>
+    <a href="/musiclab/alterigor/">← back to the signal</a>
+  </p>
+
+  <script>
+    /* ===================== CONFIG ===================== */
+    const VIDEO_ID    = "SLUMezdgZjo"; // ALTER IGOR — Ближе (вшит)
+    const SPOTIFY_URL = "";            // ← вставь URL альбома, когда встанет ночью
+    const APPLE_URL   = "";            // ← вставь URL альбома, когда встанет ночью
+    const YOUTUBE_URL = "https://youtu.be/SLUMezdgZjo";
+    const SMARTLINK   = "https://distrokid.com/hyperfollow/alterigor1/420-fm?ref=blizhe";
+    /* ================================================= */
+
+    // эмбед премьеры
+    if (VIDEO_ID) {
+      document.getElementById("fm-screen").innerHTML =
+        '<iframe src="https://www.youtube.com/embed/' + VIDEO_ID +
+        '?rel=0&modestbranding=1&playsinline=1" ' +
+        'allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+    }
+    // иконки: прямой URL если есть, иначе fallback на smartlink (никогда не мёртвые)
+    document.getElementById("ico-spotify").href = SPOTIFY_URL || SMARTLINK;
+    document.getElementById("ico-apple").href   = APPLE_URL   || SMARTLINK;
+    document.getElementById("ico-youtube").href  = YOUTUBE_URL;
+    document.getElementById("link-all").href     = SMARTLINK;
+  </script>
+</section>
+
+</body>
+</html>
