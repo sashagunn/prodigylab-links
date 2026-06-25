@@ -100,6 +100,29 @@
       text-transform:uppercase; margin:38px 0 0; display:flex; gap:8px; align-items:center; }
     .fm-meta a{ color:var(--dim); text-decoration:none; border-bottom:1px solid var(--line); }
     .fm-meta a:hover{ color:var(--ink); border-color:var(--ink); }
+
+    /* ---- connect to the wave (CTA в главную) ---- */
+    .fm-connect{ display:flex; align-items:center; gap:22px; margin:46px 0 0;
+      padding:28px 32px; border:1px solid var(--line); text-decoration:none;
+      color:var(--ink); transition:.3s; position:relative; }
+    .fm-connect:hover{ border-color:var(--signal); background:rgba(217,164,65,.06); }
+    .fm-wave{ flex:none; width:46px; height:46px; }
+    .fm-wave svg{ width:100%; height:100%; }
+    .fm-wave svg circle{ fill:var(--signal); }
+    .fm-wave svg path{ stroke:var(--signal); stroke-width:2; fill:none;
+      opacity:.18; animation:wave 2.4s infinite; }
+    .fm-wave svg path:nth-of-type(2),
+    .fm-wave svg path:nth-of-type(4){ animation-delay:.5s; }
+    @keyframes wave{ 0%,100%{opacity:.12} 50%{opacity:.85} }
+    .fm-connect-txt{ display:flex; flex-direction:column; gap:7px;
+      font-size:clamp(17px,3.4vw,24px); letter-spacing:.18em; font-weight:500; line-height:1; }
+    .fm-connect-txt small{ font-size:11px; letter-spacing:.1em; color:var(--dim);
+      text-transform:none; font-weight:400; }
+    .fm-connect .arrow{ margin-left:auto; color:var(--dim); font-size:20px; transition:.3s; }
+    .fm-connect:hover .fm-connect-txt,
+    .fm-connect:hover .fm-connect-txt small,
+    .fm-connect:hover .arrow{ color:var(--signal); }
+    .fm-connect:hover .arrow{ transform:translateX(5px); }
   </style>
 
   <p class="fm-tag"><span class="dot"></span> 42.0 FM · live transmission</p>
@@ -129,10 +152,25 @@
 
   <a class="fm-all" id="link-all" href="#" target="_blank" rel="noopener">+ all platforms ▸</a>
 
+  <a class="fm-connect" href="/musiclab/alterigor/">
+    <span class="fm-wave" aria-hidden="true">
+      <svg viewBox="0 0 48 48">
+        <circle cx="24" cy="24" r="3"/>
+        <path d="M16 15a12 12 0 0 1 0 18"/>
+        <path d="M10.5 9.5a20 20 0 0 1 0 29"/>
+        <path d="M32 15a12 12 0 0 0 0 18"/>
+        <path d="M37.5 9.5a20 20 0 0 0 0 29"/>
+      </svg>
+    </span>
+    <span class="fm-connect-txt">
+      CONNECT TO THE WAVE
+      <small>enter the 42.0 FM signal</small>
+    </span>
+    <span class="arrow">▸</span>
+  </a>
+
   <p class="fm-meta">
     <a href="/musiclab/alterigor/epk/">press kit / epk ▸</a>
-    <span>·</span>
-    <a href="/musiclab/alterigor/">← back to the signal</a>
   </p>
 
   <script>
