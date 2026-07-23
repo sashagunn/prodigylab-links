@@ -361,8 +361,7 @@ canvas{display:block}
 </head>
 <body>
 
-<!-- SEO: crawlable content + press kit link (the experience itself is JS-rendered) -->
-<a href="./epk/" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">ALTER IGOR — 42.0 FM press kit, discography and links</a>
+<!-- SEO: crawlable content (press kit now has a visible link in the HUD) -->
 <noscript>
   <div style="max-width:760px;margin:48px auto;padding:24px;color:#e9e5dc;font-family:system-ui,sans-serif;line-height:1.65">
     <h1>ALTER IGOR — 42.0 FM</h1>
@@ -388,7 +387,9 @@ canvas{display:block}
 
 <!-- HUD -->
 <div id="hud">
-  <div class="id">LISTENER <b id="lid">—</b><div id="visit" style="margin-top:6px;color:#33333a;font-size:9px"></div></div>
+  <div class="id">LISTENER <b id="lid">—</b><div id="visit" style="margin-top:6px;color:#33333a;font-size:9px"></div>
+    <a href="./epk/" style="display:inline-block;margin-top:9px;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;pointer-events:auto;border-bottom:1px solid rgba(232,176,75,.3);padding-bottom:2px;">Press kit ▸</a>
+  </div>
   <div class="station">
     <div id="freqVal">42.0 MHz</div>
     <div id="freqName">CARRIER</div>
