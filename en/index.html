@@ -59,6 +59,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:58px;display:flex;ali
 .nav-pills button{font-family:'Onest',sans-serif;font-size:12.5px;font-weight:500;padding:5px 11px;border-radius:5px;border:none;background:transparent;color:var(--gray);cursor:pointer;transition:all .2s;white-space:nowrap;}
 .nav-pills button:hover,.nav-pills button.act{color:var(--white);background:var(--bg3);}
 .nav-r{display:flex;gap:8px;align-items:center;}
+.soc{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;color:var(--gray);border:1px solid transparent;transition:color .18s,background .18s;}
+.soc:hover{color:var(--green);background:rgba(34,197,94,.09);}
 .nbtn{font-family:'Onest',sans-serif;font-size:13px;font-weight:600;padding:7px 15px;border-radius:7px;border:none;cursor:pointer;transition:all .2s;}
 .nbtn-ghost{background:transparent;color:var(--gray);border:1px solid var(--border)!important;}
 .nbtn-ghost:hover{color:var(--white);}
@@ -1088,6 +1090,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
     <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
   </div>
   <div class="nav-r">
+    <a class="soc" href="https://instagram.com/sashagun_usa" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a><a class="soc" href="https://facebook.com/prodigylab.studio" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5.5"/><path d="M14.5 8.3H13c-.85 0-1.5.7-1.5 1.5V21"/><path d="M9.4 13.4h5"/></svg></a>
     <a href="/" class="nbtn" style="font-size:12px;padding:6px 9px;text-decoration:none;">RU</a><a href="/es/" class="nbtn" style="font-size:12px;padding:6px 9px;text-decoration:none;">ES</a><a href="/pt/" class="nbtn" style="font-size:12px;padding:6px 9px;text-decoration:none;">PT</a><a href="/de/" class="nbtn" style="font-size:12px;padding:6px 9px;text-decoration:none;">DE</a>
     <button class="nbtn nbtn-green" onclick="openModal()" style="font-size:12px;padding:6px 13px;">Free audit →</button>
   </div>
@@ -1469,7 +1472,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
       <div>
         <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">Contact</div>
         <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--white);">
-          <a href="https://instagram.com/sashagun_usa" target="_blank" rel="noopener" style="color:var(--white);text-decoration:none;">@sashagun_usa</a>
+          <div style="display:flex;gap:8px;margin-bottom:2px;"><a class="soc" href="https://instagram.com/sashagun_usa" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a><a class="soc" href="https://facebook.com/prodigylab.studio" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5.5"/><path d="M14.5 8.3H13c-.85 0-1.5.7-1.5 1.5V21"/><path d="M9.4 13.4h5"/></svg></a></div>
           <span style="color:var(--gray);">California, USA</span>
           <button class="btn btn-g btn-sm" onclick="openModal()" style="margin-top:4px;">Free audit →</button>
         </div>
