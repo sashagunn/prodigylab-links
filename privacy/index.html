@@ -165,5 +165,21 @@ footer .wrap{border-top:1px solid var(--line); padding-top:26px}
   <div class="wrap">© 2026 Prodigy LAB · Platonaire LLC · California, USA</div>
 </footer>
 
+  <!-- ProdigyBot — live-чат на сайте (Chatwoot, self-hosted) -->
+  <script>
+    (function (d, t) {
+      var BASE_URL = "https://chat.prodigylab.studio";
+      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.defer = true; g.async = true;
+      s.parentNode.insertBefore(g, s);
+      g.onload = function () {
+        window.chatwootSDK.run({
+          websiteToken: "J1xMPSabyx7EfRVPrmZEMLYB",
+          baseUrl: BASE_URL
+        });
+      };
+    })(document, "script");
+  </script>
 </body>
 </html>
