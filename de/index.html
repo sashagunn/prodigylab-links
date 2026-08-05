@@ -31,13 +31,13 @@
             theme: {
                 extend: {
                     "colors": {
-                        "primary": "#16a34a",
+                        "primary": "#1C7E84",
                         "background": "#FFFFFF",
                         "surface": "#F9F9F9",
                         "on-surface": "#111111",
                         "text-muted": "#3f3f46",
                         "border-subtle": "#E5E5E5",
-                        "accent-green": "#16a34a"
+                        "accent-green": "#1C7E84"
                     },
                     "borderRadius": {
                         "DEFAULT": "0px",
@@ -60,14 +60,14 @@
 <style>
         /* hero scroll hint */
         .scroll-hint{display:flex;flex-direction:column;align-items:center;gap:8px;position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#9ca3af;z-index:2;}
-        .scroll-hint-line{width:1px;height:40px;background:linear-gradient(to bottom,#16a34a,transparent);animation:scrollPulse 1.8s ease-in-out infinite;transform-origin:top;}
+        .scroll-hint-line{width:1px;height:40px;background:linear-gradient(to bottom,#1C7E84,transparent);animation:scrollPulse 1.8s ease-in-out infinite;transform-origin:top;}
         @keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:1;}50%{transform:scaleY(.6);opacity:.35;}}
         /* guaranteed green hover for header + footer text links */
         nav a[href^="#"]:hover,
         nav a[href="/en/pricing/"]:hover,
         footer a[href^="#"]:hover,
         footer a[href="/en/pricing/"]:hover,
-        footer a[href^="/musiclab"]:hover { color: #16a34a !important; }
+        footer a[href^="/musiclab"]:hover { color: #1C7E84 !important; }
         body {
             background-color: #FFFFFF;
             color: #111111;
@@ -113,6 +113,17 @@
         }
     </style>
 <script>var WA='https://wa.me/18182690416?text=Hi!';function waGo(){location.href=WA;}function goAudit(){document.getElementById('audit').scrollIntoView({behavior:'smooth'});}function goContact(){document.getElementById('contact').scrollIntoView({behavior:'smooth'});}</script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1713332936325081');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1713332936325081&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 </head>
 <body class="bg-background">
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
