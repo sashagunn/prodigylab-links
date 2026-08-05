@@ -682,7 +682,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
       g.defer = true; g.async = true;
       s.parentNode.insertBefore(g, s);
       g.onload = function () {
-        window.chatwootSDK.run({
+        window.chatwootSettings=window.chatwootSettings||{};window.chatwootSettings.locale="en";window.chatwootSDK.run({
           websiteToken: "J1xMPSabyx7EfRVPrmZEMLYB",
           baseUrl: BASE_URL
         });

@@ -188,7 +188,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
       g.defer = true; g.async = true;
       s.parentNode.insertBefore(g, s);
       g.onload = function () {
-        window.chatwootSDK.run({
+        window.chatwootSettings=window.chatwootSettings||{};window.chatwootSettings.locale="ru";window.chatwootSDK.run({
           websiteToken: "J1xMPSabyx7EfRVPrmZEMLYB",
           baseUrl: BASE_URL
         });
