@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Стандарт контента 2026 — Prodigylab.studio</title>
+<meta name="description" content="Стандарт фото- и видеоконтента 2026 от Prodigy LAB: продающая карточка товара (14 кадров), мастер-файл и экспорты, видео для сайта, требования соцсетей, чек-лист сдачи материалов.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://prodigylab.studio/content-standard/">
+<meta property="og:title" content="Стандарт контента 2026 — Prodigy LAB">
+<meta property="og:description" content="От съёмки до Shopify, соцсетей и рекламы: один мастер-файл → все площадки.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://prodigylab.studio/content-standard/">
+<meta property="og:locale" content="ru_RU">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --bg:#FFFFFF;
+  --bg2:#F9F9F9;
+  --card:#FFFFFF;
+  --line:#E5E7EB;
+  --line2:#D4D4D8;
+  --txt:#111111;
+  --txt2:#3F3F46;
+  --mut:#6B6B75;
+  --acc:#1C7E84;
+  --acc2:#12BFC4;
+  --ink:#0F1722;
+  --red:#C4453A;
+  --grn:#1C7E84;
+  --sans:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+section{padding:96px 0;border-top:1px solid var(--line)}
+h1,h2,h3,h4{line-height:1.08;font-weight:700;color:var(--txt)}
+h1{letter-spacing:-0.04em}
+h2{font-size:56px;letter-spacing:-0.04em;margin-bottom:18px}
+h3{font-size:28px;letter-spacing:-0.02em;margin-bottom:10px}
+h4{font-size:18px;letter-spacing:-0.01em;margin-bottom:8px}
+p{color:var(--txt2)}
+a{color:var(--acc);text-decoration:none}
+.mut{color:var(--mut)}
+.lead{font-size:20px;line-height:1.55;color:var(--txt2);max-width:720px}
+.small{font-size:14.5px;line-height:1.6}
+
+/* HERO */
+.hero{padding:64px 0 88px;border-top:none}
+.brandbar{display:flex;align-items:center;gap:12px;margin-bottom:80px;
+  padding-bottom:22px;border-bottom:1px solid var(--line)}
+.wordmark{font-size:21px;font-weight:700;letter-spacing:-0.05em;line-height:1}
+.wordmark .a{color:var(--acc)}
+.wordmark .b{font-weight:300;color:var(--txt)}
+.brandbar .dom{margin-left:auto;font-family:var(--mono);font-size:10px;
+  letter-spacing:.36em;text-transform:uppercase;color:rgba(63,63,70,.6)}
+.mark{width:30px;height:30px;flex:none;border:1px solid var(--acc);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:13px;font-weight:700;color:var(--acc)}
+.badge{display:inline-block;font-family:var(--mono);font-size:10px;
+  letter-spacing:.36em;text-transform:uppercase;color:var(--acc);margin-bottom:28px}
+.hero h1{font-size:82px;max-width:1000px;margin-bottom:28px}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.herostats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hs{padding:26px 26px 26px 0;border-right:1px solid var(--line)}
+.hs:last-child{border-right:none}
+.hs b{display:block;font-size:34px;font-weight:700;letter-spacing:-0.04em;color:var(--acc);line-height:1.1}
+.hs span{font-size:13px;color:var(--mut);display:block;margin-top:6px;line-height:1.4}
+
+/* generic */
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.36em;text-transform:uppercase;
+  color:var(--acc);font-weight:400;margin-bottom:18px;display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);padding:28px}
+
+/* shots */
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:40px;
+  border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.shot{padding:26px 28px;display:flex;gap:20px;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.shot:hover{background:var(--bg2)}
+.num{width:32px;height:32px;flex:none;border:1px solid var(--acc);
+  color:var(--acc);font-family:var(--mono);font-weight:700;font-size:12px;
+  display:flex;align-items:center;justify-content:center}
+.shot>div:last-child{flex:1}
+.shot h4{font-size:19px;margin-bottom:8px}
+.shot .why{font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--acc);
+  margin-top:14px;border-top:1px solid var(--line);padding-top:11px;letter-spacing:.02em}
+.shot ul{list-style:none;font-size:14.5px;color:var(--txt2)}
+.shot li{padding-left:16px;position:relative;line-height:1.55;margin-top:2px}
+.shot li:before{content:'';position:absolute;left:2px;top:10px;width:4px;height:1px;background:var(--line2)}
+
+/* lists */
+.no{list-style:none}
+.no li{padding-left:28px;position:relative;margin-bottom:12px;color:var(--txt2);font-size:15px;line-height:1.55}
+.no li:before{position:absolute;left:0;top:0;font-weight:700;font-size:13px}
+.bad li:before{content:'✕';color:var(--red)}
+.good li:before{content:'✓';color:var(--acc)}
+
+/* ladder */
+.ladder{counter-reset:l;margin-top:30px;border-top:1px solid var(--line)}
+.ladder li{counter-increment:l;list-style:none;position:relative;padding:16px 0 16px 64px;
+  border-bottom:1px solid var(--line);font-size:18px;color:var(--txt)}
+.ladder li:before{content:counter(l,decimal-leading-zero);position:absolute;left:0;top:18px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--acc)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;margin-top:26px;font-size:15px}
+th{text-align:left;padding:12px 16px 12px 0;font-family:var(--mono);color:var(--mut);
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;
+  border-bottom:1px solid var(--txt)}
+td{padding:14px 16px 14px 0;border-bottom:1px solid var(--line);color:var(--txt2)}
+tbody tr:hover td{background:var(--bg2)}
+td.k{color:var(--txt);font-weight:600}
+td.v{font-family:var(--mono);font-size:13px;color:var(--acc)}
+
+/* spec */
+.spec{background:var(--card);border:1px solid var(--line)}
+.spec .hd{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.dot{width:7px;height:7px;flex:none}
+.spec .hd b{font-size:16px;letter-spacing:-0.01em}
+.spec .hd small{color:var(--mut);font-family:var(--mono);font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;margin-left:auto}
+.spec dl{padding:6px 24px 20px}
+.spec dl div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line)}
+.spec dl div:last-child{border-bottom:none}
+.spec dt{color:var(--mut);font-size:14.5px}
+.spec dd{font-family:var(--mono);font-size:13px;color:var(--txt);text-align:right}
+
+/* aspect ratios */
+.ars{display:flex;gap:26px;align-items:flex-end;flex-wrap:wrap;margin-top:34px}
+.ar{text-align:center}
+.arbox{border:1px solid var(--acc);background:rgba(28,126,132,.05);
+  display:flex;align-items:center;justify-content:center;color:var(--acc);
+  font-family:var(--mono);font-size:12px;font-weight:500;margin-bottom:12px}
+.ar small{display:block;color:var(--mut);font-size:12px;line-height:1.4}
+.ar b{font-size:14px}
+
+/* callout */
+.callout{border-left:2px solid var(--acc);background:var(--bg2);padding:24px 28px;margin-top:32px;font-size:16px}
+.callout.g{border-left-color:var(--acc2)}
+.callout.r{border-left-color:var(--red)}
+.callout b{color:var(--txt)}
+
+/* bars */
+.bars{margin-top:30px}
+.bar{margin-bottom:20px}
+.bar .lbl{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px;color:var(--txt2)}
+.bar .lbl span:last-child{font-family:var(--mono);font-size:12.5px;color:var(--mut)}
+.track{height:8px;background:var(--bg2);border:1px solid var(--line);overflow:hidden}
+.fill{height:100%}
+
+/* cta */
+.cta{border:1px solid var(--line);padding:72px 56px;text-align:center;background:var(--bg2)}
+.cta h2{font-size:44px}
+.btn{display:inline-block;background:var(--acc);color:#fff;font-weight:700;
+  font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;margin-top:26px}
+.btn:hover{background:var(--ink)}
+footer{padding:48px 0 72px;color:var(--mut);font-size:12.5px;text-align:center;font-family:var(--mono);line-height:1.9}
+
+/* toc */
+.toc{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;
+  border-left:1px solid var(--line);border-bottom:1px solid var(--line)}
+.toc a{display:block;padding:18px 20px;color:var(--txt);font-size:15px;
+  border-right:1px solid var(--line);border-top:1px solid var(--line)}
+.toc a b{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--acc);
+  margin-right:12px;font-weight:400}
+.toc a:hover{background:var(--bg2);color:var(--acc)}
+
+@media(max-width:900px){
+  body{font-size:16px}
+  .hero h1{font-size:40px}
+  h2{font-size:32px}
+  h3{font-size:23px}
+  .grid2,.grid3,.shots,.toc{grid-template-columns:1fr}
+  .herostats{grid-template-columns:1fr 1fr}
+  .hs{padding:20px 16px 20px 0}
+  .hs b{font-size:26px}
+  .shot{border-left:none}
+  .wrap{padding:0 20px}
+  section{padding:60px 0}
+  table{font-size:13.5px}
+  th,td{padding:10px 8px 10px 0}
+  .cta{padding:40px 24px}
+  .cta h2{font-size:28px}
+}
+</style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1713332936325081');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1713332936325081&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+<div class="wrap">
+  <div class="brandbar">
+    <div class="mark">P</div>
+    <div class="wordmark"><span class="a">PRODIGY</span> <span class="b">LAB</span></div>
+    <div class="dom">prodigylab.studio</div>
+  </div>
+
+  <span class="badge">Гайд для брендов · Август 2026</span>
+  <h1>Стандарт фото и видео контента: <em>от съёмки до Shopify, соцсетей и рекламы</em></h1>
+  <p class="lead">Один мастер-файл → все площадки. Как выстроить карточку товара, которая продаёт, и как сдавать материалы, чтобы их не пришлось переснимать под каждый новый канал.</p>
+
+  <div class="herostats">
+    <div class="hs"><b>14</b><span>кадров в продающей карточке</span></div>
+    <div class="hs"><b>1 → 12</b><span>мастер-файл и экспортов</span></div>
+    <div class="hs"><b>≤15 MB</b><span>вес видео для сайта</span></div>
+    <div class="hs"><b>3</b><span>комплекта на сдаче</span></div>
+  </div>
+
+  <div class="toc">
+    <a href="#s1"><b>01</b>Карточка товара, которая продаёт</a>
+    <a href="#s2"><b>02</b>Мастер-файл и экспорты</a>
+    <a href="#s3"><b>03</b>Видео для сайта</a>
+    <a href="#s4"><b>04</b>Соцсети · август 2026</a>
+    <a href="#s5"><b>05</b>Чек-лист сдачи материалов</a>
+    <a href="#s6"><b>06</b>Работа со студией</a>
+  </div>
+</div>
+</div>
+
+<!-- ================= 01 ================= -->
+<section id="s1">
+<div class="wrap">
+  <span class="eyebrow">Раздел 01</span>
+  <h2>Карточка товара, которая продаёт</h2>
+  <p class="lead">Shopify — это не Amazon. Здесь задача фотографий не просто показать товар, а снимать возражения и повышать конверсию. Пользователь не листает ради красивых кадров: каждый следующий экран должен закрывать новый вопрос и приближать к покупке.</p>
+
+  <div class="callout r" style="margin-top:30px">
+    <b>Типичная ошибка:</b> 20 фотографий, из которых 14 — одно и то же. Сумка на траве, сумка на сиденье, сумка в руках. Покупатель не получает новой информации — и уходит.
+  </div>
+
+  <h3 style="margin-top:52px">Идеальная последовательность из 14 кадров</h3>
+  <p class="mut small" style="margin-top:4px">Порядок важен не меньше содержания. Он повторяет логику принятия решения.</p>
+
+  <div class="shots">
+
+    <div class="shot"><div class="num">1</div><div>
+      <h4>Hero — главный кадр</h4>
+      <ul>
+        <li>Сразу два товара, если это Bundle</li>
+        <li>Чистый белый фон</li>
+        <li>Плашка «2-Pack Bundle»</li>
+        <li>Видны оба цвета</li>
+      </ul>
+      <div class="why">→ Продаёт предложение, а не предмет</div>
+    </div></div>
+
+    <div class="shot"><div class="num">2</div><div>
+      <h4>Что входит в комплект</h4>
+      <ul>
+        <li>Аккуратная выкладка flat lay</li>
+        <li>2 переноски + 2 бутылки + аксессуары</li>
+        <li>Подписи к каждому элементу</li>
+      </ul>
+      <div class="why">→ Человек понимает, за что платит</div>
+    </div></div>
+
+    <div class="shot"><div class="num">3</div><div>
+      <h4>Lifestyle — история</h4>
+      <ul>
+        <li>Семья с двумя кошками</li>
+        <li>Не «сумки», а сценарий</li>
+        <li>Идея: «Мы путешествуем вдвоём»</li>
+      </ul>
+      <div class="why">→ Продаёт эмоцию и принадлежность</div>
+    </div></div>
+
+    <div class="shot"><div class="num">4</div><div>
+      <h4>В машине</h4>
+      <ul>
+        <li>Обе переноски закреплены ремнями</li>
+        <li>Видно зелёную и оранжевую</li>
+      </ul>
+      <div class="why">→ Объясняет, зачем нужны две</div>
+    </div></div>
+
+    <div class="shot"><div class="num">5</div><div>
+      <h4>Размер и масштаб</h4>
+      <ul>
+        <li>Кошка сидит внутри</li>
+        <li>Рядом человек для масштаба</li>
+        <li>Подписи: до 25 lbs · +43% Expandable</li>
+      </ul>
+      <div class="why">→ Снимает возражение «а поместится ли?»</div>
+    </div></div>
+
+    <div class="shot"><div class="num">6</div><div>
+      <h4>Expandable: до / после</h4>
+      <ul>
+        <li>Закрытая → открытая</li>
+        <li>Кошка лежит внутри в расширенном виде</li>
+      </ul>
+      <div class="why">→ Показывает механику одним взглядом</div>
+    </div></div>
+
+    <div class="shot"><div class="num">7</div><div>
+      <h4>Все преимущества одним кадром</h4>
+      <ul>
+        <li>Инфографика на иконках</li>
+        <li>Metal Buckles · Locking Zippers · Charcoal Filter</li>
+        <li>360° Mesh · Bottle Included · Safety Belt · Expandable</li>
+      </ul>
+      <div class="why">→ Плотность информации на один свайп</div>
+    </div></div>
+
+    <div class="shot"><div class="num">8</div><div>
+      <h4>Сценарии использования</h4>
+      <ul>
+        <li>Коллаж: машина, парк, ветеринар, аэропорт, отель</li>
+      </ul>
+      <div class="why">→ Показывает универсальность = больше поводов купить</div>
+    </div></div>
+
+    <div class="shot"><div class="num">9</div><div>
+      <h4>Цвета и комплектации</h4>
+      <ul>
+        <li>Green</li><li>Orange</li><li>Green + Orange</li>
+      </ul>
+      <div class="why">→ Чаще всего этого кадра не хватает</div>
+    </div></div>
+
+    <div class="shot"><div class="num">10</div><div>
+      <h4>Детали премиум-качества</h4>
+      <ul>
+        <li>Макро: молния, швы, ручки</li>
+        <li>Сетка, карабины, пряжки</li>
+      </ul>
+      <div class="why">→ Качество должно ощущаться через экран</div>
+    </div></div>
+
+    <div class="shot"><div class="num">11</div><div>
+      <h4>Сравнение с обычной переноской</h4>
+      <ul>
+        <li>Таблица: Обычная | Set4Pets 2.0</li>
+        <li>Safety · Space · Comfort · Seat Belt · Bottle · Expandable</li>
+      </ul>
+      <div class="why">→ Один из сильнейших кадров именно в Shopify</div>
+    </div></div>
+
+    <div class="shot"><div class="num">12</div><div>
+      <h4>Social proof</h4>
+      <ul>
+        <li>Фото довольных покупателей (UGC)</li>
+        <li>★★★★★ и цифра отзывов</li>
+        <li>«Thousands of happy pet parents»</li>
+      </ul>
+      <div class="why">→ Закрывает вопрос доверия к бренду</div>
+    </div></div>
+
+    <div class="shot"><div class="num">13</div><div>
+      <h4>Для кого этот комплект</h4>
+      <ul>
+        <li>✔ Two Cats ✔ Couple ✔ Backup Carrier</li>
+        <li>✔ Gift ✔ Foster Parents</li>
+      </ul>
+      <div class="why">→ Помогает узнать себя в сценарии</div>
+    </div></div>
+
+    <div class="shot"><div class="num">14</div><div>
+      <h4>Финальный эмоциональный кадр</h4>
+      <ul>
+        <li>Пара, две кошки, закат, машина, дорога</li>
+        <li>Без текста и плашек</li>
+      </ul>
+      <div class="why">→ Покупатель представляет себя владельцем</div>
+    </div></div>
+
+  </div>
+
+  <div class="grid2" style="margin-top:42px">
+    <div class="card">
+      <h3 style="color:var(--red)">Что убрать из карточки</h3>
+      <ul class="no bad small" style="margin-top:14px">
+        <li>Несколько почти одинаковых кадров, где товар просто стоит на траве</li>
+        <li>Дубли на автомобильном сиденье</li>
+        <li>Фото человека со спины — не добавляет ценности</li>
+        <li>Похожие кадры с человеком, держащим товар</li>
+      </ul>
+      <p class="small mut" style="margin-top:14px">Они не отвечают ни на один новый вопрос покупателя.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--acc2)">Что добавить вместо них</h3>
+      <ul class="no good small" style="margin-top:14px">
+        <li>Кадр масштаба с человеком и подписями</li>
+        <li>Инфографику преимуществ</li>
+        <li>Сравнительную таблицу с конкурентом</li>
+        <li>Все варианты цветов комплекта</li>
+        <li>Макро деталей и фурнитуры</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Логика карточки: 11 вопросов покупателя</h3>
+  <p class="small mut">Каждый кадр отвечает ровно на один вопрос. Если кадр не отвечает — он лишний.</p>
+  <ol class="ladder">
+    <li>Что я покупаю?</li>
+    <li>Что входит в комплект?</li>
+    <li>Почему именно этот товар?</li>
+    <li>Насколько он большой?</li>
+    <li>Как он работает?</li>
+    <li>Чем он лучше конкурентов?</li>
+    <li>Как это выглядит в жизни?</li>
+    <li>Какие есть цвета?</li>
+    <li>Какое там качество деталей?</li>
+    <li>Почему можно доверять бренду?</li>
+    <li>Смогу ли я представить себя владельцем?</li>
+  </ol>
+</div>
+</section>
+
+<!-- ================= 02 ================= -->
+<section id="s2">
+<div class="wrap">
+  <span class="eyebrow">Раздел 02</span>
+  <h2>Мастер-файл и экспорты</h2>
+  <p class="lead">Если вы строите бренд надолго — не делайте отдельные съёмки «для сайта», «для Instagram», «для буклета». Нужен один мастер-файл, из которого получаются все остальные версии.</p>
+
+  <!-- SVG схема 1 → many -->
+  <div class="card" style="margin-top:34px;padding:30px 24px">
+  <svg viewBox="0 0 1000 300" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gm" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#1C7E84"/><stop offset="100%" stop-color="#12BFC4"/>
+      </linearGradient>
+    </defs>
+    <!-- master -->
+    <rect x="18" y="96" width="216" height="108" rx="0" fill="url(#gm)"/>
+    <text x="126" y="134" text-anchor="middle" font-size="19" font-weight="700" fill="#FFFFFF" font-family="Helvetica,Arial">MASTER</text>
+    <text x="126" y="160" text-anchor="middle" font-size="15" fill="#FFFFFF" font-family="Helvetica,Arial">7000 × 7000 px</text>
+    <text x="126" y="182" text-anchor="middle" font-size="13" fill="rgba(255,255,255,.82)" font-family="Helvetica,Arial">sRGB · 300 DPI · архив</text>
+
+    <!-- connectors -->
+    <g stroke="#D4D4D8" stroke-width="2" fill="none">
+      <path d="M234 150 H300 V40 H360"/>
+      <path d="M234 150 H300 V95 H360"/>
+      <path d="M234 150 H300 V150 H360"/>
+      <path d="M234 150 H300 V205 H360"/>
+      <path d="M234 150 H300 V260 H360"/>
+    </g>
+
+    <g font-family="Helvetica,Arial">
+      <rect x="360" y="18" width="620" height="44" rx="0" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="380" y="46" font-size="15" font-weight="700" fill="#111111">Shopify</text>
+      <text x="960" y="46" font-size="14" text-anchor="end" fill="#1C7E84">3000 × 3000 · JPEG 85–90%</text>
+
+      <rect x="360" y="73" width="620" height="44" rx="0" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="380" y="101" font-size="15" font-weight="700" fill="#111111">Amazon</text>
+      <text x="960" y="101" font-size="14" text-anchor="end" fill="#1C7E84">2000 × 2000 · белый фон</text>
+
+      <rect x="360" y="128" width="620" height="44" rx="0" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="380" y="156" font-size="15" font-weight="700" fill="#111111">Соцсети</text>
+      <text x="960" y="156" font-size="14" text-anchor="end" fill="#1C7E84">1080×1350 · 1080×1080 · 1080×1920</text>
+
+      <rect x="360" y="183" width="620" height="44" rx="0" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="380" y="211" font-size="15" font-weight="700" fill="#111111">Email / Баннеры</text>
+      <text x="960" y="211" font-size="14" text-anchor="end" fill="#1C7E84">1200 px · 2400×1200 · 2560×1440</text>
+
+      <rect x="360" y="238" width="620" height="44" rx="0" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="380" y="266" font-size="15" font-weight="700" fill="#111111">Полиграфия</text>
+      <text x="960" y="266" font-size="14" text-anchor="end" fill="#1C7E84">только из мастера · 300 DPI</text>
+    </g>
+  </svg>
+  </div>
+
+  <div class="grid2" style="margin-top:34px">
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc)"></span><b>Мастер-файл (архив)</b><small>не публикуется</small></div>
+      <dl>
+        <div><dt>Разрешение</dt><dd>7000 × 7000 px</dd></div>
+        <div><dt>Цветовое пространство</dt><dd>sRGB</dd></div>
+        <div><dt>Формат</dt><dd>PNG / JPEG 100</dd></div>
+        <div><dt>Плотность</dt><dd>300 DPI</dd></div>
+        <div><dt>Компрессия</dt><dd>минимальная</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc2)"></span><b>Съёмка (исходники)</b><small>от фотографа</small></div>
+      <dl>
+        <div><dt>Формат</dt><dd>RAW</dd></div>
+        <div><dt>Разрешение матрицы</dt><dd>45–60 MP</dd></div>
+        <div><dt>Глубина цвета</dt><dd>14-bit</dd></div>
+        <div><dt>Профиль съёмки</dt><dd>Adobe RGB</dd></div>
+        <div><dt>После обработки</dt><dd>конвертация в sRGB</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Таблица экспортов</h3>
+  <table>
+    <thead><tr><th>Площадка</th><th>Размер</th><th>Формат / примечание</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Shopify</td><td class="v">3000 × 3000</td><td>JPEG, качество 85–90%. Больше не имеет смысла — только вес страницы.</td></tr>
+      <tr><td class="k">Amazon</td><td class="v">2000 × 2000</td><td>Обязательно чистый белый фон</td></tr>
+      <tr><td class="k">Instagram / Facebook пост</td><td class="v">1080 × 1350</td><td>Основной формат 4:5</td></tr>
+      <tr><td class="k">Stories / Reels</td><td class="v">1080 × 1920</td><td>9:16</td></tr>
+      <tr><td class="k">Facebook лента</td><td class="v">1200 × 1500 / 1080 × 1080</td><td>4:5 и квадрат</td></tr>
+      <tr><td class="k">Email</td><td class="v">1200 px по ширине</td><td>JPEG, оптимизированный вес</td></tr>
+      <tr><td class="k">Баннеры сайта</td><td class="v">2400 × 1200 / 2560 × 1440</td><td>Горизонтальные кропы из мастера</td></tr>
+      <tr><td class="k">Полиграфия</td><td class="v">только Master</td><td>Никогда не увеличивать фотографии</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:52px">Соотношения сторон</h3>
+  <p class="small mut">Четырёх стандартов хватает практически для всех площадок.</p>
+  <div class="ars">
+    <div class="ar"><div class="arbox" style="width:130px;height:130px">1:1</div><b>Квадрат</b><small>Shopify · FB · Pinterest</small></div>
+    <div class="ar"><div class="arbox" style="width:118px;height:148px">4:5</div><b>Вертикальный</b><small>IG / FB лента</small></div>
+    <div class="ar"><div class="arbox" style="width:92px;height:164px">9:16</div><b>Stories / Reels</b><small>IG · TikTok · Shorts</small></div>
+    <div class="ar"><div class="arbox" style="width:200px;height:112px">16:9</div><b>Баннер</b><small>Сайт · YouTube</small></div>
+  </div>
+
+  <div class="callout" style="margin-top:38px">
+    <b>Самое главное правило.</b> Никогда не кадрируйте «впритык». Оставляйте минимум 15–20% свободного пространства вокруг товара — тогда из одного мастер-файла без потерь получаются квадрат для Shopify, вертикаль для Instagram, горизонтальный баннер, картинка для рассылки и обложка каталога. Это избавляет от пересъёмок под каждую новую площадку и сохраняет единый стиль во всех каналах.
+  </div>
+
+  <!-- safe crop diagram -->
+  <div class="card" style="margin-top:22px;padding:26px">
+    <svg viewBox="0 0 900 300" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica,Arial">
+      <rect x="20" y="20" width="380" height="260" rx="0" fill="#FAFAFA" stroke="#E5E7EB"/>
+      <rect x="76" y="62" width="268" height="176" rx="0" fill="none" stroke="#1C7E84" stroke-dasharray="6 5"/>
+      <rect x="140" y="102" width="140" height="96" rx="0" fill="#E9E9EC"/>
+      <text x="210" y="156" text-anchor="middle" font-size="14" fill="#6B6B75">товар</text>
+      <text x="210" y="290" text-anchor="middle" font-size="13" fill="#1C7E84">✓ 15–20% воздуха вокруг</text>
+
+      <rect x="500" y="20" width="380" height="260" rx="0" fill="#FAFAFA" stroke="#E5E7EB"/>
+      <rect x="520" y="40" width="340" height="220" rx="0" fill="#E9E9EC"/>
+      <text x="690" y="156" text-anchor="middle" font-size="14" fill="#6B6B75">товар</text>
+      <text x="690" y="290" text-anchor="middle" font-size="13" fill="#C4453A">✕ кроп впритык — перекадрировать нельзя</text>
+    </svg>
+  </div>
+</div>
+</section>
+
+<!-- ================= 03 ================= -->
+<section id="s3">
+<div class="wrap">
+  <span class="eyebrow">Раздел 03</span>
+  <h2>Видео для сайта</h2>
+  <p class="lead">Многие подрядчики отдают красивый MOV ProRes на 2–5 ГБ и считают работу законченной. Для сайта такой файл бесполезен: половина браузеров его просто не откроет, остальные будут грузить его минутами.</p>
+
+  <div class="callout r" style="margin-top:28px">
+    Исходное видео никогда не используется на сайте напрямую. Материал, снятый на iPhone, Sony или Canon, предназначен для монтажа, а не для публикации. Перед загрузкой каждый ролик проходит экспорт и оптимизацию.
+  </div>
+
+  <div class="grid2" style="margin-top:34px">
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc)"></span><b>Мастер-файл</b><small>архив, не публикуется</small></div>
+      <dl>
+        <div><dt>Формат</dt><dd>ProRes / MOV / RAW</dd></div>
+        <div><dt>Качество</dt><dd>максимальное</dd></div>
+        <div><dt>Назначение</dt><dd>монтаж и переэкспорт</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc2)"></span><b>Версия для сайта</b><small>именно она грузится</small></div>
+      <dl>
+        <div><dt>Контейнер / кодек</dt><dd>MP4 · H.264</dd></div>
+        <div><dt>Разрешение</dt><dd>1920 × 1080</dd></div>
+        <div><dt>Частота кадров</dt><dd>24–30 fps</dd></div>
+        <div><dt>Битрейт</dt><dd>6–10 Mbps</dd></div>
+        <div><dt>Звук</dt><dd>убрать, если не нужен</dd></div>
+        <div><dt>Вес файла</dt><dd>8–15 MB (макс. 20–25)</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:#0F1722"></span><b>Соцсети</b><small>вертикаль</small></div>
+      <dl>
+        <div><dt>Формат</dt><dd>MP4 · H.264</dd></div>
+        <div><dt>Разрешение</dt><dd>1080 × 1920</dd></div>
+        <div><dt>Частота кадров</dt><dd>30 fps</dd></div>
+        <div><dt>Битрейт</dt><dd>8–12 Mbps</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:#6B7A8F"></span><b>Реклама и YouTube</b><small>отдельные экспорты</small></div>
+      <dl>
+        <div><dt>Реклама</dt><dd>1080 × 1920 · до 30–60 сек</dd></div>
+        <div><dt>YouTube</dt><dd>1080p / 4K · выше битрейт</dd></div>
+        <div><dt>Кодек</dt><dd>H.264</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Разница в весе — наглядно</h3>
+  <div class="bars">
+    <div class="bar">
+      <div class="lbl"><span style="color:var(--red)">Исходный MOV / ProRes на сайте</span><span>≈ 2 000 MB</span></div>
+      <div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#C4453A,#D9705F)"></div></div>
+    </div>
+    <div class="bar">
+      <div class="lbl"><span style="color:#B8862B">Неоптимизированный экспорт</span><span>≈ 300 MB</span></div>
+      <div class="track"><div class="fill" style="width:15%;background:#B8862B"></div></div>
+    </div>
+    <div class="bar">
+      <div class="lbl"><span style="color:var(--grn)">Правильная веб-версия</span><span>≈ 12 MB</span></div>
+      <div class="track"><div class="fill" style="width:1.6%;background:var(--grn);min-width:8px"></div></div>
+    </div>
+  </div>
+  <p class="small mut" style="margin-top:10px">Разница ~160×. При этом на экране пользователь не увидит отличий.</p>
+
+  <div class="grid2" style="margin-top:42px">
+    <div class="card">
+      <h3 style="color:var(--red)">Недопустимо</h3>
+      <ul class="no bad small" style="margin-top:14px">
+        <li>Загружать на сайт оригинальный MOV</li>
+        <li>Видео весом 300 MB, 800 MB и больше</li>
+        <li>ProRes или RAW на сайте</li>
+        <li>Кодеки, которые поддерживаются не всеми браузерами</li>
+        <li>Видео без сжатия</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Почему это критично</h3>
+      <p class="small" style="margin-top:12px">Даже при быстром интернете браузеру нужно скачать файл, декодировать его, начать воспроизведение — и параллельно загрузить остальную страницу.</p>
+      <p class="small" style="margin-top:12px">Тяжёлое видео замедляет загрузку, портит пользовательский опыт и напрямую бьёт по <b style="color:var(--acc2)">Core Web Vitals</b> и SEO-позициям.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Рабочий процесс</h3>
+  <ol class="ladder">
+    <li>Съёмка в максимальном качестве</li>
+    <li>Монтаж из исходников</li>
+    <li>Цветокоррекция</li>
+    <li>Экспорт мастер-файла в архив</li>
+    <li>Создание оптимизированной версии для сайта</li>
+    <li>Отдельные версии для соцсетей и рекламы</li>
+  </ol>
+</div>
+</section>
+
+<!-- ================= 04 ================= -->
+<section id="s4">
+<div class="wrap">
+  <span class="eyebrow">Раздел 04 · Август 2026</span>
+  <h2>Требования к контенту для соцсетей</h2>
+  <p class="lead">Контент создаётся один раз, но используется сразу во всех каналах: Instagram, Facebook, TikTok, YouTube Shorts, Pinterest, LinkedIn, X и email-маркетинг. Поэтому материалы должны соответствовать актуальным требованиям площадок.</p>
+
+  <h3 style="margin-top:44px">Фотографии</h3>
+  <div class="grid3" style="margin-top:20px">
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc)"></span><b>Основной формат</b></div>
+      <dl>
+        <div><dt>Пропорции</dt><dd>4:5</dd></div>
+        <div><dt>Размер</dt><dd>1080 × 1350</dd></div>
+        <div><dt>Где</dt><dd>IG / FB лента</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc2)"></span><b>Квадрат</b></div>
+      <dl>
+        <div><dt>Пропорции</dt><dd>1:1</dd></div>
+        <div><dt>Размер</dt><dd>1080 × 1080</dd></div>
+        <div><dt>Где</dt><dd>Shopify · FB · LinkedIn · Pinterest · Email</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:#0F1722"></span><b>Вертикаль</b></div>
+      <dl>
+        <div><dt>Пропорции</dt><dd>9:16</dd></div>
+        <div><dt>Размер</dt><dd>1080 × 1920</dd></div>
+        <div><dt>Где</dt><dd>Stories · Reels · TikTok · Shorts</dd></div>
+      </dl>
+    </div>
+  </div>
+  <p class="small mut" style="margin-top:14px">4:5 занимает больше места в ленте и обычно даёт лучшую вовлечённость — это формат по умолчанию.</p>
+
+  <div class="grid2" style="margin-top:26px">
+    <div class="card">
+      <h4>Обязательные требования к фото</h4>
+      <ul class="no good small" style="margin-top:12px">
+        <li>Цветовое пространство sRGB</li>
+        <li>JPEG не ниже 90%</li>
+        <li>Без водяных знаков и рамок</li>
+        <li>Без избытка текста на изображении</li>
+        <li>Единый стиль обработки для всей серии</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Консистентность серии</h4>
+      <p class="small" style="margin-top:12px">Все фотографии одной карточки товара должны иметь одинаковую цветокоррекцию, контраст и температуру. Разнобой в тоне читается как «собрано из разных источников» и снижает доверие к бренду сильнее, чем недостаток кадров.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Видео для соцсетей</h3>
+  <div class="grid2" style="margin-top:20px">
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc2)"></span><b>Версия для публикации</b></div>
+      <dl>
+        <div><dt>Формат / кодек</dt><dd>MP4 · H.264</dd></div>
+        <div><dt>Разрешение</dt><dd>1080 × 1920</dd></div>
+        <div><dt>FPS</dt><dd>30</dd></div>
+        <div><dt>Битрейт</dt><dd>8–15 Mbps</dd></div>
+        <div><dt>Длительность</dt><dd>15–45 сек оптимально</dd></div>
+        <div><dt>Реклама</dt><dd>до 60 сек</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc)"></span><b>Обложка видео</b></div>
+      <dl>
+        <div><dt>Отдельное изображение</dt><dd>да, обязательно</dd></div>
+        <div><dt>Вертикальная</dt><dd>1080 × 1920</dd></div>
+        <div><dt>Для ленты</dt><dd>1080 × 1350</dd></div>
+        <div><dt>Автокадр</dt><dd>не использовать</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Безопасные зоны вертикального видео</h3>
+  <p class="small mut">Интерфейс площадки перекрывает края кадра: сверху — статус-бар и меню, снизу — описание, аватар, кнопки, справа — реакции.</p>
+
+  <div class="card" style="margin-top:22px;display:flex;gap:34px;align-items:center;flex-wrap:wrap;justify-content:center">
+    <svg viewBox="0 0 260 460" style="width:230px;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica,Arial">
+      <rect x="4" y="4" width="252" height="452" rx="0" fill="#FAFAFA" stroke="#E5E7EB" stroke-width="2"/>
+      <!-- top zone -->
+      <rect x="6" y="6" width="248" height="72" fill="rgba(196,69,58,.10)"/>
+      <line x1="6" y1="78" x2="254" y2="78" stroke="#C4453A" stroke-dasharray="5 4"/>
+      <text x="130" y="46" text-anchor="middle" font-size="12" fill="#C4453A">250–300 px</text>
+      <!-- bottom zone -->
+      <rect x="6" y="352" width="248" height="102" fill="rgba(196,69,58,.10)"/>
+      <line x1="6" y1="352" x2="254" y2="352" stroke="#C4453A" stroke-dasharray="5 4"/>
+      <text x="130" y="410" text-anchor="middle" font-size="12" fill="#C4453A">350–450 px</text>
+      <!-- side zones -->
+      <rect x="6" y="78" width="20" height="274" fill="rgba(196,69,58,.06)"/>
+      <rect x="234" y="78" width="20" height="274" fill="rgba(196,69,58,.06)"/>
+      <!-- safe -->
+      <rect x="30" y="86" width="200" height="258" rx="0" fill="rgba(28,126,132,.07)" stroke="#1C7E84" stroke-dasharray="6 5"/>
+      <text x="130" y="205" text-anchor="middle" font-size="14" font-weight="700" fill="#1C7E84">SAFE ZONE</text>
+      <text x="130" y="226" text-anchor="middle" font-size="11.5" fill="#6B6B75">товар · текст · логотип</text>
+      <text x="130" y="252" text-anchor="middle" font-size="11.5" fill="#6B6B75">по бокам 60–80 px</text>
+    </svg>
+    <div style="max-width:420px">
+      <h4>Субтитры</h4>
+      <ul class="no good small" style="margin-top:10px;margin-bottom:20px">
+        <li>Обязательно встроенные (open captions)</li>
+        <li>Крупный читаемый шрифт, высокий контраст</li>
+        <li>Не ближе 350 px к нижнему краю</li>
+      </ul>
+      <h4>Логотип</h4>
+      <ul class="no good small" style="margin-top:10px;margin-bottom:20px">
+        <li>Небольшой, в одном стиле</li>
+        <li>Не перекрывает товар</li>
+        <li>Одна и та же зона во всех роликах</li>
+      </ul>
+      <h4>Первые 1–2 секунды</h4>
+      <ul class="no bad small" style="margin-top:10px">
+        <li>Длинные заставки</li>
+        <li>Логотип на весь экран</li>
+        <li>Статичный первый кадр</li>
+        <li>Медленное вступление</li>
+      </ul>
+      <p class="small" style="margin-top:10px;color:var(--acc2)">Ролик должен начинаться с действия или сильного визуального элемента.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Таблица экспортов по площадкам</h3>
+  <table>
+    <thead><tr><th>Площадка</th><th>Формат</th><th>Размер</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Instagram Feed</td><td>4:5</td><td class="v">1080 × 1350</td></tr>
+      <tr><td class="k">Instagram Stories</td><td>9:16</td><td class="v">1080 × 1920</td></tr>
+      <tr><td class="k">Instagram Reels</td><td>9:16</td><td class="v">1080 × 1920</td></tr>
+      <tr><td class="k">Facebook Feed</td><td>4:5</td><td class="v">1080 × 1350</td></tr>
+      <tr><td class="k">Facebook Stories</td><td>9:16</td><td class="v">1080 × 1920</td></tr>
+      <tr><td class="k">TikTok</td><td>9:16</td><td class="v">1080 × 1920</td></tr>
+      <tr><td class="k">YouTube Shorts</td><td>9:16</td><td class="v">1080 × 1920</td></tr>
+      <tr><td class="k">Pinterest</td><td>2:3 или 4:5</td><td class="v">1000 × 1500 / 1080 × 1350</td></tr>
+      <tr><td class="k">LinkedIn</td><td>4:5 или 1:1</td><td class="v">1080 × 1350 / 1080 × 1080</td></tr>
+      <tr><td class="k">X (Twitter)</td><td>16:9 или 1:1</td><td class="v">1600 × 900 / 1080 × 1080</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ================= 05 ================= -->
+<section id="s5">
+<div class="wrap">
+  <span class="eyebrow">Раздел 05</span>
+  <h2>Универсальное правило: три комплекта на сдаче</h2>
+  <p class="lead">Каждая съёмка заканчивается передачей трёх комплектов материалов. Это исключает повторную обработку, обеспечивает единый визуальный стиль и позволяет использовать один набор контента во всех каналах.</p>
+
+  <div class="grid3" style="margin-top:34px">
+    <div class="card" style="border-top:3px solid var(--acc)">
+      <span class="eyebrow" style="color:var(--acc)">Комплект 01</span>
+      <h3>Master</h3>
+      <p class="small">Исходники максимального качества для архива и печати.</p>
+      <ul class="no good small" style="margin-top:14px">
+        <li>RAW · 45–60 MP · 14-bit</li>
+        <li>Фото 7000 × 7000 px, 300 DPI</li>
+        <li>Видео ProRes / MOV</li>
+        <li>Не публикуется никогда</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--acc2)">
+      <span class="eyebrow" style="color:var(--acc2)">Комплект 02</span>
+      <h3>Web</h3>
+      <p class="small">Оптимизировано для сайта и Shopify: быстрая загрузка без заметной потери качества.</p>
+      <ul class="no good small" style="margin-top:14px">
+        <li>Фото 3000 × 3000, JPEG 85–90%</li>
+        <li>Видео MP4 H.264, 1920×1080</li>
+        <li>Вес ролика 8–15 MB</li>
+        <li>Баннеры 2400 × 1200</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid #0F1722">
+      <span class="eyebrow" style="color:#0F1722">Комплект 03</span>
+      <h3>Social Media</h3>
+      <p class="small">Готовые к публикации версии под все основные платформы.</p>
+      <ul class="no good small" style="margin-top:14px">
+        <li>Форматы 4:5 · 1:1 · 9:16</li>
+        <li>Соблюдены безопасные зоны</li>
+        <li>Встроенные субтитры</li>
+        <li>Отдельные обложки видео</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Чек-лист приёмки материалов</h3>
+  <table>
+    <thead><tr><th>Пункт</th><th>Норма</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Мастер-фото</td><td class="v">7000 × 7000 · sRGB · 300 DPI</td></tr>
+      <tr><td class="k">Запас по краям кадра</td><td class="v">15–20%</td></tr>
+      <tr><td class="k">Фото для Shopify</td><td class="v">3000 × 3000 · JPEG 85–90%</td></tr>
+      <tr><td class="k">Единая цветокоррекция серии</td><td class="v">да</td></tr>
+      <tr><td class="k">Видео для сайта</td><td class="v">MP4 H.264 · 1080p · 6–10 Mbps · ≤15 MB</td></tr>
+      <tr><td class="k">Видео для соцсетей</td><td class="v">MP4 H.264 · 1080×1920 · 30 fps · 8–15 Mbps</td></tr>
+      <tr><td class="k">Обложки видео</td><td class="v">отдельными файлами</td></tr>
+      <tr><td class="k">Субтитры</td><td class="v">вшитые, ≥350 px от низа</td></tr>
+      <tr><td class="k">Кадров в карточке товара</td><td class="v">14, каждый закрывает свой вопрос</td></tr>
+      <tr><td class="k">Дубли и «пустые» кадры</td><td class="v">удалены</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ================= 06 / CTA ================= -->
+<section id="s6" style="border-bottom:1px solid var(--line)">
+<div class="wrap">
+  <div class="cta">
+    <div class="wordmark" style="margin-bottom:22px"><span class="a">PRODIGY</span> <span class="b">LAB</span></div>
+    <h2>Хотите такой же стандарт для своего бренда?</h2>
+    <p class="lead" style="margin:14px auto 0;text-align:center">Prodigy Lab выстраивает контент от съёмки до готовых экспортов: продающая карточка товара, мастер-файлы, оптимизация под сайт и полный пакет для соцсетей — один раз и на все каналы.</p>
+    <a class="btn" href="https://prodigylab.studio">Обсудить проект →</a>
+    <p class="small mut" style="margin-top:18px">prodigylab.studio</p>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © 2026 Prodigy Lab · Стандарт фото и видео контента, редакция от августа 2026 г.<br>
+    Документ можно использовать как внутренний регламент и как техническое задание подрядчикам.
+  </div>
+</footer>
+
+<!-- ProdigyBot — live chat (Chatwoot, self-hosted) -->
+<script>
+  (function (d, t) {
+    var BASE_URL = "https://chat.prodigylab.studio";
+    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    g.src = BASE_URL + "/packs/js/sdk.js";
+    g.defer = true; g.async = true;
+    s.parentNode.insertBefore(g, s);
+    g.onload = function () {
+      window.chatwootSettings = window.chatwootSettings || {}; window.chatwootSettings.locale = "ru";
+      window.chatwootSDK.run({
+        websiteToken: "J1xMPSabyx7EfRVPrmZEMLYB",
+        baseUrl: BASE_URL
+      });
+    };
+  })(document, "script");
+</script>
+</body>
+</html>
