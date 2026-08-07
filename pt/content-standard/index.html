@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Padrão de conteúdo 2026 — Prodigylab.studio</title>
+<meta name="description" content="Padrão de conteúdo de foto e vídeo 2026 da Prodigy LAB: página de produto que vende (14 imagens), arquivo master e exportações, vídeo para o site, requisitos de redes sociais, checklist de entrega dos materiais.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://prodigylab.studio/pt/content-standard/">
+<meta property="og:title" content="Padrão de conteúdo 2026 — Prodigy LAB">
+<meta property="og:description" content="Da produção ao Shopify, redes sociais e anúncios: um arquivo master → todas as plataformas.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://prodigylab.studio/pt/content-standard/">
+<meta property="og:locale" content="pt_BR">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --bg:#FFFFFF;
+  --bg2:#F9F9F9;
+  --card:#FFFFFF;
+  --line:#E5E7EB;
+  --line2:#D4D4D8;
+  --txt:#111111;
+  --txt2:#3F3F46;
+  --mut:#6B6B75;
+  --acc:#1C7E84;
+  --acc2:#12BFC4;
+  --ink:#0F1722;
+  --red:#C4453A;
+  --grn:#1C7E84;
+  --sans:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+section{padding:96px 0;border-top:1px solid var(--line)}
+h1,h2,h3,h4{line-height:1.08;font-weight:700;color:var(--txt)}
+h1{letter-spacing:-0.04em}
+h2{font-size:56px;letter-spacing:-0.04em;margin-bottom:18px}
+h3{font-size:28px;letter-spacing:-0.02em;margin-bottom:10px}
+h4{font-size:18px;letter-spacing:-0.01em;margin-bottom:8px}
+p{color:var(--txt2)}
+a{color:var(--acc);text-decoration:none}
+.mut{color:var(--mut)}
+.lead{font-size:20px;line-height:1.55;color:var(--txt2);max-width:720px}
+.small{font-size:14.5px;line-height:1.6}
+
+/* HERO */
+.hero{padding:64px 0 88px;border-top:none}
+.brandbar{display:flex;align-items:center;gap:12px;margin-bottom:80px;
+  padding-bottom:22px;border-bottom:1px solid var(--line)}
+.wordmark{font-size:21px;font-weight:700;letter-spacing:-0.05em;line-height:1}
+.wordmark .a{color:var(--acc)}
+.wordmark .b{font-weight:300;color:var(--txt)}
+.brandbar .dom{margin-left:auto;font-family:var(--mono);font-size:10px;
+  letter-spacing:.36em;text-transform:uppercase;color:rgba(63,63,70,.6)}
+.mark{width:30px;height:30px;flex:none;border:1px solid var(--acc);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:13px;font-weight:700;color:var(--acc)}
+.badge{display:inline-block;font-family:var(--mono);font-size:10px;
+  letter-spacing:.36em;text-transform:uppercase;color:var(--acc);margin-bottom:28px}
+.hero h1{font-size:82px;max-width:1000px;margin-bottom:28px}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.herostats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hs{padding:26px 26px 26px 0;border-right:1px solid var(--line)}
+.hs:last-child{border-right:none}
+.hs b{display:block;font-size:34px;font-weight:700;letter-spacing:-0.04em;color:var(--acc);line-height:1.1}
+.hs span{font-size:13px;color:var(--mut);display:block;margin-top:6px;line-height:1.4}
+
+/* generic */
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.36em;text-transform:uppercase;
+  color:var(--acc);font-weight:400;margin-bottom:18px;display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);padding:28px}
+
+/* shots */
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:40px;
+  border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.shot{padding:26px 28px;display:flex;gap:20px;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.shot:hover{background:var(--bg2)}
+.num{width:32px;height:32px;flex:none;border:1px solid var(--acc);
+  color:var(--acc);font-family:var(--mono);font-weight:700;font-size:12px;
+  display:flex;align-items:center;justify-content:center}
+.shot>div:last-child{flex:1}
+.shot h4{font-size:19px;margin-bottom:8px}
+.shot .why{font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--acc);
+  margin-top:14px;border-top:1px solid var(--line);padding-top:11px;letter-spacing:.02em}
+.shot ul{list-style:none;font-size:14.5px;color:var(--txt2)}
+.shot li{padding-left:16px;position:relative;line-height:1.55;margin-top:2px}
+.shot li:before{content:'';position:absolute;left:2px;top:10px;width:4px;height:1px;background:var(--line2)}
+
+/* lists */
+.no{list-style:none}
+.no li{padding-left:28px;position:relative;margin-bottom:12px;color:var(--txt2);font-size:15px;line-height:1.55}
+.no li:before{position:absolute;left:0;top:0;font-weight:700;font-size:13px}
+.bad li:before{content:'✕';color:var(--red)}
+.good li:before{content:'✓';color:var(--acc)}
+
+/* ladder */
+.ladder{counter-reset:l;margin-top:30px;border-top:1px solid var(--line)}
+.ladder li{counter-increment:l;list-style:none;position:relative;padding:16px 0 16px 64px;
+  border-bottom:1px solid var(--line);font-size:18px;color:var(--txt)}
+.ladder li:before{content:counter(l,decimal-leading-zero);position:absolute;left:0;top:18px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--acc)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;margin-top:26px;font-size:15px}
+th{text-align:left;padding:12px 16px 12px 0;font-family:var(--mono);color:var(--mut);
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;
+  border-bottom:1px solid var(--txt)}
+td{padding:14px 16px 14px 0;border-bottom:1px solid var(--line);color:var(--txt2)}
+tbody tr:hover td{background:var(--bg2)}
+td.k{color:var(--txt);font-weight:600}
+td.v{font-family:var(--mono);font-size:13px;color:var(--acc)}
+
+/* spec */
+.spec{background:var(--card);border:1px solid var(--line)}
+.spec .hd{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.dot{width:7px;height:7px;flex:none}
+.spec .hd b{font-size:16px;letter-spacing:-0.01em}
+.spec .hd small{color:var(--mut);font-family:var(--mono);font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;margin-left:auto}
+.spec dl{padding:6px 24px 20px}
+.spec dl div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line)}
+.spec dl div:last-child{border-bottom:none}
+.spec dt{color:var(--mut);font-size:14.5px}
+.spec dd{font-family:var(--mono);font-size:13px;color:var(--txt);text-align:right}
+
+/* aspect ratios */
+.ars{display:flex;gap:26px;align-items:flex-end;flex-wrap:wrap;margin-top:34px}
+.ar{text-align:center}
+.arbox{border:1px solid var(--acc);background:rgba(28,126,132,.05);
+  display:flex;align-items:center;justify-content:center;color:var(--acc);
+  font-family:var(--mono);font-size:12px;font-weight:500;margin-bottom:12px}
+.ar small{display:block;color:var(--mut);font-size:12px;line-height:1.4}
+.ar b{font-size:14px}
+
+/* callout */
+.callout{border-left:2px solid var(--acc);background:var(--bg2);padding:24px 28px;margin-top:32px;font-size:16px}
+.callout.g{border-left-color:var(--acc2)}
+.callout.r{border-left-color:var(--red)}
+.callout b{color:var(--txt)}
+
+/* bars */
+.bars{margin-top:30px}
+.bar{margin-bottom:20px}
+.bar .lbl{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px;color:var(--txt2)}
+.bar .lbl span:last-child{font-family:var(--mono);font-size:12.5px;color:var(--mut)}
+.track{height:8px;background:var(--bg2);border:1px solid var(--line);overflow:hidden}
+.fill{height:100%}
+
+/* cta */
+.cta{border:1px solid var(--line);padding:72px 56px;text-align:center;background:var(--bg2)}
+.cta h2{font-size:44px}
+.btn{display:inline-block;background:var(--acc);color:#fff;font-weight:700;
+  font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;margin-top:26px}
+.btn:hover{background:var(--ink)}
+footer{padding:48px 0 72px;color:var(--mut);font-size:12.5px;text-align:center;font-family:var(--mono);line-height:1.9}
+
+/* toc */
+.toc{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;
+  border-left:1px solid var(--line);border-bottom:1px solid var(--line)}
+.toc a{display:block;padding:18px 20px;color:var(--txt);font-size:15px;
+  border-right:1px solid var(--line);border-top:1px solid var(--line)}
+.toc a b{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--acc);
+  margin-right:12px;font-weight:400}
+.toc a:hover{background:var(--bg2);color:var(--acc)}
+
+@media(max-width:900px){
+  body{font-size:16px}
+  .hero h1{font-size:40px}
+  h2{font-size:32px}
+  h3{font-size:23px}
+  .grid2,.grid3,.shots,.toc{grid-template-columns:1fr}
+  .herostats{grid-template-columns:1fr 1fr}
+  .hs{padding:20px 16px 20px 0}
+  .hs b{font-size:26px}
+  .shot{border-left:none}
+  .wrap{padding:0 20px}
+  section{padding:60px 0}
+  table{font-size:13.5px}
+  th,td{padding:10px 8px 10px 0}
+  .cta{padding:40px 24px}
+  .cta h2{font-size:28px}
+}
+</style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1713332936325081');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1713332936325081&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+<div class="wrap">
+  <div class="brandbar">
+    <div class="mark">P</div>
+    <div class="wordmark"><span class="a">PRODIGY</span> <span class="b">LAB</span></div>
+    <div class="dom">prodigylab.studio</div>
+  </div>
+
+  <span class="badge">Guia para marcas · Agosto de 2026</span>
+  <h1>Padrão de conteúdo de foto e vídeo: <em>da produção ao Shopify, redes sociais e anúncios</em></h1>
+  <p class="lead">Um arquivo master → todas as plataformas. Como montar uma página de produto que vende e como entregar os materiais para não precisar refazer as fotos a cada novo canal.</p>
+
+  <div class="herostats">
+    <div class="hs"><b>14</b><span>imagens na página que vende</span></div>
+    <div class="hs"><b>1 → 12</b><span>arquivo master e exportações</span></div>
+    <div class="hs"><b>≤15 MB</b><span>peso do vídeo para o site</span></div>
+    <div class="hs"><b>3</b><span>kits na entrega</span></div>
+  </div>
+
+  <div class="toc">
+    <a href="#s1"><b>01</b>Página de produto que vende</a>
+    <a href="#s2"><b>02</b>Arquivo master e exportações</a>
+    <a href="#s3"><b>03</b>Vídeo para o site</a>
+    <a href="#s4"><b>04</b>Redes sociais · agosto de 2026</a>
+    <a href="#s5"><b>05</b>Checklist de entrega dos materiais</a>
+    <a href="#s6"><b>06</b>Trabalho com o estúdio</a>
+  </div>
+</div>
+</div>
+
+<!-- ================= 01 ================= -->
+<section id="s1">
+<div class="wrap">
+  <span class="eyebrow">Seção 01</span>
+  <h2>Página de produto que vende</h2>
+  <p class="lead">Shopify não é a Amazon. Aqui a função das fotos não é apenas mostrar o produto, mas derrubar objeções e aumentar a conversão. O usuário não desliza por imagens bonitas: cada tela seguinte deve responder a uma nova dúvida e aproximar da compra.</p>
+
+  <div class="callout r" style="margin-top:30px">
+    <b>Erro típico:</b> 20 fotos, das quais 14 são a mesma coisa. A bolsa na grama, a bolsa no banco, a bolsa nas mãos. O comprador não recebe nenhuma informação nova — e vai embora.
+  </div>
+
+  <h3 style="margin-top:52px">Sequência ideal de 14 imagens</h3>
+  <p class="mut small" style="margin-top:4px">A ordem importa tanto quanto o conteúdo. Ela reproduz a lógica da tomada de decisão.</p>
+
+  <div class="shots">
+
+    <div class="shot"><div class="num">1</div><div>
+      <h4>Hero — imagem principal</h4>
+      <ul>
+        <li>Os dois produtos de uma vez, se for um Bundle</li>
+        <li>Fundo branco limpo</li>
+        <li>Selo "2-Pack Bundle"</li>
+        <li>As duas cores visíveis</li>
+      </ul>
+      <div class="why">→ Vende a oferta, não o objeto</div>
+    </div></div>
+
+    <div class="shot"><div class="num">2</div><div>
+      <h4>O que vem no kit</h4>
+      <ul>
+        <li>Composição flat lay caprichada</li>
+        <li>2 caixas de transporte + 2 garrafas + acessórios</li>
+        <li>Legenda em cada item</li>
+      </ul>
+      <div class="why">→ A pessoa entende pelo que está pagando</div>
+    </div></div>
+
+    <div class="shot"><div class="num">3</div><div>
+      <h4>Lifestyle — narrativa</h4>
+      <ul>
+        <li>Família com dois gatos</li>
+        <li>Não "bolsas", mas um cenário</li>
+        <li>Ideia: "Viajamos os dois juntos"</li>
+      </ul>
+      <div class="why">→ Vende emoção e pertencimento</div>
+    </div></div>
+
+    <div class="shot"><div class="num">4</div><div>
+      <h4>No carro</h4>
+      <ul>
+        <li>As duas caixas presas pelos cintos</li>
+        <li>Dá para ver a verde e a laranja</li>
+      </ul>
+      <div class="why">→ Explica por que são necessárias duas</div>
+    </div></div>
+
+    <div class="shot"><div class="num">5</div><div>
+      <h4>Tamanho e escala</h4>
+      <ul>
+        <li>O gato sentado dentro</li>
+        <li>Uma pessoa ao lado para dar escala</li>
+        <li>Legendas: até 25 lbs · +43% Expandable</li>
+      </ul>
+      <div class="why">→ Derruba a objeção "será que cabe?"</div>
+    </div></div>
+
+    <div class="shot"><div class="num">6</div><div>
+      <h4>Expandable: antes / depois</h4>
+      <ul>
+        <li>Fechada → aberta</li>
+        <li>O gato deitado dentro, na versão expandida</li>
+      </ul>
+      <div class="why">→ Mostra o mecanismo num só olhar</div>
+    </div></div>
+
+    <div class="shot"><div class="num">7</div><div>
+      <h4>Todas as vantagens em uma imagem</h4>
+      <ul>
+        <li>Infográfico com ícones</li>
+        <li>Metal Buckles · Locking Zippers · Charcoal Filter</li>
+        <li>360° Mesh · Bottle Included · Safety Belt · Expandable</li>
+      </ul>
+      <div class="why">→ Densidade de informação num único swipe</div>
+    </div></div>
+
+    <div class="shot"><div class="num">8</div><div>
+      <h4>Cenários de uso</h4>
+      <ul>
+        <li>Colagem: carro, parque, veterinário, aeroporto, hotel</li>
+      </ul>
+      <div class="why">→ Mostra a versatilidade = mais motivos para comprar</div>
+    </div></div>
+
+    <div class="shot"><div class="num">9</div><div>
+      <h4>Cores e combinações</h4>
+      <ul>
+        <li>Green</li><li>Orange</li><li>Green + Orange</li>
+      </ul>
+      <div class="why">→ Na maioria das vezes é essa imagem que falta</div>
+    </div></div>
+
+    <div class="shot"><div class="num">10</div><div>
+      <h4>Detalhes de qualidade premium</h4>
+      <ul>
+        <li>Macro: zíper, costuras, alças</li>
+        <li>Tela, mosquetões, fivelas</li>
+      </ul>
+      <div class="why">→ A qualidade deve ser sentida através da tela</div>
+    </div></div>
+
+    <div class="shot"><div class="num">11</div><div>
+      <h4>Comparação com uma caixa comum</h4>
+      <ul>
+        <li>Tabela: Comum | Set4Pets 2.0</li>
+        <li>Safety · Space · Comfort · Seat Belt · Bottle · Expandable</li>
+      </ul>
+      <div class="why">→ Uma das imagens mais fortes justamente no Shopify</div>
+    </div></div>
+
+    <div class="shot"><div class="num">12</div><div>
+      <h4>Social proof</h4>
+      <ul>
+        <li>Fotos de clientes satisfeitos (UGC)</li>
+        <li>★★★★★ e o número de avaliações</li>
+        <li>"Thousands of happy pet parents"</li>
+      </ul>
+      <div class="why">→ Resolve a questão de confiança na marca</div>
+    </div></div>
+
+    <div class="shot"><div class="num">13</div><div>
+      <h4>Para quem é este kit</h4>
+      <ul>
+        <li>✔ Two Cats ✔ Couple ✔ Backup Carrier</li>
+        <li>✔ Gift ✔ Foster Parents</li>
+      </ul>
+      <div class="why">→ Ajuda a pessoa a se reconhecer no cenário</div>
+    </div></div>
+
+    <div class="shot"><div class="num">14</div><div>
+      <h4>Imagem final emocional</h4>
+      <ul>
+        <li>Um casal, dois gatos, o pôr do sol, o carro, a estrada</li>
+        <li>Sem texto nem selos</li>
+      </ul>
+      <div class="why">→ O comprador se imagina como dono</div>
+    </div></div>
+
+  </div>
+
+  <div class="grid2" style="margin-top:42px">
+    <div class="card">
+      <h3 style="color:var(--red)">O que remover da página</h3>
+      <ul class="no bad small" style="margin-top:14px">
+        <li>Várias imagens quase idênticas em que o produto só aparece parado na grama</li>
+        <li>Duplicatas no banco do carro</li>
+        <li>Foto de uma pessoa de costas — não agrega valor</li>
+        <li>Imagens parecidas com alguém segurando o produto</li>
+      </ul>
+      <p class="small mut" style="margin-top:14px">Elas não respondem a nenhuma nova dúvida do comprador.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--acc2)">O que adicionar no lugar</h3>
+      <ul class="no good small" style="margin-top:14px">
+        <li>Uma imagem de escala com pessoa e legendas</li>
+        <li>Um infográfico de vantagens</li>
+        <li>Uma tabela comparativa com o concorrente</li>
+        <li>Todas as variações de cor do kit</li>
+        <li>Macros dos detalhes e dos acabamentos</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Lógica da página: as 11 perguntas do comprador</h3>
+  <p class="small mut">Cada imagem responde a exatamente uma pergunta. Se a imagem não responde, ela sobra.</p>
+  <ol class="ladder">
+    <li>O que estou comprando?</li>
+    <li>O que vem no kit?</li>
+    <li>Por que justamente este produto?</li>
+    <li>Qual é o tamanho dele?</li>
+    <li>Como ele funciona?</li>
+    <li>Por que ele é melhor que os concorrentes?</li>
+    <li>Como isso fica na vida real?</li>
+    <li>Quais cores existem?</li>
+    <li>Qual é a qualidade dos detalhes?</li>
+    <li>Por que posso confiar na marca?</li>
+    <li>Consigo me imaginar como dono?</li>
+  </ol>
+</div>
+</section>
+
+<!-- ================= 02 ================= -->
+<section id="s2">
+<div class="wrap">
+  <span class="eyebrow">Seção 02</span>
+  <h2>Arquivo master e exportações</h2>
+  <p class="lead">Se você constrói uma marca para durar, não faça sessões separadas "para o site", "para o Instagram", "para o folheto". É preciso um único arquivo master, do qual se geram todas as outras versões.</p>
+
+  <!-- SVG diagram 1 -> many -->
+  <div class="card" style="margin-top:34px;padding:30px 24px">
+  <svg viewBox="0 0 1000 300" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gm" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#1C7E84"/><stop offset="100%" stop-color="#12BFC4"/>
+      </linearGradient>
+    </defs>
+    <!-- master -->
+    <rect x="18" y="96" width="216" height="108" rx="0" fill="url(#gm)"/>
+    <text x="126" y="134" text-anchor="middle" font-size="19" font-weight="700" fill="#FFFFFF" font-family="Helvetica,Arial">MASTER</text>
+    <text x="126" y="160" text-anchor="middle" font-size="15" fill="#FFFFFF" font-family="Helvetica,Arial">7000 × 7000 px</text>
+    <text x="126" y="182" text-anchor="middle" font-size="13" fill="rgba(255,255,255,.82)" font-family="Helvetica,Arial">sRGB · 300 DPI · acervo</text>
+
+    <!-- connectors -->
+    <g stroke="#D4D4D8" stroke-width="2" fill="none">
+      <path d="M234 150 H300 V40 H360"/>
+      <path d="M234 150 H300 V95 H360"/>
+      <path d="M234 150 H300 V150 H360"/>
+      <path d="M234 150 H300 V205 H360"/>
+      <path d="M234 150 H300 V260 H360"/>
+    </g>
+
+    <g font-family="Helvetica,Arial">
+      <rect x="360" y="18" width="620" height="44" rx="0" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="380" y="46" font-size="15" font-weight="700" fill="#111111">Shopify</text>
+      <text x="960" y="46" font-size="14" text-anchor="end" fill="#1C7E84">3000 × 3000 · JPEG 85–90%</text>
+
+      <rect x="360" y="73" width="620" height="44" rx="0" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="380" y="101" font-size="15" font-weight="700" fill="#111111">Amazon</text>
+      <text x="960" y="101" font-size="14" text-anchor="end" fill="#1C7E84">2000 × 2000 · fundo branco</text>
+
+      <rect x="360" y="128" width="620" height="44" rx="0" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="380" y="156" font-size="15" font-weight="700" fill="#111111">Redes sociais</text>
+      <text x="960" y="156" font-size="14" text-anchor="end" fill="#1C7E84">1080×1350 · 1080×1080 · 1080×1920</text>
+
+      <rect x="360" y="183" width="620" height="44" rx="0" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="380" y="211" font-size="15" font-weight="700" fill="#111111">Email / Banners</text>
+      <text x="960" y="211" font-size="14" text-anchor="end" fill="#1C7E84">1200 px · 2400×1200 · 2560×1440</text>
+
+      <rect x="360" y="238" width="620" height="44" rx="0" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="380" y="266" font-size="15" font-weight="700" fill="#111111">Gráfica</text>
+      <text x="960" y="266" font-size="14" text-anchor="end" fill="#1C7E84">só a partir do master · 300 DPI</text>
+    </g>
+  </svg>
+  </div>
+
+  <div class="grid2" style="margin-top:34px">
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc)"></span><b>Arquivo master (acervo)</b><small>não é publicado</small></div>
+      <dl>
+        <div><dt>Resolução</dt><dd>7000 × 7000 px</dd></div>
+        <div><dt>Espaço de cor</dt><dd>sRGB</dd></div>
+        <div><dt>Formato</dt><dd>PNG / JPEG 100</dd></div>
+        <div><dt>Densidade</dt><dd>300 DPI</dd></div>
+        <div><dt>Compressão</dt><dd>mínima</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc2)"></span><b>Captação (arquivos originais)</b><small>do fotógrafo</small></div>
+      <dl>
+        <div><dt>Formato</dt><dd>RAW</dd></div>
+        <div><dt>Resolução do sensor</dt><dd>45–60 MP</dd></div>
+        <div><dt>Profundidade de cor</dt><dd>14-bit</dd></div>
+        <div><dt>Perfil de captação</dt><dd>Adobe RGB</dd></div>
+        <div><dt>Após o tratamento</dt><dd>conversão para sRGB</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Tabela de exportações</h3>
+  <table>
+    <thead><tr><th>Plataforma</th><th>Tamanho</th><th>Formato / observação</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Shopify</td><td class="v">3000 × 3000</td><td>JPEG, qualidade 85–90%. Mais que isso não faz sentido — só aumenta o peso da página.</td></tr>
+      <tr><td class="k">Amazon</td><td class="v">2000 × 2000</td><td>Fundo branco limpo é obrigatório</td></tr>
+      <tr><td class="k">Instagram / Facebook post</td><td class="v">1080 × 1350</td><td>Formato principal 4:5</td></tr>
+      <tr><td class="k">Stories / Reels</td><td class="v">1080 × 1920</td><td>9:16</td></tr>
+      <tr><td class="k">Feed do Facebook</td><td class="v">1200 × 1500 / 1080 × 1080</td><td>4:5 e quadrado</td></tr>
+      <tr><td class="k">Email</td><td class="v">1200 px de largura</td><td>JPEG, peso otimizado</td></tr>
+      <tr><td class="k">Banners do site</td><td class="v">2400 × 1200 / 2560 × 1440</td><td>Recortes horizontais do master</td></tr>
+      <tr><td class="k">Gráfica</td><td class="v">só o Master</td><td>Nunca ampliar as fotos</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:52px">Proporções de tela</h3>
+  <p class="small mut">Quatro padrões dão conta de praticamente todas as plataformas.</p>
+  <div class="ars">
+    <div class="ar"><div class="arbox" style="width:130px;height:130px">1:1</div><b>Quadrado</b><small>Shopify · FB · Pinterest</small></div>
+    <div class="ar"><div class="arbox" style="width:118px;height:148px">4:5</div><b>Vertical</b><small>Feed IG / FB</small></div>
+    <div class="ar"><div class="arbox" style="width:92px;height:164px">9:16</div><b>Stories / Reels</b><small>IG · TikTok · Shorts</small></div>
+    <div class="ar"><div class="arbox" style="width:200px;height:112px">16:9</div><b>Banner</b><small>Site · YouTube</small></div>
+  </div>
+
+  <div class="callout" style="margin-top:38px">
+    <b>A regra mais importante.</b> Nunca enquadre "no limite". Deixe pelo menos 15–20% de espaço livre ao redor do produto — assim, de um único arquivo master saem sem perdas o quadrado para o Shopify, o vertical para o Instagram, o banner horizontal, a imagem para o e-mail e a capa do catálogo. Isso elimina a necessidade de refazer as fotos a cada nova plataforma e mantém um estilo único em todos os canais.
+  </div>
+
+  <!-- safe crop diagram -->
+  <div class="card" style="margin-top:22px;padding:26px">
+    <svg viewBox="0 0 900 300" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica,Arial">
+      <rect x="20" y="20" width="380" height="260" rx="0" fill="#FAFAFA" stroke="#E5E7EB"/>
+      <rect x="76" y="62" width="268" height="176" rx="0" fill="none" stroke="#1C7E84" stroke-dasharray="6 5"/>
+      <rect x="140" y="102" width="140" height="96" rx="0" fill="#E9E9EC"/>
+      <text x="210" y="156" text-anchor="middle" font-size="14" fill="#6B6B75">produto</text>
+      <text x="210" y="290" text-anchor="middle" font-size="13" fill="#1C7E84">✓ 15–20% de respiro ao redor</text>
+
+      <rect x="500" y="20" width="380" height="260" rx="0" fill="#FAFAFA" stroke="#E5E7EB"/>
+      <rect x="520" y="40" width="340" height="220" rx="0" fill="#E9E9EC"/>
+      <text x="690" y="156" text-anchor="middle" font-size="14" fill="#6B6B75">produto</text>
+      <text x="690" y="290" text-anchor="middle" font-size="13" fill="#C4453A">✕ recorte no limite — impossível reenquadrar</text>
+    </svg>
+  </div>
+</div>
+</section>
+
+<!-- ================= 03 ================= -->
+<section id="s3">
+<div class="wrap">
+  <span class="eyebrow">Seção 03</span>
+  <h2>Vídeo para o site</h2>
+  <p class="lead">Muitos fornecedores entregam um belo MOV ProRes de 2–5 GB e consideram o trabalho concluído. Para o site, esse arquivo é inútil: metade dos navegadores simplesmente não vai abri-lo, e o restante vai levar minutos para carregá-lo.</p>
+
+  <div class="callout r" style="margin-top:28px">
+    O vídeo original nunca é usado diretamente no site. O material gravado em iPhone, Sony ou Canon serve para a edição, não para a publicação. Antes do upload, cada vídeo passa por exportação e otimização.
+  </div>
+
+  <div class="grid2" style="margin-top:34px">
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc)"></span><b>Arquivo master</b><small>acervo, não é publicado</small></div>
+      <dl>
+        <div><dt>Formato</dt><dd>ProRes / MOV / RAW</dd></div>
+        <div><dt>Qualidade</dt><dd>máxima</dd></div>
+        <div><dt>Finalidade</dt><dd>edição e reexportação</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc2)"></span><b>Versão para o site</b><small>é ela que carrega</small></div>
+      <dl>
+        <div><dt>Contêiner / codec</dt><dd>MP4 · H.264</dd></div>
+        <div><dt>Resolução</dt><dd>1920 × 1080</dd></div>
+        <div><dt>Taxa de quadros</dt><dd>24–30 fps</dd></div>
+        <div><dt>Bitrate</dt><dd>6–10 Mbps</dd></div>
+        <div><dt>Áudio</dt><dd>remover, se não for necessário</dd></div>
+        <div><dt>Peso do arquivo</dt><dd>8–15 MB (máx. 20–25)</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:#0F1722"></span><b>Redes sociais</b><small>vertical</small></div>
+      <dl>
+        <div><dt>Formato</dt><dd>MP4 · H.264</dd></div>
+        <div><dt>Resolução</dt><dd>1080 × 1920</dd></div>
+        <div><dt>Taxa de quadros</dt><dd>30 fps</dd></div>
+        <div><dt>Bitrate</dt><dd>8–12 Mbps</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:#6B7A8F"></span><b>Anúncios e YouTube</b><small>exportações separadas</small></div>
+      <dl>
+        <div><dt>Anúncios</dt><dd>1080 × 1920 · até 30–60 s</dd></div>
+        <div><dt>YouTube</dt><dd>1080p / 4K · bitrate mais alto</dd></div>
+        <div><dt>Codec</dt><dd>H.264</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Diferença de peso — na prática</h3>
+  <div class="bars">
+    <div class="bar">
+      <div class="lbl"><span style="color:var(--red)">MOV / ProRes original no site</span><span>≈ 2 000 MB</span></div>
+      <div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#C4453A,#D9705F)"></div></div>
+    </div>
+    <div class="bar">
+      <div class="lbl"><span style="color:#B8862B">Exportação não otimizada</span><span>≈ 300 MB</span></div>
+      <div class="track"><div class="fill" style="width:15%;background:#B8862B"></div></div>
+    </div>
+    <div class="bar">
+      <div class="lbl"><span style="color:var(--grn)">Versão web correta</span><span>≈ 12 MB</span></div>
+      <div class="track"><div class="fill" style="width:1.6%;background:var(--grn);min-width:8px"></div></div>
+    </div>
+  </div>
+  <p class="small mut" style="margin-top:10px">Diferença de ~160×. E, na tela, o usuário não vai perceber nenhuma diferença.</p>
+
+  <div class="grid2" style="margin-top:42px">
+    <div class="card">
+      <h3 style="color:var(--red)">Inaceitável</h3>
+      <ul class="no bad small" style="margin-top:14px">
+        <li>Subir o MOV original para o site</li>
+        <li>Vídeos de 300 MB, 800 MB ou mais</li>
+        <li>ProRes ou RAW no site</li>
+        <li>Codecs que não têm suporte em todos os navegadores</li>
+        <li>Vídeo sem compressão</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Por que isso é crítico</h3>
+      <p class="small" style="margin-top:12px">Mesmo com internet rápida, o navegador precisa baixar o arquivo, decodificá-lo, iniciar a reprodução — e, ao mesmo tempo, carregar o restante da página.</p>
+      <p class="small" style="margin-top:12px">Um vídeo pesado deixa o carregamento lento, prejudica a experiência do usuário e atinge diretamente os <b style="color:var(--acc2)">Core Web Vitals</b> e o posicionamento no SEO.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Fluxo de trabalho</h3>
+  <ol class="ladder">
+    <li>Captação na qualidade máxima</li>
+    <li>Edição a partir dos arquivos originais</li>
+    <li>Correção de cor</li>
+    <li>Exportação do arquivo master para o acervo</li>
+    <li>Criação da versão otimizada para o site</li>
+    <li>Versões separadas para redes sociais e anúncios</li>
+  </ol>
+</div>
+</section>
+
+<!-- ================= 04 ================= -->
+<section id="s4">
+<div class="wrap">
+  <span class="eyebrow">Seção 04 · Agosto de 2026</span>
+  <h2>Requisitos de conteúdo para redes sociais</h2>
+  <p class="lead">O conteúdo é criado uma vez, mas usado ao mesmo tempo em todos os canais: Instagram, Facebook, TikTok, YouTube Shorts, Pinterest, LinkedIn, X e e-mail marketing. Por isso, os materiais devem atender aos requisitos atuais das plataformas.</p>
+
+  <h3 style="margin-top:44px">Fotos</h3>
+  <div class="grid3" style="margin-top:20px">
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc)"></span><b>Formato principal</b></div>
+      <dl>
+        <div><dt>Proporção</dt><dd>4:5</dd></div>
+        <div><dt>Tamanho</dt><dd>1080 × 1350</dd></div>
+        <div><dt>Onde</dt><dd>Feed IG / FB</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc2)"></span><b>Quadrado</b></div>
+      <dl>
+        <div><dt>Proporção</dt><dd>1:1</dd></div>
+        <div><dt>Tamanho</dt><dd>1080 × 1080</dd></div>
+        <div><dt>Onde</dt><dd>Shopify · FB · LinkedIn · Pinterest · Email</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:#0F1722"></span><b>Vertical</b></div>
+      <dl>
+        <div><dt>Proporção</dt><dd>9:16</dd></div>
+        <div><dt>Tamanho</dt><dd>1080 × 1920</dd></div>
+        <div><dt>Onde</dt><dd>Stories · Reels · TikTok · Shorts</dd></div>
+      </dl>
+    </div>
+  </div>
+  <p class="small mut" style="margin-top:14px">4:5 ocupa mais espaço no feed e costuma gerar mais engajamento — é o formato padrão.</p>
+
+  <div class="grid2" style="margin-top:26px">
+    <div class="card">
+      <h4>Requisitos obrigatórios das fotos</h4>
+      <ul class="no good small" style="margin-top:12px">
+        <li>Espaço de cor sRGB</li>
+        <li>JPEG de no mínimo 90%</li>
+        <li>Sem marca d'água nem molduras</li>
+        <li>Sem excesso de texto na imagem</li>
+        <li>Estilo de tratamento único para toda a série</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Consistência da série</h4>
+      <p class="small" style="margin-top:12px">Todas as fotos de uma mesma página de produto devem ter a mesma correção de cor, o mesmo contraste e a mesma temperatura. A falta de padrão no tom é lida como "reunido de fontes diferentes" e reduz a confiança na marca mais do que a falta de imagens.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Vídeo para redes sociais</h3>
+  <div class="grid2" style="margin-top:20px">
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc2)"></span><b>Versão para publicação</b></div>
+      <dl>
+        <div><dt>Formato / codec</dt><dd>MP4 · H.264</dd></div>
+        <div><dt>Resolução</dt><dd>1080 × 1920</dd></div>
+        <div><dt>FPS</dt><dd>30</dd></div>
+        <div><dt>Bitrate</dt><dd>8–15 Mbps</dd></div>
+        <div><dt>Duração</dt><dd>15–45 s é o ideal</dd></div>
+        <div><dt>Anúncios</dt><dd>até 60 s</dd></div>
+      </dl>
+    </div>
+    <div class="spec">
+      <div class="hd"><span class="dot" style="background:var(--acc)"></span><b>Capa do vídeo</b></div>
+      <dl>
+        <div><dt>Imagem separada</dt><dd>sim, obrigatória</dd></div>
+        <div><dt>Vertical</dt><dd>1080 × 1920</dd></div>
+        <div><dt>Para o feed</dt><dd>1080 × 1350</dd></div>
+        <div><dt>Quadro automático</dt><dd>não usar</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Zonas seguras do vídeo vertical</h3>
+  <p class="small mut">A interface da plataforma cobre as bordas do quadro: em cima, a barra de status e o menu; embaixo, a descrição, o avatar e os botões; à direita, as reações.</p>
+
+  <div class="card" style="margin-top:22px;display:flex;gap:34px;align-items:center;flex-wrap:wrap;justify-content:center">
+    <svg viewBox="0 0 260 460" style="width:230px;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica,Arial">
+      <rect x="4" y="4" width="252" height="452" rx="0" fill="#FAFAFA" stroke="#E5E7EB" stroke-width="2"/>
+      <!-- top zone -->
+      <rect x="6" y="6" width="248" height="72" fill="rgba(196,69,58,.10)"/>
+      <line x1="6" y1="78" x2="254" y2="78" stroke="#C4453A" stroke-dasharray="5 4"/>
+      <text x="130" y="46" text-anchor="middle" font-size="12" fill="#C4453A">250–300 px</text>
+      <!-- bottom zone -->
+      <rect x="6" y="352" width="248" height="102" fill="rgba(196,69,58,.10)"/>
+      <line x1="6" y1="352" x2="254" y2="352" stroke="#C4453A" stroke-dasharray="5 4"/>
+      <text x="130" y="410" text-anchor="middle" font-size="12" fill="#C4453A">350–450 px</text>
+      <!-- side zones -->
+      <rect x="6" y="78" width="20" height="274" fill="rgba(196,69,58,.06)"/>
+      <rect x="234" y="78" width="20" height="274" fill="rgba(196,69,58,.06)"/>
+      <!-- safe -->
+      <rect x="30" y="86" width="200" height="258" rx="0" fill="rgba(28,126,132,.07)" stroke="#1C7E84" stroke-dasharray="6 5"/>
+      <text x="130" y="205" text-anchor="middle" font-size="14" font-weight="700" fill="#1C7E84">SAFE ZONE</text>
+      <text x="130" y="226" text-anchor="middle" font-size="11.5" fill="#6B6B75">produto · texto · logo</text>
+      <text x="130" y="252" text-anchor="middle" font-size="11.5" fill="#6B6B75">nas laterais 60–80 px</text>
+    </svg>
+    <div style="max-width:420px">
+      <h4>Legendas</h4>
+      <ul class="no good small" style="margin-top:10px;margin-bottom:20px">
+        <li>Obrigatoriamente embutidas (open captions)</li>
+        <li>Fonte grande e legível, alto contraste</li>
+        <li>A no mínimo 350 px da borda inferior</li>
+      </ul>
+      <h4>Logo</h4>
+      <ul class="no good small" style="margin-top:10px;margin-bottom:20px">
+        <li>Pequeno, num estilo único</li>
+        <li>Não cobre o produto</li>
+        <li>Sempre na mesma zona em todos os vídeos</li>
+      </ul>
+      <h4>Os primeiros 1–2 segundos</h4>
+      <ul class="no bad small" style="margin-top:10px">
+        <li>Aberturas longas</li>
+        <li>Logo em tela cheia</li>
+        <li>Primeiro quadro estático</li>
+        <li>Introdução lenta</li>
+      </ul>
+      <p class="small" style="margin-top:10px;color:var(--acc2)">O vídeo deve começar com uma ação ou um elemento visual forte.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Tabela de exportações por plataforma</h3>
+  <table>
+    <thead><tr><th>Plataforma</th><th>Formato</th><th>Tamanho</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Instagram Feed</td><td>4:5</td><td class="v">1080 × 1350</td></tr>
+      <tr><td class="k">Instagram Stories</td><td>9:16</td><td class="v">1080 × 1920</td></tr>
+      <tr><td class="k">Instagram Reels</td><td>9:16</td><td class="v">1080 × 1920</td></tr>
+      <tr><td class="k">Facebook Feed</td><td>4:5</td><td class="v">1080 × 1350</td></tr>
+      <tr><td class="k">Facebook Stories</td><td>9:16</td><td class="v">1080 × 1920</td></tr>
+      <tr><td class="k">TikTok</td><td>9:16</td><td class="v">1080 × 1920</td></tr>
+      <tr><td class="k">YouTube Shorts</td><td>9:16</td><td class="v">1080 × 1920</td></tr>
+      <tr><td class="k">Pinterest</td><td>2:3 ou 4:5</td><td class="v">1000 × 1500 / 1080 × 1350</td></tr>
+      <tr><td class="k">LinkedIn</td><td>4:5 ou 1:1</td><td class="v">1080 × 1350 / 1080 × 1080</td></tr>
+      <tr><td class="k">X (Twitter)</td><td>16:9 ou 1:1</td><td class="v">1600 × 900 / 1080 × 1080</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ================= 05 ================= -->
+<section id="s5">
+<div class="wrap">
+  <span class="eyebrow">Seção 05</span>
+  <h2>Regra universal: três kits na entrega</h2>
+  <p class="lead">Cada sessão termina com a entrega de três kits de materiais. Isso elimina retrabalho de tratamento, garante um estilo visual único e permite usar um mesmo conjunto de conteúdo em todos os canais.</p>
+
+  <div class="grid3" style="margin-top:34px">
+    <div class="card" style="border-top:3px solid var(--acc)">
+      <span class="eyebrow" style="color:var(--acc)">Kit 01</span>
+      <h3>Master</h3>
+      <p class="small">Arquivos originais na qualidade máxima para acervo e impressão.</p>
+      <ul class="no good small" style="margin-top:14px">
+        <li>RAW · 45–60 MP · 14-bit</li>
+        <li>Fotos 7000 × 7000 px, 300 DPI</li>
+        <li>Vídeo ProRes / MOV</li>
+        <li>Nunca é publicado</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--acc2)">
+      <span class="eyebrow" style="color:var(--acc2)">Kit 02</span>
+      <h3>Web</h3>
+      <p class="small">Otimizado para o site e o Shopify: carregamento rápido sem perda perceptível de qualidade.</p>
+      <ul class="no good small" style="margin-top:14px">
+        <li>Fotos 3000 × 3000, JPEG 85–90%</li>
+        <li>Vídeo MP4 H.264, 1920×1080</li>
+        <li>Peso do vídeo 8–15 MB</li>
+        <li>Banners 2400 × 1200</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid #0F1722">
+      <span class="eyebrow" style="color:#0F1722">Kit 03</span>
+      <h3>Social Media</h3>
+      <p class="small">Versões prontas para publicação em todas as principais plataformas.</p>
+      <ul class="no good small" style="margin-top:14px">
+        <li>Formatos 4:5 · 1:1 · 9:16</li>
+        <li>Zonas seguras respeitadas</li>
+        <li>Legendas embutidas</li>
+        <li>Capas de vídeo separadas</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:52px">Checklist de recebimento dos materiais</h3>
+  <table>
+    <thead><tr><th>Item</th><th>Padrão</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Foto master</td><td class="v">7000 × 7000 · sRGB · 300 DPI</td></tr>
+      <tr><td class="k">Folga nas bordas do quadro</td><td class="v">15–20%</td></tr>
+      <tr><td class="k">Fotos para o Shopify</td><td class="v">3000 × 3000 · JPEG 85–90%</td></tr>
+      <tr><td class="k">Correção de cor única da série</td><td class="v">sim</td></tr>
+      <tr><td class="k">Vídeo para o site</td><td class="v">MP4 H.264 · 1080p · 6–10 Mbps · ≤15 MB</td></tr>
+      <tr><td class="k">Vídeo para redes sociais</td><td class="v">MP4 H.264 · 1080×1920 · 30 fps · 8–15 Mbps</td></tr>
+      <tr><td class="k">Capas de vídeo</td><td class="v">em arquivos separados</td></tr>
+      <tr><td class="k">Legendas</td><td class="v">embutidas, ≥350 px da base</td></tr>
+      <tr><td class="k">Imagens na página de produto</td><td class="v">14, cada uma responde à sua pergunta</td></tr>
+      <tr><td class="k">Duplicatas e imagens "vazias"</td><td class="v">removidas</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ================= 06 / CTA ================= -->
+<section id="s6" style="border-bottom:1px solid var(--line)">
+<div class="wrap">
+  <div class="cta">
+    <div class="wordmark" style="margin-bottom:22px"><span class="a">PRODIGY</span> <span class="b">LAB</span></div>
+    <h2>Quer um padrão assim para a sua marca?</h2>
+    <p class="lead" style="margin:14px auto 0;text-align:center">A Prodigy Lab constrói o conteúdo da captação às exportações finais: página de produto que vende, arquivos master, otimização para o site e o pacote completo para redes sociais — de uma vez e para todos os canais.</p>
+    <a class="btn" href="https://prodigylab.studio/pt/">Conversar sobre o projeto →</a>
+    <p class="small mut" style="margin-top:18px">prodigylab.studio</p>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © 2026 Prodigy Lab · Padrão de conteúdo de foto e vídeo, edição de agosto de 2026.<br>
+    O documento pode ser usado como regulamento interno e como briefing técnico para fornecedores.
+  </div>
+</footer>
+
+<!-- ProdigyBot — live chat (Chatwoot, self-hosted) -->
+<script>
+  (function (d, t) {
+    var BASE_URL = "https://chat.prodigylab.studio";
+    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    g.src = BASE_URL + "/packs/js/sdk.js";
+    g.defer = true; g.async = true;
+    s.parentNode.insertBefore(g, s);
+    g.onload = function () {
+      window.chatwootSettings = window.chatwootSettings || {}; window.chatwootSettings.locale = "pt_BR";
+      window.chatwootSDK.run({
+        websiteToken: "J1xMPSabyx7EfRVPrmZEMLYB",
+        baseUrl: BASE_URL
+      });
+    };
+  })(document, "script");
+</script>
+</body>
+</html>
