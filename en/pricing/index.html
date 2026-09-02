@@ -64,7 +64,7 @@
             to { transform: translateX(-100%); }
         }
 
-        .reveal-up {
+        . {
             opacity: 0;
             transform: translateY(16px);
             transition: opacity .45s cubic-bezier(0.16,1,0.3,1), transform .45s cubic-bezier(0.16,1,0.3,1);
@@ -90,7 +90,7 @@
         /* #6 respect reduced motion */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-            .reveal-up { opacity: 1 !important; transform: none !important; }
+            . { opacity: 1 !important; transform: none !important; }
             .marquee-content, .scroll-hint-line { animation: none !important; }
         }
     #navBurger{display:none;color:#111}@media(max-width:767px){#navBurger{display:inline-flex}}#navMobile{display:none}#navMobile.open{display:flex;flex-direction:column}@media(min-width:768px){#navMobile.open{display:none}}#navMobile a{display:block;padding:12px 4px;font-size:16px;font-weight:500;color:#111}</style>
@@ -136,7 +136,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
 <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6">Pricing</h1>
 <p class="text-xl md:text-2xl text-text-muted max-w-3xl leading-relaxed">Fixed prices, fixed deadlines, no yearly contracts. Start with a free scan and go further only if it makes sense.</p>
 </section>
-<section class="py-20 reveal-up">
+<section class="py-20">
 <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted">Start here</span>
 <h2 class="text-3xl md:text-4xl font-bold tracking-tighter mt-3 mb-3">Three steps before you spend on production</h2>
 <p class="text-text-muted max-w-2xl mb-12">Each step gives you a new level of information, not just more text. You can stop at any of them.</p>
@@ -165,7 +165,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
 </div>
 <p class="text-text-muted text-sm mt-8">The $99 plan is credited toward the $495 audit within 30 days. The audit is credited in full toward any project you order within 30 days.</p>
 </section>
-<section class="py-20 border-t border-border-subtle reveal-up">
+<section class="py-20 border-t border-border-subtle">
 <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted">Website</span>
 <h2 class="text-3xl md:text-4xl font-bold tracking-tighter mt-3 mb-3">Shopify development</h2>
 <p class="text-text-muted max-w-2xl mb-4">Fixed price, fixed deadline. Miss the deadline and we refund you.</p>
@@ -184,7 +184,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
 <div class="font-bold text-lg whitespace-nowrap">$1,900</div></div>
 
 </section>
-<section class="py-20 border-t border-border-subtle reveal-up">
+<section class="py-20 border-t border-border-subtle">
 <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted">Ads</span>
 <h2 class="text-3xl md:text-4xl font-bold tracking-tighter mt-3 mb-3">Advertising</h2>
 <p class="text-text-muted max-w-2xl mb-4">Meta, Google, TikTok. Your ad budget goes straight to the platforms — we never touch it.</p>
@@ -203,7 +203,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
 <div class="font-bold text-lg whitespace-nowrap">12%</div></div>
 
 </section>
-<section class="py-20 border-t border-border-subtle reveal-up">
+<section class="py-20 border-t border-border-subtle">
 <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted">Automation</span>
 <h2 class="text-3xl md:text-4xl font-bold tracking-tighter mt-3 mb-3">ProdigyBot — your AI salesperson</h2>
 <p class="text-text-muted max-w-2xl mb-4">Setup plus a flat monthly fee. No per-message billing: the price is the same at 100 and at 1,000 chats. Minimum 3 months.</p>
@@ -222,7 +222,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
 <div class="font-bold text-lg whitespace-nowrap">$600</div></div>
 <p class="text-text-muted text-sm mt-6">Meta and WhatsApp platform fees are passed through at cost, with no markup.</p>
 </section>
-<section class="py-20 border-t border-border-subtle reveal-up">
+<section class="py-20 border-t border-border-subtle">
 <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted">System</span>
 <h2 class="text-3xl md:text-4xl font-bold tracking-tighter mt-3 mb-3">Growth Partner</h2>
 <p class="text-text-muted max-w-2xl mb-4">Ads, ProdigyBot, site and creative run as one system: we bring the leads and answer them in seconds.</p>
@@ -232,7 +232,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
 <div class="font-bold text-lg whitespace-nowrap">$3,900/mo</div></div>
 <p class="text-text-muted text-sm mt-6">Minimum 3 months.</p>
 </section>
-<section class="py-20 border-t border-border-subtle reveal-up">
+<section class="py-20 border-t border-border-subtle">
 <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted">A la carte</span>
 <h2 class="text-3xl md:text-4xl font-bold tracking-tighter mt-3 mb-3">Add-ons</h2>
 <p class="text-text-muted max-w-2xl mb-4">Available on their own or alongside anything above.</p>
@@ -251,7 +251,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
 <div class="font-bold text-lg whitespace-nowrap">$150/hr</div></div>
 
 </section>
-<section class="py-20 border-t border-border-subtle reveal-up">
+<section class="py-20 border-t border-border-subtle">
 <h2 class="text-3xl md:text-4xl font-bold tracking-tighter mb-8">Good to know</h2>
 <div class="grid md:grid-cols-3 gap-8 text-text-muted">
 <div><div class="font-bold text-on-surface mb-2">No yearly contracts</div>Everything is monthly. The only minimums are ProdigyBot and Growth Partner, at 3 months.</div>
@@ -259,7 +259,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
 <div><div class="font-bold text-on-surface mb-2">Credits move you up</div>$99 credits into the $495 audit; the audit credits into any project within 30 days.</div>
 </div>
 </section>
-<section class="py-24 text-center reveal-up">
+<section class="py-24 text-center">
 <h2 class="text-4xl md:text-5xl font-bold tracking-tighter mb-6">Not sure where you are losing customers?</h2>
 <p class="text-xl text-text-muted mb-12 max-w-2xl mx-auto">Start with the free scan. It takes a minute and costs nothing.</p>
 <a href="https://scan.prodigylab.studio/?lang=en" class="inline-block bg-accent-green text-white px-12 py-6 font-bold text-sm tracking-widest uppercase hover:brightness-90 transition-all">Scan my website free</a>
