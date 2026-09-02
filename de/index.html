@@ -438,6 +438,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
 <a href="/" class="flex items-center gap-3"><svg width="30" height="30" viewBox="0 0 1024 1024" class="flex-shrink-0"><use href="#logo-sym"/></svg><div class="text-xl font-bold tracking-tighter"><span class="text-accent-green">PRODIGY</span> <span class="font-light">LAB</span></div></a>
 <div id="navLinks" class="hidden md:flex gap-12 items-center">
 <a class="text-sm font-medium hover:text-accent-green transition-colors" href="#audit">Audit</a>
+<a class="text-sm font-medium hover:text-accent-green transition-colors" href="https://scan.prodigylab.studio/?lang=de">Kostenloser Check</a>
 <a class="text-sm font-medium text-text-muted hover:text-accent-green transition-colors" href="#services">Leistungen</a>
 <a class="text-sm font-medium text-text-muted hover:text-accent-green transition-colors" href="#cases">Cases</a><a class="text-sm font-medium text-accent-green hover:text-accent-green transition-colors" href="/en/pricing/">Preise</a>
 <a class="text-sm font-medium text-text-muted hover:text-accent-green transition-colors" href="#contact">Kontakt</a>
@@ -461,10 +462,10 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
 <h1 class="text-5xl sm:text-6xl md:text-[96px] font-bold leading-[0.98] mb-10">DU BRAUCHST KEINEN <br/><span class="text-text-muted">NEUEN MARKETER.</span></h1>
 <p class="text-xl md:text-2xl text-text-muted max-w-2xl mx-auto mb-16 leading-relaxed">Du brauchst eine ehrliche Business-Analyse — wo du Kunden und Geld verlierst.</p>
 <div class="flex flex-col md:flex-row gap-4 justify-center">
-<button onclick="goContact()" class="bg-accent-green text-white px-12 py-6 font-bold text-sm tracking-widest uppercase hover:brightness-90 hover:scale-[1.02] active:scale-[0.98] active:brightness-95 transition-all flex items-center gap-4">
-                    ANALYSE ANFORDERN
+<a href="https://scan.prodigylab.studio/?lang=de" class="bg-accent-green text-white px-12 py-6 font-bold text-sm tracking-widest uppercase hover:brightness-90 hover:scale-[1.02] active:scale-[0.98] active:brightness-95 transition-all flex items-center gap-4">
+                    WEBSITE KOSTENLOS PRÜFEN
                     <span class="material-symbols-outlined text-base" data-icon="arrow_forward">arrow_forward</span>
-</button>
+</a>
 <button onclick="goAudit()" class="bg-white border border-border-subtle text-on-surface px-12 py-6 font-bold text-sm tracking-widest uppercase hover:bg-surface active:brightness-95 transition-colors">
                     Was die Analyse umfasst
 </button>
@@ -516,6 +517,38 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
 </div>
 </section>
 <!-- Section 4: Audit -->
+<!-- Лестница продуктов: скан → план → аудит -->
+<section id="ladder" class="py-section-gap bg-surface">
+<div class="max-w-[1200px] mx-auto px-8">
+<div class="max-w-2xl mb-20 reveal-up">
+<span class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted">So fangen Sie an</span>
+<h2 class="text-4xl md:text-5xl font-bold tracking-tighter mt-4 mb-6">Drei Schritte — vom kostenlosen Check zum Wachstumsplan</h2>
+<p class="text-xl text-text-muted leading-relaxed">Jeder Schritt liefert eine neue Informationsebene, nicht einfach mehr Text.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="border border-border-subtle bg-white p-10 flex flex-col reveal-up">
+<div class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted mb-4">01</div>
+<div class="text-5xl font-bold tracking-tighter mb-4 text-accent-green">Kostenlos</div>
+<h3 class="text-xl font-bold mb-3">Website-Check</h3>
+<p class="text-text-muted leading-relaxed mb-8 flex-grow">Die KI liest Ihre Website wie ein neuer Besucher: Score, die drei größten Probleme und ein kurzes Fazit. Ohne Zugänge, ohne Anruf.</p>
+<a href="https://scan.prodigylab.studio/?lang=de" class="bg-accent-green text-white px-8 py-4 font-bold text-xs tracking-widest uppercase text-center hover:brightness-90 active:brightness-95 transition-all">Kostenlos prüfen</a>
+</div><div class="border border-border-subtle bg-white p-10 flex flex-col reveal-up">
+<div class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted mb-4">02</div>
+<div class="text-5xl font-bold tracking-tighter mb-4 text-on-surface">$99</div>
+<h3 class="text-xl font-bold mb-3">Website Action Plan</h3>
+<p class="text-text-muted leading-relaxed mb-8 flex-grow">Was zu ändern ist und in welcher Reihenfolge: 5–10 Probleme mit konkreten Änderungen, fertige Texte, schnelle Erfolge und ein 7-Tage-Plan.</p>
+<a href="https://scan.prodigylab.studio/?lang=de" class="bg-accent-green text-white px-8 py-4 font-bold text-xs tracking-widest uppercase text-center hover:brightness-90 active:brightness-95 transition-all">Mit dem Check starten</a>
+</div><div class="border border-border-subtle bg-white p-10 flex flex-col reveal-up">
+<div class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted mb-4">03</div>
+<div class="text-5xl font-bold tracking-tighter mb-4 text-on-surface">$495</div>
+<h3 class="text-xl font-bold mb-3">Vollständiges Audit</h3>
+<p class="text-text-muted leading-relaxed mb-8 flex-grow">Warum es Umsatz kostet: echte Analytics- und Werbedaten, Wettbewerber, Funnel, Customer Journey und ein 90-Tage-Plan.</p>
+<button onclick="goContact()" class="bg-white border border-border-subtle text-on-surface px-8 py-4 font-bold text-xs tracking-widest uppercase hover:bg-surface active:brightness-95 transition-colors">Audit buchen</button>
+</div>
+</div>
+<p class="font-mono text-[10px] tracking-[0.2em] uppercase text-text-muted mt-10">Die $99 werden innerhalb von 30 Tagen auf das $495-Audit angerechnet.</p>
+</div>
+</section>
 <section id="audit" class="py-section-gap bg-surface">
 <div class="max-w-[1200px] mx-auto px-8">
 <div class="flex flex-col md:flex-row justify-between items-end mb-32 gap-12">
