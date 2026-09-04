@@ -1,1 +1,3 @@
 node_modules/
+.indexnow-state.json
+logs/

@@ -1,0 +1,19 @@
+{
+  "name": "prodigylab-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "prodigylab.studio — static site + SEO toolchain (Tailwind build, sitemap, IndexNow)",
+  "scripts": {
+    "css": "tailwindcss -i tw-src.css -o assets/tw.css --minify",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "indexnow": "node scripts/indexnow-submit.js",
+    "indexnow:all": "node scripts/indexnow-submit.js --all",
+    "indexnow:dry": "node scripts/indexnow-submit.js --dry",
+    "seo": "npm run css && npm run sitemap && npm run indexnow"
+  },
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.9",
+    "tailwindcss": "^3.4.17"
+  }
+}
