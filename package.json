@@ -9,12 +9,12 @@
     "indexnow": "node scripts/indexnow-submit.js",
     "indexnow:all": "node scripts/indexnow-submit.js --all",
     "indexnow:dry": "node scripts/indexnow-submit.js --dry",
-    "seo": "npm run build && npm run indexnow",
+    "seo": "npm run all && npm run indexnow",
     "pages": "cd scripts && python3 build_pages.py",
     "schema": "node scripts/inject-entity-schema.js",
     "llms": "node scripts/generate-llms-txt.js",
     "facts": "npm run schema && npm run llms",
-    "build": "npm run pages && npm run facts && npm run css && npm run sitemap"
+    "all": "npm run pages && npm run facts && npm run css && npm run sitemap"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
