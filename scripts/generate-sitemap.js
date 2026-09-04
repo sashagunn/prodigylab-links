@@ -37,6 +37,11 @@ const PRIORITY = [
   [/^prodigybot\/$/,                  '0.9', 'monthly'],
   [/^(en|es|pt|de)\/prodigybot\/$/,   '0.8', 'monthly'],
   [/^(en|es|pt|de)\/pricing\/$/,      '0.8', 'monthly'],
+  // Entity-страницы: как AI и поиск понимают, что это за компания
+  [/^about\/$/,                        '0.9', 'monthly'],
+  [/^services\/$/,                     '0.9', 'monthly'],
+  [/^scan\/$/,                         '0.9', 'monthly'],
+  [/^case-studies\/$/,                 '0.8', 'monthly'],
   // SEO-посадочные под услуги (корневые слаги)
   [/^(shopify-development|shopify-redesign|website-development|website-redesign|ai-chatbot|ai-automation|meta-ads-management|google-ads-management)\/$/, '0.8', 'monthly'],
   [/^(shopify-audit|website-audit|conversion-rate-optimization|ecommerce-consulting|business-operations|business-consulting-usa)\/$/,                    '0.8', 'monthly'],

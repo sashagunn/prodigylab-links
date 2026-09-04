@@ -1,0 +1,482 @@
+# -*- coding: utf-8 -*-
+"""Контент страниц. Правится здесь, собирается build_pages.py."""
+from build_pages import (FACTS, ORIGIN, hero, qa, facts_table, cols, steps, cards,
+                         disclaimer, cta_band, faq_ld, breadcrumb_ld, service_ld)
+
+WA = "https://wa.me/18182690416"
+SCAN = "https://scan.prodigylab.studio/"
+PAGES = []
+
+# ============================== /about/ ==============================
+about_faq = [
+ ("What is Prodigy LAB?",
+  "Prodigy LAB is a remote digital growth studio that builds and fixes the systems a small business sells through — its store, its website, its advertising and its customer conversations.",
+  "It operates as Platonaire LLC, based in California and working with clients across the United States. Engagements start with a paid audit rather than a retainer, so the client sees the reasoning before committing to a project."),
+ ("Who is Prodigy LAB for?",
+  "Owners of small and mid-sized businesses who already have traffic or ad spend but are not converting it into sales.",
+  "Typical clients: Shopify brands, local service businesses running paid ads, and Russian-speaking entrepreneurs operating companies in the United States. Prodigy LAB is not a fit for pre-idea startups with no product and no traffic — there is nothing to diagnose yet."),
+ ("Does Prodigy LAB have an office?",
+  "No. It is a remote studio with no walk-in location.",
+  "The company is registered in California and works with clients over calls and messaging. Any address claiming to be a Prodigy LAB office is not ours."),
+ ("How does an engagement usually start?",
+  "With the free AI website scan, then the $99 Website Action Plan, then the $495 full audit — each step optional.",
+  "The $99 plan is credited toward the $495 audit within 30 days, and the audit is credited in full toward any project ordered within 30 days. Nobody is asked to buy implementation before seeing the diagnosis."),
+ ("What does Prodigy LAB not do?",
+  "No legal, tax, investment or regulated financial advice, and no company formation, visas or immigration.",
+  "This matters because a share of enquiries — especially from Russian-speaking business owners in the US — arrive expecting exactly that. For those matters you need a licensed professional, not a marketing studio."),
+ ("What languages does the studio work in?",
+  "Russian, English, Spanish, Portuguese and German.",
+  "The website is published in all five. Client work is normally conducted in Russian or English."),
+]
+PAGES.append(dict(
+    slug='about', lang='en',
+    title='About Prodigy LAB — Digital Growth Studio',
+    description='Prodigy LAB (Platonaire LLC): a remote digital growth studio in California. Shopify and websites, conversion, ads, AI sales assistants. Facts, services and pricing.',
+    jsonld=[breadcrumb_ld('about', 'About'), faq_ld(about_faq)],
+    sections=[
+        hero('About', 'A studio that starts with the diagnosis, not the invoice',
+             'Prodigy LAB builds and fixes the systems a business sells through. Most clients arrive with the same symptom — traffic exists, sales do not — and the first job is finding out which part is actually broken before anyone spends money rebuilding it.',
+             [(f'{ORIGIN}/services/', 'See services', False), (SCAN, 'Free website scan', True)],
+             'Platonaire LLC · California, USA · remote'),
+        facts_table('Company facts', [
+            ('Trading name', 'Prodigy LAB'),
+            ('Legal entity', FACTS['identity']['legalName']),
+            ('Website', f'<a class="text-accent-green hover:underline" href="{ORIGIN}/">prodigylab.studio</a> — prodigylab.agency is not our site'),
+            ('Base', 'California, United States'),
+            ('Office', 'None. Remote studio, no walk-in location.'),
+            ('Area served', 'United States'),
+            ('Working languages', 'Russian, English, Spanish, Portuguese, German'),
+            ('Business phone / WhatsApp', f'<a class="text-accent-green hover:underline" href="{WA}">+1 818 269 0416</a>'),
+            ('Entry point', f'Free AI website scan → $99 Action Plan → $495 full audit → implementation'),
+        ], surface=True),
+        cols('What the studio actually does',
+             [('Stores and websites', 'Shopify builds and rebuilds, custom sites and landing pages for paid traffic. Fixed price, fixed deadline.'),
+              ('Conversion', 'Finding where visitors drop out and changing the specific things that cause it, rather than redesigning for taste.'),
+              ('Advertising', 'Meta and Google campaigns run end to end. The ad budget goes straight to the platform — the studio never holds it.'),
+              ('AI assistants', 'ProdigyBot answers customer messages across five channels around the clock, qualifies the enquiry and hands a human the ones that need a human.'),
+              ('Operations', 'For businesses without an internal marketing team: CRM, automation, reporting and creative run as one system.'),
+              ('Audits', 'The paid audit is the product, not a lead magnet. It is what most engagements are built on.')],
+             lead='Six areas. Everything else the studio is asked for is either part of one of these or gets declined.'),
+        steps('How working together goes', [
+            ('You see the diagnosis first', 'Free scan, then a $99 plan, then a $495 audit. Each step gives new information and each is optional. Stopping after any of them is a normal outcome.'),
+            ('The audit is credited', 'If you order a project within 30 days, the $495 comes off the price. You do not pay twice for the same thinking.'),
+            ('Then implementation', 'Fixed price and fixed deadline on build work. Advertising and the bot run monthly, minimum three months, no annual contracts.'),
+        ], surface=True),
+        qa('Straight answers', about_faq),
+        disclaimer('en'),
+        cards('Where to go next', [
+            (f'{ORIGIN}/services/', 'All services', 'Fifteen service pages, each with what is included and what is not.'),
+            (f'{ORIGIN}/case-studies/', 'Case studies', 'What was done and what came of it, with the numbers we can actually stand behind.'),
+            (f'{ORIGIN}/en/pricing/', 'Pricing', 'The public price list. It is the single source of truth for prices.'),
+        ]),
+    ]))
+
+# ============================== /scan/ ==============================
+scan_faq = [
+ ("What is the free AI website scan?",
+  "It is an automated check of a public website that returns a score out of 100 and the three biggest problems a first-time visitor would run into.",
+  "You give it a website address and nothing else. It looks at what any visitor can see from outside: what the page says, how fast it is, whether it works on a phone, whether a buyer can figure out what to do next."),
+ ("What do I need to give it?",
+  "A website URL. Nothing else.",
+  "No account access, no admin login, no analytics connection, no credit card, no sales call. It reads the public version of the site, the same one your customers see."),
+ ("What do I get back?",
+  "A score out of 100, up to three visible problems, and a short verdict on what to fix first.",
+  "It is deliberately limited. The free scan shows symptoms; it does not tell you why they are happening or what the fix is worth. That is what the paid steps are for."),
+ ("What does it not do?",
+  "It does not read your analytics, your ad accounts or your order data, and it does not diagnose why sales are down.",
+  "A site can score well and still lose money — because the traffic is wrong, the offer is wrong, or the follow-up is missing. None of that is visible from outside, and the free scan will not pretend otherwise."),
+ ("What is the next step after the scan?",
+  "The $99 Website Action Plan: 5-10 issues with the exact change and a priority for each, ready-to-paste copy, 3-5 quick wins and a 7-day plan.",
+  "It is delivered as a saved report you can hand straight to a developer. If you then order the $495 full audit within 30 days, the $99 is credited toward it."),
+ ("Is there a catch?",
+  "No. The scan is free and does not require a call.",
+  "The studio publishes it because a specific, uncomfortable finding about your own site is more persuasive than any sales page. Most people who buy the paid steps do so after seeing something in the free result they did not know."),
+]
+PAGES.append(dict(
+    slug='scan', lang='en',
+    title='Free AI Website Scan — Prodigy LAB',
+    description='Free automated website scan: a score out of 100 and the three biggest problems a first-time visitor hits. URL only — no account access, no credit card, no call.',
+    jsonld=[breadcrumb_ld('scan', 'Free AI website scan'), faq_ld(scan_faq),
+            service_ld('scan', 'Free AI Website Scan',
+                       'Automated scan of a public website returning a score out of 100 and up to three visible conversion problems. Requires only a website URL.', 0)],
+    sections=[
+        hero('Free scan', 'Find out what your website looks like to a stranger',
+             'You know your site too well to see it. The scan reads it the way a first-time visitor does and tells you the three things that lose them — in about a minute, from nothing but the address.',
+             [(SCAN, 'Scan my website', True), (f'{ORIGIN}/website-audit/', 'See the full audit', False)],
+             'Free · no account access · no credit card · no call'),
+        facts_table('The scan in one table', [
+            ('What it is', 'Automated AI scan of a public website'),
+            ('What you provide', 'A website URL — nothing else'),
+            ('What it returns', 'A score out of 100, up to 3 visible problems, a short verdict'),
+            ('What it costs', 'Free'),
+            ('Account access needed', 'No'),
+            ('Credit card needed', 'No'),
+            ('Sales call required', 'No'),
+            ('Time', 'About a minute'),
+            ('Next step', f'<a class="text-accent-green hover:underline" href="{ORIGIN}/en/pricing/">$99 Website Action Plan</a>'),
+            ('Where it runs', f'<a class="text-accent-green hover:underline" href="{SCAN}">scan.prodigylab.studio</a>'),
+        ], surface=True),
+        cols('What it checks',
+             [('First impression', 'What the page communicates in the first seconds — whether a stranger can tell what you sell and to whom.'),
+              ('Path to action', 'Whether there is an obvious next step, and whether a buyer can reach it without hunting.'),
+              ('Speed', 'How long a visitor waits before seeing anything. Slow pages lose people before the content matters.'),
+              ('Mobile', 'Whether the site holds together on a phone, where most of your traffic actually is.'),
+              ('Trust', 'Whether anything on the page gives a stranger a reason to believe you.'),
+              ('Clarity of the offer', 'Whether the page answers what it costs, who it is for, and what happens next.')],
+             lead='Everything visible from outside, without touching your accounts.'),
+        steps('How it works', [
+            ('Enter the address', 'Paste your website URL. That is the whole input.'),
+            ('The scan reads the public page', 'It looks at what any visitor can see. It does not log in anywhere and does not touch your data.'),
+            ('You get the score and the problems', 'A number out of 100, up to three specific issues, and what to do about them first.'),
+        ], surface=True),
+        qa('Straight answers about the scan', scan_faq),
+        cta_band('After the scan, the honest next step',
+                 'The free scan shows symptoms. If you want the causes — 5-10 issues with the exact change, priority, copy you can paste and a 7-day plan — that is the $99 Website Action Plan, and it is credited toward the $495 full audit if you go further within 30 days.',
+                 f'{ORIGIN}/en/pricing/', 'See what each step includes'),
+        cards('Related', [
+            (f'{ORIGIN}/website-audit/', 'Full website audit — $495', 'Analytics, ads, competitors, funnel and a 90-day plan. The paid version of this question.'),
+            (f'{ORIGIN}/conversion-rate-optimization/', 'Conversion optimisation', 'For when you already know what is broken and want it fixed.'),
+            (f'{ORIGIN}/services/', 'All services', 'Everything the studio does, in one list.'),
+        ]),
+    ]))
+
+# ============================== /services/ ==============================
+GROUPS = [
+ ('Stores and websites', 'Building or rebuilding the thing people actually buy through.', [
+   ('shopify-development', 'Shopify Development', 'A new store built to sell, not just to exist. Fixed price, fixed deadline.'),
+   ('shopify-redesign', 'Shopify Redesign', 'An existing store rebuilt around where it currently loses buyers.'),
+   ('website-development', 'Website Development', 'Sites and landing pages built for paid traffic to land on.'),
+   ('website-redesign', 'Website Redesign', 'For sites that look fine and still lose people.')]),
+ ('Diagnosis', 'Finding out what is wrong before spending money on the cure.', [
+   ('website-audit', 'Website Audit', 'The $495 audit: analytics, ads, competitors, funnel, 90-day plan.'),
+   ('shopify-audit', 'Shopify Audit', 'The same, aimed at a store: catalogue, checkout, returning buyers.'),
+   ('conversion-rate-optimization', 'Conversion Rate Optimization', 'Changing the specific things that make visitors leave.'),
+   ('ecommerce-consulting', 'E-commerce Consulting', 'For owners who need a second opinion before a big decision.')]),
+ ('Advertising', 'Bringing traffic once the site can hold it.', [
+   ('meta-ads-management', 'Meta Ads Management', 'Facebook and Instagram end to end. Your budget goes straight to Meta.'),
+   ('google-ads-management', 'Google Ads Management', 'Search, Shopping and Performance Max for demand that already exists.')]),
+ ('Automation', 'Removing the repetitive part of running a business.', [
+   ('ai-chatbot', 'AI Sales Chatbot', 'ProdigyBot answers on five channels in about four seconds, around the clock.'),
+   ('ai-automation', 'AI Automation', 'Qualification, follow-up, CRM, calendar, invoices and payment in chat.')]),
+ ('Operations and advisory', 'For businesses without an internal marketing team.', [
+   ('business-operations', 'Fractional Digital Operations', 'Ads, CRM, automation and reporting run as one system.'),
+   ('business-consulting-usa', 'Business Consulting for US SMBs', 'Deciding what to fix first when everything looks broken at once.'),
+   ('russian-business-consulting-miami', 'Русскоязычный бизнес в США и Майами', 'Цифровые операции на русском языке. Не юридические и не налоговые услуги.')]),
+]
+services_faq = [
+ ("Which service should I start with?",
+  "Almost always the audit, not the build. The free scan first if you want to see the studio's thinking before paying anything.",
+  "Buying a redesign before knowing why the current site fails is how people spend $5,000 to change the colour of a problem. The $495 audit is credited in full toward any project ordered within 30 days, so starting there costs nothing extra."),
+ ("Can I buy just one service?",
+  "Yes. Everything on this page is available on its own.",
+  "There is also a Growth Partner retainer at $3,900/mo that runs ads, the bot, the site and creative as one system, with a three-month minimum. It is the exception, not the default."),
+ ("Do you hold the advertising budget?",
+  "No. The ad budget goes straight to Meta or Google from your own account.",
+  "The studio bills its fee separately and never touches media spend. Platform fees from Meta and WhatsApp are passed through at cost with no markup."),
+ ("Are there annual contracts?",
+  "No. Build work is fixed price and fixed deadline; monthly services have a three-month minimum.",
+  "If a deadline on a fixed-price build is missed, the fee is refunded."),
+]
+PAGES.append(dict(
+    slug='services', lang='en',
+    title='Services — Prodigy LAB',
+    description='Every Prodigy LAB service in one place: Shopify and website builds, audits, conversion work, Meta and Google ads, AI chatbots, fractional digital operations.',
+    jsonld=[breadcrumb_ld('services', 'Services'), faq_ld(services_faq),
+            {"@context": "https://schema.org", "@type": "ItemList", "name": "Prodigy LAB services",
+             "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": s['name_en'],
+                                  "url": f"{ORIGIN}/{s['slug']}/"} for i, s in enumerate(FACTS['services'])]}],
+    sections=[
+        hero('Services', 'Fifteen things the studio does, and the order to do them in',
+             'Each page below says what is included, what is not, what it costs and what happens next. If you are not sure which one you need, that is what the audit is for — it is the only honest way to answer that question.',
+             [(f'{ORIGIN}/website-audit/', 'Start with the audit', False), (SCAN, 'Free scan first', True)],
+             'Fixed prices · no annual contracts · budget goes straight to the ad platforms'),
+    ] + [
+        cards(g[0], [(f'{ORIGIN}/{sl}/', n, d) for sl, n, d in g[2]], lead=g[1], surface=(i % 2 == 0))
+        for i, g in enumerate(GROUPS)
+    ] + [
+        facts_table('What each step costs', [
+            ('Free AI website scan', 'Free — score out of 100 and three visible problems'),
+            ('Website Action Plan', '$99 — 5-10 issues with the exact change, copy and a 7-day plan'),
+            ('Full business audit', '$495 — analytics, ads, competitors, funnel, 90-day plan, 60-minute call'),
+            ('Shopify build', 'Launch $2,900 · Growth $5,900 · Custom from $9,900'),
+            ('Landing page', '$1,900'),
+            ('Ads setup', '$1,500 one-time'),
+            ('Ads management', '$1,500/mo one platform · $2,250/mo two · 12% of spend above $15,000/mo'),
+            ('ProdigyBot', 'Start $600 + $290/mo · Sales $1,200 + $590/mo · Business $2,200 + $990/mo'),
+            ('Growth Partner', '$3,900/mo, minimum 3 months'),
+        ]),
+        qa('Straight answers', services_faq, surface=True),
+        disclaimer('en'),
+    ]))
+
+# ============================== /case-studies/ ==============================
+cases_faq = [
+ ("Why are there so few numbers on this page?",
+  "Because only the numbers that come out of a real report are published, and most client data is not ours to publish.",
+  "A case study with invented percentages is worse than no case study: it is the same thing every agency does, and it teaches a prospective client to distrust everything else on the site. Where a figure is missing here, it is missing on purpose."),
+ ("Can I talk to a past client?",
+  "Ask on a call and it will be arranged where the client agrees to it.",
+  "References are given directly rather than published, because clients did not sign up to become marketing material."),
+ ("What does a typical engagement look like?",
+  "Audit first, then a fixed-price fix, then usually ongoing advertising or the bot.",
+  "The pattern in both cases below is the same: the thing the owner wanted to buy was not the thing that was broken."),
+]
+def case_block(c, i):
+    rows = [('Industry', c['industry']),
+            ('Problem', c['problem_ru']),
+            ('What was done', c['done_ru']),
+            ('Result', c['result_ru']),
+            ('Services used', ' · '.join(f'<a class="text-accent-green hover:underline" href="{ORIGIN}/{s}/">{s.replace("-", " ")}</a>' for s in c['servicesUsed'])),
+            ('Figures verified', 'Yes — from the studio\'s own records' if c['verifiedNumbers'] else 'No — revenue figures are not published because they are not ours to verify')]
+    return facts_table(c['id'].replace('-', ' ').title(), rows, surface=(i % 2 == 0))
+PAGES.append(dict(
+    slug='case-studies', lang='en',
+    title='Case Studies — Prodigy LAB',
+    description='What Prodigy LAB actually did for clients and what came of it. Only figures that come from real records are published; unverified numbers are marked as such.',
+    jsonld=[breadcrumb_ld('case-studies', 'Case studies'), faq_ld(cases_faq)],
+    sections=[
+        hero('Case studies', 'Two cases, and what is missing from them',
+             'Most agency case studies are fiction with a chart. These are short because only what can be verified is here — where a number is not backed by a real report, it is left out and said so.',
+             [(f'{ORIGIN}/website-audit/', 'Start with an audit', False), (WA, 'Ask about references', True)]),
+    ] + [case_block(c, i) for i, c in enumerate(FACTS['cases'])] + [
+        cols('What both cases have in common',
+             [('The owner misdiagnosed it', 'In both, the thing about to be bought was not the thing that was broken. The audit is what caught the difference.'),
+              ('The fix was smaller than expected', 'Neither needed everything rebuilt. Finding the actual constraint is most of the work.'),
+              ('The proof came fast or not at all', 'When the constraint is the right one, the change shows up in days, not quarters. When nothing moves in a month, the diagnosis was wrong and it gets said out loud.')]),
+        qa('Straight answers', cases_faq, surface=True),
+        cta_band('Your situation is not on this page',
+                 'It never is — that is the point of an audit rather than a template. The $495 full audit looks at your analytics, your ads and your funnel and says what is actually costing you sales. It is credited in full toward any project you order within 30 days.',
+                 f'{ORIGIN}/website-audit/', 'See what the audit covers'),
+    ]))
+
+# ============================== /google-ads-management/ ==============================
+gads_faq = [
+ ("How much does Google Ads management cost?",
+  "Setup is $1,500 one-time. Management is $1,500/mo for one platform or $2,250/mo for two. Above $15,000/mo in ad spend it switches to 12% of budget.",
+  "Your ad budget is separate and goes straight to Google from your own account. The studio never holds media spend."),
+ ("Should I run Google or Meta first?",
+  "Google if people are already searching for what you sell. Meta if they are not.",
+  "Google Ads captures demand that exists — someone typing 'emergency electrician near me' has already decided. Meta creates demand for things people were not looking for. Spending on the wrong one first is the most common paid-media mistake we see."),
+ ("Why are my Google Ads getting clicks but no calls?",
+  "Usually because the clicks are the wrong ones or the landing page does not answer what the searcher typed.",
+  "Broad match with no negative keywords buys traffic for questions you do not serve. And a click that lands on a generic homepage instead of a page about that exact thing loses the searcher's intent in one second. Both are cheap to fix and both are invisible unless someone reads the search terms report."),
+ ("Do I need a new landing page?",
+  "Often yes, and it is worth checking before increasing spend rather than after.",
+  "A landing page is $1,900. If the site is the constraint, more budget just buys more expensive disappointment — the $495 audit answers which it is."),
+ ("What is included in management?",
+  "Account structure, conversion tracking, search terms and negative keywords, bidding, ad copy, landing page recommendations, and a monthly report you can actually read.",
+  "Not included: the ad budget itself, creative production (available separately), and anything outside Google."),
+]
+PAGES.append(dict(
+    slug='google-ads-management', lang='en',
+    title='Google Ads Management for Small Business | Prodigy LAB',
+    description='Google Search, Shopping and Performance Max managed end to end: tracking, search terms, bidding and landing pages. Setup $1,500, management from $1,500/mo.',
+    jsonld=[breadcrumb_ld('google-ads-management', 'Google Ads Management'), faq_ld(gads_faq),
+            service_ld('google-ads-management', 'Google Ads Management',
+                       'End-to-end management of Google Search, Shopping and Performance Max campaigns including conversion tracking, search term management, bidding and landing page recommendations.', 1500)],
+    sections=[
+        hero('Google Ads', 'People are already searching for what you sell',
+             'Google is where existing demand lives. Someone typing your service plus "near me" has already decided to buy — the only question is who they find. That is a very different job from convincing a stranger on Instagram, and it needs a different setup.',
+             [(WA, 'Talk to us', True), (f'{ORIGIN}/website-audit/', 'Check the site first', False)],
+             'Setup $1,500 · from $1,500/mo · your budget goes straight to Google'),
+        cols('What we run',
+             [('Search', 'The core. Capturing people who are actively looking, with keyword and negative-keyword work that stops you paying for the wrong questions.'),
+              ('Shopping', 'For stores. Feed quality decides everything here, and most feeds we inherit are wrong in ways nobody noticed.'),
+              ('Performance Max', 'Useful when there is enough conversion data to feed it. Harmful when there is not — we will say which you are.'),
+              ('Conversion tracking', 'Set up properly first. Optimising toward a broken conversion signal is the fastest way to waste a budget.'),
+              ('Search terms', 'Read every week. This is where the money actually leaks and where most accounts are never looked at.'),
+              ('Landing pages', 'Recommendations included. Building them is separate at $1,900 each.')],
+             lead='Not everything at once — what your business actually has demand for.', surface=True),
+        facts_table('What it costs', [
+            ('Setup (one-time)', '$1,500 — accounts, pixel, conversion tracking, call tracking, CRM connection'),
+            ('One platform', '$1,500/mo'),
+            ('Two platforms', '$2,250/mo — Google + Meta, or Google + TikTok'),
+            ('Large budgets', '12% of spend instead of a flat fee above $15,000/mo'),
+            ('Landing page', '$1,900 each, optional'),
+            ('Ad budget', 'Paid by you, directly to Google. Never held by the studio.'),
+            ('Minimum term', '3 months'),
+        ]),
+        steps('How it starts', [
+            ('Check whether ads are the problem', 'If the site cannot convert, more traffic makes the loss bigger. The $495 audit answers this in 3-5 days.'),
+            ('Setup', 'Account structure, tracking, feeds. Roughly a week before spend starts.'),
+            ('Weekly management', 'Search terms, bids, copy, budget shifts. Monthly report in plain language.'),
+        ], surface=True),
+        qa('Straight answers', gads_faq),
+        cards('Related services', [
+            (f'{ORIGIN}/meta-ads-management/', 'Meta ads management', 'For demand that does not exist yet.'),
+            (f'{ORIGIN}/website-audit/', 'Website audit — $495', 'Find out whether the ads or the site is the constraint.'),
+            (f'{ORIGIN}/ai-chatbot/', 'AI sales chatbot', 'So the leads your ads buy get an answer in seconds, not on Monday.'),
+        ]),
+    ]))
+
+# ============================== /business-operations/ ==============================
+ops_faq = [
+ ("What is fractional digital operations?",
+  "One outside team running the digital side of a business part-time, instead of hiring a full marketing department.",
+  "In practice: the ads, the CRM, the automation, the reporting and the creative are owned by someone whose job it is, but you pay for a fraction of a team rather than three salaries."),
+ ("How much does it cost?",
+  "The Growth Partner package is $3,900/mo with a three-month minimum.",
+  "That covers Meta and Google ads, ProdigyBot, landing pages, conversion work, creative production, an analytics dashboard, weekly optimisation and a monthly strategy call. Individual pieces can also be bought separately."),
+ ("How does that compare to hiring?",
+  "One competent in-house marketing manager in the US costs more than this, and cannot cover ads, development, automation and creative alone.",
+  "The honest counterargument: an in-house hire is in your building, knows your customers and is available all day. Fractional works when the volume of work does not justify a full salary — not when you need someone present."),
+ ("What digital tasks should a business owner stop doing personally?",
+  "Anything repetitive with a clear right answer: answering the same enquiries, moving leads into a CRM, chasing people who went quiet, assembling reports.",
+  "What should stay with the owner: pricing, what the business says yes and no to, and any conversation where the relationship matters more than the transaction."),
+ ("Can I keep my existing tools?",
+  "Usually yes.",
+  "The studio works with Shopify, Meta, Google, Klaviyo, Square, Chatwoot and Twenty CRM among others. Replacing a working tool for the sake of it is a cost with no return."),
+]
+PAGES.append(dict(
+    slug='business-operations', lang='en',
+    title='Fractional Digital Operations for Small Business | Prodigy LAB',
+    description='One team running ads, CRM, automation, reporting and creative as a system instead of a full marketing hire. Growth Partner $3,900/mo, 3-month minimum.',
+    jsonld=[breadcrumb_ld('business-operations', 'Fractional Digital Operations'), faq_ld(ops_faq),
+            service_ld('business-operations', 'Fractional Digital Operations',
+                       'Outsourced ownership of a small business digital operation: advertising, CRM, automation, reporting and creative production run as one system.', 3900)],
+    sections=[
+        hero('Operations', 'You are running marketing in the gaps between running the business',
+             'The ads need checking, the leads are in three places, the reports never get made, and all of it lands on the owner at 11pm. Not because it is hard — because nobody owns it. That is a staffing problem being solved with willpower.',
+             [(WA, 'Talk to us', True), (f'{ORIGIN}/en/pricing/', 'See what is included', False)],
+             'Growth Partner $3,900/mo · minimum 3 months · no annual contract'),
+        cols('What gets taken off you',
+             [('Advertising', 'Meta and Google run and optimised weekly, with a report that says what happened and what it means.'),
+              ('Lead handling', 'ProdigyBot answers every channel in seconds, qualifies, follows up and writes the lead into the CRM.'),
+              ('CRM', 'One place where leads actually live, instead of four inboxes and a phone.'),
+              ('Reporting', 'A dashboard that is already assembled when you look at it, not a thing you build on Sunday.'),
+              ('Creative', 'Photo, video and statics produced on a schedule so campaigns do not run on the same three images for a year.'),
+              ('Site and conversion', 'Landing pages and fixes to the pages that lose people.')],
+             lead='Six jobs that normally get done badly by whoever has time.', surface=True),
+        facts_table('Growth Partner', [
+            ('Price', '$3,900/mo'),
+            ('Minimum term', '3 months'),
+            ('Included', 'Meta Ads · Google Ads · ProdigyBot · landing pages · conversion work · creative production · analytics dashboard · weekly optimisation · monthly strategy call'),
+            ('Not included', 'Ad budget (paid directly to the platforms) · platform fees (passed through at cost) · legal, tax or financial advice'),
+            ('Alternative', 'Every component can be bought separately — see the price list'),
+            ('Starts with', 'A $495 audit, credited in full toward the first month'),
+        ]),
+        qa('Straight answers', ops_faq, surface=True),
+        disclaimer('en'),
+        cards('Related services', [
+            (f'{ORIGIN}/ai-automation/', 'AI automation', 'The part that removes repetitive work.'),
+            (f'{ORIGIN}/business-consulting-usa/', 'Business consulting', 'For deciding what to fix first.'),
+            (f'{ORIGIN}/website-audit/', 'Website audit — $495', 'The usual starting point.'),
+        ]),
+    ]))
+
+# ============================== /business-consulting-usa/ ==============================
+bc_faq = [
+ ("What does business consulting mean here?",
+  "Deciding what to fix first when a business is losing money in several places at once — specifically on the digital side.",
+  "It is not general management consulting, and it is not strategy in the abstract. The output is an ordered list of what to change, what it costs, and what happens if it is ignored."),
+ ("What does it cost?",
+  "It starts with the $495 full business audit. There is no separate consulting retainer.",
+  "The audit covers analytics and ad data, competitors, funnel and customer journey, and produces a 90-day plan plus a 60-minute call. It is credited in full toward any project ordered within 30 days."),
+ ("Do you give legal, tax or immigration advice?",
+  "No. None of it, in any form.",
+  "Prodigy LAB is a marketing studio. Company formation, taxes, visas and regulated financial questions require a licensed professional. Anyone who tells you a marketing agency can handle those is selling you a problem."),
+ ("What should a small business fix first?",
+  "Whatever is closest to the money and cheapest to test — almost never the redesign people ask for.",
+  "The usual order: make sure enquiries get answered fast, make sure the page a buyer lands on answers their question, then fix the traffic. Rebuilding a site before knowing whether the traffic is even relevant is how budgets disappear."),
+ ("How is this different from an agency pitch?",
+  "You pay for the diagnosis before anyone proposes work, and the diagnosis is yours to take elsewhere.",
+  "The audit document is written so another agency or an in-house developer could execute it. That is deliberate — a recommendation you can only act on by hiring us is a sales pitch, not advice."),
+]
+PAGES.append(dict(
+    slug='business-consulting-usa', lang='en',
+    title='Digital Business Consulting for US SMBs | Prodigy LAB',
+    description='Deciding what to fix first when a small business is losing sales in several places at once. Starts with the $495 audit. Not legal, tax or financial advice.',
+    jsonld=[breadcrumb_ld('business-consulting-usa', 'Business Consulting'), faq_ld(bc_faq),
+            service_ld('business-consulting-usa', 'Digital Business Consulting for US Small Businesses',
+                       'Advisory on which digital problems a small business should fix first, delivered through a paid audit with a prioritised 90-day plan.', 495)],
+    sections=[
+        hero('Consulting', 'Everything looks broken, so nothing gets fixed',
+             'The site is old, the ads underperform, leads go unanswered, and the CRM is a spreadsheet. Each one sounds urgent, so the decision gets postponed for another quarter. The useful question is not what is wrong — it is what is costing you the most this month.',
+             [(f'{ORIGIN}/website-audit/', 'See the $495 audit', False), (WA, 'Talk to us', True)],
+             'Starts at $495 · credited toward any project within 30 days'),
+        cols('What gets looked at',
+             [('Where the money leaks', 'The funnel end to end: traffic, landing, enquiry, follow-up, close. The leak is usually in one place, not five.'),
+              ('Whether the traffic is real', 'Plenty of businesses pay for visitors who were never going to buy. That looks identical to a conversion problem until someone checks.'),
+              ('Response time', 'How long an enquiry waits. In most small businesses this is the single most expensive number nobody measures.'),
+              ('The competitive picture', 'What a buyer sees when they compare you to the three alternatives they are also looking at.'),
+              ('Tools and cost', 'What is being paid for monthly and whether it is used. Subscriptions outlive their purpose quietly.'),
+              ('Order of operations', 'The actual deliverable: what to do first, second and third, with the cost and the consequence of each.')]),
+        steps('How it works', [
+            ('Audit', '$495. Analytics, ads, competitors, funnel and customer journey. Ready in 3-5 days.'),
+            ('The call', '60 minutes going through what was found and, more importantly, what to ignore.'),
+            ('Your decision', 'The 90-day plan is written so anyone can execute it — us, your developer, or another agency. The $495 comes off the price if you order work from us within 30 days.'),
+        ], surface=True),
+        qa('Straight answers', bc_faq),
+        disclaimer('en'),
+        cards('Related services', [
+            (f'{ORIGIN}/business-operations/', 'Fractional digital operations', 'When the answer is that nobody owns the work.'),
+            (f'{ORIGIN}/website-audit/', 'Website audit', 'The audit itself, in detail.'),
+            (f'{ORIGIN}/russian-business-consulting-miami/', 'На русском языке', 'Та же услуга для русскоговорящих владельцев бизнеса.'),
+        ]),
+    ]))
+
+# ============================== /russian-business-consulting-miami/ (RU) ==============================
+ru_faq = [
+ ("Кому это подходит?",
+  "Владельцам бизнеса в США, которым удобнее обсуждать работу по-русски, а объяснять её — по-английски своим сотрудникам и подрядчикам.",
+  "Чаще всего это магазины, сервисные компании и локальный бизнес во Флориде и Калифорнии: реклама уже идёт, сайт уже есть, а продаж меньше, чем должно быть при таких расходах."),
+ ("Вы помогаете открыть компанию, с налогами или визой?",
+  "Нет. Ни с одним из этих вопросов.",
+  "Prodigy LAB — маркетинговая студия. Регистрация юрлица, налоги, визы и иммиграция требуют лицензированного специалиста. Мы не даём таких консультаций даже в порядке дружеского совета — цена ошибки здесь чужая, а не наша."),
+ ("Что вы тогда делаете?",
+  "Разбираемся, где бизнес теряет деньги в цифровой части, и чиним это: сайт, конверсию, рекламу, ответы клиентам.",
+  "Начинается с аудита за $495: аналитика, рекламные кабинеты, конкуренты, путь клиента и план на 90 дней. Аудит засчитывается полностью в стоимость любого проекта, заказанного в течение 30 дней."),
+ ("Почему офис в Майами не указан?",
+  "Потому что его нет. Студия работает удалённо, публичного офиса не существует.",
+  "Указывать несуществующий адрес ради локальной выдачи — обычная практика, и она же причина, по которой карточкам агентств никто не верит. Клиенты во Флориде есть, офиса нет, и написано так, как есть."),
+ ("На каком языке идёт работа?",
+  "Обсуждение — по-русски. Всё, что уходит клиентам бизнеса, — по-английски.",
+  "Сайт, реклама, письма и ответы бота пишутся на языке покупателя. Русский нужен для того, чтобы владелец понимал, за что платит, а не для того, чтобы на русском разговаривать с американским покупателем."),
+ ("Сколько это стоит?",
+  "Аудит $495. Дальше — по прайсу: сайт от $1,900, реклама от $1,500/мес, ProdigyBot от $600 + $290/мес.",
+  "Рекламный бюджет идёт напрямую в Meta или Google с вашего счёта — студия его не касается. Годовых контрактов нет."),
+]
+PAGES.append(dict(
+    slug='russian-business-consulting-miami', lang='ru',
+    title='Русскоязычный бизнес в США: цифровые операции',
+    description='Разбор и настройка цифровой части бизнеса на русском: сайт, конверсия, реклама, ответы клиентам. Аудит $495. Не юридические и не налоговые услуги.',
+    jsonld=[breadcrumb_ld('russian-business-consulting-miami', 'Русскоязычный бизнес в США', 'ru'), faq_ld(ru_faq),
+            service_ld('russian-business-consulting-miami', 'Digital Operations for Russian-speaking Businesses in the United States',
+                       'Advisory and implementation for the digital side of a business, conducted in Russian for owners operating companies in the United States. Explicitly excludes legal, tax, investment and immigration services.', 495)],
+    sections=[
+        hero('Русскоязычный бизнес в США', 'Бизнес идёт, а куда уходят деньги — непонятно',
+             'Реклама крутится, сайт есть, заявки приходят — и всё равно ощущение, что половина бюджета уходит в никуда. Проверить это самому тяжело: подрядчики говорят по-английски, отчёты присылают красивые, а спросить «покажи, где именно теряем» не у кого.',
+             [(f'{ORIGIN}/website-audit/', 'Аудит за $495', False), (WA, 'Написать в WhatsApp', True)],
+             'Обсуждение по-русски · работа для ваших клиентов — по-английски'),
+        disclaimer('ru'),
+        cols('Что входит в работу',
+             [('Разбор, где теряются деньги', 'Весь путь: трафик → страница → заявка → ответ → сделка. Утечка почти всегда в одном месте, а не во всех сразу.'),
+              ('Проверка подрядчиков', 'Что реально сделано в рекламном кабинете и на сайте. Не по отчёту, а по данным.'),
+              ('Скорость ответа', 'Сколько заявка ждёт ответа. В малом бизнесе это самая дорогая цифра, которую никто не считает.'),
+              ('Сайт и конверсия', 'Правки на страницах, которые теряют покупателя, — или новая страница, если старую чинить дороже.'),
+              ('Реклама', 'Meta и Google. Бюджет идёт напрямую в площадку с вашего счёта, студия его не трогает.'),
+              ('Ответы клиентам', 'ProdigyBot отвечает во всех мессенджерах за секунды, круглосуточно, на языке клиента.')],
+             surface=True),
+        facts_table('Условия', [
+            ('С чего начинается', 'Аудит $495 — аналитика, реклама, конкуренты, путь клиента, план на 90 дней, созвон 60 минут'),
+            ('Срок аудита', '3–5 дней'),
+            ('Зачёт', 'Аудит засчитывается полностью в любой проект, заказанный в течение 30 дней'),
+            ('Сайт', 'Лендинг $1,900 · магазин от $2,900'),
+            ('Реклама', 'Настройка $1,500 · ведение от $1,500/мес'),
+            ('ProdigyBot', 'от $600 + $290/мес, минимум 3 месяца'),
+            ('Язык работы', 'Обсуждение — русский. Материалы для клиентов — английский.'),
+            ('География', 'США. Офиса, куда можно приехать, нет — студия работает удалённо.'),
+            ('Юрлицо', FACTS['identity']['legalName'] + ', California'),
+        ]),
+        steps('Как это идёт', [
+            ('Бесплатная проверка сайта', 'Оценка из 100 и три самые заметные проблемы. Нужен только адрес сайта, доступы не нужны.'),
+            ('Аудит $495', 'Разбор по данным, а не по впечатлению. На созвоне проходим, что нашли и что можно не делать.'),
+            ('Внедрение', 'Фиксированная цена и срок на разработку. Реклама и бот — помесячно, минимум 3 месяца, годовых контрактов нет.'),
+        ], surface=True),
+        qa('Прямые ответы', ru_faq),
+        cards('Смежные страницы', [
+            (f'{ORIGIN}/website-audit/', 'Аудит сайта — $495', 'Что именно входит в платный разбор.'),
+            (f'{ORIGIN}/prodigybot/', 'ProdigyBot', 'Ассистент, который отвечает клиентам вместо вас.'),
+            (f'{ORIGIN}/', 'Главная студии', 'Кто мы и как работаем.'),
+        ]),
+    ]))

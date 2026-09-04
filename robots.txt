@@ -1,4 +1,78 @@
+# robots.txt — prodigylab.studio
+# Политика: публичный коммерческий контент открыт для поиска и AI-ответов.
+# Правила ниже — явная запись уже действовавшей политики (было "User-agent: * Allow: /").
+# Ни один краулер этим файлом не был закрыт.
+
+# ---------- Общее правило ----------
 User-agent: *
+Allow: /
+
+# Служебные разделы: скрытая прайс-карта для внутреннего пользования и старый макет.
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+
+# ---------- OpenAI ----------
+# OAI-SearchBot — индексация для ChatGPT Search. Нужен для цитирования. Открыт.
+User-agent: OAI-SearchBot
+Allow: /
+
+# ChatGPT-User — переход по ссылке, инициированный пользователем в ChatGPT. Открыт.
+User-agent: ChatGPT-User
+Allow: /
+
+# OAI-AdsBot — проверка страниц для рекламы в ChatGPT. Открыт на будущее.
+User-agent: OAI-AdsBot
+Allow: /
+
+# GPTBot — сбор данных, который может использоваться для обучения моделей.
+# Это НЕ то же самое, что OAI-SearchBot: закрытие GPTBot не мешает цитированию в ChatGPT Search.
+# Сейчас разрешён (так было и раньше по правилу "*"). Смена политики — решение владельца.
+User-agent: GPTBot
+Allow: /
+
+# ---------- Anthropic ----------
+# Официально задокументированы три агента: ClaudeBot, Claude-User, Claude-SearchBot.
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# ---------- Perplexity ----------
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ---------- Microsoft / Bing / Copilot ----------
+User-agent: bingbot
+Allow: /
+
+# ---------- Google ----------
+User-agent: Googlebot
+Allow: /
+
+# Google-Extended управляет использованием контента в Gemini и AI-обзорах.
+User-agent: Google-Extended
+Allow: /
+
+# ---------- Apple ----------
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ---------- Прочие ----------
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://prodigylab.studio/sitemap.xml

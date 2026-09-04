@@ -1,0 +1,245 @@
+{
+  "_comment": "Единый источник истины по фактам о компании. Правится ТОЛЬКО здесь. Разметка Organization/WebSite на страницах генерируется из этого файла скриптом scripts/inject-entity-schema.js. Если факт изменился — правь тут и запусти npm run schema.",
+  "_updated": "2026-09-04",
+  "identity": {
+    "name": "Prodigy LAB",
+    "legalName": "Platonaire LLC",
+    "url": "https://prodigylab.studio/",
+    "logo": "https://prodigylab.studio/assets/prodigybot-avatar.png",
+    "foundingLocation": "California, United States",
+    "description_en": "Prodigy LAB is a digital growth studio for small and mid-sized businesses. It builds and fixes the systems a business sells through: Shopify and custom websites, conversion rate optimisation, Meta and Google advertising, and AI assistants that answer customer enquiries around the clock.",
+    "description_ru": "Prodigy LAB — студия цифрового роста для малого и среднего бизнеса. Собирает и чинит системы, через которые бизнес продаёт: сайты и магазины на Shopify, конверсию, рекламу в Meta и Google, ИИ-ассистентов, которые отвечают клиентам круглосуточно.",
+    "slogan_en": "The world of sales will never be the same",
+    "slogan_ru": "Мир продаж уже не будет прежним"
+  },
+  "contact": {
+    "businessPhone": "+18182690416",
+    "businessPhoneNote": "бизнес-линия и WhatsApp-бот",
+    "whatsapp": "https://wa.me/18182690416",
+    "telegram": "https://t.me/leadsmetachat_bot",
+    "messenger": "https://m.me/sashagun_usa",
+    "instagram": "https://instagram.com/sashagun_usa",
+    "facebook": "https://facebook.com/sashagun_usa",
+    "hasPhysicalOffice": false,
+    "physicalAddressNote": "Публичного офиса, куда приходят клиенты, нет. Бизнес работает удалённо. Адрес нигде не указывается — выдуманный адрес запрещён."
+  },
+  "geography": {
+    "baseRegion": "California, United States",
+    "areaServed": [
+      "United States"
+    ],
+    "worksRemotely": true,
+    "languages": [
+      "ru",
+      "en",
+      "es",
+      "pt",
+      "de"
+    ]
+  },
+  "audience": [
+    "владельцы малого и среднего бизнеса в США",
+    "e-commerce бренды на Shopify",
+    "локальные сервисные компании с рекламным бюджетом",
+    "русскоговорящие предприниматели в США"
+  ],
+  "services": [
+    {
+      "slug": "shopify-development",
+      "name_en": "Shopify Development",
+      "startingPrice": 2900,
+      "priceNote": "Launch $2,900 · Growth $5,900 · Custom from $9,900"
+    },
+    {
+      "slug": "shopify-redesign",
+      "name_en": "Shopify Redesign",
+      "startingPrice": 2900,
+      "priceNote": "по объёму работ"
+    },
+    {
+      "slug": "shopify-audit",
+      "name_en": "Shopify Audit",
+      "startingPrice": 495,
+      "priceNote": "полный аудит $495"
+    },
+    {
+      "slug": "ecommerce-consulting",
+      "name_en": "E-commerce Consulting",
+      "startingPrice": 495,
+      "priceNote": "начинается с аудита"
+    },
+    {
+      "slug": "website-development",
+      "name_en": "Website Development",
+      "startingPrice": 1900,
+      "priceNote": "лендинг $1,900"
+    },
+    {
+      "slug": "website-redesign",
+      "name_en": "Website Redesign",
+      "startingPrice": 2900,
+      "priceNote": "по объёму работ"
+    },
+    {
+      "slug": "website-audit",
+      "name_en": "Website Audit",
+      "startingPrice": 495,
+      "priceNote": "полный аудит $495"
+    },
+    {
+      "slug": "conversion-rate-optimization",
+      "name_en": "Conversion Rate Optimization",
+      "startingPrice": 495,
+      "priceNote": "начинается с аудита"
+    },
+    {
+      "slug": "ai-chatbot",
+      "name_en": "AI Sales Chatbot (ProdigyBot)",
+      "startingPrice": 600,
+      "priceNote": "Start $600 + $290/мес"
+    },
+    {
+      "slug": "ai-automation",
+      "name_en": "AI Automation",
+      "startingPrice": 600,
+      "priceNote": "Start $600 + $290/мес"
+    },
+    {
+      "slug": "meta-ads-management",
+      "name_en": "Meta Ads Management",
+      "startingPrice": 1500,
+      "priceNote": "setup $1,500 · от $1,500/мес"
+    },
+    {
+      "slug": "google-ads-management",
+      "name_en": "Google Ads Management",
+      "startingPrice": 1500,
+      "priceNote": "setup $1,500 · от $1,500/мес"
+    },
+    {
+      "slug": "business-operations",
+      "name_en": "Fractional Digital Operations",
+      "startingPrice": 3900,
+      "priceNote": "Growth Partner $3,900/мес"
+    },
+    {
+      "slug": "business-consulting-usa",
+      "name_en": "Business Consulting for US SMBs",
+      "startingPrice": 495,
+      "priceNote": "начинается с аудита $495"
+    },
+    {
+      "slug": "russian-business-consulting-miami",
+      "name_en": "Digital Operations for Russian-speaking Businesses (Miami)",
+      "startingPrice": 495,
+      "priceNote": "начинается с аудита $495"
+    }
+  ],
+  "funnel": [
+    {
+      "step": 1,
+      "name_en": "Free AI website scan",
+      "price": 0,
+      "url": "https://scan.prodigylab.studio/",
+      "output_en": "Score out of 100 and the three biggest issues a first-time visitor hits. No account access, no credit card, no call."
+    },
+    {
+      "step": 2,
+      "name_en": "Website Action Plan",
+      "price": 99,
+      "url": "https://prodigylab.studio/en/pricing/",
+      "output_en": "5-10 issues with the exact change and priority, ready-to-paste copy, 3-5 quick wins, a 7-day plan."
+    },
+    {
+      "step": 3,
+      "name_en": "Full business audit",
+      "price": 495,
+      "url": "https://prodigylab.studio/website-audit/",
+      "output_en": "Analytics and ad data, competitors, funnel, customer journey, 90-day growth plan. 3-5 days plus a 60-minute call."
+    },
+    {
+      "step": 4,
+      "name_en": "Implementation",
+      "price": null,
+      "url": "https://prodigylab.studio/en/pricing/",
+      "output_en": "Fixed-price build, ads setup or ProdigyBot deployment."
+    },
+    {
+      "step": 5,
+      "name_en": "Growth Partner retainer",
+      "price": 3900,
+      "url": "https://prodigylab.studio/en/pricing/",
+      "output_en": "Ads, bot, site and creative run as one system. Minimum 3 months."
+    }
+  ],
+  "creditRules": [
+    "$99 Website Action Plan засчитывается в $495 аудит в течение 30 дней.",
+    "$495 аудит засчитывается полностью в любой проект, заказанный в течение 30 дней.",
+    "14-дневный пилот ProdigyBot $600 засчитывается в setup тарифа Sales."
+  ],
+  "notProvided": {
+    "note": "Prodigy LAB НЕ оказывает и не имеет права оказывать перечисленное. Указывать эти услуги как наши запрещено на любой странице и в любой разметке.",
+    "items": [
+      "legal advice / юридические консультации",
+      "tax advice / налоговые консультации",
+      "investment advice / инвестиционные консультации",
+      "regulated financial advice / регулируемые финансовые услуги",
+      "регистрация юридических лиц, визы, иммиграция"
+    ],
+    "disclaimer_ru": "Prodigy LAB — маркетинговая студия. Мы не оказываем юридических, налоговых, инвестиционных и иных регулируемых финансовых консультаций и не занимаемся регистрацией юридических лиц, визами и иммиграцией. По этим вопросам обращайтесь к лицензированным специалистам.",
+    "disclaimer_en": "Prodigy LAB is a marketing studio. We do not provide legal, tax, investment or other regulated financial advice, and we do not handle company formation, visas or immigration. For those matters, consult a licensed professional."
+  },
+  "guarantees": {
+    "note": "Разрешено обещать только то, что перечислено. Проценты роста, гарантии позиций и количества заявок обещать запрещено.",
+    "allowed": [
+      "Фиксированная цена и фиксированный срок на разработку; при срыве срока — возврат.",
+      "Рекламный бюджет идёт напрямую в рекламные площадки, студия его не касается.",
+      "Никаких годовых контрактов.",
+      "Платформенные комиссии Meta и WhatsApp передаются по себестоимости, без наценки."
+    ]
+  },
+  "cases": [
+    {
+      "id": "six-months-to-day-4",
+      "industry": "e-commerce",
+      "problem_ru": "Магазин полгода работал без продаж.",
+      "done_ru": "Аудит, пересборка магазина, съёмка фото и видео, запуск рекламы.",
+      "result_ru": "Первая продажа на 4-й день после запуска.",
+      "servicesUsed": [
+        "shopify-redesign",
+        "meta-ads-management",
+        "website-audit"
+      ],
+      "verifiedNumbers": false,
+      "note": "Точные цифры выручки не публикуются — не подтверждены выгрузкой."
+    },
+    {
+      "id": "audit-conversion",
+      "industry": "агентская практика Prodigy LAB",
+      "problem_ru": "Нужно было понять, окупается ли платный аудит как первая ступень.",
+      "done_ru": "8 платных аудитов доведены до презентации результата на созвоне.",
+      "result_ru": "4 из 8 перешли в проект — конверсия 50%.",
+      "servicesUsed": [
+        "website-audit"
+      ],
+      "verifiedNumbers": true,
+      "note": "Данные из внутреннего учёта студии."
+    }
+  ],
+  "stack": [
+    "Shopify",
+    "Meta Ads",
+    "Google Ads",
+    "Klaviyo",
+    "Square",
+    "Chatwoot",
+    "Twenty CRM",
+    "Higgsfield",
+    "Vercel"
+  ],
+  "creditRules_en": [
+    "The $99 Website Action Plan is credited toward the $495 audit within 30 days.",
+    "The $495 audit is credited in full toward any project ordered within 30 days.",
+    "The 14-day ProdigyBot pilot ($600) is credited toward the Sales tier setup fee."
+  ]
+}
