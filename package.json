@@ -14,7 +14,9 @@
     "schema": "node scripts/inject-entity-schema.js",
     "llms": "node scripts/generate-llms-txt.js",
     "facts": "npm run schema && npm run llms",
-    "all": "npm run pages && npm run facts && npm run css && npm run sitemap"
+    "all": "npm run pages && npm run facts && npm run css && npm run sitemap",
+    "check:ai": "node scripts/check-ai-crawlers.js",
+    "check:links": "node scripts/check-links.js"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
