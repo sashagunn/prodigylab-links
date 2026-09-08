@@ -95,7 +95,7 @@ def footer(lang):
               ('/case-studies/', 'Cases'), ('/en/pricing/', 'Pricing'),
               ('/prodigybot/', 'ProdigyBot'), ('/scan/', 'Free scan'),
               ('/en/privacy/', 'Privacy Policy')])
-    ls = "".join(f'<a class="hover:text-accent-green transition-colors" href="{h}">{n}</a>' for h, n in links)
+    ls = "".join(f'<a class="inline-block py-2 hover:text-accent-green transition-colors" href="{h}">{n}</a>' for h, n in links)
     return f'''</main>
 <footer class="bg-white border-t border-border-subtle py-20">
 <div class="max-w-[1200px] mx-auto px-8">
@@ -163,7 +163,7 @@ def facts_table(title, rows, surface=False):
         else '<section class="max-w-[1200px] mx-auto px-8 py-section-gap">'
     wrap_c = '</div></section>' if surface else '</section>'
     tr = "".join(
-        f'<tr class="border-b border-border-subtle"><th scope="row" class="text-left align-top py-4 pr-8 font-bold whitespace-nowrap">{k}</th>'
+        f'<tr class="border-b border-border-subtle"><th scope="row" class="text-left align-top py-4 pr-4 md:pr-8 font-bold whitespace-normal md:whitespace-nowrap">{k}</th>'
         f'<td class="py-4 text-text-muted">{v}</td></tr>' for k, v in rows)
     return (f'{wrap_o}<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-10">{title}</h2>'
             f'<div class="overflow-x-auto"><table class="w-full max-w-3xl border-collapse"><tbody>{tr}</tbody></table></div>{wrap_c}')
