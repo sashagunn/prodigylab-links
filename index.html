@@ -741,22 +741,22 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
 </svg>
 <!-- TopNavBar -->
 <nav class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-border-subtle">
-<div class="flex justify-between items-center max-w-[1200px] mx-auto px-8 h-20">
-<a href="/" class="flex items-center gap-3"><svg width="30" height="30" viewBox="0 0 1024 1024" class="flex-shrink-0"><use href="#logo-sym"/></svg><div class="text-xl font-bold tracking-tighter"><span class="text-accent-green">PRODIGY</span> <span class="font-light">LAB</span></div></a>
+<div class="flex justify-between items-center max-w-[1200px] mx-auto px-5 md:px-8 h-20">
+<a href="/" class="flex items-center gap-3"><svg width="30" height="30" viewBox="0 0 1024 1024" class="flex-shrink-0"><use href="#logo-sym"/></svg><div class="text-lg md:text-xl font-bold tracking-tighter whitespace-nowrap"><span class="text-accent-green">PRODIGY</span> <span class="font-light">LAB</span></div></a>
 <div id="navLinks" class="hidden md:flex gap-12 items-center">
 <a class="text-sm font-medium hover:text-accent-green transition-colors" href="#audit">Аудит</a>
 <a class="text-sm font-medium hover:text-accent-green transition-colors" href="https://scan.prodigylab.studio/?lang=ru">Проверить сайт</a>
 <a class="text-sm font-medium text-text-muted hover:text-accent-green transition-colors" href="#services">Услуги</a>
 <a class="text-sm font-medium text-text-muted hover:text-accent-green transition-colors" href="#cases">Кейсы</a><a class="text-sm font-medium text-text-muted hover:text-accent-green transition-colors" href="#contact">Контакт</a>
 </div>
-<div class="flex items-center gap-6"><button id="navBurger" aria-label="Menu" aria-expanded="false" onclick="toggleNav(this)" class="w-11 h-11 items-center justify-center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
-<div id="navLangs" class="flex gap-3 text-xs font-mono uppercase tracking-widest text-text-muted">
+<div class="flex items-center gap-2 md:gap-6"><button id="navBurger" aria-label="Menu" aria-expanded="false" onclick="toggleNav(this)" class="w-11 h-11 items-center justify-center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
+<div id="navLangs" class="hidden md:flex gap-3 text-xs font-mono uppercase tracking-widest text-text-muted">
 <a class="hover:text-accent-green inline-block py-2 px-1.5" href="/en/">EN</a>
 <a class="hover:text-accent-green inline-block py-2 px-1.5" href="/es/">ES</a>
 <a class="hover:text-accent-green inline-block py-2 px-1.5" href="/pt/">PT</a>
 <a class="hover:text-accent-green inline-block py-2 px-1.5" href="/de/">DE</a>
 </div>
-<button onclick="goContact()" class="bg-accent-green text-white px-6 py-2 text-xs font-bold uppercase tracking-widest hover:brightness-90 hover:scale-[1.02] active:scale-[0.98] active:brightness-95 transition-all">Написать</button>
+<button onclick="goContact()" class="hidden md:block bg-accent-green text-white px-6 py-2 text-xs font-bold uppercase tracking-widest hover:brightness-90 hover:scale-[1.02] active:scale-[0.98] active:brightness-95 transition-all">Написать</button>
 </div>
 </div>
 <div id="navMobile" class="absolute top-full left-0 w-full bg-white border-b border-border-subtle px-8 pb-4 z-50"></div></nav>
@@ -1187,7 +1187,7 @@ l-86 -21 -159 37 c-489 113 -1300 318 -1375 347 -17 6 -32 24 -42 49 l-16 39
     document.querySelectorAll('.reveal-up').forEach((el) => {
         observer.observe(el);
     });
-    window.toggleNav=function(btn){var m=document.getElementById('navMobile'),l=document.getElementById('navLinks'),g=document.getElementById('navLangs');if(!m)return;if(!m.dataset.built){var h=l?l.innerHTML:'';if(g)h+='<div style="display:flex;gap:18px;padding:14px 4px 4px;margin-top:6px;border-top:1px solid #E5E5E5">'+g.innerHTML+'</div>';m.innerHTML=h;m.dataset.built='1';}var o=m.classList.toggle('open');if(btn)btn.setAttribute('aria-expanded',o?'true':'false');};
+    window.toggleNav=function(btn){var m=document.getElementById("navMobile"),l=document.getElementById("navLinks"),g=document.getElementById("navLangs"),n=document.querySelector("nav");if(!m)return;if(!m.dataset.built){var h="";if(l){var t=document.createElement("div");t.innerHTML=l.innerHTML;t.querySelectorAll("a").forEach(function(a){a.className="block py-3 text-base font-medium";});h+=t.innerHTML;}var c=n?n.querySelector(".bg-accent-green"):null;if(c){var b=c.cloneNode(true);b.className="block w-full text-center bg-accent-green text-white px-6 py-4 text-xs font-bold uppercase tracking-widest";h+='<div style="padding-top:10px">'+b.outerHTML+"</div>";}if(g){var q=document.createElement("div");q.innerHTML=g.innerHTML;q.querySelectorAll("a").forEach(function(a){a.className="inline-block py-2 px-2 text-xs font-mono uppercase tracking-widest";});h+='<div style="display:flex;gap:10px;padding:12px 0 4px;margin-top:12px;border-top:1px solid #E5E5E5">'+q.innerHTML+"</div>";}m.innerHTML=h;m.dataset.built="1";}var o=m.classList.toggle("open");if(btn)btn.setAttribute("aria-expanded",o?"true":"false");};
 
 
 </script>
