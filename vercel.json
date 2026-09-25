@@ -7,37 +7,37 @@
     {
       "source": "/index.html",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/:path*/index.html",
       "destination": "/:path*/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/pricing/",
       "destination": "/en/pricing/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/company/",
       "destination": "/about/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/about-prodigy-lab/",
       "destination": "/about/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/en/",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/en/privacy/",
       "destination": "/privacy/",
-      "permanent": true
+      "statusCode": 301
     }
   ]
 }
