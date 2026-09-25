@@ -314,6 +314,16 @@ fbq('init','{PIXEL}');fbq('track','PageView');
 </footer>
 
 <script>
+// §14 — язык в каждом событии, чтобы канал считался по локали
+window.PL_LANG="{code}";
+window.plEvent=function(n,x){{var p=Object.assign({{page_language:"{code}",
+ content_language:"{code}",destination_language:"{code}"}},x||{{}});
+ if(typeof fbq==='function') fbq('trackCustom',n,p);
+ (window.dataLayer=window.dataLayer||[]).push(Object.assign({{event:n}},p));}};
+// Незаметная смена языка — это дефект, а не фича: помечаем его отдельно
+(function(){{var nav=(navigator.language||'').slice(0,2);
+ if(nav && nav!=="{code}" && !sessionStorage.getItem('pl_lang_choice')){{
+  plEvent('language_mismatch_detected',{{browser_language:nav}});}}}})();
 // UTM и реферер прокидываем в диагностику, иначе источник заявки теряется (ТЗ §8)
 (function(){{var q=new URLSearchParams(location.search);
  document.querySelectorAll('a[data-diag]').forEach(function(a){{
@@ -324,8 +334,12 @@ fbq('init','{PIXEL}');fbq('track','PageView');
   if(document.referrer) u.searchParams.set('ref', document.referrer.slice(0,200));
   a.href=u.toString();
   a.addEventListener('click',function(){{
-   if(typeof fbq==='function') fbq('trackCustom','DiagnosticCtaClick',{{lang:document.documentElement.lang}});
+   plEvent('localized_cta_clicked',{{destination:'diagnostic'}});
   }});}});}})();
+document.querySelectorAll('.langs a,.mlangs a').forEach(function(a){{
+ a.addEventListener('click',function(){{
+  try{{sessionStorage.setItem('pl_lang_choice','1');}}catch(e){{}}
+  plEvent('language_selected',{{to:(a.getAttribute('href')||'').replace(/\//g,'')||'en'}});}});}});
 function tg(b){{var m=document.getElementById('mob');
  var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');}}
 document.querySelectorAll('#mob a').forEach(function(a){{a.addEventListener('click',function(){{
@@ -338,7 +352,22 @@ document.querySelectorAll('#mob a').forEach(function(a){{a.addEventListener('cli
   g.src=B+"/packs/js/sdk.js";g.defer=true;g.async=true;s.parentNode.insertBefore(g,s);
   g.onload=function(){{window.chatwootSettings=window.chatwootSettings||{{}};
    window.chatwootSettings.locale="{code}";
-   window.chatwootSDK.run({{websiteToken:"J1xMPSabyx7EfRVPrmZEMLYB",baseUrl:B}});}};
+   window.chatwootSDK.run({{websiteToken:"J1xMPSabyx7EfRVPrmZEMLYB",baseUrl:B}});
+   // Бот должен говорить на языке страницы ещё ДО первой реплики,
+   // и знать, откуда человек пришёл (ТЗ §11).
+   window.addEventListener('chatwoot:ready',function(){{
+    try{{
+     window.$chatwoot.setLocale("{code}");
+     var q=new URLSearchParams(location.search);
+     window.$chatwoot.setCustomAttributes({{
+      ui_language:"{code}", page_language:"{code}", page_url:location.href,
+      from_page:document.referrer||"", utm_source:q.get('utm_source')||"",
+      utm_medium:q.get('utm_medium')||"", utm_campaign:q.get('utm_campaign')||"",
+      problem_category:(location.hash||"").replace('#','')
+     }});
+     if(typeof fbq==='function') fbq('trackCustom','bot_opened',{{page_language:"{code}"}});
+    }}catch(e){{}}
+   }});}};
  }})(document,"script");
 </script>
 </body>
