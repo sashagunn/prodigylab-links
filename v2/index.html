@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prodigy LAB — Business Advisory &amp; Solutions</title>
+<meta name="description" content="Businesses come to us with a problem, not a service request. We diagnose it, then either solve it ourselves or connect you with the right specialist provider.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#121212; --ink-2:#5C5C5A; --ink-3:#8A8A86;
+  --paper:#FBFBF9; --paper-2:#F3F2EE; --line:#E2E1DC;
+  --accent:#1C7E84; --accent-ink:#0F4A4E;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Geist,system-ui,-apple-system,sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+@media(min-width:768px){.wrap{padding:0 40px}}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.022em;line-height:1.12}
+h1{font-size:clamp(34px,6.2vw,62px);letter-spacing:-.03em;line-height:1.06;font-weight:600}
+h2{font-size:clamp(26px,3.6vw,40px)}
+h3{font-size:19px;letter-spacing:-.01em;line-height:1.3}
+p{margin:0;color:var(--ink-2)}
+a{color:inherit}
+.lede{font-size:clamp(17px,2vw,21px);line-height:1.55;color:var(--ink-2)}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(251,251,249,.86);
+  backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:baseline;gap:7px;text-decoration:none;white-space:nowrap}
+.brand b{font-weight:600;letter-spacing:-.02em;font-size:17px}
+.brand span{font-weight:300;letter-spacing:-.01em;font-size:17px;color:var(--ink-2)}
+.nav-links{display:none;gap:34px}
+@media(min-width:900px){.nav-links{display:flex}}
+.nav-links a{font-size:14.5px;color:var(--ink-2);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--accent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--ink);color:#fff;text-decoration:none;font-size:13.5px;font-weight:500;
+  padding:12px 20px;border:1px solid var(--ink);transition:background .15s,border-color .15s}
+.btn:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
+.btn-lg{padding:17px 30px;font-size:15px}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{background:var(--paper-2);border-color:var(--ink-3);color:var(--ink)}
+#burger{display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;margin-right:-10px;background:none;border:0;color:var(--ink);cursor:pointer}
+@media(min-width:900px){#burger{display:none}}
+#mobnav{display:none;border-bottom:1px solid var(--line);background:var(--paper)}
+#mobnav.open{display:block}
+#mobnav a{display:block;padding:14px 0;font-size:16px;text-decoration:none;border-top:1px solid var(--line)}
+#mobnav .btn{width:100%;margin:16px 0 22px}
+
+/* hero */
+.hero{padding:76px 0 64px}
+@media(min-width:768px){.hero{padding:118px 0 92px}}
+.hero h1{max-width:16ch}
+.hero .lede{max-width:56ch;margin-top:26px}
+.cta-row{display:flex;flex-direction:column;gap:12px;margin-top:38px}
+@media(min-width:560px){.cta-row{flex-direction:row}}
+.hero-note{margin-top:22px}
+
+/* problem grid */
+.sec{padding:72px 0}
+@media(min-width:768px){.sec{padding:104px 0}}
+.sec-alt{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.grid{display:grid;gap:0;margin-top:44px;border-top:1px solid var(--line)}
+@media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.cell{padding:30px 0;border-bottom:1px solid var(--line)}
+@media(min-width:700px){.cell{padding:32px 34px 34px 0}
+  .cell:nth-child(2n){padding-left:34px;border-left:1px solid var(--line)}}
+@media(min-width:1000px){.cell{padding:32px 30px 34px 0}
+  .cell:nth-child(2n){padding-left:30px;border-left:1px solid var(--line)}
+  .cell:nth-child(3n+1){padding-left:0;border-left:0}
+  .cell:nth-child(3n+2),.cell:nth-child(3n+3){padding-left:30px;border-left:1px solid var(--line)}}
+.cell .mono{display:block;margin-bottom:14px;color:var(--accent)}
+.cell h3{margin-bottom:10px}
+.cell p{font-size:15.5px;line-height:1.58}
+.cell ul{margin:14px 0 0;padding:0;list-style:none}
+.cell li{font-size:14.5px;color:var(--ink-3);padding-left:16px;position:relative;margin-top:7px}
+.cell li:before{content:"";position:absolute;left:0;top:9px;width:5px;height:1px;background:var(--ink-3)}
+
+/* steps */
+.steps{display:grid;gap:0;margin-top:46px;border-top:1px solid var(--line)}
+@media(min-width:860px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{padding:30px 0;border-bottom:1px solid var(--line)}
+@media(min-width:860px){.step{padding:34px 36px 40px 0;border-bottom:0}
+  .step+.step{padding-left:36px;border-left:1px solid var(--line)}}
+.step .num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);
+  letter-spacing:.1em;display:block;margin-bottom:16px}
+.step h3{margin-bottom:10px}
+.step p{font-size:15.5px}
+
+/* proof */
+.proof{display:grid;gap:34px;margin-top:44px}
+@media(min-width:760px){.proof{grid-template-columns:1.15fr 1fr;gap:64px}}
+.stat-list{border-top:1px solid var(--line)}
+.stat{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
+  padding:16px 0;border-bottom:1px solid var(--line)}
+.stat dt{font-size:15px;color:var(--ink-2)}
+.stat dd{margin:0;font-weight:600;font-size:15.5px;white-space:nowrap}
+
+/* honesty */
+.note{border-left:2px solid var(--accent);padding:4px 0 4px 22px;max-width:62ch}
+.note p+p{margin-top:12px}
+
+/* final */
+.final{padding:78px 0 92px}
+@media(min-width:768px){.final{padding:110px 0 128px}}
+.final h2{max-width:20ch}
+.final .lede{max-width:54ch;margin-top:20px}
+
+footer{border-top:1px solid var(--line);padding:52px 0 60px}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 28px;margin:26px 0 30px}
+.foot-links a{font-size:13.5px;color:var(--ink-2);text-decoration:none;padding:6px 0}
+.foot-links a:hover{color:var(--accent)}
+.foot-meta{font-size:12.5px;color:var(--ink-3);line-height:1.7}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<nav>
+ <div class="wrap nav-in">
+  <a class="brand" href="/v2/"><b>PRODIGY</b><span>LAB</span></a>
+  <div class="nav-links">
+   <a href="#problems">What we solve</a>
+   <a href="#how">How it works</a>
+   <a href="#who">Who we are</a>
+  </div>
+  <button id="burger" aria-label="Menu" aria-expanded="false" onclick="tg(this)">
+   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+  </button>
+  <a class="btn" href="#diagnostic" style="display:none" id="navcta">Start a diagnostic</a>
+ </div>
+ <div id="mobnav"><div class="wrap">
+  <a href="#problems">What we solve</a>
+  <a href="#how">How it works</a>
+  <a href="#who">Who we are</a>
+  <a class="btn" href="#diagnostic">Tell us what's not working</a>
+ </div></div>
+</nav>
+
+<main>
+
+<section class="hero">
+ <div class="wrap">
+  <span class="mono">Business Advisory &amp; Solutions</span>
+  <h1 style="margin-top:22px">Something in your business is costing you money. You may not know what.</h1>
+  <p class="lede">Most companies we work with already know the symptom — payments blocked, leads that never close, a process nobody owns. What they don't have is an outside read on which of it is actually expensive, and what to do about it first.</p>
+  <div class="cta-row">
+   <a class="btn btn-lg" href="#diagnostic">Tell us what's not working</a>
+   <a class="btn btn-lg btn-ghost" href="#problems">See what we handle</a>
+  </div>
+  <p class="mono hero-note">Free initial assessment · no obligation · no sales call required</p>
+ </div>
+</section>
+
+<section class="sec sec-alt" id="problems">
+ <div class="wrap">
+  <span class="mono">What's holding your business back</span>
+  <h2 style="margin-top:20px;max-width:18ch">Six places where established businesses lose money quietly</h2>
+  <p class="lede" style="max-width:58ch;margin-top:20px">We work across all six. Some we solve directly. For others we bring in a specialist provider we've vetted — and we tell you which is which before you commit to anything.</p>
+
+  <div class="grid">
+   <div class="cell">
+    <span class="mono">01 — Payments</span>
+    <h3>Your processor stopped working for you</h3>
+    <p>Accounts suspended, funds held, chargebacks climbing, or a vertical your current provider quietly doesn't want.</p>
+    <ul><li>Account closed or under review</li><li>High chargeback ratio</li><li>Subscription or high-risk billing</li><li>Needs redundancy or alternative rails</li></ul>
+   </div>
+   <div class="cell">
+    <span class="mono">02 — Banking</span>
+    <h3>Banking that doesn't fit how you operate</h3>
+    <p>Especially for US companies with founders abroad, or businesses whose bank no longer matches their model.</p>
+    <ul><li>Account frozen or closed</li><li>Foreign founder, US entity</li><li>Opening business banking from abroad</li><li>Need alternative infrastructure</li></ul>
+   </div>
+   <div class="cell">
+    <span class="mono">03 — Growth</span>
+    <h3>Traffic and spend that don't turn into revenue</h3>
+    <p>The acquisition side works on paper and fails in practice — usually in one specific place, not everywhere.</p>
+    <ul><li>Clicks without orders</li><li>Rising cost per customer</li><li>Weak conversion at a known step</li></ul>
+   </div>
+   <div class="cell">
+    <span class="mono">04 — Operations</span>
+    <h3>Work that depends on someone remembering</h3>
+    <p>Leads in four inboxes, a CRM nobody trusts, reporting assembled by hand on Sunday night.</p>
+    <ul><li>Fragmented systems</li><li>Manual, repeatable processes</li><li>No single owner for the digital side</li></ul>
+   </div>
+   <div class="cell">
+    <span class="mono">05 — Infrastructure</span>
+    <h3>Functions too small to hire for, too costly to ignore</h3>
+    <p>Fulfilment, payroll, security, business tooling — necessary, recurring, and rarely worth a full salary.</p>
+    <ul><li>Fulfilment and 3PL</li><li>Payroll and HR</li><li>Security and compliance</li></ul>
+   </div>
+   <div class="cell">
+    <span class="mono">06 — Digital presence</span>
+    <h3>The storefront your buyers actually judge you on</h3>
+    <p>Website and e-commerce infrastructure: the part we have built for years and still build ourselves.</p>
+    <ul><li>Site or store rebuild</li><li>Conversion and checkout</li><li>E-commerce infrastructure</li></ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="how">
+ <div class="wrap">
+  <span class="mono">How it works</span>
+  <h2 style="margin-top:20px;max-width:17ch">You get the diagnosis before anyone proposes work</h2>
+
+  <div class="steps">
+   <div class="step">
+    <span class="num">01</span>
+    <h3>Tell us what's not working</h3>
+    <p>A short structured intake, not a contact form. What the business does, what broke, what you've already tried, and how urgent it is.</p>
+   </div>
+   <div class="step">
+    <span class="num">02</span>
+    <h3>We assess it — at no cost</h3>
+    <p>We come back with what we think the real constraint is, whether it's worth solving now, and what the realistic paths are. If it isn't our problem to solve, we say so.</p>
+   </div>
+   <div class="step">
+    <span class="num">03</span>
+    <h3>Solve it, or route it</h3>
+    <p>Work inside our own competence we do ourselves. Anything else goes to a specialist provider we've checked — and you're told upfront which it is.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec sec-alt" id="who">
+ <div class="wrap">
+  <span class="mono">Who we are</span>
+  <h2 style="margin-top:20px;max-width:20ch">An operating company, not a directory of links</h2>
+
+  <div class="proof">
+   <div>
+    <p class="lede" style="max-width:none">Prodigy LAB has spent years building and fixing the systems businesses sell through — stores, websites, advertising, conversion, customer conversations. That work continues, and it's the reason we can tell an infrastructure problem from a marketing one.</p>
+    <p style="margin-top:20px">Advisory grew out of it. Clients kept arriving with problems that weren't web problems at all — a processor that dropped them, a bank that closed an account, a function nobody owned. Answering only the part that fit our service list wasn't useful to them.</p>
+    <div class="note" style="margin-top:32px">
+     <p><strong style="color:var(--ink);font-weight:600">What we don't do.</strong> We are not a payment processor and not a bank. We don't approve merchant accounts or open bank accounts, and we can't guarantee that a provider will. We don't provide legal, tax, investment or other regulated financial advice, and we don't handle company formation, visas or immigration.</p>
+     <p>Where a specialist is required, that's exactly what we'll tell you.</p>
+    </div>
+   </div>
+   <div>
+    <span class="mono">Company</span>
+    <dl class="stat-list" style="margin-top:16px">
+     <div class="stat"><dt>Legal entity</dt><dd>Platonaire LLC</dd></div>
+     <div class="stat"><dt>Based</dt><dd>California, USA</dd></div>
+     <div class="stat"><dt>Works with</dt><dd>US &amp; international</dd></div>
+     <div class="stat"><dt>Operating languages</dt><dd>EN · RU · ES · PT · DE</dd></div>
+     <div class="stat"><dt>Built in-house</dt><dd>Web · E-comm · Ads</dd></div>
+     <div class="stat"><dt>Initial assessment</dt><dd>No cost</dd></div>
+    </dl>
+    <p style="font-size:13.5px;color:var(--ink-3);margin-top:18px;line-height:1.6">Prodigy LAB is a remote company. We don't keep a walk-in office, and we don't claim locations we don't have.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="final" id="diagnostic">
+ <div class="wrap">
+  <span class="mono">Free initial assessment</span>
+  <h2 style="margin-top:20px">Describe the problem. We'll tell you what we think it actually is.</h2>
+  <p class="lede">No cost, no obligation, and no requirement to get on a call. If your situation is outside what we handle, you'll get told that instead of a proposal.</p>
+  <div class="cta-row">
+   <a class="btn btn-lg" href="#">Start the assessment</a>
+   <a class="btn btn-lg btn-ghost" href="https://wa.me/18182690416" target="_blank" rel="noopener">Message us directly</a>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="wrap">
+  <a class="brand" href="/v2/"><b>PRODIGY</b><span>LAB</span></a>
+  <div class="foot-links">
+   <a href="#problems">What we solve</a>
+   <a href="#how">How it works</a>
+   <a href="#who">Who we are</a>
+   <a href="#diagnostic">Free assessment</a>
+   <a href="/en/privacy/">Privacy</a>
+  </div>
+  <p class="foot-meta">© 2026 Prodigy LAB · Platonaire LLC · California, USA<br>
+  Prodigy LAB is not a payment processor, a bank, or a licensed provider of legal, tax or financial advice.</p>
+ </div>
+</footer>
+
+<script>
+function tg(b){var m=document.getElementById('mobnav');
+ var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');}
+document.querySelectorAll('#mobnav a').forEach(function(a){
+ a.addEventListener('click',function(){document.getElementById('mobnav').classList.remove('open');
+  document.getElementById('burger').setAttribute('aria-expanded','false');});});
+</script>
+</body>
+</html>
