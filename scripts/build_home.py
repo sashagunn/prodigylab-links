@@ -7,7 +7,7 @@ CSS встроен в страницу намеренно: главная не �
 """
 import os, sys, html as H
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from home_content import L, PHONE_HREF, PHONE_TEXT, WA, SCAN
+from home_content import L, PHONE_HREF, PHONE_TEXT, WA, SCAN, DIAG
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORIGIN = 'https://prodigylab.studio'
@@ -133,6 +133,8 @@ footer{border-top:1px solid var(--line);padding:46px 0 56px}
 def page(code):
     d = L[code]
     url = ORIGIN + d['home']
+    scan = SCAN + d['scan_lang']
+    diag = DIAG + d['scan_lang']
     e = H.escape
     alts = "\n".join(
         f'<link rel="alternate" hreflang="{c}" href="{ORIGIN}{L[c]["home"]}">' for c, _ in LANGNAMES
@@ -142,16 +144,22 @@ def page(code):
         for c, n in LANGNAMES)
     navmid = "".join(f'<a href="{h}">{e(t)}</a>' for h, t in d['nav'])
     mobls = "".join(f'<a class="ml" href="{h}">{e(t)}</a>' for h, t in d['nav'])
-    cells = "".join(
-        f'<div class="cell"><span class="mono">{e(tag)}</span><h3>{e(h3)}</h3><p>{e(p)}</p>'
-        f'<ul>{"".join(f"<li>{e(li)}</li>" for li in lis)}</ul></div>'
-        for tag, h3, p, lis in d['problems'])
+    def _cell(i, tag, h3, p, lis):
+        extra = ''
+        # §10: AI-проверка сайта остаётся, но как вторичный путь внутри
+        # категории «Сайт и e-commerce», а не как главный CTA страницы
+        if i == 5:
+            extra = (f'<p style="margin-top:14px"><a href="{scan}" target="_blank" rel="noopener" '
+                     f'style="font-size:14px;color:var(--accent);text-decoration:none;'
+                     f'border-bottom:1px solid var(--accent)">{e(d["scan_secondary"])} &rarr;</a></p>')
+        return (f'<div class="cell"><span class="mono">{e(tag)}</span><h3>{e(h3)}</h3><p>{e(p)}</p>'
+                f'<ul>{"".join(f"<li>{e(li)}</li>" for li in lis)}</ul>{extra}</div>')
+    cells = "".join(_cell(i, *pr) for i, pr in enumerate(d['problems']))
     steps = "".join(
         f'<div class="step"><span class="n">{i:02d}</span><h3>{e(t)}</h3><p>{e(p)}</p></div>'
         for i, (t, p) in enumerate(d['steps'], 1))
     facts = "".join(
         f'<div class="fact"><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in d['facts'])
-    scan = SCAN + d['scan_lang']
 
     return f"""<!DOCTYPE html>
 <html lang="{code}">
@@ -196,11 +204,11 @@ fbq('init','{PIXEL}');fbq('track','PageView');
    <button id="burger" class="icon" aria-label="Menu" aria-expanded="false" onclick="tg(this)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
    </button>
-   <a class="btn nav-cta" href="#diagnostic">{e(d['cta1'])}</a>
+   <a class="btn nav-cta" href="{diag}" data-diag>{e(d['cta1'])}</a>
   </div>
  </div>
  <div id="mob"><div class="wrap">{mobls}
-  <a class="btn" href="#diagnostic">{e(d['cta1'])}</a>
+  <a class="btn" href="{diag}" data-diag>{e(d['cta1'])}</a>
   <a class="ml" href="{PHONE_HREF}">{e(d['call'])} {PHONE_TEXT}</a>
   <div class="mlangs">{langs}</div>
  </div></div>
@@ -215,7 +223,7 @@ fbq('init','{PIXEL}');fbq('track','PageView');
   <p class="quote">{e(d['quote'])}</p>
   <p class="lede">{e(d['lede'])}</p>
   <div class="cta-row">
-   <a class="btn btn-lg" href="#diagnostic">{e(d['cta1'])}</a>
+   <a class="btn btn-lg" href="{diag}" data-diag>{e(d['cta1'])}</a>
    <a class="btn btn-lg btn-g" href="#problems">{e(d['cta2'])}</a>
   </div>
   <span class="mono">{e(d['note'])}</span>
@@ -264,7 +272,7 @@ fbq('init','{PIXEL}');fbq('track','PageView');
   <h2 style="margin-top:18px">{e(d['final_h2'])}</h2>
   <p class="lede">{e(d['final_lede'])}</p>
   <div class="cta-row">
-   <a class="btn btn-lg" href="{scan}" target="_blank" rel="noopener">{e(d['final_cta1'])}</a>
+   <a class="btn btn-lg" href="{diag}" data-diag>{e(d['final_cta1'])}</a>
    <a class="btn btn-lg btn-g" href="{WA}" target="_blank" rel="noopener">{e(d['final_cta2'])}</a>
   </div>
   <span class="mono" style="display:block;margin-top:20px"><a href="{PHONE_HREF}" style="color:var(--accent);text-decoration:none">{e(d['call'])} {PHONE_TEXT}</a></span>
@@ -288,6 +296,18 @@ fbq('init','{PIXEL}');fbq('track','PageView');
 </footer>
 
 <script>
+// UTM и реферер прокидываем в диагностику, иначе источник заявки теряется (ТЗ §8)
+(function(){{var q=new URLSearchParams(location.search);
+ document.querySelectorAll('a[data-diag]').forEach(function(a){{
+  var u=new URL(a.href);
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){{
+   if(q.get(k)) u.searchParams.set(k,q.get(k));}});
+  u.searchParams.set('from', location.pathname);
+  if(document.referrer) u.searchParams.set('ref', document.referrer.slice(0,200));
+  a.href=u.toString();
+  a.addEventListener('click',function(){{
+   if(typeof fbq==='function') fbq('trackCustom','DiagnosticCtaClick',{{lang:document.documentElement.lang}});
+  }});}});}})();
 function tg(b){{var m=document.getElementById('mob');
  var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');}}
 document.querySelectorAll('#mob a').forEach(function(a){{a.addEventListener('click',function(){{

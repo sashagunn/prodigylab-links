@@ -5,11 +5,13 @@
 PHONE_HREF = "tel:+18182690416"
 PHONE_TEXT = "+1 (818) 269-0416"
 WA = "https://wa.me/18182690416"
-SCAN = "https://scan.prodigylab.studio/?lang="
+DIAG = "https://scan.prodigylab.studio/diagnostic?lang="
+SCAN = "https://scan.prodigylab.studio/scan?lang="
 
 L = {}
 
 L['ru'] = dict(
+  scan_secondary='Проверить сайт с помощью AI',
   locale='ru_RU', home='/', scan_lang='ru',
   title='Prodigy LAB — разбор и решение бизнес-задач',
   desc='Бизнес приходит к нам с проблемой, а не за услугой. Мы определяем, где именно теряются деньги, и либо решаем сами, либо подключаем проверенного профильного партнёра.',
@@ -18,7 +20,7 @@ L['ru'] = dict(
   lede='Владелец обычно знает симптом: платежи заблокировали, реклама не окупается, заявки теряются между каналами. Чего нет — взгляда со стороны на то, какая из этих проблем сейчас самая дорогая и что чинить первым.',
   cta1='Расскажите, что не работает', cta2='Что мы разбираем',
   note='Первичный разбор бесплатно · без обязательств · без обязательного созвона',
-  quote='Тебе не нужен новый маркетолог. Нужен честный разбор бизнеса.',
+  quote='Вам не нужен ещё один подрядчик. Сначала нужен честный разбор бизнеса.',
   photo_alt='Александр, основатель Prodigy LAB',
   s1_eyebrow='Что мешает бизнесу расти',
   s1_h2='Шесть мест, где действующие компании тихо теряют деньги',
@@ -59,6 +61,7 @@ L['ru'] = dict(
 )
 
 L['en'] = dict(
+  scan_secondary='Run a free AI website scan',
   locale='en_US', home='/en/', scan_lang='en',
   title='Prodigy LAB — Business Advisory & Solutions',
   desc='Businesses come to us with a problem, not a service request. We work out where the money is actually going, then either solve it ourselves or bring in a vetted specialist partner.',
@@ -67,7 +70,7 @@ L['en'] = dict(
   lede='Owners normally know the symptom: payments blocked, ads that do not pay back, enquiries lost between channels. What is missing is an outside read on which of those is most expensive right now, and what to fix first.',
   cta1='Tell us what is not working', cta2='What we handle',
   note='Free initial assessment · no obligation · no call required',
-  quote='You do not need another marketer. You need an honest read on the business.',
+  quote='You do not need another contractor. First you need an honest read on the business.',
   photo_alt='Aleksandr, founder of Prodigy LAB',
   s1_eyebrow="What's holding your business back",
   s1_h2='Six places where established businesses lose money quietly',
@@ -108,6 +111,7 @@ L['en'] = dict(
 )
 
 L['es'] = dict(
+  scan_secondary='Analizar el sitio con IA',
   locale='es_ES', home='/es/', scan_lang='es',
   title='Prodigy LAB — Asesoría y Soluciones de Negocio',
   desc='Las empresas acuden a nosotros con un problema, no a pedir un servicio. Determinamos dónde se está yendo el dinero y lo resolvemos nosotros o incorporamos a un socio especializado verificado.',
@@ -116,7 +120,7 @@ L['es'] = dict(
   lede='El dueño suele conocer el síntoma: pagos bloqueados, publicidad que no se paga sola, consultas que se pierden entre canales. Lo que falta es una lectura externa de cuál de esos problemas sale más caro ahora y qué arreglar primero.',
   cta1='Cuéntanos qué no funciona', cta2='Qué abordamos',
   note='Evaluación inicial gratuita · sin compromiso · sin llamada obligatoria',
-  quote='No necesitas otro especialista en marketing. Necesitas una lectura honesta del negocio.',
+  quote='No necesita otro proveedor. Primero necesita una lectura honesta del negocio.',
   photo_alt='Aleksandr, fundador de Prodigy LAB',
   s1_eyebrow='Qué frena a tu negocio',
   s1_h2='Seis lugares donde las empresas establecidas pierden dinero en silencio',
@@ -157,6 +161,7 @@ L['es'] = dict(
 )
 
 L['pt'] = dict(
+  scan_secondary='Verificar o site com IA',
   locale='pt_BR', home='/pt/', scan_lang='pt',
   title='Prodigy LAB — Consultoria e Soluções de Negócio',
   desc='As empresas nos procuram com um problema, não para contratar um serviço. Identificamos para onde o dinheiro está indo e resolvemos nós mesmos ou trazemos um parceiro especializado verificado.',
@@ -165,7 +170,7 @@ L['pt'] = dict(
   lede='O dono geralmente conhece o sintoma: pagamentos bloqueados, anúncios que não se pagam, contatos perdidos entre canais. Falta uma leitura externa sobre qual desses problemas é o mais caro agora e o que corrigir primeiro.',
   cta1='Conte o que não está funcionando', cta2='O que resolvemos',
   note='Avaliação inicial gratuita · sem compromisso · sem chamada obrigatória',
-  quote='Você não precisa de outro profissional de marketing. Precisa de uma leitura honesta do negócio.',
+  quote='Você não precisa de mais um fornecedor. Primeiro precisa de uma leitura honesta do negócio.',
   photo_alt='Aleksandr, fundador da Prodigy LAB',
   s1_eyebrow='O que trava o seu negócio',
   s1_h2='Seis lugares onde empresas estabelecidas perdem dinheiro em silêncio',
@@ -206,6 +211,7 @@ L['pt'] = dict(
 )
 
 L['de'] = dict(
+  scan_secondary='Website mit KI prüfen',
   locale='de_DE', home='/de/', scan_lang='de',
   title='Prodigy LAB — Business Advisory & Solutions',
   desc='Unternehmen kommen mit einem Problem zu uns, nicht mit einer Dienstleistungsanfrage. Wir finden heraus, wo das Geld tatsächlich verloren geht, und lösen es selbst oder holen einen geprüften Fachpartner dazu.',
@@ -214,7 +220,7 @@ L['de'] = dict(
   lede='Inhaber kennen in der Regel das Symptom: Zahlungen blockiert, Werbung rechnet sich nicht, Anfragen gehen zwischen Kanälen verloren. Was fehlt, ist ein Blick von außen darauf, welches dieser Probleme gerade am teuersten ist und was zuerst behoben gehört.',
   cta1='Sagen Sie uns, was nicht funktioniert', cta2='Was wir bearbeiten',
   note='Kostenlose Erstanalyse · unverbindlich · kein Pflichtgespräch',
-  quote='Sie brauchen keinen weiteren Marketer. Sie brauchen eine ehrliche Analyse des Geschäfts.',
+  quote='Sie brauchen keinen weiteren Dienstleister. Zuerst brauchen Sie eine ehrliche Analyse des Geschäfts.',
   photo_alt='Aleksandr, Gründer von Prodigy LAB',
   s1_eyebrow='Was Ihr Unternehmen ausbremst',
   s1_h2='Sechs Stellen, an denen etablierte Unternehmen still Geld verlieren',
