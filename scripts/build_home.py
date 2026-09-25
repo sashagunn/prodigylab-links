@@ -12,16 +12,33 @@ from home_content import L, PHONE_HREF, PHONE_TEXT, WA, SCAN, DIAG
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORIGIN = 'https://prodigylab.studio'
 PIXEL = '1713332936325081'
-OUT = {'ru': 'index.html', 'en': 'en/index.html', 'es': 'es/index.html',
+OUT = {'en': 'index.html', 'ru': 'ru/index.html', 'es': 'es/index.html',
        'pt': 'pt/index.html', 'de': 'de/index.html'}
-LANGNAMES = [('ru', 'RU'), ('en', 'EN'), ('es', 'ES'), ('pt', 'PT'), ('de', 'DE')]
+# Порядок в переключателе: английский первым, он теперь базовый
+LANGNAMES = [('en', 'EN'), ('ru', 'RU'), ('es', 'ES'), ('pt', 'PT'), ('de', 'DE')]
 
 
 import json as _json
 _F = _json.load(open(os.path.join(ROOT, 'BUSINESS_FACTS.json'), encoding='utf-8'))
-SERVICE_LINKS = "".join(
-    f'<a href="/{s["slug"]}/" style="font-size:12.5px;color:var(--ink3)">{H.escape(s["name_en"])}</a>'
-    for s in _F['services'])
+SERVICE_HEAD = {'en': 'Services', 'ru': 'Специализированные услуги — на английском',
+                'es': 'Servicios especializados — en inglés',
+                'pt': 'Serviços especializados — em inglês',
+                'de': 'Spezialisierte Leistungen — auf Englisch'}
+
+
+def service_links(code: str) -> str:
+    # Страницы услуг пока существуют только на английском. Молча уводить с
+    # локальной версии на чужой язык нельзя — помечаем (EN) явно (ТЗ §8, вариант B).
+    tag = '' if code == 'en' else ' (EN)'
+    return "".join(
+        f'<a href="/{s["slug"]}/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">'
+        f'{H.escape(s["name_en"])}{tag}</a>' for s in _F['services'])
+
+# Политика: английская на корне, русская переведена. ES/PT/DE пока ведут на
+# английскую и подписаны — юридический текст не переводится машинно (ТЗ §10).
+PRIVACY = {'en': '/privacy/', 'ru': '/ru/privacy/', 'es': '/privacy/',
+           'pt': '/privacy/', 'de': '/privacy/'}
+PRIVACY_TAG = {'en': '', 'ru': '', 'es': ' (English)', 'pt': ' (English)', 'de': ' (English)'}
 
 PHONE_SVG = ('<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
  'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 '
@@ -138,7 +155,7 @@ def page(code):
     e = H.escape
     alts = "\n".join(
         f'<link rel="alternate" hreflang="{c}" href="{ORIGIN}{L[c]["home"]}">' for c, _ in LANGNAMES
-    ) + f'\n<link rel="alternate" hreflang="x-default" href="{ORIGIN}/en/">'
+    ) + f'\n<link rel="alternate" hreflang="x-default" href="{ORIGIN}/">'
     langs = "".join(
         f'<a href="{L[c]["home"]}"{" aria-current=\"page\"" if c == code else ""}>{n}</a>'
         for c, n in LANGNAMES)
@@ -286,10 +303,11 @@ fbq('init','{PIXEL}');fbq('track','PageView');
   <div class="flinks">
    {"".join(f'<a href="{h}">{e(t)}</a>' for h,t in d['nav'])}
    <a href="{PHONE_HREF}">{PHONE_TEXT}</a>
-   <a href="{'/privacy/' if code=='ru' else '/en/privacy/'}">{e(d['foot_priv'])}</a>
+   <a href="{PRIVACY[code]}">{e(d['foot_priv'])}{PRIVACY_TAG[code]}</a>
   </div>
-  <div class="flinks" style="border-top:1px solid var(--line);padding-top:18px;margin-top:0">
-   {SERVICE_LINKS}
+  <div style="border-top:1px solid var(--line);padding-top:18px">
+   <span class="mono" style="display:block;margin-bottom:10px">{H.escape(SERVICE_HEAD[code])}</span>
+   <div class="flinks" style="margin:0">{service_links(code)}</div>
   </div>
   <p class="fmeta">© 2026 Prodigy LAB · Platonaire LLC · California, USA<br>{e(d['foot_legal'])}</p>
  </div>

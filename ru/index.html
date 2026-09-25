@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="msvalidate.01" content="F49FB5139071EDA53E1B8CC76652A8D8" />
+<title>Prodigy LAB — разбор и решение бизнес-задач</title>
+<meta name="description" content="Бизнес приходит к нам с проблемой, а не за услугой. Мы определяем, где именно теряются деньги, и либо решаем сами, либо подключаем проверенного профильного партнёра.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://prodigylab.studio/ru/">
+<link rel="alternate" hreflang="en" href="https://prodigylab.studio/">
+<link rel="alternate" hreflang="ru" href="https://prodigylab.studio/ru/">
+<link rel="alternate" hreflang="es" href="https://prodigylab.studio/es/">
+<link rel="alternate" hreflang="pt" href="https://prodigylab.studio/pt/">
+<link rel="alternate" hreflang="de" href="https://prodigylab.studio/de/">
+<link rel="alternate" hreflang="x-default" href="https://prodigylab.studio/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Prodigy LAB">
+<meta property="og:title" content="Prodigy LAB — разбор и решение бизнес-задач">
+<meta property="og:description" content="Бизнес приходит к нам с проблемой, а не за услугой. Мы определяем, где именно теряются деньги, и либо решаем сами, либо подключаем проверенного профильного партнёра.">
+<meta property="og:url" content="https://prodigylab.studio/ru/"><meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#121212;--ink2:#5C5C5A;--ink3:#8A8A86;--paper:#FBFBF9;--paper2:#F3F2EE;
+--line:#E2E1DC;--accent:#1C7E84;--accent2:#0F4A4E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Geist,system-ui,-apple-system,sans-serif;
+font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+@media(min-width:768px){.wrap{padding:0 40px}}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;
+text-transform:uppercase;color:var(--ink3)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.022em;line-height:1.13}
+h1{font-size:clamp(30px,5.6vw,58px);letter-spacing:-.03em;line-height:1.08}
+h2{font-size:clamp(25px,3.5vw,40px)}
+h3{font-size:18.5px;letter-spacing:-.01em;line-height:1.32}
+p{margin:0;color:var(--ink2)}a{color:inherit}
+.lede{font-size:clamp(16.5px,1.9vw,20px);line-height:1.56;color:var(--ink2)}
+nav{position:sticky;top:0;z-index:50;background:rgba(251,251,249,.88);
+backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;gap:10px}
+.brand{display:flex;align-items:baseline;gap:6px;text-decoration:none;white-space:nowrap}
+.brand b{font-weight:600;letter-spacing:-.02em;font-size:16.5px;color:var(--accent)}
+.brand span{font-weight:300;font-size:16.5px;color:var(--ink)}
+.nav-mid{display:none;gap:30px}@media(min-width:960px){.nav-mid{display:flex}}
+.nav-mid a{font-size:14.5px;color:var(--ink2);text-decoration:none}
+.nav-mid a:hover{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:2px}
+.langs{display:none;gap:2px;margin-right:6px}@media(min-width:960px){.langs{display:flex}}
+.langs a{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink3);
+text-decoration:none;padding:8px 6px}
+.langs a:hover,.langs a[aria-current]{color:var(--accent)}
+.icon{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;
+color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer}
+.icon:hover{color:var(--accent)}
+#burger{display:inline-flex}@media(min-width:960px){#burger{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;
+text-decoration:none;font-size:14px;font-weight:500;padding:13px 22px;border:1px solid var(--ink)}
+.btn:hover{background:var(--accent2);border-color:var(--accent2)}
+.btn-lg{padding:17px 28px;font-size:15px}
+.btn-g{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn-g:hover{background:var(--paper2);border-color:var(--ink3);color:var(--ink)}
+.nav-cta{display:none}@media(min-width:960px){.nav-cta{display:inline-flex;margin-left:8px}}
+#mob{display:none;background:var(--paper);border-bottom:1px solid var(--line)}
+#mob.open{display:block}
+#mob a.ml{display:block;padding:15px 0;font-size:16.5px;text-decoration:none;border-top:1px solid var(--line)}
+#mob .btn{width:100%;margin:16px 0 10px}
+#mob .mlangs{display:flex;gap:14px;padding:14px 0 22px;border-top:1px solid var(--line)}
+#mob .mlangs a{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;
+color:var(--ink3);text-decoration:none;padding:6px 2px}
+.hero{padding:56px 0 52px;text-align:center}
+@media(min-width:768px){.hero{padding:92px 0 80px}}
+.avatar{width:92px;height:92px;border-radius:50%;object-fit:cover;border:1px solid var(--line);margin:0 auto 26px;display:block}
+.hero h1{max-width:19ch;margin:20px auto 0}
+.quote{font-size:15.5px;font-style:italic;color:var(--accent);margin:22px auto 0;max-width:40ch}
+.hero .lede{max-width:56ch;margin:22px auto 0}
+.cta-row{display:flex;flex-direction:column;gap:11px;margin:34px auto 0;max-width:520px}
+@media(min-width:560px){.cta-row{flex-direction:row;justify-content:center}}
+.hero .mono{margin-top:20px;display:block}
+.sec{padding:62px 0}@media(min-width:768px){.sec{padding:100px 0}}
+.alt{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.grid{display:grid;margin-top:40px;border-top:1px solid var(--line)}
+@media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1020px){.grid{grid-template-columns:repeat(3,1fr)}}
+.cell{padding:28px 0;border-bottom:1px solid var(--line);min-width:0}
+@media(min-width:700px){.cell{padding:30px 30px 34px 0}
+.cell:nth-child(2n){padding-left:30px;border-left:1px solid var(--line)}}
+@media(min-width:1020px){.cell{padding:30px 28px 34px 0}
+.cell:nth-child(2n){padding-left:0;border-left:0}
+.cell:nth-child(3n+2),.cell:nth-child(3n){padding-left:28px;border-left:1px solid var(--line)}}
+.cell .mono{display:block;margin-bottom:13px;color:var(--accent)}
+.cell h3{margin-bottom:9px}.cell p{font-size:15.5px;line-height:1.57}
+.cell ul{margin:13px 0 0;padding:0;list-style:none}
+.cell li{font-size:14.5px;color:var(--ink3);padding-left:15px;position:relative;margin-top:7px}
+.cell li:before{content:"";position:absolute;left:0;top:9px;width:5px;height:1px;background:var(--ink3)}
+.steps{display:grid;margin-top:42px;border-top:1px solid var(--line)}
+@media(min-width:880px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{padding:28px 0;border-bottom:1px solid var(--line);min-width:0}
+@media(min-width:880px){.step{padding:32px 34px 38px 0;border-bottom:0}
+.step+.step{padding-left:34px;border-left:1px solid var(--line)}}
+.step .n{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);display:block;margin-bottom:15px}
+.step h3{margin-bottom:9px}.step p{font-size:15.5px}
+.who{display:grid;gap:32px;margin-top:40px}
+@media(min-width:780px){.who{grid-template-columns:1.2fr 1fr;gap:60px}}
+.who .min{min-width:0}
+.note{border-left:2px solid var(--accent);padding:2px 0 2px 20px;margin-top:30px;max-width:62ch}
+.note p+p{margin-top:11px}.note b{color:var(--ink);font-weight:600}
+.facts{border-top:1px solid var(--line);margin-top:15px}
+.fact{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:15px 0;border-bottom:1px solid var(--line)}
+.fact dt{font-size:14.5px;color:var(--ink2);margin:0}
+.fact dd{margin:0;font-weight:600;font-size:15px;text-align:right}
+.final{padding:66px 0 76px}@media(min-width:768px){.final{padding:100px 0 118px}}
+.final h2{max-width:22ch}.final .lede{max-width:56ch;margin-top:18px}
+.final .cta-row{margin-left:0;justify-content:flex-start}
+footer{border-top:1px solid var(--line);padding:46px 0 56px}
+.flinks{display:flex;flex-wrap:wrap;gap:4px 26px;margin:22px 0 24px}
+.flinks a{font-size:14px;color:var(--ink2);text-decoration:none;padding:8px 0}
+.flinks a:hover{color:var(--accent)}
+.fmeta{font-size:12.5px;color:var(--ink3);line-height:1.75}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1713332936325081');fbq('track','PageView');
+</script>
+<noscript><img alt="" height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1713332936325081&ev=PageView&noscript=1"/></noscript>
+<script src="/assets/ai-referrals.js" defer></script>
+</head>
+<body>
+
+<nav>
+ <div class="wrap nav-in">
+  <a class="brand" href="/ru/"><b>PRODIGY</b><span>LAB</span></a>
+  <div class="nav-mid"><a href="#problems">Что разбираем</a><a href="#how">Как устроено</a><a href="#who">Кто мы</a></div>
+  <div class="nav-right">
+   <div class="langs"><a href="/">EN</a><a href="/ru/" aria-current="page">RU</a><a href="/es/">ES</a><a href="/pt/">PT</a><a href="/de/">DE</a></div>
+   <a class="icon" href="tel:+18182690416" aria-label="Позвонить +1 (818) 269-0416" title="+1 (818) 269-0416"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.26-1.26a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+   <button id="burger" class="icon" aria-label="Menu" aria-expanded="false" onclick="tg(this)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+   </button>
+   <a class="btn nav-cta" href="https://scan.prodigylab.studio/diagnostic?lang=ru" data-diag>Расскажите, что не работает</a>
+  </div>
+ </div>
+ <div id="mob"><div class="wrap"><a class="ml" href="#problems">Что разбираем</a><a class="ml" href="#how">Как устроено</a><a class="ml" href="#who">Кто мы</a>
+  <a class="btn" href="https://scan.prodigylab.studio/diagnostic?lang=ru" data-diag>Расскажите, что не работает</a>
+  <a class="ml" href="tel:+18182690416">Позвонить +1 (818) 269-0416</a>
+  <div class="mlangs"><a href="/">EN</a><a href="/ru/" aria-current="page">RU</a><a href="/es/">ES</a><a href="/pt/">PT</a><a href="/de/">DE</a></div>
+ </div></div>
+</nav>
+
+<main>
+<section class="hero">
+ <div class="wrap">
+  <img class="avatar" src="/assets/founder.jpg" alt="Александр, основатель Prodigy LAB" width="92" height="92">
+  <span class="mono">Business Advisory &amp; Solutions</span>
+  <h1>Где-то в вашем бизнесе утекают деньги. Чаще всего — не там, где кажется</h1>
+  <p class="quote">Вам не нужен ещё один подрядчик. Сначала нужен честный разбор бизнеса.</p>
+  <p class="lede">Владелец обычно знает симптом: платежи заблокировали, реклама не окупается, заявки теряются между каналами. Чего нет — взгляда со стороны на то, какая из этих проблем сейчас самая дорогая и что чинить первым.</p>
+  <div class="cta-row">
+   <a class="btn btn-lg" href="https://scan.prodigylab.studio/diagnostic?lang=ru" data-diag>Расскажите, что не работает</a>
+   <a class="btn btn-lg btn-g" href="#problems">Что мы разбираем</a>
+  </div>
+  <span class="mono">Первичный разбор бесплатно · без обязательств · без обязательного созвона</span>
+ </div>
+</section>
+
+<section class="sec alt" id="problems">
+ <div class="wrap">
+  <span class="mono">Что мешает бизнесу расти</span>
+  <h2 style="margin-top:18px;max-width:19ch">Шесть мест, где действующие компании тихо теряют деньги</h2>
+  <p class="lede" style="max-width:58ch;margin-top:18px">Мы работаем со всеми шестью. Часть решаем сами, часть — через профильного партнёра, которого проверили. И говорим, что именно из этого что, до того как вы на что-то соглашаетесь.</p>
+  <div class="grid"><div class="cell"><span class="mono">01 — Платежи</span><h3>Процессор перестал вас устраивать</h3><p>Аккаунт заблокировали, деньги удерживают, растут chargebacks — или ваша ниша тихо не нужна текущему провайдеру.</p><ul><li>Аккаунт закрыт или на проверке</li><li>Высокий процент chargebacks</li><li>Подписочная или high-risk модель</li><li>Нужен резерв или другие рельсы</li></ul></div><div class="cell"><span class="mono">02 — Банкинг</span><h3>Банк не подходит под то, как вы работаете</h3><p>Особенно если компания в США, а основатель за рубежом — или банк перестал соответствовать модели бизнеса.</p><ul><li>Счёт закрыт или заморожен</li><li>Основатель за рубежом, юрлицо в США</li><li>Открытие счёта из-за границы</li><li>Нужна альтернативная инфраструктура</li></ul></div><div class="cell"><span class="mono">03 — Рост</span><h3>Трафик и бюджет не превращаются в выручку</h3><p>На бумаге привлечение работает, на практике — нет. Обычно ломается в одном конкретном месте, а не везде сразу.</p><ul><li>Клики есть, заказов нет</li><li>Растёт стоимость клиента</li><li>Проседает конкретный шаг воронки</li></ul></div><div class="cell"><span class="mono">04 — Операции</span><h3>Работа держится на том, что кто-то помнит</h3><p>Заявки в четырёх местах, CRM, которой никто не верит, отчёт, собираемый руками в воскресенье.</p><ul><li>Разрозненные системы</li><li>Ручные повторяющиеся процессы</li><li>У цифровой части нет владельца</li></ul></div><div class="cell"><span class="mono">05 — Инфраструктура</span><h3>Функции, ради которых нанимать дорого, а игнорировать — дороже</h3><p>Логистика, зарплаты, безопасность, рабочие инструменты: нужны постоянно и редко окупают отдельную ставку.</p><ul><li>Фулфилмент и 3PL</li><li>Расчёт зарплат и HR</li><li>Безопасность и комплаенс</li></ul></div><div class="cell"><span class="mono">06 — Присутствие</span><h3>Витрина, по которой вас и оценивают</h3><p>Сайт и e-commerce — то, что мы много лет делали и продолжаем делать своими руками.</p><ul><li>Пересборка сайта или магазина</li><li>Конверсия и оформление заказа</li><li>Инфраструктура интернет-магазина</li></ul><p style="margin-top:14px"><a href="https://scan.prodigylab.studio/scan?lang=ru" target="_blank" rel="noopener" style="font-size:14px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)">Проверить сайт с помощью AI &rarr;</a></p></div></div>
+ </div>
+</section>
+
+<section class="sec" id="how">
+ <div class="wrap">
+  <span class="mono">Как это устроено</span>
+  <h2 style="margin-top:18px;max-width:20ch">Сначала вы получаете разбор — и только потом кто-то предлагает работу</h2>
+  <div class="steps"><div class="step"><span class="n">01</span><h3>Расскажите, что не работает</h3><p>Короткая структурированная анкета, а не форма «напишите нам». Чем занимается бизнес, что сломалось, что уже пробовали и насколько это срочно.</p></div><div class="step"><span class="n">02</span><h3>Мы разбираем — бесплатно</h3><p>Возвращаемся с тем, что считаем настоящим ограничением, стоит ли это решать сейчас и какие есть реальные пути. Если задача не наша — скажем прямо.</p></div><div class="step"><span class="n">03</span><h3>Решаем сами или передаём</h3><p>Что в нашей компетенции — делаем сами. Остальное уходит профильному партнёру, которого мы проверили. Что именно из этого что, вы знаете заранее.</p></div></div>
+ </div>
+</section>
+
+<section class="sec alt" id="who">
+ <div class="wrap">
+  <span class="mono">Кто мы</span>
+  <h2 style="margin-top:18px;max-width:22ch">Компания, которая сама всё это строила, а не каталог ссылок</h2>
+  <div class="who">
+   <div class="min">
+    <p class="lede" style="max-width:none">Prodigy LAB годами собирал и чинил то, через что бизнес продаёт: магазины, сайты, рекламу, конверсию, переписку с клиентами. Эта работа никуда не делась — и именно она позволяет отличить проблему инфраструктуры от проблемы маркетинга.</p>
+    <p style="margin-top:18px">Консалтинг вырос из неё. Клиенты приходили с задачами, которые вообще не про сайт: процессор отключил приём платежей, банк закрыл счёт, функцию в компании никто не ведёт. Отвечать только на ту часть, что попадает в наш прайс-лист, было бесполезно.</p>
+    <div class="note"><p><b>Чего мы не делаем.</b> Мы не платёжный процессор и не банк. Мы не одобряем merchant-аккаунты и не открываем счета, и не можем гарантировать, что это сделает провайдер. Мы не оказываем юридических, налоговых, инвестиционных и иных регулируемых финансовых консультаций и не занимаемся регистрацией юрлиц, визами и иммиграцией.</p><p>Если задача требует лицензированного специалиста — мы так и скажем.</p></div>
+   </div>
+   <div class="min">
+    <span class="mono">Компания</span>
+    <dl class="facts"><div class="fact"><dt>Юрлицо</dt><dd>Platonaire LLC</dd></div><div class="fact"><dt>База</dt><dd>Калифорния, США</dd></div><div class="fact"><dt>Работаем с</dt><dd>США и международно</dd></div><div class="fact"><dt>Языки</dt><dd>RU · EN · ES · PT · DE</dd></div><div class="fact"><dt>Делаем сами</dt><dd>Сайты · E-comm · Реклама</dd></div><div class="fact"><dt>Первичный разбор</dt><dd>Бесплатно</dd></div></dl>
+    <p style="font-size:13.5px;color:var(--ink3);margin-top:16px;line-height:1.6">Prodigy LAB работает удалённо. Офиса, куда можно приехать, у нас нет, и мы не приписываем себе городов, в которых не присутствуем.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="final" id="diagnostic">
+ <div class="wrap">
+  <span class="mono">Бесплатный первичный разбор</span>
+  <h2 style="margin-top:18px">Опишите проблему. Мы скажем, в чём она, по нашему мнению, на самом деле</h2>
+  <p class="lede">Бесплатно, ни к чему не обязывает, созвон необязателен. Если ваша ситуация вне того, чем мы занимаемся, вы получите об этом честный ответ, а не коммерческое предложение.</p>
+  <div class="cta-row">
+   <a class="btn btn-lg" href="https://scan.prodigylab.studio/diagnostic?lang=ru" data-diag>Начать разбор</a>
+   <a class="btn btn-lg btn-g" href="https://wa.me/18182690416" target="_blank" rel="noopener">Написать напрямую</a>
+  </div>
+  <span class="mono" style="display:block;margin-top:20px"><a href="tel:+18182690416" style="color:var(--accent);text-decoration:none">Позвонить +1 (818) 269-0416</a></span>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <a class="brand" href="/ru/"><b>PRODIGY</b><span>LAB</span></a>
+  <div class="flinks">
+   <a href="#problems">Что разбираем</a><a href="#how">Как устроено</a><a href="#who">Кто мы</a>
+   <a href="tel:+18182690416">+1 (818) 269-0416</a>
+   <a href="/ru/privacy/">Политика конфиденциальности</a>
+  </div>
+  <div style="border-top:1px solid var(--line);padding-top:18px">
+   <span class="mono" style="display:block;margin-bottom:10px">Специализированные услуги — на английском</span>
+   <div class="flinks" style="margin:0"><a href="/shopify-development/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Shopify Development (EN)</a><a href="/shopify-redesign/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Shopify Redesign (EN)</a><a href="/shopify-audit/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Shopify Audit (EN)</a><a href="/ecommerce-consulting/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">E-commerce Consulting (EN)</a><a href="/website-development/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Website Development (EN)</a><a href="/website-redesign/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Website Redesign (EN)</a><a href="/website-audit/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Website Audit (EN)</a><a href="/conversion-rate-optimization/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Conversion Rate Optimization (EN)</a><a href="/ai-chatbot/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">AI Sales Chatbot (ProdigyBot) (EN)</a><a href="/ai-automation/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">AI Automation (EN)</a><a href="/meta-ads-management/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Meta Ads Management (EN)</a><a href="/google-ads-management/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Google Ads Management (EN)</a><a href="/business-operations/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Fractional Digital Operations (EN)</a><a href="/business-consulting-usa/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Business Consulting for US SMBs (EN)</a><a href="/russian-business-consulting-miami/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Digital Operations for Russian-speaking Businesses (Miami) (EN)</a></div>
+  </div>
+  <p class="fmeta">© 2026 Prodigy LAB · Platonaire LLC · California, USA<br>Prodigy LAB не является платёжным процессором, банком или лицензированным поставщиком юридических, налоговых или финансовых консультаций.</p>
+ </div>
+</footer>
+
+<script>
+// UTM и реферер прокидываем в диагностику, иначе источник заявки теряется (ТЗ §8)
+(function(){var q=new URLSearchParams(location.search);
+ document.querySelectorAll('a[data-diag]').forEach(function(a){
+  var u=new URL(a.href);
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){
+   if(q.get(k)) u.searchParams.set(k,q.get(k));});
+  u.searchParams.set('from', location.pathname);
+  if(document.referrer) u.searchParams.set('ref', document.referrer.slice(0,200));
+  a.href=u.toString();
+  a.addEventListener('click',function(){
+   if(typeof fbq==='function') fbq('trackCustom','DiagnosticCtaClick',{lang:document.documentElement.lang});
+  });});})();
+function tg(b){var m=document.getElementById('mob');
+ var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');}
+document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('click',function(){
+ document.getElementById('mob').classList.remove('open');
+ document.getElementById('burger').setAttribute('aria-expanded','false');});});
+</script>
+<script>
+ (function (d, t) {
+  var B="https://chat.prodigylab.studio";var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=B+"/packs/js/sdk.js";g.defer=true;g.async=true;s.parentNode.insertBefore(g,s);
+  g.onload=function(){window.chatwootSettings=window.chatwootSettings||{};
+   window.chatwootSettings.locale="ru";
+   window.chatwootSDK.run({websiteToken:"J1xMPSabyx7EfRVPrmZEMLYB",baseUrl:B});};
+ })(document,"script");
+</script>
+</body>
+</html>

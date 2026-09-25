@@ -67,7 +67,7 @@ PAGES.append(dict(
         cards('Where to go next', [
             (f'{ORIGIN}/services/', 'All services', 'Fifteen service pages, each with what is included and what is not.'),
             (f'{ORIGIN}/case-studies/', 'Case studies', 'What was done and what came of it, with the numbers we can actually stand behind.'),
-            (f'{ORIGIN}/en/pricing/', 'Pricing', 'The public price list. It is the single source of truth for prices.'),
+            (f'{ORIGIN}/pricing/', 'Pricing', 'The public price list. It is the single source of truth for prices.'),
         ]),
     ]))
 
@@ -113,7 +113,7 @@ PAGES.append(dict(
             ('Credit card needed', 'No'),
             ('Sales call required', 'No'),
             ('Time', 'About a minute'),
-            ('Next step', f'<a class="text-accent-green hover:underline" href="{ORIGIN}/en/pricing/">$99 Website Action Plan</a>'),
+            ('Next step', f'<a class="text-accent-green hover:underline" href="{ORIGIN}/pricing/">$99 Website Action Plan</a>'),
             ('Where it runs', f'<a class="text-accent-green hover:underline" href="{SCAN}">scan.prodigylab.studio</a>'),
         ], surface=True),
         cols('What it checks',
@@ -132,7 +132,7 @@ PAGES.append(dict(
         qa('Straight answers about the scan', scan_faq),
         cta_band('After the scan, the honest next step',
                  'The free scan shows symptoms. If you want the causes — 5-10 issues with the exact change, priority, copy you can paste and a 7-day plan — that is the $99 Website Action Plan, and it is credited toward the $495 full audit if you go further within 30 days.',
-                 f'{ORIGIN}/en/pricing/', 'See what each step includes'),
+                 f'{ORIGIN}/pricing/', 'See what each step includes'),
         cards('Related', [
             (f'{ORIGIN}/website-audit/', 'Full website audit — $495', 'Analytics, ads, competitors, funnel and a 90-day plan. The paid version of this question.'),
             (f'{ORIGIN}/conversion-rate-optimization/', 'Conversion optimisation', 'For when you already know what is broken and want it fixed.'),
@@ -337,7 +337,7 @@ PAGES.append(dict(
     sections=[
         hero('Operations', 'You are running marketing in the gaps between running the business',
              'The ads need checking, the leads are in three places, the reports never get made, and all of it lands on the owner at 11pm. Not because it is hard — because nobody owns it. That is a staffing problem being solved with willpower.',
-             [(WA, 'Talk to us', True), (f'{ORIGIN}/en/pricing/', 'See what is included', False)],
+             [(WA, 'Talk to us', True), (f'{ORIGIN}/pricing/', 'See what is included', False)],
              'Growth Partner $3,900/mo · minimum 3 months · no annual contract'),
         cols('What gets taken off you',
              [('Advertising', 'Meta and Google run and optimised weekly, with a report that says what happened and what it means.'),

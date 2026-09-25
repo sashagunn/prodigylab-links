@@ -68,7 +68,7 @@ fbq('init','{PIXEL}');fbq('track','PageView');
 def nav(lang):
     t = dict(sv='Услуги', pr='Цены', ab='О студии', cs='Кейсы', cta='Написать') if lang == 'ru' \
         else dict(sv='Services', pr='Pricing', ab='About', cs='Cases', cta='Talk to us')
-    home = '/' if lang == 'ru' else '/en/'
+    home = '/ru/' if lang == 'ru' else '/'
     return f'''
 <nav class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-border-subtle" aria-label="{'Основная навигация' if lang=='ru' else 'Primary'}">
 <div class="flex justify-between items-center max-w-[1200px] mx-auto px-8 h-20">
@@ -87,14 +87,14 @@ def nav(lang):
 
 def footer(lang):
     slogan = FACTS['identity']['slogan_ru'] if lang == 'ru' else FACTS['identity']['slogan_en']
-    links = ([('/', 'Главная'), ('/services/', 'Услуги'), ('/about/', 'О студии'),
+    links = ([('/ru/', 'Главная'), ('/services/', 'Услуги'), ('/about/', 'О студии'),
               ('/case-studies/', 'Кейсы'), ('/en/pricing/', 'Цены'),
               ('/prodigybot/', 'ProdigyBot'), ('/scan/', 'Бесплатная проверка'),
               ('/privacy/', 'Политика конфиденциальности')] if lang == 'ru' else
-             [('/en/', 'Home'), ('/services/', 'Services'), ('/about/', 'About'),
+             [('/', 'Home'), ('/services/', 'Services'), ('/about/', 'About'),
               ('/case-studies/', 'Cases'), ('/en/pricing/', 'Pricing'),
               ('/prodigybot/', 'ProdigyBot'), ('/scan/', 'Free scan'),
-              ('/en/privacy/', 'Privacy Policy')])
+              ('/privacy/', 'Privacy Policy')])
     ls = "".join(f'<a class="inline-block py-2 hover:text-accent-green transition-colors" href="{h}">{n}</a>' for h, n in links)
     return f'''</main>
 <footer class="bg-white border-t border-border-subtle py-20">
@@ -235,7 +235,7 @@ def faq_ld(items):
 
 
 def breadcrumb_ld(slug, name, lang='en'):
-    home = f"{ORIGIN}/" if lang == 'ru' else f"{ORIGIN}/en/"
+    home = f"{ORIGIN}/ru/" if lang == "ru" else f"{ORIGIN}/"
     return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Prodigy LAB", "item": home},
         {"@type": "ListItem", "position": 2, "name": name, "item": f"{ORIGIN}/{slug}/"}]}

@@ -4,10 +4,40 @@
   "buildCommand": "",
   "outputDirectory": ".",
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/:path*/index.html", "destination": "/:path*/", "permanent": true },
-    { "source": "/pricing/", "destination": "/en/pricing/", "permanent": true },
-    { "source": "/company/", "destination": "/about/", "permanent": true },
-    { "source": "/about-prodigy-lab/", "destination": "/about/", "permanent": true }
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*/index.html",
+      "destination": "/:path*/",
+      "permanent": true
+    },
+    {
+      "source": "/pricing/",
+      "destination": "/en/pricing/",
+      "permanent": true
+    },
+    {
+      "source": "/company/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/about-prodigy-lab/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/en/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/privacy/",
+      "destination": "/privacy/",
+      "permanent": true
+    }
   ]
 }

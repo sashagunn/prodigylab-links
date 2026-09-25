@@ -12,7 +12,7 @@ L = {}
 
 L['ru'] = dict(
   scan_secondary='Проверить сайт с помощью AI',
-  locale='ru_RU', home='/', scan_lang='ru',
+  locale='ru_RU', home='/ru/', scan_lang='ru',
   title='Prodigy LAB — разбор и решение бизнес-задач',
   desc='Бизнес приходит к нам с проблемой, а не за услугой. Мы определяем, где именно теряются деньги, и либо решаем сами, либо подключаем проверенного профильного партнёра.',
   eyebrow='Business Advisory & Solutions',
@@ -62,7 +62,7 @@ L['ru'] = dict(
 
 L['en'] = dict(
   scan_secondary='Run a free AI website scan',
-  locale='en_US', home='/en/', scan_lang='en',
+  locale='en_US', home='/', scan_lang='en',
   title='Prodigy LAB — Business Advisory & Solutions',
   desc='Businesses come to us with a problem, not a service request. We work out where the money is actually going, then either solve it ourselves or bring in a vetted specialist partner.',
   eyebrow='Business Advisory & Solutions',
