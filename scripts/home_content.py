@@ -11,6 +11,10 @@ SCAN = "https://scan.prodigylab.studio/scan?lang="
 L = {}
 
 L['ru'] = dict(
+  banner_ask='Предпочитаете {lang}? Открыть версию на этом языке',
+  banner_open='Открыть',
+  banner_stay='Остаться на русском',
+  lang_names=('английском', 'русском', 'испанском', 'португальском', 'немецком'),
   scan_secondary='Проверить сайт с помощью AI',
   locale='ru_RU', home='/ru/', scan_lang='ru',
   title='Prodigy LAB — разбор и решение бизнес-задач',
@@ -61,6 +65,10 @@ L['ru'] = dict(
 )
 
 L['en'] = dict(
+  banner_ask='Prefer {lang}? Open the {lang} version',
+  banner_open='Open',
+  banner_stay='Stay in English',
+  lang_names=('English', 'Russian', 'Spanish', 'Portuguese', 'German'),
   scan_secondary='Run a free AI website scan',
   locale='en_US', home='/', scan_lang='en',
   title='Prodigy LAB — Business Advisory & Solutions',
@@ -111,6 +119,10 @@ L['en'] = dict(
 )
 
 L['es'] = dict(
+  banner_ask='¿Prefiere {lang}? Abrir la versión en ese idioma',
+  banner_open='Abrir',
+  banner_stay='Seguir en español',
+  lang_names=('inglés', 'ruso', 'español', 'portugués', 'alemán'),
   scan_secondary='Analizar el sitio con IA',
   locale='es_ES', home='/es/', scan_lang='es',
   title='Prodigy LAB — Asesoría y Soluciones de Negocio',
@@ -161,6 +173,10 @@ L['es'] = dict(
 )
 
 L['pt'] = dict(
+  banner_ask='Prefere {lang}? Abrir a versão nesse idioma',
+  banner_open='Abrir',
+  banner_stay='Continuar em português',
+  lang_names=('inglês', 'russo', 'espanhol', 'português', 'alemão'),
   scan_secondary='Verificar o site com IA',
   locale='pt_BR', home='/pt/', scan_lang='pt',
   title='Prodigy LAB — Consultoria e Soluções de Negócio',
@@ -211,6 +227,10 @@ L['pt'] = dict(
 )
 
 L['de'] = dict(
+  banner_ask='Bevorzugen Sie {lang}? Version in dieser Sprache öffnen',
+  banner_open='Öffnen',
+  banner_stay='Auf Deutsch bleiben',
+  lang_names=('Englisch', 'Russisch', 'Spanisch', 'Portugiesisch', 'Deutsch'),
   scan_secondary='Website mit KI prüfen',
   locale='de_DE', home='/de/', scan_lang='de',
   title='Prodigy LAB — Business Advisory & Solutions',

@@ -143,6 +143,16 @@ footer{border-top:1px solid var(--line);padding:46px 0 56px}
 .flinks a{font-size:14px;color:var(--ink2);text-decoration:none;padding:8px 0}
 .flinks a:hover{color:var(--accent)}
 .fmeta{font-size:12.5px;color:var(--ink3);line-height:1.75}
+#langbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--ink);
+color:#fff;padding:14px 0}
+#langbar.on{display:block}
+.lb-in{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
+.lb-t{font-size:15px;line-height:1.45;flex:1 1 260px}
+.lb-b{display:flex;gap:8px;flex:none}
+.lb-b button{font-family:inherit;font-size:14px;padding:11px 18px;min-height:44px;cursor:pointer;
+border:1px solid #fff;background:#fff;color:var(--ink)}
+.lb-b button.ghost{background:transparent;color:#fff}
+.lb-b button:hover{opacity:.85}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 """
@@ -156,6 +166,11 @@ def page(code):
     alts = "\n".join(
         f'<link rel="alternate" hreflang="{c}" href="{ORIGIN}{L[c]["home"]}">' for c, _ in LANGNAMES
     ) + f'\n<link rel="alternate" hreflang="x-default" href="{ORIGIN}/">'
+    import json as _js
+    lang_names_js = _js.dumps(list(d['lang_names']), ensure_ascii=False)
+    banner_ask_js = _js.dumps(d['banner_ask'], ensure_ascii=False)
+    banner_open_js = _js.dumps(d['banner_open'], ensure_ascii=False)
+    banner_stay_js = _js.dumps(d['banner_stay'], ensure_ascii=False)
     langs = "".join(
         f'<a href="{L[c]["home"]}"{" aria-current=\"page\"" if c == code else ""}>{n}</a>'
         for c, n in LANGNAMES)
@@ -297,6 +312,14 @@ fbq('init','{PIXEL}');fbq('track','PageView');
 </section>
 </main>
 
+<div id="langbar" role="region" aria-live="polite"><div class="wrap lb-in">
+ <span class="lb-t" id="lb-text"></span>
+ <span class="lb-b">
+  <button id="lb-go"></button>
+  <button id="lb-no" class="ghost"></button>
+ </span>
+</div></div>
+
 <footer>
  <div class="wrap">
   <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
@@ -340,6 +363,42 @@ document.querySelectorAll('.langs a,.mlangs a').forEach(function(a){{
  a.addEventListener('click',function(){{
   try{{sessionStorage.setItem('pl_lang_choice','1');}}catch(e){{}}
   plEvent('language_selected',{{to:(a.getAttribute('href')||'').replace(/\//g,'')||'en'}});}});}});
+// Языковой баннер. Никаких автоматических редиректов: только предложение.
+// Показывается один раз на 90 дней и не показывается ботам (ТЗ §3).
+(function(){{
+ var PAGE="{code}";
+ var HOMES={{en:"/",ru:"/ru/",es:"/es/",pt:"/pt/",de:"/de/"}};
+ var NAMES={lang_names_js};
+ var ORDER=["en","ru","es","pt","de"];
+ var KEY="pl_lang_banner";
+ var BOT=/bot|crawl|spider|slurp|bingpreview|headless|lighthouse|gptbot|claudebot|perplexity|applebot|facebookexternalhit/i;
+ if(BOT.test(navigator.userAgent||"")||navigator.webdriver) return;
+ try{{var until=parseInt(localStorage.getItem(KEY)||"0",10);
+  if(until && Date.now()<until) return;}}catch(e){{}}
+ var nav=(navigator.language||"").slice(0,2).toLowerCase();
+ if(!nav||nav===PAGE||ORDER.indexOf(nav)<0) return;
+ var bar=document.getElementById('langbar');
+ var name=NAMES[ORDER.indexOf(nav)];
+ document.getElementById('lb-text').textContent={banner_ask_js}.split('{{lang}}').join(name);
+ document.getElementById('lb-go').textContent={banner_open_js};
+ document.getElementById('lb-no').textContent={banner_stay_js};
+ bar.classList.add('on');
+ plEvent('language_suggestion_shown',{{suggested_language:nav}});
+ function hide(){{try{{localStorage.setItem(KEY,String(Date.now()+90*864e5));}}catch(e){{}}
+  bar.classList.remove('on');}}
+ document.getElementById('lb-go').addEventListener('click',function(){{
+  plEvent('language_suggestion_accepted',{{suggested_language:nav}});
+  try{{sessionStorage.setItem('pl_lang_choice','1');}}catch(e){{}}
+  hide();
+  // UTM переносим, иначе источник теряется при смене языка
+  location.href=HOMES[nav]+location.search+location.hash;
+ }});
+ document.getElementById('lb-no').addEventListener('click',function(){{
+  plEvent('language_suggestion_dismissed',{{suggested_language:nav}});
+  try{{sessionStorage.setItem('pl_lang_choice','1');}}catch(e){{}}
+  hide();
+ }});
+}})();
 function tg(b){{var m=document.getElementById('mob');
  var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');}}
 document.querySelectorAll('#mob a').forEach(function(a){{a.addEventListener('click',function(){{
