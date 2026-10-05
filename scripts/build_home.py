@@ -10,6 +10,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from home_content import L, PHONE_HREF, PHONE_TEXT, WA, SCAN, DIAG
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Порядок карточек на главной = порядок девяти слоёв Jev/Copilot. Связь именно
+# позиционная, потому что в home_content карточки лежат списком без ключей;
+# тест в scripts/check-i18n.py следит, чтобы их осталось девять.
+LAYER_BY_INDEX = ('payments', 'banking', 'business_funding', 'growth',
+                  'operations', 'infrastructure', 'accounting_tax',
+                  'fulfillment_logistics', 'digital_presence')
 ORIGIN = 'https://prodigylab.studio'
 PIXEL = '1713332936325081'
 OUT = {'en': 'index.html', 'ru': 'ru/index.html', 'es': 'es/index.html',
@@ -120,6 +127,12 @@ color:var(--ink3);text-decoration:none;padding:6px 2px}
 .cell:nth-child(2n){padding-left:0;border-left:0}
 .cell:nth-child(3n+2),.cell:nth-child(3n){padding-left:28px;border-left:1px solid var(--line)}}
 .cell .mono{display:block;margin-bottom:13px;color:var(--accent)}
+.cell h3 a{color:inherit;text-decoration:none}
+.cell h3 .nb{white-space:nowrap}
+.cell h3 a .go{color:var(--accent);opacity:.45;margin-left:2px;display:inline-block;transition:opacity .15s ease,transform .15s ease}
+.cell[data-cell]:hover h3 a .go{opacity:1;transform:translateX(3px)}
+.cell h3 a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(hover:hover){.cell[data-cell]{cursor:pointer}}
 .cell h3{margin-bottom:9px}.cell p{font-size:15.5px;line-height:1.57}
 .cell ul{margin:13px 0 0;padding:0;list-style:none}
 .cell li{font-size:14.5px;color:var(--ink3);padding-left:15px;position:relative;margin-top:7px}
@@ -195,7 +208,25 @@ def page(code):
             extra = (f'<p style="margin-top:14px"><a href="{scan}" target="_blank" rel="noopener" '
                      f'style="font-size:14px;color:var(--accent);text-decoration:none;'
                      f'border-bottom:1px solid var(--accent)">{e(d["scan_secondary"])} &rarr;</a></p>')
-        return (f'<div class="cell"><span class="mono">{e(tag)}</span><h3>{e(h3)}</h3><p>{e(p)}</p>'
+        # Карточка ведёт в анкету с гипотезой о направлении. Ссылка живёт на
+        # заголовке, а не на всей карточке: внутри девятой уже есть ссылка на
+        # скан, а вложенные <a> — невалидная разметка, которую браузер ломает.
+        # Клик по остальной площади добирается скриптом, поэтому без JS
+        # карточка всё равно остаётся рабочей ссылкой.
+        слой = LAYER_BY_INDEX[i] if i < len(LAYER_BY_INDEX) else ''
+        if слой:
+            ссылка = f'{diag}&amp;initial_hypothesis={слой}'
+            подпись = f' data-cell data-layer="{слой}"'
+            стрелка = '<span class="go" aria-hidden="true">&rarr;</span>'
+            части = e(h3).rsplit(' ', 1)
+            если_длинный = (f'{части[0]} <span class="nb">{части[1]}&nbsp;{стрелка}</span>'
+                            if len(части) == 2 else f'{e(h3)}&nbsp;{стрелка}')
+            заголовок = f'<h3><a href="{ссылка}" data-diag>{если_длинный}</a></h3>'
+        else:
+            подпись = ''
+            заголовок = f'<h3>{e(h3)}</h3>'
+        return (f'<div class="cell"{подпись}><span class="mono">{e(tag)}</span>{заголовок}'
+                f'<p>{e(p)}</p>'
                 f'<ul>{"".join(f"<li>{e(li)}</li>" for li in lis)}</ul>{extra}</div>')
     cells = "".join(_cell(i, *pr) for i, pr in enumerate(d['problems']))
     steps = "".join(
@@ -369,18 +400,38 @@ window.plEvent=function(n,x){{var p=Object.assign({{page_language:"{code}",
 (function(){{var nav=(navigator.language||'').slice(0,2);
  if(nav && nav!=="{code}" && !sessionStorage.getItem('pl_lang_choice')){{
   plEvent('language_mismatch_detected',{{browser_language:nav}});}}}})();
+// Идентификатор сессии (§19). Один на визит, живёт только в этой вкладке и
+// уезжает в анкету ссылкой: домены разные, sessionStorage через границу не
+// переносится. Персональных данных здесь нет — это случайная строка.
+var PL_SID=(function(){{
+ try{{var v=sessionStorage.getItem('pl_sid');
+  if(v) return v;
+  v='w'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
+  sessionStorage.setItem('pl_sid',v); return v;}}
+ catch(e){{return 'w'+Date.now().toString(36);}}}})();
 // UTM и реферер прокидываем в диагностику, иначе источник заявки теряется (ТЗ §8)
 (function(){{var q=new URLSearchParams(location.search);
  document.querySelectorAll('a[data-diag]').forEach(function(a){{
   var u=new URL(a.href);
   ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){{
    if(q.get(k)) u.searchParams.set(k,q.get(k));}});
+  // content_id и outreach_id — гипотеза о проблеме из ролика или письма (§20, §21).
+  ['content_id','outreach_id'].forEach(function(k){{
+   if(q.get(k)) u.searchParams.set(k,q.get(k).slice(0,240));}});
+  u.searchParams.set('sid', PL_SID);
   u.searchParams.set('from', location.pathname);
   if(document.referrer) u.searchParams.set('ref', document.referrer.slice(0,200));
   a.href=u.toString();
   a.addEventListener('click',function(){{
-   plEvent('localized_cta_clicked',{{destination:'diagnostic'}});
+   plEvent('localized_cta_clicked',{{destination:'diagnostic',
+    problem_category:a.closest('[data-layer]')?a.closest('[data-layer]').dataset.layer:''}});
   }});}});}})();
+// Клик по всей карточке направления. Заголовок — настоящая ссылка, так что без
+// скрипта всё работает; это только удобство, особенно на телефоне.
+document.querySelectorAll('.cell[data-cell]').forEach(function(c){{
+ c.addEventListener('click',function(ev){{
+  if(ev.target.closest('a')) return;
+  var a=c.querySelector('h3 a'); if(a) a.click();}});}});
 document.querySelectorAll('.langs a,.mlangs a').forEach(function(a){{
  a.addEventListener('click',function(){{
   try{{sessionStorage.setItem('pl_lang_choice','1');}}catch(e){{}}
