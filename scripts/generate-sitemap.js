@@ -33,7 +33,7 @@ const DENY = [
 // приоритеты: первое совпадение выигрывает
 const PRIORITY = [
   [/^$/,                              '1.0', 'weekly'],   // главная
-  [/^(en|es|pt|de)\/$/,               '0.9', 'weekly'],
+  [/^(en|ru|es|pt|de)\/$/,            '0.9', 'weekly'],
   [/^prodigybot\/$/,                  '0.9', 'monthly'],
   [/^(en|es|pt|de)\/prodigybot\/$/,   '0.8', 'monthly'],
   [/^(en|es|pt|de)\/pricing\/$/,      '0.8', 'monthly'],
