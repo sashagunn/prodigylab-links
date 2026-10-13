@@ -674,6 +674,9 @@ document.querySelectorAll('.cell[data-cell]').forEach(function(c){
    if(!карта||!сетка||сетка.firstElementChild===карта) return;
    сетка.insertBefore(карта,сетка.firstElementChild);
    карта.classList.add('pick');
+   var метка=карта.querySelector('.mono');
+   if(метка && метка.textContent.indexOf('—')>0){
+    метка.textContent=метка.textContent.split('—').slice(1).join('—').trim();}
    plEvent('homepage_adapted',{problem_category:d.layer,decision_source:d.source,
     decision_confidence:d.confidence});
   })
