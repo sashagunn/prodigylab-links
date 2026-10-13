@@ -211,7 +211,10 @@
         "website-audit"
       ],
       "verifiedNumbers": false,
-      "note": "Точные цифры выручки не публикуются — не подтверждены выгрузкой."
+      "note": "Точные цифры выручки не публикуются — не подтверждены выгрузкой.",
+      "problem_en": "A store had been open for six months with no sales.",
+      "done_en": "An audit, a rebuild of the store, a photo and video shoot, and ads.",
+      "result_en": "The first sale came on day four after launch."
     },
     {
       "id": "audit-conversion",
@@ -223,7 +226,28 @@
         "website-audit"
       ],
       "verifiedNumbers": true,
-      "note": "Данные из внутреннего учёта студии."
+      "note": "Данные из внутреннего учёта студии.",
+      "problem_en": "We needed to know whether a paid audit pays for itself as a first step.",
+      "done_en": "Eight paid audits were carried through to presenting the findings on a call.",
+      "result_en": "Four of the eight turned into projects — a 50% conversion.",
+      "industry_en": "Prodigy LAB's own agency practice"
+    },
+    {
+      "id": "adaptive-site",
+      "industry": "photography — the studio's own site",
+      "problem_ru": "Сайт-портфолио показывает всем одно и то же. Человек, пришедший с рекламы про спортивную съёмку, попадает на общую витрину и уходит искать то, за чем пришёл.",
+      "problem_en": "A portfolio site shows everyone the same thing. Someone who arrives from an ad about sports photography lands on a general showcase and leaves to look for what they came for.",
+      "done_ru": "Собрали сайт на собственном воркере и подключили слой решений. Он определяет намерение по странице входа, меткам рекламы и тому, что посетитель открывал за сессию, и выбирает заранее утверждённый вариант блока. Правила отвечают первыми, модель только уточняет и только внутри готового списка — своего текста она написать не может. Если слой недоступен, сайт работает по правилам.",
+      "done_en": "We built the site on our own worker and connected a decision layer. It reads intent from the landing page, the ad's tags and what the visitor opened during the session, then picks a pre-approved variant of the block. Rules answer first; the model only refines, and only inside the prepared list — it cannot write copy of its own. If the layer is unavailable, the site falls back to the rules.",
+      "result_ru": "Работает с 12 октября 2026. Посетитель без рекламных меток, открывший свадебные работы, видит свадебный блок, и решение помечено как принятое моделью, а не правилом. Цифр по конверсии нет: слой работает дни, а не месяцы.",
+      "result_en": "Live since 12 October 2026. A visitor with no ad tags who opens the wedding work is shown the wedding variant, and the decision is marked as the model's own rather than a rule's. No conversion figures: the layer has been running for days, not months.",
+      "servicesUsed": [
+        "website-development",
+        "ai-chatbot",
+        "ai-automation"
+      ],
+      "verifiedNumbers": false,
+      "note": "Цифр по конверсии пока нет — слой запущен 12.10.2026."
     }
   ],
   "stack": [

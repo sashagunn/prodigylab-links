@@ -219,13 +219,16 @@ cases_faq = [
   "References are given directly rather than published, because clients did not sign up to become marketing material."),
  ("What does a typical engagement look like?",
   "Audit first, then a fixed-price fix, then usually ongoing advertising or the bot.",
-  "The pattern in both cases below is the same: the thing the owner wanted to buy was not the thing that was broken."),
+  "The pattern in the cases below is the same: the thing the owner wanted to buy was not the thing that was broken."),
 ]
 def case_block(c, i):
-    rows = [('Industry', c['industry']),
-            ('Problem', c['problem_ru']),
-            ('What was done', c['done_ru']),
-            ('Result', c['result_ru']),
+    # Страница английская: берём *_en, а *_ru оставляем запасным вариантом.
+    # Раньше под подписью "Problem" стоял русский текст.
+    en = lambda k: c.get(f'{k}_en') or c[f'{k}_ru']
+    rows = [('Industry', c.get('industry_en') or c['industry']),
+            ('Problem', en('problem')),
+            ('What was done', en('done')),
+            ('Result', en('result')),
             ('Services used', ' · '.join(f'<a class="text-accent-green hover:underline" href="{ORIGIN}/{s}/">{s.replace("-", " ")}</a>' for s in c['servicesUsed'])),
             ('Figures verified', 'Yes — from the studio\'s own records' if c['verifiedNumbers'] else 'No — revenue figures are not published because they are not ours to verify')]
     return facts_table(c['id'].replace('-', ' ').title(), rows, surface=(i % 2 == 0))
@@ -235,11 +238,11 @@ PAGES.append(dict(
     description='What Prodigy LAB actually did for clients and what came of it. Only figures that come from real records are published; unverified numbers are marked as such.',
     jsonld=[breadcrumb_ld('case-studies', 'Case studies'), faq_ld(cases_faq)],
     sections=[
-        hero('Case studies', 'Two cases, and what is missing from them',
+        hero('Case studies', 'Three cases, and what is missing from them',
              'Most agency case studies are fiction with a chart. These are short because only what can be verified is here — where a number is not backed by a real report, it is left out and said so.',
              [(f'{ORIGIN}/website-audit/', 'Start with an audit', False), (WA, 'Ask about references', True)]),
     ] + [case_block(c, i) for i, c in enumerate(FACTS['cases'])] + [
-        cols('What both cases have in common',
+        cols('What the cases have in common',
              [('The owner misdiagnosed it', 'In both, the thing about to be bought was not the thing that was broken. The audit is what caught the difference.'),
               ('The fix was smaller than expected', 'Neither needed everything rebuilt. Finding the actual constraint is most of the work.'),
               ('The proof came fast or not at all', 'When the constraint is the right one, the change shows up in days, not quarters. When nothing moves in a month, the diagnosis was wrong and it gets said out loud.')]),
