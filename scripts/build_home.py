@@ -51,6 +51,7 @@ CLIENTS = (("HealthHustle Academy", "https://healthhustleacademy.com"),
            ("Set4Pets", "https://set4pets.com"),
            ("Petalia", "https://petaliashop.com"),
            ("KONDRA", "https://kondrabags.com"),
+           ("Nixe Beauty", "https://nixe.beauty"),
            ("Sasha Gun Photography", "https://sashagun.com"))
 
 PHONE_SVG = ('<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
