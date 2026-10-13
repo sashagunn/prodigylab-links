@@ -38,6 +38,66 @@
       "source": "/en/privacy/",
       "destination": "/privacy/",
       "statusCode": 301
+    },
+    {
+      "source": "/smartcredit",
+      "destination": "https://www.smartcredit.com/?PID=49066",
+      "statusCode": 302
+    },
+    {
+      "source": "/smartcredit/",
+      "destination": "https://www.smartcredit.com/?PID=49066",
+      "statusCode": 302
+    },
+    {
+      "source": "/identityiq",
+      "destination": "https://www.identityiq.com/sc-securepreferred.aspx?offercode=4312965O",
+      "statusCode": 302
+    },
+    {
+      "source": "/identityiq/",
+      "destination": "https://www.identityiq.com/sc-securepreferred.aspx?offercode=4312965O",
+      "statusCode": 302
+    },
+    {
+      "source": "/easypay",
+      "destination": "https://emap.easypaydirect.com/go/signup/6vOASc",
+      "statusCode": 302
+    },
+    {
+      "source": "/easypay/",
+      "destination": "https://emap.easypaydirect.com/go/signup/6vOASc",
+      "statusCode": 302
+    },
+    {
+      "source": "/narvi",
+      "destination": "https://narvi.com/start?ref=OYA6V1H3B9WA6WX9",
+      "statusCode": 302
+    },
+    {
+      "source": "/narvi/",
+      "destination": "https://narvi.com/start?ref=OYA6V1H3B9WA6WX9",
+      "statusCode": 302
+    },
+    {
+      "source": "/smbfunding",
+      "destination": "https://www.smb-funding.com/landing-affiliate?am_id=aleksandr6730",
+      "statusCode": 302
+    },
+    {
+      "source": "/smbfunding/",
+      "destination": "https://www.smb-funding.com/landing-affiliate?am_id=aleksandr6730",
+      "statusCode": 302
+    },
+    {
+      "source": "/diagnostic",
+      "destination": "https://scan.prodigylab.studio/diagnostic",
+      "statusCode": 302
+    },
+    {
+      "source": "/diagnostic/",
+      "destination": "https://scan.prodigylab.studio/diagnostic",
+      "statusCode": 302
     }
   ]
 }
