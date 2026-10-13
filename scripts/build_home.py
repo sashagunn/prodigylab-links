@@ -50,7 +50,8 @@ PRIVACY_TAG = {'en': '', 'ru': '', 'es': ' (English)', 'pt': ' (English)', 'de':
 CLIENTS = (("HealthHustle Academy", "https://healthhustleacademy.com"),
            ("Set4Pets", "https://set4pets.com"),
            ("Petalia", "https://petaliashop.com"),
-           ("KONDRA", "https://kondrabags.com"))
+           ("KONDRA", "https://kondrabags.com"),
+           ("Sasha Gun Photography", "https://sashagun.com"))
 
 PHONE_SVG = ('<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
  'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 '
