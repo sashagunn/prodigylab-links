@@ -21,8 +21,8 @@ const START = '<!-- ENTITY-SCHEMA:START (генерируется scripts/inject
 const END = '<!-- ENTITY-SCHEMA:END -->';
 
 const PAGES = [
-  { file: 'index.html',    url: `${ORIGIN}/`,    lang: 'ru' },
-  { file: 'en/index.html', url: `${ORIGIN}/en/`, lang: 'en' },
+  { file: 'index.html',    url: `${ORIGIN}/`,    lang: 'en' },
+  { file: 'ru/index.html', url: `${ORIGIN}/ru/`, lang: 'ru' },
   { file: 'es/index.html', url: `${ORIGIN}/es/`, lang: 'es' },
   { file: 'pt/index.html', url: `${ORIGIN}/pt/`, lang: 'pt' },
   { file: 'de/index.html', url: `${ORIGIN}/de/`, lang: 'de' },
