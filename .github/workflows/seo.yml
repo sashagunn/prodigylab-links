@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -41,11 +41,28 @@ jobs:
             echo "mode=all" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git diff --name-only --diff-filter=ACM ${{ github.event.before }} ${{ github.sha }} \
-            | grep -E '\.html$' \
+          BEFORE="${{ github.event.before }}"
+          SHA="${{ github.sha }}"
+          # Пустой/нулевой before — новая или пересозданная ветка: диффа не существует.
+          # Раньше это тихо давало 0 изменённых URL; теперь — явная ошибка, а не молчание.
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            echo "::error::github.event.before пуст или нулевой (новая/пересозданная ветка) — базы для diff нет. Не считаю это нулём изменённых URL."
+            exit 1
+          fi
+          if ! git cat-file -e "${BEFORE}^{commit}" 2>cat_err.txt; then
+            echo "::error::github.event.before ($BEFORE) недоступен в этом чекауте (force-push/переписанная история) — изменённые страницы не определить."
+            cat cat_err.txt
+            exit 1
+          fi
+          if ! git diff --name-only --diff-filter=ACM "$BEFORE" "$SHA" > diff_raw.txt 2>diff_err.txt; then
+            echo "::error::git diff между $BEFORE и $SHA завершился ошибкой — изменённые страницы не определить."
+            cat diff_err.txt
+            exit 1
+          fi
+          grep -E '\.html$' diff_raw.txt \
             | grep -vE '^(node_modules/|scripts/|newdesign\.html$|course\.html$)' \
             | sed -e 's#index\.html$##' -e 's#^#https://prodigylab.studio/#' \
-            | sort -u > changed.txt || true
+            | sort -u > changed.txt
           echo "mode=list" >> "$GITHUB_OUTPUT"
           echo "Изменилось URL: $(wc -l < changed.txt)"
           cat changed.txt
