@@ -123,10 +123,22 @@ color:var(--ink3);text-decoration:none;padding:6px 2px}
 .fact{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:15px 0;border-bottom:1px solid var(--line)}
 .fact dt{font-size:14.5px;color:var(--ink2);margin:0}
 .fact dd{margin:0;font-weight:600;font-size:15px;text-align:right}
-.cases{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:26px}
-.cases a{font-size:16px;color:var(--accent);text-decoration:none;padding:6px 0;
+.band{margin-top:46px;border:1px solid var(--line);overflow:hidden;background:#0d0f10}
+.band img{display:block;width:100%;height:auto;aspect-ratio:16/7;object-fit:cover;opacity:.92}
+@media(max-width:699px){.band{margin-top:34px}.band img{aspect-ratio:16/9}}
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:30px}
+@media(min-width:700px){.cases{grid-template-columns:repeat(3,1fr);gap:18px}}
+.case{display:block;text-decoration:none;color:inherit}
+.case .shot{display:block;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.case .shot img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;
+ object-position:top center;transition:transform .5s cubic-bezier(.2,.6,.2,1)}
+.case:hover .shot img{transform:scale(1.03)}
+.case .nm{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:14.5px;color:var(--ink)}
+.case .nm i{font-style:normal;color:var(--accent);opacity:.5;transition:opacity .15s,transform .15s}
+.case:hover .nm i{opacity:1;transform:translate(2px,-2px)}
+.cases-old a{font-size:16px;color:var(--accent);text-decoration:none;padding:6px 0;
 border-bottom:1px solid transparent}
-.cases a:hover{border-bottom-color:var(--accent)}
+.cases-old a:hover{border-bottom-color:var(--accent)}
 .final{padding:66px 0 76px}@media(min-width:768px){.final{padding:100px 0 118px}}
 .final h2{max-width:22ch}.final .lede{max-width:56ch;margin-top:18px}
 .final .cta-row{margin-left:0;justify-content:flex-start}
@@ -504,6 +516,9 @@ fbq('init','1713332936325081');fbq('track','PageView');
   </div>
   <span class="mono">Avaliação inicial gratuita · sem compromisso · sem chamada obrigatória</span>
  </div>
+ <div class="wrap">
+  <div class="band"><img src="/assets/hero-systems.jpg" alt="" loading="lazy" width="1280" height="853"></div>
+ </div>
 </section>
 
 <section class="sec alt" id="problems">
@@ -547,7 +562,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
   <span class="mono">Provas</span>
   <h2 style="margin-top:18px;max-width:20ch">Para quem já construímos</h2>
   <p class="lede" style="max-width:58ch;margin-top:18px">Lojas e negócios que construímos e continuamos tocando. Essa é também a resposta de como sabemos como funciona a parte operacional.</p>
-  <div class="cases"><a href="https://healthhustleacademy.com" target="_blank" rel="noopener">HealthHustle Academy &#8599;</a><a href="https://set4pets.com" target="_blank" rel="noopener">Set4Pets &#8599;</a><a href="https://petaliashop.com" target="_blank" rel="noopener">Petalia &#8599;</a><a href="https://kondrabags.com" target="_blank" rel="noopener">KONDRA &#8599;</a><a href="https://nixe.beauty" target="_blank" rel="noopener">Nixe Beauty &#8599;</a><a href="https://sashagun.com" target="_blank" rel="noopener">Sasha Gun Photography &#8599;</a></div>
+  <div class="cases"><a class="case" href="https://healthhustleacademy.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/hha.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">HealthHustle Academy<i>&#8599;</i></span></a><a class="case" href="https://set4pets.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/set4pets.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Set4Pets<i>&#8599;</i></span></a><a class="case" href="https://petaliashop.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/petalia.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Petalia<i>&#8599;</i></span></a><a class="case" href="https://kondrabags.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/kondra.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">KONDRA<i>&#8599;</i></span></a><a class="case" href="https://nixe.beauty" target="_blank" rel="noopener"><span class="shot"><img src="/cases/nixe.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Nixe Beauty<i>&#8599;</i></span></a><a class="case" href="https://sashagun.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/sashagun.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Sasha Gun Photography<i>&#8599;</i></span></a></div>
   <p style="margin-top:26px"><a href="/case-studies/" hreflang="en" style="color:var(--accent);
    text-decoration:none;border-bottom:1px solid var(--accent)">Ver os casos (EN) &rarr;</a></p>
  </div>

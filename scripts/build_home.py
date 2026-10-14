@@ -48,12 +48,15 @@ PRIVACY = {'en': '/privacy/', 'ru': '/ru/privacy/', 'es': '/privacy/',
            'pt': '/privacy/', 'de': '/privacy/'}
 PRIVACY_TAG = {'en': '', 'ru': '', 'es': ' (English)', 'pt': ' (English)', 'de': ' (English)'}
 
-CLIENTS = (("HealthHustle Academy", "https://healthhustleacademy.com"),
-           ("Set4Pets", "https://set4pets.com"),
-           ("Petalia", "https://petaliashop.com"),
-           ("KONDRA", "https://kondrabags.com"),
-           ("Nixe Beauty", "https://nixe.beauty"),
-           ("Sasha Gun Photography", "https://sashagun.com"))
+# Третьим идёт снимок самого сайта. Это настоящие кадры их витрин, снятые с
+# живых страниц, а не стоковые картинки: блок называется «Доказательства», и
+# подставлять туда выдуманное было бы странно.
+CLIENTS = (("HealthHustle Academy", "https://healthhustleacademy.com", "/cases/hha.jpg"),
+           ("Set4Pets", "https://set4pets.com", "/cases/set4pets.jpg"),
+           ("Petalia", "https://petaliashop.com", "/cases/petalia.jpg"),
+           ("KONDRA", "https://kondrabags.com", "/cases/kondra.jpg"),
+           ("Nixe Beauty", "https://nixe.beauty", "/cases/nixe.jpg"),
+           ("Sasha Gun Photography", "https://sashagun.com", "/cases/sashagun.jpg"))
 
 PHONE_SVG = ('<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
  'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 '
@@ -162,10 +165,22 @@ color:var(--ink3);text-decoration:none;padding:6px 2px}
 .fact{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:15px 0;border-bottom:1px solid var(--line)}
 .fact dt{font-size:14.5px;color:var(--ink2);margin:0}
 .fact dd{margin:0;font-weight:600;font-size:15px;text-align:right}
-.cases{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:26px}
-.cases a{font-size:16px;color:var(--accent);text-decoration:none;padding:6px 0;
+.band{margin-top:46px;border:1px solid var(--line);overflow:hidden;background:#0d0f10}
+.band img{display:block;width:100%;height:auto;aspect-ratio:16/7;object-fit:cover;opacity:.92}
+@media(max-width:699px){.band{margin-top:34px}.band img{aspect-ratio:16/9}}
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:30px}
+@media(min-width:700px){.cases{grid-template-columns:repeat(3,1fr);gap:18px}}
+.case{display:block;text-decoration:none;color:inherit}
+.case .shot{display:block;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.case .shot img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;
+ object-position:top center;transition:transform .5s cubic-bezier(.2,.6,.2,1)}
+.case:hover .shot img{transform:scale(1.03)}
+.case .nm{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:14.5px;color:var(--ink)}
+.case .nm i{font-style:normal;color:var(--accent);opacity:.5;transition:opacity .15s,transform .15s}
+.case:hover .nm i{opacity:1;transform:translate(2px,-2px)}
+.cases-old a{font-size:16px;color:var(--accent);text-decoration:none;padding:6px 0;
 border-bottom:1px solid transparent}
-.cases a:hover{border-bottom-color:var(--accent)}
+.cases-old a:hover{border-bottom-color:var(--accent)}
 .final{padding:66px 0 76px}@media(min-width:768px){.final{padding:100px 0 118px}}
 .final h2{max-width:22ch}.final .lede{max-width:56ch;margin-top:18px}
 .final .cta-row{margin-left:0;justify-content:flex-start}
@@ -203,7 +218,9 @@ def page(code):
     banner_open_js = _js.dumps(d['banner_open'], ensure_ascii=False)
     banner_stay_js = _js.dumps(d['banner_stay'], ensure_ascii=False)
     clients = "".join(
-        f'<a href="{u}" target="_blank" rel="noopener">{n} &#8599;</a>' for n, u in CLIENTS)
+        f'<a class="case" href="{u}" target="_blank" rel="noopener">'
+        f'<span class="shot"><img src="{i}" alt="" loading="lazy" width="600" height="600"></span>'
+        f'<span class="nm">{n}<i>&#8599;</i></span></a>' for n, u, i in CLIENTS)
     langs = "".join(
         f'<a href="{L[c]["home"]}"{" aria-current=\"page\"" if c == code else ""}>{n}</a>'
         for c, n in LANGNAMES)
@@ -310,6 +327,9 @@ fbq('init','{PIXEL}');fbq('track','PageView');
    <a class="btn btn-lg btn-g" href="#problems">{e(d['cta2'])}</a>
   </div>
   <span class="mono">{e(d['note'])}</span>
+ </div>
+ <div class="wrap">
+  <div class="band"><img src="/assets/hero-systems.jpg" alt="" loading="lazy" width="1280" height="853"></div>
  </div>
 </section>
 
