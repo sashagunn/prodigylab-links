@@ -121,6 +121,8 @@ color:var(--ink3);text-decoration:none;padding:6px 2px}
 .cta-row{display:flex;flex-direction:column;gap:11px;margin:34px auto 0;max-width:520px}
 @media(min-width:560px){.cta-row{flex-direction:row;justify-content:center}}
 .hero .mono{margin-top:20px;display:block}
+.pl-adapt-pending .hero h1,.pl-adapt-pending .hero .lede,.pl-adapt-pending .hero .quote,.pl-adapt-pending .hero .mono{visibility:hidden}
+.hero.picked h1{max-width:22ch}
 .sec{padding:62px 0}@media(min-width:768px){.sec{padding:100px 0}}
 .alt{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .grid{display:grid;margin-top:40px;border-top:1px solid var(--line)}
@@ -291,6 +293,10 @@ fbq('init','{PIXEL}');fbq('track','PageView');
 </script>
 <noscript><img alt="" height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id={PIXEL}&ev=PageView&noscript=1"/></noscript>
 <script src="/assets/ai-referrals.js" defer></script>
+<script>/* Визит с меткой: прячем текст героя до решения, максимум 1.5 с, чтобы не мигал. */
+(function(){{try{{if(/[?&](initial_hypothesis|content_id|outreach_id|utm_campaign)=/.test(location.search)){{
+var h=document.documentElement;h.classList.add("pl-adapt-pending");
+setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(e){{}}}})();</script>
 </head>
 <body>
 
@@ -315,7 +321,7 @@ fbq('init','{PIXEL}');fbq('track','PageView');
 </nav>
 
 <main>
-<section class="hero">
+<section class="hero" id="hero">
  <div class="wrap">
   <img class="avatar" src="/assets/founder.jpg" alt="{e(d['photo_alt'])}" width="92" height="92">
   <span class="mono">{e(d['eyebrow'])}</span>
@@ -492,9 +498,35 @@ document.querySelectorAll('.cell[data-cell]').forEach(function(c){{
   return s && s.getBoundingClientRect().top > 80;
  }}
  var отмена=setTimeout(function(){{отмена=null;}},1500);
+
+ function отпустить(){{document.documentElement.classList.remove('pl-adapt-pending');}}
+ // Первый экран под намерение. Текст и ссылку берём из уже утверждённой
+ // карточки этого направления — свой текст здесь не появляется никогда.
+ // Если человек уже ушёл ниже героя, не трогаем: менять видимое под рукой нельзя.
+ function героем(слой){{
+  var карта=document.querySelector('.cell[data-layer="'+слой+'"]');
+  var г=document.getElementById('hero');
+  if(!карта||!г||window.scrollY>120) return;
+  var h=карта.querySelector('h3 a'), p=карта.querySelector('p'), м=карта.querySelector('.mono');
+  if(!h||!p) return;
+  var заголовок=h.textContent.replace(/[\u2192\s]+$/,'').trim();
+  var g1=г.querySelector('h1'), lede=г.querySelector('.lede'), q=г.querySelector('.quote');
+  var бровь=г.querySelector('.wrap > .mono');
+  if(g1) g1.textContent=заголовок;
+  if(lede) lede.textContent=p.textContent;
+  if(q) q.style.display='none';
+  if(бровь&&м) бровь.textContent=м.textContent.split('—').slice(1).join('—').trim()||м.textContent;
+  var cta=г.querySelector('.cta-row a[data-diag]');
+  if(cta) cta.href=h.href;
+  var вторая=г.querySelector('.cta-row a.btn-g');
+  if(вторая) вторая.setAttribute('href','#problems');
+  г.classList.add('picked');
+ }}
  fetch("{DECIDE}",{{method:'POST',body:тело,headers:{{'Content-Type':'text/plain;charset=UTF-8'}}}})
   .then(function(r){{return r.ok?r.json():null;}})
   .then(function(d){{
+   if(d&&d.layer&&отмена!==null) героем(d.layer);
+   отпустить();
    if(!d||!d.layer||отмена===null||!можноПереставлять()) return;
    var карта=document.querySelector('.cell[data-layer="'+d.layer+'"]');
    var сетка=карта&&карта.parentNode;
@@ -507,7 +539,7 @@ document.querySelectorAll('.cell[data-cell]').forEach(function(c){{
    plEvent('homepage_adapted',{{problem_category:d.layer,decision_source:d.source,
     decision_confidence:d.confidence}});
   }})
-  .catch(function(){{}});
+  .catch(отпустить);
 }})();
 document.querySelectorAll('.langs a,.mlangs a').forEach(function(a){{
  a.addEventListener('click',function(){{
