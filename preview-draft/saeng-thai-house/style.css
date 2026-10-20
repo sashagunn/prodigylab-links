@@ -68,7 +68,8 @@ img{display:block}
 .hero h1{font-size:clamp(2.75rem,13vw,4.25rem);line-height:.95;letter-spacing:-.025em;margin:0 0 1rem}
 .hero h1 span{display:block}
 .hero h1 span:last-child{color:var(--copper-lt);font-style:italic}
-.since{font-size:1.0625rem;line-height:1.6rem;color:var(--dim);max-width:30ch;margin:0 0 1.5rem}
+.since{font-size:1.0625rem;line-height:1.6rem;color:var(--dim);max-width:30ch;margin:0 0 1.5rem;
+  text-wrap:balance}
 .since strong{color:var(--canvas)}
 .cta{display:grid;gap:.6rem}
 .hero-note span{display:inline-block;margin-top:.15rem;opacity:.72}
@@ -123,6 +124,7 @@ main{max-width:1100px;margin:0 auto;padding:0 1rem}
   text-transform:uppercase;text-decoration:none;background:var(--paper);border:1px solid var(--hair);
   border-radius:999px;padding:.5rem .85rem;transition:background .22s,color .22s,border-color .22s}
 .cats a:hover{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
+.cats a.is-active{background:var(--copper);border-color:var(--copper);color:#fff}
 .groups{display:grid;gap:1.75rem}
 .group{scroll-margin-top:60px}
 .group h3{font-size:1.25rem;line-height:1.6rem;margin:0 0 .6rem;padding-bottom:.4rem;
@@ -194,7 +196,7 @@ footer p{font-size:.8125rem}
   .btn-sm{font-size:.8125rem}
   .hero{padding:5rem 2rem 5.5rem}
   .hero h1{font-size:clamp(4rem,9vw,6.5rem)}
-  .since{font-size:1.25rem;max-width:34ch}
+  .since{font-size:1.25rem;max-width:42ch}
   .cta{grid-auto-flow:column;justify-content:start;gap:.75rem}
   .featured{padding:4rem 0 1.5rem}
   .picks{grid-template-columns:repeat(3,1fr);gap:1.5rem}
@@ -316,7 +318,7 @@ footer p{font-size:.8125rem}
 
 @media (min-width:760px){
   .hero{padding-bottom:0}
-  .hero-grid{grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+  .hero-grid{grid-template-columns:1.12fr .88fr;gap:3rem;align-items:center}
   .hero-food img{height:min(56vh,480px);object-fit:cover}
   .band{margin:4rem -2rem}
   .band img{height:clamp(320px,34vw,520px)}

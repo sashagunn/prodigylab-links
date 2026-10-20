@@ -71,8 +71,8 @@
 
   <section class="menu" id="menu">
     <p class="section-kicker">The menu</p>
-    <h2 class="split">Eleven sections</h2>
-    <p class="lunch-note">Prices below are from the All Day menu. On the Lunch tab, 11:00 AM to 3:00 PM, curries, noodles, fried rice and stir-fried vegetables are $11.00.</p>
+    <h2 class="split">Our menu</h2>
+    <p class="lunch-note">Prices below are the All Day prices. Lunch pricing is available in our ordering menu: from 11:00 AM to 3:00 PM curries, noodles, fried rice and stir-fried vegetables are $11.00.</p>
     <div class="menu-layout">
       <nav class="cats" aria-label="Menu sections"><ul><li><a href="#appetizers">Appetizers</a></li><li><a href="#soup">Soup</a></li><li><a href="#salad">Salad</a></li><li><a href="#curry">Curry Dish</a></li><li><a href="#noodles">Noodle Dishes</a></li><li><a href="#rice">Fried Rice</a></li><li><a href="#vegetable">Stir Fried Vegetable</a></li><li><a href="#house">House Special</a></li><li><a href="#seafood">Seafood</a></li><li><a href="#sides">Extra Sides</a></li><li><a href="#drinks">Soft Drinks</a></li></ul></nav>
       <div class="groups">
@@ -472,7 +472,8 @@
 <footer class="close">
   <div class="close-cta reveal">
     <h2 class="split"><span><i>Hungry?</i></span></h2>
-    <p>Pickup in 15–30 min from 921 Congress Street. Delivery 45–60 min through the same service.</p>
+    <p>Pickup from 921 Congress Street. Delivery through the same service —
+      current pickup and delivery times are shown when you order.</p>
     <div class="close-actions">
       <a class="btn btn-primary" href="https://saengthaihouseme.smiledining.com/" rel="noopener" target="_blank">Order pickup&nbsp;↗</a>
       <a class="btn btn-line" href="tel:+12077800900">Call (207) 780-0900</a>
@@ -493,7 +494,7 @@
     </div>
     <div>
       <h3>Menu</h3>
-      <p><a href="#featured">What people order</a><br><a href="#menu">All eleven sections</a><br><a href="https://saengthaihouseme.smiledining.com/" rel="noopener" target="_blank">Full menu and order&nbsp;↗</a></p>
+      <p><a href="#featured">What people order</a><br><a href="#menu">All menu sections</a><br><a href="https://saengthaihouseme.smiledining.com/" rel="noopener" target="_blank">Full menu and order&nbsp;↗</a></p>
     </div>
     <div>
       <h3>Contact</h3>
@@ -501,7 +502,7 @@
     </div>
   </div>
 
-  <p class="fine">Dish photographs: Saeng Thai House, from the restaurant’s own online menu. Large food imagery and the botanical artwork were generated for this concept as a proposed photographic direction — they are illustrative and are not photographs of this restaurant’s dishes or rooms. Only the small photographs shown beside a price are the restaurant’s own. Independent design concept by Prodigy LAB, not affiliated with or endorsed by the restaurant. Hours, address, phone, menu categories, dish names, descriptions and prices are taken from the restaurant’s own website and its own online ordering service, checked 20 October 2026. “Best Seller” and “Recommend” are the restaurant’s own labels in that menu.</p>
+  <p class="fine">Dish photographs: Saeng Thai House, from the restaurant’s own online menu. Every dish photograph on this page is the restaurant’s own, taken from its online menu. The wide table image on the first screen and the botanical artwork behind it were generated for this concept as a proposed photographic direction: they are illustrative and are not photographs of this restaurant’s dishes or rooms. Independent design concept by Prodigy LAB, not affiliated with or endorsed by the restaurant. Hours, address, phone, menu categories, dish names, descriptions and prices are taken from the restaurant’s own website and its own online ordering service, checked 20 October 2026. “Best Seller” and “Recommend” are the restaurant’s own labels in that menu.</p>
 </footer>
 
 <nav class="dock" aria-label="Quick actions">
@@ -562,6 +563,34 @@
       наблюдатель.observe(el);
     });
   }
+})();
+</script>
+
+<script>
+(() => {
+  // Подсветка раздела. Считаем по положению на экране, а не по клику: человек
+  // чаще просто листает, и подсветка должна совпадать с тем, что он видит.
+  const ссылки = [...document.querySelectorAll('.cats a')];
+  const разделы = ссылки.map((a) => document.querySelector(a.getAttribute('href')));
+  if (разделы.some((р) => !р)) return;
+
+  let текущий = -1, таймер = 0;
+  const отметить = () => {
+    const граница = innerHeight * 0.35;
+    let i = 0;
+    разделы.forEach((р, n) => { if (р.getBoundingClientRect().top <= граница) i = n; });
+    if (i === текущий) return;
+    ссылки[текущий]?.classList.remove('is-active');
+    ссылки[текущий]?.removeAttribute('aria-current');
+    ссылки[i].classList.add('is-active');
+    ссылки[i].setAttribute('aria-current', 'true');
+    текущий = i;
+  };
+  addEventListener('scroll', () => {
+    clearTimeout(таймер);
+    таймер = setTimeout(отметить, 80);
+  }, {passive: true});
+  отметить();
 })();
 </script>
 
