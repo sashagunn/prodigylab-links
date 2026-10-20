@@ -80,19 +80,19 @@ main{max-width:1100px;margin:0 auto;padding:0 1rem}
 
 /* ——— избранные блюда: разный масштаб ——— */
 .featured{padding:2.5rem 0 1rem;scroll-margin-top:56px}
-.lead-dish{display:grid;grid-template-columns:125px 1fr;gap:1rem;align-items:center;
+.lead-dish{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:center;
   background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);
   padding:1rem;margin:0 0 .85rem}
-.lead-dish img{width:125px;height:125px;border-radius:var(--r-sm);object-fit:cover}
+.lead-dish img{width:100%;height:auto;aspect-ratio:1;border-radius:var(--r-sm);object-fit:cover}
 .kicker{font-size:.5625rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
   color:var(--sage);margin:0 0 .3rem}
 .lead-dish h3{font-size:1.75rem;line-height:2rem;margin:0 0 .4rem}
 .lead-desc{font-size:.8125rem;line-height:1.2rem;color:var(--muted);margin:0 0 .5rem}
 .lead-price{font-size:1.375rem;font-weight:700;color:var(--copper);margin:0}
 .side-dishes{display:grid;gap:.85rem}
-.side-dish{display:grid;grid-template-columns:84px 1fr;gap:.85rem;align-items:center;
+.side-dish{display:grid;grid-template-columns:minmax(0,1fr);gap:.85rem;align-items:center;
   background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);padding:.8rem}
-.side-dish img{width:84px;height:84px;border-radius:var(--r-sm);object-fit:cover}
+.side-dish img{width:100%;height:auto;aspect-ratio:1;border-radius:var(--r-sm);object-fit:cover}
 .side-dish h4{font-size:1.125rem;line-height:1.4rem;margin:0 0 .25rem}
 .side-desc{font-size:.75rem;line-height:1.1rem;color:var(--muted);margin:0 0 .35rem}
 .side-price{font-size:1rem;font-weight:700;color:var(--copper);margin:0}
@@ -119,9 +119,15 @@ main{max-width:1100px;margin:0 auto;padding:0 1rem}
 .group{scroll-margin-top:60px}
 .group h3{font-size:1.25rem;line-height:1.6rem;margin:0 0 .6rem;padding-bottom:.4rem;
   border-bottom:1px solid var(--hair)}
-.group li{display:flex;align-items:baseline;gap:.5rem;padding:.3rem 0;font-size:.875rem}
-.group li i{flex:1;border-bottom:1px dotted var(--hair);transform:translateY(-.2rem)}
-.group li b{color:var(--copper);font-weight:700;white-space:nowrap}
+/* Каталог — не прайс-лист. Каждая позиция показывает блюдо: в тайской кухне
+   по названию не понять, что принесут. Два в ряд на телефоне, три на большом
+   экране — снимок остаётся крупным, а не превращается в иконку. */
+.dishes{display:grid;grid-template-columns:1fr 1fr;gap:1rem .75rem;list-style:none;padding:0;margin:0}
+.dish{display:flex;flex-direction:column;gap:.4rem}
+.dish img,.dish-nophoto{width:100%;height:auto;aspect-ratio:1;object-fit:cover;
+  border-radius:var(--r-sm);background:var(--hair);display:block}
+.dish-name{font-size:.8125rem;line-height:1.1rem}
+.dish-price{color:var(--copper);font-weight:700;font-size:.8125rem;margin-top:auto}
 .to-order{display:grid;gap:.5rem;justify-items:center;text-align:center;margin:2rem 0 1rem}
 .to-order span{font-size:.75rem;color:var(--muted)}
 
@@ -183,13 +189,14 @@ footer p{font-size:.8125rem}
   .since{font-size:1.25rem;max-width:34ch}
   .cta{grid-auto-flow:column;justify-content:start;gap:.75rem}
   .featured{padding:4rem 0 1.5rem}
-  .lead-dish{grid-template-columns:125px 1fr;gap:2rem;padding:2rem}
+  .lead-dish{grid-template-columns:minmax(0,1.1fr) 1fr;align-items:center;gap:2rem;padding:2rem}
   .lead-dish h3{font-size:2.5rem;line-height:2.75rem}
   .lead-desc{font-size:.9375rem;line-height:1.5rem}
   .side-dishes{grid-template-columns:1fr 1fr;gap:1rem}
   .story{margin:3rem -2rem;padding:4.5rem 2rem}
   .menu{padding:3rem 0 1.5rem}
-  .groups{grid-template-columns:repeat(3,1fr);gap:2rem 2.5rem}
+  .groups{grid-template-columns:repeat(2,1fr);gap:2.5rem 3rem}
+  .dishes{grid-template-columns:repeat(3,1fr)}
   .visit-grid{grid-template-columns:1.2fr .8fr;gap:3rem;align-items:start}
   .visit-actions{grid-auto-flow:column;justify-content:start}
   .dock{display:none}
