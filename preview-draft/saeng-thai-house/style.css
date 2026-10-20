@@ -377,6 +377,9 @@ footer p{font-size:.8125rem}
 .btn-cart{display:inline-flex;align-items:center;gap:.4rem;background:none;
   border:1px solid var(--dark-hair);color:var(--canvas);cursor:pointer}
 .btn-cart:hover{border-color:var(--canvas)}
+/* [hidden] должен побеждать: display:inline-flex перебивал его, и пустой
+   счётчик оставался оранжевой точкой рядом с «Demo cart». */
+.btn-cart b[hidden],.dock-main b[hidden]{display:none}
 .btn-cart b,.dock-main b{display:inline-flex;align-items:center;justify-content:center;
   min-width:1.25rem;height:1.25rem;padding:0 .3rem;border-radius:999px;
   background:var(--copper);color:#fff;font-size:.6875rem;font-weight:700}
