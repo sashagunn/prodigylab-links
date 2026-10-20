@@ -46,6 +46,7 @@ S = {
    need_contact='Нужен телефон или почта', saving='Сохраняю…',
    saved='Заявка сохранена', saved_p='Мы вернёмся с разбором. Номер обращения',
    again='уже была сохранена', save_err='Не удалось сохранить. Попробуйте ещё раз.',
+   show_solutions='Показать решения по этой задаче',
    switched_to='Продолжаем на этом языке', show_original='Показать оригинал',
    show_translation='Показать перевод'),
  'en': dict(
@@ -71,6 +72,7 @@ S = {
    need_contact='Phone or email needed', saving='Saving…',
    saved='Request saved', saved_p='We will come back with the breakdown. Reference',
    again='was already saved', save_err='Could not save. Please try again.',
+   show_solutions='Show solutions for this task',
    switched_to='Continuing in this language', show_original='Show original',
    show_translation='Show translation'),
  'es': dict(
@@ -99,6 +101,7 @@ S = {
    saved_p='Volvemos con el an&aacute;lisis. Referencia',
    again='ya estaba guardada',
    save_err='No se pudo guardar. Int&eacute;ntelo de nuevo.',
+   show_solutions='Ver soluciones para esta tarea',
    switched_to='Seguimos en este idioma', show_original='Ver original',
    show_translation='Ver traducci&oacute;n'),
  'pt': dict(
@@ -127,6 +130,7 @@ S = {
    saved_p='Voltamos com a an&aacute;lise. Refer&ecirc;ncia',
    again='j&aacute; estava salva',
    save_err='N&atilde;o foi poss&iacute;vel salvar. Tente novamente.',
+   show_solutions='Ver solu&ccedil;&otilde;es para esta tarefa',
    switched_to='Continuamos neste idioma', show_original='Ver original',
    show_translation='Ver tradu&ccedil;&atilde;o'),
  'de': dict(
@@ -156,6 +160,7 @@ S = {
    saved_p='Wir kommen mit der Analyse zur&uuml;ck. Vorgangsnummer',
    again='war schon gespeichert',
    save_err='Speichern nicht m&ouml;glich. Bitte erneut versuchen.',
+   show_solutions='L&ouml;sungen f&uuml;r diese Aufgabe zeigen',
    switched_to='Wir machen in dieser Sprache weiter',
    show_original='Original anzeigen', show_translation='&Uuml;bersetzung anzeigen'),
 }

@@ -32,6 +32,7 @@ ASSISTANT_API = os.environ.get("PL_ASSISTANT_API",
                                "https://scan.prodigylab.studio/api/assistant")
 ОБРАЗЕЦ = '/showcase/covers/saeng-thai-house.jpg'
 
+import hero_sections as HS  # noqa: E402
 from hero_content import (ИМЕНА, КАМПАНИИ, ЯЗЫКИ, H1, НАБОРЫ, ПОДСКАЗКИ,  # noqa: E402
                           S)
 
@@ -62,7 +63,7 @@ CSS = """
 :root{--ink:#121212;--ink2:#5C5C5A;--ink3:#8A8A86;--paper:#FBFBF9;--paper2:#F3F2EE;
 --line:#E2E1DC;--accent:#1C7E84;--accent2:#0F4A4E;--accent-soft:#E3F0F0;
 --graphite:#0F1722;--graphite2:#1A2534;--on-dark:#E8ECEF;--on-dark2:#95A3B3;
---warn:#8A5A1C}
+--warn:#8A5A1C;--sans:Geist,system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:var(--paper);color:var(--ink);font-family:Geist,system-ui,sans-serif;
@@ -355,6 +356,7 @@ JS = """
   заголовок(ситуация,true);
   подсказатьК(ключВопроса);
   if(финалБлок) обновитьФинал();
+  if(тема!==null) применитьРаздел(тема);
   поток.scrollTop=прокрутка;
   if(фокус) поле.focus({preventScroll:true});
  }
@@ -496,6 +498,7 @@ JS = """
     применитьЯзык(сдвиг['перешли']);
     сказать('note',сдвиг['подтверждение']||T().switched_to);
    }
+   if(d['тема']!==undefined) показатьРаздел(d['тема']||'', d['известно']);
    var р=d['резюме']||[];
    шаг(шагЗадача, р.length?р.join(' \\u00b7 '):T().undefined, р.length?'done':'');
    if(d['вопрос']){
@@ -589,10 +592,119 @@ JS = """
    var d=await r.json();
    if(!d.ok||!d['задача']) return;
    начали=true; поле.placeholder=T().input_next;
-   if(d['язык']&&d['язык']!==ЯЗЫК) применитьЯзык(d['язык']);
+   // Открытая страница — это и есть выбор языка. Если разговор шёл на
+   // другом, переводим разговор на язык страницы, а не страницу на язык
+   // разговора: иначе разделы и шапка разойдутся по языкам.
+   if(d['язык']&&d['язык']!==ЯЗЫК){
+    try{
+     await fetch(LANG_API,{method:'POST',headers:{'Content-Type':'application/json'},
+       body:JSON.stringify({session:сессия,lang:ЯЗЫК})});
+    }catch(e){}
+   }
    шаг(шагДальше,d['следующий']||T().undefined,'live');
    сказать('note',T().kept);
   }catch(e){}
+ }
+
+
+ // -------------------------------------------------- разделы под задачу
+ // Отдельной логики персонализации нет: направление приходит из того же
+ // ответа, что ведёт разговор. Разделы собираются из данных на языке
+ // разговора — поэтому испанского разговора с английским предложением
+ // ниже не получится.
+ var разделы=document.getElementById('pf');
+ var гнездо=разделы?разделы.querySelector('.pf-in'):null;
+ var переклБлок=document.getElementById('pf-switch');
+ var тема=null, ждётПоказа=null;
+
+ function видимРаздел(){
+  if(!разделы) return false;
+  var r=разделы.getBoundingClientRect();
+  return r.top < window.innerHeight - 80 && r.bottom > 80;
+ }
+ function собратьРаздел(к){
+  var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''];
+  var шаги=б.steps.map(function(ш,i){
+   return '<li><b>'+('0'+(i+1)).slice(-2)+'</b><h3>'+экр(ш[0])+'</h3><p>'
+        +экр(ш[1])+'</p></li>'; }).join('');
+  var нужно=б.need.map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
+  var тёмный;
+  if(б.example){
+   тёмный='<div class="pf-dark">'
+     +(б.example.concept?'<span class="pf-tagline">'+экр(L.concept)+'</span>':'')
+     +'<h3>'+экр(б.example.title)+'</h3><p>'+экр(б.example.about)+'</p>'
+     +'<span class="pf-shot"><img src="'+б.example.cover+'" alt="" loading="lazy" '
+     +'decoding="async" width="800" height="500"></span>'
+     +'<a class="pf-open" href="'+б.example.url+'">'+экр(L.open)+' →</a></div>';
+  } else {
+   // Опубликованного примера под эту задачу нет. Показываем порядок работы,
+   // а не чужой кейс: ресторан не решение по процессингу.
+   var клетки=б.steps.map(function(ш,i){
+    return '<div><b>'+('0'+(i+1)).slice(-2)+'</b><span>'+экр(ш[0])+'</span></div>';
+   }).join('');
+   тёмный='<div class="pf-dark"><h3>'+экр(L.process)+'</h3><p>'+экр(L.no_case)
+     +'</p><div class="pf-flow">'+клетки+'</div></div>';
+  }
+  return '<div class="pf-v" data-route="'+к+'">'
+   +'<p class="pf-eyebrow">'+экр(L.path)+'</p>'
+   +'<h2 class="pf-h">'+экр(б.problem)+'</h2>'
+   +'<p class="pf-lede">'+экр(б.approach)+'</p>'
+   +'<ol class="pf-steps">'+шаги+'</ol>'
+   +'<div class="pf-two"><div><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
+   +'<div><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div>'
+   +тёмный
+   +'<div class="pf-cta"><button type="button" class="pf-main" data-talk>'
+   +экр(б.cta)+'</button><a href="/showcase/">'+экр(L.all)+' →</a></div>'
+   +(к?'':'<p class="pf-note">'+экр(L.hint)+'</p>');
+ }
+ function применитьРаздел(к){
+  if(!гнездо) return;
+  var прокрутка=window.scrollY, фокус=(document.activeElement===поле);
+  var старое=гнездо.querySelector('.pf-v');
+  гнездо.insertAdjacentHTML('afterbegin',собратьРаздел(к));
+  if(старое) старое.remove();
+  тема=к;
+  // Страница не должна уехать под рукой: прокрутку и фокус возвращаем.
+  if(window.scrollY!==прокрутка) window.scrollTo(0,прокрутка);
+  if(фокус) поле.focus({preventScroll:true});
+  var липкая=document.getElementById('sn-sticky');
+  if(липкая){
+   // Бесплатную проверку сайта не предлагаем тому, у кого сайта нет, и тому,
+   // чья задача не про сайт: это предложение не по адресу.
+   var уместна=(к===''||к==='presence')&&!(известноНет==='has_site');
+   липкая.setAttribute('data-off',уместна?'0':'1');
+   if(!уместна) липкая.hidden=true;
+  }
+ }
+ var известноНет='';
+ function показатьРаздел(к,известно){
+  к=к||'';
+  if(известно&&известно.has_site==='нет') известноНет='has_site';
+  if(к===тема) return;
+  if(тема!==null&&тема!==''&&видимРаздел()){
+   // Человек читает этот раздел — подменять под рукой нельзя. Предлагаем.
+   ждётПоказа=к;
+   переклБлок.querySelector('button').textContent=T().show_solutions;
+   переклБлок.setAttribute('data-on','1');
+   return;
+  }
+  применитьРаздел(к);
+ }
+ if(переклБлок){
+  переклБлок.querySelector('button').addEventListener('click',function(){
+   применитьРаздел(ждётПоказа===null?тема:ждётПоказа); ждётПоказа=null;
+   переклБлок.setAttribute('data-on','0');
+  });
+ }
+ if(разделы){
+  // «Продолжить разговор» возвращает к тому же диалогу, а не заводит новый.
+  разделы.addEventListener('click',function(ev){
+   var б=ev.target.closest('[data-talk]'); if(!б) return;
+   var я=document.getElementById('hm-hero');
+   if(я) я.scrollIntoView({behavior: тонкая?'auto':'smooth', block:'start'});
+   window.setTimeout(function(){ поле.focus({preventScroll:true}); }, тонкая?0:420);
+  });
+  применитьРаздел('');
  }
 
  рисоватьСписок();
@@ -627,6 +739,7 @@ def _данные() -> dict:
             "h1": H1[код],
             "sets": НАБОРЫ[код],
             "hints": {к: v[код] for к, v in ПОДСКАЗКИ.items()},
+            "sections": HS.данные(код),
         }
     return из
 
@@ -714,10 +827,12 @@ def page(code: str = 'ru') -> str:
 
 
 # ------------------------------------------------------- встраивание в сайт
-# На главной уже есть свои переменные палитры с теми же значениями, поэтому
-# блок `:root` отсюда не переносится: он бы переопределял их на весь сайт.
-# Свои переменные первого экрана объявляются на его же контейнере.
-СВОИ_ПЕРЕМЕННЫЕ = ('--accent-soft', '--accent2', '--graphite', '--graphite2',
+# Переменные палитры, общие с сайтом (--accent, --ink, --paper и прочие),
+# отсюда не переносятся: у них те же значения, и переопределять их на весь
+# сайт незачем. А вот те, которых в сайте нет, объявляются на :root — ими
+# пользуется не только первый экран, но и разделы под задачу ниже.
+# `--accent2` в сайте уже есть с тем же значением, поэтому его не трогаем.
+СВОИ_ПЕРЕМЕННЫЕ = ('--accent-soft', '--graphite', '--graphite2',
                    '--on-dark', '--on-dark2', '--sans', '--mono', '--warn')
 
 
@@ -726,11 +841,11 @@ def встроенный_css() -> str:
     корень = re.search(r':root\s*\{([^}]*)\}', CSS)
     свои = []
     if корень:
-        for имя, знач in re.findall(r'(--[a-z0-9-]+)\s*:\s*([^;]+);', корень.group(1)):
+        for имя, знач in re.findall(r'(--[a-z0-9-]+)\s*:\s*([^;}]+)', корень.group(1)):
             if имя in СВОИ_ПЕРЕМЕННЫЕ:
                 свои.append(f'{имя}:{знач.strip()}')
     без = CSS[:корень.start()] + CSS[корень.end():] if корень else CSS
-    шапка = '#hm-hero{' + ';'.join(свои) + '}\n' if свои else ''
+    шапка = ':root{' + ';'.join(свои) + '}\n' if свои else ''
     return шапка + без
 
 

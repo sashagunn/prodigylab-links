@@ -219,7 +219,12 @@ def page(code):
     # страницы: наверху он тянул бы за собой содержимое пяти языков всегда,
     # даже когда собирается не главная.
     import hero_motion as HM
+    import hero_sections as HS
     hero_block = HM.markup(code)
+    # Разделы под задачу идут сразу за разговором: человек, ответивший на
+    # пару вопросов, листает вниз и видит путь по своей задаче, а не общий
+    # перечень услуг.
+    pf_block = HS.markup(code)
     hero_js = HM.script(code)
     hero_css = HM.встроенный_css()
     scan_nav = SB.nav_button(code)
@@ -314,7 +319,7 @@ def page(code):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>{CSS}{SHOWCASE_CSS}{SB.CSS}{hero_css}</style>
+<style>{CSS}{SHOWCASE_CSS}{SB.CSS}{hero_css}{HS.CSS}</style>
 <script>
 !function(f,b,e,v,n,t,s){{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)}};if(!f._fbq)f._fbq=n;
@@ -356,6 +361,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 
 <main>
 {hero_block}
+{pf_block}
 <section class="hero" id="hero">
  <div class="wrap">
   <img class="avatar" src="/assets/founder.jpg" alt="{e(d['photo_alt'])}" width="92" height="92">
