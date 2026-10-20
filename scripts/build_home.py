@@ -115,14 +115,18 @@ color:var(--ink3);text-decoration:none;padding:6px 2px}
 .hero{padding:56px 0 52px;text-align:center}
 @media(min-width:768px){.hero{padding:92px 0 80px}}
 .avatar{width:92px;height:92px;border-radius:50%;object-fit:cover;border:1px solid var(--line);margin:0 auto 26px;display:block}
-.hero h1{max-width:19ch;margin:20px auto 0}
+.hero h1,.hero .h1-like{max-width:19ch;margin:20px auto 0}
+/* Пониженный заголовок главной: он идёт вторым после первого
+   экрана, поэтому крупнее подзаголовка, но меньше h1. На других
+   страницах с этим CSS заголовок остаётся прежним. */
+.hero .h1-like{font-size:clamp(26px,4.4vw,44px);letter-spacing:-.03em;line-height:1.1}
 .quote{font-size:15.5px;font-style:italic;color:var(--accent);margin:22px auto 0;max-width:40ch}
 .hero .lede{max-width:56ch;margin:22px auto 0}
 .cta-row{display:flex;flex-direction:column;gap:11px;margin:34px auto 0;max-width:520px}
 @media(min-width:560px){.cta-row{flex-direction:row;justify-content:center}}
 .hero .mono{margin-top:20px;display:block}
-.pl-adapt-pending .hero h1,.pl-adapt-pending .hero .lede,.pl-adapt-pending .hero .quote,.pl-adapt-pending .hero .mono{visibility:hidden}
-.hero.picked h1{max-width:22ch}
+.pl-adapt-pending .hero h1,.pl-adapt-pending .hero .h1-like,.pl-adapt-pending .hero .lede,.pl-adapt-pending .hero .quote,.pl-adapt-pending .hero .mono{visibility:hidden}
+.hero.picked h1,.hero.picked .h1-like{max-width:22ch}
 .sec{padding:62px 0}@media(min-width:768px){.sec{padding:100px 0}}
 .alt{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .grid{display:grid;margin-top:40px;border-top:1px solid var(--line)}
@@ -211,6 +215,13 @@ def page(code):
     # этот модуль ради CSS и шапки — на верхнем уровне получилось бы кольцо.
     from build_showcase import блок_для_главной, EXTRA_CSS as SHOWCASE_CSS, PAGE_PATH as SHOWCASE_PATH
     import scan_block as SB
+    # Первый экран с помощником. Импорт здесь же, рядом с остальными блоками
+    # страницы: наверху он тянул бы за собой содержимое пяти языков всегда,
+    # даже когда собирается не главная.
+    import hero_motion as HM
+    hero_block = HM.markup(code)
+    hero_js = HM.script(code)
+    hero_css = HM.встроенный_css()
     scan_nav = SB.nav_button(code)
     scan_main = SB.main_block(code)
     scan_after = SB.after_gallery(code)
@@ -303,7 +314,7 @@ def page(code):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>{CSS}{SHOWCASE_CSS}{SB.CSS}</style>
+<style>{CSS}{SHOWCASE_CSS}{SB.CSS}{hero_css}</style>
 <script>
 !function(f,b,e,v,n,t,s){{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)}};if(!f._fbq)f._fbq=n;
@@ -344,11 +355,12 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 </nav>
 
 <main>
+{hero_block}
 <section class="hero" id="hero">
  <div class="wrap">
   <img class="avatar" src="/assets/founder.jpg" alt="{e(d['photo_alt'])}" width="92" height="92">
   <span class="mono">{e(d['eyebrow'])}</span>
-  <h1>{e(d['h1'])}</h1>
+  <h2 class="h1-like">{e(d['h1'])}</h2>
   <p class="quote">{e(d['quote'])}</p>
   <p class="lede">{e(d['lede'])}</p>
   <div class="cta-row">
@@ -538,7 +550,7 @@ document.querySelectorAll('.cell[data-cell]').forEach(function(c){{
   var h=карта.querySelector('h3 a'), p=карта.querySelector('p'), м=карта.querySelector('.mono');
   if(!h||!p) return;
   var заголовок=h.textContent.replace(/[\u2192\s]+$/,'').trim();
-  var g1=г.querySelector('h1'), lede=г.querySelector('.lede'), q=г.querySelector('.quote');
+  var g1=г.querySelector('h1, .h1-like'), lede=г.querySelector('.lede'), q=г.querySelector('.quote');
   var бровь=г.querySelector('.wrap > .mono');
   if(g1) g1.textContent=заголовок;
   if(lede) lede.textContent=p.textContent;
@@ -639,6 +651,7 @@ document.querySelectorAll('#mob a').forEach(function(a){{a.addEventListener('cli
    }});}};
  }})(document,"script");
 </script>
+<script>{hero_js}</script>
 </body>
 </html>"""
 

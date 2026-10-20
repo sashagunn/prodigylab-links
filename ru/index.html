@@ -73,14 +73,18 @@ color:var(--ink3);text-decoration:none;padding:6px 2px}
 .hero{padding:56px 0 52px;text-align:center}
 @media(min-width:768px){.hero{padding:92px 0 80px}}
 .avatar{width:92px;height:92px;border-radius:50%;object-fit:cover;border:1px solid var(--line);margin:0 auto 26px;display:block}
-.hero h1{max-width:19ch;margin:20px auto 0}
+.hero h1,.hero .h1-like{max-width:19ch;margin:20px auto 0}
+/* Пониженный заголовок главной: он идёт вторым после первого
+   экрана, поэтому крупнее подзаголовка, но меньше h1. На других
+   страницах с этим CSS заголовок остаётся прежним. */
+.hero .h1-like{font-size:clamp(26px,4.4vw,44px);letter-spacing:-.03em;line-height:1.1}
 .quote{font-size:15.5px;font-style:italic;color:var(--accent);margin:22px auto 0;max-width:40ch}
 .hero .lede{max-width:56ch;margin:22px auto 0}
 .cta-row{display:flex;flex-direction:column;gap:11px;margin:34px auto 0;max-width:520px}
 @media(min-width:560px){.cta-row{flex-direction:row;justify-content:center}}
 .hero .mono{margin-top:20px;display:block}
-.pl-adapt-pending .hero h1,.pl-adapt-pending .hero .lede,.pl-adapt-pending .hero .quote,.pl-adapt-pending .hero .mono{visibility:hidden}
-.hero.picked h1{max-width:22ch}
+.pl-adapt-pending .hero h1,.pl-adapt-pending .hero .h1-like,.pl-adapt-pending .hero .lede,.pl-adapt-pending .hero .quote,.pl-adapt-pending .hero .mono{visibility:hidden}
+.hero.picked h1,.hero.picked .h1-like{max-width:22ch}
 .sec{padding:62px 0}@media(min-width:768px){.sec{padding:100px 0}}
 .alt{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .grid{display:grid;margin-top:40px;border-top:1px solid var(--line)}
@@ -252,6 +256,170 @@ font-size:12px;display:inline-flex;align-items:center;justify-content:center;mar
 .sn-sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:flex}
 .sn-sticky a{flex:1;justify-content:center;box-shadow:0 6px 24px rgba(0,0,0,.22)}
 @media(min-width:760px){.sn-sticky{display:none}}
+#hm-hero{--accent2:#0F4A4E;--accent-soft:#E3F0F0;--graphite:#0F1722;--graphite2:#1A2534;--on-dark:#E8ECEF;--on-dark2:#95A3B3}
+
+/* Переключатель языка в шапке диалога. Названия языков — на своём языке,
+   без флагов. Кнопка узкая, список раскрывается на месте и не растягивает
+   шапку: иначе диалог дёргался бы при каждом открытии. */
+.lang{margin-left:auto;position:relative}
+.lang>button{font:500 12.5px/1 var(--mono);letter-spacing:.06em;color:var(--ink2);
+ background:transparent;border:1px solid var(--line);padding:6px 9px;cursor:pointer}
+.lang>button:hover{color:var(--ink);border-color:var(--ink3)}
+.lang>button[aria-expanded="true"]{color:var(--ink);border-color:var(--accent)}
+.lang ul{position:absolute;right:0;top:calc(100% + 5px);z-index:5;margin:0;padding:4px;
+ list-style:none;background:#fff;border:1px solid var(--line);min-width:132px}
+.lang[hidden],.lang ul[hidden]{display:none}
+.lang li+li{margin-top:1px}
+.lang ul button{display:block;width:100%;text-align:left;font:400 14px/1.2 var(--sans);
+ color:var(--ink);background:transparent;border:0;padding:8px 9px;cursor:pointer}
+.lang ul button:hover{background:var(--paper2)}
+.lang ul button[aria-current="true"]{color:var(--accent);font-weight:600}
+.lang ul button[aria-current="true"]::after{content:" ✓"}
+.m .tr{display:block;margin-top:5px;font:400 12.5px/1.3 var(--sans);color:var(--ink3);
+ background:transparent;border:0;padding:0;cursor:pointer;text-decoration:underline}
+.m .tr:hover{color:var(--ink2)}
+
+/* Палитра — с живого prodigylab.studio. Скруглений нет нигде, кроме круглого
+   знака; теней нет ни одной. Это сильнее любого цвета определяет наш вид. */
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:Geist,system-ui,sans-serif;
+font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.hm-mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;
+letter-spacing:.18em;text-transform:uppercase}
+
+.hm{display:grid;grid-template-columns:1fr;align-items:start}
+@media(min-width:1024px){.hm{grid-template-columns:44fr 56fr;min-height:100svh}}
+
+.hm-l{padding:22px 20px 32px;display:flex;flex-direction:column}
+@media(min-width:1024px){.hm-l{padding:30px 44px 40px}}
+.hm-brand{display:inline-flex;align-items:baseline;gap:6px;font-weight:700;letter-spacing:-.02em;
+font-size:17px;text-decoration:none;color:var(--ink);margin-bottom:24px}
+.hm-brand b{color:var(--accent);font-weight:700}
+.hm-brand span{font-weight:300;color:var(--ink2)}
+.hm-l .eyebrow{color:var(--accent)}
+.hm h1{margin:12px 0 0;font-size:clamp(31px,4.1vw,52px);line-height:1.04;
+letter-spacing:-.033em;font-weight:600;max-width:15ch}
+.hm h1 .ln{display:block;overflow:hidden}
+.hm h1 .ln>span{display:block;transform:translateY(104%);
+transition:transform .6s cubic-bezier(.22,.8,.3,1)}
+.hm h1 .ln>span.in{transform:translateY(0)}
+.hm h1 .ln>span.done{transition:none;transform:none}
+.hm-lede{max-width:40ch;margin:14px 0 0;color:var(--ink2);font-size:15.5px}
+
+.talk{margin:22px 0 0;border:1px solid var(--line);background:var(--paper2);
+display:flex;flex-direction:column}
+.talk-h{display:flex;align-items:center;gap:9px;padding:11px 14px;
+border-bottom:1px solid var(--line);background:#fff}
+.talk-av{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;flex:none;
+display:inline-flex;align-items:center;justify-content:center;font-size:9.5px}
+.talk-n{font-size:13.5px;font-weight:500}
+.talk-t{margin-left:auto;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;
+letter-spacing:.13em;text-transform:uppercase;color:var(--warn);border:1px solid var(--warn);
+padding:3px 6px}
+.stream{display:none;flex-direction:column;gap:10px;padding:14px}
+.stream.hm-on{display:flex}
+@media(min-width:1024px){.stream.hm-on{max-height:36svh;overflow-y:auto}}
+.m{max-width:92%;font-size:15px;line-height:1.48;padding:10px 13px;
+word-wrap:break-word;overflow-wrap:anywhere}
+.m b{display:block;font-weight:500;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+font-family:'JetBrains Mono',ui-monospace,monospace;margin-bottom:5px;opacity:.75}
+.m-bot{align-self:flex-start;background:#fff;border:1px solid var(--line)}
+.m-you{align-self:flex-end;background:var(--accent-soft);border:1px solid var(--accent);
+color:var(--ink)}
+.m-note{align-self:center;font-size:12px;color:var(--ink2);background:none;border:0;padding:2px}
+.m-err{align-self:flex-start;background:#fff;border:1px solid var(--warn);color:var(--warn)}
+.wait{align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:14px;
+color:var(--ink2);padding:8px 2px}
+.wait i{width:8px;height:8px;background:var(--accent);display:inline-block;
+animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
+
+.sugg{display:flex;flex-wrap:wrap;gap:7px;padding:0 14px 12px}
+.sugg:empty{display:none}
+.sugg button{font:inherit;font-size:14px;min-height:44px;padding:11px 14px;cursor:pointer;
+background:#fff;color:var(--ink);border:1px solid var(--line)}
+.sugg button:hover{border-color:var(--accent);color:var(--accent)}
+.ask{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line);background:#fff}
+.ask input{flex:1;min-width:0;font:inherit;font-size:16px;padding:13px;border:1px solid var(--line);
+background:var(--paper);color:var(--ink)}
+.ask input:focus{border-color:var(--accent)}
+.ask button{flex:none;width:52px;min-height:48px;border:0;background:var(--accent);
+color:#fff;cursor:pointer;font-size:18px}
+.ask button:hover{background:var(--accent2)}
+.ask button[disabled]{opacity:.5;cursor:default}
+
+/* Финал: резюме, следующий шаг и заявка — в том же разговоре. */
+.fin{border:1px solid var(--accent);background:#fff;padding:14px}
+.fin h3{margin:0 0 9px;font-size:15px;font-weight:600}
+.fin ul{margin:0 0 10px;padding-left:17px;font-size:14.5px;color:var(--ink2)}
+.fin .next{background:var(--accent-soft);border-left:3px solid var(--accent);
+padding:9px 11px;font-size:14.5px;margin:0 0 11px}
+.fin .ways{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 10px}
+.fin .ways button{font:inherit;font-size:14px;min-height:44px;padding:10px 14px;cursor:pointer;
+background:var(--paper);border:1px solid var(--line);color:var(--ink)}
+.fin .ways button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);
+color:#fff}
+.fin label{display:block;font-size:12.5px;color:var(--ink2);margin:0 0 4px}
+.fin input{width:100%;font:inherit;font-size:16px;padding:11px;border:1px solid var(--line);
+background:var(--paper);margin:0 0 9px}
+.fin .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.fin .hm-go{font:inherit;font-size:15px;min-height:48px;padding:12px 20px;border:0;cursor:pointer;
+background:var(--ink);color:#fff}
+.fin .hm-go:hover{background:var(--accent)}
+.fin .hm-go[disabled]{opacity:.5;cursor:default}
+.fin .edit{font:inherit;font-size:14px;background:none;border:0;padding:0;cursor:pointer;
+color:var(--accent);border-bottom:1px solid var(--accent)}
+.fin .ok{border:1px solid var(--accent);background:var(--accent-soft);padding:11px;font-size:14.5px}
+.fin .err{border:1px solid var(--warn);color:var(--warn);padding:11px;font-size:14.5px}
+
+.hm-pick{display:block;margin:18px 0 9px;color:var(--ink3)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:0;padding:0;list-style:none}
+.chips button{font:inherit;font-size:14px;min-height:44px;padding:11px 15px;cursor:pointer;
+background:transparent;color:var(--ink);border:1px solid var(--line);
+transition:border-color .15s,color .15s,background .15s}
+.chips button:hover{border-color:var(--accent);color:var(--accent)}
+.chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chips button[aria-pressed="true"]::before{content:"✓ "}
+.chips .near button{color:var(--ink2);border-style:dashed}
+.tail{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:16px}
+.tail a,.tail button{font:inherit;font-size:14.5px;color:var(--ink2);background:none;border:0;
+padding:0;cursor:pointer;text-decoration:none;border-bottom:1px solid var(--line)}
+.tail a:hover,.tail button:hover{color:var(--accent);border-bottom-color:var(--accent)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);
+outline-offset:3px}
+
+/* Сцена: графит, а не чёрная пустота. */
+.hm-r{position:relative;background:var(--graphite);color:var(--on-dark);overflow:hidden;
+padding:22px 20px 26px}
+@media(min-width:1024px){.hm-r{padding:30px 40px;min-height:100svh;
+display:flex;flex-direction:column;justify-content:center;gap:20px}}
+.hm-steps{display:grid;gap:9px;grid-template-columns:1fr;
+transform:translate3d(var(--dx,0),var(--dy,0),0);transition:transform .3s ease-out}
+@media(min-width:640px){.hm-steps{grid-template-columns:repeat(3,1fr)}}
+.hm-step{border:1px solid var(--graphite2);padding:13px 14px;background:#131C28;min-height:92px;
+transition:border-color .3s,background .3s}
+.hm-step.live{border-color:var(--accent);background:#102024}
+.hm-step.done{border-color:#2F4A4C}
+.hm-step .hm-mono{color:var(--on-dark2);display:flex;align-items:center;gap:6px;margin-bottom:7px}
+.hm-step.live .hm-mono{color:var(--accent)}
+.hm-step .hm-mono i{font-style:normal}
+.hm-step p{margin:0;font-size:14.5px;line-height:1.45;color:var(--on-dark);overflow-wrap:anywhere}
+.hm-step p.dim{color:var(--on-dark2)}
+.hm-shot{position:relative;border:1px solid var(--graphite2);background:#0B1119;margin:0;
+transform:translate3d(calc(var(--dx,0)*-.5),calc(var(--dy,0)*-.5),0);
+transition:transform .3s ease-out}
+.hm-shot img{display:block;width:100%;height:auto}
+.hm-shot figcaption{padding:9px 13px;font-size:12px;color:var(--on-dark2);
+border-top:1px solid var(--graphite2);display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.hm-shot .tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.13em;
+text-transform:uppercase;color:#07131A;background:var(--accent);padding:2px 6px}
+
+@media(prefers-reduced-motion:reduce){
+ .hm h1 .ln>span{transform:none;transition:none}
+ .hm-steps,.hm-shot,.hm-step,.chips button,.wait i{transition:none;transform:none;animation:none}
+}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -267,6 +435,315 @@ fbq('init','1713332936325081');fbq('track','PageView');
 (function(){try{if(/[?&](initial_hypothesis|content_id|outreach_id|utm_campaign)=/.test(location.search)){
 var h=document.documentElement;h.classList.add("pl-adapt-pending");
 setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}})();</script>
+<!-- ENTITY-SCHEMA:START (генерируется scripts/inject-entity-schema.js из BUSINESS_FACTS.json — руками не править) -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "ProfessionalService",
+ "@id": "https://prodigylab.studio/#organization",
+ "name": "Prodigy LAB",
+ "legalName": "Platonaire LLC",
+ "url": "https://prodigylab.studio/",
+ "logo": "https://prodigylab.studio/assets/prodigybot-avatar.png",
+ "image": "https://prodigylab.studio/assets/prodigybot-avatar.png",
+ "slogan": "Мир продаж уже не будет прежним",
+ "description": "Prodigy LAB — студия цифрового роста для малого и среднего бизнеса. Собирает и чинит системы, через которые бизнес продаёт: сайты и магазины на Shopify, конверсию, рекламу в Meta и Google, ИИ-ассистентов, которые отвечают клиентам круглосуточно.",
+ "telephone": "+18182690416",
+ "sameAs": [
+  "https://instagram.com/sashagun_usa",
+  "https://facebook.com/sashagun_usa",
+  "https://t.me/leadsmetachat_bot"
+ ],
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "United States"
+  }
+ ],
+ "knowsLanguage": [
+  "ru",
+  "en",
+  "es",
+  "pt",
+  "de"
+ ],
+ "hasOfferCatalog": {
+  "@type": "OfferCatalog",
+  "name": "Services",
+  "itemListElement": [
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/shopify-development/",
+    "priceCurrency": "USD",
+    "price": "2900",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 2900,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Shopify Development",
+     "url": "https://prodigylab.studio/shopify-development/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/shopify-redesign/",
+    "priceCurrency": "USD",
+    "price": "2900",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 2900,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Shopify Redesign",
+     "url": "https://prodigylab.studio/shopify-redesign/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/shopify-audit/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Shopify Audit",
+     "url": "https://prodigylab.studio/shopify-audit/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/ecommerce-consulting/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "E-commerce Consulting",
+     "url": "https://prodigylab.studio/ecommerce-consulting/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/website-development/",
+    "priceCurrency": "USD",
+    "price": "1900",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 1900,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Website Development",
+     "url": "https://prodigylab.studio/website-development/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/website-redesign/",
+    "priceCurrency": "USD",
+    "price": "2900",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 2900,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Website Redesign",
+     "url": "https://prodigylab.studio/website-redesign/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/website-audit/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Website Audit",
+     "url": "https://prodigylab.studio/website-audit/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/conversion-rate-optimization/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Conversion Rate Optimization",
+     "url": "https://prodigylab.studio/conversion-rate-optimization/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/ai-chatbot/",
+    "priceCurrency": "USD",
+    "price": "600",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 600,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "AI Sales Chatbot (ProdigyBot)",
+     "url": "https://prodigylab.studio/ai-chatbot/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/ai-automation/",
+    "priceCurrency": "USD",
+    "price": "600",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 600,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "AI Automation",
+     "url": "https://prodigylab.studio/ai-automation/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/meta-ads-management/",
+    "priceCurrency": "USD",
+    "price": "1500",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 1500,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Meta Ads Management",
+     "url": "https://prodigylab.studio/meta-ads-management/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/google-ads-management/",
+    "priceCurrency": "USD",
+    "price": "1500",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 1500,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Google Ads Management",
+     "url": "https://prodigylab.studio/google-ads-management/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/business-operations/",
+    "priceCurrency": "USD",
+    "price": "3900",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 3900,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Fractional Digital Operations",
+     "url": "https://prodigylab.studio/business-operations/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/business-consulting-usa/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Business Consulting for US SMBs",
+     "url": "https://prodigylab.studio/business-consulting-usa/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/russian-business-consulting-miami/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Digital Operations for Russian-speaking Businesses (Miami)",
+     "url": "https://prodigylab.studio/russian-business-consulting-miami/"
+    }
+   }
+  ]
+ }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "@id": "https://prodigylab.studio/#website",
+ "url": "https://prodigylab.studio/ru/",
+ "name": "Prodigy LAB",
+ "inLanguage": "ru",
+ "publisher": {
+  "@id": "https://prodigylab.studio/#organization"
+ }
+}
+</script>
+<!-- ENTITY-SCHEMA:END -->
 </head>
 <body>
 
@@ -293,11 +770,64 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
 </nav>
 
 <main>
+<section id="hm-hero">
+<div class="hm">
+ <div class="hm-l">
+  
+  <span class="hm-mono eyebrow">РАЗБОР И РЕШЕНИЕ БИЗНЕС-ЗАДАЧ</span>
+  <h1 id="h1"><span class="ln"><span>Что мешает вашему</span></span><span class="ln"><span>бизнесу двигаться дальше?</span></span></h1>
+  <p class="hm-lede">Платежи, банки, финансирование, операции, сайты и магазины. Начните прямо здесь — разберём и скажем, что чинить первым.</p>
+
+  <div class="talk">
+   <div class="talk-h">
+    <span class="talk-av" aria-hidden="true">PL</span>
+    <span class="talk-n">Помощник Prodigy LAB</span>
+    <div class="lang" id="lang">
+     <button type="button" id="lang-btn" aria-expanded="false"
+             aria-controls="lang-list" aria-label="Язык разговора">Русский</button>
+     <ul id="lang-list" hidden></ul>
+    </div>
+   </div>
+   <div class="stream" id="stream" aria-live="polite"></div>
+   <div class="sugg" id="sugg"></div>
+   <form class="ask" id="ask">
+    <label for="ask-i" style="position:absolute;left:-9999px">Опишите задачу своими словами</label>
+    <input id="ask-i" type="text" autocomplete="off" enterkeyhint="send"
+           placeholder="Опишите задачу своими словами">
+    <button id="ask-b" type="submit" aria-label="Отправить">&rarr;</button>
+   </form>
+  </div>
+
+  <span class="hm-mono hm-pick">С чего начнём</span>
+  <ul class="chips" id="chips"></ul>
+  <div class="tail">
+   <button type="button" id="restart">У меня другая задача</button>
+   <a href="/showcase/">Посмотреть решения &rarr;</a>
+  </div>
+ </div>
+
+ <div class="hm-r" id="hm-r">
+  <div class="hm-steps" id="steps">
+   <div class="hm-step" id="s-task"><span class="hm-mono">Задача <i></i></span>
+    <p class="dim">определяем</p></div>
+   <div class="hm-step" id="s-clar"><span class="hm-mono">Уточняем <i></i></span>
+    <p class="dim">ждём вашего ответа</p></div>
+   <div class="hm-step" id="s-next"><span class="hm-mono">Следующий шаг <i></i></span>
+    <p class="dim">определяем</p></div>
+  </div>
+  <figure class="hm-shot">
+   <img src="/showcase/covers/saeng-thai-house.jpg" alt="Опубликованный концепт ресторана: меню, фото блюд, самовывоз" loading="lazy"
+        decoding="async" width="800" height="500">
+   <figcaption><span class="tag">Пример нашей работы</span>Опубликованный концепт ресторана: меню, фото блюд, самовывоз</figcaption>
+  </figure>
+ </div>
+</div>
+</section>
 <section class="hero" id="hero">
  <div class="wrap">
   <img class="avatar" src="/assets/founder.jpg" alt="Александр, основатель Prodigy LAB" width="92" height="92">
   <span class="mono">Business Advisory &amp; Solutions</span>
-  <h1>Где-то в вашем бизнесе утекают деньги. Чаще всего — не там, где кажется</h1>
+  <h2 class="h1-like">Где-то в вашем бизнесе утекают деньги. Чаще всего — не там, где кажется</h2>
   <p class="quote">Вам не нужен ещё один подрядчик. Сначала нужен честный разбор бизнеса.</p>
   <p class="lede">Владелец обычно знает симптом: платежи заблокировали, реклама не окупается, заявки теряются между каналами. Чего нет — взгляда со стороны на то, какая из этих проблем сейчас самая дорогая и что чинить первым.</p>
   <div class="cta-row">
@@ -544,7 +1074,7 @@ document.querySelectorAll('.cell[data-cell]').forEach(function(c){
   var h=карта.querySelector('h3 a'), p=карта.querySelector('p'), м=карта.querySelector('.mono');
   if(!h||!p) return;
   var заголовок=h.textContent.replace(/[→\s]+$/,'').trim();
-  var g1=г.querySelector('h1'), lede=г.querySelector('.lede'), q=г.querySelector('.quote');
+  var g1=г.querySelector('h1, .h1-like'), lede=г.querySelector('.lede'), q=г.querySelector('.quote');
   var бровь=г.querySelector('.wrap > .mono');
   if(g1) g1.textContent=заголовок;
   if(lede) lede.textContent=p.textContent;
@@ -644,6 +1174,407 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
     }catch(e){}
    });};
  })(document,"script");
+</script>
+<script>
+(function(){
+ var API="https://scan.prodigylab.studio/api/assistant", LANG_API="https://scan.prodigylab.studio/api/assistant/lang", LEAD_API="https://scan.prodigylab.studio/api/assistant/lead", STATE_API="https://scan.prodigylab.studio/api/assistant/state";
+ var DATA={"en": {"s": {"eyebrow": "BUSINESS ADVISORY & SOLUTIONS", "lede": "Payments, banking, funding, operations, websites and stores. Start right here — we read the situation and say what to fix first.", "input": "Describe your task in your own words", "input_next": "Your answer", "send": "Send", "pick": "Where shall we start", "other": "Mine is different", "more": "See our work", "panel": "Prodigy LAB assistant", "task": "Task", "clarify": "Clarifying", "nxt": "Next step", "undefined": "working it out", "waiting": "waiting for your answer", "done_q": "we have what we need", "sample": "A piece of our work", "sample_cap": "Published restaurant concept: menu, dish photos, pickup", "offline": "The assistant is not answering. Write to us and we will pick it up.", "thinking": "One moment…", "restart": "Change topic", "kept": "Conversation kept", "you": "You", "bot": "Assistant", "lang_pick": "Conversation language", "lang_close": "Close", "sum_h": "What I understood", "fix": "Correct this", "fix_hint": "Tell me what I got wrong.", "how": "How should we reach you", "contact": "Phone or email", "name": "Name", "send_lead": "Send request", "pick_way": "Choose how to reach you", "need_contact": "Phone or email needed", "saving": "Saving…", "saved": "Request saved", "saved_p": "We will come back with the breakdown. Reference", "again": "was already saved", "save_err": "Could not save. Please try again.", "switched_to": "Continuing in this language", "show_original": "Show original", "show_translation": "Show translation"}, "h1": {"": ["What is stopping your", "business from moving on?"], "payments": ["Payments", "are not going through?"], "banking": ["Has the bank", "restricted your account?"], "site_needed": ["Need a website", "for your business?"], "site_no_leads": ["Site is live,", "enquiries are not?"], "funding": ["Does the business", "need money to grow?"], "operations": ["Too much", "done by hand?"], "unsure": ["Tell us what", "is not adding up"]}, "sets": {"payments": {"main": [["payments", "Payments stopped going through"], ["payments", "Processor closed the account"], ["payments", "Payouts are delayed"], ["payments", "Application was declined"], ["payments", "Need a backup processor"]], "near": [["banking", "Bank account problem"]]}, "presence": {"main": [["site_needed", "No website yet"], ["site_needed", "Need an online store"], ["site_no_leads", "Site is live, no enquiries"], ["site_no_leads", "Enquiries get lost"]], "near": [["operations", "Too much manual work"]]}, "banking": {"main": [["banking", "Account was closed"], ["banking", "Account was restricted"], ["banking", "Opening was declined"], ["banking", "Need a second bank"]], "near": [["payments", "Payments not going through"]]}, "funding": {"main": [["funding", "Need money for inventory"], ["funding", "Cash flow gap"], ["funding", "Need a credit line"], ["funding", "Funding was declined"]], "near": [["banking", "Bank problem"]]}, "operations": {"main": [["operations", "We move everything by hand"], ["operations", "Requests get lost between people"], ["operations", "No record of deals"], ["operations", "Want to automate the routine"]], "near": [["site_no_leads", "Site enquiries do not arrive"]]}, "general": {"main": [["site_needed", "Need a website or store"], ["site_no_leads", "Site is live, no enquiries"], ["payments", "Payments stopped"], ["banking", "Bank account problem"], ["funding", "Need funding"], ["operations", "Too much manual work"]], "near": []}}, "hints": {"presence.has_site": ["No website", "We have a website"], "presence.needs_store": ["Need a store", "Enquiries are enough"], "presence.goal": ["Conversion", "Speed", "A new look"], "presence.urgency": ["Urgent", "Within a month", "No rush"], "Какой процессор сейчас и что именно произошло?": ["Stripe", "Square", "PayPal", "Authorize.net", "Other"], "Приём платежей сейчас работает хоть как-то или остановлен полностью?": ["Fully stopped", "Partly working"], "Что произошло со счётом: отказ, закрытие или ограничения?": ["Declined", "Closed", "Restricted"], "Что продаёте?": ["Products", "Services", "Both"]}}, "ru": {"s": {"eyebrow": "РАЗБОР И РЕШЕНИЕ БИЗНЕС-ЗАДАЧ", "lede": "Платежи, банки, финансирование, операции, сайты и магазины. Начните прямо здесь — разберём и скажем, что чинить первым.", "input": "Опишите задачу своими словами", "input_next": "Ваш ответ", "send": "Отправить", "pick": "С чего начнём", "other": "У меня другая задача", "more": "Посмотреть решения", "panel": "Помощник Prodigy LAB", "task": "Задача", "clarify": "Уточняем", "nxt": "Следующий шаг", "undefined": "определяем", "waiting": "ждём вашего ответа", "done_q": "всё, что нужно, выяснили", "sample": "Пример нашей работы", "sample_cap": "Опубликованный концепт ресторана: меню, фото блюд, самовывоз", "offline": "Помощник сейчас не отвечает. Напишите нам, и мы продолжим.", "thinking": "Секунду…", "restart": "Сменить тему", "kept": "Разговор сохранён", "you": "Вы", "bot": "Помощник", "lang_pick": "Язык разговора", "lang_close": "Закрыть", "sum_h": "Что я понял", "fix": "Поправить", "fix_hint": "Напишите, что понято неверно.", "how": "Как с вами связаться", "contact": "Телефон или почта", "name": "Имя", "send_lead": "Отправить заявку", "pick_way": "Выберите способ связи", "need_contact": "Нужен телефон или почта", "saving": "Сохраняю…", "saved": "Заявка сохранена", "saved_p": "Мы вернёмся с разбором. Номер обращения", "again": "уже была сохранена", "save_err": "Не удалось сохранить. Попробуйте ещё раз.", "switched_to": "Продолжаем на этом языке", "show_original": "Показать оригинал", "show_translation": "Показать перевод"}, "h1": {"": ["Что мешает вашему", "бизнесу двигаться дальше?"], "payments": ["Не получается", "принимать платежи?"], "banking": ["Банк ограничил", "ваш счёт?"], "site_needed": ["Нужен сайт", "для вашего бизнеса?"], "site_no_leads": ["Сайт есть,", "а обращений нет?"], "funding": ["Бизнесу нужны", "деньги на рост?"], "operations": ["Слишком много", "ручной работы?"], "unsure": ["Расскажите,", "что не складывается"]}, "sets": {"payments": {"main": [["payments", "Перестали проходить платежи"], ["payments", "Закрыли аккаунт процессора"], ["payments", "Задерживают выплаты"], ["payments", "Отказали в подключении"], ["payments", "Нужен резервный процессинг"]], "near": [["banking", "Проблема с банковским счётом"]]}, "presence": {"main": [["site_needed", "Сайта нет, нужен"], ["site_needed", "Нужен интернет-магазин"], ["site_no_leads", "Сайт есть, обращений нет"], ["site_no_leads", "Заявки теряются"]], "near": [["operations", "Много ручной работы"]]}, "banking": {"main": [["banking", "Счёт закрыли"], ["banking", "Счёт ограничили"], ["banking", "Отказали в открытии"], ["banking", "Нужен второй банк"]], "near": [["payments", "Не проходят платежи"]]}, "funding": {"main": [["funding", "Нужны деньги на закупку"], ["funding", "Кассовый разрыв"], ["funding", "Нужна кредитная линия"], ["funding", "Отказали в финансировании"]], "near": [["banking", "Проблема с банком"]]}, "operations": {"main": [["operations", "Всё переносим руками"], ["operations", "Заявки теряются между людьми"], ["operations", "Нет учёта сделок"], ["operations", "Хотим автоматизировать рутину"]], "near": [["site_no_leads", "Заявки с сайта не доходят"]]}, "general": {"main": [["site_needed", "Нужен сайт или магазин"], ["site_no_leads", "Сайт есть, обращений нет"], ["payments", "Не проходят платежи"], ["banking", "Проблема с банковским счётом"], ["funding", "Нужно финансирование"], ["operations", "Много ручной работы"]], "near": []}}, "hints": {"presence.has_site": ["Сайта нет", "Сайт есть"], "presence.needs_store": ["Нужен магазин", "Достаточно заявок"], "presence.goal": ["Конверсия", "Скорость", "Новый вид"], "presence.urgency": ["Срочно", "В течение месяца", "Не горит"], "Какой процессор сейчас и что именно произошло?": ["Stripe", "Square", "PayPal", "Authorize.net", "Другой"], "Приём платежей сейчас работает хоть как-то или остановлен полностью?": ["Полностью остановлен", "Частично работает"], "Что произошло со счётом: отказ, закрытие или ограничения?": ["Отказали", "Закрыли", "Ограничили"], "Что продаёте?": ["Товары", "Услуги", "И то, и другое"]}}, "es": {"s": {"eyebrow": "ANÁLISIS Y SOLUCIONES DE NEGOCIO", "lede": "Pagos, bancos, financiación, operaciones, sitios web y tiendas. Empiece aquí mismo: analizamos la situación y decimos qué arreglar primero.", "input": "Describa su tarea con sus palabras", "input_next": "Su respuesta", "send": "Enviar", "pick": "Por dónde empezamos", "other": "La mía es otra", "more": "Ver nuestro trabajo", "panel": "Asistente de Prodigy LAB", "task": "Tarea", "clarify": "Precisando", "nxt": "Siguiente paso", "undefined": "lo estamos definiendo", "waiting": "esperando su respuesta", "done_q": "ya tenemos lo necesario", "sample": "Un ejemplo de nuestro trabajo", "sample_cap": "Concepto de restaurante publicado: menú, fotos de platos, recogida", "offline": "El asistente no responde ahora. Escríbanos y seguimos.", "thinking": "Un momento…", "restart": "Cambiar de tema", "kept": "La conversación se mantiene", "you": "Usted", "bot": "Asistente", "lang_pick": "Idioma de la conversación", "lang_close": "Cerrar", "sum_h": "Lo que entendí", "fix": "Corregir", "fix_hint": "Dígame qué entendí mal.", "how": "Cómo le contactamos", "contact": "Teléfono o correo", "name": "Nombre", "send_lead": "Enviar solicitud", "pick_way": "Elija cómo contactarle", "need_contact": "Hace falta teléfono o correo", "saving": "Guardando…", "saved": "Solicitud guardada", "saved_p": "Volvemos con el análisis. Referencia", "again": "ya estaba guardada", "save_err": "No se pudo guardar. Inténtelo de nuevo.", "switched_to": "Seguimos en este idioma", "show_original": "Ver original", "show_translation": "Ver traducción"}, "h1": {"": ["¿Qué frena el avance", "de su negocio?"], "payments": ["¿No logra", "cobrar los pagos?"], "banking": ["¿El banco limitó", "su cuenta?"], "site_needed": ["¿Necesita una web", "para su negocio?"], "site_no_leads": ["¿La web está,", "y los clientes no?"], "funding": ["¿El negocio necesita", "dinero para crecer?"], "operations": ["¿Demasiado trabajo", "hecho a mano?"], "unsure": ["Cuéntenos", "qué no encaja"]}, "sets": {"payments": {"main": [["payments", "Los pagos dejaron de pasar"], ["payments", "Cerraron la cuenta del procesador"], ["payments", "Retrasan los pagos"], ["payments", "Rechazaron la solicitud"], ["payments", "Necesito un procesador de respaldo"]], "near": [["banking", "Problema con la cuenta bancaria"]]}, "presence": {"main": [["site_needed", "No hay web, la necesito"], ["site_needed", "Necesito una tienda en línea"], ["site_no_leads", "La web está, no llegan clientes"], ["site_no_leads", "Las solicitudes se pierden"]], "near": [["operations", "Mucho trabajo manual"]]}, "banking": {"main": [["banking", "Cerraron la cuenta"], ["banking", "Limitaron la cuenta"], ["banking", "Rechazaron la apertura"], ["banking", "Necesito un segundo banco"]], "near": [["payments", "Los pagos no pasan"]]}, "funding": {"main": [["funding", "Necesito dinero para inventario"], ["funding", "Falta de caja"], ["funding", "Necesito una línea de crédito"], ["funding", "Rechazaron la financiación"]], "near": [["banking", "Problema con el banco"]]}, "operations": {"main": [["operations", "Movemos todo a mano"], ["operations", "Las solicitudes se pierden entre personas"], ["operations", "No hay registro de oportunidades"], ["operations", "Queremos automatizar la rutina"]], "near": [["site_no_leads", "Las solicitudes de la web no llegan"]]}, "general": {"main": [["site_needed", "Necesito web o tienda"], ["site_no_leads", "La web está, no llegan clientes"], ["payments", "Los pagos no pasan"], ["banking", "Problema con la cuenta bancaria"], ["funding", "Necesito financiación"], ["operations", "Mucho trabajo manual"]], "near": []}}, "hints": {"presence.has_site": ["No tengo sitio", "Tenemos un sitio"], "presence.needs_store": ["Necesito una tienda", "Bastan las solicitudes"], "presence.goal": ["Conversión", "Velocidad", "Nuevo aspecto"], "presence.urgency": ["Urgente", "En un mes", "Sin prisa"], "Какой процессор сейчас и что именно произошло?": ["Stripe", "Square", "PayPal", "Authorize.net", "Otro"], "Приём платежей сейчас работает хоть как-то или остановлен полностью?": ["Totalmente detenido", "Funciona en parte"], "Что произошло со счётом: отказ, закрытие или ограничения?": ["Rechazaron", "Cerraron", "Limitaron"], "Что продаёте?": ["Productos", "Servicios", "Ambos"]}}, "pt": {"s": {"eyebrow": "ANÁLISE E SOLUÇÕES DE NEGÓCIO", "lede": "Pagamentos, bancos, financiamento, operações, sites e lojas. Comece aqui mesmo: analisamos a situação e dizemos o que corrigir primeiro.", "input": "Descreva sua tarefa com suas palavras", "input_next": "Sua resposta", "send": "Enviar", "pick": "Por onde começamos", "other": "A minha é outra", "more": "Ver nosso trabalho", "panel": "Assistente da Prodigy LAB", "task": "Tarefa", "clarify": "Esclarecendo", "nxt": "Próximo passo", "undefined": "estamos definindo", "waiting": "aguardando sua resposta", "done_q": "já temos o necessário", "sample": "Um exemplo do nosso trabalho", "sample_cap": "Conceito de restaurante publicado: menu, fotos dos pratos, retirada", "offline": "O assistente não responde agora. Escreva para nós e seguimos.", "thinking": "Um momento…", "restart": "Mudar de assunto", "kept": "A conversa foi mantida", "you": "Você", "bot": "Assistente", "lang_pick": "Idioma da conversa", "lang_close": "Fechar", "sum_h": "O que eu entendi", "fix": "Corrigir", "fix_hint": "Diga o que eu entendi errado.", "how": "Como falamos com você", "contact": "Telefone ou e-mail", "name": "Nome", "send_lead": "Enviar solicitação", "pick_way": "Escolha como falar com você", "need_contact": "Precisa de telefone ou e-mail", "saving": "Salvando…", "saved": "Solicitação salva", "saved_p": "Voltamos com a análise. Referência", "again": "já estava salva", "save_err": "Não foi possível salvar. Tente novamente.", "switched_to": "Continuamos neste idioma", "show_original": "Ver original", "show_translation": "Ver tradução"}, "h1": {"": ["O que impede o seu", "negócio de avançar?"], "payments": ["Os pagamentos", "não estão passando?"], "banking": ["O banco limitou", "a sua conta?"], "site_needed": ["Precisa de um site", "para o seu negócio?"], "site_no_leads": ["O site existe,", "os clientes não?"], "funding": ["O negócio precisa", "de dinheiro para crescer?"], "operations": ["Trabalho manual", "demais por aqui?"], "unsure": ["Conte o que", "não está encaixando"]}, "sets": {"payments": {"main": [["payments", "Os pagamentos pararam de passar"], ["payments", "Fecharam a conta do processador"], ["payments", "Estão atrasando os repasses"], ["payments", "Recusaram o cadastro"], ["payments", "Preciso de um processador reserva"]], "near": [["banking", "Problema com a conta bancária"]]}, "presence": {"main": [["site_needed", "Não tenho site, preciso"], ["site_needed", "Preciso de uma loja online"], ["site_no_leads", "O site existe, não chegam clientes"], ["site_no_leads", "As solicitações se perdem"]], "near": [["operations", "Muito trabalho manual"]]}, "banking": {"main": [["banking", "Encerraram a conta"], ["banking", "Limitaram a conta"], ["banking", "Recusaram a abertura"], ["banking", "Preciso de um segundo banco"]], "near": [["payments", "Os pagamentos não passam"]]}, "funding": {"main": [["funding", "Preciso de dinheiro para estoque"], ["funding", "Falta de caixa"], ["funding", "Preciso de uma linha de crédito"], ["funding", "Recusaram o financiamento"]], "near": [["banking", "Problema com o banco"]]}, "operations": {"main": [["operations", "Fazemos tudo na mão"], ["operations", "As solicitações se perdem entre pessoas"], ["operations", "Não há registro dos negócios"], ["operations", "Queremos automatizar a rotina"]], "near": [["site_no_leads", "As solicitações do site não chegam"]]}, "general": {"main": [["site_needed", "Preciso de site ou loja"], ["site_no_leads", "O site existe, não chegam clientes"], ["payments", "Os pagamentos não passam"], ["banking", "Problema com a conta bancária"], ["funding", "Preciso de financiamento"], ["operations", "Muito trabalho manual"]], "near": []}}, "hints": {"presence.has_site": ["Não tenho site", "Temos um site"], "presence.needs_store": ["Preciso de uma loja", "Só solicitações"], "presence.goal": ["Conversão", "Velocidade", "Novo visual"], "presence.urgency": ["Urgente", "Em um mês", "Sem pressa"], "Какой процессор сейчас и что именно произошло?": ["Stripe", "Square", "PayPal", "Authorize.net", "Outro"], "Приём платежей сейчас работает хоть как-то или остановлен полностью?": ["Totalmente parado", "Funciona em parte"], "Что произошло со счётом: отказ, закрытие или ограничения?": ["Recusaram", "Encerraram", "Limitaram"], "Что продаёте?": ["Produtos", "Serviços", "Os dois"]}}, "de": {"s": {"eyebrow": "ANALYSE UND LÖSUNGEN FÜR IHR GESCHÄFT", "lede": "Zahlungen, Banken, Finanzierung, Abläufe, Websites und Shops. Fangen Sie hier an — wir sehen uns die Lage an und sagen, was zuerst zu beheben ist.", "input": "Beschreiben Sie Ihre Aufgabe in eigenen Worten", "input_next": "Ihre Antwort", "send": "Senden", "pick": "Womit fangen wir an", "other": "Meine ist eine andere", "more": "Unsere Arbeiten ansehen", "panel": "Prodigy LAB Assistent", "task": "Aufgabe", "clarify": "Wir klären", "nxt": "Nächster Schritt", "undefined": "wird noch bestimmt", "waiting": "wartet auf Ihre Antwort", "done_q": "wir haben, was wir brauchen", "sample": "Ein Beispiel unserer Arbeit", "sample_cap": "Veröffentlichtes Restaurant-Konzept: Menü, Gerichtsfotos, Abholung", "offline": "Der Assistent antwortet gerade nicht. Schreiben Sie uns, wir machen weiter.", "thinking": "Einen Moment…", "restart": "Thema wechseln", "kept": "Das Gespräch bleibt erhalten", "you": "Sie", "bot": "Assistent", "lang_pick": "Sprache des Gesprächs", "lang_close": "Schließen", "sum_h": "Was ich verstanden habe", "fix": "Korrigieren", "fix_hint": "Sagen Sie, was ich falsch verstanden habe.", "how": "Wie erreichen wir Sie", "contact": "Telefon oder E-Mail", "name": "Name", "send_lead": "Anfrage senden", "pick_way": "Wählen Sie den Weg", "need_contact": "Telefon oder E-Mail wird gebraucht", "saving": "Wird gespeichert…", "saved": "Anfrage gespeichert", "saved_p": "Wir kommen mit der Analyse zurück. Vorgangsnummer", "again": "war schon gespeichert", "save_err": "Speichern nicht möglich. Bitte erneut versuchen.", "switched_to": "Wir machen in dieser Sprache weiter", "show_original": "Original anzeigen", "show_translation": "Übersetzung anzeigen"}, "h1": {"": ["Was hält Ihr Geschäft", "davon ab, weiterzukommen?"], "payments": ["Zahlungen gehen", "nicht mehr durch?"], "banking": ["Hat die Bank Ihr", "Konto eingeschränkt?"], "site_needed": ["Brauchen Sie eine", "Website für Ihr Geschäft?"], "site_no_leads": ["Website läuft,", "Anfragen nicht?"], "funding": ["Braucht das Geschäft", "Geld zum Wachsen?"], "operations": ["Zu viel", "Handarbeit?"], "unsure": ["Erzählen Sie,", "was nicht aufgeht"]}, "sets": {"payments": {"main": [["payments", "Zahlungen gehen nicht mehr durch"], ["payments", "Anbieter hat das Konto geschlossen"], ["payments", "Auszahlungen verzögern sich"], ["payments", "Antrag wurde abgelehnt"], ["payments", "Brauche einen Ersatzanbieter"]], "near": [["banking", "Problem mit dem Bankkonto"]]}, "presence": {"main": [["site_needed", "Keine Website, brauche eine"], ["site_needed", "Brauche einen Onlineshop"], ["site_no_leads", "Website läuft, keine Anfragen"], ["site_no_leads", "Anfragen gehen verloren"]], "near": [["operations", "Zu viel Handarbeit"]]}, "banking": {"main": [["banking", "Konto wurde gekündigt"], ["banking", "Konto wurde eingeschränkt"], ["banking", "Eröffnung wurde abgelehnt"], ["banking", "Brauche eine zweite Bank"]], "near": [["payments", "Zahlungen gehen nicht durch"]]}, "funding": {"main": [["funding", "Brauche Geld für den Einkauf"], ["funding", "Liquiditätslücke"], ["funding", "Brauche eine Kreditlinie"], ["funding", "Finanzierung wurde abgelehnt"]], "near": [["banking", "Problem mit der Bank"]]}, "operations": {"main": [["operations", "Wir machen alles von Hand"], ["operations", "Anfragen gehen zwischen Leuten verloren"], ["operations", "Keine Übersicht über Deals"], ["operations", "Wollen die Routine automatisieren"]], "near": [["site_no_leads", "Anfragen von der Website kommen nicht an"]]}, "general": {"main": [["site_needed", "Brauche Website oder Shop"], ["site_no_leads", "Website läuft, keine Anfragen"], ["payments", "Zahlungen gehen nicht durch"], ["banking", "Problem mit dem Bankkonto"], ["funding", "Brauche Finanzierung"], ["operations", "Zu viel Handarbeit"]], "near": []}}, "hints": {"presence.has_site": ["Keine Website", "Wir haben eine Website"], "presence.needs_store": ["Shop nötig", "Nur Anfragen"], "presence.goal": ["Conversion", "Geschwindigkeit", "Neues Aussehen"], "presence.urgency": ["Dringend", "Innerhalb eines Monats", "Keine Eile"], "Какой процессор сейчас и что именно произошло?": ["Stripe", "Square", "PayPal", "Authorize.net", "Anderer"], "Приём платежей сейчас работает хоть как-то или остановлен полностью?": ["Völlig gestoppt", "Teilweise aktiv"], "Что произошло со счётом: отказ, закрытие или ограничения?": ["Abgelehnt", "Gekündigt", "Eingeschränkt"], "Что продаёте?": ["Produkte", "Dienstleistungen", "Beides"]}}}, NAMES={"en": "English", "ru": "Русский", "es": "Español", "pt": "Português", "de": "Deutsch"}, LANGS=["en", "ru", "es", "pt", "de"], MAP={"payments": "payments", "processing": "payments", "merchant": "payments", "high_risk": "payments", "chargeback": "payments", "banking": "banking", "bank": "banking", "funding": "funding", "capital": "funding", "loan": "funding", "website": "presence", "site": "presence", "ecommerce": "presence", "shopify": "presence", "store": "presence", "scan": "presence", "operations": "operations", "automation": "operations", "crm": "operations"};
+ var ЯЗЫК="ru";
+ var поток=document.getElementById('stream'), подсказки=document.getElementById('sugg');
+ var поле=document.getElementById('ask-i'), форма=document.getElementById('ask');
+ var кнопка=document.getElementById('ask-b'), чипы=document.getElementById('chips');
+ var шагЗадача=document.getElementById('s-task'), шагУточн=document.getElementById('s-clar');
+ var шагДальше=document.getElementById('s-next'), сцена=document.getElementById('hm-r');
+ var сменить=document.getElementById('restart'), h1=document.getElementById('h1');
+ var ролик=document.getElementById('lang'), списокЯз=document.getElementById('lang-list');
+ var кнЯз=document.getElementById('lang-btn');
+ // Сессия переживает переход на другую языковую страницу: иначе ссылка
+ // «ES» в шапке начинала бы разговор с нуля и спрашивала уже известное.
+ // Хранилище может быть недоступно — тогда просто новая сессия.
+ var сессия=(function(){
+  try{ var б=localStorage.getItem('pl-hm-sid'); if(б) return б; }catch(e){}
+  var н='hm-'+Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-4);
+  try{ localStorage.setItem('pl-hm-sid',н); }catch(e){}
+  return н;
+ })();
+ var занят=false, начали=false;
+ var тонкая=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var ситуация='', ключВопроса='', финалБлок=null;
+
+ var q=new URLSearchParams(location.search);
+ var demo=q.get('demo')||'';
+ var метка=(q.get('utm_campaign')||q.get('src')||q.get('utm_content')||'').toLowerCase();
+ var набор='general';
+ for(var k in MAP){ if(метка.indexOf(k)>=0){ набор=MAP[k]; break; } }
+
+ function T(){ return DATA[ЯЗЫК].s; }
+ function экр(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+ // ---------------------------------------------------------------- ситуации
+ function рисоватьЧипы(имя){
+  var было=чипы.querySelector('button[aria-pressed="true"]');
+  var выбран=было?было.getAttribute('data-k'):'';
+  var порядок=было?было.getAttribute('data-i'):'';
+  var s=DATA[ЯЗЫК].sets[имя]||DATA[ЯЗЫК].sets.general, html='';
+  s.main.forEach(function(p,i){
+   html+='<li><button type="button" data-k="'+p[0]+'" data-i="m'+i+'">'+экр(p[1])+'</button></li>'; });
+  s.near.forEach(function(p,i){
+   html+='<li class="near"><button type="button" data-k="'+p[0]+'" data-i="n'+i+'">'+экр(p[1])+'</button></li>'; });
+  чипы.innerHTML=html;
+  // Порядок кнопок при смене языка не меняется, поэтому выбранная остаётся
+  // на своём месте — под тем же пальцем.
+  if(выбран){
+   var та=чипы.querySelector('button[data-i="'+порядок+'"]');
+   if(та) та.setAttribute('aria-pressed','true');
+  }
+ }
+ function заголовок(ключ,мгновенно){
+  var пара=DATA[ЯЗЫК].h1[ключ]||DATA[ЯЗЫК].h1[''];
+  var строки=h1.querySelectorAll('.ln>span');
+  if(строки[0].textContent.trim()===пара[0]&&строки[1].textContent.trim()===пара[1]) return;
+  строки.forEach(function(э,i){
+   if(тонкая||мгновенно){ э.textContent=пара[i]; э.classList.add('in','done'); return; }
+   э.classList.remove('done','in');
+   window.setTimeout(function(){ э.textContent=пара[i];
+    window.requestAnimationFrame(function(){ э.classList.add('in'); }); },120+i*60);
+  });
+ }
+
+ // ---------------------------------------------------------------- реплики
+ function сказать(кто,текст,ключ){
+  поток.classList.add('hm-on');
+  var d=document.createElement('div');
+  if(кто==='note'){ d.className='m m-note'; d.textContent=текст; }
+  else if(кто==='err'){ d.className='m m-err'; d.textContent=текст; }
+  else {
+   d.className='m '+(кто==='you'?'m-you':'m-bot');
+   var b=document.createElement('b'); b.textContent=(кто==='you'?T().you:T().bot);
+   d.appendChild(b);
+   var t=document.createElement('span'); t.className='tx'; t.textContent=текст;
+   d.appendChild(t);
+   if(кто==='bot'){ d.setAttribute('data-key',ключ||''); d.setAttribute('data-lang',ЯЗЫК); }
+  }
+  поток.appendChild(d); поток.scrollTop=поток.scrollHeight;
+  return d;
+ }
+ function ждём(){
+  var d=document.createElement('div'); d.className='wait';
+  d.innerHTML='<i></i><span>'+экр(T().thinking)+'</span>';
+  поток.classList.add('hm-on'); поток.appendChild(d); поток.scrollTop=поток.scrollHeight; return d;
+ }
+ function шаг(узел,текст,состояние){
+  var p=узел.querySelector('p'), м=узел.querySelector('.hm-mono i');
+  p.textContent=текст;
+  p.classList.toggle('dim',!текст||текст===T().undefined||текст===T().waiting);
+  узел.classList.toggle('live',состояние==='live');
+  узел.classList.toggle('done',состояние==='done');
+  if(м) м.textContent=(состояние==='done'?'\u2713':(состояние==='live'?'\u2192':''));
+ }
+ function подсказатьК(ключ){
+  // Ключ постоянный: идентификатор поля или строка-источник вопроса. Текст
+  // вопроса сверять нельзя — после смены языка он другой.
+  подсказки.innerHTML='';
+  ключВопроса=ключ||'';
+  var набор=(DATA[ЯЗЫК].hints||{})[ключВопроса];
+  if(!набор) return;
+  набор.forEach(function(в){
+   подсказки.innerHTML+='<button type="button" data-say="'+экр(в)+'">'+экр(в)+'</button>'; });
+ }
+
+ // ------------------------------------------------------------------ язык
+ function рисоватьСписок(){
+  var html='';
+  LANGS.forEach(function(к){
+   html+='<li><button type="button" data-lang="'+к+'"'
+        +(к===ЯЗЫК?' aria-current="true"':'')+'>'+экр(NAMES[к])+'</button></li>'; });
+  списокЯз.innerHTML=html;
+ }
+ function применитьЯзык(новый){
+  // Меняется только оформление: история, ввод, позиция прокрутки и этап
+  // разговора остаются как были. Страница не перезагружается намеренно.
+  var прокрутка=поток.scrollTop, фокус=(document.activeElement===поле);
+  ЯЗЫК=новый;
+  document.documentElement.lang=новый;
+  var d=T();
+  var пусто=['eyebrow','lede','pick','other','more','panel'];
+  document.querySelector('.eyebrow').innerHTML=d.eyebrow;
+  document.querySelector('.hm-lede').innerHTML=d.lede;
+  document.querySelector('.hm-pick').innerHTML=d.hm-pick;
+  сменить.innerHTML=d.other;
+  var ссылка=document.querySelector('.tail a');
+  if(ссылка) ссылка.innerHTML=d.more+' &rarr;';
+  document.querySelector('.talk-n').innerHTML=d.panel;
+  поле.placeholder=начали?d.input_next:d.input;
+  кнопка.setAttribute('aria-label',d.send);
+  document.querySelector('label[for="ask-i"]').innerHTML=d.input;
+  кнЯз.textContent=NAMES[новый];
+  кнЯз.setAttribute('aria-label',d.lang_pick);
+  document.querySelector('#s-task .hm-mono').innerHTML=d.task+' <i></i>';
+  document.querySelector('#s-clar .hm-mono').innerHTML=d.clarify+' <i></i>';
+  document.querySelector('#s-next .hm-mono').innerHTML=d.nxt+' <i></i>';
+  var сн=document.querySelector('.hm-shot figcaption');
+  if(сн) сн.innerHTML='<span class="tag">'+d.sample+'</span>'+d.sample_cap;
+  // Подписи «Вы» и «Помощник» — наши, их обновляем. Текст реплик клиента
+  // не трогаем ни при каких условиях: это его слова.
+  поток.querySelectorAll('.m-you>b').forEach(function(b){ b.textContent=d.you; });
+  поток.querySelectorAll('.m-bot>b').forEach(function(b){ b.textContent=d.bot; });
+  рисоватьЧипы(ситуация?набор:набор);
+  рисоватьСписок();
+  заголовок(ситуация,true);
+  подсказатьК(ключВопроса);
+  if(финалБлок) обновитьФинал();
+  поток.scrollTop=прокрутка;
+  if(фокус) поле.focus({preventScroll:true});
+ }
+ function перевестиПоследнийВопрос(текст){
+  // Вопрос — наша реплика, её можно показать на новом языке. Оригинал
+  // остаётся доступен действием, а не пропадает.
+  var все=поток.querySelectorAll('.m-bot');
+  if(!все.length) return;
+  var узел=все[все.length-1], тело=узел.querySelector('.tx');
+  if(!тело||тело.textContent.trim()===текст) return;
+  var оригинал=узел.getAttribute('data-orig')||тело.textContent;
+  узел.setAttribute('data-orig',оригинал);
+  тело.textContent=текст;
+  var было=узел.querySelector('.tr');
+  if(было) было.remove();
+  var б=document.createElement('button');
+  б.type='button'; б.className='tr'; б.textContent=T().show_original;
+  var показан=false;
+  б.addEventListener('click',function(){
+   показан=!показан;
+   тело.textContent=показан?оригинал:текст;
+   б.textContent=показан?T().show_translation:T().show_original;
+  });
+  узел.appendChild(б);
+ }
+ async function выбратьЯзык(код){
+  if(код===ЯЗЫК||занят) return;
+  занят=true;
+  try{
+   var r=await fetch(LANG_API,{method:'POST',headers:{'Content-Type':'application/json'},
+     body:JSON.stringify({session:сессия,lang:код})});
+   var d=await r.json();
+   if(!d.ok) throw new Error(d.error||'');
+   применитьЯзык(код);
+   if(d['вопрос']){
+    перевестиПоследнийВопрос(d['вопрос']);
+    // Правая колонка — то же состояние другими словами. Если её не обновить,
+    // страница и разговор расходятся: вопрос на экране один, в колонке другой.
+    шаг(шагУточн,d['вопрос'],'live');
+   } else { шаг(шагУточн,T().done_q,'done'); }
+   var р=d['резюме']||[];
+   if(р.length) шаг(шагЗадача,р.join(' \u00b7 '),'done');
+   if(d['следующий']) шаг(шагДальше,d['следующий'],d['готово']?'live':'');
+   сказать('note',d['подтверждение']||T().switched_to);
+  }catch(e){
+   // Язык интерфейса не меняем, если сервер не подтвердил: иначе страница и
+   // разговор разойдутся.
+   сказать('err',T().offline);
+  }
+  занят=false;
+ }
+
+ // ------------------------------------------------------------------ финал
+ function обновитьФинал(){
+  if(!финалБлок) return;
+  var d=T();
+  var п=финалБлок.querySelector('h3'); if(п) п.textContent=d.sum_h;
+  var пр=финалБлок.querySelector('[data-edit]'); if(пр) пр.textContent=d.fix;
+  var от=финалБлок.querySelector('[data-send]'); if(от) от.textContent=d.send_lead;
+  var мк=финалБлок.querySelector('[data-l-how]'); if(мк) мк.textContent=d.how;
+  var мc=финалБлок.querySelector('[data-l-contact]'); if(мc) мc.textContent=d.contact;
+  var мn=финалБлок.querySelector('[data-l-name]'); if(мn) мn.textContent=d.name;
+ }
+ function финал(ф){
+  подсказки.innerHTML=''; ключВопроса='';
+  var d=document.createElement('div'); d.className='m fin';
+  var список=(ф['резюме']||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
+  var нужно=(ф['нужно']||[])[0];
+  d.innerHTML='<h3>'+экр(T().sum_h)+'</h3><ul>'+(список||'<li>'+экр(T().undefined)+'</li>')+'</ul>'
+   +'<p style="margin:0 0 10px"><button type="button" class="edit" data-edit>'+экр(T().fix)+'</button></p>'
+   +'<div class="next">'+экр(ф['следующий']||'')+'</div>'
+   +(нужно?'<label for="fin-site">'+экр(нужно['вопрос'])+'</label>'
+           +'<input id="fin-site" type="url" inputmode="url" placeholder="https://">':'')
+   +'<label data-l-how>'+экр(T().how)+'</label><div class="ways">'
+   +(ф['способы']||[]).map(function(s){
+      return '<button type="button" data-way="'+s.k+'" aria-pressed="false">'+экр(s.n)+'</button>';
+     }).join('')+'</div>'
+   +'<label for="fin-c" data-l-contact>'+экр(T().contact)+'</label>'
+   +'<input id="fin-c" type="text" autocomplete="off">'
+   +'<label for="fin-n" data-l-name>'+экр(T().name)+'</label>'
+   +'<input id="fin-n" type="text" autocomplete="off">'
+   +'<div class="row"><button type="button" class="hm-go" data-send>'+экр(T().send_lead)+'</button>'
+   +'<span data-msg></span></div>';
+  поток.appendChild(d); поток.scrollTop=поток.scrollHeight;
+  финалБлок=d;
+
+  var способ='';
+  d.querySelector('.ways').addEventListener('click',function(ev){
+   var б=ev.target.closest('button'); if(!б) return;
+   способ=б.getAttribute('data-way');
+   d.querySelectorAll('.ways button').forEach(function(x){
+    x.setAttribute('aria-pressed', x===б?'true':'false'); });
+  });
+  d.querySelector('[data-edit]').addEventListener('click',function(){
+   сказать('note',T().fix_hint); поле.focus();
+  });
+  var отправка=d.querySelector('[data-send]'), сообщение=d.querySelector('[data-msg]');
+  отправка.addEventListener('click',async function(){
+   var c=(d.querySelector('#fin-c')||{}).value||'';
+   var n=(d.querySelector('#fin-n')||{}).value||'';
+   var site=(d.querySelector('#fin-site')||{}).value||'';
+   if(!способ){ сообщение.textContent=T().pick_way; return; }
+   if(!c.trim()){ сообщение.textContent=T().need_contact; return; }
+   отправка.disabled=true; сообщение.textContent=T().saving;
+   try{
+    var r=await fetch(LEAD_API,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({session:сессия,method:способ,contact:c.trim(),
+                           name:n.trim(),site:site.trim()})});
+    var o=await r.json();
+    if(!o.ok) throw new Error(o.error||'');
+    // Подтверждение только после успешной записи, и с номером обращения.
+    d.innerHTML='<div class="ok"><b>'+экр(T().saved)+'</b>'
+      +экр(T().saved_p)+' #'+o.lead+(o['повтор']?' ('+экр(T().again)+')':'')+'</div>';
+    финалБлок=null;
+   }catch(e){
+    сообщение.textContent=''; отправка.disabled=false;
+    var пред=d.querySelector('.err'); if(пред) пред.remove();
+    var pp=document.createElement('div'); pp.className='err';
+    pp.textContent=T().save_err; d.appendChild(pp);
+   }
+  });
+ }
+
+ // ------------------------------------------------------------------ обмен
+ async function послать(тело, эхо){
+  if(занят) return;
+  занят=true; кнопка.disabled=true;
+  var w=ждём();
+  try{
+   if(!API) throw new Error('нет адреса');
+   var r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
+     body:JSON.stringify(Object.assign({session:сессия,lang:ЯЗЫК},тело))});
+   var d=await r.json(); w.remove();
+   if(!d.ok) throw new Error(d.error||'отказ');
+   начали=true;
+   var сдвиг=d['язык_сдвиг']||{};
+   if(сдвиг['перешли']&&сдвиг['перешли']!==ЯЗЫК){
+    // Клиент сам перешёл на другой язык, ручного выбора не было.
+    применитьЯзык(сдвиг['перешли']);
+    сказать('note',сдвиг['подтверждение']||T().switched_to);
+   }
+   var р=d['резюме']||[];
+   шаг(шагЗадача, р.length?р.join(' \u00b7 '):T().undefined, р.length?'done':'');
+   if(d['вопрос']){
+    сказать('bot',d['вопрос'],d['вопрос_ключ']);
+    подсказатьК(d['вопрос_ключ']);
+    шаг(шагУточн,d['вопрос'],'live');
+    шаг(шагДальше,T().undefined,'');
+   } else {
+    шаг(шагУточн,T().done_q,'done');
+    шаг(шагДальше,(d['финал']||{})['следующий']||T().undefined,'live');
+    if(d['финал']) финал(d['финал']);
+   }
+   if(сдвиг['предложить']){
+    // Ручной выбор не перебиваем — только предлагаем.
+    var п=сказать('note',сдвиг['вопрос_языка']);
+    var б=document.createElement('button');
+    б.type='button'; б.className='tr'; б.textContent=NAMES[сдвиг['предложить']];
+    б.addEventListener('click',function(){ выбратьЯзык(сдвиг['предложить']); });
+    п.appendChild(б);
+   }
+   поле.placeholder=T().input_next;
+  }catch(e){
+   w.remove(); сказать('err',T().offline);
+   if(эхо) поле.value=эхо;
+  }
+  занят=false; кнопка.disabled=false;
+ }
+
+ // -------------------------------------------------------------- действия
+ чипы.addEventListener('click',function(ev){
+  var б=ev.target.closest('button'); if(!б) return;
+  var k=б.getAttribute('data-k');
+  чипы.querySelectorAll('button').forEach(function(x){
+   x.setAttribute('aria-pressed', x===б?'true':'false'); });
+  ситуация=k; заголовок(k); сказать('you',б.textContent.trim());
+  послать({action:'start',situation:k,text:б.textContent.trim()});
+  поле.focus({preventScroll:true});
+ });
+ подсказки.addEventListener('click',function(ev){
+  var б=ev.target.closest('button'); if(!б) return;
+  var t=б.getAttribute('data-say'); подсказки.innerHTML='';
+  сказать('you',t); послать({action: начали?'say':'start', text:t}, t);
+ });
+ форма.addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var t=(поле.value||'').trim(); if(!t||занят) return;
+  поле.value=''; подсказки.innerHTML='';
+  сказать('you',t); послать({action: начали?'say':'start', text:t}, t);
+ });
+ сменить.addEventListener('click',function(){
+  сказать('note',T().kept);
+  чипы.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+  ситуация=''; рисоватьЧипы('general'); заголовок(''); поле.focus({preventScroll:true});
+ });
+ кнЯз.addEventListener('click',function(){
+  var открыт=кнЯз.getAttribute('aria-expanded')==='true';
+  кнЯз.setAttribute('aria-expanded', открыт?'false':'true');
+  списокЯз.hidden=открыт;
+  if(!открыт){ var п=списокЯз.querySelector('button'); if(п) п.focus(); }
+ });
+ списокЯз.addEventListener('click',function(ev){
+  var б=ev.target.closest('button'); if(!б) return;
+  кнЯз.setAttribute('aria-expanded','false'); списокЯз.hidden=true;
+  выбратьЯзык(б.getAttribute('data-lang'));
+  поле.focus({preventScroll:true});
+ });
+ document.addEventListener('click',function(ev){
+  if(!ролик.contains(ev.target)&&кнЯз.getAttribute('aria-expanded')==='true'){
+   кнЯз.setAttribute('aria-expanded','false'); списокЯз.hidden=true; }
+ });
+ document.addEventListener('keydown',function(ev){
+  if(ev.key==='Escape'&&кнЯз.getAttribute('aria-expanded')==='true'){
+   кнЯз.setAttribute('aria-expanded','false'); списокЯз.hidden=true; кнЯз.focus(); }
+ });
+
+ if(!тонкая && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+  сцена.addEventListener('pointermove',function(e){
+   var r=сцена.getBoundingClientRect();
+   сцена.style.setProperty('--dx',(((e.clientX-r.left)/r.width-.5)*12).toFixed(1)+'px');
+   сцена.style.setProperty('--dy',(((e.clientY-r.top)/r.height-.5)*9).toFixed(1)+'px'); });
+  сцена.addEventListener('pointerleave',function(){
+   сцена.style.setProperty('--dx','0px'); сцена.style.setProperty('--dy','0px'); });
+ }
+
+ async function подхватить(){
+  // Разговор мог начаться на другой языковой странице. Переписку сервер не
+  // хранит для показа, поэтому восстанавливаем состояние, а не ленту: что
+  // за задача, что уже выяснено и какой следующий шаг.
+  try{
+   var r=await fetch(STATE_API+'?session='+encodeURIComponent(сессия));
+   var d=await r.json();
+   if(!d.ok||!d['задача']) return;
+   начали=true; поле.placeholder=T().input_next;
+   if(d['язык']&&d['язык']!==ЯЗЫК) применитьЯзык(d['язык']);
+   шаг(шагДальше,d['следующий']||T().undefined,'live');
+   сказать('note',T().kept);
+  }catch(e){}
+ }
+
+ рисоватьСписок();
+ рисоватьЧипы(набор);
+ подхватить();
+ if(набор!=='general'&&DATA[ЯЗЫК].sets[набор]){
+  ситуация=DATA[ЯЗЫК].sets[набор].main[0][0]; заголовок(ситуация); }
+ if(demo){ послать({action:'start',situation:'demo_same',demo:{id:demo,source:'showcase'}}); }
+ var строки=[].slice.call(h1.querySelectorAll('.ln>span'));
+ if(тонкая){ строки.forEach(function(э){ э.classList.add('in','done'); }); }
+ else { window.requestAnimationFrame(function(){ строки.forEach(function(э,i){
+   window.setTimeout(function(){ э.classList.add('in'); },40+i*70);
+   э.addEventListener('transitionend',function(){ э.classList.add('done'); },{once:true}); }); }); }
+})();
 </script>
 </body>
 </html>
