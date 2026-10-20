@@ -119,6 +119,40 @@
       "featured": false,
       "sort_order": 30,
       "publication_status": "draft"
+    },
+    {
+      "id": "pf-004",
+      "slug": "neighborhood-fence",
+      "title": {
+        "en": "Fence project planner",
+        "ru": "Планировщик забора",
+        "es": "Planificador de cercas",
+        "pt": "Planejador de cercas",
+        "de": "Zaun-Projektplaner"
+      },
+      "niche": "fencing",
+      "solution_type": "configurator",
+      "short_description": {
+        "en": "A homeowner picks the type of work, material, style, length, height, gates and tear-out, and gets a plain description of the project to bring to the contractor. One published price range, clearly bounded. Nothing is sent anywhere.",
+        "ru": "Хозяин дома выбирает тип работ, материал, стиль, длину, высоту, ворота и демонтаж и получает понятное описание проекта для разговора с подрядчиком. Одна опубликованная вилка цены, с ясными границами. Никуда ничего не уходит.",
+        "es": "El propietario elige tipo de trabajo, material, estilo, longitud, altura, puertas y retirada, y obtiene una descripción clara del proyecto para el contratista. Un único rango de precio publicado, con límites claros. No se envía nada.",
+        "pt": "O proprietário escolhe tipo de obra, material, estilo, comprimento, altura, portões e remoção e recebe uma descrição clara do projeto para o empreiteiro. Uma única faixa de preço publicada, com limites claros. Nada é enviado.",
+        "de": "Der Hausbesitzer wählt Arbeitsart, Material, Stil, Länge, Höhe, Tore und Rückbau und erhält eine klare Projektbeschreibung für den Handwerker. Eine veröffentlichte Preisspanne, klar abgegrenzt. Es wird nichts gesendet."
+      },
+      "demo_url": "/preview/neighborhood-fence/",
+      "cover": "/showcase/covers/neighborhood-fence.jpg",
+      "cover_alt": {
+        "en": "Fence planner demo: headline, a photograph of a finished yard and the planner button",
+        "ru": "Демонстрация планировщика забора: заголовок, снимок готового двора и кнопка планировщика",
+        "es": "Demo del planificador de cercas: titular, foto de un patio terminado y el botón del planificador",
+        "pt": "Demo do planejador de cercas: título, foto de um quintal pronto e o botão do planejador",
+        "de": "Demo des Zaunplaners: Überschrift, Foto eines fertigen Gartens und der Planer-Button"
+      },
+      "project_type": "concept",
+      "language": "en",
+      "featured": true,
+      "sort_order": 20,
+      "publication_status": "published"
     }
   ]
 }
