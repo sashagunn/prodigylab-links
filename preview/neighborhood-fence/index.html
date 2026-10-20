@@ -514,7 +514,7 @@ Independent design concept by Prodigy LAB. Not the official site of Neighborhood
       (плохаяДлина
         ? '<p class="font-body-sm text-body-sm text-error">Enter a length between 1 and 10,000 feet.</p>'
         : '<p class="font-body-sm text-body-sm text-on-surface-variant">Pace it out or measure roughly. This is for planning, not for a quote.</p>') +
-      (выбор.height && Number(выбор.height) > Д.permit.overFeet
+      (Д.permit && выбор.height && Number(выбор.height) > Д.permit.overFeet
         ? '<p class="mt-3 p-3.5 bg-secondary-fixed text-on-secondary-fixed font-body-sm text-body-sm border-l-2 border-secondary">' +
           экр(Д.permit.text) + '</p>' : ''),
       ГОТОВ.size());
@@ -638,8 +638,8 @@ Independent design concept by Prodigy LAB. Not the official site of Neighborhood
     ];
     if (выбор.notes.trim()) с.push('Site notes:     ' + выбор.notes.trim());
     с.push('');
-    if (Number(выбор.height) > Д.permit.overFeet) с.push('Permit: ' + Д.permit.text);
-    с.push(Д.permit.lineNote);
+    if (Д.permit && Number(выбор.height) > Д.permit.overFeet) с.push('Permit: ' + Д.permit.text);
+    if (Д.permit && Д.permit.lineNote) с.push(Д.permit.lineNote);
     if (ц) {
       const вне = [];
       if (Number(выбор.gates) > 0) {
@@ -697,8 +697,9 @@ Independent design concept by Prodigy LAB. Not the official site of Neighborhood
     // шесть шагов обязательны, и случайный повторный клик не должен
     // обнулять ответ. Передумать можно, выбрав другой вариант, а начать
     // заново — кнопкой «Start over».
+    const сменился = String(выбор[поле]) !== String(v);
     выбор[поле] = v;
-    if (поле === 'material') выбор.style = null;
+    if (поле === 'material' && сменился) выбор.style = null;
     if (поле === 'removal' && выбор.removal !== 'Yes') выбор.removalFeet = null;
     рисовать();
   });
