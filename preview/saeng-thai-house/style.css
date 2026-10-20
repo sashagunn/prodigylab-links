@@ -1,0 +1,111 @@
+/* Дизайн-система Stitch, тема Heritage Editorial.
+   Токены перенесены как есть: палитра, шрифтовая пара, шкала кеглей,
+   радиус 8px, шкала отступов. Шрифты системные — внешних запросов нет. */
+:root{
+  --canvas:#FBF6EE; --ink:#241F1C; --accent:#C8551F; --accent-dark:#B34A19;
+  --sage:#6E7B5F; --muted:#5E5852; --hair:#E8DEC8; --paper:#FFFFFF;
+  --dark-text:#FBF6EE; --dark-muted:#D5CEC5; --dark-hair:#3D3530;
+  --r:8px; --r-sm:4px;
+  --xs:.25rem; --sm:.5rem; --md:1rem; --lg:1.5rem; --xl:2.5rem; --xxl:4rem;
+  --serif:"Playfair Display","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--sans);
+  font-size:.9375rem;line-height:1.6rem;overflow-x:hidden}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0}
+p{margin:0 0 var(--md)}
+a{color:inherit}
+
+.skip{position:absolute;left:-9999px}
+.skip a:focus{position:fixed;left:var(--md);top:var(--md);z-index:50;background:var(--ink);
+  color:var(--dark-text);padding:var(--sm) var(--md);border-radius:var(--r)}
+
+.banner{background:var(--sage);color:#fff;font-size:.8125rem;line-height:1.375rem;
+  padding:var(--sm) 1.25rem;text-align:center}
+.banner a{color:#fff;text-underline-offset:3px}
+
+.bar{display:flex;align-items:center;gap:var(--lg);flex-wrap:wrap;
+  background:var(--ink);color:var(--dark-text);padding:var(--md) 1.25rem}
+.wordmark{font-family:var(--sans);font-weight:700;font-size:.6875rem;letter-spacing:.12em;
+  text-decoration:none;white-space:nowrap}
+.bar nav{display:flex;gap:var(--md);margin-inline:auto;font-size:.875rem;font-weight:600}
+.bar nav a{text-decoration:none;color:var(--dark-muted)}
+.bar nav a:hover{color:var(--dark-text)}
+
+.btn{display:inline-block;border-radius:var(--r);padding:.6rem 1.1rem;font-weight:600;
+  font-size:.875rem;letter-spacing:.02em;text-decoration:none;border:1px solid transparent;
+  white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark)}
+.btn-ghost{border-color:var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--canvas)}
+.bar .btn-ghost{border-color:var(--dark-text);color:var(--dark-text)}
+
+main{max-width:1200px;margin:0 auto;padding:0 1.25rem}
+.label{font-size:.6875rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--sage);margin:0 0 var(--sm)}
+.eyebrow{font-size:.6875rem;font-weight:700;letter-spacing:.12em;color:var(--sage);margin:0 0 var(--md)}
+.small{font-size:.8125rem;line-height:1.375rem;color:var(--muted)}
+.muted{color:var(--muted)}
+.link{color:var(--accent);text-underline-offset:4px}
+
+.hero{display:grid;grid-template-columns:1fr;gap:var(--xl);padding:var(--xl) 0}
+.hero h1{font-size:2.25rem;line-height:2.75rem;letter-spacing:-.01em;margin:0 0 var(--md)}
+.lead{font-size:1.125rem;line-height:1.875rem;color:var(--muted);max-width:46ch}
+.actions{display:flex;gap:var(--sm);flex-wrap:wrap;margin:var(--lg) 0 var(--md)}
+
+.card{background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);padding:var(--lg)}
+.hours{border-collapse:collapse;width:100%}
+.hours th,.hours td{text-align:left;padding:.45rem 0;border-bottom:1px solid var(--hair);
+  font-weight:400;font-size:.9375rem}
+.hours th{color:var(--muted);font-weight:600;width:45%}
+.hours tr:last-child th,.hours tr:last-child td{border-bottom:0}
+.closed{font-size:.8125rem;line-height:1.375rem;color:var(--muted);margin:var(--md) 0 0}
+
+.menu{padding:var(--xl) 0;border-top:1px solid var(--hair)}
+.menu h2{font-size:1.75rem;line-height:2.25rem;margin:0 0 var(--xl)}
+.courses{display:grid;grid-template-columns:1fr;gap:var(--xl)}
+.course h3{font-size:1.25rem;line-height:1.75rem;letter-spacing:.01em;margin:0 0 var(--md);
+  padding-bottom:var(--sm);border-bottom:1px solid var(--hair)}
+.dishes{list-style:none;margin:0;padding:0}
+.dish{margin:0 0 var(--lg)}
+.dish-head{display:flex;align-items:baseline;gap:var(--sm)}
+.dish-name{font-family:var(--serif);font-size:1.125rem;line-height:1.5rem;font-weight:600}
+.rule{flex:1;border-bottom:1px dotted var(--hair);transform:translateY(-.2rem)}
+.price{font-weight:700;font-size:1.125rem;color:var(--accent);letter-spacing:.02em}
+.dish-note{font-size:.8125rem;line-height:1.375rem;color:var(--muted);margin:var(--xs) 0 0}
+
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:var(--sm);margin:var(--lg) 0 0;padding:0}
+.chips li{font-size:.6875rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--sage);background:rgba(110,123,95,.12);border:1px solid rgba(110,123,95,.24);
+  border-radius:var(--r-sm);padding:.25rem .5rem}
+
+.split{display:grid;grid-template-columns:1fr;gap:var(--lg);padding:0 0 var(--xl)}
+.split h2{font-size:1.75rem;line-height:2.25rem;margin:0 0 var(--md)}
+.address{font-size:1.125rem;line-height:1.875rem;margin:0 0 var(--sm)}
+
+.foot{background:var(--ink);color:var(--dark-text);margin-top:var(--xl)}
+.foot-grid{max-width:1200px;margin:0 auto;padding:var(--xl) 1.25rem var(--lg);
+  display:grid;grid-template-columns:1fr;gap:var(--lg)}
+.foot .muted{color:var(--dark-muted)}
+.small-mark{margin:0 0 var(--sm)}
+.disclaimer{border-top:1px solid var(--dark-hair)}
+.disclaimer p{max-width:1200px;margin:0 auto;padding:var(--md) 1.25rem var(--xl);
+  font-size:.8125rem;line-height:1.375rem;color:var(--dark-muted)}
+
+@media (min-width:768px){
+  main{padding:0 2.5rem}
+  .hero{grid-template-columns:1.6fr 1fr;gap:var(--xxl);align-items:start;padding:var(--xxl) 0}
+  .hero h1{font-size:3.5rem;line-height:4rem;letter-spacing:-.02em}
+  .courses{grid-template-columns:repeat(3,1fr);gap:var(--lg)}
+  .split{grid-template-columns:1fr 1fr;gap:var(--xl)}
+  .foot-grid{grid-template-columns:1.4fr 1fr auto;align-items:start;padding-inline:2.5rem}
+  .disclaimer p{padding-inline:2.5rem}
+}
+@media (max-width:767px){
+  .bar nav{display:none}
+  .bar{justify-content:space-between}
+  .actions .btn{flex:1 1 100%;text-align:center}
+}
