@@ -1296,24 +1296,28 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   ЯЗЫК=новый;
   document.documentElement.lang=новый;
   var d=T();
-  var пусто=['eyebrow','lede','pick','other','more','panel'];
-  document.querySelector('.eyebrow').innerHTML=d.eyebrow;
-  document.querySelector('.hm-lede').innerHTML=d.lede;
-  document.querySelector('.hm-pick').innerHTML=d.hm-pick;
+  // Один промахнувшийся селектор не должен обрывать переключение: иначе
+  // страница остаётся наполовину на старом языке, а человек видит ошибку.
+  function уст(селектор,html){
+   var э=document.querySelector(селектор);
+   if(э) э.innerHTML=html;
+   return !!э;
+  }
+  уст('.eyebrow',d.eyebrow);
+  уст('.hm-lede',d.lede);
+  уст('.hm-pick',d.pick);
   сменить.innerHTML=d.other;
-  var ссылка=document.querySelector('.tail a');
-  if(ссылка) ссылка.innerHTML=d.more+' &rarr;';
-  document.querySelector('.talk-n').innerHTML=d.panel;
+  уст('.tail a',d.more+' &rarr;');
+  уст('.talk-n',d.panel);
   поле.placeholder=начали?d.input_next:d.input;
   кнопка.setAttribute('aria-label',d.send);
-  document.querySelector('label[for="ask-i"]').innerHTML=d.input;
+  уст('label[for="ask-i"]',d.input);
   кнЯз.textContent=NAMES[новый];
   кнЯз.setAttribute('aria-label',d.lang_pick);
-  document.querySelector('#s-task .hm-mono').innerHTML=d.task+' <i></i>';
-  document.querySelector('#s-clar .hm-mono').innerHTML=d.clarify+' <i></i>';
-  document.querySelector('#s-next .hm-mono').innerHTML=d.nxt+' <i></i>';
-  var сн=document.querySelector('.hm-shot figcaption');
-  if(сн) сн.innerHTML='<span class="tag">'+d.sample+'</span>'+d.sample_cap;
+  уст('#s-task .hm-mono',d.task+' <i></i>');
+  уст('#s-clar .hm-mono',d.clarify+' <i></i>');
+  уст('#s-next .hm-mono',d.nxt+' <i></i>');
+  уст('.hm-shot figcaption','<span class="tag">'+d.sample+'</span>'+d.sample_cap);
   // Подписи «Вы» и «Помощник» — наши, их обновляем. Текст реплик клиента
   // не трогаем ни при каких условиях: это его слова.
   поток.querySelectorAll('.m-you>b').forEach(function(b){ b.textContent=d.you; });
