@@ -447,6 +447,13 @@ Independent design concept by Prodigy LAB. Not the official site of Neighborhood
     return Number.isFinite(n) && n >= 1 && n <= 10000 ? n : null;
   };
 
+  // Порог высоты для разрешения есть только у тех, кто опубликовал его числом.
+  // У остальных показываем их собственную формулировку без привязки к высоте:
+  // придумывать за них порог нельзя.
+  const естьПорог = () => Boolean(Д.permit) && typeof Д.permit.overFeet === 'number';
+  const разрешениеВидно = (h) => Boolean(Д.permit) && (Д.permit.text || Д.permit.lineNote) &&
+    (естьПорог() ? Boolean(h) && Number(h) > Д.permit.overFeet : Boolean(h));
+
   const ГОТОВ = {
     work: () => !!выбор.work,
     material: () => !!выбор.material,
@@ -514,9 +521,9 @@ Independent design concept by Prodigy LAB. Not the official site of Neighborhood
       (плохаяДлина
         ? '<p class="font-body-sm text-body-sm text-error">Enter a length between 1 and 10,000 feet.</p>'
         : '<p class="font-body-sm text-body-sm text-on-surface-variant">Pace it out or measure roughly. This is for planning, not for a quote.</p>') +
-      (Д.permit && выбор.height && Number(выбор.height) > Д.permit.overFeet
+      (разрешениеВидно(выбор.height)
         ? '<p class="mt-3 p-3.5 bg-secondary-fixed text-on-secondary-fixed font-body-sm text-body-sm border-l-2 border-secondary">' +
-          экр(Д.permit.text) + '</p>' : ''),
+          экр(Д.permit.text || Д.permit.lineNote) + '</p>' : ''),
       ГОТОВ.size());
 
     h += группа(5, 'gates', '05. Gates',
@@ -638,7 +645,7 @@ Independent design concept by Prodigy LAB. Not the official site of Neighborhood
     ];
     if (выбор.notes.trim()) с.push('Site notes:     ' + выбор.notes.trim());
     с.push('');
-    if (Д.permit && Number(выбор.height) > Д.permit.overFeet) с.push('Permit: ' + Д.permit.text);
+    if (естьПорог() && Number(выбор.height) > Д.permit.overFeet) с.push('Permit: ' + Д.permit.text);
     if (Д.permit && Д.permit.lineNote) с.push(Д.permit.lineNote);
     if (ц) {
       const вне = [];
