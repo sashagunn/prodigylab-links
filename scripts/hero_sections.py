@@ -452,6 +452,39 @@ def _б(problem, approach, steps, need, limits, cta):
     'presence': ('configurator', 'menu_ordering', 'store', 'landing'),
 }
 
+# Приметы ниши на пяти языках. Сравнивать название ниши из каталога с тем,
+# что человек написал о себе, напрямую нельзя: «fencing» не встречается в
+# «fence company», а «restaurant» — в «ресторан».
+ПРИМЕТЫ_НИШИ = {
+    'fencing': ('fenc', 'забор', 'ограда', 'cerca', 'valla', 'veda', 'zaun',
+                'gate', 'ворота'),
+    'restaurant': ('restaur', 'ресторан', 'кафе', 'cafe', 'caf\u00e9', 'пицц',
+                   'pizza', 'food', 'кухн', 'бар', 'доставка еды', 'comida',
+                   'gastro', 'imbiss'),
+}
+
+
+def кандидаты(направление: str, каталог=None) -> list:
+    """Опубликованные примеры, подходящие направлению. Пусто — значит пусто."""
+    if каталог is None:
+        каталог = _каталог()
+    типы = ПОД_НАПРАВЛЕНИЕ.get(направление)
+    if not типы:
+        return []
+    годные = [и for и in каталог
+              if и.get('publication_status') == 'published'
+              and и.get('solution_type') in типы]
+    годные.sort(key=lambda и: (not и.get('featured'), и.get('sort_order') or 0))
+    return годные
+
+
+def _каталог():
+    import json
+    import os
+    корень = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    with open(os.path.join(корень, 'SHOWCASE.json'), encoding='utf-8') as f:
+        return json.load(f)['items']
+
 
 def пример_для(направление: str, известно: dict, lang: str = 'ru',
                каталог=None) -> dict | None:
@@ -472,10 +505,12 @@ def пример_для(направление: str, известно: dict, lan
     # Ниша клиента важнее порядка в каталоге: человеку из ресторана полезнее
     # ресторан. Ниша берётся из ответов, а не из метки кампании.
     ниша = str((известно or {}).get('business_type') or '').lower()
-    for и in подходят:
-        н = str(и.get('niche') or '').lower()
-        if н and н in ниша:
-            return и
+    if ниша:
+        for и in подходят:
+            н = str(и.get('niche') or '').lower()
+            приметы = ПРИМЕТЫ_НИШИ.get(н) or ((н,) if н else ())
+            if any(п in ниша for п in приметы):
+                return и
     избранные = [и for и in подходят if и.get('featured')]
     return (избранные or подходят)[0]
 
@@ -639,7 +674,8 @@ def данные(lang: str) -> dict:
     страницу и не теряя разговор.
     """
     ОБ = ОБЩЕЕ.get(lang) or ОБЩЕЕ['ru']
-    из = {'labels': dict(ОБ), 'routes': {}}
+    из = {'labels': dict(ОБ), 'routes': {},
+          'niche_hints': {к: list(v) for к, v in ПРИМЕТЫ_НИШИ.items()}}
     for направление, по_языкам in БЛОКИ.items():
         б = по_языкам.get(lang) or по_языкам['ru']
         пример = пример_для(направление, {}, lang)
@@ -647,10 +683,13 @@ def данные(lang: str) -> dict:
             'problem': б['problem'], 'approach': б['approach'],
             'steps': [list(x) for x in б['steps']],
             'need': list(б['need']), 'limits': б['limits'], 'cta': б['cta'],
-            'example': ({'title': _т(пример.get('title'), lang),
-                         'about': _т(пример.get('short_description'), lang),
-                         'cover': пример['cover'], 'url': пример['demo_url'],
-                         'concept': пример.get('project_type') == 'concept'}
-                        if пример else None),
+            # Список, а не один пример: нишу клиента мы узнаём в разговоре,
+            # а не при сборке. Выбор делает страница по тем же приметам.
+            'examples': [{'title': _т(и.get('title'), lang),
+                          'about': _т(и.get('short_description'), lang),
+                          'cover': и['cover'], 'url': и['demo_url'],
+                          'niche': и.get('niche') or '',
+                          'concept': и.get('project_type') == 'concept'}
+                         for и in кандидаты(направление)],
         }
     return из
