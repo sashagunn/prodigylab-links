@@ -11,6 +11,8 @@ Allow: /
 Disallow: /pricecard-9k2x7m/
 Disallow: /newdesign.html
 Disallow: /course.html
+# Демонстрации Preview Factory — независимые прототипы, не страницы студии.
+Disallow: /preview/
 
 # ---------- OpenAI ----------
 # OAI-SearchBot — индексация для ChatGPT Search. Нужен для цитирования. Открыт.

@@ -27,6 +27,7 @@ const DENY = [
   /^pricecard-/,                // внутренняя шпаргалка по прайсу
   /^scripts\//,
   /^reports\//,
+  /^preview\//,            // демо Preview Factory: отдельный контур, не часть сайта
   /^logs\//,
 ];
 
