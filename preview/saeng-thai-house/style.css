@@ -68,9 +68,11 @@ img{display:block}
 .hero h1{font-size:clamp(2.75rem,13vw,4.25rem);line-height:.95;letter-spacing:-.025em;margin:0 0 1rem}
 .hero h1 span{display:block}
 .hero h1 span:last-child{color:var(--copper-lt);font-style:italic}
-.since{font-size:1.0625rem;line-height:1.6rem;color:var(--dim);max-width:30ch;margin:0 0 1.5rem}
+.since{font-size:1.0625rem;line-height:1.6rem;color:var(--dim);max-width:30ch;margin:0 0 1.5rem;
+  text-wrap:balance}
 .since strong{color:var(--canvas)}
 .cta{display:grid;gap:.6rem}
+.hero-note span{display:inline-block;margin-top:.15rem;opacity:.72}
 .hero-note{font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;
   color:var(--sage-lt);margin:1.25rem 0 0}
 
@@ -80,20 +82,24 @@ main{max-width:1100px;margin:0 auto;padding:0 1rem}
 
 /* ——— избранные блюда: разный масштаб ——— */
 .featured{padding:2.5rem 0 1rem;scroll-margin-top:56px}
-.lead-dish{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:center;
+/* Три равные карточки: одинаковая рамка, одинаковый снимок, одинаковый вес.
+   Разный масштаб уместен между секциями, а не внутри одного ряда — там он
+   читается как «эту позицию нам выгоднее продать». */
+.picks{display:grid;gap:1.25rem}
+.pick{display:flex;flex-direction:column;gap:.45rem;background:var(--card);
+  border:1px solid var(--hair);border-radius:var(--r);padding:1rem}
+.pick img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:var(--r-sm);display:block;margin-bottom:.35rem}
+.pick h3{font-size:1.375rem;line-height:1.7rem;margin:0}
+.pick-desc{font-size:.8125rem;line-height:1.2rem;margin:0;color:var(--muted)}
+.pick-price{color:var(--copper);font-weight:700;margin:.15rem 0 0}
+
   background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);
   padding:1rem;margin:0 0 .85rem}
-.lead-dish img{width:100%;height:auto;aspect-ratio:1;border-radius:var(--r-sm);object-fit:cover}
 .kicker{font-size:.5625rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
   color:var(--sage);margin:0 0 .3rem}
-.lead-dish h3{font-size:1.75rem;line-height:2rem;margin:0 0 .4rem}
 .lead-desc{font-size:.8125rem;line-height:1.2rem;color:var(--muted);margin:0 0 .5rem}
 .lead-price{font-size:1.375rem;font-weight:700;color:var(--copper);margin:0}
-.side-dishes{display:grid;gap:.85rem}
-.side-dish{display:grid;grid-template-columns:minmax(0,1fr);gap:.85rem;align-items:center;
   background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);padding:.8rem}
-.side-dish img{width:100%;height:auto;aspect-ratio:1;border-radius:var(--r-sm);object-fit:cover}
-.side-dish h4{font-size:1.125rem;line-height:1.4rem;margin:0 0 .25rem}
 .side-desc{font-size:.75rem;line-height:1.1rem;color:var(--muted);margin:0 0 .35rem}
 .side-price{font-size:1rem;font-weight:700;color:var(--copper);margin:0}
 
@@ -109,12 +115,16 @@ main{max-width:1100px;margin:0 auto;padding:0 1rem}
 .menu h2{font-size:clamp(1.5rem,7vw,2.25rem);line-height:1.15;margin:0 0 .6rem}
 .lunch-note{font-size:.8125rem;line-height:1.25rem;color:var(--muted);max-width:60ch;
   border-left:2px solid var(--copper);padding-left:.75rem;margin:0 0 1.25rem}
-.cats{margin:0 -1rem 1.5rem;padding:0 1rem;overflow-x:auto}
-.cats ul{display:flex;gap:.4rem;width:max-content;padding-bottom:.3rem}
+/* Ничего не уезжает за правый край: список переносится по строкам на
+   телефоне и становится колонкой на большом экране. Скрытый
+   горизонтальный скролл прятал от глаза половину разделов. */
+.cats{margin:0 0 1.5rem}
+.cats ul{display:flex;flex-wrap:wrap;gap:.4rem}
 .cats a{display:block;white-space:nowrap;font-size:.6875rem;font-weight:700;letter-spacing:.08em;
   text-transform:uppercase;text-decoration:none;background:var(--paper);border:1px solid var(--hair);
   border-radius:999px;padding:.5rem .85rem;transition:background .22s,color .22s,border-color .22s}
 .cats a:hover{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
+.cats a.is-active{background:var(--copper);border-color:var(--copper);color:#fff}
 .groups{display:grid;gap:1.75rem}
 .group{scroll-margin-top:60px}
 .group h3{font-size:1.25rem;line-height:1.6rem;margin:0 0 .6rem;padding-bottom:.4rem;
@@ -186,17 +196,23 @@ footer p{font-size:.8125rem}
   .btn-sm{font-size:.8125rem}
   .hero{padding:5rem 2rem 5.5rem}
   .hero h1{font-size:clamp(4rem,9vw,6.5rem)}
-  .since{font-size:1.25rem;max-width:34ch}
+  .since{font-size:1.25rem;max-width:42ch}
   .cta{grid-auto-flow:column;justify-content:start;gap:.75rem}
   .featured{padding:4rem 0 1.5rem}
-  .lead-dish{grid-template-columns:minmax(0,1.1fr) 1fr;align-items:center;gap:2rem;padding:2rem}
-  .lead-dish h3{font-size:2.5rem;line-height:2.75rem}
-  .lead-desc{font-size:.9375rem;line-height:1.5rem}
-  .side-dishes{grid-template-columns:1fr 1fr;gap:1rem}
-  .story{margin:3rem -2rem;padding:4.5rem 2rem}
+  .picks{grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .pick-desc{font-size:.875rem;line-height:1.35rem}
+  .story{margin:3rem -2rem 0;padding:3rem 2rem}
   .menu{padding:3rem 0 1.5rem}
-  .groups{grid-template-columns:repeat(2,1fr);gap:2.5rem 3rem}
-  .dishes{grid-template-columns:repeat(3,1fr)}
+  /* Разделы слева, блюда справа. Две категории рядом давали шесть карточек
+     поперёк экрана: снимки ещё читались, подписи уже нет. */
+  .menu-layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:0 3rem;align-items:start}
+  .cats{position:sticky;top:4.5rem;margin:0}
+  .cats ul{flex-direction:column;flex-wrap:nowrap;gap:.25rem}
+  .cats a{text-align:left}
+  .groups{grid-template-columns:minmax(0,1fr);gap:3rem}
+  .dishes{grid-template-columns:repeat(3,1fr);gap:1.5rem 1.25rem}
+  .dish-name{font-size:.9375rem;line-height:1.25rem}
+  .dish-price{font-size:.9375rem}
   .visit-grid{grid-template-columns:1.2fr .8fr;gap:3rem;align-items:start}
   .visit-actions{grid-auto-flow:column;justify-content:start}
   .dock{display:none}
@@ -302,9 +318,8 @@ footer p{font-size:.8125rem}
 
 @media (min-width:760px){
   .hero{padding-bottom:0}
-  .hero-grid{grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-  .hero-food{margin-bottom:-4rem}
-  .hero-food img{height:min(60vh,520px);object-fit:cover}
+  .hero-grid{grid-template-columns:1.12fr .88fr;gap:3rem;align-items:center}
+  .hero-food img{height:min(56vh,480px);object-fit:cover}
   .band{margin:4rem -2rem}
   .band img{height:clamp(320px,34vw,520px)}
   .band-wide img{height:clamp(380px,40vw,620px)}
@@ -335,4 +350,194 @@ footer p{font-size:.8125rem}
   .cta{gap:.5rem}
   .hero .btn{min-height:46px;padding:.7rem 1rem}
   .hero-note{font-size:.5625rem;letter-spacing:.08em;margin:.75rem 0 0;line-height:.95rem}
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Демонстрационный заказ: карточка блюда, корзина, сводка.
+
+   Форма повторяет то, к чему человек привык в доставке: на телефоне панель
+   снизу, на компьютере компактное окно в две колонки. Кнопка добавления и
+   цена всегда на виду — длинный список дополнений прокручивается внутри
+   панели, а не уносит итог за нижний край.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Плитка блюда — кнопка. Нажимается вся, включая снимок и название. */
+.dish-btn,.pick-btn{display:flex;flex-direction:column;gap:.4rem;width:100%;
+  background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;
+  text-align:left;cursor:pointer;border-radius:var(--r-sm)}
+.dish-btn:focus-visible,.pick-btn:focus-visible,.btn:focus-visible,
+.cats a:focus-visible,.cart-actions button:focus-visible,.stepper button:focus-visible,
+.x:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+.dish-btn img{transition:opacity .2s ease}
+.dish-btn:hover img,.pick-btn:hover img{opacity:.88}
+.dish-btn:hover .dish-name{text-decoration:underline;text-underline-offset:2px}
+.pick-btn .pick-name{font-family:var(--serif);font-size:1.375rem;line-height:1.7rem}
+.pick-btn .kicker{display:block}
+
+.btn-cart{display:inline-flex;align-items:center;gap:.4rem;background:none;
+  border:1px solid var(--dark-hair);color:var(--canvas);cursor:pointer}
+.btn-cart:hover{border-color:var(--canvas)}
+.btn-cart b,.dock-main b{display:inline-flex;align-items:center;justify-content:center;
+  min-width:1.25rem;height:1.25rem;padding:0 .3rem;border-radius:999px;
+  background:var(--copper);color:#fff;font-size:.6875rem;font-weight:700}
+.dock-main{font:inherit;border:0;cursor:pointer;gap:.5rem}
+.dock-main b{background:#fff;color:var(--copper)}
+
+/* Окно. Тёмная подложка, без прыжка страницы под ней. */
+body.locked{position:fixed;left:0;right:0;width:100%;overflow:hidden}
+dialog.sheet{border:0;padding:0;background:var(--canvas);color:var(--ink);
+  width:100%;max-width:none;max-height:none;font-family:var(--sans)}
+dialog.sheet::backdrop{background:rgba(18,13,10,.62)}
+.sheet-body{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1rem 1rem 1.25rem}
+.sheet-foot{display:grid;grid-template-columns:auto 1fr;gap:.6rem;align-items:center;
+  padding:.75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+  background:var(--paper);border-top:1px solid var(--hair)}
+.sheet-foot .btn{width:100%;justify-content:center}
+.x{position:absolute;top:.5rem;right:.5rem;z-index:2;width:2.25rem;height:2.25rem;
+  border-radius:999px;border:0;background:rgba(255,255,255,.92);color:var(--ink);
+  font-size:1rem;line-height:1;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.14)}
+.x:hover{background:#fff}
+
+.dish-photo{margin:-1rem -1rem .9rem;overflow:hidden}
+.dish-photo img{width:100%;height:clamp(180px,42vw,260px);object-fit:cover}
+.dish-main h3{font-size:1.5rem;line-height:1.9rem;margin:0 0 .3rem}
+.dish-desc{font-size:.875rem;line-height:1.3rem;color:var(--muted);margin:0 0 .4rem}
+.dish-base{color:var(--copper);font-weight:700;margin:0 0 1rem}
+
+.ogroup{border:0;padding:0;margin:0 0 1.1rem;min-width:0}
+.ogroup legend{display:block;width:100%;font-size:.75rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:0 0 .35rem;
+  border-bottom:1px solid var(--hair);margin-bottom:.35rem}
+.ogroup .req{color:var(--copper);letter-spacing:.06em}
+.ogroup .opt{color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:none}
+.ogroup.needs legend{color:var(--copper)}
+.opt-row{display:flex;align-items:center;gap:.6rem;padding:.42rem .25rem;
+  border-radius:var(--r-sm);cursor:pointer;min-height:44px}
+.opt-row:hover{background:var(--card,#F4EDE2)}
+.opt-row input{width:1.1rem;height:1.1rem;accent-color:var(--copper);flex:none;margin:0}
+.opt-name{flex:1;font-size:.9375rem}
+.opt-plus{color:var(--copper);font-weight:700;font-size:.875rem;white-space:nowrap}
+
+.note{display:block;margin:0 0 .25rem}
+.note span{display:block;font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:.35rem}
+.note i{color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:none}
+.note textarea{width:100%;font:inherit;font-size:.9375rem;padding:.6rem .7rem;
+  border:1px solid var(--hair);border-radius:var(--r-sm);background:var(--paper);
+  color:inherit;resize:vertical}
+.note textarea:focus-visible{outline:2px solid var(--copper);outline-offset:1px}
+
+.stepper{display:inline-flex;align-items:center;gap:.1rem;border:1px solid var(--hair);
+  border-radius:999px;background:var(--paper)}
+.stepper button{width:2.75rem;height:2.75rem;border:0;background:none;cursor:pointer;
+  font-size:1.125rem;color:var(--ink);border-radius:999px}
+.stepper button:hover{background:var(--hair)}
+.stepper span{min-width:1.75rem;text-align:center;font-weight:700}
+.stepper.small button{width:2.25rem;height:2.25rem;font-size:1rem}
+.btn:disabled{background:var(--hair);border-color:var(--hair);color:var(--muted);cursor:not-allowed}
+
+/* Корзина */
+.demo-flag{display:block;background:var(--sage);color:#fff;font-size:.75rem;
+  line-height:1.05rem;padding:.5rem .7rem;border-radius:var(--r-sm);margin:0 0 1rem}
+.cart .sheet-body h3{font-size:1.5rem;margin:0 0 .6rem}
+.cart-empty{color:var(--muted);font-size:.875rem;line-height:1.3rem;padding:1.5rem 0 2rem}
+.cart-empty strong{display:block;font-size:1rem;color:var(--ink);margin-bottom:.25rem}
+.cart-line{display:grid;grid-template-columns:64px 1fr auto;gap:.75rem;
+  padding:.85rem 0;border-bottom:1px solid var(--hair)}
+.cart-line img{width:64px;height:64px;object-fit:cover;border-radius:var(--r-sm)}
+.cart-info h4{font-size:1rem;line-height:1.3rem;margin:0 0 .15rem}
+.cart-opts,.cart-note{font-size:.8125rem;line-height:1.1rem;color:var(--muted);margin:0 0 .2rem}
+.cart-actions{display:flex;gap:.75rem;margin:.25rem 0 0}
+.cart-actions button{border:0;background:none;padding:0;font:inherit;font-size:.8125rem;
+  color:var(--copper);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.cart-right{display:grid;gap:.4rem;justify-items:end;align-content:start}
+.cart-price{font-weight:700;margin:0}
+.cart-sum{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  margin:0;font-size:.875rem;grid-column:1/-1}
+.cart-sum b{font-size:1.125rem}
+.cart-sum.big{border-top:1px solid var(--hair);padding-top:.75rem;margin:1rem 0 1rem}
+#cart-foot{grid-template-columns:1fr}
+
+.review-lines{display:grid;gap:.6rem;margin:0 0 .5rem;padding:0;list-style:none}
+.review-lines li{display:grid;grid-template-columns:2.25rem 1fr auto;gap:.5rem;
+  font-size:.875rem;line-height:1.2rem}
+.review-lines i{color:var(--muted);font-style:normal;font-size:.8125rem}
+.rq{color:var(--muted);font-weight:700}
+.rp{font-weight:700;white-space:nowrap}
+.review-note,.review-real{font-size:.8125rem;line-height:1.15rem;color:var(--muted)}
+.review-real strong{color:var(--ink)}
+.review-actions{display:grid;gap:.5rem;margin-top:1rem}
+.review-actions .btn{width:100%;justify-content:center}
+
+/* Телефон: панель снизу, итог и кнопка всегда на виду. */
+@media (max-width:759px){
+  dialog.sheet[open]{margin:0 0 0 auto;top:auto;bottom:0;left:0;right:0;
+    height:auto;max-height:92dvh;border-radius:14px 14px 0 0;
+    display:flex;flex-direction:column}
+  .sheet-body{flex:1 1 auto;min-height:0}
+}
+
+/* Компьютер: компактное окно, слева снимок, справа параметры. */
+@media (min-width:760px){
+  dialog.sheet[open]{max-width:720px;width:calc(100% - 3rem);max-height:86vh;
+    border-radius:var(--r);margin:auto;display:flex;flex-direction:column;overflow:hidden}
+  .sheet-body{padding:0}
+  #dish-body{display:grid;grid-template-columns:260px minmax(0,1fr);align-items:stretch}
+  .dish-photo{margin:0;height:100%}
+  .dish-photo img{height:100%;min-height:340px}
+  .dish-main{padding:1.5rem 1.5rem .5rem;overflow-y:auto;max-height:66vh}
+  .sheet-foot{grid-template-columns:auto 1fr}
+  .sheet-foot .btn{width:auto;justify-self:end;min-width:16rem}
+  .cart .sheet-body{padding:1.5rem}
+  #cart-foot{grid-template-columns:1fr auto;gap:1.5rem}
+  #cart-foot .btn{min-width:14rem}
+  .review-actions{grid-auto-flow:column;justify-content:start}
+  .review-actions .btn{width:auto}
+}
+
+/* Демо-аккаунт. На телефоне — кружок рядом с корзиной, на компьютере с
+   подписью. Вход нужен только чтобы показать шаг: меню и корзина работают
+   без него, и это сказано на самом экране. */
+.btn-acct{display:inline-flex;align-items:center;gap:.4rem;background:none;
+  border:1px solid var(--dark-hair);color:var(--canvas);cursor:pointer}
+.btn-acct:hover{border-color:var(--canvas)}
+.acct-icon{width:1.1rem;height:1.1rem;border-radius:999px;background:var(--sage-lt);
+  color:var(--night);font-size:.5rem;display:inline-flex;align-items:center;justify-content:center}
+.acct-text{display:none}
+.acct-lead{font-size:.875rem;line-height:1.25rem;color:var(--muted)}
+.acct-cols{display:grid;gap:1rem;margin:.5rem 0 .25rem}
+.acct-cols h4{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  font-family:var(--sans);margin:0 0 .4rem;padding-bottom:.3rem;border-bottom:1px solid var(--hair)}
+.acct-fields{display:grid;gap:.3rem;font-size:.875rem;color:var(--muted)}
+.acct-fields li{padding-left:1rem;position:relative}
+.acct-fields li::before{content:'';position:absolute;left:0;top:.55rem;width:.4rem;height:.4rem;
+  border:1px solid var(--hair);border-radius:1px}
+.acct-nofields{font-size:.75rem;color:var(--muted);margin:.25rem 0 0}
+.acct-profile{display:grid;grid-template-columns:auto 1fr;gap:.2rem .9rem;margin:0 0 1.25rem;
+  font-size:.875rem}
+.acct-profile dt{color:var(--muted)}
+.acct-profile dd{margin:0}
+.acct-h{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-family:var(--sans);
+  margin:0 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid var(--hair)}
+.acct-order{padding:.5rem 0 .75rem;border-bottom:1px solid var(--hair)}
+.acct-when{font-size:.8125rem;color:var(--muted);margin:0 0 .3rem}
+.acct-order ul{display:grid;gap:.15rem;font-size:.875rem;margin:0 0 .5rem}
+.acct-order i{color:var(--muted);font-style:normal;font-size:.8125rem}
+.acct-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0}
+.btn-xs{padding:.35rem .7rem;font-size:.75rem}
+
+@media (min-width:760px){
+  .acct-text{display:inline}
+  .acct-cols{grid-template-columns:1fr 1fr;gap:2rem}
+}
+
+/* Телефон: в шапке только имя, профиль и настоящий заказ. Демо-корзина живёт
+   в нижней панели — две корзины в одном ряду не помещаются и ломают имя
+   ресторана на три строки. */
+@media (max-width:759px){
+  .top .btn-cart{display:none}
+  .mark{white-space:nowrap}
+  .top{gap:.5rem}
+  .top .btn-sm{padding:.45rem .6rem;font-size:.6875rem}
+  .btn-acct{padding:.45rem .55rem}
 }
