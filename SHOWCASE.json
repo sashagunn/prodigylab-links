@@ -153,6 +153,142 @@
       "featured": true,
       "sort_order": 20,
       "publication_status": "published"
+    },
+    {
+      "id": "pf-005",
+      "slug": "florida-fence",
+      "title": {
+        "en": "Fence planner for a free estimate",
+        "ru": "Планировщик забора к бесплатному замеру",
+        "es": "Planificador de cercas para el presupuesto gratuito",
+        "pt": "Planejador de cercas para o orçamento gratuito",
+        "de": "Zaunplaner für das kostenlose Aufmaß"
+      },
+      "niche": "fencing",
+      "solution_type": "configurator",
+      "short_description": {
+        "en": "A homeowner picks the work, material, style, length, height, gates and tear-out, and gets a plain description of the project to bring to the free estimate. The company publishes no prices, so none are shown.",
+        "ru": "Хозяин дома выбирает работы, материал, стиль, длину, высоту, ворота и демонтаж и получает понятное описание проекта для бесплатного замера. Цен компания не публикует — их здесь и нет.",
+        "es": "El propietario elige el trabajo, material, estilo, longitud, altura, puertas y retirada, y obtiene una descripción clara del proyecto para el presupuesto gratuito. La empresa no publica precios, así que aquí no aparecen.",
+        "pt": "O proprietário escolhe o trabalho, material, estilo, comprimento, altura, portões e remoção, e recebe uma descrição clara do projeto para o orçamento gratuito. A empresa não publica preços, por isso nenhum aparece aqui.",
+        "de": "Hausbesitzer wählen Arbeit, Material, Stil, Länge, Höhe, Tore und Abriss und erhalten eine klare Projektbeschreibung für den kostenlosen Aufmaßtermin. Das Unternehmen veröffentlicht keine Preise, daher stehen hier keine."
+      },
+      "demo_url": "/preview/florida-fence/",
+      "cover": "/showcase/covers/florida-fence.jpg",
+      "cover_alt": {
+        "en": "Concept home page for a Tampa fence company, with a project planner",
+        "ru": "Концепт главной страницы заборной компании из Тампы с планировщиком проекта",
+        "es": "Página de inicio conceptual de una empresa de cercas de Tampa, con planificador",
+        "pt": "Página inicial conceitual de uma empresa de cercas de Tampa, com planejador",
+        "de": "Konzept-Startseite eines Zaunbauers aus Tampa mit Projektplaner"
+      },
+      "project_type": "concept",
+      "language": "en",
+      "featured": false,
+      "sort_order": 40,
+      "publication_status": "published"
+    },
+    {
+      "id": "pf-006",
+      "slug": "bulldog-fence",
+      "title": {
+        "en": "Fence planner for a phone quote",
+        "ru": "Планировщик забора для разговора по телефону",
+        "es": "Planificador de cercas para el presupuesto por teléfono",
+        "pt": "Planejador de cercas para o orçamento por telefone",
+        "de": "Zaunplaner für das Preisgespräch am Telefon"
+      },
+      "niche": "fencing",
+      "solution_type": "configurator",
+      "short_description": {
+        "en": "Wood, vinyl, iron and chain link, with the styles the company lists itself. The planner turns six answers into a description the homeowner can read out on the phone. No prices: the company quotes at the free measure.",
+        "ru": "Дерево, винил, железо и рабица со стилями, которые компания перечисляет сама. Планировщик превращает шесть ответов в описание, которое можно зачитать по телефону. Цен нет: компания называет их на бесплатном замере.",
+        "es": "Madera, vinilo, hierro y malla, con los estilos que la propia empresa enumera. El planificador convierte seis respuestas en una descripción que el propietario puede leer por teléfono. Sin precios: la empresa los da en la medición gratuita.",
+        "pt": "Madeira, vinil, ferro e alambrado, com os estilos que a própria empresa lista. O planejador transforma seis respostas em uma descrição que o proprietário pode ler ao telefone. Sem preços: a empresa os informa na medição gratuita.",
+        "de": "Holz, Vinyl, Eisen und Maschendraht mit den Stilen, die das Unternehmen selbst nennt. Der Planer macht aus sechs Antworten eine Beschreibung, die man am Telefon vorlesen kann. Keine Preise: genannt werden sie beim kostenlosen Aufmaß."
+      },
+      "demo_url": "/preview/bulldog-fence/",
+      "cover": "/showcase/covers/bulldog-fence.jpg",
+      "cover_alt": {
+        "en": "Concept home page for a Spokane fence company, with a project planner",
+        "ru": "Концепт главной страницы заборной компании из Спокана с планировщиком проекта",
+        "es": "Página de inicio conceptual de una empresa de cercas de Spokane, con planificador",
+        "pt": "Página inicial conceitual de uma empresa de cercas de Spokane, com planejador",
+        "de": "Konzept-Startseite eines Zaunbauers aus Spokane mit Projektplaner"
+      },
+      "project_type": "concept",
+      "language": "en",
+      "featured": false,
+      "sort_order": 50,
+      "publication_status": "published"
+    },
+    {
+      "id": "pf-007",
+      "slug": "evergreen-fence",
+      "title": {
+        "en": "Fence planner with cost guides",
+        "ru": "Планировщик забора с ориентирами по стоимости",
+        "es": "Planificador de cercas con guías de coste",
+        "pt": "Planejador de cercas com guias de custo",
+        "de": "Zaunplaner mit Kostenorientierung"
+      },
+      "niche": "fencing",
+      "solution_type": "configurator",
+      "short_description": {
+        "en": "The company's own cost and permit guides sit deep in its site; the planner brings them into the path. Five materials, the styles it names itself, and a description to carry into the written estimate.",
+        "ru": "Их собственные руководства по стоимости и разрешениям лежат в глубине сайта — планировщик выводит их на путь клиента. Пять материалов, стили их же словами и описание, которое можно принести на письменную смету.",
+        "es": "Las propias guías de coste y permisos de la empresa están enterradas en su web; el planificador las trae al camino del cliente. Cinco materiales, los estilos que ella misma nombra y una descripción para el presupuesto escrito.",
+        "pt": "Os próprios guias de custo e licenças da empresa ficam no fundo do site; o planejador os traz para o caminho do cliente. Cinco materiais, os estilos que ela mesma nomeia e uma descrição para o orçamento por escrito.",
+        "de": "Die eigenen Kosten- und Genehmigungs-Leitfäden liegen tief in ihrer Website; der Planer holt sie auf den Kundenweg. Fünf Materialien, die selbst genannten Stile und eine Beschreibung für das schriftliche Angebot."
+      },
+      "demo_url": "/preview/evergreen-fence/",
+      "cover": "/showcase/covers/evergreen-fence.jpg",
+      "cover_alt": {
+        "en": "Concept home page for a Portland fence and gate company, with a project planner",
+        "ru": "Концепт главной страницы портлендской компании по заборам и воротам с планировщиком",
+        "es": "Página de inicio conceptual de una empresa de cercas y puertas de Portland, con planificador",
+        "pt": "Página inicial conceitual de uma empresa de cercas e portões de Portland, com planejador",
+        "de": "Konzept-Startseite eines Zaun- und Torbauers aus Portland mit Projektplaner"
+      },
+      "project_type": "concept",
+      "language": "en",
+      "featured": false,
+      "sort_order": 60,
+      "publication_status": "published"
+    },
+    {
+      "id": "pf-008",
+      "slug": "sereno-fence",
+      "title": {
+        "en": "Fence planner before booking",
+        "ru": "Планировщик забора перед записью",
+        "es": "Planificador de cercas antes de reservar",
+        "pt": "Planejador de cercas antes de agendar",
+        "de": "Zaunplaner vor der Terminbuchung"
+      },
+      "niche": "fencing",
+      "solution_type": "configurator",
+      "short_description": {
+        "en": "Their booking tool sets a time but never asks about the fence. The planner covers the missing half: material, work, length, height, gates and tear-out become a description to paste into the booking or read out on the call.",
+        "ru": "Их сервис записи назначает время, но про забор не спрашивает ни разу. Планировщик закрывает недостающую половину: материал, работы, длина, высота, ворота и демонтаж складываются в описание, которое можно вставить в запись или зачитать в звонке.",
+        "es": "Su herramienta de reservas fija una hora pero nunca pregunta por la cerca. El planificador cubre la mitad que falta: material, trabajo, longitud, altura, puertas y retirada se convierten en una descripción para pegar en la reserva o leer en la llamada.",
+        "pt": "A ferramenta de agendamento marca um horário, mas nunca pergunta sobre a cerca. O planejador cobre a metade que falta: material, trabalho, comprimento, altura, portões e remoção viram uma descrição para colar no agendamento ou ler na ligação.",
+        "de": "Ihr Buchungstool legt einen Termin fest, fragt aber nie nach dem Zaun. Der Planer schließt die fehlende Hälfte: Material, Arbeit, Länge, Höhe, Tore und Abriss werden zu einer Beschreibung für die Buchung oder das Telefonat."
+      },
+      "demo_url": "/preview/sereno-fence/",
+      "cover": "/showcase/covers/sereno-fence.jpg",
+      "cover_alt": {
+        "en": "Concept home page for a Phoenix fence and gate company, with a project planner",
+        "ru": "Концепт главной страницы финиксовской компании по заборам и воротам с планировщиком",
+        "es": "Página de inicio conceptual de una empresa de cercas y puertas de Phoenix, con planificador",
+        "pt": "Página inicial conceitual de uma empresa de cercas e portões de Phoenix, com planejador",
+        "de": "Konzept-Startseite eines Zaun- und Torbauers aus Phoenix mit Projektplaner"
+      },
+      "project_type": "concept",
+      "language": "en",
+      "featured": false,
+      "sort_order": 70,
+      "publication_status": "published"
     }
   ]
 }
