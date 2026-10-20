@@ -35,6 +35,8 @@ const DENY = [
 const PRIORITY = [
   [/^$/,                              '1.0', 'weekly'],   // главная
   [/^(en|ru|es|pt|de)\/$/,            '0.9', 'weekly'],
+  [/^showcase\/$/,                    '0.8', 'weekly'],   // галерея примеров
+  [/^(ru|es|pt|de)\/showcase\/$/,      '0.7', 'weekly'],
   [/^prodigybot\/$/,                  '0.9', 'monthly'],
   [/^(en|es|pt|de)\/prodigybot\/$/,   '0.8', 'monthly'],
   [/^(en|es|pt|de)\/pricing\/$/,      '0.8', 'monthly'],

@@ -207,6 +207,11 @@ border:1px solid #fff;background:#fff;color:var(--ink)}
 
 def page(code):
     d = L[code]
+    # Галерея примеров. Импорт здесь, а не наверху: build_showcase импортирует
+    # этот модуль ради CSS и шапки — на верхнем уровне получилось бы кольцо.
+    from build_showcase import блок_для_главной, EXTRA_CSS as SHOWCASE_CSS, PAGE_PATH as SHOWCASE_PATH
+    showcase = блок_для_главной(code)
+    showcase_nav = SHOWCASE_PATH[code]
     url = ORIGIN + d['home']
     scan = SCAN + d['scan_lang']
     diag = DIAG + d['scan_lang']
@@ -227,6 +232,15 @@ def page(code):
         f'<a href="{L[c]["home"]}"{" aria-current=\"page\"" if c == code else ""}>{n}</a>'
         for c, n in LANGNAMES)
     navmid = "".join(f'<a href="{h}">{e(t)}</a>' for h, t in d['nav'])
+    # Пункт меню появляется только когда в галерее есть что показать:
+    # вести в пустой раздел хуже, чем не вести вовсе.
+    from showcase_content import S as _SC
+    _имя = _SC[code]['nav']
+    _ссылка = f'<a href="{showcase_nav}">{e(_имя)}</a>' if showcase else ''
+    showcase_link = _ссылка
+    showcase_foot = _ссылка
+    showcase_mob = (f'<a class="ml" href="{showcase_nav}">{e(_имя)}</a>'
+                    if showcase else '')
     mobls = "".join(f'<a class="ml" href="{h}">{e(t)}</a>' for h, t in d['nav'])
     def _cell(i, tag, h3, p, lis):
         extra = ''
@@ -282,7 +296,7 @@ def page(code):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>{CSS}</style>
+<style>{CSS}{SHOWCASE_CSS}</style>
 <script>
 !function(f,b,e,v,n,t,s){{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)}};if(!f._fbq)f._fbq=n;
@@ -303,7 +317,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 <nav>
  <div class="wrap nav-in">
   <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
-  <div class="nav-mid">{navmid}</div>
+  <div class="nav-mid">{navmid}{showcase_link}</div>
   <div class="nav-right">
    <div class="langs">{langs}</div>
    <a class="icon" href="{PHONE_HREF}" aria-label="{e(d['call'])} {PHONE_TEXT}" title="{PHONE_TEXT}">{PHONE_SVG}</a>
@@ -313,7 +327,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
    <a class="btn nav-cta" href="{diag}" data-diag>{e(d['cta1'])}</a>
   </div>
  </div>
- <div id="mob"><div class="wrap">{mobls}
+ <div id="mob"><div class="wrap">{mobls}{showcase_mob}
   <a class="btn" href="{diag}" data-diag>{e(d['cta1'])}</a>
   <a class="ml" href="{PHONE_HREF}">{e(d['call'])} {PHONE_TEXT}</a>
   <div class="mlangs">{langs}</div>
@@ -385,6 +399,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
    text-decoration:none;border-bottom:1px solid var(--accent)">{e(d['cases_cta'])}{'' if code=='en' else ' (EN)'} &rarr;</a></p>
  </div>
 </section>
+{showcase}
 
 <section class="final" id="diagnostic">
  <div class="wrap">
@@ -412,7 +427,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
  <div class="wrap">
   <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
   <div class="flinks">
-   {"".join(f'<a href="{h}">{e(t)}</a>' for h,t in d['nav'])}
+   {"".join(f'<a href="{h}">{e(t)}</a>' for h,t in d['nav'])}{showcase_foot}
    <a href="{PHONE_HREF}">{PHONE_TEXT}</a>
    <a href="{PRIVACY[code]}">{e(d['foot_priv'])}{PRIVACY_TAG[code]}</a>
   </div>

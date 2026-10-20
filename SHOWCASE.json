@@ -1,0 +1,124 @@
+{
+  "_readme": [
+    "Каталог публичной галереи примеров. Единственный источник: из него собираются",
+    "и /showcase/, и блок на главной, и фильтры. Отдельных списков не вести.",
+    "",
+    "publication_status решает, видно ли запись:",
+    "  draft     — новое демо. Значение по умолчанию: персональное демо не публикуется",
+    "              само собой только потому, что файл появился в preview/.",
+    "  review    — предложено к показу, ждёт решения владельца.",
+    "  published — показывается в галерее и может попасть на главную.",
+    "  retired   — снято с показа, запись остаётся ради истории.",
+    "",
+    "project_type:",
+    "  concept        — независимый прототип. Компания его не заказывала.",
+    "  client_project — только при подтверждённом внедрении И разрешении показывать.",
+    "",
+    "Как добавить следующий пример — scripts/build_showcase.py, раздел в начале файла."
+  ],
+  "updated": "2026-10-20",
+  "items": [
+    {
+      "id": "pf-001",
+      "slug": "castillo-fencing",
+      "title": {
+        "en": "Fence project planner",
+        "ru": "Планировщик забора",
+        "es": "Planificador de cercas",
+        "pt": "Planejador de cercas",
+        "de": "Zaun-Projektplaner"
+      },
+      "niche": "fencing",
+      "solution_type": "configurator",
+      "short_description": {
+        "en": "A homeowner picks material, length, height and gates, and gets a clear project brief to bring to the contractor. No price guesses, nothing is sent anywhere.",
+        "ru": "Хозяин дома выбирает материал, длину, высоту и количество калиток и получает понятное техзадание для разговора с подрядчиком. Цены не выдумываются, никуда ничего не уходит.",
+        "es": "El propietario elige material, longitud, altura y puertas y obtiene un resumen claro del proyecto para hablar con el contratista. Sin precios inventados, sin envíos.",
+        "pt": "O proprietário escolhe material, comprimento, altura e portões e recebe um resumo claro do projeto para levar ao empreiteiro. Sem preços inventados, nada é enviado.",
+        "de": "Der Hausbesitzer wählt Material, Länge, Höhe und Tore und erhält ein klares Projektbriefing für das Gespräch mit dem Handwerker. Keine Preisschätzungen, nichts wird gesendet."
+      },
+      "demo_url": "/preview/castillo-fencing/",
+      "cover": "/showcase/covers/castillo-fencing.jpg",
+      "cover_alt": {
+        "en": "Fence project planner demo: headline and the button that builds the brief",
+        "ru": "Демонстрация планировщика забора: заголовок и кнопка сборки техзадания",
+        "es": "Demo del planificador de cercas: titular y botón para generar el resumen",
+        "pt": "Demo do planejador de cercas: título e botão que gera o resumo",
+        "de": "Demo des Zaunplaners: Überschrift und Button für das Briefing"
+      },
+      "project_type": "concept",
+      "language": "en",
+      "featured": false,
+      "sort_order": 10,
+      "publication_status": "draft"
+    },
+    {
+      "id": "pf-002",
+      "slug": "saeng-thai-house",
+      "title": {
+        "en": "Restaurant menu and pickup",
+        "ru": "Меню ресторана и самовывоз",
+        "es": "Menú de restaurante y recogida",
+        "pt": "Cardápio de restaurante e retirada",
+        "de": "Restaurantkarte und Abholung"
+      },
+      "niche": "restaurant",
+      "solution_type": "menu_ordering",
+      "short_description": {
+        "en": "Every dish with its own photo, price and options, so a guest decides on the phone instead of calling to ask. Ordering stays on the restaurant's own service.",
+        "ru": "Каждое блюдо со своим снимком, ценой и опциями: гость решает в телефоне, а не звонит уточнять. Сам заказ остаётся в сервисе самого ресторана.",
+        "es": "Cada plato con su foto, precio y opciones: el comensal decide en el móvil en lugar de llamar. El pedido se queda en el servicio del propio restaurante.",
+        "pt": "Cada prato com foto, preço e opções: o cliente decide no celular em vez de ligar. O pedido permanece no serviço do próprio restaurante.",
+        "de": "Jedes Gericht mit eigenem Foto, Preis und Optionen: Der Gast entscheidet am Handy, statt anzurufen. Die Bestellung bleibt im Dienst des Restaurants."
+      },
+      "demo_url": "/preview/saeng-thai-house/",
+      "cover": "/showcase/covers/saeng-thai-house.jpg",
+      "cover_alt": {
+        "en": "Restaurant demo: dark hero with a photo of Thai dishes and a pickup button",
+        "ru": "Демонстрация ресторана: тёмная обложка со снимком тайских блюд и кнопкой самовывоза",
+        "es": "Demo de restaurante: portada oscura con platos tailandeses y botón de recogida",
+        "pt": "Demo de restaurante: capa escura com pratos tailandeses e botão de retirada",
+        "de": "Restaurant-Demo: dunkles Hero mit thailändischen Gerichten und Abhol-Button"
+      },
+      "project_type": "concept",
+      "language": "en",
+      "featured": true,
+      "sort_order": 20,
+      "publication_status": "published"
+    },
+    {
+      "id": "pf-003",
+      "slug": "viking-fence",
+      "title": {
+        "en": "Fence project planner (second build)",
+        "ru": "Планировщик забора (вторая сборка)",
+        "es": "Planificador de cercas (segunda versión)",
+        "pt": "Planejador de cercas (segunda versão)",
+        "de": "Zaun-Projektplaner (zweite Fassung)"
+      },
+      "niche": "fencing",
+      "solution_type": "configurator",
+      "short_description": {
+        "en": "The same planner rebuilt for a second company from its own material list. Kept in the catalogue as proof the build repeats, not shown publicly: one solution should appear once.",
+        "ru": "Тот же планировщик, собранный для второй компании по её собственному списку материалов. Лежит в каталоге как доказательство повторяемости, но публично не показывается: одно решение должно быть видно один раз.",
+        "es": "El mismo planificador reconstruido para una segunda empresa. Se mantiene en el catálogo como prueba de repetibilidad, no se muestra públicamente.",
+        "pt": "O mesmo planejador refeito para uma segunda empresa. Mantido no catálogo como prova de repetibilidade, não exibido publicamente.",
+        "de": "Derselbe Planer für ein zweites Unternehmen gebaut. Bleibt im Katalog als Beleg der Wiederholbarkeit, wird öffentlich nicht gezeigt."
+      },
+      "demo_url": "/preview/viking-fence/",
+      "cover": "/showcase/covers/viking-fence.jpg",
+      "cover_alt": {
+        "en": "Fence planner demo built for a second company",
+        "ru": "Планировщик забора, собранный для второй компании",
+        "es": "Planificador de cercas para una segunda empresa",
+        "pt": "Planejador de cercas para uma segunda empresa",
+        "de": "Zaunplaner für ein zweites Unternehmen"
+      },
+      "project_type": "concept",
+      "language": "en",
+      "featured": false,
+      "sort_order": 30,
+      "publication_status": "draft"
+    }
+  ]
+}
