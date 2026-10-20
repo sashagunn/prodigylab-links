@@ -274,3 +274,58 @@ footer p{font-size:.8125rem}
   .close-actions{grid-auto-flow:column;justify-content:start;gap:.75rem}
   .close-cols{grid-template-columns:repeat(4,1fr);gap:2.5rem}
 }
+
+/* ——— еда ведёт композицию ———
+   Первый экран: на телефоне снимок стоит сразу под названием, на компьютере
+   занимает половину. Ботаника ушла в подложку — она аккомпанемент. */
+.hero{padding-bottom:0}
+.hero-art{opacity:.5}
+.hero-grid{position:relative;max-width:1100px;margin:0 auto;display:grid;gap:1.5rem}
+.hero-food{margin:0;border-radius:var(--r);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.hero-food img{width:100%;height:auto;display:block}
+
+/* Полосы между разделами: изображение крупно, подпись поверх. */
+.band{position:relative;margin:2.5rem -1rem;overflow:hidden}
+.band img{width:100%;height:clamp(240px,52vw,420px);object-fit:cover;display:block}
+.band figcaption{position:absolute;left:1rem;right:1rem;bottom:1rem;display:grid;gap:.2rem;
+  text-shadow:0 2px 18px rgba(0,0,0,.85)}
+.band-kicker{font-size:.625rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--copper-lt)}
+.band-line{font-family:var(--serif);font-size:clamp(1.25rem,5.5vw,2rem);line-height:1.15;color:var(--canvas)}
+
+@media (min-width:760px){
+  .hero{padding-bottom:0}
+  .hero-grid{grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+  .hero-food{margin-bottom:-4rem}
+  .hero-food img{height:min(60vh,520px);object-fit:cover}
+  .band{margin:4rem -2rem}
+  .band img{height:clamp(320px,34vw,520px)}
+  .band-wide img{height:clamp(380px,40vw,620px)}
+  .band figcaption{left:2rem;right:2rem;bottom:2rem}
+}
+
+/* Маска строки срезала выносные элементы букв — даём им место и не даём
+   заголовку перерасти свою колонку, когда рядом встаёт снимок. */
+.split span{padding-bottom:.1em;margin-bottom:-.1em}
+.hero h1{font-size:clamp(2.5rem,11vw,3.5rem)}
+@media (min-width:760px){
+  .hero h1{font-size:clamp(3rem,5vw,4.5rem);line-height:1.02}
+  .hero .since{font-size:1.125rem;max-width:30ch}
+}
+
+/* ——— телефон: еда в первом экране, не под сгибом ———
+   Снимок встаёт первым, текст поджимается так, чтобы название, еда и кнопка
+   заказа помещались вместе. Это и есть задача первого экрана. */
+@media (max-width:759px){
+  .hero{padding:0 0 1.25rem}
+  .hero-grid{gap:0}
+  .hero-food{order:-1;border-radius:0;margin:0 0 1.1rem;box-shadow:none}
+  .hero-food img{height:min(38vh,290px);object-fit:cover}
+  .hero-inner{padding:0 1rem}
+  .eyebrow{font-size:.5625rem;letter-spacing:.16em;margin:0 0 .5rem}
+  .hero h1{font-size:clamp(2.1rem,9.5vw,2.75rem);margin:0 0 .5rem}
+  .since{font-size:.9375rem;line-height:1.35rem;margin:0 0 .9rem;max-width:34ch}
+  .cta{gap:.5rem}
+  .hero .btn{min-height:46px;padding:.7rem 1rem}
+  .hero-note{font-size:.5625rem;letter-spacing:.08em;margin:.75rem 0 0;line-height:.95rem}
+}
