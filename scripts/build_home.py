@@ -210,6 +210,13 @@ def page(code):
     # Галерея примеров. Импорт здесь, а не наверху: build_showcase импортирует
     # этот модуль ради CSS и шапки — на верхнем уровне получилось бы кольцо.
     from build_showcase import блок_для_главной, EXTRA_CSS as SHOWCASE_CSS, PAGE_PATH as SHOWCASE_PATH
+    import scan_block as SB
+    scan_nav = SB.nav_button(code)
+    scan_main = SB.main_block(code)
+    scan_after = SB.after_gallery(code)
+    scan_sticky = SB.sticky(code)
+    scan_hero = (f'<a class="btn btn-lg" href="{SB.scan_url(code, "hero")}">'
+                 f'{SB.S[code]["cta"]} &rarr;</a>')
     showcase = блок_для_главной(code)
     showcase_nav = SHOWCASE_PATH[code]
     url = ORIGIN + d['home']
@@ -296,7 +303,7 @@ def page(code):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>{CSS}{SHOWCASE_CSS}</style>
+<style>{CSS}{SHOWCASE_CSS}{SB.CSS}</style>
 <script>
 !function(f,b,e,v,n,t,s){{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)}};if(!f._fbq)f._fbq=n;
@@ -324,10 +331,12 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
    <button id="burger" class="icon" aria-label="Menu" aria-expanded="false" onclick="tg(this)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
    </button>
+   {scan_nav}
    <a class="btn nav-cta" href="{diag}" data-diag>{e(d['cta1'])}</a>
   </div>
  </div>
  <div id="mob"><div class="wrap">{mobls}{showcase_mob}
+  <a class="ml" href="{SB.scan_url(code, 'mobile_menu')}">{SB.S[code]['nav']}</a>
   <a class="btn" href="{diag}" data-diag>{e(d['cta1'])}</a>
   <a class="ml" href="{PHONE_HREF}">{e(d['call'])} {PHONE_TEXT}</a>
   <div class="mlangs">{langs}</div>
@@ -343,8 +352,8 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
   <p class="quote">{e(d['quote'])}</p>
   <p class="lede">{e(d['lede'])}</p>
   <div class="cta-row">
-   <a class="btn btn-lg" href="{diag}" data-diag>{e(d['cta1'])}</a>
-   <a class="btn btn-lg btn-g" href="#problems">{e(d['cta2'])}</a>
+   {scan_hero}
+   <a class="btn btn-lg btn-g" href="{diag}" data-diag>{e(d['cta1'])}</a>
   </div>
   <span class="mono">{e(d['note'])}</span>
  </div>
@@ -352,6 +361,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
   <div class="band"><img src="/assets/hero-systems.jpg" alt="" loading="lazy" width="1280" height="853"></div>
  </div>
 </section>
+{scan_main}
 
 <section class="sec alt" id="problems">
  <div class="wrap">
@@ -400,6 +410,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
  </div>
 </section>
 {showcase}
+{scan_after}
 
 <section class="final" id="diagnostic">
  <div class="wrap">
@@ -423,6 +434,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
  </span>
 </div></div>
 
+{scan_sticky}
 <footer>
  <div class="wrap">
   <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
@@ -440,6 +452,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 </footer>
 
 <script>
+{SB.STICKY_JS}
 // §14 — язык в каждом событии, чтобы канал считался по локали
 window.PL_LANG="{code}";
 window.plEvent=function(n,x){{var p=Object.assign({{page_language:"{code}",

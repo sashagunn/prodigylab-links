@@ -217,6 +217,41 @@ cursor:pointer;background:transparent;color:var(--ink);border:1px solid var(--li
 .sc-home .sc-card{background:var(--paper)}
 .sc-soon{margin:24px 0 0;font-size:14px;color:var(--ink2)}
 .sc-all{margin:30px 0 0}
+
+.sn-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;
+border:0;border-radius:3px;padding:15px 26px;font:inherit;font-size:15px;font-weight:500;
+text-decoration:none;line-height:1;transition:background .15s,transform .15s}
+.sn-btn:hover{background:var(--accent2);transform:translateY(-1px)}
+.sn-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+/* Две кнопки в шапке помещаются не везде. До 1180px показываем только проверку
+   сайта — она теперь основное действие; разбор остаётся в меню и на странице. */
+.sn-nav{display:none;background:var(--accent);color:#fff;border-radius:3px;padding:10px 16px;
+font-size:13px;text-decoration:none;white-space:nowrap}
+.sn-nav:hover{background:var(--accent2)}
+@media(min-width:860px){.sn-nav{display:inline-block}}
+@media(max-width:1179px){.nav-cta{display:none!important}}
+.nav-cta{white-space:nowrap}
+.sn{padding:78px 0;background:var(--ink);color:#fff;border-top:1px solid var(--line)}
+.sn .mono{color:#9FD3D6}
+.sn h2{font-size:clamp(28px,4.4vw,44px);line-height:1.08;letter-spacing:-.025em;margin:14px 0 0;
+max-width:19ch}
+.sn-lede{color:#C9C9C5;max-width:52ch;margin:18px 0 0;font-size:17px}
+.sn-grid{display:grid;gap:34px;grid-template-columns:1fr;align-items:start;margin-top:34px}
+@media(min-width:900px){.sn-grid{grid-template-columns:1fr 1fr;gap:48px}}
+.sn-steps{list-style:none;margin:0 0 26px;padding:0;display:flex;flex-direction:column;gap:12px}
+.sn-steps li{display:flex;gap:12px;color:#E4E4E0;font-size:15px;line-height:1.5}
+.sn-steps b{flex:none;width:22px;height:22px;border-radius:50%;background:#2C2C2C;color:#9FD3D6;
+font-size:12px;display:inline-flex;align-items:center;justify-content:center;margin-top:1px}
+.sn-note{margin:16px 0 0;font-size:13px;color:#8A8A86}
+.sn-shot{margin:0;border:1px solid #2C2C2C;border-radius:4px;overflow:hidden;background:#1A1A1A}
+.sn-shot img{display:block;width:100%;height:auto}
+.sn-shot figcaption{padding:10px 14px;font-size:12px;color:#8A8A86;border-top:1px solid #2C2C2C}
+.sn-after{padding:54px 0;border-top:1px solid var(--line)}
+.sn-after h2{font-size:clamp(22px,3vw,30px);line-height:1.15;letter-spacing:-.02em;margin:0}
+.sn-after p{color:var(--ink2);margin:10px 0 20px}
+.sn-sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:flex}
+.sn-sticky a{flex:1;justify-content:center;box-shadow:0 6px 24px rgba(0,0,0,.22)}
+@media(min-width:760px){.sn-sticky{display:none}}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -554,10 +589,12 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
    <button id="burger" class="icon" aria-label="Menu" aria-expanded="false" onclick="tg(this)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
    </button>
+   <a class="sn-nav" href="https://scan.prodigylab.studio/scan?lang=en&amp;utm_source=site&amp;utm_medium=header&amp;utm_campaign=free_scan">Free site check</a>
    <a class="btn nav-cta" href="https://scan.prodigylab.studio/diagnostic?lang=en" data-diag>Tell us what is not working</a>
   </div>
  </div>
  <div id="mob"><div class="wrap"><a class="ml" href="#problems">What we solve</a><a class="ml" href="#how">How it works</a><a class="ml" href="#who">Who we are</a><a class="ml" href="/showcase/">Explore our work</a>
+  <a class="ml" href="https://scan.prodigylab.studio/scan?lang=en&amp;utm_source=site&amp;utm_medium=mobile_menu&amp;utm_campaign=free_scan">Free site check</a>
   <a class="btn" href="https://scan.prodigylab.studio/diagnostic?lang=en" data-diag>Tell us what is not working</a>
   <a class="ml" href="tel:+18182690416">Call us +1 (818) 269-0416</a>
   <div class="mlangs"><a href="/" aria-current="page">EN</a><a href="/ru/">RU</a><a href="/es/">ES</a><a href="/pt/">PT</a><a href="/de/">DE</a></div>
@@ -573,13 +610,33 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
   <p class="quote">You do not need another contractor. First you need an honest read on the business.</p>
   <p class="lede">Owners normally know the symptom: payments blocked, ads that do not pay back, enquiries lost between channels. What is missing is an outside read on which of those is most expensive right now, and what to fix first.</p>
   <div class="cta-row">
-   <a class="btn btn-lg" href="https://scan.prodigylab.studio/diagnostic?lang=en" data-diag>Tell us what is not working</a>
-   <a class="btn btn-lg btn-g" href="#problems">What we handle</a>
+   <a class="btn btn-lg" href="https://scan.prodigylab.studio/scan?lang=en&amp;utm_source=site&amp;utm_medium=hero&amp;utm_campaign=free_scan">Check my site free &rarr;</a>
+   <a class="btn btn-lg btn-g" href="https://scan.prodigylab.studio/diagnostic?lang=en" data-diag>Tell us what is not working</a>
   </div>
   <span class="mono">Free initial assessment · no obligation · no call required</span>
  </div>
  <div class="wrap">
   <div class="band"><img src="/assets/hero-systems.jpg" alt="" loading="lazy" width="1280" height="853"></div>
+ </div>
+</section>
+
+<section class="sn" id="scan">
+ <div class="wrap">
+  <span class="mono">FREE AI WEBSITE CHECK</span>
+  <h2>What is stopping your site from bringing enquiries?</h2>
+  <p class="sn-lede">Paste your address. We read the page the way a first-time visitor does and show what we found, what is only worth a look, and one change you can make the same day.</p>
+  <div class="sn-grid">
+   <div>
+    <ul class="sn-steps"><li><b>1</b><span>You give the address of your site.</span></li><li><b>2</b><span>We ask your name, email and phone — the result opens right after that, on the same page.</span></li><li><b>3</b><span>You get the findings, each marked by how sure we are, and one ready-to-paste change.</span></li></ul>
+    <a class="sn-btn" href="https://scan.prodigylab.studio/scan?lang=en&amp;utm_source=site&amp;utm_medium=main_block&amp;utm_campaign=free_scan">Check my site free &rarr;</a>
+    <p class="sn-note">One page is checked. No access to your site, no card, no call.</p>
+   </div>
+   <figure class="sn-shot">
+    <img src="/assets/scan-example.jpg" alt="An example of the result. The site in it is made up, the layout is the real one."
+         loading="lazy" decoding="async" width="900" height="1500">
+    <figcaption>An example of the result. The site in it is made up, the layout is the real one.</figcaption>
+   </figure>
+  </div>
  </div>
 </section>
 
@@ -641,6 +698,14 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
  </div>
 </section>
 
+<section class="sn-after">
+ <div class="wrap">
+  <h2>And what could be better on your site?</h2>
+  <p>The same check, on your address.</p>
+  <a class="sn-btn" href="https://scan.prodigylab.studio/scan?lang=en&amp;utm_source=site&amp;utm_medium=after_gallery&amp;utm_campaign=free_scan">Check my site free &rarr;</a>
+ </div>
+</section>
+
 <section class="final" id="diagnostic">
  <div class="wrap">
   <span class="mono">Free initial assessment</span>
@@ -663,6 +728,7 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
  </span>
 </div></div>
 
+<div class="sn-sticky" id="sn-sticky" hidden><a class="sn-btn" href="https://scan.prodigylab.studio/scan?lang=en&amp;utm_source=site&amp;utm_medium=sticky&amp;utm_campaign=free_scan">Check my site free</a></div>
 <footer>
  <div class="wrap">
   <a class="brand" href="/"><b>PRODIGY</b><span>LAB</span></a>
@@ -680,6 +746,28 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
 </footer>
 
 <script>
+
+// Закреплённую кнопку показываем, когда человек ушёл с первого экрана, и
+// прячем, когда на виду сам блок скана: два одинаковых призыва на одном
+// экране — это не настойчивость, а шум.
+(function(){
+ var кнопка=document.getElementById('sn-sticky'); if(!кнопка) return;
+ var блок=document.getElementById('scan'), низ=document.getElementById('diagnostic');
+ var рядом=false;
+ if('IntersectionObserver' in window){
+  var глаз=new IntersectionObserver(function(записи){
+   рядом=записи.some(function(з){return з.isIntersecting;}); решить();
+  },{rootMargin:'-10% 0px -10% 0px'});
+  [блок,низ].forEach(function(э){ if(э) глаз.observe(э); });
+ }
+ function решить(){
+  var ушли=window.scrollY>window.innerHeight*0.9;
+  кнопка.hidden=!(ушли&&!рядом);
+ }
+ window.addEventListener('scroll',решить,{passive:true});
+ решить();
+})();
+
 // §14 — язык в каждом событии, чтобы канал считался по локали
 window.PL_LANG="en";
 window.plEvent=function(n,x){var p=Object.assign({page_language:"en",
