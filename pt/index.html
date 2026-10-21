@@ -1060,6 +1060,24 @@ body[data-flow="ops"] #works{display:none}
 .pf-solve-l span{font-size:14.5px;color:var(--on-dark);line-height:1.45}
 .pf-solve .pf-note{margin-top:14px;color:var(--on-dark2);font-size:13px}
 .pf-solve-go{margin-top:16px}
+
+/* ================================ одинаковая геометрия во всех состояниях */
+/* Заголовок у каждой задачи свой и разной длины: без резерва высоты он
+   двигал всю левую колонку на 60 px при каждой смене. Короткий заголовок
+   прижимается к низу — текст под ним стоит на месте. */
+h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content:flex-end}
+/* Лента фиксированной высоты: сообщения прокручиваются внутри, панель не растёт. */
+.stream{height:150px;min-height:0;max-height:none}
+/* Сцена одной высоты во всех трёх видах — вместе с подписью и переключателем. */
+#hm-scene{height:clamp(300px,34vw,440px);min-height:0}
+@media (max-width:1080px){
+  #hm-scene{height:300px}
+}
+@media (max-width:700px){
+  h1#h1{min-height:calc(2.2em)}
+  .stream{height:118px}
+  #hm-scene{height:240px}
+}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
