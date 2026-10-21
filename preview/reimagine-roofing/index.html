@@ -104,32 +104,56 @@ td.o{text-align:right;font-family:var(--mono);font-size:10.5px;letter-spacing:.1
 /* наряд-заказ */
 .console{background:var(--coal);color:#fff;padding:clamp(40px,5.4vw,80px) 0}
 .console h2{font-size:clamp(24px,3.1vw,42px)}
-.console .lede{margin-top:14px;color:#9ba0a3;max-width:60ch;font-size:15.5px}
-.cols{margin-top:clamp(24px,3vw,42px);display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr);
+.console .lede{margin-top:14px;color:#9ba0a3;max-width:66ch;font-size:15.5px}
+.tool{margin-top:clamp(24px,3vw,42px);display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr);
   gap:clamp(20px,3vw,46px);align-items:start}
-.grp{border-top:1px solid var(--edge);padding:16px 0}
-.grp:first-child{border-top:0;padding-top:0}
-.grp>span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7e8486}
-.chips{margin-top:11px;display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:rgba(255,255,255,.04);border:1px solid #3a3f41;color:#d9dcdd;font:inherit;font-size:13.5px;
-  padding:9px 14px;cursor:pointer}
-.chip:hover{border-color:#5f6568}
-.chip[aria-pressed="true"]{background:var(--flare);border-color:var(--flare);color:#2a0d00;font-weight:600}
-.rng{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.rng input{flex:1;min-width:180px;accent-color:var(--flare)}
-.rng output{font-family:var(--mono);font-size:14px;color:var(--warm);min-width:130px}
-.hint{margin-top:8px;font-size:12.5px;color:#7e8486}
-.ticket{background:var(--pit);border:1px solid var(--edge)}
-.ticket .tt{display:flex;justify-content:space-between;align-items:center;gap:14px;
+.q{border-top:1px solid var(--edge);padding:16px 0}
+.q:first-child{border-top:0;padding-top:0}
+.q[hidden]{display:none}
+.q-l{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#7e8486}
+.q-o{margin-top:11px;display:flex;flex-wrap:wrap;gap:8px}
+.opt{background:rgba(255,255,255,.04);border:1px solid #3a3f41;color:#d9dcdd;font:inherit;
+  font-size:13.5px;padding:9px 14px;cursor:pointer}
+.opt:hover{border-color:#5f6568}
+.opt[aria-pressed="true"]{background:var(--flare);border-color:var(--flare);color:#2a0d00;font-weight:600}
+.opt:focus-visible{outline:2px solid var(--flare);outline-offset:2px}
+.q-n{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.q-n input[type="range"]{flex:1;min-width:170px;accent-color:var(--flare)}
+.q-n input[type="range"]:disabled{opacity:.42}
+.q-n output{font-family:var(--mono);font-size:13.5px;color:var(--warm);min-width:118px}
+.cts{border-top:1px solid var(--edge);padding-top:16px;margin-top:16px}
+.cts>span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#7e8486}
+.cts-g{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.c-l{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:#7e8486;margin-bottom:6px}
+.c-l i{font-style:normal;color:#5d6366}
+.c-i{width:100%;font:inherit;font-size:15.5px;background:var(--pit);border:1px solid #3a3f41;
+  color:#e6e8e9;padding:10px 12px}
+.c-i:focus{outline:0;border-color:var(--flare)}
+.brief{position:sticky;top:76px;background:var(--pit);border:1px solid var(--edge)}
+.brief-h{display:flex;justify-content:space-between;align-items:center;gap:14px;
   padding:11px 15px;border-bottom:1px solid var(--edge)}
-.ticket .tt span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7e8486}
-.ticket pre{margin:0;padding:16px 15px;font-family:var(--mono);font-size:12.5px;line-height:1.72;
-  color:#dfe3e4;white-space:pre-wrap;word-break:break-word;min-height:300px}
-.copy{background:var(--flare);color:#2a0d00;border:0;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;padding:12px 18px;cursor:pointer;width:100%;font-weight:500}
-.copy:hover{background:#fff}
-#st{display:block;padding:10px 15px 14px;font-size:12.5px;color:#9ba0a3}
-.cnote{margin-top:18px;font-size:12.5px;color:#7e8486;max-width:72ch}
+.brief-h span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7e8486}
+.brief pre{margin:0;padding:16px 15px;font-family:var(--mono);font-size:12.5px;line-height:1.72;
+  color:#dfe3e4;white-space:pre-wrap;word-break:break-word;min-height:320px}
+#cp{display:block;width:100%;background:var(--flare);color:#2a0d00;border:0;font-family:var(--mono);
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:13px 18px;cursor:pointer;font-weight:500}
+#cp:hover{background:#fff}
+#st{display:block;padding:11px 15px 0;font-size:12.5px;color:#9ba0a3;min-height:1.3em}
+#st[data-bad="1"]{color:var(--warm)}
+.warn{padding:9px 15px 15px;font-size:12px;color:#7e8486;line-height:1.55}
+
+/* источники */
+.src{background:var(--coal);border-top:1px solid var(--edge);color:#9ba0a3}
+.src .wrap{padding:clamp(22px,3vw,38px) clamp(16px,3vw,38px);
+  display:grid;grid-template-columns:minmax(0,24fr) minmax(0,76fr);gap:clamp(16px,3vw,44px)}
+.src h2{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:#7e8486;font-weight:500}
+.src p{font-size:13.5px;max-width:86ch}
+.src .lnk{margin-top:10px;display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px}
+.src .lnk a{color:var(--flare)}
 
 footer{background:var(--pit);color:#8a9094;padding:clamp(26px,4vw,48px) 0;font-size:13px}
 .foot{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -145,10 +169,13 @@ footer a{color:#fff}
   .badges .wrap{grid-template-columns:1fr}
   .badges li{border-left:0;padding-left:0;border-top:1px solid #dfe3ea}
   .badges li:first-child{border-top:0}
-  .cols{grid-template-columns:1fr}
+  .tool{grid-template-columns:1fr}
+  .brief{position:static}
+  .cts-g{grid-template-columns:1fr}
+  .src .wrap{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
   td.o{display:none}
-  body{padding-bottom:62px}
+  body{padding-bottom:74px}
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
     background:var(--coal);border-top:1px solid var(--edge);padding:9px 13px}
   .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);font-size:11px;
@@ -162,7 +189,7 @@ footer a{color:#fff}
 <p class="notice">Independent redesign concept by Preview Factory · Not the official Reimagine Roofing website</p>
 
 <div class="alert"><div class="wrap">
-  <p>Roof open right now? Emergency tarping is one of the services they publish.</p>
+  <p>Roof open right now? Emergency tarping is one of their services.</p>
   <a href="tel:+14809007663">Call (480) 900-7663</a>
 </div></div>
 
@@ -186,157 +213,229 @@ footer a{color:#fff}
     </div>
     <div class="spec">
       <h2>Published record</h2>
-      <dl><div class="r"><dt>Region</dt><dd>Arizona</dd></div><div class="r"><dt>Services published</dt><dd>Eight, listed in their own menu</dd></div><div class="r"><dt>Published status</dt><dd>Veteran-operated · licensed &amp; insured</dd></div><div class="r"><dt>First step they publish</dt><dd>Free roof inspection</dd></div></dl>
+      <dl><div class="r"><dt>Region</dt><dd>Arizona</dd></div><div class="r"><dt>Services</dt><dd>Eight, from shingle to emergency tarping</dd></div><div class="r"><dt>Status</dt><dd>Veteran-operated · licensed &amp; insured</dd></div><div class="r"><dt>First step</dt><dd>Free roof inspection</dd></div></dl>
     </div>
   </div></section>
 
   <section class="field" id="frames"><div class="wrap">
-    <div class="field-head"><h2>Field images</h2><p>Photographs published by the company. Captions are frame numbers — we do not label someone else’s roof with a job we cannot verify.</p></div>
+    <div class="field-head"><h2>Field images</h2></div>
     <div class="frames"><figure>
       <img src="photos/f1.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
-      <figcaption>Frame 01 · their photograph</figcaption></figure><figure>
+      <figcaption>Frame 01</figcaption></figure><figure>
       <img src="photos/f3.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
-      <figcaption>Frame 02 · their photograph</figcaption></figure><figure>
+      <figcaption>Frame 02</figcaption></figure><figure>
       <img src="photos/f4.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
-      <figcaption>Frame 03 · their photograph</figcaption></figure><figure>
+      <figcaption>Frame 03</figcaption></figure><figure>
       <img src="photos/f2.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
-      <figcaption>Frame 04 · their photograph</figcaption></figure><figure>
+      <figcaption>Frame 04</figcaption></figure><figure>
       <img src="photos/f6.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
-      <figcaption>Frame 05 · their photograph</figcaption></figure></div>
+      <figcaption>Frame 05</figcaption></figure></div>
   </div></section>
 
   <section class="cat" id="services"><div class="wrap">
-    <div class="cat-head"><h2>Eight services, exactly as they list them.</h2><p>Taken from the company’s own Services menu, in their order and their wording. Nothing has been grouped, renamed or added.</p></div>
+    <div class="cat-head"><h2>Eight services.</h2><p>Shingle, tile, metal, foam and flat roofs — installation, replacement and repair, plus inspections and emergency work.</p></div>
     <table>
-      <thead><tr><th>№</th><th>Service</th><th style="text-align:right">Source</th></tr></thead>
+      <thead><tr><th>№</th><th>Service</th></tr></thead>
       <tbody><tr>
         <td class="i">01</td>
-        <td class="s">Shingle installation</td>
-        <td class="o">Their services menu</td></tr><tr>
+        <td class="s">Shingle installation</td></tr><tr>
         <td class="i">02</td>
-        <td class="s">Tile installation</td>
-        <td class="o">Their services menu</td></tr><tr>
+        <td class="s">Tile installation</td></tr><tr>
         <td class="i">03</td>
-        <td class="s">Metal installation</td>
-        <td class="o">Their services menu</td></tr><tr>
+        <td class="s">Metal installation</td></tr><tr>
         <td class="i">04</td>
-        <td class="s">Foam installation</td>
-        <td class="o">Their services menu</td></tr><tr>
+        <td class="s">Foam installation</td></tr><tr>
         <td class="i">05</td>
-        <td class="s">Flat roof replacement</td>
-        <td class="o">Their services menu</td></tr><tr>
+        <td class="s">Flat roof replacement</td></tr><tr>
         <td class="i">06</td>
-        <td class="s">Commercial roofing</td>
-        <td class="o">Their services menu</td></tr><tr>
+        <td class="s">Commercial roofing</td></tr><tr>
         <td class="i">07</td>
-        <td class="s">Free roof inspections</td>
-        <td class="o">Their services menu</td></tr><tr>
+        <td class="s">Free roof inspections</td></tr><tr>
         <td class="i">08</td>
-        <td class="s">Emergency tarping</td>
-        <td class="o">Their services menu</td></tr></tbody>
+        <td class="s">Emergency tarping</td></tr></tbody>
     </table>
   </div></section>
 
   <section class="badges"><ul class="wrap">
-    <li><b>Veteran-operated</b><span>As published on their site</span></li><li><b>Licensed &amp; insured</b><span>As published on their site</span></li><li><b>Free roof inspections</b><span>One of their listed services</span></li>
+    <li><b>Veteran-operated</b></li><li><b>Licensed &amp; insured</b></li><li><b>Free roof inspections</b></li>
   </ul></section>
 
   <section class="console" id="order"><div class="wrap">
     <h2>Write the work order.</h2>
-    <p class="lede">Pick what is on the roof. The ticket on the right rewrites itself as you go, and the button copies it so you can send it to them.</p>
-    <div class="cols">
-      <div>
-        <div class="grp" data-group="material">
-          <span>Roof type</span>
-          <div class="chips"><button type="button" class="chip" data-val="Shingle" aria-pressed="true">Shingle</button><button type="button" class="chip" data-val="Tile" aria-pressed="false">Tile</button><button type="button" class="chip" data-val="Metal" aria-pressed="false">Metal</button><button type="button" class="chip" data-val="Foam" aria-pressed="false">Foam</button><button type="button" class="chip" data-val="Flat roof" aria-pressed="false">Flat roof</button><button type="button" class="chip" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div>
-        </div><div class="grp" data-group="work">
-          <span>What is needed</span>
-          <div class="chips"><button type="button" class="chip" data-val="Replacement" aria-pressed="true">Replacement</button><button type="button" class="chip" data-val="New installation" aria-pressed="false">New installation</button><button type="button" class="chip" data-val="Repair" aria-pressed="false">Repair</button><button type="button" class="chip" data-val="Inspection first" aria-pressed="false">Inspection first</button></div>
-        </div><div class="grp" data-group="stories">
-          <span>Stories</span>
-          <div class="chips"><button type="button" class="chip" data-val="One" aria-pressed="true">One</button><button type="button" class="chip" data-val="Two" aria-pressed="false">Two</button><button type="button" class="chip" data-val="Three or more" aria-pressed="false">Three or more</button></div>
-        </div><div class="grp" data-group="urgency">
-          <span>Timing</span>
-          <div class="chips"><button type="button" class="chip" data-val="Planning ahead" aria-pressed="true">Planning ahead</button><button type="button" class="chip" data-val="Within a month" aria-pressed="false">Within a month</button><button type="button" class="chip" data-val="Active leak — urgent" aria-pressed="false">Active leak — urgent</button></div>
-        </div>
-        <div class="grp">
-          <span>Approximate roof area</span>
-          <div class="rng">
-            <input id="num" type="range" min="100" max="40000" step="10" value="2000"
-              aria-label="Approximate roof area">
-            <output id="numout">2000 sq ft</output>
-          </div>
-          <p class="hint">Roughly the footprint of the building is enough for a first conversation.</p>
+    <p class="lede">Say what is on the roof and what happened to it. The ticket on the right rewrites itself, and anything you do not know stays blank — that is useful information too.</p>
+    <div class="tool" id="tool">
+      <div class="picks">
+        <div class="q" data-key="material" data-label="Roof type"><span class="q-l">What is on the roof?</span><div class="q-o"><button type="button" class="opt" data-val="Shingle" aria-pressed="false">Shingle</button><button type="button" class="opt" data-val="Tile" aria-pressed="false">Tile</button><button type="button" class="opt" data-val="Metal" aria-pressed="false">Metal</button><button type="button" class="opt" data-val="Foam" aria-pressed="false">Foam</button><button type="button" class="opt" data-val="Flat roof" aria-pressed="false">Flat roof</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="work" data-label="What is needed"><span class="q-l">What do you need done?</span><div class="q-o"><button type="button" class="opt" data-val="Replacement" aria-pressed="false">Replacement</button><button type="button" class="opt" data-val="New installation" aria-pressed="false">New installation</button><button type="button" class="opt" data-val="Repair" aria-pressed="false">Repair</button><button type="button" class="opt" data-val="An inspection first" aria-pressed="false">An inspection first</button></div></div><div class="q" data-key="stories" data-label="Stories"><span class="q-l">How many stories?</span><div class="q-o"><button type="button" class="opt" data-val="One" aria-pressed="false">One</button><button type="button" class="opt" data-val="Two" aria-pressed="false">Two</button><button type="button" class="opt" data-val="Three or more" aria-pressed="false">Three or more</button></div></div><div class="q" data-key="urgency" data-label="Timing"><span class="q-l">How soon?</span><div class="q-o"><button type="button" class="opt" data-val="Planning ahead" aria-pressed="false">Planning ahead</button><button type="button" class="opt" data-val="Within a month" aria-pressed="false">Within a month</button><button type="button" class="opt" data-val="Active leak — urgent" aria-pressed="false">Active leak — urgent</button></div></div><div class="q" data-key="area" data-label="Approximate roof area" data-type="num"><span class="q-l">Approximate roof area</span><div class="q-n">
+          <input type="range" min="100" max="40000" step="100" value="100"
+            data-role="range" aria-label="Approximate roof area" disabled>
+          <output data-role="numout">Not stated</output>
+          <button type="button" class="opt" data-role="unknown" aria-pressed="true">I don’t know the area</button>
+        </div></div>
+        <div class="cts">
+          <span>If you want a call back</span>
+          <div class="cts-g"><div class="c" data-key="name" data-label="Name" data-contact="1">
+      <label class="c-l" for="ct-name">Name <i>optional</i></label>
+      <input class="c-i" id="ct-name" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="phone" data-label="Phone" data-contact="1">
+      <label class="c-l" for="ct-phone">Phone <i>optional</i></label>
+      <input class="c-i" id="ct-phone" type="tel"
+        inputmode="tel" autocomplete="off">
+    </div><div class="c" data-key="email" data-label="Email" data-contact="1">
+      <label class="c-l" for="ct-email">Email <i>optional</i></label>
+      <input class="c-i" id="ct-email" type="email"
+         autocomplete="off">
+    </div></div>
         </div>
       </div>
-      <div class="ticket">
-        <div class="tt"><span>Work order · draft</span><span class="m" style="color:#5d6366">Not sent</span></div>
+      <div class="brief">
+        <div class="brief-h"><span>Work order · draft</span><span>Not sent</span></div>
         <pre id="tk"></pre>
-        <button class="copy" id="cp" type="button">Copy the work order</button>
+        <button id="cp" type="button">Copy the work order</button>
         <span id="st"></span>
+        <p class="warn">Nothing leaves this page. The button only copies the ticket, and none of it is a quote or a price estimate.</p>
       </div>
     </div>
-    <p class="cnote">This page sends nothing. Measurements, condition, code requirements and any insurance claim are settled with Reimagine Roofing, not here.</p>
   </div></section>
 </main>
 
 <div class="bar"><a class="alt" href="tel:+14809007663">Call</a><a href="#order">Work order</a></div>
 
+<section class="src"><div class="wrap">
+  <h2>Where this came from</h2>
+  <div>
+    <p>The eight services, the published status and every photograph are taken from reimagineroofing.com. This concept adds no prices, financing offers, review scores, warranty terms or project counts.</p>
+    <div class="lnk">
+      <a href="https://www.reimagineroofing.com/" target="_blank" rel="noopener noreferrer">reimagineroofing.com ↗</a>
+      <a href="https://www.reimagineroofing.com/services/" target="_blank" rel="noopener noreferrer">Services ↗</a>
+      <a href="https://www.reimagineroofing.com/services/free-roof-inspection/" target="_blank" rel="noopener noreferrer">Free inspection ↗</a>
+    </div>
+  </div>
+</div></section>
+
 <footer><div class="wrap foot">
-  <div><h4>Concept</h4><p>Independent redesign concept prepared by Preview Factory for Reimagine Roofing. Not the company's
-  official website and no relationship or endorsement is implied.</p></div>
-  <div><h4>Their site</h4><p><a href="https://www.reimagineroofing.com/" target="_blank" rel="noopener noreferrer">reimagineroofing.com ↗</a><br><a href="tel:+14809007663">(480) 900-7663</a><br><a href="mailto:contact@reimagineroofing.com">contact@reimagineroofing.com</a></p></div>
-  <div><h4>Honest note</h4><p>Service names and photographs are published by Reimagine Roofing. No price, financing offer,
-  review score or warranty term appears here, because this page does not speak for the company.</p></div>
+  <div><h4>Reimagine Roofing</h4><p>Arizona<br><a href="tel:+14809007663">(480) 900-7663</a></p></div>
+  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  website, and no relationship or endorsement is implied.</p></div>
+  <div><h4>Their site</h4><p><a href="https://www.reimagineroofing.com/" target="_blank" rel="noopener noreferrer">reimagineroofing.com ↗</a><br><a href="mailto:contact@reimagineroofing.com">contact@reimagineroofing.com</a></p></div>
 </div></footer>
 
 <script>
 (function(){
-  var состояние={};
-  var поля=[{"key":"material","label":"Roof type","first":"Shingle"},{"key":"work","label":"What is needed","first":"Replacement"},{"key":"stories","label":"Stories","first":"One"},{"key":"urgency","label":"Timing","first":"Planning ahead"}];
-  поля.forEach(function(f){ состояние[f.key]=f.first; });
-  var ед={"key":"area","label":"Approximate roof area","unit":"sq ft","value":2000};
-  if(ед) состояние[ед.key]=ед.value+(ед.unit?' '+ед.unit:'');
+  var root=document.querySelector("#tool");
+  if(!root) return;
+  var выход=document.querySelector("#tk");
+  var состояние={}, ветка=null;
+  var РЕЖИМ="all", НЕТ="not stated";
 
-  function наряд(){
-    var L=['--- WORK ORDER (DRAFT) ---','For: Reimagine Roofing',''];
-    поля.forEach(function(f){ L.push(f.label+': '+состояние[f.key]); });
-    if(ед) L.push(ед.label+': '+состояние[ед.key]);
-    L.push('','Unconfirmed, to be checked on site:');
-    ["Current roof age and condition","Any insurance claim already opened","Access and parking for the crew"].forEach(function(u){ L.push('  - '+u); });
-    ["Emergency tarping is one of their published services if the roof is open right now."].forEach(function(u){ L.push('','Note: '+u); });
-    L.push('','Written on an independent concept page. Not a quote and not an order.');
+  function виден(g){
+    return !g.hasAttribute('data-for') ||
+      g.getAttribute('data-for').split('|').indexOf(ветка)>=0;
+  }
+
+  function бриф(){
+    var L=["WORK ORDER"+' (draft)','For: '+"Reimagine Roofing",''];
+    var отвечено=false, хвостКонтактов=[];
+    var длина=function(x){ return Array.isArray(x)?x.length:String(x).length; };
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      var строка=g.getAttribute('data-label')+': ';
+      var есть=!!(зн&&длина(зн));
+      if(есть) отвечено=true;
+      var текст=есть?(Array.isArray(зн)?зн.join(', '):зн):НЕТ;
+      if(g.hasAttribute('data-contact')){ if(есть) хвостКонтактов.push(строка+текст); return; }
+      if(есть||РЕЖИМ==='all') L.push(строка+текст);
+    });
+    if(!отвечено&&РЕЖИМ!=='all') L.push("Nothing chosen yet — pick an answer and this brief fills itself in.");
+    if(хвостКонтактов.length){ L.push(''); L=L.concat(хвостКонтактов); }
+    
+    L.push('', "To be checked on site:");
+    ["Current roof age and condition","Any insurance claim already opened","Access and parking for the crew"].forEach(function(x){ L.push('  - '+x); });
+    L.push('','Prepared on an independent concept page. Not a quote and not an order.');
     return L.join('\n');
   }
-  function перерисовать(){ document.getElementById('tk').textContent=наряд(); }
 
-  Array.prototype.forEach.call(document.querySelectorAll('.grp[data-group]'),function(g){
-    var key=g.getAttribute('data-group');
-    Array.prototype.forEach.call(g.querySelectorAll('.chip'),function(b){
+  function перерисовать(){
+    Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
+      g.hidden=!виден(g);
+    });
+    выход.textContent=бриф();
+  }
+
+  Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+    var ключ=g.getAttribute('data-key');
+
+    if(g.getAttribute('data-type')==='num'){
+      var ползунок=g.querySelector('[data-role="range"]');
+      var табло=g.querySelector('[data-role="numout"]');
+      var незнаю=g.querySelector('[data-role="unknown"]');
+      var ед="sq ft";
+      var неизвестноТекст="Not stated";
+      var поставить=function(){
+        состояние[ключ]=ползунок.value+(ед?' '+ед:'');
+        ползунок.disabled=false; незнаю.setAttribute('aria-pressed','false');
+        табло.textContent=состояние[ключ]; перерисовать();
+      };
+      var снять=function(){
+        состояние[ключ]=null; ползунок.disabled=true;
+        незнаю.setAttribute('aria-pressed','true');
+        табло.textContent=неизвестноТекст; перерисовать();
+      };
+      незнаю.addEventListener('click',function(){ if(ползунок.disabled) поставить(); else снять(); });
+      ползунок.addEventListener('input',поставить);
+      return;
+    }
+
+    var поле=g.querySelector('input[type]:not([type="range"])');
+    if(поле){
+      поле.addEventListener('input',function(){
+        состояние[ключ]=(поле.value||'').trim()||null; перерисовать();
+      });
+      return;
+    }
+
+    var мульти=g.hasAttribute('data-multi'), ветковый=g.hasAttribute('data-branch');
+    Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(b){
       b.addEventListener('click',function(){
-        Array.prototype.forEach.call(g.querySelectorAll('.chip'),function(x){x.setAttribute('aria-pressed','false');});
-        b.setAttribute('aria-pressed','true');
-        состояние[key]=b.getAttribute('data-val');
+        var v=b.getAttribute('data-val');
+        if(мульти){
+          var было=(состояние[ключ]||[]).slice();
+          var i=было.indexOf(v);
+          if(i<0) было.push(v); else было.splice(i,1);
+          состояние[ключ]=было.length?было:null;
+          b.setAttribute('aria-pressed', было.indexOf(v)>=0?'true':'false');
+        } else {
+          var тот= состояние[ключ]===v;
+          Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(x){
+            x.setAttribute('aria-pressed','false'); });
+          состояние[ключ]= тот?null:v;
+          b.setAttribute('aria-pressed', тот?'false':'true');
+          if(ветковый) ветка=состояние[ключ];
+        }
         перерисовать();
       });
     });
   });
-  var num=document.getElementById('num');
-  if(num&&ед){ num.addEventListener('input',function(){
-    var v=num.value+(ед.unit?' '+ед.unit:'');
-    document.getElementById('numout').textContent=v;
-    состояние[ед.key]=v; перерисовать();
-  }); }
 
-  document.getElementById('cp').addEventListener('click',function(){
-    var t=наряд(), st=document.getElementById('st');
-    var готово=function(){ st.textContent='Copied — paste it into an email or a text message.'; };
-    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(готово,function(){
-      st.textContent='Select the ticket above and copy it.';
-    });
-    else st.textContent='Select the ticket above and copy it.';
+  var кнопка=document.querySelector("#cp");
+  var строка=document.querySelector("#st");
+  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
+  кнопка.addEventListener('click',function(){
+    var t=выход.textContent;                     // ровно то, что видно на экране
+    function руками(){
+      сказать("The browser blocked copying — the ticket is selected above, copy it with Cmd+C or Ctrl+C.",true);
+      try{
+        var r=document.createRange(); r.selectNodeContents(выход);
+        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      }catch(e){}
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(function(){
+        сказать("Copied. Paste it into an email or a text message.",false);
+      },руками);
+    } else руками();
   });
   перерисовать();
-})();
-</script>
+})();</script>
 </body></html>

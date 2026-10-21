@@ -104,25 +104,54 @@ p{margin:0}ul{margin:0;padding:0;list-style:none}
 .steps-in a{color:#abccd7;text-decoration:underline;text-underline-offset:3px;font-size:13.5px;display:inline-block;margin-top:8px}
 
 /* обращение */
-.talk{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);align-items:stretch}
+.talk{display:grid;grid-template-columns:minmax(0,32fr) minmax(0,68fr);align-items:stretch}
 .talk-ph{position:relative;min-height:min(80vh,760px)}
 .talk-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.talk-form{padding:clamp(34px,5vw,80px) clamp(20px,4vw,70px);background:var(--stone)}
-.talk-form h2{font-size:clamp(30px,3.4vw,46px);max-width:14ch}
-.talk-form .sup{margin-top:14px;color:#4b5654;max-width:44ch}
-form{margin-top:26px;display:grid;gap:14px;max-width:620px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-label{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5d6a68;margin-bottom:6px}
-input,textarea{width:100%;font:inherit;font-size:16px;padding:13px 14px;border:1px solid rgba(28,28,24,.18);
+.talk-form{padding:clamp(30px,4vw,64px) clamp(20px,3vw,52px);background:var(--stone)}
+.talk-form h2{font-size:clamp(28px,3.2vw,44px);max-width:16ch}
+.talk-form .sup{margin-top:13px;color:#4b5654;max-width:58ch;font-size:15.5px}
+
+.tool{margin-top:clamp(20px,2.6vw,30px);display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:clamp(18px,2.4vw,32px);align-items:start}
+.q{padding:14px 0;border-top:1px solid rgba(28,28,24,.12)}
+.q:first-child{border-top:0;padding-top:0}
+.q[hidden]{display:none}
+.q-l{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d6a68}
+.q-o{margin-top:10px;display:flex;flex-wrap:wrap;gap:7px}
+.opt{background:#fcf9f2;border:1px solid rgba(28,28,24,.2);color:var(--ink);font:inherit;
+  font-size:14.5px;padding:9px 14px;border-radius:2px;cursor:pointer;text-align:left}
+.opt:hover{border-color:var(--water)}
+.opt[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fcf9f2}
+.cts{margin-top:18px;padding-top:16px;border-top:1px solid rgba(28,28,24,.12)}
+.cts-g{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.c-l{display:block;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:#5d6a68;margin-bottom:5px}
+.c-l i{font-style:normal;color:#93a09d}
+.c-i{width:100%;font:inherit;font-size:16px;padding:11px 12px;border:1px solid rgba(28,28,24,.18);
   background:#fcf9f2;color:var(--ink);border-radius:2px}
-textarea{min-height:110px;resize:vertical}
-input:focus,textarea:focus{outline:2px solid var(--water);outline-offset:-1px}
-.send{background:var(--ink);color:#fff;border:0;padding:15px 26px;font:inherit;font-size:15px;cursor:pointer;border-radius:2px}
-.send:hover{background:var(--water)}
-.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.note{font-size:12.5px;color:#6b7674;margin-top:12px;max-width:52ch}
-#out{display:none;margin-top:16px;width:100%;min-height:150px;font-family:var(--sans);font-size:13.5px;
-  background:#fcf9f2;border:1px solid rgba(28,28,24,.18);padding:12px;border-radius:2px}
+.c-i:focus{outline:2px solid var(--water);outline-offset:-1px}
+.opt:focus-visible{outline:2px solid var(--water);outline-offset:2px}
+.brief{position:sticky;top:74px;background:var(--deep);color:#e8edee;border-radius:2px;overflow:hidden}
+.brief-h{display:flex;justify-content:space-between;gap:10px;padding:11px 14px;
+  border-bottom:1px solid rgba(171,204,215,.22);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--pale)}
+.brief pre{margin:0;padding:14px;font-family:var(--sans);font-size:13px;line-height:1.72;
+  white-space:pre-wrap;word-break:break-word;min-height:236px;color:#dfe6e8}
+#cp{display:block;width:100%;border:0;background:var(--pale);color:var(--deep);font:inherit;
+  font-size:14.5px;padding:14px;cursor:pointer}
+#cp:hover{background:#fff}
+#st{display:block;padding:10px 14px 0;font-size:12.5px;color:#9fb0b4;min-height:1.3em}
+#st[data-bad="1"]{color:#ffd7c9}
+.warn{padding:9px 14px 15px;font-size:12px;color:#8fa3a8;line-height:1.55}
+
+/* источники — компактно, в самом низу */
+.src{background:var(--stone);border-top:1px solid rgba(28,28,24,.12)}
+.src-in{max-width:1320px;margin:0 auto;padding:clamp(22px,3vw,38px) clamp(18px,3vw,40px);
+  display:grid;grid-template-columns:minmax(0,26fr) minmax(0,74fr);gap:clamp(16px,2.4vw,40px)}
+.src h2{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:#6f7a74;font-weight:500}
+.src p{color:#4b5654;font-size:13.5px;max-width:84ch}
+.src .lnk{margin-top:10px;display:flex;gap:18px;flex-wrap:wrap}
+.src .lnk a{color:var(--water);font-size:13.5px;text-underline-offset:3px}
 
 footer{background:#0a1216;color:#8f9a9e;padding:clamp(28px,4vw,52px) 0;font-size:13.5px}
 .foot-in{max-width:1320px;margin:0 auto;padding:0 clamp(18px,3vw,40px);
@@ -143,15 +172,19 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
   .steps-in{grid-template-columns:1fr 1fr;gap:22px 0}
   .steps-in li{border-left:0;padding-left:0}
   .talk{grid-template-columns:1fr}
-  .talk-ph{min-height:46vh}
-  .two{grid-template-columns:1fr}
+  .talk-ph{min-height:42vh}
+  .tool{grid-template-columns:1fr}
+  .brief{position:static}
+  .cts-g{grid-template-columns:1fr}
+  .src-in{grid-template-columns:1fr}
   .foot-in{grid-template-columns:1fr}
-  body{padding-bottom:64px}
+  body{padding-bottom:78px}
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:10px;align-items:center;
     background:rgba(252,249,242,.96);border-top:1px solid rgba(28,28,24,.12);padding:10px 14px}
   .bar a{flex:1;text-align:center;background:var(--water);color:#fff;text-decoration:none;padding:13px;border-radius:2px;font-size:15px}
   .bar .tel{flex:0 0 auto;border:1px solid rgba(28,28,24,.2);color:var(--ink);background:transparent}
 }
+@media (max-width:420px){.book{display:none}.brand{font-size:19px}}
 @media (min-width:961px){.bar{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style></head>
@@ -176,22 +209,21 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
         <h1>Let&#39;s make your dream pool a reality.</h1>
         <p class="sup">Custom pool design and construction in Austin. Locally owned, certified professionals on every project, and a free design consultation to start.</p>
       </div>
-      <p class="cap lab">Project photograph published by Wild Basin Pools</p>
     </div>
     <span class="scroll">Scroll</span>
   </section>
 
   <section class="facts"><ul class="facts-in">
     <li><b>Ownership</b>
-      <h3>Locally owned, based in Austin</h3><p>As published on their site</p></li><li><b>Team</b>
-      <h3>Certified professionals on every project</h3><p>Their own published wording</p></li><li><b>First step</b>
-      <h3>Free design consultation</h3><p>Their published first step</p></li>
+      <h3>Locally owned, based in Austin</h3></li><li><b>Team</b>
+      <h3>Certified professionals on every project</h3></li><li><b>First step</b>
+      <h3>Free design consultation</h3></li>
   </ul></section>
 
   <section id="projects">
     <div class="mosaic-head">
-      <h2>Built projects, not renderings.</h2>
-      <p>Three of the builds the company publishes in its own portfolio. Photographs are theirs.</p>
+      <h2>Selected builds.</h2>
+      <p>Three projects from the portfolio, in Austin and the hill country.</p>
     </div>
     <div class="mosaic">
       <article class="tile big">
@@ -214,84 +246,201 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
       <div class="spread-tx">
         <span class="lab">About the company</span>
         <h2>Locally owned, built in Austin.</h2>
-        <p>Wild Basin Pools publishes that it is locally owned and based in Austin, with decades of combined construction expertise and certified professionals on every project.</p><p>High-end materials and custom finishes are named on their own About page. Nothing beyond that is claimed here.</p><p>The company publishes a step-by-step process, a financing page and a warranty page — all three are linked below.</p>
+        <p>Wild Basin Pools was founded in Austin by Oliver Moore and is run with his wife, Kari, and their team. Design and build stay with the same people, from the first conversation to the last day on site.</p><p>Beyond the pool: outdoor kitchens and covered patios, fire bowls and fire pits, spas, infinity edges and tanning ledges, architectural and pool lighting.</p>
       </div>
       <img class="sq" src="photos/f3.jpg" alt="Material detail by Wild Basin Pools" decoding="async">
     </div>
   </section>
 
   <section id="detail" class="details">
-    <figure><img src="photos/f3.jpg" alt="Project detail published by Wild Basin Pools" decoding="async"><figcaption>Their photograph</figcaption></figure><figure><img src="photos/f1.jpg" alt="Project detail published by Wild Basin Pools" decoding="async"><figcaption>Their photograph</figcaption></figure><figure><img src="photos/f2.jpg" alt="Project detail published by Wild Basin Pools" decoding="async"><figcaption>Their photograph</figcaption></figure><figure><img src="photos/f4.jpg" alt="Project detail published by Wild Basin Pools" decoding="async"><figcaption>Their photograph</figcaption></figure><figure><img src="photos/f7.jpg" alt="Project detail published by Wild Basin Pools" decoding="async"><figcaption>Their photograph</figcaption></figure><figure><img src="photos/f8.jpg" alt="Project detail published by Wild Basin Pools" decoding="async"><figcaption>Their photograph</figcaption></figure>
+    <figure><img src="photos/f3.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure><figure><img src="photos/f1.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure><figure><img src="photos/f2.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure><figure><img src="photos/f4.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure><figure><img src="photos/f7.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure><figure><img src="photos/f8.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure>
   </section>
 
   <section id="process" class="steps"><ul class="steps-in">
     <li><b>01</b><h3>Consultation</h3>
-      <p>They publish a free design consultation as the first step.</p><a href="https://wildbasinpools.com/contact/" target="_blank" rel="noopener noreferrer">Their contact page ↗</a></li><li><b>02</b><h3>Design</h3>
-      <p>Design and build are handled by the same team, as published on their site.</p><a href="https://wildbasinpools.com/about/" target="_blank" rel="noopener noreferrer">About the team ↗</a></li><li><b>03</b><h3>Financing</h3>
-      <p>A separate financing page is published by the company.</p><a href="https://wildbasinpools.com/" target="_blank" rel="noopener noreferrer">Their site ↗</a></li><li><b>04</b><h3>Warranty</h3>
-      <p>A separate warranty page is published by the company.</p><a href="https://wildbasinpools.com/" target="_blank" rel="noopener noreferrer">Their site ↗</a></li>
+      <p>An in-depth conversation about the space, the house and how you live in it.</p><a href="https://wildbasinpools.com/contact/" target="_blank" rel="noopener noreferrer">Book one ↗</a></li><li><b>02</b><h3>Design</h3>
+      <p>A custom design for the site — style, function and how the whole yard reads together.</p><a href="https://wildbasinpools.com/about/" target="_blank" rel="noopener noreferrer">The team ↗</a></li><li><b>03</b><h3>Build</h3>
+      <p>Construction with project oversight, and you kept informed at every stage.</p><a href="https://wildbasinpools.com/" target="_blank" rel="noopener noreferrer">Their site ↗</a></li><li><b>04</b><h3>Enjoy</h3>
+      <p>Guidance on looking after the pool once it is yours.</p><a href="https://wildbasinpools.com/" target="_blank" rel="noopener noreferrer">Their site ↗</a></li>
   </ul></section>
 
   <section id="talk" class="talk">
-    <div class="talk-ph"><img src="photos/f1.jpg" alt="Backyard by Wild Basin Pools" decoding="async"></div>
+    <div class="talk-ph"><img src="photos/f1.jpg" alt="Backyard built by Wild Basin Pools" decoding="async"></div>
     <div class="talk-form">
       <span class="lab">Start here</span>
       <h2>Tell us about the backyard.</h2>
-      <p class="sup">Fill this in and the page writes a short message you can copy into an email. Nothing is submitted from this concept page.</p>
-      <form id="f" autocomplete="off">
-        <div class="two">
-          <div><label for="name">Name</label><input id="name" type="text"></div>
-          <div><label for="area">Suburb or area</label><input id="area" type="text"></div>
+      <p class="sup">A few plain questions — no measurements, no technical words. The brief on the right writes itself as you answer, and you can send it when it reads right.</p>
+      <div class="tool" id="tool">
+        <div class="picks">
+          <div class="q" data-key="start" data-label="Project" data-branch="1"><span class="q-l">What are you thinking about?</span><div class="q-o"><button type="button" class="opt" data-val="A new pool" aria-pressed="false">A new pool</button><button type="button" class="opt" data-val="Updating the pool we have" aria-pressed="false">Updating the pool we have</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="spa" data-label="Spa" data-for="A new pool"><span class="q-l">Is a spa part of the picture?</span><div class="q-o"><button type="button" class="opt" data-val="Yes" aria-pressed="false">Yes</button><button type="button" class="opt" data-val="No" aria-pressed="false">No</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="why" data-label="Reason" data-for="Updating the pool we have"><span class="q-l">What is prompting it?</span><div class="q-o"><button type="button" class="opt" data-val="It looks dated" aria-pressed="false">It looks dated</button><button type="button" class="opt" data-val="Surface or tile is worn" aria-pressed="false">Surface or tile is worn</button><button type="button" class="opt" data-val="Equipment keeps failing" aria-pressed="false">Equipment keeps failing</button><button type="button" class="opt" data-val="We want to add a feature" aria-pressed="false">We want to add a feature</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="missing" data-label="What is missing" data-for="Not sure yet"><span class="q-l">What is missing out there now?</span><div class="q-o"><button type="button" class="opt" data-val="Somewhere to swim" aria-pressed="false">Somewhere to swim</button><button type="button" class="opt" data-val="Somewhere to sit outside" aria-pressed="false">Somewhere to sit outside</button><button type="button" class="opt" data-val="The yard is unusable" aria-pressed="false">The yard is unusable</button><button type="button" class="opt" data-val="Just curious" aria-pressed="false">Just curious</button></div></div><div class="q" data-key="feel" data-label="Feel"><span class="q-l">How should it feel?</span><div class="q-o"><button type="button" class="opt" data-val="Quiet and simple" aria-pressed="false">Quiet and simple</button><button type="button" class="opt" data-val="Resort-like" aria-pressed="false">Resort-like</button><button type="button" class="opt" data-val="Built around the kids" aria-pressed="false">Built around the kids</button><button type="button" class="opt" data-val="Sharp and modern" aria-pressed="false">Sharp and modern</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="use" data-label="Main use"><span class="q-l">How would you use it most?</span><div class="q-o"><button type="button" class="opt" data-val="Swimming" aria-pressed="false">Swimming</button><button type="button" class="opt" data-val="Lounging and entertaining" aria-pressed="false">Lounging and entertaining</button><button type="button" class="opt" data-val="Kids and friends" aria-pressed="false">Kids and friends</button><button type="button" class="opt" data-val="A bit of everything" aria-pressed="false">A bit of everything</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="extras" data-label="Also wanted" data-multi="1"><span class="q-l">Anything else in the picture? Pick as many as you like</span><div class="q-o"><button type="button" class="opt" data-val="Spa or water feature" aria-pressed="false">Spa or water feature</button><button type="button" class="opt" data-val="Outdoor kitchen or covered patio" aria-pressed="false">Outdoor kitchen or covered patio</button><button type="button" class="opt" data-val="Fire pit or fire feature" aria-pressed="false">Fire pit or fire feature</button><button type="button" class="opt" data-val="Lighting" aria-pressed="false">Lighting</button><button type="button" class="opt" data-val="Something for the yard" aria-pressed="false">Something for the yard</button><button type="button" class="opt" data-val="Just the pool for now" aria-pressed="false">Just the pool for now</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="yard" data-label="Yard"><span class="q-l">What is the yard like?</span><div class="q-o"><button type="button" class="opt" data-val="Flat" aria-pressed="false">Flat</button><button type="button" class="opt" data-val="Sloped" aria-pressed="false">Sloped</button><button type="button" class="opt" data-val="Hillside with a view" aria-pressed="false">Hillside with a view</button><button type="button" class="opt" data-val="Tight to the house" aria-pressed="false">Tight to the house</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="access" data-label="Machine access"><span class="q-l">Could machinery get in?</span><div class="q-o"><button type="button" class="opt" data-val="Wide side access" aria-pressed="false">Wide side access</button><button type="button" class="opt" data-val="Narrow gate" aria-pressed="false">Narrow gate</button><button type="button" class="opt" data-val="No side access" aria-pressed="false">No side access</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When would you like to start?</span><div class="q-o"><button type="button" class="opt" data-val="This year" aria-pressed="false">This year</button><button type="button" class="opt" data-val="Next year" aria-pressed="false">Next year</button><button type="button" class="opt" data-val="Just exploring" aria-pressed="false">Just exploring</button></div></div>
+          <div class="cts">
+            <span class="lab">If you would like them to call you back</span>
+            <div class="cts-g"><div class="c" data-key="name" data-label="Name" data-contact="1">
+      <label class="c-l" for="ct-name">Name <i>optional</i></label>
+      <input class="c-i" id="ct-name" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="area" data-label="Suburb or area" data-contact="1">
+      <label class="c-l" for="ct-area">Suburb or area <i>optional</i></label>
+      <input class="c-i" id="ct-area" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="phone" data-label="Phone" data-contact="1">
+      <label class="c-l" for="ct-phone">Phone <i>optional</i></label>
+      <input class="c-i" id="ct-phone" type="tel"
+        inputmode="tel" autocomplete="off">
+    </div><div class="c" data-key="email" data-label="Email" data-contact="1">
+      <label class="c-l" for="ct-email">Email <i>optional</i></label>
+      <input class="c-i" id="ct-email" type="email"
+         autocomplete="off">
+    </div></div>
+          </div>
         </div>
-        <div class="two">
-          <div><label for="phone">Phone</label><input id="phone" type="tel"></div>
-          <div><label for="email">Email</label><input id="email" type="email"></div>
-        </div>
-        <div><label for="plan">What you are planning</label><textarea id="plan" placeholder="Pool and spa, rough size, what the yard is like, when you would like to start."></textarea></div>
-        <div class="row"><button class="send" id="make" type="button">Build my message</button>
-          <span id="status" class="note" style="margin:0"></span></div>
-      </form>
-      <textarea id="out" readonly></textarea>
-      <p class="note">Nothing on this page is a quote. Pool size, access, slope, utilities and permits are confirmed by the company on site.</p>
+        <aside class="brief">
+          <div class="brief-h"><span>Design brief</span><span>Draft</span></div>
+          <pre id="tk"></pre>
+          <button id="cp" type="button">Copy the brief</button>
+          <span id="st"></span>
+          <p class="warn">Nothing leaves this page. The button only copies the text, and none of it is a quote or a price estimate.</p>
+        </aside>
+      </div>
     </div>
   </section>
 </main>
 
 <div class="bar"><a href="#talk">Book a consultation</a></div>
 
+<section class="src"><div class="src-in">
+  <h2>Where this came from</h2>
+  <div>
+    <p>Project names, photographs, the build steps and the list of what the company works on are taken from wildbasinpools.com. This concept adds no prices, timelines, review scores, awards or guarantees.</p>
+    <div class="lnk">
+      <a href="https://wildbasinpools.com/" target="_blank" rel="noopener noreferrer">wildbasinpools.com ↗</a>
+      <a href="https://wildbasinpools.com/contact/" target="_blank" rel="noopener noreferrer">Their contact page ↗</a>
+      <a href="mailto:oliver@wildbasinpools.com">oliver@wildbasinpools.com</a>
+    </div>
+  </div>
+</div></section>
+
 <footer><div class="foot-in">
-  <div><h4>Concept</h4><p>Independent redesign concept prepared by Preview Factory for Wild Basin Pools. Not the company's
-  official website and no relationship or endorsement is implied.</p></div>
-  <div><h4>Their site</h4><p><a href="https://wildbasinpools.com/" target="_blank" rel="noopener noreferrer">wildbasinpools.com ↗</a><br>
-  <a href="mailto:oliver@wildbasinpools.com">oliver@wildbasinpools.com</a></p></div>
-  <div><h4>Honest note</h4><p>Project names and photographs are published by Wild Basin Pools. Nothing here is a quote:
-  design, access, permits and price need the company's confirmation.</p></div>
+  <div><h4>Wild Basin Pools</h4><p>Austin, Texas</p></div>
+  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  website, and no relationship or endorsement is implied.</p></div>
+  <div><h4>Their site</h4><p><a href="https://wildbasinpools.com/" target="_blank" rel="noopener noreferrer">wildbasinpools.com ↗</a></p></div>
 </div></footer>
 
 <script>
 (function(){
-  var $=function(s){return document.querySelector(s)};
-  function текст(){
-    var v=function(i){return ($(i).value||'').trim()};
-    var L=['Enquiry for Wild Basin Pools','',
-      'Name: '+(v('#name')||'—'),
-      'Area: '+(v('#area')||'—'),
-      'Phone: '+(v('#phone')||'—'),
-      'Email: '+(v('#email')||'—'),'',
-      'Planning:','  '+(v('#plan')||'—'),'',
-      'Sent from an independent concept page. Not a quote and not an order.'];
+  var root=document.querySelector("#tool");
+  if(!root) return;
+  var выход=document.querySelector("#tk");
+  var состояние={}, ветка=null;
+  var РЕЖИМ="omit", НЕТ="not stated";
+
+  function виден(g){
+    return !g.hasAttribute('data-for') ||
+      g.getAttribute('data-for').split('|').indexOf(ветка)>=0;
+  }
+
+  function бриф(){
+    var L=["POOL DESIGN BRIEF"+' (draft)','For: '+"Wild Basin Pools",''];
+    var отвечено=false, хвостКонтактов=[];
+    var длина=function(x){ return Array.isArray(x)?x.length:String(x).length; };
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      var строка=g.getAttribute('data-label')+': ';
+      var есть=!!(зн&&длина(зн));
+      if(есть) отвечено=true;
+      var текст=есть?(Array.isArray(зн)?зн.join(', '):зн):НЕТ;
+      if(g.hasAttribute('data-contact')){ if(есть) хвостКонтактов.push(строка+текст); return; }
+      if(есть||РЕЖИМ==='all') L.push(строка+текст);
+    });
+    if(!отвечено&&РЕЖИМ!=='all') L.push("Nothing chosen yet — answer anything above and this brief fills itself in.");
+    if(хвостКонтактов.length){ L.push(''); L=L.concat(хвостКонтактов); }
+    
+    L.push('','Prepared on an independent concept page. Not a quote and not an order.');
     return L.join('\n');
   }
-  $('#make').addEventListener('click',function(){
-    var t=текст(); var o=$('#out'); o.style.display='block'; o.value=t;
-    var готово=function(){ $('#status').textContent='Copied — paste it into an email or a message.'; };
-    function запасной(){ var o=$('#out'); o.removeAttribute('readonly'); o.select();
-      try{ document.execCommand('copy'); готово(); }
-      catch(e){ $('#status').textContent='Select the text below and copy it.'; }
-      o.setAttribute('readonly','readonly'); }
-    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(готово,запасной);
-    else запасной();
+
+  function перерисовать(){
+    Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
+      g.hidden=!виден(g);
+    });
+    выход.textContent=бриф();
+  }
+
+  Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+    var ключ=g.getAttribute('data-key');
+
+    if(g.getAttribute('data-type')==='num'){
+      var ползунок=g.querySelector('[data-role="range"]');
+      var табло=g.querySelector('[data-role="numout"]');
+      var незнаю=g.querySelector('[data-role="unknown"]');
+      var ед="";
+      var неизвестноТекст="Not stated";
+      var поставить=function(){
+        состояние[ключ]=ползунок.value+(ед?' '+ед:'');
+        ползунок.disabled=false; незнаю.setAttribute('aria-pressed','false');
+        табло.textContent=состояние[ключ]; перерисовать();
+      };
+      var снять=function(){
+        состояние[ключ]=null; ползунок.disabled=true;
+        незнаю.setAttribute('aria-pressed','true');
+        табло.textContent=неизвестноТекст; перерисовать();
+      };
+      незнаю.addEventListener('click',function(){ if(ползунок.disabled) поставить(); else снять(); });
+      ползунок.addEventListener('input',поставить);
+      return;
+    }
+
+    var поле=g.querySelector('input[type]:not([type="range"])');
+    if(поле){
+      поле.addEventListener('input',function(){
+        состояние[ключ]=(поле.value||'').trim()||null; перерисовать();
+      });
+      return;
+    }
+
+    var мульти=g.hasAttribute('data-multi'), ветковый=g.hasAttribute('data-branch');
+    Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(b){
+      b.addEventListener('click',function(){
+        var v=b.getAttribute('data-val');
+        if(мульти){
+          var было=(состояние[ключ]||[]).slice();
+          var i=было.indexOf(v);
+          if(i<0) было.push(v); else было.splice(i,1);
+          состояние[ключ]=было.length?было:null;
+          b.setAttribute('aria-pressed', было.indexOf(v)>=0?'true':'false');
+        } else {
+          var тот= состояние[ключ]===v;
+          Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(x){
+            x.setAttribute('aria-pressed','false'); });
+          состояние[ключ]= тот?null:v;
+          b.setAttribute('aria-pressed', тот?'false':'true');
+          if(ветковый) ветка=состояние[ключ];
+        }
+        перерисовать();
+      });
+    });
   });
-})();
-</script>
+
+  var кнопка=document.querySelector("#cp");
+  var строка=document.querySelector("#st");
+  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
+  кнопка.addEventListener('click',function(){
+    var t=выход.textContent;                     // ровно то, что видно на экране
+    function руками(){
+      сказать("The browser blocked copying — the brief is selected above, copy it with Cmd+C or Ctrl+C.",true);
+      try{
+        var r=document.createRange(); r.selectNodeContents(выход);
+        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      }catch(e){}
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(function(){
+        сказать("Copied. Paste it into an email or a message to them.",false);
+      },руками);
+    } else руками();
+  });
+  перерисовать();
+})();</script>
 </body></html>

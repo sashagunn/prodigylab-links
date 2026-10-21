@@ -98,26 +98,55 @@ p{margin:0}ul{margin:0;padding:0;list-style:none}
 .proc .links{display:flex;gap:22px;flex-wrap:wrap;margin-top:14px}
 .proc a{color:var(--clay);text-decoration:underline;text-underline-offset:4px;font-size:14px}
 
-/* письмо */
-.letter{padding:clamp(44px,6vw,92px) 0}
-.letter-in{max-width:760px;margin:0 auto;text-align:center}
+/* письмо: выбор на линейках слева, живое письмо справа */
+.letter{padding:clamp(40px,5.4vw,84px) 0;border-top:1px solid var(--rule)}
+.letter-top{max-width:760px;margin:0 auto;text-align:center}
 .letter h2{font-size:clamp(26px,3.2vw,44px)}
-.letter .sup{margin-top:14px;color:var(--soft);font-size:15.5px}
-form{margin-top:clamp(24px,3vw,40px);text-align:left;display:grid;gap:0}
-.fl{display:grid;grid-template-columns:minmax(0,26fr) minmax(0,74fr);gap:16px;align-items:center;
-  border-bottom:1px solid var(--rule);padding:12px 0}
-label{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
-input,textarea{width:100%;font:inherit;font-size:16px;border:0;background:transparent;color:var(--ink);padding:4px 0}
-textarea{min-height:92px;resize:vertical}
-input:focus,textarea:focus{outline:0;border-bottom:1px solid var(--bronze)}
-.go{margin-top:24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.send{background:var(--ink);color:var(--bone);border:0;padding:15px 30px;font:inherit;font-size:13px;
-  letter-spacing:.18em;text-transform:uppercase;cursor:pointer}
-.send:hover{background:var(--bronze)}
-#status{font-size:13px;color:var(--soft)}
-#out{display:none;margin-top:18px;width:100%;min-height:150px;font-family:var(--sans);font-size:13.5px;
-  background:var(--page);border:1px solid var(--rule);padding:13px}
-.fine{margin-top:16px;font-size:12.5px;color:var(--mute)}
+.letter .sup{margin-top:13px;color:var(--soft);font-size:15.5px}
+.tool{margin-top:clamp(26px,3.4vw,46px);display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:clamp(24px,4vw,64px);align-items:start}
+.q{padding:15px 0;border-bottom:1px solid var(--rule)}
+.q[hidden]{display:none}
+.q-l{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.q-o{margin-top:11px;display:flex;flex-wrap:wrap;gap:7px}
+.opt{background:transparent;border:1px solid var(--rule);color:var(--ink);font:inherit;
+  font-size:15px;padding:9px 15px;cursor:pointer;font-family:var(--disp)}
+.opt:hover{border-color:var(--bronze)}
+.opt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bone)}
+.opt:focus-visible{outline:2px solid var(--bronze);outline-offset:2px}
+.cts{margin-top:22px}
+.cts>span{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.cts-g{margin-top:6px}
+.c{display:grid;grid-template-columns:minmax(0,30fr) minmax(0,70fr);gap:14px;align-items:center;
+  border-bottom:1px solid var(--rule);padding:11px 0}
+.c-l{font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.c-l i{font-style:normal;text-transform:none;letter-spacing:.02em;color:#a7a39b}
+.c-i{width:100%;font:inherit;font-size:16px;border:0;background:transparent;color:var(--ink);padding:4px 0}
+.c-i:focus{outline:0;border-bottom:1px solid var(--bronze)}
+.brief{position:sticky;top:18px;border:1px solid var(--rule);background:var(--page)}
+.brief-h{display:flex;justify-content:space-between;gap:10px;padding:11px 15px;
+  border-bottom:1px solid var(--rule);font-family:var(--sans);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.brief pre{margin:0;padding:17px 15px;font-family:var(--sans);font-size:13px;line-height:1.78;
+  white-space:pre-wrap;word-break:break-word;min-height:270px;color:var(--soft)}
+#cp{display:block;width:100%;background:var(--ink);color:var(--bone);border:0;font:inherit;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:15px;cursor:pointer}
+#cp:hover{background:var(--bronze)}
+#st{display:block;padding:11px 15px 0;font-size:12.5px;color:var(--soft);min-height:1.3em}
+#st[data-bad="1"]{color:#9b4a2a}
+.warn{padding:9px 15px 15px;font-size:12px;color:var(--mute);line-height:1.55}
+
+/* источники */
+.src{border-top:1px solid var(--rule);background:var(--page)}
+.src .wrap{padding:clamp(22px,3vw,38px) clamp(18px,4vw,46px);
+  display:grid;grid-template-columns:minmax(0,24fr) minmax(0,76fr);gap:clamp(16px,3vw,44px)}
+.src h2{font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);font-weight:500}
+.src p{font-size:13.5px;color:var(--soft);max-width:84ch}
+.src .lnk{margin-top:10px;display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px}
+.src .lnk a{color:var(--bronze)}
 
 footer{border-top:1px solid var(--rule);background:var(--page)}
 footer .wrap{padding:clamp(26px,4vw,48px) clamp(18px,4vw,46px);
@@ -131,13 +160,16 @@ footer a{color:var(--ink)}
   .paths-in{grid-template-columns:1fr}
   .proc .wrap{grid-template-columns:1fr}
   footer .wrap{grid-template-columns:1fr}
-  .fl{grid-template-columns:1fr;gap:4px;align-items:start}
+  .tool{grid-template-columns:1fr}
+  .brief{position:static}
+  .c{grid-template-columns:1fr;gap:3px;align-items:start}
+  .src .wrap{grid-template-columns:1fr}
   .mast-nav a{font-size:10px}
   .strip{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(190px,1fr);
     overflow-x:auto;padding-bottom:10px;scroll-snap-type:x proximity}
   .strip figure{scroll-snap-align:start}
   .plate img{height:46vh}
-  body{padding-bottom:62px}
+  body{padding-bottom:74px}
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:10px;
     background:var(--bone);border-top:1px solid var(--rule);padding:10px 14px}
   .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-size:11px;
@@ -168,43 +200,42 @@ footer a{color:var(--ink)}
 <main>
   <figure class="plate wrap" style="margin-left:auto;margin-right:auto">
     <img src="photos/k01.jpg" alt="Room completed by Kitchen Design Concepts" width="1600" height="1000">
-    <figcaption><span class="sc">Plate I — photograph published by Kitchen Design Concepts</span><span class="sc">Plate I</span></figcaption>
+    <figcaption><span class="sc">Plate I</span><span class="sc">Dallas, Texas</span></figcaption>
   </figure>
 
   <section class="essay" id="essay"><div class="wrap essay-in">
     <div>
       <h2>Elegant design. Reliable value. Excellent craftsmanship.</h2>
-      <p class="lede">That line is the company&#39;s own. Everything on this page comes from what they publish; nothing has been added to it.</p>
-      <div class="body-tx"><p>Kitchen Design Concepts remodels kitchens, bathrooms, outdoor kitchens and whole homes in Dallas and the surrounding area. Design, demolition and installation are published as one turnkey job rather than three separate trades to coordinate.</p><p>Alongside a full kitchen remodel the company publishes a lighter route of its own, Kitchen Revive, and sells cabinets as a service in their own right. Additions and ‘other spaces’ round out the list.</p><p>What the company does not publish is a price, a timeline, a project count or a named designer. None of those appear here either. The first real conversation is theirs to have, and their own process page is linked below.</p></div>
+      <p class="lede">Dallas, since 2004.</p>
+      <div class="body-tx"><p>Kitchen Design Concepts remodels kitchens, bathrooms, outdoor living spaces, whole homes and additions across the Dallas metroplex. Design, demolition and installation are one job here, not three trades to coordinate yourself.</p><p>There are two ways in. A full remodel, designed, managed and delivered from the first conversation to the final walkthrough. Or Revive — for a room whose layout already works, refreshed without the cost of a full remodel.</p></div>
     </div>
     <div class="index">
-      <h3>Index of published services</h3>
+      <h3>What they remodel</h3>
       <ol><li>Kitchen remodeling</li><li>Kitchen Revive<em>Their own name for a lighter refresh.</em></li><li>Kitchen cabinets</li><li>Outdoor kitchens</li><li>Bathrooms</li><li>Other spaces</li><li>Whole home</li><li>Additions</li></ol>
     </div>
   </div></section>
 
   <section class="paths" id="paths"><div class="wrap">
-    <div class="paths-head"><h2>Two routes, both published by them.</h2>
-      <span class="sc">Not a package and not a price list</span></div>
+    <div class="paths-head"><h2>Two routes.</h2></div>
     <div class="paths-in">
       <article class="path">
-        <img src="photos/k02.jpg" alt="Kitchen remodeling — photograph published by Kitchen Design Concepts" decoding="async">
+        <img src="photos/k02.jpg" alt="Full remodel — photograph published by Kitchen Design Concepts" decoding="async">
         <span class="code">Route A</span>
-        <h3>Kitchen remodeling</h3>
-        <p class="lead">The full job, published as design, demolition and installation together.</p>
-        <ul><li>Listed first among their services.</li><li>Cabinets are also offered as a service on their own.</li><li>Scope, drawings and schedule are set with them, not here.</li></ul>
+        <h3>Full remodel</h3>
+        <p class="lead">Designed, managed and delivered from the first conversation to the final walkthrough.</p>
+        <ul><li>The layout is open to change.</li><li>Cabinets, counters, appliances and lighting are chosen together.</li><li>Can run alongside a bathroom, an addition or a whole-home project.</li></ul>
       </article><article class="path">
-        <img src="photos/k03.jpg" alt="Kitchen Revive — photograph published by Kitchen Design Concepts" decoding="async">
+        <img src="photos/k03.jpg" alt="Revive — photograph published by Kitchen Design Concepts" decoding="async">
         <span class="code">Route B</span>
-        <h3>Kitchen Revive</h3>
-        <p class="lead">Their own name for the lighter route, published beside the full remodel.</p>
-        <ul><li>Published as a separate service, not as a discount on the first.</li><li>What it includes is described on their site in their words.</li><li>Nothing about cost or duration is stated here.</li></ul>
+        <h3>Revive</h3>
+        <p class="lead">Their own service for a room whose layout already works.</p>
+        <ul><li>Refreshes how the room looks and feels, without the cost of a full remodel.</li><li>Offered for kitchens, bathrooms and other spaces.</li><li>The layout stays where it is.</li></ul>
       </article>
     </div>
   </div></section>
 
   <section class="plates" id="plates"><div class="wrap">
-    <div class="plates-head"><h2>Plates</h2><p>Photographs taken from the company’s own pages. The captions are their own file names put into words — nothing about these rooms has been invented here.</p></div>
+    <div class="plates-head"><h2>Plates</h2></div>
     <div class="strip">
       <figure>
         <img src="photos/k04.jpg" alt="Lakewood primary bath — photograph published by Kitchen Design Concepts" decoding="async">
@@ -225,70 +256,192 @@ footer a{color:var(--ink)}
   </div></section>
 
   <section class="proc" id="process"><div class="wrap">
-    <h2>Their published process</h2>
+    <h2>Their process</h2>
     <div>
-      <p>The company publishes a step-by-step process page and a services page. Both are linked here rather than paraphrased.</p>
+      <p>A qualifying meeting, a home visit, design and selections, then construction with the same team through to the end.</p>
       <div class="links">
         <a href="https://kitchendesignconcepts.com/our-process/" target="_blank" rel="noopener noreferrer">Their process page ↗</a>
         <a href="https://kitchendesignconcepts.com/our-services/" target="_blank" rel="noopener noreferrer">Their services page ↗</a>
-        <a href="https://kitchendesignconcepts.com/" target="_blank" rel="noopener noreferrer">kitchendesignconcepts.com ↗</a>
       </div>
     </div>
   </div></section>
 
-  <section class="letter" id="letter"><div class="wrap letter-in">
-    <span class="sc">Start here</span>
-    <h2>Write to them about the room.</h2>
-    <p class="sup">Fill this in and the page composes a short message you can copy into an email or a text. Nothing is submitted from this concept page.</p>
-    <form id="f" autocomplete="off">
-      <div class="fl"><label for="name">Name</label><input id="name" type="text"></div>
-      <div class="fl"><label for="area">Neighbourhood</label><input id="area" type="text"></div>
-      <div class="fl"><label for="phone">Phone</label><input id="phone" type="tel"></div>
-      <div class="fl"><label for="email">Email</label><input id="email" type="email"></div>
-      <div class="fl"><label for="room">The room</label><input id="room" type="text" placeholder="Kitchen, bathroom, outdoor kitchen, whole home…"></div>
-      <div class="fl"><label for="plan">What you have in mind</label><textarea id="plan" placeholder="What the room is like now, what you would like it to be, and when you would like to start."></textarea></div>
-      <div class="go"><button class="send" id="make" type="button">Compose the message</button><span id="status"></span></div>
-    </form>
-    <textarea id="out" readonly></textarea>
-    <p class="fine">Nothing here is a quote. Scope, cabinetry, timing and price are confirmed by Kitchen Design Concepts.</p>
+  <section class="letter" id="letter"><div class="wrap">
+    <div class="letter-top">
+      <span class="sc">Start here</span>
+      <h2>Write to them about the room.</h2>
+      <p class="sup">Answer what you can — the questions change with the route you pick, and the letter on the right writes itself. Send it when it reads the way you would say it.</p>
+    </div>
+    <div class="tool" id="tool">
+      <div class="picks">
+        <div class="q" data-key="route" data-label="Route" data-branch="1"><span class="q-l">Which way are you leaning?</span><div class="q-o"><button type="button" class="opt" data-val="A full remodel" aria-pressed="false">A full remodel</button><button type="button" class="opt" data-val="Revive — keep the layout" aria-pressed="false">Revive — keep the layout</button><button type="button" class="opt" data-val="Help me decide" aria-pressed="false">Help me decide</button></div></div><div class="q" data-key="change" data-label="Should change" data-multi="1" data-for="A full remodel"><span class="q-l">What should change? Pick as many as you like</span><div class="q-o"><button type="button" class="opt" data-val="The layout" aria-pressed="false">The layout</button><button type="button" class="opt" data-val="Cabinets" aria-pressed="false">Cabinets</button><button type="button" class="opt" data-val="Counters" aria-pressed="false">Counters</button><button type="button" class="opt" data-val="Appliances" aria-pressed="false">Appliances</button><button type="button" class="opt" data-val="Lighting" aria-pressed="false">Lighting</button><button type="button" class="opt" data-val="Everything" aria-pressed="false">Everything</button></div></div><div class="q" data-key="bother" data-label="Bothers most" data-for="Revive — keep the layout"><span class="q-l">What bothers you most as it stands?</span><div class="q-o"><button type="button" class="opt" data-val="Cabinet fronts" aria-pressed="false">Cabinet fronts</button><button type="button" class="opt" data-val="Counters" aria-pressed="false">Counters</button><button type="button" class="opt" data-val="Hardware and lighting" aria-pressed="false">Hardware and lighting</button><button type="button" class="opt" data-val="The colour of it all" aria-pressed="false">The colour of it all</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="driving" data-label="What is driving it" data-for="Help me decide"><span class="q-l">What is driving it?</span><div class="q-o"><button type="button" class="opt" data-val="It looks dated" aria-pressed="false">It looks dated</button><button type="button" class="opt" data-val="It does not work for how we cook" aria-pressed="false">It does not work for how we cook</button><button type="button" class="opt" data-val="Something is failing" aria-pressed="false">Something is failing</button><button type="button" class="opt" data-val="Getting the house ready to sell" aria-pressed="false">Getting the house ready to sell</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="far" data-label="How far" data-for="Help me decide"><span class="q-l">How far would you be willing to go?</span><div class="q-o"><button type="button" class="opt" data-val="Surfaces only" aria-pressed="false">Surfaces only</button><button type="button" class="opt" data-val="Open to moving things" aria-pressed="false">Open to moving things</button><button type="button" class="opt" data-val="Whatever it takes" aria-pressed="false">Whatever it takes</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="keep" data-label="Should stay" data-multi="1"><span class="q-l">What should stay as it is?</span><div class="q-o"><button type="button" class="opt" data-val="The layout" aria-pressed="false">The layout</button><button type="button" class="opt" data-val="The cabinets" aria-pressed="false">The cabinets</button><button type="button" class="opt" data-val="The appliances" aria-pressed="false">The appliances</button><button type="button" class="opt" data-val="The floor" aria-pressed="false">The floor</button><button type="button" class="opt" data-val="Nothing in particular" aria-pressed="false">Nothing in particular</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="today" data-label="The room today"><span class="q-l">The room as it is now</span><div class="q-o"><button type="button" class="opt" data-val="Original to the house" aria-pressed="false">Original to the house</button><button type="button" class="opt" data-val="Remodelled once before" aria-pressed="false">Remodelled once before</button><button type="button" class="opt" data-val="Part of a bigger project" aria-pressed="false">Part of a bigger project</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="rooms" data-label="Other rooms"><span class="q-l">Anything beyond the kitchen?</span><div class="q-o"><button type="button" class="opt" data-val="Just the kitchen" aria-pressed="false">Just the kitchen</button><button type="button" class="opt" data-val="A bathroom too" aria-pressed="false">A bathroom too</button><button type="button" class="opt" data-val="Whole home" aria-pressed="false">Whole home</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When would you like to start?</span><div class="q-o"><button type="button" class="opt" data-val="Ready now" aria-pressed="false">Ready now</button><button type="button" class="opt" data-val="In a few months" aria-pressed="false">In a few months</button><button type="button" class="opt" data-val="Just exploring" aria-pressed="false">Just exploring</button></div></div>
+        <div class="cts">
+          <span>If you would like a reply</span>
+          <div class="cts-g"><div class="c" data-key="name" data-label="Name" data-contact="1">
+      <label class="c-l" for="ct-name">Name <i>optional</i></label>
+      <input class="c-i" id="ct-name" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="area" data-label="Neighbourhood" data-contact="1">
+      <label class="c-l" for="ct-area">Neighbourhood <i>optional</i></label>
+      <input class="c-i" id="ct-area" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="phone" data-label="Phone" data-contact="1">
+      <label class="c-l" for="ct-phone">Phone <i>optional</i></label>
+      <input class="c-i" id="ct-phone" type="tel"
+        inputmode="tel" autocomplete="off">
+    </div><div class="c" data-key="email" data-label="Email" data-contact="1">
+      <label class="c-l" for="ct-email">Email <i>optional</i></label>
+      <input class="c-i" id="ct-email" type="email"
+         autocomplete="off">
+    </div></div>
+        </div>
+      </div>
+      <aside class="brief">
+        <div class="brief-h"><span>Your letter</span><span>Draft</span></div>
+        <pre id="tk"></pre>
+        <button id="cp" type="button">Copy the letter</button>
+        <span id="st"></span>
+        <p class="warn">Nothing leaves this page. The button only copies the text, and none of it is a quote, a schedule or a price estimate.</p>
+      </aside>
+    </div>
   </div></section>
 </main>
 
 <div class="bar"><a class="alt" href="tel:+12143908300">Call</a><a href="#letter">Write to them</a></div>
 
+<section class="src"><div class="wrap">
+  <h2>Where this came from</h2>
+  <div>
+    <p>The service list, the description of Revive, the process and every photograph are taken from kitchendesignconcepts.com. This concept adds no prices, timelines, review scores, awards or guarantees.</p>
+    <div class="lnk">
+      <a href="https://kitchendesignconcepts.com/" target="_blank" rel="noopener noreferrer">kitchendesignconcepts.com ↗</a>
+      <a href="https://kitchendesignconcepts.com/our-services/" target="_blank" rel="noopener noreferrer">Services ↗</a>
+      <a href="https://kitchendesignconcepts.com/our-process/" target="_blank" rel="noopener noreferrer">Process ↗</a>
+    </div>
+  </div>
+</div></section>
+
 <footer><div class="wrap">
-  <div><h4>Concept</h4><p>Independent redesign concept prepared by Preview Factory for Kitchen Design Concepts. Not the company's
-  official website and no relationship or endorsement is implied.</p></div>
-  <div><h4>Their site</h4><p><a href="https://kitchendesignconcepts.com/" target="_blank" rel="noopener noreferrer">kitchendesignconcepts.com ↗</a><br><a href="tel:+12143908300">(214) 390-8300</a></p></div>
-  <div><h4>Honest note</h4><p>Service names and photographs are published by Kitchen Design Concepts. No price, timeline, review,
-  award or project count appears here, because the company does not publish one.</p></div>
+  <div><h4>Kitchen Design Concepts</h4><p>Dallas, Texas<br><a href="tel:+12143908300">(214) 390-8300</a></p></div>
+  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  website, and no relationship or endorsement is implied.</p></div>
+  <div><h4>Their site</h4><p><a href="https://kitchendesignconcepts.com/" target="_blank" rel="noopener noreferrer">kitchendesignconcepts.com ↗</a></p></div>
 </div></footer>
 
 <script>
 (function(){
-  var $=function(s){return document.querySelector(s)};
-  function письмо(){
-    var v=function(i){var e=$(i);return e&&e.value?e.value.trim():''};
-    var L=['Enquiry for Kitchen Design Concepts','',
-      'Name: '+(v('#name')||'—'),
-      'Neighbourhood: '+(v('#area')||'—'),
-      'Phone: '+(v('#phone')||'—'),
-      'Email: '+(v('#email')||'—'),
-      'Room: '+(v('#room')||'—'),'',
-      'In mind:','  '+(v('#plan')||'—'),'',
-      'Sent from an independent concept page. Not a quote and not an order.'];
+  var root=document.querySelector("#tool");
+  if(!root) return;
+  var выход=document.querySelector("#tk");
+  var состояние={}, ветка=null;
+  var РЕЖИМ="omit", НЕТ="not stated";
+
+  function виден(g){
+    return !g.hasAttribute('data-for') ||
+      g.getAttribute('data-for').split('|').indexOf(ветка)>=0;
+  }
+
+  function бриф(){
+    var L=["KITCHEN PROJECT NOTES"+' (draft)','For: '+"Kitchen Design Concepts",''];
+    var отвечено=false, хвостКонтактов=[];
+    var длина=function(x){ return Array.isArray(x)?x.length:String(x).length; };
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      var строка=g.getAttribute('data-label')+': ';
+      var есть=!!(зн&&длина(зн));
+      if(есть) отвечено=true;
+      var текст=есть?(Array.isArray(зн)?зн.join(', '):зн):НЕТ;
+      if(g.hasAttribute('data-contact')){ if(есть) хвостКонтактов.push(строка+текст); return; }
+      if(есть||РЕЖИМ==='all') L.push(строка+текст);
+    });
+    if(!отвечено&&РЕЖИМ!=='all') L.push("Nothing chosen yet — pick a route above and this letter writes itself.");
+    if(хвостКонтактов.length){ L.push(''); L=L.concat(хвостКонтактов); }
+    
+    L.push('','Prepared on an independent concept page. Not a quote and not an order.');
     return L.join('\n');
   }
-  $('#make').addEventListener('click',function(){
-    var t=письмо(), o=$('#out'); o.style.display='block'; o.value=t;
-    var готово=function(){ $('#status').textContent='Copied — paste it into an email or a message.'; };
-    function запасной(){ o.removeAttribute('readonly'); o.select();
-      try{ document.execCommand('copy'); готово(); }
-      catch(e){ $('#status').textContent='Select the text below and copy it.'; }
-      o.setAttribute('readonly','readonly'); }
-    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(готово,запасной);
-    else запасной();
+
+  function перерисовать(){
+    Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
+      g.hidden=!виден(g);
+    });
+    выход.textContent=бриф();
+  }
+
+  Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+    var ключ=g.getAttribute('data-key');
+
+    if(g.getAttribute('data-type')==='num'){
+      var ползунок=g.querySelector('[data-role="range"]');
+      var табло=g.querySelector('[data-role="numout"]');
+      var незнаю=g.querySelector('[data-role="unknown"]');
+      var ед="";
+      var неизвестноТекст="Not stated";
+      var поставить=function(){
+        состояние[ключ]=ползунок.value+(ед?' '+ед:'');
+        ползунок.disabled=false; незнаю.setAttribute('aria-pressed','false');
+        табло.textContent=состояние[ключ]; перерисовать();
+      };
+      var снять=function(){
+        состояние[ключ]=null; ползунок.disabled=true;
+        незнаю.setAttribute('aria-pressed','true');
+        табло.textContent=неизвестноТекст; перерисовать();
+      };
+      незнаю.addEventListener('click',function(){ if(ползунок.disabled) поставить(); else снять(); });
+      ползунок.addEventListener('input',поставить);
+      return;
+    }
+
+    var поле=g.querySelector('input[type]:not([type="range"])');
+    if(поле){
+      поле.addEventListener('input',function(){
+        состояние[ключ]=(поле.value||'').trim()||null; перерисовать();
+      });
+      return;
+    }
+
+    var мульти=g.hasAttribute('data-multi'), ветковый=g.hasAttribute('data-branch');
+    Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(b){
+      b.addEventListener('click',function(){
+        var v=b.getAttribute('data-val');
+        if(мульти){
+          var было=(состояние[ключ]||[]).slice();
+          var i=было.indexOf(v);
+          if(i<0) было.push(v); else было.splice(i,1);
+          состояние[ключ]=было.length?было:null;
+          b.setAttribute('aria-pressed', было.indexOf(v)>=0?'true':'false');
+        } else {
+          var тот= состояние[ключ]===v;
+          Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(x){
+            x.setAttribute('aria-pressed','false'); });
+          состояние[ключ]= тот?null:v;
+          b.setAttribute('aria-pressed', тот?'false':'true');
+          if(ветковый) ветка=состояние[ключ];
+        }
+        перерисовать();
+      });
+    });
   });
-})();
-</script>
+
+  var кнопка=document.querySelector("#cp");
+  var строка=document.querySelector("#st");
+  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
+  кнопка.addEventListener('click',function(){
+    var t=выход.textContent;                     // ровно то, что видно на экране
+    function руками(){
+      сказать("The browser blocked copying — the letter is selected above, copy it with Cmd+C or Ctrl+C.",true);
+      try{
+        var r=document.createRange(); r.selectNodeContents(выход);
+        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      }catch(e){}
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(function(){
+        сказать("Copied. Paste it into an email or a message to them.",false);
+      },руками);
+    } else руками();
+  });
+  перерисовать();
+})();</script>
 </body></html>
