@@ -934,6 +934,27 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .pf-two-d>summary:after{content:" +";color:var(--ink3)}
 .pf-two-d[open]>summary:after{content:" \2212"}
 .pf-two-d .pf-two{margin-top:12px;padding-top:0;border-top:0}
+
+/* ============================================== смена без рывка */
+/* Сцена первого экрана: старая гаснет, новая проявляется на её месте. */
+#hm-scene{position:relative}
+#hm-scene>.уходит{opacity:1;transition:opacity .6s ease}
+#hm-scene>.сц-новая{position:absolute;inset:0;opacity:0;
+  transition:opacity .6s ease}
+#hm-scene>.сц-новая.on{opacity:1}
+#hm-scene>.сц-новая~.уходит,#hm-scene>.уходит{opacity:.001}
+#hm-scene>.сц-новая>*{animation:none}
+
+/* Полоса под задачу: высоту ведём плавно, поэтому содержимое не прыгает. */
+.pf-in{overflow:hidden}
+
+/* Сетка направлений остаётся на месте: выбранное помечено, остальные тише. */
+#layers[data-picked] button{opacity:.45;transition:opacity .7s ease,
+  box-shadow .5s ease,transform .5s ease}
+#layers[data-picked] button[aria-pressed="true"]{opacity:1;
+  box-shadow:0 0 0 2px var(--accent),0 24px 44px -30px rgba(18,18,18,.55)}
+#layers[data-picked] button:hover{opacity:.85}
+#layers-picked{margin-top:18px}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -2256,7 +2277,22 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   var показ = (пример && !БЕЗ_КАРТИНКИ[к]) ? пример : (к ? null : работаИзКаталога());
   var режим = показ ? 'work' : 'scheme';
   if(пр) пр.setAttribute('data-mode',режим);
-  гн.innerHTML = показ ? сценаРабота(показ) : сценаИлл(к);
+  var новое = показ ? сценаРабота(показ) : сценаИлл(к);
+  if(гн.innerHTML.trim()===новое.trim()) return;
+  if(тонкая || !гн.firstElementChild){ гн.innerHTML=новое; return; }
+  // Старая сцена гаснет, новая проявляется на её месте: без подмены рывком.
+  var уход=гн.firstElementChild;
+  уход.classList.add('уходит');
+  var обёртка=document.createElement('div');
+  обёртка.className='сц-новая';
+  обёртка.innerHTML=новое;
+  гн.appendChild(обёртка);
+  window.requestAnimationFrame(function(){
+   window.requestAnimationFrame(function(){ обёртка.classList.add('on'); });
+  });
+  window.setTimeout(function(){
+   гн.innerHTML=новое;
+  },700);
  }
  document.addEventListener('click',function(ev){
   var д=ev.target.closest('.shot-dev button');
@@ -2372,8 +2408,23 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   if(!гнездо) return;
   var прокрутка=window.scrollY, фокус=(document.activeElement===поле);
   var старое=гнездо.querySelector('.pf-v');
+  // Высоту полосы ведём плавно: иначе всё, что ниже, прыгает рывком.
+  var былаВысота=гнездо.getBoundingClientRect().height;
   гнездо.insertAdjacentHTML('afterbegin',собратьРаздел(к));
   if(старое) старое.remove();
+  if(былаВысота && !тонкая){
+   var сталаВысота=гнездо.getBoundingClientRect().height;
+   if(Math.abs(сталаВысота-былаВысота)>24){
+    гнездо.style.transition='none';
+    гнездо.style.height=былаВысота+'px';
+    window.requestAnimationFrame(function(){
+     гнездо.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
+     гнездо.style.height=сталаВысота+'px';
+     window.setTimeout(function(){
+      гнездо.style.transition=''; гнездо.style.height=''; },950);
+    });
+   }
+  }
   тема=к;
   // Страница не должна уехать под рукой: прокрутку и фокус возвращаем.
   нарисоватьСцену(к, подобратьПример(к));
@@ -2472,15 +2523,27 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
  var выбраноИмя=document.getElementById('layers-name');
  var сменитьСлой=document.getElementById('layers-change');
 
+ // Сетка направлений раньше пропадала целиком — это читалось как рывок.
+ // Теперь она остаётся на месте: выбранное помечено, остальные приглушены.
  function свернутьСетку(имя){
-  if(!сетка||!выбрано) return;
-  сетка.hidden=true; выбрано.hidden=false;
+  if(!сетка) return;
+  сетка.setAttribute('data-picked','1');
+  var н=(имя||'').trim().toLowerCase();
+  сетка.querySelectorAll('button[data-layer]').forEach(function(б){
+   var своё=(б.querySelector('b')||{}).textContent||'';
+   var это=(своё.trim().toLowerCase()===н) || (б.getAttribute('data-layer')===тема);
+   б.setAttribute('aria-pressed', это?'true':'false');
+  });
+  if(выбрано) выбрано.hidden=false;
   if(выбраноИмя) выбраноИмя.textContent=имя||'';
   if(сменитьСлой) сменитьСлой.textContent=T().change;
  }
  function развернутьСетку(){
-  if(!сетка||!выбрано) return;
-  сетка.hidden=false; выбрано.hidden=true;
+  if(!сетка) return;
+  сетка.removeAttribute('data-picked');
+  сетка.querySelectorAll('button[data-layer]').forEach(function(б){
+   б.setAttribute('aria-pressed','false'); });
+  if(выбрано) выбрано.hidden=true;
  }
  async function выбратьНаправление(слой, имя){
   if(занят) return;

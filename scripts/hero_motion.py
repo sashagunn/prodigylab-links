@@ -856,7 +856,22 @@ JS = """
   var показ = (пример && !БЕЗ_КАРТИНКИ[к]) ? пример : (к ? null : работаИзКаталога());
   var режим = показ ? 'work' : 'scheme';
   if(пр) пр.setAttribute('data-mode',режим);
-  гн.innerHTML = показ ? сценаРабота(показ) : сценаИлл(к);
+  var новое = показ ? сценаРабота(показ) : сценаИлл(к);
+  if(гн.innerHTML.trim()===новое.trim()) return;
+  if(тонкая || !гн.firstElementChild){ гн.innerHTML=новое; return; }
+  // Старая сцена гаснет, новая проявляется на её месте: без подмены рывком.
+  var уход=гн.firstElementChild;
+  уход.classList.add('уходит');
+  var обёртка=document.createElement('div');
+  обёртка.className='сц-новая';
+  обёртка.innerHTML=новое;
+  гн.appendChild(обёртка);
+  window.requestAnimationFrame(function(){
+   window.requestAnimationFrame(function(){ обёртка.classList.add('on'); });
+  });
+  window.setTimeout(function(){
+   гн.innerHTML=новое;
+  },700);
  }
  document.addEventListener('click',function(ev){
   var д=ev.target.closest('.shot-dev button');
@@ -972,8 +987,23 @@ JS = """
   if(!гнездо) return;
   var прокрутка=window.scrollY, фокус=(document.activeElement===поле);
   var старое=гнездо.querySelector('.pf-v');
+  // Высоту полосы ведём плавно: иначе всё, что ниже, прыгает рывком.
+  var былаВысота=гнездо.getBoundingClientRect().height;
   гнездо.insertAdjacentHTML('afterbegin',собратьРаздел(к));
   if(старое) старое.remove();
+  if(былаВысота && !тонкая){
+   var сталаВысота=гнездо.getBoundingClientRect().height;
+   if(Math.abs(сталаВысота-былаВысота)>24){
+    гнездо.style.transition='none';
+    гнездо.style.height=былаВысота+'px';
+    window.requestAnimationFrame(function(){
+     гнездо.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
+     гнездо.style.height=сталаВысота+'px';
+     window.setTimeout(function(){
+      гнездо.style.transition=''; гнездо.style.height=''; },950);
+    });
+   }
+  }
   тема=к;
   // Страница не должна уехать под рукой: прокрутку и фокус возвращаем.
   нарисоватьСцену(к, подобратьПример(к));
@@ -1072,15 +1102,27 @@ JS = """
  var выбраноИмя=document.getElementById('layers-name');
  var сменитьСлой=document.getElementById('layers-change');
 
+ // Сетка направлений раньше пропадала целиком — это читалось как рывок.
+ // Теперь она остаётся на месте: выбранное помечено, остальные приглушены.
  function свернутьСетку(имя){
-  if(!сетка||!выбрано) return;
-  сетка.hidden=true; выбрано.hidden=false;
+  if(!сетка) return;
+  сетка.setAttribute('data-picked','1');
+  var н=(имя||'').trim().toLowerCase();
+  сетка.querySelectorAll('button[data-layer]').forEach(function(б){
+   var своё=(б.querySelector('b')||{}).textContent||'';
+   var это=(своё.trim().toLowerCase()===н) || (б.getAttribute('data-layer')===тема);
+   б.setAttribute('aria-pressed', это?'true':'false');
+  });
+  if(выбрано) выбрано.hidden=false;
   if(выбраноИмя) выбраноИмя.textContent=имя||'';
   if(сменитьСлой) сменитьСлой.textContent=T().change;
  }
  function развернутьСетку(){
-  if(!сетка||!выбрано) return;
-  сетка.hidden=false; выбрано.hidden=true;
+  if(!сетка) return;
+  сетка.removeAttribute('data-picked');
+  сетка.querySelectorAll('button[data-layer]').forEach(function(б){
+   б.setAttribute('aria-pressed','false'); });
+  if(выбрано) выбрано.hidden=true;
  }
  async function выбратьНаправление(слой, имя){
   if(занят) return;

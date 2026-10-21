@@ -695,6 +695,27 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .pf-two-d>summary:after{content:" +";color:var(--ink3)}
 .pf-two-d[open]>summary:after{content:" \\2212"}
 .pf-two-d .pf-two{margin-top:12px;padding-top:0;border-top:0}
+
+/* ============================================== смена без рывка */
+/* Сцена первого экрана: старая гаснет, новая проявляется на её месте. */
+#hm-scene{position:relative}
+#hm-scene>.уходит{opacity:1;transition:opacity .6s ease}
+#hm-scene>.сц-новая{position:absolute;inset:0;opacity:0;
+  transition:opacity .6s ease}
+#hm-scene>.сц-новая.on{opacity:1}
+#hm-scene>.сц-новая~.уходит,#hm-scene>.уходит{opacity:.001}
+#hm-scene>.сц-новая>*{animation:none}
+
+/* Полоса под задачу: высоту ведём плавно, поэтому содержимое не прыгает. */
+.pf-in{overflow:hidden}
+
+/* Сетка направлений остаётся на месте: выбранное помечено, остальные тише. */
+#layers[data-picked] button{opacity:.45;transition:opacity .7s ease,
+  box-shadow .5s ease,transform .5s ease}
+#layers[data-picked] button[aria-pressed="true"]{opacity:1;
+  box-shadow:0 0 0 2px var(--accent),0 24px 44px -30px rgba(18,18,18,.55)}
+#layers[data-picked] button:hover{opacity:.85}
+#layers-picked{margin-top:18px}
 """
 
 
