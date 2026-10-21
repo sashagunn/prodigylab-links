@@ -4,296 +4,409 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="Independent redesign concept for LB Closets — Tempe, Arizona.">
 <title>LB Closets — Custom closets and garage storage in Arizona</title>
-<meta name="pf-expires" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#16181a; --ink2:#5b6268; --ink3:#8d9399;
-  --line:#e4e6e7; --paper:#fbfbf9; --paper2:#f2f2ef;
-  --dark:#15191d; --on-dark:#e9edef; --on-dark2:#9aa5ac;
-  --accent:#7a6a55; --on-accent:#ffffff;
-  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --display:var(--sans);
-  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
-  --r:14px;
-}
+:root{--paper:#efeae2;--cell:#fbf9f6;--ink:#231c17;--walnut:#3a2e26;--soft:#5b5048;--mute:#8d8278;
+  --brass:#b08b52;--line:#ded6ca;
+  --sans:Sora,system-ui,-apple-system,sans-serif;--mono:'Azeret Mono',ui-monospace,Menlo,monospace}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-  font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img{max-width:100%;display:block}
-h1,h2,h3{margin:0;font-family:var(--display);line-height:1.04;letter-spacing:-.025em;font-weight:700}
-p{margin:0}ul,ol{margin:0;padding:0;list-style:none}a{color:inherit}
-.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink3)}
-.notice{background:#0d1012;color:#aeb6bb;font-family:var(--mono);font-size:10.5px;
-  letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;text-align:center}
-.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 92%,transparent);
-  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.top-in{display:flex;align-items:center;gap:22px;max-width:1180px;margin:0 auto;
-  padding:14px clamp(18px,4vw,44px)}
-.logo{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-.02em;text-decoration:none}
-.logo span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;
-  color:var(--ink3);font-weight:400;margin-top:2px}
-.menu{display:flex;gap:22px;margin-left:auto;font-size:14.5px}
-.menu a{text-decoration:none;color:var(--ink2)}
-.menu a:hover{color:var(--ink)}
-.call{background:var(--accent);color:var(--on-accent);text-decoration:none;border-radius:999px;
-  padding:11px 18px;font-size:14.5px;white-space:nowrap}
-.call:hover{filter:brightness(1.07)}
-.hero{position:relative;min-height:min(78vh,660px);display:flex;align-items:flex-end;
-  color:#fff;overflow:hidden}
-.hero-ph{position:absolute;inset:0}
-.hero-ph img{width:100%;height:100%;object-fit:cover}
-.hero-ph:after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(8,11,14,.52) 0%,rgba(8,11,14,.22) 34%,rgba(8,11,14,.88) 100%),
-             linear-gradient(90deg,rgba(8,11,14,.72) 0%,rgba(8,11,14,.34) 46%,rgba(8,11,14,0) 78%)}
-.hero-in{position:relative;z-index:2;width:100%;padding:clamp(34px,6vw,76px) 0}
-.hero .eyebrow{color:#cfd6da}
-.hero h1{font-size:clamp(34px,5.6vw,66px);margin-top:14px;max-width:17ch;color:#fff;
-  text-shadow:0 2px 24px rgba(0,0,0,.4)}
-.hero p{margin-top:16px;max-width:52ch;color:#e6eaec;font-size:17.5px;
-  text-shadow:0 1px 14px rgba(0,0,0,.45)}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.cta a{text-decoration:none;border-radius:999px;padding:14px 24px;font-size:15.5px}
-.cta .main{background:var(--accent);color:var(--on-accent)}
-.cta .alt{border:1px solid rgba(255,255,255,.45);color:#fff}
-.facts{background:var(--dark);color:var(--on-dark)}
-.facts ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(255,255,255,.13)}
-.facts li{background:var(--dark);padding:20px clamp(16px,2vw,26px)}
-.facts b{display:block;font-size:15.5px}
-.facts span{display:block;color:var(--on-dark2);font-size:13px;margin-top:4px}
-section{padding:clamp(44px,6vw,92px) 0}
-.head h2{font-size:clamp(28px,3.8vw,48px);max-width:18ch;margin-top:12px}
-.head p{margin-top:16px;color:var(--ink2);max-width:58ch}
-.srv{margin-top:clamp(26px,3vw,44px);display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(14px,1.8vw,22px)}
-.card{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff;
-  display:flex;flex-direction:column}
-.card .ph{aspect-ratio:4/3;background:var(--paper2);overflow:hidden}
-.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.card:hover .ph img{transform:scale(1.04)}
-.card .tx{padding:16px 18px 20px}
-.card h3{font-size:19px}
-.card p{margin-top:7px;color:var(--ink2);font-size:14.5px}
-.plain{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:22px}
-.plain li{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:#fff;font-size:15px}
-.work{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.grid{margin-top:clamp(22px,3vw,38px);display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:clamp(12px,1.6vw,18px)}
-.grid figure{margin:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#fff}
-.grid img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.grid figcaption{font-size:12px;color:var(--ink3);padding:9px 12px;border-top:1px solid var(--line)}
-.tool{background:var(--dark);color:var(--on-dark)}
-.tool .head h2{color:#fff}
-.tool .head p{color:var(--on-dark2)}
-.tool-in{margin-top:clamp(24px,3vw,40px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);
-  gap:clamp(20px,3vw,44px);align-items:start}
-.panel{background:#fff;color:var(--ink);border-radius:var(--r);padding:clamp(18px,2.4vw,28px)}
-form{display:grid;gap:15px}
-label{display:block;font-size:14px;color:var(--ink2)}
-label b{display:block;color:var(--ink);font-weight:600;font-size:15px;margin-bottom:6px}
-select,input[type=number]{width:100%;font:inherit;font-size:16px;padding:12px 13px;
-  border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
-select:focus,input:focus{outline:2px solid var(--accent);outline-offset:-1px}
-.choices{display:flex;flex-wrap:wrap;gap:8px}
-.choices button{font:inherit;font-size:14px;padding:9px 14px;border-radius:999px;border:1px solid var(--line);
-  background:#fff;color:var(--ink);cursor:pointer}
-.choices button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-.hint{font-size:12.5px;color:var(--ink3);margin-top:6px}
-.bad{display:block;font-size:12.5px;color:#9a3412;margin-top:6px}
-.out{position:sticky;top:90px;border:1px solid rgba(255,255,255,.16);border-radius:var(--r);
-  padding:clamp(18px,2.4vw,26px);background:rgba(255,255,255,.04)}
-.out .eyebrow{color:var(--on-dark2)}
-.out dl{margin:14px 0 0;display:grid;gap:9px}
-.out dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark2)}
-.out dd{margin:2px 0 0;font-size:15px;color:#fff}
-textarea{width:100%;margin-top:14px;font:inherit;font-size:13.5px;line-height:1.5;padding:12px;
-  border:1px solid rgba(255,255,255,.18);border-radius:12px;background:rgba(0,0,0,.25);
-  color:#e9edef;resize:vertical;min-height:170px}
-.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px}
-button.act{font:inherit;font-size:15px;padding:12px 20px;border-radius:999px;border:0;
-  background:var(--accent);color:var(--on-accent);cursor:pointer}
-#status{font-size:13px;color:var(--on-dark2)}
-.steps{margin-top:clamp(22px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.steps li{border-top:2px solid var(--accent);padding-top:14px}
-.steps b{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink3);display:block}
-.steps h3{font-size:18px;margin-top:8px}
-.steps p{margin-top:6px;color:var(--ink2);font-size:14.5px}
-.contact{background:var(--accent);color:var(--on-accent)}
-.contact h2{color:var(--on-accent);font-size:clamp(26px,3.4vw,42px);max-width:18ch}
-.contact p{margin-top:14px;max-width:52ch;opacity:.92}
-.contact .cta a.main{background:var(--on-accent);color:var(--accent)}
-.contact .cta a.alt{border-color:color-mix(in srgb,var(--on-accent) 55%,transparent);color:var(--on-accent)}
-footer{background:#0d1012;color:#96a0a6;padding:clamp(28px,4vw,48px) 0;font-size:13.5px}
+  font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit}
+h1,h2,h3{margin:0;font-weight:600;line-height:1.06;letter-spacing:-.03em}
+p{margin:0}ul{margin:0;padding:0;list-style:none}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(14px,2.4vw,32px)}
+.m{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.notice{background:var(--walnut);color:#b5a899;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;text-align:center}
+
+header{position:sticky;top:0;z-index:50;background:rgba(239,234,226,.95);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--brass)}
+header .wrap{display:flex;align-items:center;gap:18px;padding-top:11px;padding-bottom:11px}
+.logo{text-decoration:none;font-weight:700;font-size:18px;letter-spacing:-.04em;white-space:nowrap}
+.hnav{margin-left:auto;display:flex;gap:18px}
+.hnav a{text-decoration:none;font-family:var(--mono);font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--soft)}
+.hnav a:hover{color:var(--brass)}
+.cta{background:var(--walnut);color:#f6f1ea;text-decoration:none;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.07em;padding:11px 16px;white-space:nowrap}
+.cta:hover{background:var(--brass);color:#2a2017}
+
+/* система ячеек */
+.sys{margin-top:clamp(16px,2.2vw,28px);display:grid;grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:clamp(108px,10.4vw,152px);gap:1px;background:var(--brass)}
+.cell{background:var(--cell);overflow:hidden;position:relative}
+.cell img{width:100%;height:100%;object-fit:cover}
+.cell.tx{padding:clamp(16px,2vw,30px);display:flex;flex-direction:column;justify-content:center}
+.cell.tx h1{font-size:clamp(28px,3.5vw,52px);max-width:15ch}
+.cell.tx p{margin-top:13px;color:var(--soft);max-width:44ch;font-size:15px}
+.c22{grid-column:span 2;grid-row:span 2}
+.c12{grid-row:span 2}
+.c21{grid-column:span 2}
+.c23{grid-column:span 2;grid-row:span 3}
+.c13{grid-row:span 3}
+.cell .tag{position:absolute;left:0;bottom:0;right:0;padding:10px 12px;color:#fff;z-index:2;
+  background:linear-gradient(180deg,rgba(35,28,23,0),rgba(35,28,23,.8));
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+
+/* факты */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--brass);margin-top:1px}
+.facts li{background:var(--paper);padding:clamp(13px,1.7vw,20px) clamp(13px,1.8vw,24px);
+  font-weight:600;font-size:clamp(15px,1.5vw,19px)}
+
+/* шесть пространств */
+.spaces{padding:clamp(30px,4vw,64px) 0}
+.spaces h2{font-size:clamp(24px,2.9vw,42px)}
+.grid{margin-top:clamp(18px,2.4vw,32px);display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--brass)}
+.sp{background:var(--cell);position:relative;overflow:hidden}
+.sp img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.sp b{display:block;padding:13px 14px;font-weight:600;font-size:17px}
+.sp.txt{display:flex;flex-direction:column;justify-content:center;min-height:clamp(170px,19vw,260px);
+  padding:clamp(14px,1.8vw,24px);background:var(--paper)}
+.sp.txt b{padding:0}
+.sp.txt p{margin-top:8px;color:var(--soft);font-size:14px;max-width:30ch}
+
+/* шаги */
+.steps{padding:clamp(26px,3.4vw,56px) 0;border-top:1px solid var(--line)}
+.steps h2{font-size:clamp(24px,2.9vw,42px)}
+.steps .g{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--brass)}
+.steps .s{background:var(--cell);padding:clamp(16px,2vw,26px)}
+.steps .s span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--brass)}
+.steps .s b{display:block;margin-top:9px;font-size:clamp(17px,1.8vw,23px);font-weight:600}
+.steps .s p{margin-top:9px;color:var(--soft);font-size:14.5px}
+
+/* инструмент */
+.tool-s{padding:clamp(28px,3.6vw,60px) 0;border-top:1px solid var(--line)}
+.tool-s h2{font-size:clamp(24px,2.9vw,42px)}
+.tool-s .lede{margin-top:12px;color:var(--soft);max-width:64ch}
+.tool{margin-top:clamp(18px,2.4vw,32px);display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,384px);gap:clamp(18px,2.6vw,36px);align-items:start}
+.q{padding:14px 0;border-top:1px solid var(--line)}
+.q:first-child{border-top:0;padding-top:0}
+.q[hidden]{display:none}
+.q-l{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mute)}
+.q-o{margin-top:10px;display:flex;flex-wrap:wrap;gap:7px}
+.opt{background:var(--cell);border:1px solid var(--line);color:var(--ink);font:inherit;
+  font-size:14px;padding:9px 14px;cursor:pointer}
+.opt:hover{border-color:var(--brass)}
+.opt[aria-pressed="true"]{background:var(--walnut);border-color:var(--walnut);color:#f6f1ea}
+.opt:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.cts{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.cts>span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mute)}
+.cts-g{margin-top:11px;display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.c-l{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mute);margin-bottom:5px}
+.c-l i{font-style:normal;color:#aaa093}
+.c-i{width:100%;font:inherit;font-size:16px;padding:10px 11px;border:1px solid var(--line);
+  background:var(--cell);color:var(--ink)}
+.c-i:focus{outline:0;border-color:var(--brass)}
+.brief{position:sticky;top:74px;background:var(--walnut);color:#ede5da}
+.brief-h{display:flex;justify-content:space-between;gap:10px;padding:11px 14px;
+  border-bottom:1px solid #4d4036;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:#b5a899}
+.brief pre{margin:0;padding:15px 14px;font-family:var(--mono);font-size:11.5px;line-height:1.78;
+  white-space:pre-wrap;word-break:break-word;min-height:300px}
+#cp{display:block;width:100%;background:var(--brass);color:#2a2017;border:0;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;padding:14px;cursor:pointer;font-weight:500}
+#cp:hover{background:#fff}
+#st{display:block;padding:10px 14px 0;font-size:12.5px;color:#b5a899;min-height:1.3em}
+#st[data-bad="1"]{color:#f0c9a0}
+.warn{padding:9px 14px 15px;font-size:12px;color:#b5a899;line-height:1.55}
+
+.src{background:var(--cell);border-top:1px solid var(--line)}
+.src .wrap{padding-top:clamp(18px,2.4vw,32px);padding-bottom:clamp(18px,2.4vw,32px);
+  display:grid;grid-template-columns:minmax(0,24fr) minmax(0,76fr);gap:clamp(14px,3vw,40px)}
+.src h2{font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--mute);font-weight:400}
+.src p{font-size:13px;color:var(--soft);max-width:94ch}
+.src .lnk{margin-top:9px;display:flex;gap:17px;flex-wrap:wrap;font-size:13px}
+.src .lnk a{color:var(--brass)}
+footer{background:var(--walnut);color:#b5a899;padding:clamp(20px,3vw,38px) 0;font-size:13px}
+.foot{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+footer h4{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:#8d8075;margin:0 0 9px;font-weight:400}
 footer a{color:#fff}
-footer p+p{margin-top:12px}
-@media (max-width:900px){
-  .menu{display:none}
-  .tool-in{grid-template-columns:1fr}
-  .out{position:static}
+
+@media (max-width:1000px){
+  .hnav{display:none}
+  .sys{grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(100px,22vw,150px)}
+  .c22,.c21,.c23{grid-column:span 2}
+  .c23{grid-row:span 2}
+  .c13{grid-row:span 2}
+  .facts{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .steps .g{grid-template-columns:1fr}
+  .tool{grid-template-columns:1fr}
+  .brief{position:static}
+  .cts-g{grid-template-columns:1fr}
+  .src .wrap{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  body{padding-bottom:74px}
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
+    background:var(--paper);border-top:1px solid var(--brass);padding:9px 13px}
+  .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);
+    font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;background:var(--walnut);color:#f6f1ea}
+  .bar .alt{background:transparent;color:var(--ink);border:1px solid var(--line);flex:0 0 auto;padding:13px 16px}
 }
-</style>
-</head>
+@media (max-width:460px){.grid{grid-template-columns:1fr}.cta{display:none}}
+@media (min-width:1001px){.bar{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style></head>
 <body>
 <p class="notice">Independent redesign concept by Preview Factory · Not the official LB Closets website</p>
 
-<header class="top"><div class="top-in">
-  <a class="logo" href="#top">LB Closets<span>TEMPE, ARIZONA</span></a>
-  <nav class="menu">
-    <a href="#services">Services</a><a href="#work">Our work</a>
-    <a href="#planner">Project planner</a><a href="#contact">Contact</a>
-  </nav>
-  <a class="call" href="tel:+14803593646">(480) 359-3646</a>
+<header><div class="wrap">
+  <a class="logo" href="#top">LB Closets</a>
+  <nav class="hnav"><a href="#spaces">Spaces</a><a href="#how">How it goes</a>
+    <a href="#config">Configure</a></nav>
+  <a class="cta" href="tel:+14803593646">(480) 359-3646</a>
 </div></header>
 
 <main id="top">
-  <section class="hero">
-    <div class="hero-ph"><img src="photos/f6.jpg" alt="Work by LB Closets" width="1400" height="900"></div>
-    <div class="hero-in"><div class="wrap">
-      <p class="eyebrow">TEMPE, ARIZONA</p>
-      <h1>Premium custom closets and garage storage systems.</h1>
-      <p>Closets, garages, home offices, laundry rooms and pantries across Arizona — starting with a free 3D design of your space.</p>
-      <div class="cta">
-        <a class="main" href="#planner">Build a storage brief</a>
-        <a class="alt" href="https://www.lbclosets.com/contact-us" target="_blank" rel="noopener noreferrer">Contact LB Closets</a>
+  <section class="wrap">
+    <div class="sys">
+      <div class="cell tx c22">
+        <span class="m">Tempe, Arizona</span>
+        <h1>A system measured to your walls, not to a catalogue.</h1>
+        <p>Walk-in and reach-in closets, garages, home offices, laundry rooms and pantries across Arizona. It starts with a designer at your kitchen table and a 3D model of the space before anything is cut.</p>
       </div>
-    </div></div>
+      <div class="cell c12"><img src="photos/f11.jpg" alt="Walk-in closet built by LB Closets" decoding="async"></div>
+      <div class="cell"><img src="photos/f12.jpg" alt="Closet system detail" decoding="async"></div>
+      <div class="cell"><img src="photos/f9.jpg" alt="Hanging and shelving" decoding="async"></div>
+      <div class="cell c21"><img src="photos/f4.jpg" alt="Shelving and drawers" decoding="async"></div>
+      <div class="cell"><img src="photos/f10.jpg" alt="Closet island" decoding="async"></div>
+      <div class="cell"><img src="photos/f1.jpg" alt="Closet in colour" decoding="async"></div>
+    </div>
+    <ul class="facts"><li>Designer comes to you, with samples</li><li>3D model before anything is cut</li><li>Tempe, serving Arizona</li></ul>
   </section>
 
-  <section class="facts" style="padding:0"><ul><li><b>Free 3D closet design</b><span>Their own published first step</span></li><li><b>Closets, garage, office, laundry, pantry</b><span>The spaces they publish</span></li><li><b>Arizona</b><span>Service area from their site</span></li></ul></section>
-
-  <section id="services"><div class="wrap">
-    <div class="head"><p class="eyebrow">What we do</p>
-      <h2>Every space we fit out.</h2>
-      <p>LB Closets publishes custom closet systems, garage storage, home office, laundry and pantry work, and offers a free 3D closet design as the first step.</p></div>
-    <div class="srv"><article class="card"><div class="ph"><img src="photos/f1.jpg" alt="Custom closet systems — LB Closets" loading="lazy" decoding="async" width="800" height="600"></div>
-<div class="tx"><h3>Custom closet systems</h3></div></article><article class="card"><div class="ph"><img src="photos/f3.jpg" alt="Garage storage systems — LB Closets" loading="lazy" decoding="async" width="800" height="600"></div>
-<div class="tx"><h3>Garage storage systems</h3></div></article><article class="card"><div class="ph"><img src="photos/f4.jpg" alt="Home office — LB Closets" loading="lazy" decoding="async" width="800" height="600"></div>
-<div class="tx"><h3>Home office</h3></div></article><article class="card"><div class="ph"><img src="photos/f5.jpg" alt="Laundry room — LB Closets" loading="lazy" decoding="async" width="800" height="600"></div>
-<div class="tx"><h3>Laundry room</h3></div></article><article class="card"><div class="ph"><img src="photos/f9.jpg" alt="Kitchen pantry — LB Closets" loading="lazy" decoding="async" width="800" height="600"></div>
-<div class="tx"><h3>Kitchen pantry</h3></div></article><article class="card"><div class="ph"><img src="photos/f10.jpg" alt="Free 3D design — LB Closets" loading="lazy" decoding="async" width="800" height="600"></div>
-<div class="tx"><h3>Free 3D design</h3><p>Their own published first step.</p></div></article></div>
-  </div></section>
-
-  <section id="work" class="work"><div class="wrap">
-    <div class="head"><p class="eyebrow">Recent work</p><h2>Finished spaces.</h2></div>
-    <div class="grid"><figure><img src="photos/f1.jpg" alt="Project photograph published by LB Closets" loading="lazy" decoding="async" width="800" height="600"><figcaption>Photograph published by LB Closets</figcaption></figure><figure><img src="photos/f3.jpg" alt="Project photograph published by LB Closets" loading="lazy" decoding="async" width="800" height="600"><figcaption>Photograph published by LB Closets</figcaption></figure><figure><img src="photos/f4.jpg" alt="Project photograph published by LB Closets" loading="lazy" decoding="async" width="800" height="600"><figcaption>Photograph published by LB Closets</figcaption></figure><figure><img src="photos/f5.jpg" alt="Project photograph published by LB Closets" loading="lazy" decoding="async" width="800" height="600"><figcaption>Photograph published by LB Closets</figcaption></figure><figure><img src="photos/f9.jpg" alt="Project photograph published by LB Closets" loading="lazy" decoding="async" width="800" height="600"><figcaption>Photograph published by LB Closets</figcaption></figure><figure><img src="photos/f10.jpg" alt="Project photograph published by LB Closets" loading="lazy" decoding="async" width="800" height="600"><figcaption>Photograph published by LB Closets</figcaption></figure></div>
-  </div></section>
-
-  <section id="planner" class="tool"><div class="wrap">
-    <div class="head"><p class="eyebrow">Project planner</p>
-      <h2>Four answers, then their 3D design.</h2><p>Rough wall lengths are enough. The layout itself is what their design step is for.</p></div>
-    <div class="tool-in">
-      <div class="panel"><form id="form" autocomplete="off"><label><b>Space</b><select name="space" id="f-space"><option>Walk-in closet</option><option>Reach-in closet</option><option>Garage</option><option>Home office</option><option>Laundry room</option><option>Pantry</option></select></label><label><b>Total wall length to fit out <span style="color:var(--ink3);font-weight:400">(linear ft)</span></b>
-<input type="number" inputmode="numeric" name="wall" id="f-wall" min="2" max="120" step="1" value="12">
-<span class="hint">Add up the walls you want shelving or hanging on.</span><span class="bad" data-bad="wall" hidden></span></label><label><b>Most important</b><span class="choices"><button type="button" data-choice="priority" data-value="Hanging space" aria-pressed="true">Hanging space</button><button type="button" data-choice="priority" data-value="Shelving" aria-pressed="false">Shelving</button><button type="button" data-choice="priority" data-value="Drawers" aria-pressed="false">Drawers</button><button type="button" data-choice="priority" data-value="Shoes" aria-pressed="false">Shoes</button><button type="button" data-choice="priority" data-value="Bulk storage" aria-pressed="false">Bulk storage</button></span></label><label><b>Look you are after</b><span class="choices"><button type="button" data-choice="finish" data-value="Clean and plain" aria-pressed="true">Clean and plain</button><button type="button" data-choice="finish" data-value="Warm wood tone" aria-pressed="false">Warm wood tone</button><button type="button" data-choice="finish" data-value="White and bright" aria-pressed="false">White and bright</button><button type="button" data-choice="finish" data-value="Not decided" aria-pressed="false">Not decided</button></span></label><label><b>Timing</b><span class="choices"><button type="button" data-choice="when" data-value="Exploring" aria-pressed="true">Exploring</button><button type="button" data-choice="when" data-value="Next 1–2 months" aria-pressed="false">Next 1–2 months</button><button type="button" data-choice="when" data-value="Ready now" aria-pressed="false">Ready now</button></span></label></form></div>
-      <aside class="out">
-        <p class="eyebrow">Your project</p>
-        <dl id="sum"></dl>
-        <textarea id="brief" rows="10" readonly></textarea>
-        <div class="row"><button class="act" id="copy" type="button">Copy and send it to us</button>
-        <span id="status">Nothing is submitted from this page.</span></div>
-      </aside>
+  <section class="spaces wrap" id="spaces">
+    <h2>Six spaces, one system.</h2>
+    <div class="grid">
+      
+      <article class="sp"><img src="photos/f6.jpg" alt="Walk-in closets" decoding="async">
+          <b>Walk-in closets</b></article><article class="sp"><img src="photos/f5.jpg" alt="Reach-in closets" decoding="async">
+          <b>Reach-in closets</b></article><article class="sp"><img src="photos/f3.jpg" alt="Garage storage" decoding="async">
+          <b>Garage storage</b></article><article class="sp"><img src="photos/hero.jpg" alt="Kitchen pantry" decoding="async">
+          <b>Kitchen pantry</b></article><article class="sp txt"><b>Home office</b><p>Desk runs, filing and shelving, built in.</p></article><article class="sp txt"><b>Laundry room</b><p>Folding, hanging and storage around the machines.</p></article>
     </div>
-  </div></section>
+  </section>
 
-  
-
-  <section id="contact" class="contact"><div class="wrap">
-    <p class="eyebrow" style="color:inherit;opacity:.75">Get in touch</p>
-    <h2>Request a free 3D design.</h2>
-    <p>Measure roughly in the planner above and send it with your request.</p>
-    <div class="cta">
-      <a class="main" href="tel:+14803593646">(480) 359-3646</a>
-      <a class="alt" href="https://www.lbclosets.com/contact-us" target="_blank" rel="noopener noreferrer">Request a consultation</a>
-      <a class="alt" href="mailto:korrena@lbclosets.com">korrena@lbclosets.com</a>
+  <section class="steps wrap" id="how">
+    <h2>How it goes.</h2>
+    <div class="g">
+      <div class="s"><span>Step 01</span>
+        <b>A designer at your table</b><p>A free in-home consultation — they measure the space, listen, and bring the full range of samples with them. No showroom, no appointment at a counter.</p></div><div class="s"><span>Step 02</span>
+        <b>The space in 3D</b><p>Layouts, finishes, colours, textures and accessories, all moved around on screen before a single panel is cut.</p></div><div class="s"><span>Step 03</span>
+        <b>Installation</b><p>A fitting team in the house, and the space working by the end of it.</p></div>
     </div>
-  </div></section>
+  </section>
+
+  <section class="tool-s wrap" id="config">
+    <span class="m">Configure the space</span>
+    <h2>Say what has to fit in it.</h2>
+    <p class="lede">A closet designer starts from what you own, not from square footage. Tap through what has to go in — the configuration on the right is what the designer would arrive already knowing.</p>
+    <div class="tool" id="tool">
+      <div class="picks">
+        <div class="q" data-key="space" data-label="Space" data-branch="1"><span class="q-l">Which space are we talking about?</span><div class="q-o"><button type="button" class="opt" data-val="A walk-in closet" aria-pressed="false">A walk-in closet</button><button type="button" class="opt" data-val="A reach-in closet" aria-pressed="false">A reach-in closet</button><button type="button" class="opt" data-val="The garage" aria-pressed="false">The garage</button><button type="button" class="opt" data-val="A home office" aria-pressed="false">A home office</button><button type="button" class="opt" data-val="The laundry room" aria-pressed="false">The laundry room</button><button type="button" class="opt" data-val="The pantry" aria-pressed="false">The pantry</button><button type="button" class="opt" data-val="More than one" aria-pressed="false">More than one</button></div></div><div class="q" data-key="hang" data-label="Has to fit" data-multi="1" data-for="A walk-in closet|A reach-in closet|More than one"><span class="q-l">What has to fit in there?</span><div class="q-o"><button type="button" class="opt" data-val="Long hanging" aria-pressed="false">Long hanging</button><button type="button" class="opt" data-val="Double hanging" aria-pressed="false">Double hanging</button><button type="button" class="opt" data-val="Folded shelves" aria-pressed="false">Folded shelves</button><button type="button" class="opt" data-val="Shoes" aria-pressed="false">Shoes</button><button type="button" class="opt" data-val="Bags and accessories" aria-pressed="false">Bags and accessories</button><button type="button" class="opt" data-val="Drawers" aria-pressed="false">Drawers</button><button type="button" class="opt" data-val="Luggage" aria-pressed="false">Luggage</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="garage" data-label="In the garage" data-multi="1" data-for="The garage|More than one"><span class="q-l">What lives in the garage?</span><div class="q-o"><button type="button" class="opt" data-val="Cars that must still fit" aria-pressed="false">Cars that must still fit</button><button type="button" class="opt" data-val="Tools and a bench" aria-pressed="false">Tools and a bench</button><button type="button" class="opt" data-val="Bikes" aria-pressed="false">Bikes</button><button type="button" class="opt" data-val="Sports kit" aria-pressed="false">Sports kit</button><button type="button" class="opt" data-val="Seasonal boxes" aria-pressed="false">Seasonal boxes</button><button type="button" class="opt" data-val="Garden things" aria-pressed="false">Garden things</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="office" data-label="In the office" data-multi="1" data-for="A home office"><span class="q-l">What does the office need?</span><div class="q-o"><button type="button" class="opt" data-val="A desk run" aria-pressed="false">A desk run</button><button type="button" class="opt" data-val="Filing" aria-pressed="false">Filing</button><button type="button" class="opt" data-val="Shelving" aria-pressed="false">Shelving</button><button type="button" class="opt" data-val="A printer somewhere" aria-pressed="false">A printer somewhere</button><button type="button" class="opt" data-val="Two people working" aria-pressed="false">Two people working</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="wet" data-label="Laundry or pantry" data-multi="1" data-for="The laundry room|The pantry"><span class="q-l">What has to be in there?</span><div class="q-o"><button type="button" class="opt" data-val="Washer and dryer" aria-pressed="false">Washer and dryer</button><button type="button" class="opt" data-val="A folding surface" aria-pressed="false">A folding surface</button><button type="button" class="opt" data-val="Hanging space" aria-pressed="false">Hanging space</button><button type="button" class="opt" data-val="Tall food storage" aria-pressed="false">Tall food storage</button><button type="button" class="opt" data-val="Small appliances" aria-pressed="false">Small appliances</button><button type="button" class="opt" data-val="A sink" aria-pressed="false">A sink</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="extras" data-label="Extras" data-multi="1"><span class="q-l">Anything beyond shelves?</span><div class="q-o"><button type="button" class="opt" data-val="An island" aria-pressed="false">An island</button><button type="button" class="opt" data-val="Somewhere to sit" aria-pressed="false">Somewhere to sit</button><button type="button" class="opt" data-val="Lighting" aria-pressed="false">Lighting</button><button type="button" class="opt" data-val="A mirror" aria-pressed="false">A mirror</button><button type="button" class="opt" data-val="Glass fronts" aria-pressed="false">Glass fronts</button><button type="button" class="opt" data-val="A hamper" aria-pressed="false">A hamper</button><button type="button" class="opt" data-val="Nothing extra" aria-pressed="false">Nothing extra</button></div></div><div class="q" data-key="size" data-label="Size"><span class="q-l">How big is the space?</span><div class="q-o"><button type="button" class="opt" data-val="Small" aria-pressed="false">Small</button><button type="button" class="opt" data-val="Average" aria-pressed="false">Average</button><button type="button" class="opt" data-val="Large" aria-pressed="false">Large</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="measured" data-label="Measurements"><span class="q-l">Do you have measurements?</span><div class="q-o"><button type="button" class="opt" data-val="Yes, to the inch" aria-pressed="false">Yes, to the inch</button><button type="button" class="opt" data-val="Rough ones" aria-pressed="false">Rough ones</button><button type="button" class="opt" data-val="No — they can measure" aria-pressed="false">No — they can measure</button></div></div><div class="q" data-key="look" data-label="Look"><span class="q-l">What should it look like?</span><div class="q-o"><button type="button" class="opt" data-val="Painted white" aria-pressed="false">Painted white</button><button type="button" class="opt" data-val="Wood tone" aria-pressed="false">Wood tone</button><button type="button" class="opt" data-val="Two-tone" aria-pressed="false">Two-tone</button><button type="button" class="opt" data-val="Flat and modern" aria-pressed="false">Flat and modern</button><button type="button" class="opt" data-val="Traditional" aria-pressed="false">Traditional</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When would you like it in?</span><div class="q-o"><button type="button" class="opt" data-val="As soon as possible" aria-pressed="false">As soon as possible</button><button type="button" class="opt" data-val="Within a few months" aria-pressed="false">Within a few months</button><button type="button" class="opt" data-val="Just planning" aria-pressed="false">Just planning</button></div></div>
+        <div class="cts">
+          <span>If you want the designer to come out</span>
+          <div class="cts-g"><div class="c" data-key="name" data-label="Name" data-contact="1">
+      <label class="c-l" for="ct-name">Name <i>optional</i></label>
+      <input class="c-i" id="ct-name" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="area" data-label="Town" data-contact="1">
+      <label class="c-l" for="ct-area">Town <i>optional</i></label>
+      <input class="c-i" id="ct-area" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="phone" data-label="Phone" data-contact="1">
+      <label class="c-l" for="ct-phone">Phone <i>optional</i></label>
+      <input class="c-i" id="ct-phone" type="tel"
+        inputmode="tel" autocomplete="off">
+    </div><div class="c" data-key="email" data-label="Email" data-contact="1">
+      <label class="c-l" for="ct-email">Email <i>optional</i></label>
+      <input class="c-i" id="ct-email" type="email"
+         autocomplete="off">
+    </div></div>
+        </div>
+      </div>
+      <div class="brief">
+        <div class="brief-h"><span>Configuration</span><span>Not sent</span></div>
+        <pre id="tk"></pre>
+        <button id="cp" type="button">Copy the configuration</button>
+        <span id="st"></span>
+        <p class="warn">Nothing leaves this page. The button only copies the configuration, and none of it is a quote or a price estimate.</p>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer><div class="wrap">
-  <p><strong>This is an independent redesign concept</strong> prepared by Preview Factory for LB Closets. It is not the
-  company's official website and no relationship or endorsement is implied. Services, photographs and contact
-  details shown here are published by LB Closets on its own site. Nothing on this page is a quote: dimensions,
-  availability, local requirements and price need the company's confirmation.</p>
-  <p><a href="https://www.lbclosets.com/" target="_blank" rel="noopener noreferrer">Official LB Closets website ↗</a>
-  &nbsp;·&nbsp; <a href="before-after/">See this concept beside the current site ↗</a></p>
+<div class="bar"><a class="alt" href="tel:+14803593646">Call</a><a href="#config">Configure</a></div>
+
+<section class="src"><div class="wrap">
+  <h2>Where this came from</h2>
+  <div>
+    <p>The six spaces, the three steps, the address and every photograph are taken from lbclosets.com. This concept leaves out their warranty, their financing offer and their superlatives, and adds no prices, timelines, review scores or project counts.</p>
+    <div class="lnk">
+      <a href="https://www.lbclosets.com/" target="_blank" rel="noopener noreferrer">lbclosets.com ↗</a>
+      <a href="https://www.lbclosets.com/design-process" target="_blank" rel="noopener noreferrer">Design process ↗</a>
+      <a href="https://www.lbclosets.com/contact-us" target="_blank" rel="noopener noreferrer">Contact ↗</a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <div><h4>LB Closets</h4><p>1750 South Los Feliz Drive STE 102, Tempe, AZ 85281<br><a href="tel:+14803593646">(480) 359-3646</a><br><a href="mailto:korrena@lbclosets.com">korrena@lbclosets.com</a></p></div>
+  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  website, and no relationship or endorsement is implied.</p></div>
+  <div><h4>Their site</h4><p><a href="https://www.lbclosets.com/" target="_blank" rel="noopener noreferrer">lbclosets.com ↗</a></p></div>
 </div></footer>
 
 <script>
 (function(){
-  var Д = {"name":"LB Closets","region":"Tempe, Arizona","official":"https://www.lbclosets.com/","fields":[{"key":"space","type":"select","label":"Space","options":["Walk-in closet","Reach-in closet","Garage","Home office","Laundry room","Pantry"]},{"key":"wall","type":"number","label":"Total wall length to fit out","unit":"linear ft","min":2,"max":120,"step":1,"value":12,"hint":"Add up the walls you want shelving or hanging on."},{"key":"priority","type":"choice","label":"Most important","options":["Hanging space","Shelving","Drawers","Shoes","Bulk storage"]},{"key":"finish","type":"choice","label":"Look you are after","options":["Clean and plain","Warm wood tone","White and bright","Not decided"]},{"key":"when","type":"choice","label":"Timing","options":["Exploring","Next 1–2 months","Ready now"]}],"lead":"Storage project notes for LB Closets.","notes":["They publish a free 3D design as the first step."],"unknowns":["Ceiling height and any sloped sections","Outlets, vents and light fixtures in the space","Doors that swing into the area"]};
-  var выбор = {};
-  var $ = function(s){ return document.querySelector(s); };
-  function число(f, сырое){
-    var v = String(сырое == null ? '' : сырое).replace(/[^0-9.]/g, '');
-    var n = parseFloat(v);
-    if (!isFinite(n)) return null;
-    n = Math.min(f.max, Math.max(f.min, n));
-    if ((f.step || 1) >= 1) n = Math.round(n);
-    return n;
+  var root=document.querySelector("#tool");
+  if(!root) return;
+  var выход=document.querySelector("#tk");
+  var состояние={}, ветка=null;
+  var РЕЖИМ="omit", НЕТ="not stated";
+
+  function виден(g){
+    return !g.hasAttribute('data-for') ||
+      g.getAttribute('data-for').split('|').indexOf(ветка)>=0;
   }
-  Д.fields.forEach(function(f){ выбор[f.key] = (f.type === 'number') ? f.value : f.options[0]; });
-  function строка(f){
-    var v = выбор[f.key];
-    return (f.type === 'number') ? v + (f.unit ? ' ' + f.unit : '') : String(v);
-  }
-  function текст(){
-    var L = [Д.lead || ('Project notes for ' + Д.name + '.'), ''];
-    Д.fields.forEach(function(f){ L.push('- ' + f.label + ': ' + строка(f)); });
-    if (Д.notes.length){ L.push(''); Д.notes.forEach(function(x){ L.push('- ' + x); }); }
-    if (Д.unknowns.length){ L.push(''); L.push('To confirm together:');
-      Д.unknowns.forEach(function(x){ L.push('- ' + x); }); }
-    L.push(''); L.push('Prepared with the project planner. Not a quote and not an order.');
-    L.push(Д.name + ' — ' + Д.region);
+
+  function бриф(){
+    var L=["SPACE CONFIGURATION"+' (draft)','For: '+"LB Closets",''];
+    var отвечено=false, хвостКонтактов=[];
+    var длина=function(x){ return Array.isArray(x)?x.length:String(x).length; };
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      var строка=g.getAttribute('data-label')+': ';
+      var есть=!!(зн&&длина(зн));
+      if(есть) отвечено=true;
+      var текст=есть?(Array.isArray(зн)?зн.join(', '):зн):НЕТ;
+      if(g.hasAttribute('data-contact')){ if(есть) хвостКонтактов.push(строка+текст); return; }
+      if(есть||РЕЖИМ==='all') L.push(строка+текст);
+    });
+    if(!отвечено&&РЕЖИМ!=='all') L.push("Nothing picked yet — choose a space above and this configuration writes itself.");
+    if(хвостКонтактов.length){ L.push(''); L=L.concat(хвостКонтактов); }
+    
+    L.push('','Prepared on an independent concept page. Not a quote and not an order.');
     return L.join('\n');
   }
-  function рисовать(){
-    var dl = $('#sum'); dl.innerHTML = '';
-    Д.fields.forEach(function(f){
-      var dt = document.createElement('dt'); dt.textContent = f.label;
-      var dd = document.createElement('dd'); dd.textContent = строка(f);
-      dl.appendChild(dt); dl.appendChild(dd);
+
+  function перерисовать(){
+    Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
+      g.hidden=!виден(g);
     });
-    $('#brief').value = текст();
+    выход.textContent=бриф();
   }
-  document.addEventListener('input', function(ev){
-    var el = ev.target, f = Д.fields.filter(function(x){ return x.key === el.name; })[0];
-    if (!f) return;
-    if (f.type === 'number'){
-      var n = число(f, el.value), плохо = document.querySelector('[data-bad="' + f.key + '"]');
-      if (n === null){ if (плохо){ плохо.hidden = false;
-        плохо.textContent = 'Enter a number between ' + f.min + ' and ' + f.max + '.'; } return; }
-      if (плохо) плохо.hidden = true;
-      if (String(n) !== el.value) el.value = n;   // экран = состояние = бриф
-      выбор[f.key] = n;
-    } else выбор[f.key] = el.value;
-    рисовать();
-  });
-  document.addEventListener('click', function(ev){
-    var b = ev.target.closest('[data-choice]');
-    if (b){
-      var k = b.getAttribute('data-choice');
-      выбор[k] = b.getAttribute('data-value');
-      Array.prototype.forEach.call(document.querySelectorAll('[data-choice="' + k + '"]'), function(x){
-        x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      рисовать(); return;
+
+  Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+    var ключ=g.getAttribute('data-key');
+
+    if(g.getAttribute('data-type')==='tally'){
+      var счёт={};
+      var свести=function(){
+        var части=[];
+        Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+          var имя=r.getAttribute('data-name');
+          if(счёт[имя]) части.push(имя+' '+счёт[имя]);
+        });
+        состояние[ключ]=части.length?части.join(', '):null;
+        перерисовать();
+      };
+      Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+        var имя=r.getAttribute('data-name'), табло=r.querySelector('[data-role="n"]');
+        счёт[имя]=0;
+        Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
+          b.addEventListener('click',function(){
+            var д=parseInt(b.getAttribute('data-step'),10);
+            счёт[имя]=Math.max(0,Math.min(99,счёт[имя]+д));
+            табло.textContent=счёт[имя];
+            r.setAttribute('data-on',счёт[имя]>0?'1':'0');
+            свести();
+          });
+        });
+      });
+      return;
     }
-    if (ev.target.id === 'copy'){
-      var t = $('#brief');
-      var готово = function(){ $('#status').textContent = 'Copied — paste it into an email or a message.'; };
-      function запасной(){
-        t.removeAttribute('readonly'); t.select();
-        try { document.execCommand('copy'); готово(); }
-        catch(e){ $('#status').textContent = 'Select the text above and copy it.'; }
-        t.setAttribute('readonly','readonly');
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText)
-        navigator.clipboard.writeText(t.value).then(готово, запасной);
-      else запасной();
+
+    if(g.getAttribute('data-type')==='num'){
+      var ползунок=g.querySelector('[data-role="range"]');
+      var табло=g.querySelector('[data-role="numout"]');
+      var незнаю=g.querySelector('[data-role="unknown"]');
+      var ед="";
+      var неизвестноТекст="Not stated";
+      var поставить=function(){
+        состояние[ключ]=ползунок.value+(ед?' '+ед:'');
+        ползунок.disabled=false; незнаю.setAttribute('aria-pressed','false');
+        табло.textContent=состояние[ключ]; перерисовать();
+      };
+      var снять=function(){
+        состояние[ключ]=null; ползунок.disabled=true;
+        незнаю.setAttribute('aria-pressed','true');
+        табло.textContent=неизвестноТекст; перерисовать();
+      };
+      незнаю.addEventListener('click',function(){ if(ползунок.disabled) поставить(); else снять(); });
+      ползунок.addEventListener('input',поставить);
+      return;
     }
+
+    var поле=g.querySelector('input[type]:not([type="range"])');
+    if(поле){
+      поле.addEventListener('input',function(){
+        состояние[ключ]=(поле.value||'').trim()||null; перерисовать();
+      });
+      return;
+    }
+
+    var мульти=g.hasAttribute('data-multi'), ветковый=g.hasAttribute('data-branch');
+    Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(b){
+      b.addEventListener('click',function(){
+        var v=b.getAttribute('data-val');
+        if(мульти){
+          var было=(состояние[ключ]||[]).slice();
+          var i=было.indexOf(v);
+          if(i<0) было.push(v); else было.splice(i,1);
+          состояние[ключ]=было.length?было:null;
+          b.setAttribute('aria-pressed', было.indexOf(v)>=0?'true':'false');
+        } else {
+          var тот= состояние[ключ]===v;
+          Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(x){
+            x.setAttribute('aria-pressed','false'); });
+          состояние[ключ]= тот?null:v;
+          b.setAttribute('aria-pressed', тот?'false':'true');
+          if(ветковый) ветка=состояние[ключ];
+        }
+        перерисовать();
+      });
+    });
   });
-  рисовать();
-})();
-</script>
+
+  var кнопка=document.querySelector("#cp");
+  var строка=document.querySelector("#st");
+  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
+  кнопка.addEventListener('click',function(){
+    var t=выход.textContent;                     // ровно то, что видно на экране
+    function руками(){
+      сказать("The browser blocked copying — the configuration is selected above, copy it with Cmd+C or Ctrl+C.",true);
+      try{
+        var r=document.createRange(); r.selectNodeContents(выход);
+        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      }catch(e){}
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(function(){
+        сказать("Copied. Paste it into an email or a message to them.",false);
+      },руками);
+    } else руками();
+  });
+  перерисовать();
+})();</script>
 </body></html>
