@@ -619,6 +619,73 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .ill-wide{margin-top:14px;border-radius:14px;overflow:hidden;
   border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05)}
 .ill-wide img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover}
+
+/* ======================================================= единый тон и плавность */
+/* 1. Фотография и трёхмерная сцена жили в разных мирах: снимок тёплый и
+   контрастный, сцена — бледная. Приглушаем снимок и уводим его в тон бренда,
+   чтобы они читались одной страницей. */
+.hero-ph,.pf-ph,.fin-ph{filter:saturate(.72) contrast(1.02) brightness(1.02)}
+.hero-ph .ph-l,.pf-ph .ph-l,.fin-ph .ph-l{position:absolute;inset:0;
+  background-size:cover;background-position:center;opacity:0;
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1)}
+.hero-ph .ph-l.on,.pf-ph .ph-l.on,.fin-ph .ph-l.on{opacity:1}
+.pf-ph:before{content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(120% 90% at 78% 40%,rgba(28,126,132,.22),transparent 60%)}
+
+/* 2. Смена раздела и сцены больше не рывком: новое содержимое проявляется. */
+@keyframes всплыть{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes проявить{from{opacity:0}to{opacity:1}}
+.pf-v{animation:всплыть .5s cubic-bezier(.2,.7,.2,1) both}
+#hm-scene>*{animation:всплыть .45s cubic-bezier(.2,.7,.2,1) both}
+.hm-step p{transition:opacity .3s ease}
+.hm-step p.upd{opacity:0}
+.m{animation:всплыть .32s cubic-bezier(.2,.7,.2,1) both}
+.sugg button{animation:проявить .3s ease both}
+
+/* 3. Полоса направлений: девять сцен вместо девяти слов. */
+#layers{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+#layers button{display:flex;flex-direction:column;gap:0;padding:0;overflow:hidden;
+  border-radius:14px;background:#fff;text-align:left}
+#layers button .ly-ph{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
+  background:var(--paper2);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+#layers button:hover .ly-ph{transform:scale(1.04)}
+#layers button b{display:block;padding:12px 14px 6px;font-weight:600;font-size:15px}
+#layers button span{display:block;padding:0 14px 14px;font-size:13px;color:var(--ink2)}
+#layers button:hover{box-shadow:0 20px 40px -28px rgba(18,18,18,.5)}
+
+/* 4. Финал: справа сцена, а не пустое поле. */
+.fin-in{display:grid;grid-template-columns:minmax(0,54fr) minmax(0,46fr);
+  gap:clamp(24px,3.4vw,64px);align-items:center}
+.fin-l{min-width:0}
+.fin-r{min-width:0}
+.fin-ill{border-radius:var(--r);overflow:hidden;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14)}
+.fin-ill img{width:100%;height:auto;display:block;aspect-ratio:3/2;object-fit:cover;
+  transition:opacity .5s ease}
+.fin-cap{margin-top:12px;font-size:13px;color:var(--on-dark2)}
+
+/* 5. Границы в карточке работы — по запросу, а не стеной. */
+.wk-body details{margin-top:10px}
+.wk-body summary{cursor:pointer;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);list-style:none}
+.wk-body summary::-webkit-details-marker{display:none}
+.wk-body summary:after{content:" +";color:var(--ink3)}
+.wk-body details[open] summary:after{content:" \\2212"}
+.wk-body details p{margin-top:8px;font-size:14px;color:var(--ink2)}
+
+@media (max-width:1080px){
+  .fin-in{grid-template-columns:1fr}
+}
+@media (max-width:700px){
+  #layers{grid-template-columns:1fr 1fr;gap:10px}
+  #layers button b{font-size:14px;padding:10px 12px 4px}
+  #layers button span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .pf-v,#hm-scene>*,.m,.sugg button{animation:none}
+  .hero-ph .ph-l,.pf-ph .ph-l,.fin-ph .ph-l{transition:none}
+  #layers button .ly-ph{transition:none}
+}
 """
 
 
@@ -752,7 +819,9 @@ def блок_работ(code: str) -> str:
             f'<div class="wk-body"><dl>'
             f'<dt>{e(П["task"])}</dt><dd>{e(кратко(t["task"]))}</dd>'
             f'<dt>{e(П["done"])}</dt><dd>{e(кратко(t["done"]))}</dd>'
-            f'<dt>{e(П["limits"])}</dt><dd>{e(кратко(t["limits"]))}</dd></dl>'
+            f'</dl>'
+            f'<details><summary>{e(П["limits"])}</summary>'
+            f'<p>{e(t["limits"])}</p></details>'
             f'<div class="wk-links">'
             f'<a class="wk-go" href="/preview/{slug}/">{e(П["demo"])} &rarr;</a>'
             f'<a class="wk-sec" href="{BW.ПУТЬ[code]}{slug}/">{e(С["work"])}</a>'
@@ -1059,8 +1128,12 @@ def page(code):
     # routing один к одному. Клик — то же самое действие выбора, что и чип.
     СЛОИ = ("payments", "banking", "funding", "growth", "operations",
             "infrastructure", "accounting", "fulfillment", "presence")
+    # У каждого направления своя сцена: девять слов на пустом поле ничего не
+    # объясняли, а картинка показывает, о чём речь, на любом языке.
     слои = "".join(
         f'<button type="button" data-layer="{СЛОИ[i]}">'
+        f'<img class="ly-ph" src="/assets/il/{СЛОИ[i]}.jpg" alt="" '
+        f'width="1200" height="800" loading="lazy" decoding="async">'
         f'<b>{e(название.split(chr(8212))[-1].strip())}</b>'
         f'<span>{e(боль)}</span></button>'
         for i, (название, боль, _о, _п) in enumerate(d['problems']))
@@ -1173,17 +1246,23 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 <section class="band-final" id="diagnostic">
  <div class="fin-ph" id="fin-ph"></div>
  <div class="fin-in">
-  <p class="eyebrow">{e(d['final_eyebrow'])}</p>
-  <h2>{e(d['final_h2'])}</h2>
-  <p class="lede">{e(d['final_lede'])}</p>
-  <div class="fin-row">
-   <button type="button" id="fin-talk">{e(HS.ОБЩЕЕ[code]['talk'])}</button>
-   <a class="fin-alt" href="{WA}" target="_blank" rel="noopener">{e(d['final_cta2'])}</a>
+  <div class="fin-l">
+   <p class="eyebrow">{e(d['final_eyebrow'])}</p>
+   <h2>{e(d['final_h2'])}</h2>
+   <p class="lede">{e(d['final_lede'])}</p>
+   <div class="fin-row">
+    <button type="button" id="fin-talk">{e(HS.ОБЩЕЕ[code]['talk'])}</button>
+    <a class="fin-alt" href="{WA}" target="_blank" rel="noopener">{e(d['final_cta2'])}</a>
+   </div>
+   <p id="fin-state" hidden></p>
+   <div class="fin-scan">
+    <p>{e(С['scan_line'])}</p>
+    <a href="{scan}" target="_blank" rel="noopener">{e(С['scan_cta'])} &rarr;</a>
+   </div>
   </div>
-  <p id="fin-state" hidden></p>
-  <div class="fin-scan">
-   <p>{e(С['scan_line'])}</p>
-   <a href="{scan}" target="_blank" rel="noopener">{e(С['scan_cta'])} &rarr;</a>
+  <div class="fin-r">
+   <div class="fin-ill"><img id="fin-ill" src="/assets/il/neutral.jpg" alt=""
+        width="1200" height="800" loading="lazy" decoding="async"></div>
   </div>
  </div>
 </section>

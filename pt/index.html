@@ -858,6 +858,73 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .ill-wide{margin-top:14px;border-radius:14px;overflow:hidden;
   border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05)}
 .ill-wide img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover}
+
+/* ======================================================= единый тон и плавность */
+/* 1. Фотография и трёхмерная сцена жили в разных мирах: снимок тёплый и
+   контрастный, сцена — бледная. Приглушаем снимок и уводим его в тон бренда,
+   чтобы они читались одной страницей. */
+.hero-ph,.pf-ph,.fin-ph{filter:saturate(.72) contrast(1.02) brightness(1.02)}
+.hero-ph .ph-l,.pf-ph .ph-l,.fin-ph .ph-l{position:absolute;inset:0;
+  background-size:cover;background-position:center;opacity:0;
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1)}
+.hero-ph .ph-l.on,.pf-ph .ph-l.on,.fin-ph .ph-l.on{opacity:1}
+.pf-ph:before{content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(120% 90% at 78% 40%,rgba(28,126,132,.22),transparent 60%)}
+
+/* 2. Смена раздела и сцены больше не рывком: новое содержимое проявляется. */
+@keyframes всплыть{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes проявить{from{opacity:0}to{opacity:1}}
+.pf-v{animation:всплыть .5s cubic-bezier(.2,.7,.2,1) both}
+#hm-scene>*{animation:всплыть .45s cubic-bezier(.2,.7,.2,1) both}
+.hm-step p{transition:opacity .3s ease}
+.hm-step p.upd{opacity:0}
+.m{animation:всплыть .32s cubic-bezier(.2,.7,.2,1) both}
+.sugg button{animation:проявить .3s ease both}
+
+/* 3. Полоса направлений: девять сцен вместо девяти слов. */
+#layers{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+#layers button{display:flex;flex-direction:column;gap:0;padding:0;overflow:hidden;
+  border-radius:14px;background:#fff;text-align:left}
+#layers button .ly-ph{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
+  background:var(--paper2);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+#layers button:hover .ly-ph{transform:scale(1.04)}
+#layers button b{display:block;padding:12px 14px 6px;font-weight:600;font-size:15px}
+#layers button span{display:block;padding:0 14px 14px;font-size:13px;color:var(--ink2)}
+#layers button:hover{box-shadow:0 20px 40px -28px rgba(18,18,18,.5)}
+
+/* 4. Финал: справа сцена, а не пустое поле. */
+.fin-in{display:grid;grid-template-columns:minmax(0,54fr) minmax(0,46fr);
+  gap:clamp(24px,3.4vw,64px);align-items:center}
+.fin-l{min-width:0}
+.fin-r{min-width:0}
+.fin-ill{border-radius:var(--r);overflow:hidden;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14)}
+.fin-ill img{width:100%;height:auto;display:block;aspect-ratio:3/2;object-fit:cover;
+  transition:opacity .5s ease}
+.fin-cap{margin-top:12px;font-size:13px;color:var(--on-dark2)}
+
+/* 5. Границы в карточке работы — по запросу, а не стеной. */
+.wk-body details{margin-top:10px}
+.wk-body summary{cursor:pointer;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);list-style:none}
+.wk-body summary::-webkit-details-marker{display:none}
+.wk-body summary:after{content:" +";color:var(--ink3)}
+.wk-body details[open] summary:after{content:" \2212"}
+.wk-body details p{margin-top:8px;font-size:14px;color:var(--ink2)}
+
+@media (max-width:1080px){
+  .fin-in{grid-template-columns:1fr}
+}
+@media (max-width:700px){
+  #layers{grid-template-columns:1fr 1fr;gap:10px}
+  #layers button b{font-size:14px;padding:10px 12px 4px}
+  #layers button span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .pf-v,#hm-scene>*,.m,.sugg button{animation:none}
+  .hero-ph .ph-l,.pf-ph .ph-l,.fin-ph .ph-l{transition:none}
+  #layers button .ly-ph{transition:none}
+}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -1259,7 +1326,7 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
 
 <section id="pf"><div class="pf-in"><div class="pf-v" data-route="" data-depth="0"><div class="pf-ph"></div><div class="pf-l"><p class="pf-eyebrow">Como analisamos</p><h2 class="pf-h">Ainda não está claro o que precisa de conserto</h2><p class="pf-lede">Primeiro achamos por onde o dinheiro vaza. Quase nunca onde parece.</p><span id="how" class="pf-anchor"></span><div class="pf-cta"><button type="button" class="pf-main" data-talk>Contar o que está acontecendo</button><a href="#works">Todos os exemplos &rarr;</a></div></div><div class="pf-r"><div class="pf-card"><div class="pf-card-h"><span class="tag">Como analisamos</span></div><ol class="pf-steps"><li><b>01</b><div><h3>Ouvimos</h3><p>O que acontece e como aparece nos números</p></div></li><li><b>02</b><div><h3>Estreitamos</h3><p>Separamos a causa do sintoma</p></div></li><li><b>03</b><div><h3>Propomos</h3><p>O que fazemos primeiro e por quê</p></div></li><li><b>04</b><div><h3>Calculamos</h3><p>Quanto custa e o que muda</p></div></li></ol><div class="pf-two"><div class="pf-need"><h3>O que vamos precisar</h3><ul><li>O que o negócio faz</li><li>O que você já tentou</li><li>Para quando precisa</li></ul></div><div class="pf-lim"><h3>Limites</h3><p>Enquanto a direção não for nomeada não há caminho concreto a mostrar, e não vamos inventá-lo.</p></div></div></div></div></div></div><div id="pf-switch" data-on="0"><button type="button"></button></div></section>
 
-<section id="works" class="band-works"><div class="wk-h"><p class="eyebrow">Trabalho do estúdio</p><h2>Dois conceitos que você pode abrir e usar</h2><p>São construções nossas, não pedidos de clientes. Por isso podemos mostrá-las inteiras e por isso não atribuímos a elas resultados alheios.</p></div><div class="wk-grid"><article class="wk" data-dev="d"><div class="wk-card" style="background-image:url(/assets/ph/fence-1.jpg)"><div class="wk-top"><span class="wk-name">Planejador de cercas</span><span class="wk-tag">Conceito do estúdio</span></div><div class="wk-inset"><img src="/assets/demo/fence-desk.jpg" data-desk="/assets/demo/fence-desk.jpg" data-phone="/assets/demo/fence-phone.jpg" alt="Planejador de cercas" width="1400" height="972" loading="lazy" decoding="async"></div><div class="wk-dev"><button type="button" data-dev="d" aria-pressed="true">Computador</button><button type="button" data-dev="p" aria-pressed="false">Celular</button></div></div><div class="wk-body"><dl><dt>A tarefa</dt><dd>O instalador de cercas recebe ligações perguntando o preço, e a conversa vira esclarecimento: tipo de trabalho, material, comprimento, altura, portões e demolição.</dd><dt>O que foi feito</dt><dd>Conceito de planejador: o dono da casa escolhe tipo de trabalho, material, estilo, comprimento, altura, portões e demolição e recebe uma descrição clara do projeto para conversar com o instalador.</dd><dt>Limites</dt><dd>É um conceito independente do estúdio, não um pedido da empresa nem o site oficial dela; a página diz isso.</dd></dl><div class="wk-links"><a class="wk-go" href="/preview/neighborhood-fence/">Abrir a demo &rarr;</a><a class="wk-sec" href="/pt/work/neighborhood-fence/">Sobre este trabalho</a></div></div></article><article class="wk" data-dev="d"><div class="wk-card" style="background-image:url(/assets/ph/food-1.jpg)"><div class="wk-top"><span class="wk-name">Cardápio de restaurante e retirada</span><span class="wk-tag">Conceito do estúdio</span></div><div class="wk-inset"><img src="/assets/demo/thai-desk.jpg" data-desk="/assets/demo/thai-desk.jpg" data-phone="/assets/demo/thai-phone.jpg" alt="Cardápio de restaurante e retirada" width="1400" height="972" loading="lazy" decoding="async"></div><div class="wk-dev"><button type="button" data-dev="d" aria-pressed="true">Computador</button><button type="button" data-dev="p" aria-pressed="false">Celular</button></div></div><div class="wk-body"><dl><dt>A tarefa</dt><dd>Um restaurante é julgado pela vitrine. O cliente no celular quer ver os pratos e preços e entender como é a retirada, não ligar para perguntar.</dd><dt>O que foi feito</dt><dd>Conceito de vitrine: cada prato com sua foto, preço e opções, uma seção do que mais pedem, horários e o caminho até a retirada.</dd><dt>Limites</dt><dd>É um conceito independente do estúdio, não um pedido do restaurante nem o site oficial dele; a própria página diz isso.</dd></dl><div class="wk-links"><a class="wk-go" href="/preview/saeng-thai-house/">Abrir a demo &rarr;</a><a class="wk-sec" href="/pt/work/saeng-thai-house/">Sobre este trabalho</a></div></div></article></div></section>
+<section id="works" class="band-works"><div class="wk-h"><p class="eyebrow">Trabalho do estúdio</p><h2>Dois conceitos que você pode abrir e usar</h2><p>São construções nossas, não pedidos de clientes. Por isso podemos mostrá-las inteiras e por isso não atribuímos a elas resultados alheios.</p></div><div class="wk-grid"><article class="wk" data-dev="d"><div class="wk-card" style="background-image:url(/assets/ph/fence-1.jpg)"><div class="wk-top"><span class="wk-name">Planejador de cercas</span><span class="wk-tag">Conceito do estúdio</span></div><div class="wk-inset"><img src="/assets/demo/fence-desk.jpg" data-desk="/assets/demo/fence-desk.jpg" data-phone="/assets/demo/fence-phone.jpg" alt="Planejador de cercas" width="1400" height="972" loading="lazy" decoding="async"></div><div class="wk-dev"><button type="button" data-dev="d" aria-pressed="true">Computador</button><button type="button" data-dev="p" aria-pressed="false">Celular</button></div></div><div class="wk-body"><dl><dt>A tarefa</dt><dd>O instalador de cercas recebe ligações perguntando o preço, e a conversa vira esclarecimento: tipo de trabalho, material, comprimento, altura, portões e demolição.</dd><dt>O que foi feito</dt><dd>Conceito de planejador: o dono da casa escolhe tipo de trabalho, material, estilo, comprimento, altura, portões e demolição e recebe uma descrição clara do projeto para conversar com o instalador.</dd></dl><details><summary>Limites</summary><p>É um conceito independente do estúdio, não um pedido da empresa nem o site oficial dela; a página diz isso. Os preços do planejador são ilustrativos e solicitações não são enviadas. Não temos resultados deste exemplo.</p></details><div class="wk-links"><a class="wk-go" href="/preview/neighborhood-fence/">Abrir a demo &rarr;</a><a class="wk-sec" href="/pt/work/neighborhood-fence/">Sobre este trabalho</a></div></div></article><article class="wk" data-dev="d"><div class="wk-card" style="background-image:url(/assets/ph/food-1.jpg)"><div class="wk-top"><span class="wk-name">Cardápio de restaurante e retirada</span><span class="wk-tag">Conceito do estúdio</span></div><div class="wk-inset"><img src="/assets/demo/thai-desk.jpg" data-desk="/assets/demo/thai-desk.jpg" data-phone="/assets/demo/thai-phone.jpg" alt="Cardápio de restaurante e retirada" width="1400" height="972" loading="lazy" decoding="async"></div><div class="wk-dev"><button type="button" data-dev="d" aria-pressed="true">Computador</button><button type="button" data-dev="p" aria-pressed="false">Celular</button></div></div><div class="wk-body"><dl><dt>A tarefa</dt><dd>Um restaurante é julgado pela vitrine. O cliente no celular quer ver os pratos e preços e entender como é a retirada, não ligar para perguntar.</dd><dt>O que foi feito</dt><dd>Conceito de vitrine: cada prato com sua foto, preço e opções, uma seção do que mais pedem, horários e o caminho até a retirada.</dd></dl><details><summary>Limites</summary><p>É um conceito independente do estúdio, não um pedido do restaurante nem o site oficial dele; a própria página diz isso. As fotos são ilustrativas e pedidos não são aceitos. Não temos resultados deste exemplo e não vamos atribuí-los.</p></details><div class="wk-links"><a class="wk-go" href="/preview/saeng-thai-house/">Abrir a demo &rarr;</a><a class="wk-sec" href="/pt/work/saeng-thai-house/">Sobre este trabalho</a></div></div></article></div></section>
 
 <section class="band-layers" id="problems">
  <div class="wrap">
@@ -1267,7 +1334,7 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
    <h2 id="lay-title">Nove lugares onde um negócio costuma quebrar</h2>
    <p id="lay-lede">Resolvemos diferentes tarefas do negócio e as unimos em um próximo passo claro.</p>
   </div>
-  <div id="layers"><button type="button" data-layer="payments"><b>Pagamentos</b><span>O recebimento de pagamentos parou</span></button><button type="button" data-layer="banking"><b>Bancos</b><span>O banco disse não ou encerrou a conta</span></button><button type="button" data-layer="funding"><b>Capital</b><span>Precisa do dinheiro antes que ele chegue</span></button><button type="button" data-layer="growth"><b>Crescimento</b><span>Entra tráfego, não entra receita</span></button><button type="button" data-layer="operations"><b>Operações</b><span>Trabalho que depende de alguém lembrar</span></button><button type="button" data-layer="infrastructure"><b>Infraestrutura</b><span>Funções pequenas demais para contratar</span></button><button type="button" data-layer="accounting"><b>Contabilidade e impostos</b><span>Os livros atrasaram e os prazos não</span></button><button type="button" data-layer="fulfillment"><b>Logística e armazém</b><span>Você superou o envio por conta própria</span></button><button type="button" data-layer="presence"><b>Site e e-commerce</b><span>A vitrine pela qual você é julgado</span></button></div>
+  <div id="layers"><button type="button" data-layer="payments"><img class="ly-ph" src="/assets/il/payments.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"><b>Pagamentos</b><span>O recebimento de pagamentos parou</span></button><button type="button" data-layer="banking"><img class="ly-ph" src="/assets/il/banking.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"><b>Bancos</b><span>O banco disse não ou encerrou a conta</span></button><button type="button" data-layer="funding"><img class="ly-ph" src="/assets/il/funding.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"><b>Capital</b><span>Precisa do dinheiro antes que ele chegue</span></button><button type="button" data-layer="growth"><img class="ly-ph" src="/assets/il/growth.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"><b>Crescimento</b><span>Entra tráfego, não entra receita</span></button><button type="button" data-layer="operations"><img class="ly-ph" src="/assets/il/operations.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"><b>Operações</b><span>Trabalho que depende de alguém lembrar</span></button><button type="button" data-layer="infrastructure"><img class="ly-ph" src="/assets/il/infrastructure.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"><b>Infraestrutura</b><span>Funções pequenas demais para contratar</span></button><button type="button" data-layer="accounting"><img class="ly-ph" src="/assets/il/accounting.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"><b>Contabilidade e impostos</b><span>Os livros atrasaram e os prazos não</span></button><button type="button" data-layer="fulfillment"><img class="ly-ph" src="/assets/il/fulfillment.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"><b>Logística e armazém</b><span>Você superou o envio por conta própria</span></button><button type="button" data-layer="presence"><img class="ly-ph" src="/assets/il/presence.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"><b>Site e e-commerce</b><span>A vitrine pela qual você é julgado</span></button></div>
   <div id="layers-picked" hidden>
    <span id="layers-name"></span>
    <button type="button" id="layers-change"></button>
@@ -1291,17 +1358,23 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
 <section class="band-final" id="diagnostic">
  <div class="fin-ph" id="fin-ph"></div>
  <div class="fin-in">
-  <p class="eyebrow">Avaliação inicial gratuita</p>
-  <h2>Descreva o problema. Diremos o que achamos que ele realmente é</h2>
-  <p class="lede">Sem custo, sem compromisso e sem necessidade de chamada. Se a sua situação estiver fora do que atendemos, você será informado disso em vez de receber uma proposta.</p>
-  <div class="fin-row">
-   <button type="button" id="fin-talk">Continuar a conversa</button>
-   <a class="fin-alt" href="https://wa.me/18182690416" target="_blank" rel="noopener">Fale conosco direto</a>
+  <div class="fin-l">
+   <p class="eyebrow">Avaliação inicial gratuita</p>
+   <h2>Descreva o problema. Diremos o que achamos que ele realmente é</h2>
+   <p class="lede">Sem custo, sem compromisso e sem necessidade de chamada. Se a sua situação estiver fora do que atendemos, você será informado disso em vez de receber uma proposta.</p>
+   <div class="fin-row">
+    <button type="button" id="fin-talk">Continuar a conversa</button>
+    <a class="fin-alt" href="https://wa.me/18182690416" target="_blank" rel="noopener">Fale conosco direto</a>
+   </div>
+   <p id="fin-state" hidden></p>
+   <div class="fin-scan">
+    <p>Tem site? Verificação AI gratuita de uma página — sem acessos e sem ligação.</p>
+    <a href="https://scan.prodigylab.studio/scan?lang=pt" target="_blank" rel="noopener">Verificar o site &rarr;</a>
+   </div>
   </div>
-  <p id="fin-state" hidden></p>
-  <div class="fin-scan">
-   <p>Tem site? Verificação AI gratuita de uma página — sem acessos e sem ligação.</p>
-   <a href="https://scan.prodigylab.studio/scan?lang=pt" target="_blank" rel="noopener">Verificar o site &rarr;</a>
+  <div class="fin-r">
+   <div class="fin-ill"><img id="fin-ill" src="/assets/il/neutral.jpg" alt=""
+        width="1200" height="800" loading="lazy" decoding="async"></div>
   </div>
  </div>
 </section>
@@ -1630,7 +1703,12 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
  function шаг(узел,текст,состояние){
   var p=узел.querySelector('p'), м=узел.querySelector('.hm-mono i');
   var пусто=(!текст||текст===T().undefined||текст===T().waiting);
-  p.textContent=пусто?'—':текст;
+  var новое=пусто?'—':текст;
+  if(p.textContent!==новое){
+   // Значение подменяется не рывком: гаснет, меняется, проявляется.
+   p.classList.add('upd');
+   window.setTimeout(function(){ p.textContent=новое; p.classList.remove('upd'); },180);
+  }
   p.classList.toggle('dim',пусто);
   узел.classList.toggle('live',состояние==='live');
   узел.classList.toggle('done',состояние==='done');
@@ -2022,12 +2100,32 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   return ИЛЛ_НАПРАВЛЕНИЯ.indexOf(к)>=0 ? к : 'neutral';
  };
  var темаСейчас=null, фонРаздела=null;
+ // Снимок меняется перекрёстным растворением: новый слой проявляется над
+ // старым, и только потом старый убирается. Подмена одной картинки давала
+ // рывок.
  function поставитьФон(узел,имя,класс){
   if(!узел||!имя) return;
+  if(узел.getAttribute('data-ph')===имя){ if(класс) узел.classList.add(класс); return; }
+  узел.setAttribute('data-ph',имя);
+  var путь='/assets/ph/'+имя+'.jpg';
   var i=new Image();
-  i.onload=function(){ узел.style.backgroundImage='url(/assets/ph/'+имя+'.jpg)';
-   if(класс) узел.classList.add(класс); };
-  i.src='/assets/ph/'+имя+'.jpg';
+  i.onload=function(){
+   var слой=document.createElement('i');
+   слой.className='ph-l';
+   слой.style.backgroundImage='url('+путь+')';
+   узел.appendChild(слой);
+   if(класс) узел.classList.add(класс);
+   window.requestAnimationFrame(function(){
+    window.requestAnimationFrame(function(){
+     слой.classList.add('on');
+     var старые=узел.querySelectorAll('.ph-l');
+     window.setTimeout(function(){
+      for(var k=0;k<старые.length-1;k++){ if(старые[k]!==слой) старые[k].remove(); }
+     },950);
+    });
+   });
+  };
+  i.src=путь;
  }
  window.наТему = function(к, известно){
   var н=нишаКлиента(), ключ=(к||'')+'|'+н;
@@ -2038,6 +2136,11 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   фонРаздела=с[1%с.length];
   поставитьФон(document.querySelector('.pf-ph'), фонРаздела);
   поставитьФон(document.getElementById('fin-ph'), с[2%с.length]);
+  var ф=document.getElementById('fin-ill');
+  if(ф){ var файл=(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
+   var п='/assets/il/'+файл+'.jpg';
+   if(ф.getAttribute('src')!==п){ ф.style.opacity='0'; var n=new Image();
+    n.onload=function(){ ф.src=п; ф.style.opacity=''; }; n.src=п; } }
  };
  // Полосу раздела помощник пересобирает целиком — фон и проявление
  // возвращаем наблюдателем, а не одним вызовом.
@@ -2203,7 +2306,10 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
    var пункты=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
    тело='<div class="chk"><ul>'+пункты+'</ul></div>';
   } else if(к){
-   var файл=(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
+   // Если ниша названа, в полосе показываем её сцену — она отличается от
+   // сцены направления в первом экране.
+   var н=нишаКлиента();
+   var файл=(н&&ИЛЛ_НИШИ.indexOf(н)>=0)?н:(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
    тело='<div class="ill-wide"><img src="/assets/il/'+файл+'.jpg" alt="" loading="lazy" decoding="async"></div>';
    имя=имя||экр(б.problem);
   } else {

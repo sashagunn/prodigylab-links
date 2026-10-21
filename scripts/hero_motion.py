@@ -312,7 +312,12 @@ JS = """
  function шаг(узел,текст,состояние){
   var p=узел.querySelector('p'), м=узел.querySelector('.hm-mono i');
   var пусто=(!текст||текст===T().undefined||текст===T().waiting);
-  p.textContent=пусто?'\u2014':текст;
+  var новое=пусто?'\u2014':текст;
+  if(p.textContent!==новое){
+   // Значение подменяется не рывком: гаснет, меняется, проявляется.
+   p.classList.add('upd');
+   window.setTimeout(function(){ p.textContent=новое; p.classList.remove('upd'); },180);
+  }
   p.classList.toggle('dim',пусто);
   узел.classList.toggle('live',состояние==='live');
   узел.classList.toggle('done',состояние==='done');
@@ -704,12 +709,32 @@ JS = """
   return ИЛЛ_НАПРАВЛЕНИЯ.indexOf(к)>=0 ? к : 'neutral';
  };
  var темаСейчас=null, фонРаздела=null;
+ // Снимок меняется перекрёстным растворением: новый слой проявляется над
+ // старым, и только потом старый убирается. Подмена одной картинки давала
+ // рывок.
  function поставитьФон(узел,имя,класс){
   if(!узел||!имя) return;
+  if(узел.getAttribute('data-ph')===имя){ if(класс) узел.classList.add(класс); return; }
+  узел.setAttribute('data-ph',имя);
+  var путь='/assets/ph/'+имя+'.jpg';
   var i=new Image();
-  i.onload=function(){ узел.style.backgroundImage='url(/assets/ph/'+имя+'.jpg)';
-   if(класс) узел.classList.add(класс); };
-  i.src='/assets/ph/'+имя+'.jpg';
+  i.onload=function(){
+   var слой=document.createElement('i');
+   слой.className='ph-l';
+   слой.style.backgroundImage='url('+путь+')';
+   узел.appendChild(слой);
+   if(класс) узел.classList.add(класс);
+   window.requestAnimationFrame(function(){
+    window.requestAnimationFrame(function(){
+     слой.classList.add('on');
+     var старые=узел.querySelectorAll('.ph-l');
+     window.setTimeout(function(){
+      for(var k=0;k<старые.length-1;k++){ if(старые[k]!==слой) старые[k].remove(); }
+     },950);
+    });
+   });
+  };
+  i.src=путь;
  }
  window.наТему = function(к, известно){
   var н=нишаКлиента(), ключ=(к||'')+'|'+н;
@@ -720,6 +745,11 @@ JS = """
   фонРаздела=с[1%%с.length];
   поставитьФон(document.querySelector('.pf-ph'), фонРаздела);
   поставитьФон(document.getElementById('fin-ph'), с[2%%с.length]);
+  var ф=document.getElementById('fin-ill');
+  if(ф){ var файл=(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
+   var п='/assets/il/'+файл+'.jpg';
+   if(ф.getAttribute('src')!==п){ ф.style.opacity='0'; var n=new Image();
+    n.onload=function(){ ф.src=п; ф.style.opacity=''; }; n.src=п; } }
  };
  // Полосу раздела помощник пересобирает целиком — фон и проявление
  // возвращаем наблюдателем, а не одним вызовом.
@@ -885,7 +915,10 @@ JS = """
    var пункты=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
    тело='<div class="chk"><ul>'+пункты+'</ul></div>';
   } else if(к){
-   var файл=(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
+   // Если ниша названа, в полосе показываем её сцену — она отличается от
+   // сцены направления в первом экране.
+   var н=нишаКлиента();
+   var файл=(н&&ИЛЛ_НИШИ.indexOf(н)>=0)?н:(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
    тело='<div class="ill-wide"><img src="/assets/il/'+файл+'.jpg" alt="" loading="lazy" decoding="async"></div>';
    имя=имя||экр(б.problem);
   } else {
