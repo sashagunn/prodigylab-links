@@ -5,6 +5,16 @@
   "outputDirectory": ".",
   "redirects": [
     {
+      "source": "/about-studio",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/about-studio/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
       "source": "/index.html",
       "destination": "/",
       "statusCode": 301
