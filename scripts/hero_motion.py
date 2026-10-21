@@ -867,9 +867,8 @@ JS = """
   обёртка.className='сц-новая';
   обёртка.innerHTML=новое;
   гн.appendChild(обёртка);
-  window.requestAnimationFrame(function(){
-   window.requestAnimationFrame(function(){ обёртка.classList.add('on'); });
-  });
+  void обёртка.offsetHeight;
+  обёртка.classList.add('on');
   window.setTimeout(function(){
    гн.innerHTML=новое;
   },700);
@@ -995,21 +994,22 @@ JS = """
   if(былаВысота && !тонкая){
    var сталаВысота=гнездо.getBoundingClientRect().height;
    if(Math.abs(сталаВысота-былаВысота)>24){
+    // Без requestAnimationFrame: в фоновой вкладке кадр не приходит, и
+    // полоса оставалась обрезанной. Высоту задаём сразу, с принудительным
+    // пересчётом между двумя значениями.
     гнездо.classList.add('ведём');
     гнездо.style.transition='none';
     гнездо.style.height=былаВысота+'px';
-    window.requestAnimationFrame(function(){
-     гнездо.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
-     гнездо.style.height=сталаВысота+'px';
-     var вернуть=function(){
-      гнездо.style.transition=''; гнездо.style.height='';
-      гнездо.classList.remove('ведём');
-      гнездо.removeEventListener('transitionend',вернуть);
-     };
-     гнездо.addEventListener('transitionend',вернуть);
-     // Если переход не случился (например, вкладка в фоне) — всё равно вернём.
-     window.setTimeout(вернуть,1200);
-    });
+    void гнездо.offsetHeight;
+    гнездо.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
+    гнездо.style.height=сталаВысота+'px';
+    var вернуть=function(){
+     гнездо.style.transition=''; гнездо.style.height='';
+     гнездо.classList.remove('ведём');
+     гнездо.removeEventListener('transitionend',вернуть);
+    };
+    гнездо.addEventListener('transitionend',вернуть);
+    window.setTimeout(вернуть,1200);
    }
   }
   тема=к;

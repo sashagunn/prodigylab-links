@@ -146,8 +146,9 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .tr{display:inline-block;margin:6px 8px 0 0;background:none;border:1px solid var(--line);
   border-radius:999px;padding:5px 12px;font-size:12.5px;cursor:pointer;color:var(--ink2)}
 .tr:hover{border-color:var(--ink3)}
-.sugg{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px}
-.sugg:empty{display:none}
+/* Ряд подсказок держит высоту: иначе появление вариантов сдвигает ввод. */
+.sugg{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px;min-height:40px;
+  align-content:flex-start}
 .sugg button{background:#fff;border:1px solid var(--line);border-radius:999px;
   padding:8px 14px;font-size:14px;cursor:pointer}
 .sugg button:hover{border-color:var(--accent);color:var(--accent2)}
