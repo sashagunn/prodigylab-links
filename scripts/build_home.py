@@ -34,6 +34,736 @@ SERVICE_HEAD = {'en': 'Services', 'ru': 'Специализированные у
                 'de': 'Spezialisierte Leistungen — auf Englisch'}
 
 
+КОРЕНЬ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+НОВОЕ_CSS = """/* Прототип новой главной Prodigy LAB — фотографическая версия.
+   Палитра действующая, с боевого сайта. Шрифты с запасом: без Google
+   страница остаётся читаемой на системных. */
+:root{
+  --paper:#FBFBF9; --paper2:#F3F2EE; --ink:#121212; --ink2:#5C5C5A;
+  --ink3:#8A8A86; --line:#E2E1DC; --accent:#1C7E84; --accent2:#0F4A4E;
+  --accent-soft:#E3F0F0; --graphite:#0F1722; --graphite2:#16222A;
+  --on-dark:#E8ECEF; --on-dark2:#95A3B3;
+  --sans:Geist,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+  --wrap:1280px; --gut:clamp(20px,4vw,56px);
+  --r:18px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.03em;line-height:1.06}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.eyebrow,.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--ink3)}
+.em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);
+  letter-spacing:-.01em}
+
+/* ------------------------------------------------------------------ шапка */
+.top{position:sticky;top:0;z-index:60;background:rgba(251,251,249,.88);
+  backdrop-filter:saturate(1.5) blur(10px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:28px;height:62px;
+  max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.mark{font-weight:800;letter-spacing:-.02em;font-size:18px;text-decoration:none}
+.mark i{color:var(--accent);font-style:normal}
+.top-nav{display:flex;gap:26px;font-size:14px;color:var(--ink2)}
+.top-nav a{text-decoration:none}
+.top-nav a:hover{color:var(--ink)}
+.top-r{margin-left:auto;display:flex;align-items:center;gap:10px}
+.langs{display:flex;gap:2px}
+.langs button{background:none;border:0;padding:5px 7px;cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink3)}
+.langs button[aria-current="true"]{color:var(--ink);font-weight:500;
+  box-shadow:inset 0 -1px 0 var(--ink)}
+
+/* ----------------------------------------------------------- первый экран */
+#hm-hero{position:relative;padding:clamp(22px,3.4vh,44px) 0 clamp(40px,5vw,72px);
+  overflow:hidden}
+/* Фотография живёт за правой половиной и мягко растворяется влево. */
+.hero-ph{position:absolute;inset:0 0 0 38%;background-size:cover;
+  background-position:center;opacity:0;transition:opacity .7s ease}
+.hero-ph.on{opacity:1}
+.hero-ph:after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--paper) 0%,rgba(251,251,249,.72) 26%,
+    rgba(251,251,249,.10) 62%,rgba(15,23,34,.22) 100%)}
+.hero-in{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;
+  padding:0 var(--gut);display:grid;grid-template-columns:minmax(0,47fr) minmax(0,53fr);
+  gap:clamp(22px,3vw,54px);align-items:center}
+.hero-l{max-width:620px}
+h1#h1{font-size:clamp(38px,4.9vw,70px);margin:12px 0 0;letter-spacing:-.035em}
+h1#h1 .ln{display:block;overflow:hidden}
+h1#h1 .ln>span{display:block;transform:translateY(110%);opacity:0;
+  transition:transform .62s cubic-bezier(.2,.7,.2,1),opacity .62s}
+h1#h1 .ln>span.in{transform:none;opacity:1}
+.hm-lede{margin-top:16px;color:var(--ink2);font-size:18px;max-width:40ch}
+
+/* панель разговора */
+.talk{margin-top:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);
+  border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:0 2px 2px rgba(18,18,18,.02),0 26px 60px -40px rgba(18,18,18,.55)}
+.talk-h{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 16px;border-bottom:1px solid var(--line)}
+.talk-n{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink3)}
+.lang{position:relative}
+#lang-btn{background:none;border:1px solid var(--line);border-radius:999px;
+  padding:5px 12px;font-size:12.5px;cursor:pointer;color:var(--ink2)}
+#lang-btn:hover{border-color:var(--ink3)}
+#lang-list{position:absolute;right:0;top:calc(100% + 6px);background:#fff;
+  border:1px solid var(--line);border-radius:12px;padding:5px;min-width:155px;
+  z-index:30;box-shadow:0 24px 50px -28px rgba(18,18,18,.5)}
+#lang-list button{display:block;width:100%;text-align:left;background:none;
+  border:0;padding:8px 11px;font-size:14px;cursor:pointer;border-radius:8px}
+#lang-list button:hover{background:var(--paper2)}
+#lang-list button[aria-current="true"]{color:var(--accent)}
+.stream{max-height:min(38vh,360px);overflow:auto;padding:14px 16px;display:flex;
+  flex-direction:column;gap:9px;scrollbar-width:thin}
+.stream:empty{display:none}
+.m{font-size:15px;line-height:1.5;border-radius:16px;padding:10px 14px;max-width:92%}
+.m>b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink3);font-weight:400;margin-bottom:3px}
+.m-bot{background:var(--accent-soft);border:1px solid #CFE3E3;align-self:flex-start;
+  border-bottom-left-radius:5px}
+.m-you{background:#fff;border:1px solid var(--line);align-self:flex-end;
+  border-bottom-right-radius:5px}
+.m-note{align-self:flex-start;font-size:13px;color:var(--ink2);background:none;
+  border-left:2px solid var(--line);border-radius:0;padding:2px 0 2px 10px}
+.m-err{align-self:flex-start;font-size:13px;color:#8A3A1C;background:#FBF0E9}
+.wait{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink3);
+  font-family:var(--mono);letter-spacing:.05em}
+.wait i{width:6px;height:6px;border-radius:50%;background:var(--accent);
+  animation:pulse 1s infinite ease-in-out}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
+.tr{display:inline-block;margin:6px 8px 0 0;background:none;border:1px solid var(--line);
+  border-radius:999px;padding:5px 12px;font-size:12.5px;cursor:pointer;color:var(--ink2)}
+.tr:hover{border-color:var(--ink3)}
+.sugg{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px}
+.sugg:empty{display:none}
+.sugg button{background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:8px 14px;font-size:14px;cursor:pointer}
+.sugg button:hover{border-color:var(--accent);color:var(--accent2)}
+#ask{display:flex;gap:8px;padding:14px 16px;align-items:center}
+#ask-i{flex:1;min-width:0;border:1px solid var(--line);border-radius:999px;
+  padding:14px 18px;font-size:16px;background:#fff}
+#ask-i:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+#ask-b{width:46px;height:46px;border:0;border-radius:50%;background:var(--accent);
+  color:#fff;font-size:17px;cursor:pointer;flex:none;transition:transform .15s}
+#ask-b:hover{background:var(--accent2);transform:scale(1.05)}
+#ask-b:disabled{opacity:.5}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.chips button{background:rgba(255,255,255,.9);border:1px solid var(--line);
+  border-radius:999px;padding:9px 15px;font-size:14px;cursor:pointer}
+.chips button:hover{border-color:var(--ink)}
+.chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chips .near button{color:var(--ink2)}
+.tail{display:flex;gap:18px;align-items:center;margin-top:14px;font-size:13.5px}
+.tail button{background:none;border:0;padding:0;cursor:pointer;color:var(--ink2);
+  text-decoration:underline;text-underline-offset:3px}
+.tail a{color:var(--accent2);text-decoration:underline;text-underline-offset:3px}
+
+/* правая колонка: трекер + макет устройства */
+.hero-r{display:flex;flex-direction:column;align-items:center;gap:16px}
+.steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;
+  padding:7px 10px;box-shadow:0 14px 34px -26px rgba(18,18,18,.6);max-width:100%}
+.hm-step{display:flex;align-items:center;gap:7px;padding:3px 9px;border-radius:999px;
+  max-width:260px}
+.hm-step .hm-mono{font-family:var(--mono);font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink3);white-space:nowrap}
+.hm-step .hm-mono i{font-style:normal;color:var(--accent)}
+.hm-step p{font-size:12.5px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;max-width:180px}
+.hm-step p.dim{color:var(--ink3)}
+.hm-step.live{background:var(--accent-soft)}
+.hm-step.done .hm-mono i{color:var(--accent2)}
+
+#hm-scene{width:100%;perspective:1400px}
+
+/* макет браузера с настоящим снимком демо */
+.shot{position:relative;width:100%}
+.shot-win{border-radius:14px;overflow:hidden;background:var(--graphite2);
+  border:1px solid rgba(15,23,34,.16);
+  box-shadow:0 40px 80px -40px rgba(15,23,34,.65);
+  transform:translate3d(var(--dx,0),var(--dy,0),0);transition:transform .25s ease-out}
+.shot-bar{display:flex;align-items:center;gap:8px;padding:9px 12px;
+  background:#242B31;border-bottom:1px solid rgba(255,255,255,.08)}
+.shot-bar i{width:9px;height:9px;border-radius:50%;background:#4A535B;display:block}
+.shot-bar span{margin-left:auto;margin-right:auto;font-family:var(--mono);
+  font-size:10.5px;color:#9AA4AD}
+.shot-win img{width:100%;display:block;aspect-ratio:1440/900;object-fit:cover;
+  object-position:top}
+.shot-phone{position:absolute;right:-8px;bottom:-26px;width:190px;
+  border-radius:26px;padding:7px;background:#0B0F14;
+  border:2px solid rgba(255,255,255,.12);
+  box-shadow:0 36px 60px -30px rgba(15,23,34,.8);z-index:3}
+.shot-phone img{width:100%;border-radius:20px;aspect-ratio:390/720;object-fit:cover;
+  object-position:top}
+.shot-cap{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px;
+  font-size:13.5px;color:var(--ink2)}
+.shot-cap .tag{background:rgba(255,255,255,.85);border:1px solid var(--line);
+  padding:4px 9px;border-radius:999px}
+.shot-dev{display:inline-flex;gap:4px;background:rgba(255,255,255,.9);
+  border:1px solid var(--line);border-radius:999px;padding:3px}
+.shot-dev button{background:none;border:0;border-radius:999px;padding:5px 12px;
+  font-size:12px;cursor:pointer;color:var(--ink2)}
+.shot-dev button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.shot-go{color:var(--accent2);text-decoration:underline;text-underline-offset:3px;
+  font-size:13.5px;margin-left:auto}
+
+/* схема разбора вместо снимка, когда опубликованного примера нет */
+.scheme{width:100%;background:rgba(255,255,255,.94);border:1px solid var(--line);
+  border-radius:var(--r);padding:clamp(16px,2vw,24px);
+  box-shadow:0 30px 70px -45px rgba(18,18,18,.6)}
+.scheme-h{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-bottom:14px}
+.scheme-sw{display:inline-flex;gap:4px;background:var(--paper2);border-radius:999px;padding:3px}
+.scheme-sw button{background:none;border:0;border-radius:999px;padding:6px 13px;
+  font-size:12px;cursor:pointer;color:var(--ink2)}
+.scheme-sw button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.scheme-l{display:grid;gap:8px}
+.nd{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;
+  padding:11px 12px;border-radius:12px;background:var(--paper2);
+  transition:background .3s,opacity .3s}
+.nd-n{font-family:var(--mono);font-size:10px;color:var(--ink3);padding-top:3px}
+.nd b{display:block;font-size:15.5px;font-weight:600}
+.nd-p{display:block;color:var(--ink2);font-size:13.5px;margin-top:2px}
+.scheme[data-mode="b"] .nd[data-i="1"],.scheme[data-mode="b"] .nd[data-i="2"]{opacity:.35}
+.scheme[data-mode="b"] .nd[data-i="3"]{background:var(--accent-soft);
+  box-shadow:inset 3px 0 0 var(--accent)}
+.scheme-need{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:14px}
+.scheme-need span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink3)}
+.scheme-need ul{display:flex;flex-wrap:wrap;gap:6px}
+.scheme-need li{border:1px solid var(--line);border-radius:999px;padding:5px 11px;
+  font-size:12.5px;background:#fff}
+.scheme-note{margin-top:12px;font-size:12.5px;color:var(--ink3)}
+
+/* ------------------------------------------------- адаптивный тёмный раздел */
+#pf{position:relative;background:var(--graphite);color:var(--on-dark);
+  padding:clamp(54px,7vw,104px) 0;overflow:hidden}
+.pf-ph{position:absolute;inset:-160px 0;background-size:cover;background-position:center;
+  z-index:0;pointer-events:none}
+.pf-ph:after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(15,23,34,.97) 8%,rgba(15,23,34,.74) 42%,
+    rgba(15,23,34,.52) 70%,rgba(15,23,34,.72) 100%)}
+#pf:after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(15,23,34,.35),rgba(15,23,34,0) 20%,rgba(15,23,34,.35))}
+.pf-in{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.pf-v{position:relative;display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);
+  gap:clamp(24px,3.4vw,64px);align-items:start}
+.pf-l{position:sticky;top:90px;z-index:2}
+.pf-r{z-index:2}
+.pf-r{display:grid;gap:clamp(16px,2vw,26px)}
+.pf-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--on-dark2)}
+.pf-h{font-size:clamp(30px,3.6vw,52px);margin:14px 0 0;max-width:15ch;color:#fff}
+.pf-lede{margin-top:16px;color:var(--on-dark2);font-size:16.5px;max-width:46ch}
+.pf-anchor{display:block;height:0}
+.pf-cta{margin-top:26px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.pf-main{background:var(--accent);color:#fff;border:0;border-radius:999px;
+  padding:15px 26px;font-size:15.5px;cursor:pointer;transition:transform .15s}
+.pf-main:hover{background:#23919A;transform:translateX(2px)}
+.pf-cta a{color:var(--on-dark2);text-decoration:underline;text-underline-offset:4px;
+  font-size:14.5px}
+.pf-note{margin-top:16px;color:var(--on-dark2);font-size:13px}
+/* правая карточка раздела — светлая, на ней шаги и границы */
+.pf-card{background:#FCFCFA;color:var(--ink);border-radius:var(--r);
+  padding:clamp(20px,2.4vw,32px);box-shadow:0 50px 90px -50px rgba(0,0,0,.8)}
+.pf-card-min{padding:clamp(16px,1.8vw,22px)}
+.pf-card-h{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding-bottom:14px;border-bottom:1px solid var(--line)}
+.pf-card-h h3{font-size:17px}
+.pf-card-h .tag{background:var(--accent-soft);color:var(--accent2);padding:5px 10px;
+  border-radius:999px}
+.pf-steps{margin-top:18px;display:grid;gap:10px}
+.pf-steps li{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
+.pf-steps b{font-family:var(--mono);font-size:10px;color:var(--ink3);padding-top:4px}
+.pf-steps h3{font-size:16px}
+.pf-steps p{margin-top:2px;color:var(--ink2);font-size:13.5px}
+.pf-two{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+  display:grid;gap:14px}
+.pf-two h3{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink3);font-weight:400}
+.pf-need ul{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.pf-need li{border:1px solid var(--line);border-radius:999px;padding:6px 11px;font-size:13px}
+.pf-lim p{margin-top:9px;color:var(--ink2);font-size:13.5px}
+#pf-switch{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:55;display:none}
+#pf-switch[data-on="1"]{display:block}
+#pf-switch button{background:var(--ink);color:var(--paper);border:0;border-radius:999px;
+  padding:12px 22px;font-size:14px;cursor:pointer;box-shadow:0 18px 40px -20px rgba(0,0,0,.7)}
+
+/* ------------------------------------------------------------------ работы */
+.band-works{padding:clamp(56px,7vw,104px) 0;background:var(--paper)}
+.wk-h{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.wk-h h2{font-size:clamp(30px,3.8vw,54px);max-width:18ch}
+.wk-h p{margin-top:14px;color:var(--ink2);max-width:56ch;font-size:16.5px}
+.wk-grid{max-width:var(--wrap);margin:clamp(28px,3.4vw,52px) auto 0;padding:0 var(--gut);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,34px)}
+.wk{display:flex;flex-direction:column}
+.wk-card{position:relative;border-radius:var(--r);overflow:hidden;min-height:440px;
+  display:flex;flex-direction:column;justify-content:space-between;padding:20px;
+  background-size:cover;background-position:center;isolation:isolate}
+.wk-card:before{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(10,14,20,.55) 0%,rgba(10,14,20,.25) 40%,rgba(10,14,20,.78) 100%)}
+.wk-top{position:relative;z-index:2;display:flex;align-items:center;
+  justify-content:space-between;gap:10px;color:#fff}
+.wk-name{font-size:14px;font-weight:600;letter-spacing:-.01em}
+.wk-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  background:rgba(0,0,0,.42);backdrop-filter:blur(4px);padding:5px 9px;border-radius:999px;color:#fff}
+.wk-inset{position:relative;z-index:2;align-self:flex-end;width:min(100%,330px);
+  border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.9);margin-top:24px}
+.wk-inset img{width:100%;display:block}
+.wk[data-dev="d"] .wk-inset img{aspect-ratio:16/10;object-fit:cover;object-position:top}
+.wk[data-dev="p"] .wk-inset{width:min(60%,210px)}
+.wk[data-dev="p"] .wk-inset img{aspect-ratio:390/700;object-fit:cover;object-position:top}
+.wk-body{padding:16px 2px 0}
+.wk-body h3{font-size:20px}
+.wk-body dl{margin:12px 0 0;display:grid;gap:10px}
+.wk-body dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink3)}
+.wk-body dd{margin:3px 0 0;font-size:14.5px;color:var(--ink2)}
+.wk-links{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:16px}
+.wk-go{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--paper);
+  text-decoration:none;border-radius:999px;padding:12px 20px;font-size:14.5px}
+.wk-go:hover{background:var(--accent2)}
+.wk-sec{color:var(--ink2);text-decoration:underline;text-underline-offset:4px;font-size:13.5px}
+.wk-dev{display:inline-flex;gap:4px;background:rgba(255,255,255,.92);
+  border-radius:999px;padding:3px;position:relative;z-index:2}
+.wk-dev button{background:none;border:0;border-radius:999px;padding:5px 11px;
+  font-size:11.5px;cursor:pointer;color:var(--ink2)}
+.wk-dev button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* ------------------------------------------------------ девять направлений */
+.band-layers{padding:clamp(48px,6vw,88px) 0;background:var(--paper2);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.lay-h h2{font-size:clamp(28px,3.4vw,46px)}
+.lay-h p{margin-top:12px;color:var(--ink2);max-width:52ch;font-size:16px}
+#layers{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+#layers button{background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:11px 18px;cursor:pointer;font-size:14.5px;transition:transform .15s}
+#layers button:hover{border-color:var(--ink);transform:translateY(-1px)}
+#layers button span{display:none}
+#layers-picked{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}
+#layers-name{font-weight:600}
+#layers-change{background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:7px 14px;font-size:13px;cursor:pointer}
+
+/* ------------------------------------------------------------------ кто мы */
+.band-who{padding:clamp(48px,6vw,88px) 0}
+.who{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:start}
+.who-face{width:96px;height:96px;border-radius:14px;object-fit:cover;filter:grayscale(1)}
+.who-role{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.who h2{font-size:clamp(24px,2.6vw,36px);max-width:22ch}
+.who p{margin-top:14px;color:var(--ink2);max-width:60ch;font-size:16px}
+.facts{display:flex;flex-wrap:wrap;gap:0;margin-top:24px;border-top:1px solid var(--line)}
+.facts div{padding:13px 24px 13px 0;margin-right:24px;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink3)}
+.facts dd{margin:3px 0 0;font-weight:600;font-size:15px}
+
+/* ------------------------------------------------------------------- финал */
+.band-final{position:relative;background:var(--graphite);color:var(--on-dark);
+  padding:clamp(60px,8vw,118px) 0;overflow:hidden}
+.fin-ph{position:absolute;inset:0;background-size:cover;background-position:center;
+  opacity:.3;transition:opacity .7s}
+.band-final:after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(15,23,34,.95) 30%,rgba(15,23,34,.55) 100%)}
+.fin-in{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.fin-in .eyebrow{color:var(--on-dark2)}
+.fin-in h2{font-size:clamp(32px,4.6vw,66px);margin-top:14px;max-width:16ch;color:#fff}
+.fin-in p.lede{margin-top:18px;color:var(--on-dark2);max-width:54ch;font-size:16.5px}
+.fin-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.fin-row button,.fin-row a{border-radius:999px;padding:16px 28px;font-size:16px;
+  text-decoration:none;cursor:pointer;border:1px solid transparent}
+#fin-talk{background:var(--accent);color:#fff;border:0}
+#fin-talk:hover{background:#23919A}
+.fin-alt{border-color:rgba(255,255,255,.32)!important;color:var(--on-dark)}
+.fin-alt:hover{border-color:#fff!important}
+#fin-state{margin-top:16px;font-size:15px;color:#9FD4C4}
+.fin-scan{margin-top:clamp(28px,3.4vw,48px);padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.16);display:flex;flex-wrap:wrap;gap:16px;
+  align-items:center;justify-content:space-between}
+.fin-scan p{color:var(--on-dark2);font-size:15px;max-width:52ch}
+.fin-scan a{color:#fff;text-decoration:underline;text-underline-offset:4px;font-size:15px}
+
+/* ------------------------------------------------------------------ подвал */
+.foot{padding:30px 0 42px;background:var(--paper)}
+.foot-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);
+  display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+.foot-mark{display:flex;align-items:center;gap:12px;font-weight:800;font-size:18px}
+.foot-mark i{color:var(--accent);font-style:normal}
+.foot-mark img{width:36px;height:36px;object-fit:contain}
+.foot-r{display:flex;flex-wrap:wrap;gap:18px;align-items:center;
+  font-size:13.5px;color:var(--ink2)}
+.foot-r a{text-decoration:none}
+.foot-r a:hover{color:var(--ink)}
+.foot-legal{max-width:var(--wrap);margin:18px auto 0;padding:0 var(--gut);
+  color:var(--ink3);font-size:12.5px}
+
+/* ------------------------------------------------------ закреплённая полоса */
+#sn-sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#fff;
+  border-top:1px solid var(--line);padding:10px 16px;display:none;gap:12px;
+  align-items:center;justify-content:space-between}
+#sn-sticky a{background:var(--ink);color:var(--paper);text-decoration:none;
+  border-radius:999px;padding:11px 18px;font-size:14px;white-space:nowrap}
+#sn-sticky span{font-size:13px;color:var(--ink2)}
+#sn-sticky[data-off="1"]{display:none!important}
+
+/* --------------------------------------------------------- заявка в потоке */
+.fin{background:#fff;border:1px solid var(--accent);border-radius:16px;padding:16px;
+  align-self:stretch;max-width:100%}
+.fin h3{font-size:16.5px}
+.fin ul{margin:10px 0 0;display:grid;gap:5px}
+.fin li{font-size:14px;color:var(--ink2);padding-left:14px;position:relative}
+.fin li:before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;
+  border-radius:50%;background:var(--line)}
+.fin .edit{background:none;border:0;padding:0;color:var(--accent2);cursor:pointer;
+  text-decoration:underline;text-underline-offset:3px;font-size:13.5px}
+.fin .next{background:var(--accent-soft);border-left:2px solid var(--accent);
+  padding:11px 13px;font-size:14.5px;margin-bottom:14px;border-radius:0 10px 10px 0}
+.fin label{display:block;font-size:12.5px;color:var(--ink2);margin:12px 0 6px}
+.fin input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:15px}
+.fin input:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.fin .ways{display:flex;flex-wrap:wrap;gap:7px}
+.fin .ways button{background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:9px 14px;font-size:14px;cursor:pointer}
+.fin .ways button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.fin .row{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.hm-go{background:var(--ink);color:var(--paper);border:0;border-radius:999px;
+  padding:13px 22px;font-size:15px;cursor:pointer}
+.hm-go:hover{background:var(--accent2)}
+.fin .ok b{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent2);margin-bottom:6px;font-weight:400}
+.fin .err{margin-top:10px;color:#8A3A1C;font-size:13.5px}
+
+/* ------------------------------------------------------------- проявление */
+.rise{opacity:0;transform:translateY(16px);
+  transition:opacity .65s cubic-bezier(.2,.7,.2,1),transform .65s cubic-bezier(.2,.7,.2,1)}
+.rise.seen{opacity:1;transform:none}
+
+
+/* ----------------------------------------------------------------- планшет */
+@media (max-width:1080px){
+  .hero-in{grid-template-columns:1fr;gap:26px}
+  .hero-ph{inset:0;opacity:.18}
+  .hero-ph:after{background:linear-gradient(180deg,rgba(251,251,249,.92),rgba(251,251,249,.78))}
+  .hero-l{max-width:none}
+  .pf-v{grid-template-columns:1fr}
+  .wk-grid{grid-template-columns:1fr}
+  .shot-phone{width:150px;right:-4px;bottom:-18px}
+}
+
+/* ----------------------------------------------------------------- телефон */
+@media (max-width:700px){
+  body{font-size:16px}
+  .top-nav{display:none}
+  h1#h1{font-size:clamp(30px,8.4vw,40px)}
+  .hm-lede{font-size:15.5px;margin-top:12px}
+  .talk{margin-top:16px}
+  .stream{max-height:36vh}
+  .steps{border-radius:16px;flex-direction:column;align-items:stretch;padding:8px}
+  .hm-step{max-width:none}
+  .hm-step p{max-width:none;white-space:normal;font-size:13px}
+  .shot-phone{display:none}
+  .wk-card{min-height:360px}
+  .who{grid-template-columns:1fr}
+  .facts div{border-right:0;padding:10px 0;margin-right:0;width:100%;
+    display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}
+  .facts dd{margin:0}
+  .fin-scan{flex-direction:column;align-items:flex-start}
+  #sn-sticky{display:flex}
+  html.hm-on #sn-sticky{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  h1#h1 .ln>span{transform:none;opacity:1}
+  .rise{opacity:1!important;transform:none!important}
+  .shot-win{transform:none!important}
+}
+
+
+/* ---------------------------------------- визуальные модели разбора в полосе */
+.pf-visual{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--r);padding:clamp(18px,2.2vw,28px);backdrop-filter:blur(3px)}
+.pf-visual .pf-eyebrow{color:var(--on-dark2)}
+.pf-visual .pf-note{margin-top:14px;font-size:12.5px;color:var(--on-dark2)}
+
+/* ветвление: откуда может идти причина */
+.tree{margin-top:16px;display:grid;gap:12px;justify-items:center;text-align:center}
+.tree-top{background:var(--graphite2);border:1px solid rgba(255,255,255,.18);
+  border-radius:12px;padding:12px 18px;font-weight:600;color:#fff;max-width:36ch}
+.tree-br{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:10px;width:100%;position:relative;padding-top:18px}
+.tree-br:before{content:"";position:absolute;top:0;left:50%;width:1px;height:18px;
+  background:rgba(255,255,255,.28)}
+.br{position:relative;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;padding:12px;font-size:13.5px;color:var(--on-dark);text-align:left}
+.br:before{content:"";position:absolute;top:-18px;left:50%;width:1px;height:18px;
+  background:rgba(255,255,255,.28)}
+.br-n{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
+  color:var(--on-dark2);margin-bottom:5px}
+.tree-end{margin-top:6px;background:var(--accent);color:#fff;border-radius:12px;
+  padding:12px 18px;font-weight:600;max-width:42ch}
+.tree-end span{display:block;font-weight:400;font-size:13px;opacity:.9;margin-top:3px}
+
+/* поток: путь заявки, с переключателем «вручную / после автоматизации» */
+.flow-h{display:flex;justify-content:flex-end;margin-top:14px}
+.flow .scheme-sw{background:rgba(255,255,255,.08)}
+.flow .scheme-sw button{color:var(--on-dark2)}
+.flow .scheme-sw button[aria-pressed="true"]{background:#fff;color:var(--graphite)}
+.flow-l{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.fl{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;padding:13px;transition:opacity .3s,background .3s}
+.fl b{display:block;font-size:14.5px;color:#fff}
+.fl span{display:block;font-size:12.5px;color:var(--on-dark2);margin-top:3px}
+.flow[data-mode="b"] .fl[data-i="1"],.flow[data-mode="b"] .fl[data-i="2"]{opacity:.32}
+.flow[data-mode="b"] .fl[data-i="3"]{background:rgba(28,126,132,.3);border-color:var(--accent)}
+
+/* опись: что собираем */
+.chk{margin-top:14px}
+.chk ul{display:grid;gap:8px}
+.chk li{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:11px 13px;
+  font-size:13.5px;color:var(--on-dark)}
+.chk li:before{content:"";width:16px;height:16px;border-radius:4px;flex:none;
+  border:1px solid var(--accent);background:rgba(28,126,132,.35)}
+
+/* собрано по словам клиента */
+.pf-known{background:rgba(28,126,132,.14);border:1px solid rgba(28,126,132,.45);
+  border-radius:var(--r);padding:clamp(16px,2vw,24px)}
+.pf-known .pf-eyebrow{color:#9FD4C4}
+.pf-known ul{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
+.pf-known li{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;padding:6px 12px;font-size:13px;color:var(--on-dark)}
+.pf-next{margin-top:14px;font-size:15px;color:#fff}
+
+@media (max-width:1080px){
+  .pf-l{position:static}
+}
+
+/* ===================================================== иллюстрация и моушн */
+/* Иллюстрация направления: лёгкое дыхание и глубина от курсора. Это
+   отвечает на присутствие человека, а не крутится само по себе. */
+.ill{margin:0;width:100%}
+.ill-img{border-radius:var(--r);overflow:hidden;background:var(--paper2);
+  border:1px solid var(--line);box-shadow:0 40px 80px -46px rgba(15,23,34,.55);
+  transform:translate3d(var(--dx,0),var(--dy,0),0);transition:transform .25s ease-out}
+.ill-img img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover;
+  animation:дыхание 9s ease-in-out infinite}
+@keyframes дыхание{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.012)}}
+.ill figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;
+  font-size:14px;color:var(--ink2)}
+.ill figcaption .tag{background:rgba(255,255,255,.85);border:1px solid var(--line);
+  padding:4px 9px;border-radius:999px}
+
+/* ветвление: линии прорисовываются при появлении */
+.tree-br:before{transform-origin:top;transform:scaleY(0);
+  transition:transform .45s cubic-bezier(.2,.7,.2,1) .05s}
+.br:before{transform-origin:top;transform:scaleY(0);
+  transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.pf-visual.seen .tree-br:before{transform:scaleY(1)}
+.pf-visual.seen .br:before{transform:scaleY(1)}
+.pf-visual.seen .br:nth-child(1):before{transition-delay:.26s}
+.pf-visual.seen .br:nth-child(2):before{transition-delay:.34s}
+.pf-visual.seen .br:nth-child(3):before{transition-delay:.42s}
+.pf-visual .br,.pf-visual .tree-end,.pf-visual .fl,.pf-visual .chk li{
+  opacity:0;transform:translateY(10px);
+  transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.pf-visual.seen .br,.pf-visual.seen .tree-end,
+.pf-visual.seen .fl,.pf-visual.seen .chk li{opacity:1;transform:none}
+.pf-visual.seen .br:nth-child(1){transition-delay:.3s}
+.pf-visual.seen .br:nth-child(2){transition-delay:.38s}
+.pf-visual.seen .br:nth-child(3){transition-delay:.46s}
+.pf-visual.seen .tree-end{transition-delay:.56s}
+.pf-visual.seen .fl:nth-child(1){transition-delay:.06s}
+.pf-visual.seen .fl:nth-child(2){transition-delay:.14s}
+.pf-visual.seen .fl:nth-child(3){transition-delay:.22s}
+.pf-visual.seen .fl:nth-child(4){transition-delay:.3s}
+.pf-visual.seen .chk li:nth-child(1){transition-delay:.06s}
+.pf-visual.seen .chk li:nth-child(2){transition-delay:.14s}
+.pf-visual.seen .chk li:nth-child(3){transition-delay:.22s}
+
+/* поток: после переключения по пути идёт сигнал */
+.flow-l{position:relative}
+.flow-l:after{content:"";position:absolute;left:0;top:50%;width:10px;height:10px;
+  border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(28,126,132,.22);
+  opacity:0}
+.flow[data-mode="b"] .flow-l:after{opacity:1;animation:сигнал 2.4s linear infinite}
+@keyframes сигнал{0%{left:0;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:calc(100% - 10px);opacity:0}}
+
+@media (prefers-reduced-motion:reduce){
+  .ill-img img{animation:none}
+  .flow[data-mode="b"] .flow-l:after{animation:none;opacity:0}
+  .pf-visual .br,.pf-visual .tree-end,.pf-visual .fl,.pf-visual .chk li{
+    opacity:1!important;transform:none!important}
+  .tree-br:before,.br:before{transform:scaleY(1)!important}
+}
+  opacity:1!important;transform:none!important}
+.ill-wide{margin-top:14px;border-radius:14px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05)}
+.ill-wide img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover}
+"""
+
+
+СВОЁ_РАБОТЫ = {'ru': {'eyebrow': 'Работы студии',
+        'h': 'Два концепта, которые можно открыть и потрогать',
+        'lede': 'Это наши собственные сборки, а не заказы клиентов. Поэтому их можно показывать '
+                'целиком — и поэтому мы не приписываем им чужих результатов.',
+        'desk': 'Компьютер',
+        'phone': 'Телефон',
+        'work': 'Что это за работа',
+        'layers_lede': 'Помогаем решить разные задачи бизнеса и соединить их в понятный '
+                       'следующий шаг.',
+        'trust_role': 'Основатель, Prodigy LAB',
+        'scan_line': 'Есть сайт? Бесплатная AI-проверка одной страницы — без доступов и без '
+                     'звонка.',
+        'scan_cta': 'Проверить сайт',
+        'nav_solutions': 'Решения',
+        'nav_works': 'Работы',
+        'nav_about': 'О нас'},
+ 'en': {'eyebrow': 'Studio work',
+        'h': 'Two concepts you can open and use',
+        'lede': 'These are our own builds, not client orders. That is why we can show them in '
+                'full — and why we do not attach anyone else’s results to them.',
+        'desk': 'Desktop',
+        'phone': 'Phone',
+        'work': 'About this work',
+        'layers_lede': 'We work through different business problems and connect them into one '
+                       'clear next step.',
+        'trust_role': 'Founder, Prodigy LAB',
+        'scan_line': 'Have a site? A free AI check of one page — no access, no call.',
+        'scan_cta': 'Check the site',
+        'nav_solutions': 'Solutions',
+        'nav_works': 'Work',
+        'nav_about': 'About'},
+ 'es': {'eyebrow': 'Trabajo del estudio',
+        'h': 'Dos conceptos que puede abrir y usar',
+        'lede': 'Son construcciones propias, no encargos de clientes. Por eso podemos mostrarlas '
+                'enteras y por eso no les atribuimos resultados ajenos.',
+        'desk': 'Ordenador',
+        'phone': 'Móvil',
+        'work': 'Sobre este trabajo',
+        'layers_lede': 'Resolvemos distintas tareas del negocio y las unimos en un siguiente '
+                       'paso claro.',
+        'trust_role': 'Fundador, Prodigy LAB',
+        'scan_line': '¿Tiene sitio web? Revisión AI gratuita de una página: sin accesos y sin '
+                     'llamada.',
+        'scan_cta': 'Revisar el sitio',
+        'nav_solutions': 'Soluciones',
+        'nav_works': 'Trabajos',
+        'nav_about': 'Nosotros'},
+ 'pt': {'eyebrow': 'Trabalho do estúdio',
+        'h': 'Dois conceitos que você pode abrir e usar',
+        'lede': 'São construções nossas, não pedidos de clientes. Por isso podemos mostrá-las '
+                'inteiras e por isso não atribuímos a elas resultados alheios.',
+        'desk': 'Computador',
+        'phone': 'Celular',
+        'work': 'Sobre este trabalho',
+        'layers_lede': 'Resolvemos diferentes tarefas do negócio e as unimos em um próximo passo '
+                       'claro.',
+        'trust_role': 'Fundador, Prodigy LAB',
+        'scan_line': 'Tem site? Verificação AI gratuita de uma página — sem acessos e sem '
+                     'ligação.',
+        'scan_cta': 'Verificar o site',
+        'nav_solutions': 'Soluções',
+        'nav_works': 'Trabalhos',
+        'nav_about': 'Sobre nós'},
+ 'de': {'eyebrow': 'Studio-Arbeit',
+        'h': 'Zwei Konzepte, die Sie öffnen und benutzen können',
+        'lede': 'Das sind eigene Arbeiten, keine Kundenaufträge. Deshalb können wir sie ganz '
+                'zeigen — und deshalb schreiben wir ihnen keine fremden Ergebnisse zu.',
+        'desk': 'Computer',
+        'phone': 'Telefon',
+        'work': 'Über diese Arbeit',
+        'layers_lede': 'Wir arbeiten verschiedene Aufgaben des Geschäfts durch und führen sie zu '
+                       'einem klaren nächsten Schritt zusammen.',
+        'trust_role': 'Gründer, Prodigy LAB',
+        'scan_line': 'Website vorhanden? Kostenlose AI-Prüfung einer Seite — ohne Zugänge, ohne '
+                     'Anruf.',
+        'scan_cta': 'Website prüfen',
+        'nav_solutions': 'Lösungen',
+        'nav_works': 'Arbeiten',
+        'nav_about': 'Über uns'}}
+
+
+# Работы студии: два отобранных концепта. Тексты — те же, что на страницах
+# работ; результатов здесь нет и не будет, пока их нечем подтвердить.
+РАБОТЫ_ФОТО = {'neighborhood-fence': ('fence-1', 'fence'),
+               'saeng-thai-house': ('food-1', 'thai')}
+
+
+def кратко(текст: str) -> str:
+    """Первое предложение целиком: подпись на карточке короткая, полный
+    разбор остаётся на странице работы."""
+    т = текст.strip()
+    for i, ch in enumerate(т):
+        if ch in '.!?' and i > 50 and (i + 1 >= len(т) or т[i + 1] == ' '):
+            return т[:i + 1]
+    return т
+
+
+def блок_работ(code: str) -> str:
+    import json as _json
+    import os as _os
+    import html as _h
+    import build_work as BW
+    e = _h.escape
+    каталог = {i['slug']: i for i in _json.load(
+        open(_os.path.join(КОРЕНЬ, 'SHOWCASE.json'), encoding='utf-8'))['items']}
+    П = BW.ПОДПИСИ[code]
+    С = СВОЁ_РАБОТЫ[code]
+    карточки = []
+    for slug in ('neighborhood-fence', 'saeng-thai-house'):
+        if slug not in BW.ТЕКСТЫ or slug not in каталог:
+            continue
+        t = BW.ТЕКСТЫ[slug][code]
+        фото, снимок = РАБОТЫ_ФОТО[slug]
+        наз = каталог[slug]['title'][code]
+        карточки.append(
+            f'<article class="wk" data-dev="d">'
+            f'<div class="wk-card" style="background-image:url(/assets/ph/{фото}.jpg)">'
+            f'<div class="wk-top"><span class="wk-name">{e(наз)}</span>'
+            f'<span class="wk-tag">{e(П["concept"])}</span></div>'
+            f'<div class="wk-inset"><img src="/assets/demo/{снимок}-desk.jpg" '
+            f'data-desk="/assets/demo/{снимок}-desk.jpg" '
+            f'data-phone="/assets/demo/{снимок}-phone.jpg" alt="{e(наз)}" '
+            f'width="1400" height="972" loading="lazy" decoding="async"></div>'
+            f'<div class="wk-dev">'
+            f'<button type="button" data-dev="d" aria-pressed="true">{e(С["desk"])}</button>'
+            f'<button type="button" data-dev="p" aria-pressed="false">{e(С["phone"])}</button>'
+            f'</div></div>'
+            f'<div class="wk-body"><dl>'
+            f'<dt>{e(П["task"])}</dt><dd>{e(кратко(t["task"]))}</dd>'
+            f'<dt>{e(П["done"])}</dt><dd>{e(кратко(t["done"]))}</dd>'
+            f'<dt>{e(П["limits"])}</dt><dd>{e(кратко(t["limits"]))}</dd></dl>'
+            f'<div class="wk-links">'
+            f'<a class="wk-go" href="/preview/{slug}/">{e(П["demo"])} &rarr;</a>'
+            f'<a class="wk-sec" href="{BW.ПУТЬ[code]}{slug}/">{e(С["work"])}</a>'
+            f'</div></div></article>')
+    if not карточки:
+        return ''
+    return (f'<section id="works" class="band-works">'
+            f'<div class="wk-h"><p class="eyebrow">{e(С["eyebrow"])}</p>'
+            f'<h2>{e(С["h"])}</h2><p>{e(С["lede"])}</p></div>'
+            f'<div class="wk-grid">{"".join(карточки)}</div></section>')
+
+
 def service_links(code: str) -> str:
     # Страницы услуг пока существуют только на английском. Молча уводить с
     # локальной версии на чужой язык нельзя — помечаем (EN) явно (ТЗ §8, вариант B).
@@ -257,6 +987,12 @@ def page(code):
     scan_sticky = SB.sticky(code)
     scan_hero = (f'<a class="btn btn-lg" href="{SB.scan_url(code, "hero")}">'
                  f'{SB.S[code]["cta"]} &rarr;</a>')
+    works_block = блок_работ(code)
+    С = СВОЁ_РАБОТЫ[code]
+    # В блоке доверия три факта из шести: остальные уводят в юридический текст.
+    facts_short = "".join(
+        f'<div><dt>{H.escape(k)}</dt><dd>{H.escape(v)}</dd></div>'
+        for k, v in d['facts'][1:4])
     showcase = блок_для_главной(code)
     showcase_nav = SHOWCASE_PATH[code]
     url = ORIGIN + d['home']
@@ -352,7 +1088,7 @@ def page(code):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>{CSS}{SHOWCASE_CSS}{SB.CSS}{hero_css}{HS.CSS}</style>
+<style>{CSS}{SHOWCASE_CSS}{SB.CSS}{НОВОЕ_CSS}</style>
 <script>
 !function(f,b,e,v,n,t,s){{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)}};if(!f._fbq)f._fbq=n;
@@ -402,55 +1138,52 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 <main>
 {hero_block}
 
-<section class="sec alt" id="problems">
- <div class="wrap">
-  <span class="mono">{e(d['s1_eyebrow'])}</span>
-  <h2 style="margin-top:14px;max-width:20ch">{e(d['s1_h2'])}</h2>
-  <div class="layers" id="layers">{слои}</div>
-  <p class="layers-picked" id="layers-picked" hidden>
-   <span class="mono">{e(HS.ОБЩЕЕ[code].get('picked', ''))}</span>
-   <b id="layers-name"></b>
-   <button type="button" id="layers-change"></button>
-  </p>
- </div>
-</section>
-
 {pf_block}
 
-<section class="sec alt" id="who">
+{works_block}
+
+<section class="band-layers" id="problems">
  <div class="wrap">
-  <span class="mono">{e(d['s3_eyebrow'])}</span>
-  <div class="who2">
-   <div class="who2-p">
-    <img class="who2-mark" src="/assets/logo-cone.png" alt="Prodigy LAB"
-         width="96" height="96" loading="lazy" decoding="async">
-    <h2 style="max-width:18ch">{e(d['s3_h2'])}</h2>
-    <p class="lede" style="max-width:52ch;margin-top:16px">{e(d['s3_p1'])}</p>
-    <div class="note"><p><b>{e(d['no_title'])}.</b> {e(d['no_p1'])}</p></div>
-   </div>
-   <div class="who2-f">
-    <span class="mono">{e(d['facts_title'])}</span>
-    <dl class="facts">{facts}</dl>
-   </div>
+  <div class="lay-h">
+   <h2 id="lay-title">{e(d['s1_h2'])}</h2>
+   <p id="lay-lede">{e(С['layers_lede'])}</p>
   </div>
-  <span class="mono" style="display:block;margin-top:40px">{e(d['cases_eyebrow'])}</span>
-  <div class="cases" style="margin-top:16px">{clients}</div>
+  <div id="layers">{слои}</div>
+  <div id="layers-picked" hidden>
+   <span id="layers-name"></span>
+   <button type="button" id="layers-change">{e(HS.ОБЩЕЕ[code].get('change', ''))}</button>
+  </div>
  </div>
 </section>
 
-{scan_main}
-
-<section class="final" id="diagnostic">
- <div class="wrap">
-  <span class="mono">{e(d['final_eyebrow'])}</span>
-  <h2 style="margin-top:18px">{e(d['final_h2'])}</h2>
-  <p class="lede">{e(d['final_lede'])}</p>
-  <div class="cta-row">
-   <button type="button" class="btn btn-lg" id="fin-talk">{e(HS.ОБЩЕЕ[code]['talk'])}</button>
-   <a class="btn btn-lg btn-g" href="{WA}" target="_blank" rel="noopener">{e(d['final_cta2'])}</a>
+<section class="band-who" id="who">
+ <div class="who">
+  <img class="who-face" src="/assets/founder.jpg" alt="{e(d['photo_alt'])}"
+       width="192" height="192" loading="lazy" decoding="async">
+  <div>
+   <p class="who-role">{e(С['trust_role'])}</p>
+   <h2>{e(d['s3_h2'])}</h2>
+   <p>{e(d['s3_p1'])}</p>
+   <dl class="facts">{facts_short}</dl>
   </div>
-  <p class="fin-state" id="fin-state" hidden></p>
-  <span class="mono" style="display:block;margin-top:20px"><a href="{WA}" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">{e(d['wa_label'])} {PHONE_TEXT}</a></span>
+ </div>
+</section>
+
+<section class="band-final" id="diagnostic">
+ <div class="fin-ph" id="fin-ph"></div>
+ <div class="fin-in">
+  <p class="eyebrow">{e(d['final_eyebrow'])}</p>
+  <h2>{e(d['final_h2'])}</h2>
+  <p class="lede">{e(d['final_lede'])}</p>
+  <div class="fin-row">
+   <button type="button" id="fin-talk">{e(HS.ОБЩЕЕ[code]['talk'])}</button>
+   <a class="fin-alt" href="{WA}" target="_blank" rel="noopener">{e(d['final_cta2'])}</a>
+  </div>
+  <p id="fin-state" hidden></p>
+  <div class="fin-scan">
+   <p>{e(С['scan_line'])}</p>
+   <a href="{scan}" target="_blank" rel="noopener">{e(С['scan_cta'])} &rarr;</a>
+  </div>
  </div>
 </section>
 </main>

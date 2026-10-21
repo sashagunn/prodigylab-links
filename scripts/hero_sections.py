@@ -654,18 +654,36 @@ def вариант(направление: str, lang: str, пример=None) ->
 
 
 def markup(lang: str = 'ru') -> str:
-    """Секция под задачу.
+    """Полоса под задачу.
 
-    Сервер рисует общий вариант: он виден сразу и остаётся, если скрипты не
-    выполнились. Дальше страница заменяет его вариантом под направление,
-    собранным из данных на языке разговора.
+    Сервер рисует нейтральный вариант: он виден сразу и остаётся, если
+    скрипты не выполнились. Дальше страница заменяет его вариантом под
+    направление, собранным из данных на языке разговора.
     """
-    # Якоря навигации переезжают сюда вместе с содержанием: «что разбираем»
-    # и «как устроено» теперь объясняет этот раздел, а не два отдельных.
+    import html as _h
+    e = _h.escape
+    ОБ = ОБЩЕЕ.get(lang) or ОБЩЕЕ['ru']
+    б = БЛОКИ[''].get(lang) or БЛОКИ['']['ru']
+    шаги = "".join(
+        f'<li><b>{i:02d}</b><div><h3>{e(t)}</h3><p>{e(p)}</p></div></li>'
+        for i, (t, p) in enumerate(б['steps'], 1))
+    нужно = "".join(f'<li>{e(x)}</li>' for x in б['need'])
+    карта = (f'<div class="pf-card"><div class="pf-card-h"><h3>{e(ОБ["path"])}</h3></div>'
+             f'<ol class="pf-steps">{шаги}</ol>'
+             f'<div class="pf-two"><div class="pf-need"><h3>{e(ОБ["need"])}</h3>'
+             f'<ul>{нужно}</ul></div>'
+             f'<div class="pf-lim"><h3>{e(ОБ["limits"])}</h3><p>{e(б["limits"])}</p></div>'
+             f'</div></div>')
     return (f'<section id="pf"><div class="pf-in">'
-            f'{вариант("", lang, None)}</div>'
-            f'<div class="pf-switch" id="pf-switch" data-on="0">'
-            f'<button type="button"></button></div>'
+            f'<div class="pf-v" data-route="" data-depth="0"><div class="pf-ph"></div>'
+            f'<div class="pf-l"><p class="pf-eyebrow">{e(ОБ["path"])}</p>'
+            f'<h2 class="pf-h">{e(б["problem"])}</h2>'
+            f'<p class="pf-lede">{e(б["approach"])}</p>'
+            f'<span id="how" class="pf-anchor"></span>'
+            f'<div class="pf-cta"><button type="button" class="pf-main" data-talk>'
+            f'{e(б["cta"])}</button><a href="#works">{e(ОБ["all"])} &rarr;</a></div></div>'
+            f'<div class="pf-r">{карта}</div></div></div>'
+            f'<div id="pf-switch" data-on="0"><button type="button"></button></div>'
             f'</section>')
 
 

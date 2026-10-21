@@ -656,52 +656,271 @@ JS = """
   return список[0]||null;
  }
 
- function нарисоватьСцену(к, пример){
-  var гнездо=document.getElementById('hm-scene');
-  if(!гнездо) return;
-  if(!пример || БЕЗ_КАРТИНКИ[к]){ гнездо.innerHTML=''; return; }
-  гнездо.innerHTML='<figure class="hm-shot">'
-   +'<img src="'+пример.cover+'" alt="'+экр(пример.title)+'" loading="lazy" '
-   +'decoding="async" width="800" height="500">'
-   +'<figcaption><span class="tag">'+экр(T().sample)+'</span>'
-   +экр(пример.title)+'</figcaption></figure>';
+ // ------------------------------------------------- тема полосы под задачу
+ // Фотография и иллюстрация меняются вместе с направлением разговора и
+ // нишей клиента: ресторану не показываем склад. Снимки свои на каждой
+ // полосе, чтобы страница не повторяла одну картинку.
+ var ФОТО = {
+  '': ['neutral-1','neutral-2','presence-2'],
+  presence: ['presence-1','presence-2','fence-1'],
+  growth: ['growth-1','growth-2','neutral-1'],
+  payments: ['payments-1','payments-2','growth-1'],
+  banking: ['banking-1','banking-2','accounting-2'],
+  funding: ['funding-1','funding-2','fulfillment-2'],
+  operations: ['operations-1','operations-2','accounting-1'],
+  infrastructure: ['infrastructure-1','infrastructure-2','operations-2'],
+  accounting: ['accounting-1','accounting-2','banking-1'],
+  fulfillment: ['fulfillment-1','fulfillment-2','funding-1']
+ };
+ var НИША_ФОТО = {
+  fencing:['fence-1','fence-2','funding-2'], restaurant:['food-1','food-2','growth-2'],
+  bakery:['food-2','presence-1','growth-2'], flowers:['growth-2','presence-1','neutral-1'],
+  retail:['growth-1','presence-1','fulfillment-1'],
+  logistics:['fulfillment-1','fulfillment-2','funding-1']
+ };
+ var ПРИМЕТЫ_НИШИ = {
+  fencing:['fenc','забор','ограда','ворота','cerca','valla','zaun'],
+  restaurant:['restaur','ресторан','кафе','cafe','кухн','пицц','суши','бар','food'],
+  bakery:['пекарн','bakery','хлеб','кондитер','panader','konditor'],
+  flowers:['цвет','flower','floral','flor'],
+  retail:['магазин','shop','store','retail','tienda','бутик','косметик','одежд'],
+  logistics:['склад','доставк','логист','warehouse','shipping','fulfil']
+ };
+ var ИЛЛ_НАПРАВЛЕНИЯ = ['presence','payments','banking','funding','growth',
+   'operations','infrastructure','accounting','fulfillment'];
+ var ИЛЛ_НИШИ = ['fencing','restaurant','bakery','flowers','retail','logistics'];
+ function нишаКлиента(){
+  var т=((подтверждено.business_type||'')+' '+(подтверждено.what_happened||'')).toLowerCase();
+  if(!т.trim()) return '';
+  for(var н in ПРИМЕТЫ_НИШИ){
+   for(var i=0;i<ПРИМЕТЫ_НИШИ[н].length;i++){
+    if(т.indexOf(ПРИМЕТЫ_НИШИ[н][i])>=0) return н; } }
+  return '';
  }
+ window.ИЛЛЮСТРАЦИЯ = function(к){
+  var н=нишаКлиента();
+  if(н && ИЛЛ_НИШИ.indexOf(н)>=0) return н;
+  return ИЛЛ_НАПРАВЛЕНИЯ.indexOf(к)>=0 ? к : 'neutral';
+ };
+ var темаСейчас=null, фонРаздела=null;
+ function поставитьФон(узел,имя,класс){
+  if(!узел||!имя) return;
+  var i=new Image();
+  i.onload=function(){ узел.style.backgroundImage='url(/assets/ph/'+имя+'.jpg)';
+   if(класс) узел.classList.add(класс); };
+  i.src='/assets/ph/'+имя+'.jpg';
+ }
+ window.наТему = function(к, известно){
+  var н=нишаКлиента(), ключ=(к||'')+'|'+н;
+  if(темаСейчас===ключ) return;
+  темаСейчас=ключ;
+  var с=(н&&НИША_ФОТО[н])||ФОТО[к||'']||ФОТО[''];
+  поставитьФон(document.getElementById('hero-ph'), с[0], 'on');
+  фонРаздела=с[1%%с.length];
+  поставитьФон(document.querySelector('.pf-ph'), фонРаздела);
+  поставитьФон(document.getElementById('fin-ph'), с[2%%с.length]);
+ };
+ // Полосу раздела помощник пересобирает целиком — фон и проявление
+ // возвращаем наблюдателем, а не одним вызовом.
+ (function(){
+  var полоса=document.getElementById('pf');
+  if(!полоса||!window.MutationObserver) return;
+  new MutationObserver(function(){
+   var у=полоса.querySelector('.pf-ph');
+   if(у&&фонРаздела&&!у.style.backgroundImage) поставитьФон(у,фонРаздела);
+   оживить(полоса);
+  }).observe(полоса,{childList:true,subtree:true});
+ })();
+ var тихо2=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var наблюдатель=(!тихо2&&window.IntersectionObserver)
+  ? new IntersectionObserver(function(зап){
+      зап.forEach(function(з){ if(з.isIntersecting){
+       з.target.classList.add('seen'); наблюдатель.unobserve(з.target); } });
+    },{threshold:0.12,rootMargin:'0px 0px -40px 0px'})
+  : null;
+ function оживить(корень){
+  корень.querySelectorAll('.pf-card,.pf-visual,.pf-known,.ill').forEach(function(n){
+   if(n.classList.contains('rise')||n.classList.contains('seen')) return;
+   if(!наблюдатель){ n.classList.add('seen'); return; }
+   n.classList.add('rise'); наблюдатель.observe(n); });
+ }
+ // Карточки работ: переключение компьютер/телефон.
+ document.addEventListener('click',function(ev){
+  var б=ev.target.closest('.wk-dev button'); if(!б) return;
+  var карта=б.closest('.wk'), реж=б.getAttribute('data-dev');
+  карта.setAttribute('data-dev',реж);
+  карта.querySelectorAll('.wk-dev button').forEach(function(x){
+   x.setAttribute('aria-pressed', x===б?'true':'false'); });
+  var img=карта.querySelector('.wk-inset img');
+  if(img) img.src=img.getAttribute(реж==='d'?'data-desk':'data-phone');
+ });
+ // ---------------------------------------------------- сцена первого экрана
+ // Три состояния: настоящая работа в макете устройства, схема разбора под
+ // направление и — пока задача не названа — работа из галереи. Ни одного
+ // выдуманного интерфейса с одобрениями и ростом.
+ var СНИМКИ = {
+  '/preview/neighborhood-fence/': {d:'/assets/demo/fence-desk.jpg', p:'/assets/demo/fence-phone.jpg'},
+  '/preview/saeng-thai-house/':   {d:'/assets/demo/thai-desk.jpg',  p:'/assets/demo/thai-phone.jpg'}
+ };
+ // Как рисуем ход разбора для каждого направления: ветвление, поток или опись.
+ var ВИД = {payments:'tree', banking:'tree', funding:'tree',
+            operations:'flow', fulfillment:'flow', infrastructure:'flow',
+            accounting:'list', growth:'steps', presence:'steps'};
+ function PT(){ return T(); }   // подписи берём из общего набора строк
+ var устройство='d';
 
+ // В нейтральном состоянии показываем иллюстрацию, а не чужую работу:
+ // пока задача не названа, подставлять пример не по адресу.
+ function работаИзКаталога(){ return null; }
+ function сценаРабота(пример){
+  var s=СНИМКИ[пример.url]||(пример._desk?{d:пример._desk,p:пример._phone}:null), t=PT();
+  var src=s?(устройство==='d'?s.d:s.p):пример.cover;
+  var хост=(пример.url||'').replace(/^\\/preview\\//,'').replace(/\\/$/,'')+'.demo';
+  return '<div class="shot">'
+   +'<div class="shot-win"><div class="shot-bar"><i></i><i></i><i></i><span>'+экр(хост)+'</span></div>'
+   +'<img src="'+src+'" alt="'+экр(пример.title)+'" decoding="async"></div>'
+   +(s&&устройство==='d'?'<div class="shot-phone"><img src="'+s.p+'" alt="" decoding="async"></div>':'')
+   +'<div class="shot-cap"><span class="tag">'+экр(T().sample)+'</span>'+экр(пример.title)
+   +'<span class="shot-dev"><button type="button" data-dev="d"'
+   +(устройство==='d'?' aria-pressed="true"':' aria-pressed="false"')+'>'+экр(t.desk||'')+'</button>'
+   +'<button type="button" data-dev="p"'
+   +(устройство==='p'?' aria-pressed="true"':' aria-pressed="false"')+'>'+экр(t.phone||'')+'</button></span>'
+   +'<a class="shot-go" href="'+пример.url+'">'+экр((DATA[ЯЗЫК].sections.labels||{}).open||'')+' &rarr;</a>'
+   +'</div></div>';
+ }
+ function сценаСхема(к){
+  var S=DATA[ЯЗЫК].sections, б=S.routes[к]||S.routes[''], t=PT();
+  var поток=(ВИД[к]==='flow');
+  var узлы=б.steps.map(function(ш,i){
+   return '<li class="nd" data-i="'+i+'"><span class="nd-n">'+('0'+(i+1)).slice(-2)+'</span>'
+        +'<span><b>'+экр(ш[0])+'</b><span class="nd-p">'+экр(ш[1])+'</span></span></li>'; }).join('');
+  var нужно=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
+  return '<div class="scheme'+(поток?' scheme-flow':'')+'" data-mode="a">'
+   +'<div class="scheme-h"><span class="tag">'+экр(t.scheme||'')+'</span>'
+   +(поток?'<span class="scheme-sw"><button type="button" data-mode="a" aria-pressed="true">'
+       +экр(t.flow_manual||'')+'</button><button type="button" data-mode="b" aria-pressed="false">'
+       +экр(t.flow_auto||'')+'</button></span>':'')+'</div>'
+   +'<ol class="scheme-l">'+узлы+'</ol>'
+   +(нужно?'<div class="scheme-need"><span>'+экр(t.need_short||'')+'</span><ul>'+нужно+'</ul></div>':'')
+   +'<p class="scheme-note">'+экр(поток?(t.flow_note||''):(t.scheme_note||''))+'</p></div>';
+ }
+ // Иллюстрация направления: одна сцена на задачу, собрана студией.
+ function сценаИлл(к){
+  var t=PT(), S=DATA[ЯЗЫК].sections, б=S.routes[к]||S.routes[''];
+  var файл=(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
+  return '<figure class="ill">'
+   +'<div class="ill-img"><img src="/assets/il/'+файл+'.jpg" alt="" decoding="async"></div>'
+   +'<figcaption><span class="tag">'+экр(t.scheme||'')+'</span>'
+   +экр(б.problem)+'</figcaption></figure>';
+ }
+ function нарисоватьСцену(к, пример){
+  var гн=document.getElementById('hm-scene'), пр=document.getElementById('hm-r');
+  if(!гн) return;
+  if(window.наТему) window.наТему(к, подтверждено);
+  var показ = (пример && !БЕЗ_КАРТИНКИ[к]) ? пример : (к ? null : работаИзКаталога());
+  var режим = показ ? 'work' : 'scheme';
+  if(пр) пр.setAttribute('data-mode',режим);
+  гн.innerHTML = показ ? сценаРабота(показ) : сценаИлл(к);
+ }
+ document.addEventListener('click',function(ev){
+  var д=ev.target.closest('.shot-dev button');
+  if(д){ устройство=д.getAttribute('data-dev');
+   нарисоватьСцену(тема===null?'':тема, подобратьПример(тема===null?'':тема)); return; }
+  var м=ev.target.closest('.scheme-sw button');
+  if(м){ var бл=м.closest('.scheme'); бл.setAttribute('data-mode',м.getAttribute('data-mode'));
+   бл.querySelectorAll('.scheme-sw button').forEach(function(x){
+    x.setAttribute('aria-pressed', x===м?'true':'false'); }); }
+ });
+
+ // ------------------------------------------------- вертикаль под направление
+ // У каждой задачи свой путь по странице: свой заголовок, своя визуальная
+ // модель разбора и своя глубина. Чем больше человек рассказал, тем глубже
+ // раздел: сначала путь, потом разбор, потом собранное по его словам.
+ function глубина(){
+  if(следующийШаг) return 2;
+  var n=0; for(var k in подтверждено){ if(подтверждено[k]) n++; }
+  return (начали||n>=1) ? 1 : 0;
+ }
+ function блокПуть(к){
+  var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''], t=PT();
+  var шаги=б.steps.map(function(ш,i){
+   return '<li><b>'+('0'+(i+1)).slice(-2)+'</b><div><h3>'+экр(ш[0])+'</h3><p>'
+        +экр(ш[1])+'</p></div></li>'; }).join('');
+  var нужно=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
+  return '<div class="pf-card">'
+   +'<div class="pf-card-h"><h3>'+экр(L.path)+'</h3>'
+   +'<span class="tag">'+экр(T()['stage_'+глубина()]||'')+'</span></div>'
+   +'<ol class="pf-steps">'+шаги+'</ol>'
+   +'<div class="pf-two"><div class="pf-need"><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
+   +'<div class="pf-lim"><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div></div>';
+ }
+ function блокПутьКратко(к){
+  var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''];
+  var нужно=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
+  return '<div class="pf-card pf-card-min">'
+   +'<div class="pf-two"><div class="pf-need"><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
+   +'<div class="pf-lim"><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div></div>';
+ }
+ // Разбор: ветвление для денежных задач, поток для операционных, опись для
+ // учёта. Везде подписано, что это наш порядок разбора, а не чужое решение.
+ function блокРазбор(к){
+  var S=DATA[ЯЗЫК].sections, б=S.routes[к]||S.routes[''], t=PT(), вид=ВИД[к]||'steps';
+  var имя=T()['view_'+вид]||'';
+  var тело='';
+  if(вид==='tree'){
+   var ветви=(б.need||[]).map(function(x,i){
+    return '<li class="br"><span class="br-n">'+('0'+(i+1)).slice(-2)+'</span>'+экр(x)+'</li>'; }).join('');
+   тело='<div class="tree"><div class="tree-top">'+экр(б.problem)+'</div>'
+     +'<ul class="tree-br">'+ветви+'</ul>'
+     +'<div class="tree-end">'+экр(б.steps[3]?б.steps[3][0]:'')+'<span>'
+     +экр(б.steps[3]?б.steps[3][1]:'')+'</span></div></div>';
+  } else if(вид==='flow'){
+   var шаги=б.steps.map(function(ш,i){
+    return '<li class="fl" data-i="'+i+'"><b>'+экр(ш[0])+'</b><span>'+экр(ш[1])+'</span></li>'; }).join('');
+   тело='<div class="flow" data-mode="a"><div class="flow-h">'
+     +'<span class="scheme-sw"><button type="button" data-mode="a" aria-pressed="true">'
+     +экр(t.flow_manual||'')+'</button><button type="button" data-mode="b" aria-pressed="false">'
+     +экр(t.flow_auto||'')+'</button></span></div><ul class="flow-l">'+шаги+'</ul></div>';
+  } else if(вид==='list'){
+   var пункты=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
+   тело='<div class="chk"><ul>'+пункты+'</ul></div>';
+  } else {
+   var файл=(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
+   тело='<div class="ill-wide"><img src="/assets/il/'+файл+'.jpg" alt="" loading="lazy" decoding="async"></div>';
+   имя=имя||экр(б.problem);
+  }
+  if(!тело) return '';
+  return '<div class="pf-visual"><p class="pf-eyebrow">'+экр(имя)+'</p>'+тело
+   +'<p class="pf-note">'+экр(t.scheme_note||'')+'</p></div>';
+ }
+ // Что собрано по словам клиента. Ничего не добавляем от себя.
+ function блокСобрано(){
+  var t=T(), поля=[];
+  for(var k in подтверждено){
+   var v=подтверждено[k];
+   if(v&&String(v).length<120) поля.push(String(v));
+  }
+  if(!поля.length) return '';
+  return '<div class="pf-known"><p class="pf-eyebrow">'+экр(t.known_l||'')+'</p>'
+   +'<ul>'+поля.map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('')+'</ul>'
+   +(следующийШаг?'<p class="pf-next">'+экр(следующийШаг)+'</p>':'')+'</div>';
+ }
  function собратьРаздел(к){
   var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''];
-  var пример=подобратьПример(к);
-  var шаги=б.steps.map(function(ш,i){
-   return '<li><b>'+('0'+(i+1)).slice(-2)+'</b><h3>'+экр(ш[0])+'</h3><p>'
-        +экр(ш[1])+'</p></li>'; }).join('');
-  var нужно=б.need.map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
-  var тёмный;
-  if(пример){
-   тёмный='<div class="pf-dark">'
-     +(пример.concept?'<span class="pf-tagline">'+экр(L.concept)+'</span>':'')
-     +'<h3>'+экр(пример.title)+'</h3><p>'+экр(пример.about)+'</p>'
-     +'<span class="pf-shot"><img src="'+пример.cover+'" alt="'+экр(пример.title)+'" loading="lazy" '
-     +'decoding="async" width="800" height="500"></span>'
-     +'<a class="pf-open" href="'+пример.url+'">'+экр(L.open)+' →</a></div>';
-  } else {
-   // Опубликованного примера под эту задачу нет. Четыре шага уже
-   // показаны выше, повторять их вторым списком незачем.
-   тёмный='<div class="pf-dark"><h3>'+экр(L.process)+'</h3><p>'
-     +экр(L.no_case)+'</p></div>';
-  }
-  return '<div class="pf-v" data-route="'+к+'">'
-   +'<p class="pf-eyebrow">'+экр(L.path)+'</p>'
+  var г=глубина();
+  return '<div class="pf-v" data-route="'+к+'" data-depth="'+г+'">'
+   +'<div class="pf-ph"></div>'
+   +'<div class="pf-l"><p class="pf-eyebrow">'+экр(L.path)+'</p>'
    +'<h2 class="pf-h">'+экр(б.problem)+'</h2>'
    +'<p class="pf-lede">'+экр(б.approach)+'</p>'
    +'<span id="how" class="pf-anchor"></span>'
-   +'<ol class="pf-steps">'+шаги+'</ol>'
-   +'<div class="pf-two"><div><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
-   +'<div><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div>'
-   +тёмный
    +'<div class="pf-cta"><button type="button" class="pf-main" data-talk>'
-   +экр(б.cta)+'</button><a href="/showcase/">'+экр(L.all)+' →</a></div>'
-   +(к?'':'<p class="pf-note">'+экр(L.hint)+'</p>');
+   +экр(б.cta)+'</button><a href="#works">'+экр(L.all)+' &rarr;</a></div>'
+   +(к?'':'<p class="pf-note">'+экр(L.hint)+'</p>')+'</div>'
+   +'<div class="pf-r">'+блокРазбор(к)+блокПуть(к)+(г>=1?блокСобрано():'')+'</div>'
+   +'</div>';
  }
- function применитьРаздел(к){
+  function применитьРаздел(к){
   if(!гнездо) return;
   var прокрутка=window.scrollY, фокус=(document.activeElement===поле);
   var старое=гнездо.querySelector('.pf-v');
@@ -1050,18 +1269,66 @@ def встроенный_css() -> str:
 
 
 def markup(code: str = 'ru') -> str:
-    """Разметка первого экрана как секции страницы."""
-    целиком = page(code)
-    начало = целиком.index('<main class="hm">')
-    конец = целиком.index('</main>', начало) + len('</main>')
-    тело = целиком[начало:конец].replace('<main class="hm">', '<div class="hm">', 1)
-    тело = тело[:тело.rindex('</main>')] + '</div>'
-    # Логотип в шапке сайта уже есть; второй подряд читается как ошибка вёрстки.
-    начало = тело.find('<a class="hm-brand"')
-    if начало >= 0:
-        конец = тело.index('</a>', начало) + 4
-        тело = тело[:начало] + тело[конец:]
-    return f'<section id="hm-hero"><span id="start" class="hm-anchor"></span>\n{тело}\n</section>'
+    """Первый экран: разговор слева, сцена под задачу справа.
+
+    Сервер рисует состояние «задача не названа»: заголовок, панель разговора
+    с полем и ситуациями, трекер и нейтральная иллюстрация. Дальше страница
+    меняет сцену и фотографию под направление разговора.
+    """
+    import html as _h
+    import hero_content as _HC
+    e = _h.escape
+    s = _HC.S.get(code) or _HC.S['ru']
+    пара = (_HC.H1.get(code) or _HC.H1['ru'])['']
+    набор = (_HC.НАБОРЫ.get(code) or _HC.НАБОРЫ['ru'])['general']
+    чипы = "".join(
+        f'<li><button type="button" data-k="{k}" data-i="m{i}">{e(t)}</button></li>'
+        for i, (k, t) in enumerate(набор['main']))
+    чипы += "".join(
+        f'<li class="near"><button type="button" data-k="{k}" data-i="n{i}">{e(t)}</button></li>'
+        for i, (k, t) in enumerate(набор.get('near') or []))
+    шаг = lambda ид, метка: (
+        f'<div class="hm-step" id="{ид}"><span class="hm-mono">{e(метка)} <i></i></span>'
+        f'<p class="dim">{e(s["undefined"])}</p></div>')
+    return f'''<section id="hm-hero"><span id="start" class="hm-anchor"></span>
+ <div class="hero-ph" id="hero-ph"></div>
+ <div class="hero-in">
+  <div class="hero-l">
+   <p class="eyebrow">{e(s['eyebrow'])}</p>
+   <h1 id="h1"><span class="ln"><span>{e(пара[0])}</span></span><span class="ln"><span>{e(пара[1])}</span></span></h1>
+   <p class="hm-lede">{e(s['lede'])}</p>
+   <div class="talk">
+    <div class="talk-h">
+     <span class="talk-n">{e(s['panel'])}</span>
+     <div class="lang" id="lang">
+      <button type="button" id="lang-btn" aria-expanded="false" aria-haspopup="true"
+              aria-label="{e(s['lang_pick'])}">{e(_HC.ИМЕНА.get(code, 'Русский'))}</button>
+      <ul id="lang-list" hidden></ul>
+     </div>
+    </div>
+    <div class="stream" id="stream"></div>
+    <div class="sugg" id="sugg"></div>
+    <form id="ask" autocomplete="off">
+     <label class="vh" for="ask-i">{e(s['input'])}</label>
+     <input id="ask-i" type="text" autocomplete="off" placeholder="{e(s['input'])}">
+     <button id="ask-b" type="submit" aria-label="{e(s['send'])}">&rarr;</button>
+    </form>
+   </div>
+   <ul class="chips" id="chips">{чипы}</ul>
+   <p class="hm-pick vh">{e(s['pick'])}</p>
+   <div class="tail">
+    <button type="button" id="restart">{e(s['other'])}</button>
+    <a href="#works">{e(s['more'])} &rarr;</a>
+   </div>
+  </div>
+  <div class="hero-r" id="hm-r" data-mode="idle">
+   <div class="steps" id="steps">{шаг('s-task', s['task'])}{шаг('s-clar', s['clarify'])}{шаг('s-next', s['nxt'])}</div>
+   <div id="hm-scene"><figure class="ill"><div class="ill-img">
+     <img src="/assets/il/neutral.jpg" alt="" width="1200" height="800" decoding="async">
+    </div></figure></div>
+  </div>
+ </div>
+</section>'''
 
 
 def script(code: str = 'ru') -> str:

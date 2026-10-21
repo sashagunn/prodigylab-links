@@ -54,7 +54,15 @@ S = {
    again='уже была сохранена', save_err='Не удалось сохранить. Попробуйте ещё раз.',
    show_solutions='Показать решения по этой задаче',
    switched_to='Продолжаем на этом языке', show_original='Показать оригинал',
-   show_translation='Показать перевод'),
+   show_translation='Показать перевод',
+   # Подписи новой главной: схема разбора, путь заявки, глубина.
+   scheme='Схема разбора', scheme_note='Это порядок нашего разбора, а не решение провайдера.',
+   flow_manual='Вручную', flow_auto='После автоматизации',
+   flow_note='Пример пути заявки. Ваш путь разбираем по вашему процессу.',
+   need_short='Понадобится', desk='Компьютер', phone='Телефон',
+   stage_0='Путь разбора', stage_1='Разбираем вашу ситуацию', stage_2='Собрано по вашим словам',
+   view_tree='Куда может уходить причина', view_flow='Путь заявки', view_list='Что собираем',
+   known_l='Что уже знаем из разговора'),
  'en': dict(
    founder_alt='Aleksandr Kovalenko, founder of Prodigy LAB',
    founder_role='Founder, Prodigy LAB',
@@ -86,7 +94,16 @@ S = {
    again='was already saved', save_err='Could not save. Please try again.',
    show_solutions='Show solutions for this task',
    switched_to='Continuing in this language', show_original='Show original',
-   show_translation='Show translation'),
+   show_translation='Show translation',
+   # Подписи новой главной: схема разбора, путь заявки, глубина.
+   scheme='How we work through it', scheme_note='This is the order of our review, not a provider’s decision.',
+   flow_manual='By hand', flow_auto='After automation',
+   flow_note='An example path of a request. Yours we map against your own process.',
+   need_short='You will need', desk='Desktop', phone='Phone',
+   stage_0='How we work through it', stage_1='Working through your situation',
+   stage_2='Collected from your words',
+   view_tree='Where the cause can sit', view_flow='The path of a request', view_list='What we collect',
+   known_l='What we already know from the conversation'),
  'es': dict(
    founder_alt='Aleksandr Kovalenko, fundador de Prodigy LAB',
    founder_role='Fundador, Prodigy LAB',
@@ -121,7 +138,15 @@ S = {
    save_err='No se pudo guardar. Int&eacute;ntelo de nuevo.',
    show_solutions='Ver soluciones para esta tarea',
    switched_to='Seguimos en este idioma', show_original='Ver original',
-   show_translation='Ver traducci&oacute;n'),
+   show_translation='Ver traducci&oacute;n',
+   # Подписи новой главной: схема разбора, путь заявки, глубина.
+   scheme='Cómo lo revisamos', scheme_note='Es el orden de nuestro análisis, no la decisión del proveedor.',
+   flow_manual='A mano', flow_auto='Tras automatizar',
+   flow_note='Un camino de ejemplo. El suyo lo revisamos sobre su propio proceso.',
+   need_short='Hará falta', desk='Ordenador', phone='Móvil',
+   stage_0='Cómo lo revisamos', stage_1='Revisando su situación', stage_2='Recogido de sus palabras',
+   view_tree='Dónde puede estar la causa', view_flow='El camino de una solicitud', view_list='Qué reunimos',
+   known_l='Lo que ya sabemos de la conversación'),
  'pt': dict(
    founder_alt='Aleksandr Kovalenko, fundador da Prodigy LAB',
    founder_role='Fundador, Prodigy LAB',
@@ -156,7 +181,15 @@ S = {
    save_err='N&atilde;o foi poss&iacute;vel salvar. Tente novamente.',
    show_solutions='Ver solu&ccedil;&otilde;es para esta tarefa',
    switched_to='Continuamos neste idioma', show_original='Ver original',
-   show_translation='Ver tradu&ccedil;&atilde;o'),
+   show_translation='Ver tradu&ccedil;&atilde;o',
+   # Подписи новой главной: схема разбора, путь заявки, глубина.
+   scheme='Como fazemos a análise', scheme_note='É a ordem da nossa análise, não a decisão do provedor.',
+   flow_manual='Na mão', flow_auto='Depois de automatizar',
+   flow_note='Um caminho de exemplo. O seu analisamos sobre o seu processo.',
+   need_short='Vai precisar', desk='Computador', phone='Celular',
+   stage_0='Como fazemos a análise', stage_1='Analisando a sua situação', stage_2='Reunido das suas palavras',
+   view_tree='Onde a causa pode estar', view_flow='O caminho de uma solicitação', view_list='O que reunimos',
+   known_l='O que já sabemos da conversa'),
  'de': dict(
    founder_alt='Aleksandr Kovalenko, Gr&uuml;nder von Prodigy LAB',
    founder_role='Gr&uuml;nder, Prodigy LAB',
@@ -192,7 +225,16 @@ S = {
    save_err='Speichern nicht m&ouml;glich. Bitte erneut versuchen.',
    show_solutions='L&ouml;sungen f&uuml;r diese Aufgabe zeigen',
    switched_to='Wir machen in dieser Sprache weiter',
-   show_original='Original anzeigen', show_translation='&Uuml;bersetzung anzeigen'),
+   show_original='Original anzeigen', show_translation='&Uuml;bersetzung anzeigen',
+   # Подписи новой главной: схема разбора, путь заявки, глубина.
+   scheme='Wie wir das durchgehen', scheme_note='Das ist die Reihenfolge unserer Prüfung, nicht die Entscheidung des Anbieters.',
+   flow_manual='Von Hand', flow_auto='Nach der Automatisierung',
+   flow_note='Ein Beispielweg einer Anfrage. Ihren gehen wir an Ihrem Prozess durch.',
+   need_short='Gebraucht wird', desk='Computer', phone='Telefon',
+   stage_0='Wie wir das durchgehen', stage_1='Wir gehen Ihre Situation durch',
+   stage_2='Aus Ihren Worten gesammelt',
+   view_tree='Wo die Ursache liegen kann', view_flow='Der Weg einer Anfrage', view_list='Was wir sammeln',
+   known_l='Was wir aus dem Gespräch schon wissen'),
 }
 
 # Заголовки — самостоятельные фразы, не подстановка в шаблон.
