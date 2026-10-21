@@ -950,28 +950,20 @@ def данные(lang: str) -> dict:
 }
 
 
-# Партнёра по финансированию нет ни одного действующего: в реестре
-# knowledge/partners/REGISTRY.md все три заявки (National Funding, Capital
-# Source Group, SMB Funding) в статусе «подана, ждём одобрения», и
-# routing.delivery('funding') честно отдаёт HUMAN_REVIEW. Пока это так, блок
-# прямо говорит, что следующий шаг — наш разбор, а не передача провайдеру.
-# Когда партнёр станет ACTIVE, эту оговорку надо снять вместе со статусом.
-БЕЗ_ПАРТНЁРА_ФИНАНСИРОВАНИЕ = {
-    'ru': ' Действующего партнёра по финансированию у нас сейчас нет: '
-          'следующий шаг — разбор нашей командой, а не передача конкретному '
-          'провайдеру.',
-    'en': ' We have no active funding partner right now: the next step is a '
-          'review by our own team, not a handoff to a named provider.',
-    'es': ' Hoy no tenemos socio activo de financiación: el siguiente paso '
-          'es un análisis de nuestro equipo, no un traspaso a un proveedor '
-          'concreto.',
-    'pt': ' Hoje não temos parceiro ativo de financiamento: o próximo passo '
-          'é uma análise da nossa equipe, não um repasse a um fornecedor '
-          'específico.',
-    'de': ' Einen aktiven Finanzierungspartner haben wir derzeit nicht: der '
-          'nächste Schritt ist eine Prüfung durch unser Team, keine '
-          'Weitergabe an einen bestimmten Anbieter.',
+# Внутренние статусы партнёрств клиенту не показываются: ему важно, что
+# будет дальше, а не кто у нас в каком состоянии согласования. Пока по
+# направлению нет подтверждённой передачи, следующий шаг — наш разбор, и
+# так это и написано, без объяснения причин.
+#
+# Что передача действительно доступна, решает routing.delivery по реестру:
+# на сайте это отражается формулировкой, а не названием провайдера.
+БЕЗ_ПЕРЕДАЧИ = {
+    'ru': ' Разберём задачу и определим доступный следующий шаг.',
+    'en': ' We will work through the task and determine the next step available.',
+    'es': ' Analizaremos la tarea y determinaremos el siguiente paso disponible.',
+    'pt': ' Vamos analisar a tarefa e determinar o pr\u00f3ximo passo dispon\u00edvel.',
+    'de': ' Wir gehen die Aufgabe durch und bestimmen den verf\u00fcgbaren n\u00e4chsten Schritt.',
 }
-for _язык, _фраза in БЕЗ_ПАРТНЁРА_ФИНАНСИРОВАНИЕ.items():
+for _язык, _фраза in БЕЗ_ПЕРЕДАЧИ.items():
     if _фраза not in БЛОКИ['funding'][_язык]['limits']:
         БЛОКИ['funding'][_язык]['limits'] += _фраза
