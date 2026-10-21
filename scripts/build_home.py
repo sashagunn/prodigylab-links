@@ -208,8 +208,10 @@ footer{border-top:1px solid var(--line);padding:46px 0 56px}
 .flinks a{font-size:14px;color:var(--ink2);text-decoration:none;padding:8px 0}
 .flinks a:hover{color:var(--accent)}
 .fmeta{font-size:12.5px;color:var(--ink3);line-height:1.75}
-#langbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--ink);
-color:#fff;padding:14px 0}
+/* Плашка языка — строка в потоке над первым экраном, а не чёрная панель
+   поверх поля ввода. На телефоне она перекрывала главное действие. */
+#langbar{display:none;background:var(--paper2);color:var(--ink);
+border-bottom:1px solid var(--line);padding:10px 0}
 #langbar.on{display:block}
 .lb-in{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
 .lb-t{font-size:15px;line-height:1.45;flex:1 1 260px}
@@ -262,7 +264,8 @@ def page(code):
     banner_stay_js = _js.dumps(d['banner_stay'], ensure_ascii=False)
     clients = "".join(
         f'<a class="case" href="{u}" target="_blank" rel="noopener">'
-        f'<span class="shot"><img src="{i}" alt="" loading="lazy" width="600" height="600"></span>'
+        f'<span class="shot"><img src="{i}" alt="{e(n)} \u2014 {e(d["cases_alt"])}" '
+        f'loading="lazy" width="600" height="600"></span>'
         f'<span class="nm">{n}<i>&#8599;</i></span></a>' for n, u, i in CLIENTS)
     langs = "".join(
         f'<a href="{L[c]["home"]}"{" aria-current=\"page\"" if c == code else ""}>{n}</a>'
@@ -360,17 +363,23 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
    <button id="burger" class="icon" aria-label="Menu" aria-expanded="false" onclick="tg(this)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
    </button>
-   {scan_nav}
-   <a class="btn nav-cta" href="{diag}" data-diag>{e(d['cta1'])}</a>
+   <a class="btn nav-cta" href="#start">{e(d['cta1'])}</a>
   </div>
  </div>
  <div id="mob"><div class="wrap">{mobls}{showcase_mob}
-  <a class="ml" href="{SB.scan_url(code, 'mobile_menu')}">{SB.S[code]['nav']}</a>
-  <a class="btn" href="{diag}" data-diag>{e(d['cta1'])}</a>
+  <a class="btn" href="#start">{e(d['cta1'])}</a>
   <a class="ml" href="{PHONE_HREF}">{e(d['call'])} {PHONE_TEXT}</a>
   <div class="mlangs">{langs}</div>
  </div></div>
 </nav>
+
+<div id="langbar" role="region" aria-live="polite"><div class="wrap lb-in">
+ <span class="lb-t" id="lb-text"></span>
+ <span class="lb-b">
+  <button id="lb-go"></button>
+  <button id="lb-no" class="ghost"></button>
+ </span>
+</div></div>
 
 <main>
 {hero_block}
@@ -414,13 +423,6 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 </section>
 </main>
 
-<div id="langbar" role="region" aria-live="polite"><div class="wrap lb-in">
- <span class="lb-t" id="lb-text"></span>
- <span class="lb-b">
-  <button id="lb-go"></button>
-  <button id="lb-no" class="ghost"></button>
- </span>
-</div></div>
 
 {scan_sticky}
 <footer>
@@ -609,10 +611,10 @@ document.querySelectorAll('#mob a').forEach(function(a){{a.addEventListener('cli
   g.src=B+"/packs/js/sdk.js";g.defer=true;g.async=true;s.parentNode.insertBefore(g,s);
   g.onload=function(){{window.chatwootSettings=window.chatwootSettings||{{}};
    window.chatwootSettings.locale="{code}";
-   // На телефоне разговор ведёт помощник на самой странице. Второй плавающий
-   // чат рядом с ним — не выбор, а шум: пузырь прячем, переписка остаётся
-   // доступной на широком экране.
-   if(window.matchMedia('(max-width: 760px)').matches){{
+   // Разговор на главной ведёт помощник на самой странице. Второй плавающий
+   // чат рядом с ним — не выбор, а растерянность: пузырь на главной прячем.
+   // На остальных страницах переписка доступна как прежде.
+   if(document.getElementById('hm-hero')){{
     window.chatwootSettings.hideMessageBubble=true;
    }}
    window.chatwootSDK.run({{websiteToken:"J1xMPSabyx7EfRVPrmZEMLYB",baseUrl:B}});

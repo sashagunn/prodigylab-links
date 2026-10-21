@@ -165,8 +165,10 @@ footer{border-top:1px solid var(--line);padding:46px 0 56px}
 .flinks a{font-size:14px;color:var(--ink2);text-decoration:none;padding:8px 0}
 .flinks a:hover{color:var(--accent)}
 .fmeta{font-size:12.5px;color:var(--ink3);line-height:1.75}
-#langbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--ink);
-color:#fff;padding:14px 0}
+/* Плашка языка — строка в потоке над первым экраном, а не чёрная панель
+   поверх поля ввода. На телефоне она перекрывала главное действие. */
+#langbar{display:none;background:var(--paper2);color:var(--ink);
+border-bottom:1px solid var(--line);padding:10px 0}
 #langbar.on{display:block}
 .lb-in{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
 .lb-t{font-size:15px;line-height:1.45;flex:1 1 260px}

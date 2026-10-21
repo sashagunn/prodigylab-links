@@ -76,6 +76,7 @@ letter-spacing:.18em;text-transform:uppercase}
 
 .hm-l{padding:22px 20px 32px;display:flex;flex-direction:column}
 @media(min-width:1024px){.hm-l{padding:30px 44px 40px}}
+.hm-anchor{display:block;height:0;scroll-margin-top:72px}
 .hm-brand{display:inline-flex;align-items:baseline;gap:6px;font-weight:700;letter-spacing:-.02em;
 font-size:17px;text-decoration:none;color:var(--ink);margin-bottom:24px}
 .hm-brand b{color:var(--accent);font-weight:700}
@@ -584,29 +585,6 @@ JS = """
    сцена.style.setProperty('--dx','0px'); сцена.style.setProperty('--dy','0px'); });
  }
 
- async function подхватить(){
-  // Разговор мог начаться на другой языковой странице. Переписку сервер не
-  // хранит для показа, поэтому восстанавливаем состояние, а не ленту: что
-  // за задача, что уже выяснено и какой следующий шаг.
-  try{
-   var r=await fetch(STATE_API+'?session='+encodeURIComponent(сессия));
-   var d=await r.json();
-   if(!d.ok||!d['задача']) return;
-   начали=true; поле.placeholder=T().input_next;
-   // Открытая страница — это и есть выбор языка. Если разговор шёл на
-   // другом, переводим разговор на язык страницы, а не страницу на язык
-   // разговора: иначе разделы и шапка разойдутся по языкам.
-   if(d['язык']&&d['язык']!==ЯЗЫК){
-    try{
-     await fetch(LANG_API,{method:'POST',headers:{'Content-Type':'application/json'},
-       body:JSON.stringify({session:сессия,lang:ЯЗЫК})});
-    }catch(e){}
-   }
-   шаг(шагДальше,d['следующий']||T().undefined,'live');
-   if(d['заявка']) показатьЗаявку(d['заявка_номер']||'',false);
-   сказать('note',T().kept);
-  }catch(e){}
- }
 
 
  // -------------------------------------------------- разделы под задачу
@@ -624,34 +602,46 @@ JS = """
   var r=разделы.getBoundingClientRect();
   return r.top < window.innerHeight - 80 && r.bottom > 80;
  }
- function собратьРаздел(к){
-  var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''];
-  // Пример под нишу клиента. Ниша берётся из его же ответов, а не из метки
-  // кампании. Нет совпадения — берём первый подходящий, он уже отсортирован
-  // по значимости. Нет ни одного — показываем разбор процесса.
-  var пример=null, список=б.examples||[];
-  // Пришёл с конкретного примера — он и остаётся на экране. Это его
-  // контекст, а не наш подбор.
+ // Направления, где показывать чужую работу нельзя: у денежных задач нет
+ // опубликованного примера, а любая подставленная картинка читается как
+ // «вот решение вашей проблемы». Там остаётся только трекер.
+ var БЕЗ_КАРТИНКИ = {payments:1, banking:1, funding:1, accounting:1};
+
+ function подобратьПример(к){
+  var S=DATA[ЯЗЫК].sections, б=S.routes[к]||S.routes[''];
+  var список=б.examples||[];
   if(подтверждено.demo_id){
    for(var d=0;d<список.length;d++){
-    if(список[d].url.indexOf(подтверждено.demo_id)>=0){ пример=список[d]; break; }
+    if(список[d].url.indexOf(подтверждено.demo_id)>=0) return список[d];
    }
   }
-  // Ниша может прозвучать и в ответе на другой вопрос — смотрим и то,
-  // что человек рассказал своими словами.
-  if(!пример){
   var ниша=((подтверждено.business_type||'')+' '
             +(подтверждено.what_happened||'')).toLowerCase();
   if(ниша){
-   for(var i=0;i<список.length && !пример;i++){
+   for(var i=0;i<список.length;i++){
     var приметы=(S.niche_hints||{})[список[i].niche]||[список[i].niche];
     for(var j=0;j<приметы.length;j++){
-     if(приметы[j] && ниша.indexOf(приметы[j])>=0){ пример=список[i]; break; }
+     if(приметы[j] && ниша.indexOf(приметы[j])>=0) return список[i];
     }
    }
   }
-  }
-  if(!пример) пример=список[0]||null;
+  return список[0]||null;
+ }
+
+ function нарисоватьСцену(к, пример){
+  var гнездо=document.getElementById('hm-scene');
+  if(!гнездо) return;
+  if(!пример || БЕЗ_КАРТИНКИ[к]){ гнездо.innerHTML=''; return; }
+  гнездо.innerHTML='<figure class="hm-shot">'
+   +'<img src="'+пример.cover+'" alt="'+экр(пример.title)+'" loading="lazy" '
+   +'decoding="async" width="800" height="500">'
+   +'<figcaption><span class="tag">'+экр(T().sample)+'</span>'
+   +экр(пример.title)+'</figcaption></figure>';
+ }
+
+ function собратьРаздел(к){
+  var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''];
+  var пример=подобратьПример(к);
   var шаги=б.steps.map(function(ш,i){
    return '<li><b>'+('0'+(i+1)).slice(-2)+'</b><h3>'+экр(ш[0])+'</h3><p>'
         +экр(ш[1])+'</p></li>'; }).join('');
@@ -661,17 +651,14 @@ JS = """
    тёмный='<div class="pf-dark">'
      +(пример.concept?'<span class="pf-tagline">'+экр(L.concept)+'</span>':'')
      +'<h3>'+экр(пример.title)+'</h3><p>'+экр(пример.about)+'</p>'
-     +'<span class="pf-shot"><img src="'+пример.cover+'" alt="" loading="lazy" '
+     +'<span class="pf-shot"><img src="'+пример.cover+'" alt="'+экр(пример.title)+'" loading="lazy" '
      +'decoding="async" width="800" height="500"></span>'
      +'<a class="pf-open" href="'+пример.url+'">'+экр(L.open)+' →</a></div>';
   } else {
-   // Опубликованного примера под эту задачу нет. Показываем порядок работы,
-   // а не чужой кейс: ресторан не решение по процессингу.
-   var клетки=б.steps.map(function(ш,i){
-    return '<div><b>'+('0'+(i+1)).slice(-2)+'</b><span>'+экр(ш[0])+'</span></div>';
-   }).join('');
-   тёмный='<div class="pf-dark"><h3>'+экр(L.process)+'</h3><p>'+экр(L.no_case)
-     +'</p><div class="pf-flow">'+клетки+'</div></div>';
+   // Опубликованного примера под эту задачу нет. Четыре шага уже
+   // показаны выше, повторять их вторым списком незачем.
+   тёмный='<div class="pf-dark"><h3>'+экр(L.process)+'</h3><p>'
+     +экр(L.no_case)+'</p></div>';
   }
   return '<div class="pf-v" data-route="'+к+'">'
    +'<p class="pf-eyebrow">'+экр(L.path)+'</p>'
@@ -694,6 +681,7 @@ JS = """
   if(старое) старое.remove();
   тема=к;
   // Страница не должна уехать под рукой: прокрутку и фокус возвращаем.
+  нарисоватьСцену(к, подобратьПример(к));
   if(window.scrollY!==прокрутка) window.scrollTo(0,прокрутка);
   if(фокус) поле.focus({preventScroll:true});
   var липкая=document.getElementById('sn-sticky');
@@ -718,6 +706,9 @@ JS = """
            +'|'+(подтверждено.demo_id||'');
   if(новый===отпечаток) return;
   отпечаток=новый;
+  // Сцена первого экрана обновляется сразу: человек смотрит именно туда,
+  // а подмена раздела ниже может быть отложена, если он его читает.
+  нарисоватьСцену(к, подобратьПример(к));
   if(к===тема&&тема!==null){
    // Направление то же, изменились подробности — обновляем на месте, без
    // предложения перейти: человек остаётся в том же разделе.
@@ -777,6 +768,48 @@ JS = """
    document.documentElement.classList.toggle('hm-on',записи[0].isIntersecting);
   },{threshold:0.12}).observe(я);
  })();
+
+ function новаяСессия(){
+  var н='hm-'+Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-4);
+  try{ localStorage.setItem('pl-hm-sid',н); }catch(e){}
+  сессия=н; начали=false; поле.placeholder=T().input;
+ }
+ async function восстановить(д){
+  начали=true; поле.placeholder=T().input_next;
+  шаг(шагДальше,д['следующий']||T().undefined,'live');
+  if(д['заявка']) показатьЗаявку(д['заявка_номер']||'',false);
+  показатьРаздел(д['задача']||'', д['подтверждено']||{});
+ }
+ async function подхватить(){
+  // Разговор мог идти в прошлый визит или на другой языковой странице.
+  // Молча подставлять прошлое состояние нельзя — человек увидит чужое для
+  // себя «сейчас». Спрашиваем и ничего не трогаем до ответа.
+  try{
+   var r=await fetch(STATE_API+'?session='+encodeURIComponent(сессия));
+   var d=await r.json();
+   if(!d.ok||!d['задача']) return;
+   if(d['язык']&&d['язык']!==ЯЗЫК){
+    try{
+     await fetch(LANG_API,{method:'POST',headers:{'Content-Type':'application/json'},
+       body:JSON.stringify({session:сессия,lang:ЯЗЫК})});
+    }catch(e){}
+   }
+   var узел=сказать('note',T().resume_old+'. '+T().resume_q);
+   var да=document.createElement('button');
+   да.type='button'; да.className='tr'; да.textContent=T().resume_yes;
+   var нет=document.createElement('button');
+   нет.type='button'; нет.className='tr'; нет.textContent=T().resume_no;
+   узел.appendChild(да); узел.appendChild(нет);
+   да.addEventListener('click',function(){
+    да.remove(); нет.remove(); восстановить(d);
+   });
+   нет.addEventListener('click',function(){
+    // Прошлый разговор не удаляем — просто начинаем новый.
+    да.remove(); нет.remove(); новаяСессия();
+    сказать('note',T().kept);
+   });
+  }catch(e){}
+ }
 
  рисоватьСписок();
  рисоватьЧипы(набор);
@@ -885,11 +918,7 @@ def page(code: str = 'ru') -> str:
    <div class="hm-step" id="s-next"><span class="hm-mono">{d['nxt']} <i></i></span>
     <p class="dim">{d['undefined']}</p></div>
   </div>
-  <figure class="hm-shot">
-   <img src="{ОБРАЗЕЦ}" alt="{e(H.unescape(d['sample_cap']))}" loading="lazy"
-        decoding="async" width="800" height="500">
-   <figcaption><span class="tag">{d['sample']}</span>{d['sample_cap']}</figcaption>
-  </figure>
+  <div id="hm-scene"></div>
  </div>
 </main>
 <script>{js}</script>
@@ -932,7 +961,7 @@ def markup(code: str = 'ru') -> str:
     if начало >= 0:
         конец = тело.index('</a>', начало) + 4
         тело = тело[:начало] + тело[конец:]
-    return f'<section id="hm-hero">\n{тело}\n</section>'
+    return f'<section id="hm-hero"><span id="start" class="hm-anchor"></span>\n{тело}\n</section>'
 
 
 def script(code: str = 'ru') -> str:

@@ -25,6 +25,9 @@
 
 S = {
  'ru': dict(
+   resume_q='Продолжить прошлый разговор?',
+   resume_yes='Продолжить', resume_no='Начать заново',
+   resume_old='Это состояние из прошлого визита',
    eyebrow='РАЗБОР И РЕШЕНИЕ БИЗНЕС-ЗАДАЧ',
    lede='Платежи, банки, финансирование, операции, сайты и магазины. '
         'Начните прямо здесь — разберём и скажем, что чинить первым.',
@@ -50,6 +53,9 @@ S = {
    switched_to='Продолжаем на этом языке', show_original='Показать оригинал',
    show_translation='Показать перевод'),
  'en': dict(
+   resume_q='Continue your previous conversation?',
+   resume_yes='Continue', resume_no='Start over',
+   resume_old='This is state from an earlier visit',
    eyebrow='BUSINESS ADVISORY &amp; SOLUTIONS',
    lede='Payments, banking, funding, operations, websites and stores. '
         'Start right here — we read the situation and say what to fix first.',
@@ -76,6 +82,9 @@ S = {
    switched_to='Continuing in this language', show_original='Show original',
    show_translation='Show translation'),
  'es': dict(
+   resume_q='¿Continuar la conversación anterior?',
+   resume_yes='Continuar', resume_no='Empezar de nuevo',
+   resume_old='Este estado es de una visita anterior',
    eyebrow='AN&Aacute;LISIS Y SOLUCIONES DE NEGOCIO',
    lede='Pagos, bancos, financiaci&oacute;n, operaciones, sitios web y tiendas. '
         'Empiece aqu&iacute; mismo: analizamos la situaci&oacute;n y decimos qu&eacute; arreglar primero.',
@@ -105,6 +114,9 @@ S = {
    switched_to='Seguimos en este idioma', show_original='Ver original',
    show_translation='Ver traducci&oacute;n'),
  'pt': dict(
+   resume_q='Continuar a conversa anterior?',
+   resume_yes='Continuar', resume_no='Começar de novo',
+   resume_old='Este estado é de uma visita anterior',
    eyebrow='AN&Aacute;LISE E SOLU&Ccedil;&Otilde;ES DE NEG&Oacute;CIO',
    lede='Pagamentos, bancos, financiamento, opera&ccedil;&otilde;es, sites e lojas. '
         'Comece aqui mesmo: analisamos a situa&ccedil;&atilde;o e dizemos o que corrigir primeiro.',
@@ -134,6 +146,9 @@ S = {
    switched_to='Continuamos neste idioma', show_original='Ver original',
    show_translation='Ver tradu&ccedil;&atilde;o'),
  'de': dict(
+   resume_q='Vorheriges Gespr&auml;ch fortsetzen?',
+   resume_yes='Fortsetzen', resume_no='Neu beginnen',
+   resume_old='Dieser Stand stammt aus einem fr&uuml;heren Besuch',
    eyebrow='ANALYSE UND L&Ouml;SUNGEN F&Uuml;R IHR GESCH&Auml;FT',
    lede='Zahlungen, Banken, Finanzierung, Abl&auml;ufe, Websites und Shops. '
         'Fangen Sie hier an — wir sehen uns die Lage an und sagen, was zuerst zu beheben ist.',

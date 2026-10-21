@@ -566,28 +566,24 @@ CSS = """
 .pf-two p{font:400 15.5px/1.5 var(--sans);color:var(--ink2);margin:0}
 /* Пример или разбор процесса — тёмный блок посреди светлой страницы.
    Он держит внимание лучше любой анимации и отделяет показ от объяснения. */
-.pf-dark{margin:56px -20px 0;background:var(--graphite);color:var(--on-dark);
- padding:34px 20px 38px}
-@media(min-width:900px){.pf-dark{margin:72px 0 0;padding:44px 44px 48px}}
+/* Светлый блок: тёмных зон на странице две — первый экран и проверка сайта.
+   Третий остров посередине читался как сбой стиля, а не как приём. */
+.pf-dark{margin:56px 0 0;background:var(--paper2);color:var(--ink);
+ border:1px solid var(--line);padding:30px 22px 34px}
+@media(min-width:900px){.pf-dark{margin:72px 0 0;padding:40px 40px 44px}}
 .pf-dark h3{font:600 clamp(20px,2.4vw,27px)/1.2 var(--sans);margin:0 0 10px;
- color:#fff;letter-spacing:-.02em}
-.pf-dark p{font:400 15.5px/1.5 var(--sans);color:var(--on-dark2);margin:0;max-width:56ch}
-.pf-shot{display:block;margin:24px 0 0;border:1px solid rgba(255,255,255,.14)}
+ color:var(--ink);letter-spacing:-.02em}
+.pf-dark p{font:400 15.5px/1.5 var(--sans);color:var(--ink2);margin:0;max-width:56ch}
+.pf-shot{display:block;margin:24px 0 0;border:1px solid var(--line)}
 .pf-shot img{display:block;width:100%;height:auto}
 .pf-tagline{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.14em;
- text-transform:uppercase;color:var(--graphite);background:var(--accent-soft);
+ text-transform:uppercase;color:var(--accent2);background:var(--accent-soft);
  padding:6px 9px;margin:0 0 14px}
 .pf-open{display:inline-block;margin:18px 0 0;font:500 15px/1 var(--sans);
  color:#fff;background:var(--accent);padding:13px 18px;text-decoration:none}
 .pf-open:hover{background:var(--accent2)}
 /* Разбор процесса для направлений, где опубликованного примера нет. */
-.pf-flow{display:grid;gap:1px;margin:24px 0 0;background:rgba(255,255,255,.14);
- border:1px solid rgba(255,255,255,.14)}
-@media(min-width:700px){.pf-flow{grid-template-columns:repeat(4,1fr)}}
-.pf-flow div{background:var(--graphite);padding:18px 16px 20px}
-.pf-flow b{display:block;font:500 11px/1 var(--mono);letter-spacing:.14em;
- color:var(--accent);margin-bottom:10px}
-.pf-flow span{font:400 14.5px/1.4 var(--sans);color:var(--on-dark)}
+
 .pf-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:40px 0 0}
 .pf-cta button,.pf-cta a{font:500 15.5px/1 var(--sans);padding:14px 20px;
  border:1px solid var(--line);background:var(--paper);color:var(--ink);
@@ -627,13 +623,10 @@ def _тёмный(направление, блок, ОБ, lang, пример):
                 f'loading="lazy" decoding="async" width="800" height="500"></span>'
                 f'<a class="pf-open" href="{пример["demo_url"]}">{ОБ["open"]} &rarr;</a>'
                 f'</div>')
-    # Опубликованного примера нет — показываем порядок работы, а не чужой кейс.
-    клетки = ''.join(
-        f'<div><b>{i:02d}</b><span>{загол}</span></div>'
-        for i, (загол, _т2) in enumerate(блок['steps'], 1))
+    # Опубликованного примера нет. Повторять те же четыре шага вторым
+    # списком незачем — они уже выше. Остаётся прямая оговорка.
     return (f'<div class="pf-dark"><h3>{ОБ["process"]}</h3>'
-            f'<p>{ОБ["no_case"]}</p>'
-            f'<div class="pf-flow">{клетки}</div></div>')
+            f'<p>{ОБ["no_case"]}</p></div>')
 
 
 def вариант(направление: str, lang: str, пример=None) -> str:

@@ -11,6 +11,7 @@ SCAN = "https://scan.prodigylab.studio/scan?lang="
 L = {}
 
 L['ru'] = dict(
+  cases_alt='главная страница сайта клиента',
   cases_eyebrow='Доказательства',
   cases_h2='Кому уже собирали',
   cases_lede='Магазины и бизнесы, которые мы строили и ведём сами. Это же и есть ответ на вопрос, откуда мы знаем, как устроена операционная часть.',
@@ -90,6 +91,7 @@ L['ru'] = dict(
 )
 
 L['en'] = dict(
+  cases_alt='home page of the client site',
   cases_eyebrow='Proof',
   cases_h2='Who we have built for',
   cases_lede='Stores and businesses we built and still run ourselves. That is also the answer to how we know what the operating side actually looks like.',
@@ -169,6 +171,7 @@ L['en'] = dict(
 )
 
 L['es'] = dict(
+  cases_alt='página principal del sitio del cliente',
   cases_eyebrow='Pruebas',
   cases_h2='Para quién lo hemos hecho',
   cases_lede='Tiendas y negocios que construimos y seguimos gestionando. Esa es también la respuesta a cómo sabemos cómo funciona la parte operativa.',
@@ -248,6 +251,7 @@ L['es'] = dict(
 )
 
 L['pt'] = dict(
+  cases_alt='página inicial do site do cliente',
   cases_eyebrow='Provas',
   cases_h2='Para quem já construímos',
   cases_lede='Lojas e negócios que construímos e continuamos tocando. Essa é também a resposta de como sabemos como funciona a parte operacional.',
@@ -327,6 +331,7 @@ L['pt'] = dict(
 )
 
 L['de'] = dict(
+  cases_alt='Startseite der Kundenwebsite',
   cases_eyebrow='Belege',
   cases_h2='Für wen wir gebaut haben',
   cases_lede='Shops und Unternehmen, die wir gebaut haben und weiterhin selbst betreuen. Das ist zugleich die Antwort darauf, woher wir wissen, wie der operative Teil wirklich aussieht.',
