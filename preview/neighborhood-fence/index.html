@@ -515,7 +515,15 @@ Independent design concept by Prodigy LAB. Not the official site of Neighborhood
   const КЛЮЧ = 'pf-planner-' + (Д.slug || Д.name || 'fence');
 
   function сохранитьСостояние() {
-    try { localStorage.setItem(КЛЮЧ, JSON.stringify(выбор)); } catch (e) { /* без памяти тоже работает */ }
+    // Пустой выбор не храним: после «Start over» иначе остаётся запись из
+    // одних null. Пользователю она не видна, но это след в чужом хранилище
+    // без всякой причины — а раз причины нет, его и не должно быть.
+    const естьЧто = Object.entries(выбор)
+      .some(([k, v]) => k === 'notes' ? String(v || '').trim() !== '' : v !== null && v !== '');
+    try {
+      if (естьЧто) localStorage.setItem(КЛЮЧ, JSON.stringify(выбор));
+      else localStorage.removeItem(КЛЮЧ);
+    } catch (e) { /* без памяти тоже работает */ }
   }
 
   function прочитатьСостояние() {
