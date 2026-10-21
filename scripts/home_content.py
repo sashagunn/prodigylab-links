@@ -349,7 +349,7 @@ L['de'] = dict(
   lang_names=('Englisch', 'Russisch', 'Spanisch', 'Portugiesisch', 'Deutsch'),
   scan_secondary='Website mit KI prüfen',
   locale='de_DE', home='/de/', scan_lang='de',
-  title='Prodigy LAB — Business Advisory & Solutions',
+  title='Prodigy LAB — Beratung und Lösungen fürs Geschäft',
   desc='Unternehmen kommen mit einem Problem zu uns, nicht mit einer Dienstleistungsanfrage. Wir finden heraus, wo das Geld tatsächlich verloren geht, und lösen es selbst oder holen einen geprüften Fachpartner dazu.',
   eyebrow='Business Advisory & Solutions',
   h1='Irgendwo in Ihrem Unternehmen versickert Geld. Meist nicht dort, wo Sie es vermuten',
