@@ -1091,6 +1091,18 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
 .shot[data-dev="p"] .shot-bar{display:none}
 .shot[data-dev="p"] .shot-win img{border-radius:22px;object-position:top}
 .shot[data-dev="p"] .shot-phone{display:none}
+
+/* ===================== телефон: подсказки и трекер держат высоту */
+@media (max-width:700px){
+  /* Варианты ответа не переносим на вторую строку — иначе панель растёт
+     на 47 px и двигает всё ниже. Листаются вбок. */
+  .sugg{height:40px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .sugg::-webkit-scrollbar{display:none}
+  .sugg button{flex:0 0 auto}
+  /* Строка трекера — одна, с многоточием: длинный вопрос не добавлял строку. */
+  .hm-step p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
