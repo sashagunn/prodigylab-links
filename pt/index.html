@@ -1013,6 +1013,28 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
   .cl-grid{grid-template-columns:1fr 1fr;gap:12px}
   .cl-nm{font-size:13px}
 }
+
+/* ===================================== примеры решений внутри воронки */
+.pf-cases{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--r);padding:clamp(16px,2vw,24px)}
+.pf-cases-h{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.pf-cases .pf-eyebrow{color:var(--on-dark2)}
+.pf-all{color:#fff;text-decoration:underline;text-underline-offset:4px;font-size:13.5px}
+.pf-nocase{margin-top:12px;color:var(--on-dark2);font-size:14px;max-width:52ch}
+.pf-case-grid{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pf-case{display:block;text-decoration:none;color:var(--on-dark)}
+.pf-case-sh{display:block;border-radius:12px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05)}
+.pf-case-sh img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;
+  object-position:top;transition:transform .8s cubic-bezier(.25,.6,.25,1)}
+.pf-case:hover .pf-case-sh img{transform:scale(1.03)}
+.pf-case-t{display:block;margin-top:9px;font-size:14px;line-height:1.35}
+.pf-case-t i{display:block;font-style:normal;font-family:var(--mono);font-size:9px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark2);margin-bottom:3px}
+.pf-case-go{display:inline-block;margin-top:6px;font-size:12.5px;color:#9FD4C4}
+@media (max-width:700px){
+  .pf-case-grid{grid-template-columns:1fr}
+}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -2449,6 +2471,30 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
    +'<ul>'+поля.map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('')+'</ul>'
    +(следующийШаг?'<p class="pf-next">'+экр(следующийШаг)+'</p>':'')+'</div>';
  }
+ // Примеры решений — часть воронки, а не отдельная витрина: в полосе под
+ // задачу показываем подходящие работы и ссылку в галерею с тем же
+ // направлением. Если опубликованного примера нет, так и пишем.
+ function блокПримеры(к){
+  var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''];
+  var список=(б.examples||[]).slice(0,2);
+  var ссылка='<a class="pf-all" href="'+ссылкаГалереи(к)+'">'+экр(L.all)+' &rarr;</a>';
+  if(!список.length){
+   return '<div class="pf-cases"><div class="pf-cases-h"><p class="pf-eyebrow">'
+    +экр(L.example)+'</p>'+ссылка+'</div>'
+    +'<p class="pf-nocase">'+экр(L.no_case)+'</p></div>';
+  }
+  var карточки=список.map(function(п){
+   return '<a class="pf-case" href="'+п.url+'">'
+    +'<span class="pf-case-sh"><img src="'+п.cover+'" alt="'+экр(п.title)+'" '
+    +'loading="lazy" decoding="async" width="800" height="500"></span>'
+    +'<span class="pf-case-t">'+(п.concept?'<i>'+экр(L.concept)+'</i>':'')
+    +экр(п.title)+'</span>'
+    +'<span class="pf-case-go">'+экр(L.open)+' &rarr;</span></a>';
+  }).join('');
+  return '<div class="pf-cases"><div class="pf-cases-h"><p class="pf-eyebrow">'
+   +экр(L.example)+'</p>'+ссылка+'</div>'
+   +'<div class="pf-case-grid">'+карточки+'</div></div>';
+ }
  function собратьРаздел(к){
   var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''];
   var г=глубина();
@@ -2461,7 +2507,8 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
    +'<div class="pf-cta"><button type="button" class="pf-main" data-talk>'
    +экр(б.cta)+'</button><a href="#works">'+экр(L.all)+' &rarr;</a></div>'
    +(к?'':'<p class="pf-note">'+экр(L.hint)+'</p>')+'</div>'
-   +'<div class="pf-r">'+блокРазбор(к)+блокПуть(к)+(г>=1?блокСобрано():'')+'</div>'
+   +'<div class="pf-r">'+блокРазбор(к)+блокПуть(к)+блокПримеры(к)
+   +(г>=1?блокСобрано():'')+'</div>'
    +'</div>';
  }
   // Высота полосы меняется переходом и в конце догоняет настоящую высоту

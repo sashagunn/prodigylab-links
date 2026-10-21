@@ -968,6 +968,30 @@ JS = """
    +'<ul>'+поля.map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('')+'</ul>'
    +(следующийШаг?'<p class="pf-next">'+экр(следующийШаг)+'</p>':'')+'</div>';
  }
+ // Примеры решений — часть воронки, а не отдельная витрина: в полосе под
+ // задачу показываем подходящие работы и ссылку в галерею с тем же
+ // направлением. Если опубликованного примера нет, так и пишем.
+ function блокПримеры(к){
+  var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''];
+  var список=(б.examples||[]).slice(0,2);
+  var ссылка='<a class="pf-all" href="'+ссылкаГалереи(к)+'">'+экр(L.all)+' &rarr;</a>';
+  if(!список.length){
+   return '<div class="pf-cases"><div class="pf-cases-h"><p class="pf-eyebrow">'
+    +экр(L.example)+'</p>'+ссылка+'</div>'
+    +'<p class="pf-nocase">'+экр(L.no_case)+'</p></div>';
+  }
+  var карточки=список.map(function(п){
+   return '<a class="pf-case" href="'+п.url+'">'
+    +'<span class="pf-case-sh"><img src="'+п.cover+'" alt="'+экр(п.title)+'" '
+    +'loading="lazy" decoding="async" width="800" height="500"></span>'
+    +'<span class="pf-case-t">'+(п.concept?'<i>'+экр(L.concept)+'</i>':'')
+    +экр(п.title)+'</span>'
+    +'<span class="pf-case-go">'+экр(L.open)+' &rarr;</span></a>';
+  }).join('');
+  return '<div class="pf-cases"><div class="pf-cases-h"><p class="pf-eyebrow">'
+   +экр(L.example)+'</p>'+ссылка+'</div>'
+   +'<div class="pf-case-grid">'+карточки+'</div></div>';
+ }
  function собратьРаздел(к){
   var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''];
   var г=глубина();
@@ -980,7 +1004,8 @@ JS = """
    +'<div class="pf-cta"><button type="button" class="pf-main" data-talk>'
    +экр(б.cta)+'</button><a href="#works">'+экр(L.all)+' &rarr;</a></div>'
    +(к?'':'<p class="pf-note">'+экр(L.hint)+'</p>')+'</div>'
-   +'<div class="pf-r">'+блокРазбор(к)+блокПуть(к)+(г>=1?блокСобрано():'')+'</div>'
+   +'<div class="pf-r">'+блокРазбор(к)+блокПуть(к)+блокПримеры(к)
+   +(г>=1?блокСобрано():'')+'</div>'
    +'</div>';
  }
   // Высота полосы меняется переходом и в конце догоняет настоящую высоту

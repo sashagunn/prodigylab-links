@@ -774,6 +774,28 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
   .cl-grid{grid-template-columns:1fr 1fr;gap:12px}
   .cl-nm{font-size:13px}
 }
+
+/* ===================================== примеры решений внутри воронки */
+.pf-cases{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--r);padding:clamp(16px,2vw,24px)}
+.pf-cases-h{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.pf-cases .pf-eyebrow{color:var(--on-dark2)}
+.pf-all{color:#fff;text-decoration:underline;text-underline-offset:4px;font-size:13.5px}
+.pf-nocase{margin-top:12px;color:var(--on-dark2);font-size:14px;max-width:52ch}
+.pf-case-grid{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pf-case{display:block;text-decoration:none;color:var(--on-dark)}
+.pf-case-sh{display:block;border-radius:12px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05)}
+.pf-case-sh img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;
+  object-position:top;transition:transform .8s cubic-bezier(.25,.6,.25,1)}
+.pf-case:hover .pf-case-sh img{transform:scale(1.03)}
+.pf-case-t{display:block;margin-top:9px;font-size:14px;line-height:1.35}
+.pf-case-t i{display:block;font-style:normal;font-family:var(--mono);font-size:9px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark2);margin-bottom:3px}
+.pf-case-go{display:inline-block;margin-top:6px;font-size:12.5px;color:#9FD4C4}
+@media (max-width:700px){
+  .pf-case-grid{grid-template-columns:1fr}
+}
 """
 
 
