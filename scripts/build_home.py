@@ -864,6 +864,15 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
   /* Строка трекера — одна, с многоточием: длинный вопрос не добавлял строку. */
   .hm-step p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 }
+
+/* Колонка не должна расширяться под содержимое: горизонтальная лента
+   подсказок растягивала её до 553 px при ширине экрана 390, и чипы
+   перестраивались в шесть рядов вместо трёх. */
+.hero-l,.hero-r,.talk,.sugg,.chips,.stream{min-width:0}
+.sugg{max-width:100%}
+@media (max-width:1080px){
+  .hero-in{grid-template-columns:minmax(0,1fr)}
+}
 """
 
 
