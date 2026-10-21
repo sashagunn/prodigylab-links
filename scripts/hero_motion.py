@@ -742,7 +742,17 @@ JS = """
   };
   i.src=путь;
  }
+ // У каждой задачи свой набор полос. Концепты сайтов не показываем тому,
+ // у кого вопрос про банк или автоматизацию: это не его пример.
+ var ПОТОК = {presence:'site', growth:'site',
+   payments:'money', banking:'money', funding:'money', accounting:'money',
+   operations:'ops', infrastructure:'ops', fulfillment:'ops'};
+ function поставитьПоток(к){
+  var п=ПОТОК[к]||'start';
+  if(document.body.getAttribute('data-flow')!==п) document.body.setAttribute('data-flow',п);
+ }
  window.наТему = function(к, известно){
+  поставитьПоток(к||'');
   var н=нишаКлиента(), ключ=(к||'')+'|'+н;
   if(темаСейчас===ключ) return;
   темаСейчас=ключ;

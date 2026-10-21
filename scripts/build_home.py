@@ -801,6 +801,15 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
    становится небольшой, и странице почти нечего двигать. */
 .pf-in{min-height:clamp(520px,42vw,720px)}
 @media (max-width:1080px){ .pf-in{min-height:0} }
+
+/* ======================================== набор полос под конкретную задачу */
+/* Концепты сайтов не относятся к банку, платежам и автоматизации: в этих
+   воронках полоса не показывается. Живые сайты остаются — это ответ на
+   вопрос, откуда мы знаем операционную часть. */
+body[data-flow="money"] #works,
+body[data-flow="ops"] #works{display:none}
+.wk-all{display:inline-block;margin-top:16px;color:var(--accent2);
+  text-decoration:underline;text-underline-offset:4px;font-size:14.5px}
 """
 
 
@@ -885,20 +894,36 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
         'nav_about': 'Über uns'}}
 
 
-# Работы студии: два отобранных концепта. Тексты — те же, что на страницах
-# работ; результатов здесь нет и не будет, пока их нечем подтвердить.
-РАБОТЫ_ФОТО = {'neighborhood-fence': ('fence-1', 'fence'),
-               'saeng-thai-house': ('food-1', 'thai')}
+# Работы студии. Берём из каталога всё, что опубликовано и отобрано в
+# витрину: завтра их станет пятнадцать — ничего менять не нужно.
+# Фон карточки подбираем по нише, снимки демо — по готовым файлам.
+ФОН_НИШИ = {'fencing': 'fence-1', 'restaurant': 'food-1', 'bakery': 'food-2',
+            'flowers': 'growth-2', 'retail': 'growth-1', 'logistics': 'fulfillment-1',
+            'beauty': 'growth-1', 'fitness': 'growth-2', 'auto': 'funding-2',
+            'clinic': 'banking-1', 'construction': 'funding-2', 'realestate': 'presence-1',
+            'coffee': 'food-2', 'cleaning': 'operations-1'}
+СНИМКИ_ДЕМО = {'neighborhood-fence': 'fence', 'saeng-thai-house': 'thai'}
+МАКС_РАБОТ = 6
 
 
 def кратко(текст: str) -> str:
     """Первое предложение целиком: подпись на карточке короткая, полный
     разбор остаётся на странице работы."""
-    т = текст.strip()
+    т = (текст or '').strip()
     for i, ch in enumerate(т):
         if ch in '.!?' and i > 50 and (i + 1 >= len(т) or т[i + 1] == ' '):
             return т[:i + 1]
     return т
+
+
+def _каталог():
+    import json as _json
+    import os as _os
+    данные = _json.load(open(_os.path.join(КОРЕНЬ, 'SHOWCASE.json'), encoding='utf-8'))
+    было = [i for i in данные['items']
+            if i.get('publication_status') == 'published' and i.get('showcase')]
+    было.sort(key=lambda i: (not i.get('featured'), i.get('sort_order', 99)))
+    return было[:МАКС_РАБОТ]
 
 
 def блок_клиентов(code: str) -> str:
@@ -924,51 +949,61 @@ def блок_клиентов(code: str) -> str:
 
 
 def блок_работ(code: str) -> str:
-    import json as _json
-    import os as _os
     import html as _h
     import build_work as BW
     e = _h.escape
-    каталог = {i['slug']: i for i in _json.load(
-        open(_os.path.join(КОРЕНЬ, 'SHOWCASE.json'), encoding='utf-8'))['items']}
     П = BW.ПОДПИСИ[code]
     С = СВОЁ_РАБОТЫ[code]
     карточки = []
-    for slug in ('neighborhood-fence', 'saeng-thai-house'):
-        if slug not in BW.ТЕКСТЫ or slug not in каталог:
-            continue
-        t = BW.ТЕКСТЫ[slug][code]
-        фото, снимок = РАБОТЫ_ФОТО[slug]
-        наз = каталог[slug]['title'][code]
+    for i in _каталог():
+        slug = i['slug']
+        наз = i['title'][code]
+        фон = ФОН_НИШИ.get(i.get('niche'), 'neutral-1')
+        снимок = СНИМКИ_ДЕМО.get(slug)
+        t = BW.ТЕКСТЫ.get(slug, {}).get(code)
+        задача = кратко(t['task']) if t else ''
+        сделано = кратко(t['done']) if t else (i.get('short_description', {}) or {}).get(code, '')
+        границы = t['limits'] if t else ''
+        if снимок:
+            медиа = (f'<div class="wk-inset"><img src="/assets/demo/{снимок}-desk.jpg" '
+                     f'data-desk="/assets/demo/{снимок}-desk.jpg" '
+                     f'data-phone="/assets/demo/{снимок}-phone.jpg" alt="{e(наз)}" '
+                     f'width="1400" height="972" loading="lazy" decoding="async"></div>'
+                     f'<div class="wk-dev">'
+                     f'<button type="button" data-dev="d" aria-pressed="true">{e(С["desk"])}</button>'
+                     f'<button type="button" data-dev="p" aria-pressed="false">{e(С["phone"])}</button>'
+                     f'</div>')
+        else:
+            медиа = (f'<div class="wk-inset"><img src="{i["cover"]}" alt="{e(наз)}" '
+                     f'width="800" height="500" loading="lazy" decoding="async"></div>')
+        работа = f'<a class="wk-sec" href="{BW.ПУТЬ[code]}{slug}/">{e(С["work"])}</a>' if t else ''
         карточки.append(
-            f'<article class="wk" data-dev="d">'
-            f'<div class="wk-card" style="background-image:url(/assets/ph/{фото}.jpg)">'
+            f'<article class="wk" data-dev="d" data-niche="{e(i.get("niche",""))}">'
+            f'<div class="wk-card" style="background-image:url(/assets/ph/{фон}.jpg)">'
             f'<div class="wk-top"><span class="wk-name">{e(наз)}</span>'
-            f'<span class="wk-tag">{e(П["concept"])}</span></div>'
-            f'<div class="wk-inset"><img src="/assets/demo/{снимок}-desk.jpg" '
-            f'data-desk="/assets/demo/{снимок}-desk.jpg" '
-            f'data-phone="/assets/demo/{снимок}-phone.jpg" alt="{e(наз)}" '
-            f'width="1400" height="972" loading="lazy" decoding="async"></div>'
-            f'<div class="wk-dev">'
-            f'<button type="button" data-dev="d" aria-pressed="true">{e(С["desk"])}</button>'
-            f'<button type="button" data-dev="p" aria-pressed="false">{e(С["phone"])}</button>'
-            f'</div></div>'
+            f'<span class="wk-tag">{e(П["concept"])}</span></div>{медиа}</div>'
             f'<div class="wk-body"><dl>'
-            f'<dt>{e(П["task"])}</dt><dd>{e(кратко(t["task"]))}</dd>'
-            f'<dt>{e(П["done"])}</dt><dd>{e(кратко(t["done"]))}</dd>'
-            f'</dl>'
-            f'<details><summary>{e(П["limits"])}</summary>'
-            f'<p>{e(t["limits"])}</p></details>'
-            f'<div class="wk-links">'
-            f'<a class="wk-go" href="/preview/{slug}/">{e(П["demo"])} &rarr;</a>'
-            f'<a class="wk-sec" href="{BW.ПУТЬ[code]}{slug}/">{e(С["work"])}</a>'
+            + (f'<dt>{e(П["task"])}</dt><dd>{e(задача)}</dd>' if задача else '')
+            + (f'<dt>{e(П["done"])}</dt><dd>{e(сделано)}</dd>' if сделано else '')
+            + f'</dl>'
+            + (f'<details><summary>{e(П["limits"])}</summary><p>{e(границы)}</p></details>'
+               if границы else '')
+            + f'<div class="wk-links">'
+            f'<a class="wk-go" href="/preview/{slug}/">{e(П["demo"])} &rarr;</a>{работа}'
             f'</div></div></article>')
     if not карточки:
         return ''
+    from showcase_content import S as _SC
+    галерея = ГАЛЕРЕЯ_ПУТЬ.get(code, '/showcase/')
+    ещё = (f'<a class="wk-all" href="{галерея}">{e(_SC[code]["nav"])} &rarr;</a>')
     return (f'<section id="works" class="band-works">'
             f'<div class="wk-h"><p class="eyebrow">{e(С["eyebrow"])}</p>'
-            f'<h2>{e(С["h"])}</h2><p>{e(С["lede"])}</p></div>'
+            f'<h2>{e(С["h"])}</h2><p>{e(С["lede"])}</p>{ещё}</div>'
             f'<div class="wk-grid">{"".join(карточки)}</div></section>')
+
+
+ГАЛЕРЕЯ_ПУТЬ = {'en': '/showcase/', 'ru': '/ru/showcase/', 'es': '/es/showcase/',
+                'pt': '/pt/showcase/', 'de': '/de/showcase/'}
 
 
 def service_links(code: str) -> str:
@@ -1352,9 +1387,9 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 
 {pf_block}
 
-{works_block}
-
 {clients_block}
+
+{works_block}
 
 <section class="band-layers" id="problems">
  <div class="wrap">
