@@ -78,6 +78,19 @@ color:var(--ink3);text-decoration:none;padding:6px 2px}
    экрана, поэтому крупнее подзаголовка, но меньше h1. На других
    страницах с этим CSS заголовок остаётся прежним. */
 .hero .h1-like{font-size:clamp(26px,4.4vw,44px);letter-spacing:-.03em;line-height:1.1}
+/* Короткий блок доверия: лицо, компетенции и настоящие работы рядом, без
+   длинного оправдания на половину экрана. */
+.who2{display:grid;gap:30px;margin-top:22px;text-align:left}
+@media(min-width:860px){.who2{grid-template-columns:1.35fr 1fr;gap:1px;
+ background:var(--line);border:1px solid var(--line)}
+ .who2>div{background:var(--paper2);padding:30px 28px 34px}}
+.who2 .avatar{margin:0 0 20px}
+.who2 h2{font-size:clamp(24px,3.2vw,36px)}
+.fin-state{margin-top:22px;font-size:15.5px;color:var(--ink2)}
+.fin-state[hidden]{display:none}
+/* Закреплённая кнопка проверки сайта не висит над полем помощника и не
+   предлагается тому, чья задача не про сайт. */
+.hm-on #sn-sticky,#sn-sticky[data-off="1"]{display:none!important}
 .quote{font-size:15.5px;font-style:italic;color:var(--accent);margin:22px auto 0;max-width:40ch}
 .hero .lede{max-width:56ch;margin:22px auto 0}
 .cta-row{display:flex;flex-direction:column;gap:11px;margin:34px auto 0;max-width:520px}
@@ -425,6 +438,8 @@ text-transform:uppercase;color:#07131A;background:var(--accent);padding:2px 6px}
 #pf .pf-in{max-width:1180px;margin:0 auto;padding:68px 20px 76px}
 @media(min-width:900px){#pf .pf-in{padding:104px 32px 112px}}
 .pf-v[hidden]{display:none}
+.pf-anchor{display:block;height:0;scroll-margin-top:84px}
+#pf .pf-in{scroll-margin-top:72px}
 .pf-eyebrow{font:500 11.5px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
  color:var(--accent);margin:0 0 18px}
 .pf-h{font:600 clamp(28px,4.6vw,52px)/1.08 var(--sans);letter-spacing:-.03em;
@@ -508,6 +523,315 @@ fbq('init','1713332936325081');fbq('track','PageView');
 (function(){try{if(/[?&](initial_hypothesis|content_id|outreach_id|utm_campaign)=/.test(location.search)){
 var h=document.documentElement;h.classList.add("pl-adapt-pending");
 setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}})();</script>
+<!-- ENTITY-SCHEMA:START (генерируется scripts/inject-entity-schema.js из BUSINESS_FACTS.json — руками не править) -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "ProfessionalService",
+ "@id": "https://prodigylab.studio/#organization",
+ "name": "Prodigy LAB",
+ "legalName": "Platonaire LLC",
+ "url": "https://prodigylab.studio/",
+ "logo": "https://prodigylab.studio/assets/prodigybot-avatar.png",
+ "image": "https://prodigylab.studio/assets/prodigybot-avatar.png",
+ "slogan": "Мир продаж уже не будет прежним",
+ "description": "Prodigy LAB — студия цифрового роста для малого и среднего бизнеса. Собирает и чинит системы, через которые бизнес продаёт: сайты и магазины на Shopify, конверсию, рекламу в Meta и Google, ИИ-ассистентов, которые отвечают клиентам круглосуточно.",
+ "telephone": "+18182690416",
+ "sameAs": [
+  "https://instagram.com/sashagun_usa",
+  "https://facebook.com/sashagun_usa",
+  "https://t.me/leadsmetachat_bot"
+ ],
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "United States"
+  }
+ ],
+ "knowsLanguage": [
+  "ru",
+  "en",
+  "es",
+  "pt",
+  "de"
+ ],
+ "hasOfferCatalog": {
+  "@type": "OfferCatalog",
+  "name": "Services",
+  "itemListElement": [
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/shopify-development/",
+    "priceCurrency": "USD",
+    "price": "2900",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 2900,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Shopify Development",
+     "url": "https://prodigylab.studio/shopify-development/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/shopify-redesign/",
+    "priceCurrency": "USD",
+    "price": "2900",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 2900,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Shopify Redesign",
+     "url": "https://prodigylab.studio/shopify-redesign/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/shopify-audit/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Shopify Audit",
+     "url": "https://prodigylab.studio/shopify-audit/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/ecommerce-consulting/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "E-commerce Consulting",
+     "url": "https://prodigylab.studio/ecommerce-consulting/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/website-development/",
+    "priceCurrency": "USD",
+    "price": "1900",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 1900,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Website Development",
+     "url": "https://prodigylab.studio/website-development/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/website-redesign/",
+    "priceCurrency": "USD",
+    "price": "2900",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 2900,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Website Redesign",
+     "url": "https://prodigylab.studio/website-redesign/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/website-audit/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Website Audit",
+     "url": "https://prodigylab.studio/website-audit/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/conversion-rate-optimization/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Conversion Rate Optimization",
+     "url": "https://prodigylab.studio/conversion-rate-optimization/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/ai-chatbot/",
+    "priceCurrency": "USD",
+    "price": "600",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 600,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "AI Sales Chatbot (ProdigyBot)",
+     "url": "https://prodigylab.studio/ai-chatbot/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/ai-automation/",
+    "priceCurrency": "USD",
+    "price": "600",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 600,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "AI Automation",
+     "url": "https://prodigylab.studio/ai-automation/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/meta-ads-management/",
+    "priceCurrency": "USD",
+    "price": "1500",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 1500,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Meta Ads Management",
+     "url": "https://prodigylab.studio/meta-ads-management/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/google-ads-management/",
+    "priceCurrency": "USD",
+    "price": "1500",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 1500,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Google Ads Management",
+     "url": "https://prodigylab.studio/google-ads-management/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/business-operations/",
+    "priceCurrency": "USD",
+    "price": "3900",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 3900,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Fractional Digital Operations",
+     "url": "https://prodigylab.studio/business-operations/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/business-consulting-usa/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Business Consulting for US SMBs",
+     "url": "https://prodigylab.studio/business-consulting-usa/"
+    }
+   },
+   {
+    "@type": "Offer",
+    "url": "https://prodigylab.studio/russian-business-consulting-miami/",
+    "priceCurrency": "USD",
+    "price": "495",
+    "priceSpecification": {
+     "@type": "PriceSpecification",
+     "priceCurrency": "USD",
+     "minPrice": 495,
+     "valueAddedTaxIncluded": false
+    },
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Digital Operations for Russian-speaking Businesses (Miami)",
+     "url": "https://prodigylab.studio/russian-business-consulting-miami/"
+    }
+   }
+  ]
+ }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "@id": "https://prodigylab.studio/#website",
+ "url": "https://prodigylab.studio/ru/",
+ "name": "Prodigy LAB",
+ "inLanguage": "ru",
+ "publisher": {
+  "@id": "https://prodigylab.studio/#organization"
+ }
+}
+</script>
+<!-- ENTITY-SCHEMA:END -->
 </head>
 <body>
 
@@ -587,24 +911,29 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
  </div>
 </div>
 </section>
-<section id="pf"><div class="pf-in"><div class="pf-v" data-route=""><p class="pf-eyebrow">Как разбираем</p><h2 class="pf-h">Пока не ясно, что именно чинить</h2><p class="pf-lede">Сначала выясняем, где теряются деньги. Чаще всего — не там, где кажется.</p><ol class="pf-steps"><li><b>01</b><h3>Слушаем</h3><p>Что происходит и как это видно по цифрам</p></li><li><b>02</b><h3>Сужаем</h3><p>Отделяем причину от следствия</p></li><li><b>03</b><h3>Предлагаем</h3><p>Что делаем первым и почему именно это</p></li><li><b>04</b><h3>Считаем</h3><p>Сколько это стоит и что меняется</p></li></ol><div class="pf-two"><div><h3>Что понадобится</h3><ul><li>Чем занимается бизнес</li><li>Что уже пробовали</li><li>К какому сроку нужно</li></ul></div><div><h3>Границы</h3><p>Пока направление не названо, конкретный путь показать нечем — и выдумывать его мы не станем.</p></div></div><div class="pf-dark"><h3>Разбор процесса</h3><p>Опубликованного примера по этой задаче у нас нет — показываем порядок разбора, а не чужой кейс.</p><div class="pf-flow"><div><b>01</b><span>Слушаем</span></div><div><b>02</b><span>Сужаем</span></div><div><b>03</b><span>Предлагаем</span></div><div><b>04</b><span>Считаем</span></div></div></div><div class="pf-cta"><button type="button" class="pf-main" data-talk>Рассказать, что происходит</button><a href="/showcase/">Все примеры &rarr;</a></div><p class="pf-note">Ответьте помощнику выше — и этот раздел покажет путь под вашу задачу.</p></div></div><div class="pf-switch" id="pf-switch" data-on="0"><button type="button"></button></div></section>
-<section class="hero" id="hero">
+<section id="pf"><div class="pf-in" id="problems"><div class="pf-v" data-route=""><p class="pf-eyebrow">Как разбираем</p><h2 class="pf-h">Пока не ясно, что именно чинить</h2><p class="pf-lede">Сначала выясняем, где теряются деньги. Чаще всего — не там, где кажется.</p><span id="how" class="pf-anchor"></span><ol class="pf-steps"><li><b>01</b><h3>Слушаем</h3><p>Что происходит и как это видно по цифрам</p></li><li><b>02</b><h3>Сужаем</h3><p>Отделяем причину от следствия</p></li><li><b>03</b><h3>Предлагаем</h3><p>Что делаем первым и почему именно это</p></li><li><b>04</b><h3>Считаем</h3><p>Сколько это стоит и что меняется</p></li></ol><div class="pf-two"><div><h3>Что понадобится</h3><ul><li>Чем занимается бизнес</li><li>Что уже пробовали</li><li>К какому сроку нужно</li></ul></div><div><h3>Границы</h3><p>Пока направление не названо, конкретный путь показать нечем — и выдумывать его мы не станем.</p></div></div><div class="pf-dark"><h3>Разбор процесса</h3><p>Опубликованного примера по этой задаче у нас нет — показываем порядок разбора, а не чужой кейс.</p><div class="pf-flow"><div><b>01</b><span>Слушаем</span></div><div><b>02</b><span>Сужаем</span></div><div><b>03</b><span>Предлагаем</span></div><div><b>04</b><span>Считаем</span></div></div></div><div class="pf-cta"><button type="button" class="pf-main" data-talk>Рассказать, что происходит</button><a href="/showcase/">Все примеры &rarr;</a></div><p class="pf-note">Ответьте помощнику выше — и этот раздел покажет путь под вашу задачу.</p></div></div><div class="pf-switch" id="pf-switch" data-on="0"><button type="button"></button></div></section>
+
+<section class="sec alt" id="who">
  <div class="wrap">
-  <img class="avatar" src="/assets/founder.jpg" alt="Александр, основатель Prodigy LAB" width="92" height="92">
-  <span class="mono">Business Advisory &amp; Solutions</span>
-  <h2 class="h1-like">Где-то в вашем бизнесе утекают деньги. Чаще всего — не там, где кажется</h2>
-  <p class="quote">Вам не нужен ещё один подрядчик. Сначала нужен честный разбор бизнеса.</p>
-  <p class="lede">Владелец обычно знает симптом: платежи заблокировали, реклама не окупается, заявки теряются между каналами. Чего нет — взгляда со стороны на то, какая из этих проблем сейчас самая дорогая и что чинить первым.</p>
-  <div class="cta-row">
-   <a class="btn btn-lg" href="https://scan.prodigylab.studio/scan?lang=ru&amp;utm_source=site&amp;utm_medium=hero&amp;utm_campaign=free_scan">Проверить сайт бесплатно &rarr;</a>
-   <a class="btn btn-lg btn-g" href="https://scan.prodigylab.studio/diagnostic?lang=ru" data-diag>Расскажите, что не работает</a>
+  <span class="mono">Кто мы</span>
+  <div class="who2">
+   <div class="who2-p">
+    <img class="avatar" src="/assets/founder.jpg" alt="Александр, основатель Prodigy LAB"
+         width="92" height="92" loading="lazy">
+    <h2 style="max-width:18ch">Компания, которая сама всё это строила, а не каталог ссылок</h2>
+    <p class="lede" style="max-width:52ch;margin-top:16px">Prodigy LAB годами собирал и чинил то, через что бизнес продаёт: магазины, сайты, рекламу, конверсию, переписку с клиентами. Эта работа никуда не делась — и именно она позволяет отличить проблему инфраструктуры от проблемы маркетинга.</p>
+    <div class="note"><p><b>Чего мы не делаем.</b> Мы не платёжный процессор и не банк. Мы не одобряем merchant-аккаунты и не открываем счета, и не можем гарантировать, что это сделает провайдер. Мы не оказываем юридических, налоговых, инвестиционных и иных регулируемых финансовых консультаций и не занимаемся регистрацией юрлиц, визами и иммиграцией.</p></div>
+   </div>
+   <div class="who2-f">
+    <span class="mono">Компания</span>
+    <dl class="facts"><div class="fact"><dt>Юрлицо</dt><dd>Platonaire LLC</dd></div><div class="fact"><dt>База</dt><dd>Калифорния, США</dd></div><div class="fact"><dt>Работаем с</dt><dd>США и международно</dd></div><div class="fact"><dt>Языки</dt><dd>RU · EN · ES · PT · DE</dd></div><div class="fact"><dt>Делаем сами</dt><dd>Сайты · E-comm · Реклама</dd></div><div class="fact"><dt>Первичный разбор</dt><dd>Бесплатно</dd></div></dl>
+   </div>
   </div>
-  <span class="mono">Первичный разбор бесплатно · без обязательств · без обязательного созвона</span>
- </div>
- <div class="wrap">
-  <div class="band"><img src="/assets/hero-systems.jpg" alt="" loading="lazy" width="1280" height="853"></div>
+  <span class="mono" style="display:block;margin-top:40px">Доказательства</span>
+  <div class="cases" style="margin-top:16px"><a class="case" href="https://healthhustleacademy.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/hha.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">HealthHustle Academy<i>&#8599;</i></span></a><a class="case" href="https://set4pets.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/set4pets.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Set4Pets<i>&#8599;</i></span></a><a class="case" href="https://petaliashop.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/petalia.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Petalia<i>&#8599;</i></span></a><a class="case" href="https://kondrabags.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/kondra.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">KONDRA<i>&#8599;</i></span></a><a class="case" href="https://nixe.beauty" target="_blank" rel="noopener"><span class="shot"><img src="/cases/nixe.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Nixe Beauty<i>&#8599;</i></span></a><a class="case" href="https://sashagun.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/sashagun.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Sasha Gun Photography<i>&#8599;</i></span></a></div>
  </div>
 </section>
+
 
 <section class="sn" id="scan">
  <div class="wrap">
@@ -626,81 +955,16 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
  </div>
 </section>
 
-<section class="sec alt" id="problems">
- <div class="wrap">
-  <span class="mono">Что мешает бизнесу расти</span>
-  <h2 style="margin-top:18px;max-width:19ch">Девять мест, где бизнес обычно и ломается</h2>
-  <p class="lede" style="max-width:58ch;margin-top:18px">Часть мы решаем сами, часть — через специалиста, которого проверили. И говорим, что из этого что, до того как вы на что-то соглашаетесь.</p>
-  <div class="grid"><div class="cell" data-cell data-layer="payments"><span class="mono">01 — Платежи</span><h3><a href="https://scan.prodigylab.studio/diagnostic?lang=ru&amp;initial_hypothesis=payments" data-diag>Приём платежей <span class="nb">остановился&nbsp;<span class="go" aria-hidden="true">&rarr;</span></span></a></h3><p>Stripe, Square или PayPal закрыли аккаунт, держат выплаты, назначили резерв — или ваша вертикаль им просто не нужна.</p><ul><li>Аккаунт закрыт или заморожен</li><li>Выплаты удерживают, назначен резерв</li><li>Отказ в merchant account</li><li>Высокий процент chargebacks</li><li>Нужен запасной процессинг</li></ul></div><div class="cell" data-cell data-layer="banking"><span class="mono">02 — Банкинг</span><h3><a href="https://scan.prodigylab.studio/diagnostic?lang=ru&amp;initial_hypothesis=banking" data-diag>Банк сказал «нет» или закрыл <span class="nb">счёт&nbsp;<span class="go" aria-hidden="true">&rarr;</span></span></a></h3><p>Особенно если компания в США, а основатель за рубежом, или структура кажется банку сложной.</p><ul><li>Счёт закрыт или ограничен</li><li>Отказ по заявке</li><li>Иностранный основатель, юрлицо в США</li><li>Нужен второй, запасной банк</li><li>Мультивалютные и трансграничные расчёты</li></ul></div><div class="cell" data-cell data-layer="business_funding"><span class="mono">03 — Финансирование</span><h3><a href="https://scan.prodigylab.studio/diagnostic?lang=ru&amp;initial_hypothesis=business_funding" data-diag>Деньги нужны раньше, чем они <span class="nb">придут&nbsp;<span class="go" aria-hidden="true">&rarr;</span></span></a></h3><p>Оборотные средства, закупка товара, зарплаты, оборудование — и кассовый разрыв между этим всем.</p><ul><li>Банк отказал в кредите</li><li>Разрыв в обороте</li><li>Закупка товара или оборудования</li><li>Деньги на рост и расширение</li><li>Альтернативное финансирование</li></ul></div><div class="cell" data-cell data-layer="growth"><span class="mono">04 — Рост и продажи</span><h3><a href="https://scan.prodigylab.studio/diagnostic?lang=ru&amp;initial_hypothesis=growth" data-diag>Трафик есть, выручки <span class="nb">нет&nbsp;<span class="go" aria-hidden="true">&rarr;</span></span></a></h3><p>Привлечение работает на бумаге и не работает на практике — обычно ломается в одном месте, а не везде.</p><ul><li>Клики без заказов</li><li>Дорогой клиент, слабый ROAS</li><li>Заявки есть, продаж нет</li><li>Amazon или маркетплейсы не растут</li><li>Не получается масштабироваться</li></ul></div><div class="cell" data-cell data-layer="operations"><span class="mono">05 — Операции</span><h3><a href="https://scan.prodigylab.studio/diagnostic?lang=ru&amp;initial_hypothesis=operations" data-diag>Работа держится на том, что кто-то <span class="nb">помнит&nbsp;<span class="go" aria-hidden="true">&rarr;</span></span></a></h3><p>CRM, автоматизация, передача между маркетингом и продажами — всё живёт в ручном режиме.</p><ul><li>CRM есть, но ей не верят</li><li>Ручные повторяющиеся процессы</li><li>Системы не связаны между собой</li><li>Заявки теряются при передаче</li><li>Узкие места в операционке</li></ul></div><div class="cell" data-cell data-layer="infrastructure"><span class="mono">06 — Инфраструктура</span><h3><a href="https://scan.prodigylab.studio/diagnostic?lang=ru&amp;initial_hypothesis=infrastructure" data-diag>Функции, ради которых нанимать <span class="nb">дорого&nbsp;<span class="go" aria-hidden="true">&rarr;</span></span></a></h3><p>Зарплаты и кадры, безопасность, рабочие ИТ — нужны постоянно и редко окупают отдельную ставку.</p><ul><li>Расчёт зарплат и кадровый учёт</li><li>Нет программы безопасности</li><li>Риск шифровальщика, нужен аудит</li><li>Управляемый ИТ и служба поддержки</li><li>Microsoft 365, облако, резервные копии</li></ul></div><div class="cell" data-cell data-layer="accounting_tax"><span class="mono">07 — Учёт и налоги</span><h3><a href="https://scan.prodigylab.studio/diagnostic?lang=ru&amp;initial_hypothesis=accounting_tax" data-diag>Книги отстали, сроки <span class="nb">горят&nbsp;<span class="go" aria-hidden="true">&rarr;</span></span></a></h3><p>Бухгалтерия, закрытие месяца, налоги, восстановление учёта — особенно если компания в США, а вы нет.</p><ul><li>Учёт запущен, нужно восстановление</li><li>Нет закрытия месяца</li><li>Налоговая отчётность просрочена</li><li>Налог с продаж по штатам</li><li>Нужен финансовый директор на часть ставки</li></ul></div><div class="cell" data-cell data-layer="fulfillment_logistics"><span class="mono">08 — Логистика и склад</span><h3><a href="https://scan.prodigylab.studio/diagnostic?lang=ru&amp;initial_hypothesis=fulfillment_logistics" data-diag>Вы переросли отгрузку своими <span class="nb">силами&nbsp;<span class="go" aria-hidden="true">&rarr;</span></span></a></h3><p>Склад, фулфилмент, подготовка к Amazon и Walmart, возвраты, трансграничная доставка.</p><ul><li>Нужен 3PL и склад</li><li>Логистика съедает маржу</li><li>Подготовка товара к маркетплейсам</li><li>Возвраты не обрабатываются</li><li>Международная доставка</li></ul></div><div class="cell" data-cell data-layer="digital_presence"><span class="mono">09 — Сайт и e-commerce</span><h3><a href="https://scan.prodigylab.studio/diagnostic?lang=ru&amp;initial_hypothesis=digital_presence" data-diag>Витрина, по которой вас и <span class="nb">судят&nbsp;<span class="go" aria-hidden="true">&rarr;</span></span></a></h3><p>То, что мы много лет строили и продолжаем делать своими руками.</p><ul><li>Сайт или магазин пора пересобрать</li><li>Конверсия и оформление заказа</li><li>Аналитика и отслеживание не настроены</li><li>Нужен честный разбор сайта</li><li>Интеграции и базовая автоматизация</li></ul><p style="margin-top:14px"><a href="https://scan.prodigylab.studio/scan?lang=ru" target="_blank" rel="noopener" style="font-size:14px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)">Проверить сайт с помощью AI &rarr;</a></p></div></div>
- </div>
-</section>
-
-<section class="sec" id="how">
- <div class="wrap">
-  <span class="mono">Как это устроено</span>
-  <h2 style="margin-top:18px;max-width:20ch">Сначала вы получаете разбор — и только потом кто-то предлагает работу</h2>
-  <div class="steps"><div class="step"><span class="n">01</span><h3>Расскажите, что не работает</h3><p>Короткая структурированная анкета, а не форма «напишите нам». Чем занимается бизнес, что сломалось, что уже пробовали и насколько это срочно.</p></div><div class="step"><span class="n">02</span><h3>Мы разбираем — бесплатно</h3><p>Возвращаемся с тем, что считаем настоящим ограничением, стоит ли это решать сейчас и какие есть реальные пути. Если задача не наша — скажем прямо.</p></div><div class="step"><span class="n">03</span><h3>Решаем сами или передаём</h3><p>Что в нашей компетенции — делаем сами. Остальное уходит профильному партнёру, которого мы проверили. Что именно из этого что, вы знаете заранее.</p></div></div>
- </div>
-</section>
-
-<section class="sec alt" id="who">
- <div class="wrap">
-  <span class="mono">Кто мы</span>
-  <h2 style="margin-top:18px;max-width:22ch">Компания, которая сама всё это строила, а не каталог ссылок</h2>
-  <div class="who">
-   <div class="min">
-    <p class="lede" style="max-width:none">Prodigy LAB годами собирал и чинил то, через что бизнес продаёт: магазины, сайты, рекламу, конверсию, переписку с клиентами. Эта работа никуда не делась — и именно она позволяет отличить проблему инфраструктуры от проблемы маркетинга.</p>
-    <p style="margin-top:18px">Консалтинг вырос из неё. Клиенты приходили с задачами, которые вообще не про сайт: процессор отключил приём платежей, банк закрыл счёт, функцию в компании никто не ведёт. Отвечать только на ту часть, что попадает в наш прайс-лист, было бесполезно.</p>
-    <div class="note"><p><b>Чего мы не делаем.</b> Мы не платёжный процессор и не банк. Мы не одобряем merchant-аккаунты и не открываем счета, и не можем гарантировать, что это сделает провайдер. Мы не оказываем юридических, налоговых, инвестиционных и иных регулируемых финансовых консультаций и не занимаемся регистрацией юрлиц, визами и иммиграцией.</p><p>Если задача требует лицензированного специалиста — мы так и скажем.</p></div>
-   </div>
-   <div class="min">
-    <span class="mono">Компания</span>
-    <dl class="facts"><div class="fact"><dt>Юрлицо</dt><dd>Platonaire LLC</dd></div><div class="fact"><dt>База</dt><dd>Калифорния, США</dd></div><div class="fact"><dt>Работаем с</dt><dd>США и международно</dd></div><div class="fact"><dt>Языки</dt><dd>RU · EN · ES · PT · DE</dd></div><div class="fact"><dt>Делаем сами</dt><dd>Сайты · E-comm · Реклама</dd></div><div class="fact"><dt>Первичный разбор</dt><dd>Бесплатно</dd></div></dl>
-    <p style="font-size:13.5px;color:var(--ink3);margin-top:16px;line-height:1.6">Prodigy LAB работает удалённо. Офиса, куда можно приехать, у нас нет, и мы не приписываем себе городов, в которых не присутствуем.</p>
-   </div>
-  </div>
- </div>
-</section>
-
-<section class="sec" id="cases">
- <div class="wrap">
-  <span class="mono">Доказательства</span>
-  <h2 style="margin-top:18px;max-width:20ch">Кому уже собирали</h2>
-  <p class="lede" style="max-width:58ch;margin-top:18px">Магазины и бизнесы, которые мы строили и ведём сами. Это же и есть ответ на вопрос, откуда мы знаем, как устроена операционная часть.</p>
-  <div class="cases"><a class="case" href="https://healthhustleacademy.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/hha.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">HealthHustle Academy<i>&#8599;</i></span></a><a class="case" href="https://set4pets.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/set4pets.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Set4Pets<i>&#8599;</i></span></a><a class="case" href="https://petaliashop.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/petalia.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Petalia<i>&#8599;</i></span></a><a class="case" href="https://kondrabags.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/kondra.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">KONDRA<i>&#8599;</i></span></a><a class="case" href="https://nixe.beauty" target="_blank" rel="noopener"><span class="shot"><img src="/cases/nixe.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Nixe Beauty<i>&#8599;</i></span></a><a class="case" href="https://sashagun.com" target="_blank" rel="noopener"><span class="shot"><img src="/cases/sashagun.jpg" alt="" loading="lazy" width="600" height="600"></span><span class="nm">Sasha Gun Photography<i>&#8599;</i></span></a></div>
-  <p style="margin-top:26px"><a href="/case-studies/" hreflang="en" style="color:var(--accent);
-   text-decoration:none;border-bottom:1px solid var(--accent)">Смотреть разборы (EN) &rarr;</a></p>
- </div>
-</section>
-
-<section class="sc-home" id="work">
- <div class="wrap">
-  <span class="mono">PREVIEW FACTORY</span>
-  <h2>Посмотрите, что мы делаем, а не что обещаем.</h2>
-  <p class="sc-lead">Рабочие демонстрации для настоящего бизнеса. Откройте и попробуйте. <span class="sc-count">Опубликовано примеров: 2.</span></p>
-  <div class="sc-grid"><article class="sc-card" data-niche="fencing" data-solution="configurator"><a class="sc-shot" href="/preview/neighborhood-fence/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="/showcase/covers/neighborhood-fence.jpg" alt="Демонстрация планировщика забора: заголовок, снимок готового двора и кнопка планировщика" loading="lazy" decoding="async" width="800" height="500"></a><div class="sc-body"><span class="sc-tags"><span class="mono">Заборы</span><span class="mono">Конфигуратор</span></span><h3><a href="/preview/neighborhood-fence/" target="_blank" rel="noopener" aria-label="Открыть демонстрацию «Планировщик забора» — в новой вкладке">Планировщик забора<i aria-hidden="true">&#8599;</i></a></h3><p>Хозяин дома выбирает тип работ, материал, стиль, длину, высоту, ворота и демонтаж и получает понятное описание проекта для разговора с подрядчиком. Одна опубликованная вилка цены, с ясными границами. Никуда ничего не уходит.</p><p class="sc-note"><span class="sc-badge">Концепт</span></p></div></article><article class="sc-card" data-niche="restaurant" data-solution="menu_ordering"><a class="sc-shot" href="/preview/saeng-thai-house/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="/showcase/covers/saeng-thai-house.jpg" alt="Демонстрация ресторана: тёмная обложка со снимком тайских блюд и кнопкой самовывоза" loading="lazy" decoding="async" width="800" height="500"></a><div class="sc-body"><span class="sc-tags"><span class="mono">Рестораны</span><span class="mono">Меню и заказ</span></span><h3><a href="/preview/saeng-thai-house/" target="_blank" rel="noopener" aria-label="Открыть демонстрацию «Меню ресторана и самовывоз» — в новой вкладке">Меню ресторана и самовывоз<i aria-hidden="true">&#8599;</i></a></h3><p>Каждое блюдо со своим снимком, ценой и опциями: гость решает в телефоне, а не звонит уточнять. Сам заказ остаётся в сервисе самого ресторана.</p><p class="sc-note"><span class="sc-badge">Концепт</span></p></div></article></div>
-  <p class="sc-soon">Новые примеры готовятся. В галерее только то, что готово.</p>
-  <p class="sc-all"><a class="btn" href="/ru/showcase/">Все примеры &rarr;</a></p>
- </div>
-</section>
-
-<section class="sn-after">
- <div class="wrap">
-  <h2>А что можно улучшить на вашем сайте?</h2>
-  <p>Та же проверка, по вашему адресу.</p>
-  <a class="sn-btn" href="https://scan.prodigylab.studio/scan?lang=ru&amp;utm_source=site&amp;utm_medium=after_gallery&amp;utm_campaign=free_scan">Проверить сайт бесплатно &rarr;</a>
- </div>
-</section>
-
 <section class="final" id="diagnostic">
  <div class="wrap">
   <span class="mono">Бесплатный первичный разбор</span>
   <h2 style="margin-top:18px">Опишите проблему. Мы скажем, в чём она, по нашему мнению, на самом деле</h2>
   <p class="lede">Бесплатно, ни к чему не обязывает, созвон необязателен. Если ваша ситуация вне того, чем мы занимаемся, вы получите об этом честный ответ, а не коммерческое предложение.</p>
   <div class="cta-row">
-   <a class="btn btn-lg" href="https://scan.prodigylab.studio/diagnostic?lang=ru" data-diag>Начать разбор</a>
+   <button type="button" class="btn btn-lg" id="fin-talk">Продолжить разговор</button>
    <a class="btn btn-lg btn-g" href="https://wa.me/18182690416" target="_blank" rel="noopener">Написать напрямую</a>
   </div>
+  <p class="fin-state" id="fin-state" hidden></p>
   <span class="mono" style="display:block;margin-top:20px"><a href="tel:+18182690416" style="color:var(--accent);text-decoration:none">Позвонить +1 (818) 269-0416</a></span>
  </div>
 </section>
@@ -922,6 +1186,12 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   g.src=B+"/packs/js/sdk.js";g.defer=true;g.async=true;s.parentNode.insertBefore(g,s);
   g.onload=function(){window.chatwootSettings=window.chatwootSettings||{};
    window.chatwootSettings.locale="ru";
+   // На телефоне разговор ведёт помощник на самой странице. Второй плавающий
+   // чат рядом с ним — не выбор, а шум: пузырь прячем, переписка остаётся
+   // доступной на широком экране.
+   if(window.matchMedia('(max-width: 760px)').matches){
+    window.chatwootSettings.hideMessageBubble=true;
+   }
    window.chatwootSDK.run({websiteToken:"J1xMPSabyx7EfRVPrmZEMLYB",baseUrl:B});
    // Бот должен говорить на языке страницы ещё ДО первой реплики,
    // и знать, откуда человек пришёл (ТЗ §11).
@@ -1207,6 +1477,7 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
     d.innerHTML='<div class="ok"><b>'+экр(T().saved)+'</b>'
       +экр(T().saved_p)+' #'+o.lead+(o['повтор']?' ('+экр(T().again)+')':'')+'</div>';
     финалБлок=null;
+    показатьЗаявку(o.lead,o['повтор']);
    }catch(e){
     сообщение.textContent=''; отправка.disabled=false;
     var пред=d.querySelector('.err'); if(пред) пред.remove();
@@ -1338,6 +1609,7 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
     }catch(e){}
    }
    шаг(шагДальше,d['следующий']||T().undefined,'live');
+   if(d['заявка']) показатьЗаявку(d['заявка_номер']||'',false);
    сказать('note',T().kept);
   }catch(e){}
  }
@@ -1411,6 +1683,7 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
    +'<p class="pf-eyebrow">'+экр(L.path)+'</p>'
    +'<h2 class="pf-h">'+экр(б.problem)+'</h2>'
    +'<p class="pf-lede">'+экр(б.approach)+'</p>'
+   +'<span id="how" class="pf-anchor"></span>'
    +'<ol class="pf-steps">'+шаги+'</ol>'
    +'<div class="pf-two"><div><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
    +'<div><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div>'
@@ -1472,6 +1745,25 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
    переклБлок.setAttribute('data-on','0');
   });
  }
+ // Финальное действие — то же самое продолжение разговора, а не отдельная
+ // диагностика с повторными вопросами. После заявки на её месте остаётся
+ // состояние обращения.
+ var финКнопка=document.getElementById('fin-talk');
+ var финСостояние=document.getElementById('fin-state');
+ function кРазговору(){
+  var я=document.getElementById('hm-hero');
+  if(я) я.scrollIntoView({behavior: тонкая?'auto':'smooth', block:'start'});
+  window.setTimeout(function(){ поле.focus({preventScroll:true}); }, тонкая?0:420);
+ }
+ function показатьЗаявку(номер,повтор){
+  if(!финСостояние) return;
+  финСостояние.textContent=T().saved+'. '+T().saved_p+' #'+номер
+   +(повтор?' ('+T().again+')':'');
+  финСостояние.hidden=false;
+  if(финКнопка) финКнопка.hidden=true;
+ }
+ if(финКнопка) финКнопка.addEventListener('click',кРазговору);
+
  if(разделы){
   // «Продолжить разговор» возвращает к тому же диалогу, а не заводит новый.
   разделы.addEventListener('click',function(ev){
@@ -1482,6 +1774,15 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   });
   применитьРаздел('');
  }
+
+ // Пока первый экран на виду, закреплённая кнопка не показывается: поле
+ // ввода и отправка не должны быть ничем перекрыты.
+ (function(){
+  var я=document.getElementById('hm-hero'); if(!я||!window.IntersectionObserver) return;
+  new IntersectionObserver(function(записи){
+   document.documentElement.classList.toggle('hm-on',записи[0].isIntersecting);
+  },{threshold:0.12}).observe(я);
+ })();
 
  рисоватьСписок();
  рисоватьЧипы(набор);

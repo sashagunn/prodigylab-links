@@ -120,6 +120,19 @@ color:var(--ink3);text-decoration:none;padding:6px 2px}
    экрана, поэтому крупнее подзаголовка, но меньше h1. На других
    страницах с этим CSS заголовок остаётся прежним. */
 .hero .h1-like{font-size:clamp(26px,4.4vw,44px);letter-spacing:-.03em;line-height:1.1}
+/* Короткий блок доверия: лицо, компетенции и настоящие работы рядом, без
+   длинного оправдания на половину экрана. */
+.who2{display:grid;gap:30px;margin-top:22px;text-align:left}
+@media(min-width:860px){.who2{grid-template-columns:1.35fr 1fr;gap:1px;
+ background:var(--line);border:1px solid var(--line)}
+ .who2>div{background:var(--paper2);padding:30px 28px 34px}}
+.who2 .avatar{margin:0 0 20px}
+.who2 h2{font-size:clamp(24px,3.2vw,36px)}
+.fin-state{margin-top:22px;font-size:15.5px;color:var(--ink2)}
+.fin-state[hidden]{display:none}
+/* Закреплённая кнопка проверки сайта не висит над полем помощника и не
+   предлагается тому, чья задача не про сайт. */
+.hm-on #sn-sticky,#sn-sticky[data-off="1"]{display:none!important}
 .quote{font-size:15.5px;font-style:italic;color:var(--accent);margin:22px auto 0;max-width:40ch}
 .hero .lede{max-width:56ch;margin:22px auto 0}
 .cta-row{display:flex;flex-direction:column;gap:11px;margin:34px auto 0;max-width:520px}
@@ -362,73 +375,29 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 <main>
 {hero_block}
 {pf_block}
-<section class="hero" id="hero">
- <div class="wrap">
-  <img class="avatar" src="/assets/founder.jpg" alt="{e(d['photo_alt'])}" width="92" height="92">
-  <span class="mono">{e(d['eyebrow'])}</span>
-  <h2 class="h1-like">{e(d['h1'])}</h2>
-  <p class="quote">{e(d['quote'])}</p>
-  <p class="lede">{e(d['lede'])}</p>
-  <div class="cta-row">
-   {scan_hero}
-   <a class="btn btn-lg btn-g" href="{diag}" data-diag>{e(d['cta1'])}</a>
-  </div>
-  <span class="mono">{e(d['note'])}</span>
- </div>
- <div class="wrap">
-  <div class="band"><img src="/assets/hero-systems.jpg" alt="" loading="lazy" width="1280" height="853"></div>
- </div>
-</section>
-{scan_main}
-
-<section class="sec alt" id="problems">
- <div class="wrap">
-  <span class="mono">{e(d['s1_eyebrow'])}</span>
-  <h2 style="margin-top:18px;max-width:19ch">{e(d['s1_h2'])}</h2>
-  <p class="lede" style="max-width:58ch;margin-top:18px">{e(d['s1_lede'])}</p>
-  <div class="grid">{cells}</div>
- </div>
-</section>
-
-<section class="sec" id="how">
- <div class="wrap">
-  <span class="mono">{e(d['s2_eyebrow'])}</span>
-  <h2 style="margin-top:18px;max-width:20ch">{e(d['s2_h2'])}</h2>
-  <div class="steps">{steps}</div>
- </div>
-</section>
 
 <section class="sec alt" id="who">
  <div class="wrap">
   <span class="mono">{e(d['s3_eyebrow'])}</span>
-  <h2 style="margin-top:18px;max-width:22ch">{e(d['s3_h2'])}</h2>
-  <div class="who">
-   <div class="min">
-    <p class="lede" style="max-width:none">{e(d['s3_p1'])}</p>
-    <p style="margin-top:18px">{e(d['s3_p2'])}</p>
-    <div class="note"><p><b>{e(d['no_title'])}.</b> {e(d['no_p1'])}</p><p>{e(d['no_p2'])}</p></div>
+  <div class="who2">
+   <div class="who2-p">
+    <img class="avatar" src="/assets/founder.jpg" alt="{e(d['photo_alt'])}"
+         width="92" height="92" loading="lazy">
+    <h2 style="max-width:18ch">{e(d['s3_h2'])}</h2>
+    <p class="lede" style="max-width:52ch;margin-top:16px">{e(d['s3_p1'])}</p>
+    <div class="note"><p><b>{e(d['no_title'])}.</b> {e(d['no_p1'])}</p></div>
    </div>
-   <div class="min">
+   <div class="who2-f">
     <span class="mono">{e(d['facts_title'])}</span>
     <dl class="facts">{facts}</dl>
-    <p style="font-size:13.5px;color:var(--ink3);margin-top:16px;line-height:1.6">{e(d['remote'])}</p>
    </div>
   </div>
+  <span class="mono" style="display:block;margin-top:40px">{e(d['cases_eyebrow'])}</span>
+  <div class="cases" style="margin-top:16px">{clients}</div>
  </div>
 </section>
 
-<section class="sec" id="cases">
- <div class="wrap">
-  <span class="mono">{e(d['cases_eyebrow'])}</span>
-  <h2 style="margin-top:18px;max-width:20ch">{e(d['cases_h2'])}</h2>
-  <p class="lede" style="max-width:58ch;margin-top:18px">{e(d['cases_lede'])}</p>
-  <div class="cases">{clients}</div>
-  <p style="margin-top:26px"><a href="/case-studies/" hreflang="en" style="color:var(--accent);
-   text-decoration:none;border-bottom:1px solid var(--accent)">{e(d['cases_cta'])}{'' if code=='en' else ' (EN)'} &rarr;</a></p>
- </div>
-</section>
-{showcase}
-{scan_after}
+{scan_main}
 
 <section class="final" id="diagnostic">
  <div class="wrap">
@@ -436,9 +405,10 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
   <h2 style="margin-top:18px">{e(d['final_h2'])}</h2>
   <p class="lede">{e(d['final_lede'])}</p>
   <div class="cta-row">
-   <a class="btn btn-lg" href="{diag}" data-diag>{e(d['final_cta1'])}</a>
+   <button type="button" class="btn btn-lg" id="fin-talk">{e(HS.ОБЩЕЕ[code]['talk'])}</button>
    <a class="btn btn-lg btn-g" href="{WA}" target="_blank" rel="noopener">{e(d['final_cta2'])}</a>
   </div>
+  <p class="fin-state" id="fin-state" hidden></p>
   <span class="mono" style="display:block;margin-top:20px"><a href="{PHONE_HREF}" style="color:var(--accent);text-decoration:none">{e(d['call'])} {PHONE_TEXT}</a></span>
  </div>
 </section>
@@ -639,6 +609,12 @@ document.querySelectorAll('#mob a').forEach(function(a){{a.addEventListener('cli
   g.src=B+"/packs/js/sdk.js";g.defer=true;g.async=true;s.parentNode.insertBefore(g,s);
   g.onload=function(){{window.chatwootSettings=window.chatwootSettings||{{}};
    window.chatwootSettings.locale="{code}";
+   // На телефоне разговор ведёт помощник на самой странице. Второй плавающий
+   // чат рядом с ним — не выбор, а шум: пузырь прячем, переписка остаётся
+   // доступной на широком экране.
+   if(window.matchMedia('(max-width: 760px)').matches){{
+    window.chatwootSettings.hideMessageBubble=true;
+   }}
    window.chatwootSDK.run({{websiteToken:"J1xMPSabyx7EfRVPrmZEMLYB",baseUrl:B}});
    // Бот должен говорить на языке страницы ещё ДО первой реплики,
    // и знать, откуда человек пришёл (ТЗ §11).

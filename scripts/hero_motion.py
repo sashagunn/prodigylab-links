@@ -471,6 +471,7 @@ JS = """
     d.innerHTML='<div class="ok"><b>'+экр(T().saved)+'</b>'
       +экр(T().saved_p)+' #'+o.lead+(o['повтор']?' ('+экр(T().again)+')':'')+'</div>';
     финалБлок=null;
+    показатьЗаявку(o.lead,o['повтор']);
    }catch(e){
     сообщение.textContent=''; отправка.disabled=false;
     var пред=d.querySelector('.err'); if(пред) пред.remove();
@@ -602,6 +603,7 @@ JS = """
     }catch(e){}
    }
    шаг(шагДальше,d['следующий']||T().undefined,'live');
+   if(d['заявка']) показатьЗаявку(d['заявка_номер']||'',false);
    сказать('note',T().kept);
   }catch(e){}
  }
@@ -675,6 +677,7 @@ JS = """
    +'<p class="pf-eyebrow">'+экр(L.path)+'</p>'
    +'<h2 class="pf-h">'+экр(б.problem)+'</h2>'
    +'<p class="pf-lede">'+экр(б.approach)+'</p>'
+   +'<span id="how" class="pf-anchor"></span>'
    +'<ol class="pf-steps">'+шаги+'</ol>'
    +'<div class="pf-two"><div><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
    +'<div><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div>'
@@ -736,6 +739,25 @@ JS = """
    переклБлок.setAttribute('data-on','0');
   });
  }
+ // Финальное действие — то же самое продолжение разговора, а не отдельная
+ // диагностика с повторными вопросами. После заявки на её месте остаётся
+ // состояние обращения.
+ var финКнопка=document.getElementById('fin-talk');
+ var финСостояние=document.getElementById('fin-state');
+ function кРазговору(){
+  var я=document.getElementById('hm-hero');
+  if(я) я.scrollIntoView({behavior: тонкая?'auto':'smooth', block:'start'});
+  window.setTimeout(function(){ поле.focus({preventScroll:true}); }, тонкая?0:420);
+ }
+ function показатьЗаявку(номер,повтор){
+  if(!финСостояние) return;
+  финСостояние.textContent=T().saved+'. '+T().saved_p+' #'+номер
+   +(повтор?' ('+T().again+')':'');
+  финСостояние.hidden=false;
+  if(финКнопка) финКнопка.hidden=true;
+ }
+ if(финКнопка) финКнопка.addEventListener('click',кРазговору);
+
  if(разделы){
   // «Продолжить разговор» возвращает к тому же диалогу, а не заводит новый.
   разделы.addEventListener('click',function(ev){
@@ -746,6 +768,15 @@ JS = """
   });
   применитьРаздел('');
  }
+
+ // Пока первый экран на виду, закреплённая кнопка не показывается: поле
+ // ввода и отправка не должны быть ничем перекрыты.
+ (function(){
+  var я=document.getElementById('hm-hero'); if(!я||!window.IntersectionObserver) return;
+  new IntersectionObserver(function(записи){
+   document.documentElement.classList.toggle('hm-on',записи[0].isIntersecting);
+  },{threshold:0.12}).observe(я);
+ })();
 
  рисоватьСписок();
  рисоватьЧипы(набор);

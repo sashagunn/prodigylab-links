@@ -536,6 +536,8 @@ CSS = """
 #pf .pf-in{max-width:1180px;margin:0 auto;padding:68px 20px 76px}
 @media(min-width:900px){#pf .pf-in{padding:104px 32px 112px}}
 .pf-v[hidden]{display:none}
+.pf-anchor{display:block;height:0;scroll-margin-top:84px}
+#pf .pf-in{scroll-margin-top:72px}
 .pf-eyebrow{font:500 11.5px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
  color:var(--accent);margin:0 0 18px}
 .pf-h{font:600 clamp(28px,4.6vw,52px)/1.08 var(--sans);letter-spacing:-.03em;
@@ -646,7 +648,7 @@ def вариант(направление: str, lang: str, пример=None) ->
         f'<p class="pf-eyebrow">{ОБ["path"]}</p>'
         f'<h2 class="pf-h">{б["problem"]}</h2>'
         f'<p class="pf-lede">{б["approach"]}</p>'
-        f'{_шаги(б, ОБ)}'
+        f'<span id="how" class="pf-anchor"></span>{_шаги(б, ОБ)}'
         f'<div class="pf-two">'
         f'<div><h3>{ОБ["need"]}</h3><ul>{нужно}</ul></div>'
         f'<div><h3>{ОБ["limits"]}</h3><p>{б["limits"]}</p></div>'
@@ -665,7 +667,10 @@ def markup(lang: str = 'ru') -> str:
     выполнились. Дальше страница заменяет его вариантом под направление,
     собранным из данных на языке разговора.
     """
-    return (f'<section id="pf"><div class="pf-in">{вариант("", lang, None)}</div>'
+    # Якоря навигации переезжают сюда вместе с содержанием: «что разбираем»
+    # и «как устроено» теперь объясняет этот раздел, а не два отдельных.
+    return (f'<section id="pf"><div class="pf-in" id="problems">'
+            f'{вариант("", lang, None)}</div>'
             f'<div class="pf-switch" id="pf-switch" data-on="0">'
             f'<button type="button"></button></div>'
             f'</section>')
