@@ -1341,7 +1341,10 @@ def page(code):
     langs = "".join(
         f'<a href="{L[c]["home"]}"{" aria-current=\"page\"" if c == code else ""}>{n}</a>'
         for c, n in LANGNAMES)
-    navmid = "".join(f'<a href="{h}">{e(t)}</a>' for h, t in d['nav'])
+    # «Кто мы» живёт отдельной страницей — на главной этого блока больше нет.
+    КТО = '/about-studio/' if code == 'en' else f'/{code}/about/'
+    _nav = [(КТО if h == '#who' else h, t) for h, t in d['nav']]
+    navmid = "".join(f'<a href="{h}">{e(t)}</a>' for h, t in _nav)
     # Пункт меню появляется только когда в галерее есть что показать:
     # вести в пустой раздел хуже, чем не вести вовсе.
     from showcase_content import S as _SC
@@ -1351,7 +1354,7 @@ def page(code):
     showcase_foot = _ссылка
     showcase_mob = (f'<a class="ml" href="{showcase_nav}">{e(_имя)}</a>'
                     if showcase else '')
-    mobls = "".join(f'<a class="ml" href="{h}">{e(t)}</a>' for h, t in d['nav'])
+    mobls = "".join(f'<a class="ml" href="{h}">{e(t)}</a>' for h, t in _nav)
     def _cell(i, tag, h3, p, lis):
         extra = ''
         # §10: AI-проверка сайта остаётся, но как вторичный путь внутри
@@ -1470,10 +1473,6 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 
 {pf_block}
 
-{clients_block}
-
-{works_block}
-
 <section class="band-layers" id="problems">
  <div class="wrap">
   <div class="lay-h">
@@ -1488,18 +1487,9 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
  </div>
 </section>
 
-<section class="band-who" id="who">
- <div class="who">
-  <img class="who-face" src="/assets/founder.jpg" alt="{e(d['photo_alt'])}"
-       width="192" height="192" loading="lazy" decoding="async">
-  <div>
-   <p class="who-role">{e(С['trust_role'])}</p>
-   <h2>{e(d['s3_h2'])}</h2>
-   <p>{e(d['s3_p1'])}</p>
-   <dl class="facts">{facts_short}</dl>
-  </div>
- </div>
-</section>
+{clients_block}
+
+{works_block}
 
 <section class="band-final" id="diagnostic">
  <div class="fin-ph" id="fin-ph"></div>
@@ -1532,7 +1522,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
  <div class="wrap">
   <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
   <div class="flinks">
-   {"".join(f'<a href="{h}">{e(t)}</a>' for h,t in d['nav'])}{showcase_foot}
+   {"".join(f'<a href="{h}">{e(t)}</a>' for h,t in _nav)}{showcase_foot}
    <a href="{WA}" target="_blank" rel="noopener">{PHONE_TEXT}</a>
    <a href="{PRIVACY[code]}">{e(d['foot_priv'])}{PRIVACY_TAG[code]}</a>
   </div>
@@ -1742,6 +1732,100 @@ document.querySelectorAll('#mob a').forEach(function(a){{a.addEventListener('cli
 </body>
 </html>"""
 
+# ======================================================= отдельная «Кто мы»
+# С главной блок убран: там путь ведёт от задачи к решению и к заявке.
+# Знакомство со студией — отдельная страница, на неё ведёт пункт меню.
+КТО_СТР = {
+ 'ru': dict(title='Кто мы — Prodigy LAB', desc='Студия Prodigy LAB (Platonaire LLC): кто мы, '
+            'чем занимаемся и на чём работаем.', back='На главную', cta='Рассказать задачу'),
+ 'en': dict(title='Who we are — Prodigy LAB', desc='Prodigy LAB (Platonaire LLC): who we are, '
+            'what we do and what we work with.', back='Home', cta='Tell us what is broken'),
+ 'es': dict(title='Quiénes somos — Prodigy LAB', desc='Prodigy LAB (Platonaire LLC): quiénes '
+            'somos y en qué trabajamos.', back='Inicio', cta='Cuéntanos tu problema'),
+ 'pt': dict(title='Quem somos — Prodigy LAB', desc='Prodigy LAB (Platonaire LLC): quem somos '
+            'e com o que trabalhamos.', back='Início', cta='Conte o seu problema'),
+ 'de': dict(title='Wer wir sind — Prodigy LAB', desc='Prodigy LAB (Platonaire LLC): wer wir '
+            'sind und womit wir arbeiten.', back='Startseite', cta='Erzählen Sie uns das Problem'),
+}
+КТО_OUT = {'en': 'about-studio/index.html', 'ru': 'ru/about/index.html',
+           'es': 'es/about/index.html', 'pt': 'pt/about/index.html',
+           'de': 'de/about/index.html'}
+
+
+def страница_кто(code):
+    """Небольшая самостоятельная страница: портрет, текст, факты, путь назад."""
+    import html as _h
+    from build_showcase import EXTRA_CSS as SHOWCASE_CSS
+    import scan_block as SB
+    e = _h.escape
+    d, С, К = L[code], СВОЁ_РАБОТЫ[code], КТО_СТР[code]
+    дом = '/' if code == 'en' else f'/{code}/'
+    url = ORIGIN + ('/about-studio/' if code == 'en' else f'/{code}/about/')
+    факты = "".join(f'<div class="fact"><dt>{e(k)}</dt><dd>{e(v)}</dd></div>'
+                    for k, v in d['facts'])
+    языки = "".join(
+        f'<a href="{"/" if c == "en" else "/" + c + "/"}about{"-studio" if c == "en" else ""}/"'
+        f'{" aria-current=page" if c == code else ""}>{n}</a>' for c, n in LANGNAMES)
+    return f"""<!DOCTYPE html>
+<html lang="{code}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{e(К['title'])}</title>
+<meta name="description" content="{e(К['desc'])}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Prodigy LAB">
+<meta property="og:title" content="{e(К['title'])}">
+<meta property="og:description" content="{e(К['desc'])}">
+<meta property="og:url" content="{url}"><meta property="og:locale" content="{d['locale']}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>{CSS}{SHOWCASE_CSS}{SB.CSS}{НОВОЕ_CSS}
+.kt{{max-width:var(--wrap);margin:0 auto;padding:46px 20px 72px}}
+.kt .who{{margin:0}}
+.kt-back{{display:inline-block;margin-bottom:28px;color:var(--ink2);font-size:14.5px;
+  text-decoration:underline;text-underline-offset:4px}}
+.kt-txt p{{max-width:62ch;margin:0 0 14px}}
+.kt .facts{{margin-top:26px}}
+.kt-go{{display:inline-block;margin-top:30px;background:var(--ink);color:#fff;
+  border-radius:999px;padding:13px 24px;font-size:15px;font-weight:500;
+  text-decoration:none}}
+.kt-ft{{margin:34px 0 0;font-size:19px}}
+.kt .who-face{{width:192px;height:192px}}
+</style>
+</head>
+<body>
+<nav>
+ <div class="wrap nav-in">
+  <a class="brand" href="{дом}"><b>PRODIGY</b><span>LAB</span></a>
+  <div class="nav-right"><div class="langs">{языки}</div></div>
+ </div>
+</nav>
+<main class="kt">
+ <a class="kt-back" href="{дом}">&larr; {e(К['back'])}</a>
+ <div class="who">
+  <img class="who-face" src="/assets/founder.jpg" alt="{e(d['photo_alt'])}"
+       width="192" height="192" decoding="async">
+  <div class="kt-txt">
+   <p class="who-role">{e(С['trust_role'])}</p>
+   <h1>{e(d['s3_h2'])}</h1>
+   <p>{e(d['s3_p1'])}</p>
+   <p>{e(d['s3_p2'])}</p>
+   <h2 class="kt-ft">{e(d['facts_title'])}</h2>
+   <dl class="facts">{факты}</dl>
+   <a class="kt-go" href="{дом}">{e(К['cta'])} &rarr;</a>
+  </div>
+ </div>
+</main>
+<footer class="foot"><div class="wrap">
+ <span>{e(_F['identity']['legalName'])} &middot; {e(_F['identity']['name'])}</span>
+</div></footer>
+</body>
+</html>"""
+
+
 if __name__ == '__main__':
     for code, rel in OUT.items():
         p = os.path.join(ROOT, rel)
@@ -1749,4 +1833,10 @@ if __name__ == '__main__':
         html = page(code)
         open(p, 'w', encoding='utf-8').write(html)
         print(f"  ✓ {rel:16} {len(html)//1024} KB  ({code})")
-    print("Главная пересобрана на 5 языках")
+    for code, rel in КТО_OUT.items():
+        p = os.path.join(ROOT, rel)
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        html = страница_кто(code)
+        open(p, 'w', encoding='utf-8').write(html)
+        print(f"  ✓ {rel:22} {len(html)//1024} KB  (кто мы, {code})")
+    print("Главная пересобрана на 5 языках, «Кто мы» вынесена отдельно")
