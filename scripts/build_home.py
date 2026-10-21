@@ -796,6 +796,11 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 @media (max-width:700px){
   .pf-case-grid{grid-template-columns:1fr}
 }
+
+/* Полоса под задачу держит минимальную высоту: разница между состояниями
+   становится небольшой, и странице почти нечего двигать. */
+.pf-in{min-height:clamp(520px,42vw,720px)}
+@media (max-width:1080px){ .pf-in{min-height:0} }
 """
 
 

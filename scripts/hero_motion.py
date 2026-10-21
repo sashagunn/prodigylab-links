@@ -1010,23 +1010,22 @@ JS = """
  }
   // Высота полосы меняется переходом и в конце догоняет настоящую высоту
  // содержимого: снятие фиксированной высоты одним кадром давало прыжок.
+ // Высота полосы: либо плавный переход, либо изменение сразу в момент
+ // нажатия. Отложенный сброс через секунду — это и был прыжок на пол-экрана,
+ // поэтому если переход не стартовал за 80 мс, отпускаем высоту немедленно.
  function вестиВысоту(узел, было){
   var стало=узел.scrollHeight;
   if(Math.abs(стало-было)<=24) return;
-  узел.classList.add('ведём');
-  узел.style.transition='none';
-  узел.style.height=было+'px';
-  void узел.offsetHeight;
-  узел.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
-  узел.style.height=стало+'px';
+  var отпущено=false;
   var отпустить=function(){
+   if(отпущено) return; отпущено=true;
    узел.style.transition=''; узел.style.height='';
    узел.classList.remove('ведём');
-  };
-  var готово=false;
-  var финал=function(){
-   if(готово) return; готово=true;
    узел.removeEventListener('transitionend',финал);
+   узел.removeEventListener('transitionstart',пошло);
+  };
+  var финал=function(){
+   // Содержимое могло дорасти (картинки) — догоняем коротким переходом.
    var сейчас=узел.scrollHeight;
    if(Math.abs(сейчас-parseFloat(узел.style.height||'0'))>4){
     узел.style.transition='height .35s ease';
@@ -1034,8 +1033,18 @@ JS = """
     window.setTimeout(отпустить,380);
    } else отпустить();
   };
+  var стартовал=false;
+  var пошло=function(){ стартовал=true; };
+  узел.classList.add('ведём');
+  узел.style.transition='none';
+  узел.style.height=было+'px';
+  void узел.offsetHeight;
+  узел.addEventListener('transitionstart',пошло);
   узел.addEventListener('transitionend',финал);
-  window.setTimeout(финал,1000);
+  узел.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
+  узел.style.height=стало+'px';
+  window.setTimeout(function(){ if(!стартовал) отпустить(); },80);
+  window.setTimeout(отпустить,1400);
  }
  function применитьРаздел(к){
   if(!гнездо) return;
