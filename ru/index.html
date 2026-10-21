@@ -2442,6 +2442,23 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
    +'<figcaption><span class="tag">'+экр(t.scheme||'')+'</span>'
    +экр(б.problem)+'</figcaption></figure>';
  }
+ var ключСцены='', счётСцен=0;
+ // Ждём, пока снимки новой сцены лягут в кеш. Иначе кадр проявляется пустым,
+ // а картинка вскакивает следом — это и читается как моргание.
+ function сКартинками(узел, дальше){
+  var список=Array.prototype.slice.call(узел.querySelectorAll('img'));
+  var осталось=список.length, всё=false;
+  function конец(){ if(всё) return; всё=true; дальше(); }
+  if(!осталось){ конец(); return; }
+  список.forEach(function(и){
+   var к=new Image(), раз=false;
+   function шаг(){ if(раз) return; раз=true; осталось--; if(осталось<=0) конец(); }
+   к.onload=шаг; к.onerror=шаг; к.src=и.getAttribute('src');
+   if(к.complete) шаг();
+  });
+  // Медленная сеть не должна морозить сцену дольше этого.
+  window.setTimeout(конец,700);
+ }
  function нарисоватьСцену(к, пример){
   var гн=document.getElementById('hm-scene'), пр=document.getElementById('hm-r');
   if(!гн) return;
@@ -2450,20 +2467,29 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   var режим = показ ? 'work' : 'scheme';
   if(пр) пр.setAttribute('data-mode',режим);
   var новое = показ ? сценаРабота(показ) : сценаИлл(к);
-  if(гн.innerHTML.trim()===новое.trim()) return;
-  if(тонкая || !гн.firstElementChild){ гн.innerHTML=новое; return; }
-  // Старая сцена гаснет, новая проявляется на её месте: без подмены рывком.
-  var уход=гн.firstElementChild;
-  уход.classList.add('уходит');
+  if(новое===ключСцены) return;
+  ключСцены=новое;
+  var мой=++счётСцен, уход=гн.firstElementChild;
   var обёртка=document.createElement('div');
-  обёртка.className='сц-новая';
+  обёртка.className='сц';
   обёртка.innerHTML=новое;
-  гн.appendChild(обёртка);
-  void обёртка.offsetHeight;
-  обёртка.classList.add('on');
-  window.setTimeout(function(){
-   гн.innerHTML=новое;
-  },700);
+  if(тонкая || !уход){ гн.innerHTML=''; гн.appendChild(обёртка); return; }
+  // Старая гаснет, новая проявляется на её месте — и остаётся ТЕМ ЖЕ узлом.
+  // Раньше в конце перехода сцена пересобиралась из разметки: картинка
+  // создавалась заново и анимация появления шла по второму кругу.
+  сКартинками(обёртка, function(){
+   if(мой!==счётСцен) return;
+   обёртка.classList.add('сц-новая');
+   уход.classList.add('уходит');
+   гн.appendChild(обёртка);
+   void обёртка.offsetHeight;
+   обёртка.classList.add('on');
+   window.setTimeout(function(){
+    if(уход.parentNode===гн) гн.removeChild(уход);
+    обёртка.classList.remove('сц-новая');
+    обёртка.classList.remove('on');
+   },700);
+  });
  }
  document.addEventListener('click',function(ev){
   var д=ev.target.closest('.shot-dev button');
