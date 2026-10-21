@@ -444,7 +444,10 @@ def _б(problem, approach, steps, need, limits, cta):
 
 
 # --------------------------------------------------------------- примеры
-# Опубликованный пример берём только из SHOWCASE.json. Второго каталога нет.
+# Пример берём только из SHOWCASE.json. Второго каталога нет. Годится не
+# всякое живое демо, а только отобранное в портфолио (showcase: true):
+# персональные концепты остаются доступными по своим ссылкам, но публичным
+# примером студии не являются.
 # Соответствие направлению — по типу решения: конфигуратор и меню с заказом
 # это задачи присутствия. Для платежей, банков, финансирования и процессов
 # опубликованного примера у нас нет, и подставлять туда ресторан нельзя.
@@ -472,7 +475,7 @@ def кандидаты(направление: str, каталог=None) -> list
     if not типы:
         return []
     годные = [и for и in каталог
-              if и.get('publication_status') == 'published'
+              if и.get('publication_status') == 'published' and и.get('showcase')
               and и.get('solution_type') in типы]
     годные.sort(key=lambda и: (not и.get('featured'), и.get('sort_order') or 0))
     return годные
@@ -495,7 +498,10 @@ def пример_для(направление: str, известно: dict, lan
         корень = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         with open(os.path.join(корень, 'SHOWCASE.json'), encoding='utf-8') as f:
             каталог = json.load(f)['items']
-    годные = [и for и in каталог if и.get('publication_status') == 'published']
+    # Только отобранные в портфолио: живое демо, сделанное для конкретной
+    # компании, подставлять посетителю как наш публичный пример нельзя.
+    годные = [и for и in каталог
+              if и.get('publication_status') == 'published' and и.get('showcase')]
     типы = ПОД_НАПРАВЛЕНИЕ.get(направление)
     if not типы:
         return None

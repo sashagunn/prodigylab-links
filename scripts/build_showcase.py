@@ -8,8 +8,13 @@
 2. Снять обложку с живого демо (ширина 800, высота 500) и положить в
    showcase/covers/<slug>.jpg. Рисованных заглушек не ставить: на карточке
    должно быть то, что человек увидит, нажав «Попробовать».
-3. Дописать запись в SHOWCASE.json. publication_status нового персонального
-   демо — "draft": в галерее оно не появится, пока владелец не скажет.
+3. Дописать запись в SHOWCASE.json. Два независимых признака:
+   publication_status — готовность самого демо ("draft" у нового);
+   showcase — отбор в публичное портфолио (false по умолчанию).
+   Готовое демо в витрину само не попадает: нужно showcase: true, и только
+   если оно существенно отличается от уже показанных — композицией,
+   типографикой, характером, взаимодействием или задачей клиента. Смена
+   цвета и фотографий на том же шаблоне новым примером не считается.
 4. `npm run showcase` — он же проверит каталог и откажется собирать, если
    id повторяется, нет обложки, нет демо или потерян перевод.
 5. Главная и фильтры подхватят запись сами. Вторых списков нет.
@@ -39,7 +44,7 @@ PAGE_PATH = {'en': '/showcase/', 'ru': '/ru/showcase/', 'es': '/es/showcase/',
 CHUNK = 9
 ОБЯЗАТЕЛЬНЫЕ = ('id', 'slug', 'title', 'niche', 'solution_type', 'short_description',
                 'demo_url', 'cover', 'project_type', 'language', 'featured',
-                'sort_order', 'publication_status')
+                'sort_order', 'publication_status', 'showcase')
 СТАТУСЫ = ('draft', 'review', 'published', 'retired')
 ТИПЫ = ('concept', 'client_project')
 ЯЗЫКИ = [c for c, _ in LANGNAMES]
@@ -67,6 +72,13 @@ def загрузить() -> list[dict]:
         видели_slug.add(it['slug'])
         if it['publication_status'] not in СТАТУСЫ:
             беды.append(f"{где}: publication_status «{it['publication_status']}» не из {СТАТУСЫ}")
+        if not isinstance(it.get('showcase'), bool):
+            беды.append(f"{где}: showcase должен быть true или false, "
+                        f"а не «{it.get('showcase')!r}»")
+        if it.get('showcase') and it['publication_status'] != 'published':
+            беды.append(f"{где}: showcase: true при publication_status "
+                        f"«{it['publication_status']}» — в витрину попало бы "
+                        f"демо, которое мы не готовы показывать")
         if it['project_type'] not in ТИПЫ:
             беды.append(f"{где}: project_type «{it['project_type']}» не из {ТИПЫ}")
         for поле in ('title', 'short_description', 'cover_alt'):
@@ -103,7 +115,16 @@ def загрузить() -> list[dict]:
 
 
 def опубликованные(items) -> list[dict]:
-    return [i for i in items if i['publication_status'] == 'published']
+    """Примеры для публичной витрины.
+
+    Два условия, и они независимы: демо должно быть живым
+    (publication_status) И отобранным в портфолио (showcase). Готовое
+    демо не попадает в витрину само собой — иначе галерея превращается
+    в журнал производства, где рядом стоят пять карточек на одном
+    шаблоне.
+    """
+    return [i for i in items
+            if i['publication_status'] == 'published' and i.get('showcase')]
 
 
 # ---------------------------------------------------------------- разметка
@@ -473,6 +494,13 @@ if __name__ == '__main__':
         html = страница(code, items)
         open(p, 'w', encoding='utf-8').write(html)
         print(f"  ✓ {rel:26} {len(html) // 1024} KB  ({code})")
-    скрытые = len(items) - len(публичные)
-    print(f"Галерея собрана: показывается {len(публичные)}, "
-          f"в каталоге ещё {скрытые} неопубликованных")
+    # Считаем раздельно: «не в витрине» и «не готово» — разные вещи, и
+    # сваливать их в одно число значит скрывать от себя состояние дел.
+    по_ссылке = [i for i in items
+                 if i['publication_status'] == 'published' and not i.get('showcase')]
+    не_готовы = [i for i in items if i['publication_status'] != 'published']
+    print(f"Галерея собрана: в витрине {len(публичные)}, "
+          f"живых по прямой ссылке {len(по_ссылке)}, "
+          f"не готовых к показу {len(не_готовы)}")
+    if по_ссылке:
+        print('  по ссылке, вне витрины: ' + ', '.join(i['slug'] for i in по_ссылке))

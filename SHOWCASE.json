@@ -1,17 +1,39 @@
 {
   "_readme": [
     "Каталог публичной галереи примеров. Единственный источник: из него собираются",
-    "и /showcase/, и блок на главной, и фильтры. Отдельных списков не вести.",
+    "и /showcase/, и блок на главной, и подбор примера под задачу. Отдельных",
+    "списков не вести.",
     "",
-    "publication_status решает, видно ли запись:",
-    "  draft     — новое демо. Значение по умолчанию: персональное демо не публикуется",
-    "              само собой только потому, что файл появился в preview/.",
+    "ДВА НЕЗАВИСИМЫХ ПРИЗНАКА. Их нельзя смешивать.",
+    "",
+    "publication_status — готовность САМОГО ДЕМО:",
+    "  draft     — новое демо. Значение по умолчанию: персональное демо не",
+    "              публикуется само собой только потому, что файл появился в preview/.",
     "  review    — предложено к показу, ждёт решения владельца.",
-    "  published — показывается в галерее и может попасть на главную.",
+    "  published — демо живое и его можно показывать компании по прямой ссылке.",
     "  retired   — снято с показа, запись остаётся ради истории.",
     "",
+    "showcase — отбор в ПУБЛИЧНОЕ ПОРТФОЛИО (true/false):",
+    "  true  — пример показывается в /showcase/, может попасть на главную и",
+    "          подставляться как публичный пример под задачу.",
+    "  false — демо живое и открывается по своей ссылке, но в витрине его нет.",
+    "",
+    "Готовое и опубликованное демо НЕ попадает в портфолио само собой: нужно",
+    "showcase: true. Портфолио — отобранная коллекция сильных решений, а не",
+    "полный журнал производства.",
+    "",
+    "Что считается новым публичным примером: существенное отличие — композиция,",
+    "типографика, визуальный характер, взаимодействие или другая задача клиента.",
+    "Смена цвета, фотографий и названия на том же шаблоне самостоятельным",
+    "дизайном не считается: несколько таких карточек рядом показывают повтор",
+    "шаблона, а не размах студии.",
+    "",
+    "Демо с showcase: false — страницы по ссылке, а не приватное хранилище.",
+    "Пароля на них нет и не нужно; у них стоит noindex, и весь /preview/",
+    "исключён из sitemap (scripts/generate-sitemap.js).",
+    "",
     "project_type:",
-    "  concept        — независимый прототип. Компания его не заказывала.",
+    "  concept        — наш концепт, компания его не заказывала и не подтверждала.",
     "  client_project — только при подтверждённом внедрении И разрешении показывать.",
     "",
     "Как добавить следующий пример — scripts/build_showcase.py, раздел в начале файла."
@@ -50,7 +72,8 @@
       "language": "en",
       "featured": false,
       "sort_order": 10,
-      "publication_status": "draft"
+      "publication_status": "draft",
+      "showcase": false
     },
     {
       "id": "pf-002",
@@ -84,7 +107,8 @@
       "language": "en",
       "featured": true,
       "sort_order": 20,
-      "publication_status": "published"
+      "publication_status": "published",
+      "showcase": true
     },
     {
       "id": "pf-003",
@@ -118,7 +142,8 @@
       "language": "en",
       "featured": false,
       "sort_order": 30,
-      "publication_status": "draft"
+      "publication_status": "draft",
+      "showcase": false
     },
     {
       "id": "pf-004",
@@ -152,7 +177,8 @@
       "language": "en",
       "featured": true,
       "sort_order": 20,
-      "publication_status": "published"
+      "publication_status": "published",
+      "showcase": true
     },
     {
       "id": "pf-005",
@@ -186,7 +212,8 @@
       "language": "en",
       "featured": false,
       "sort_order": 40,
-      "publication_status": "published"
+      "publication_status": "published",
+      "showcase": false
     },
     {
       "id": "pf-006",
@@ -220,7 +247,8 @@
       "language": "en",
       "featured": false,
       "sort_order": 50,
-      "publication_status": "published"
+      "publication_status": "published",
+      "showcase": false
     },
     {
       "id": "pf-007",
@@ -254,7 +282,8 @@
       "language": "en",
       "featured": false,
       "sort_order": 60,
-      "publication_status": "published"
+      "publication_status": "published",
+      "showcase": false
     },
     {
       "id": "pf-008",
@@ -288,7 +317,8 @@
       "language": "en",
       "featured": false,
       "sort_order": 70,
-      "publication_status": "published"
+      "publication_status": "published",
+      "showcase": false
     }
   ]
 }
