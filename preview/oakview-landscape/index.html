@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Independent Landscape project planning demonstration for Oakview Landscape Construction in Decatur.">
+<title>Oakview Landscape Construction · Independent planning demo</title>
+<meta name="pf-expires" content="">
+<style>
+:root{
+  --ink:#141618; --ink2:#5a6066; --ink3:#8b9197; --line:#e3e5e6;
+  --paper:#fbfbfa; --paper2:#f2f3f2; --dark:#14191d; --on-dark:#e9edef;
+  --accent:#3f6b43; --accent-ink:#ffffff;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;line-height:1.08;letter-spacing:-.02em;font-weight:650}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink3)}
+.notice{background:var(--dark);color:var(--on-dark);font-family:var(--mono);
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;text-align:center}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  max-width:1120px;margin:0 auto;padding:16px clamp(18px,4vw,40px);
+  border-bottom:1px solid var(--line)}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none}
+.brand span{color:var(--ink3)}
+header a.top{font-size:14px;text-decoration:none;border:1px solid var(--ink);
+  border-radius:999px;padding:9px 16px}
+header a.top:hover{background:var(--ink);color:var(--paper)}
+.hero{padding:clamp(34px,6vw,70px) 0 clamp(26px,4vw,46px)}
+.hero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(22px,4vw,52px);align-items:center}
+.hero h1{font-size:clamp(32px,5vw,58px);margin-top:12px;max-width:16ch}
+.hero .intro{margin-top:16px;color:var(--ink2);max-width:46ch}
+.button{display:inline-block;margin-top:22px;background:var(--accent);color:var(--accent-ink);
+  text-decoration:none;border-radius:999px;padding:14px 24px;font-size:15px}
+.button:hover{filter:brightness(1.08)}
+.small{margin-top:12px;font-size:13px;color:var(--ink3)}
+.shot{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}
+.shot img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.shot figcaption{font-size:12px;color:var(--ink3);padding:10px 12px;border-top:1px solid var(--line)}
+.band{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:clamp(30px,5vw,56px) 0}
+.band h2{font-size:clamp(23px,2.8vw,34px);max-width:20ch;margin-top:12px}
+.band p.lede{margin-top:14px;color:var(--ink2);max-width:60ch}
+.srv{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.srv li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.srv b{display:block;font-weight:600;font-size:15.5px}
+.srv span{display:block;margin-top:4px;color:var(--ink2);font-size:13.5px}
+.srv-link{display:inline-block;margin-top:18px;font-size:14px;color:var(--accent);
+  text-decoration:none;border-bottom:1px solid var(--accent)}
+.planner{padding:clamp(34px,5vw,64px) 0}
+.planner-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);
+  gap:clamp(20px,3vw,44px);align-items:start}
+form{display:grid;gap:16px;margin-top:22px}
+label{display:block;font-size:14px;color:var(--ink2)}
+label b{display:block;color:var(--ink);font-weight:600;font-size:15px;margin-bottom:6px}
+select,input[type=number],input[type=text]{width:100%;font:inherit;font-size:16px;
+  padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+select:focus,input:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choices button{font:inherit;font-size:14px;padding:9px 14px;border-radius:999px;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.choices button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.hint{font-size:12.5px;color:var(--ink3);margin-top:6px}
+.bad{color:#9a3412;font-size:12.5px;margin-top:6px}
+.summary{position:sticky;top:18px;background:var(--dark);color:var(--on-dark);
+  border-radius:16px;padding:clamp(18px,2.4vw,26px)}
+.summary .eyebrow{color:#93a0a8}
+.summary dl{margin:16px 0 0;display:grid;gap:10px}
+.summary dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#93a0a8}
+.summary dd{margin:3px 0 0;font-size:15px}
+.brief{margin-top:20px}
+.brief label{color:var(--ink3);font-size:12.5px}
+textarea{width:100%;margin-top:8px;font:inherit;font-size:14px;line-height:1.5;
+  padding:13px;border:1px solid var(--line);border-radius:12px;background:#fff;
+  color:var(--ink);resize:vertical;min-height:210px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px}
+button.act{font:inherit;font-size:15px;padding:12px 20px;border-radius:999px;border:0;
+  background:var(--ink);color:var(--paper);cursor:pointer}
+button.act[disabled]{opacity:.45;cursor:default}
+#status{font-size:13px;color:var(--ink3)}
+footer{background:var(--dark);color:var(--on-dark);padding:clamp(26px,4vw,44px) 0;margin-top:clamp(30px,5vw,60px)}
+footer p{font-size:13.5px;color:#aab4ba;max-width:70ch}
+footer a{color:#fff}
+@media (max-width:860px){
+  .hero-in,.planner-in{grid-template-columns:1fr}
+  .summary{position:static}
+  header a.top{display:none}
+}
+</style>
+</head>
+<body>
+<div class="notice">Independent concept demo · Not affiliated with or endorsed by Oakview Landscape Construction</div>
+<header>
+  <a class="brand" href="#main">Preview Factory <span>/ OAKVIEW LANDSCAPE CONSTRUCTION</span></a>
+  <a class="top" href="#planner">Build a yard brief ↗</a>
+</header>
+
+<main id="main">
+  <section class="hero"><div class="wrap"><div class="hero-in">
+    <div>
+      <p class="eyebrow">DECATUR, GEORGIA / LANDSCAPE PROJECT PLANNER</p>
+      <h1>Describe the yard before anyone walks it.</h1>
+      <p class="intro">Say what the space is, roughly how big it is and what you want to change. The page writes it up as a brief for the first site visit.</p>
+      <a class="button" href="#planner">Build a yard brief ↗</a>
+      <p class="small">No pricing guesses. No payment. Nothing is sent anywhere.</p>
+    </div>
+    
+  </div></div></section>
+
+  <section class="band"><div class="wrap">
+    <p class="eyebrow">What Oakview Landscape Construction publishes</p>
+    <h2>What their site shows.</h2>
+    <p class="lede">Oakview Landscape Construction publishes a short site with three sections — services, about and contact — and names garden installation among the work it shows.</p>
+    <ul class="srv"><li><b>Garden installation</b><span>The one project type named on their services page.</span></li><li><b>Our services</b><span>Their own section — the full list is given on site.</span></li><li><b>About the company</b></li><li><b>Direct contact</b></li></ul>
+    <a class="srv-link" href="https://www.oakviewlandscapeconstruction.com/our-services" target="_blank" rel="noopener noreferrer">Open their own services page ↗</a>
+  </div></section>
+
+  <section class="planner" id="planner"><div class="wrap"><div class="planner-in">
+    <div>
+      <p class="eyebrow">01 / Your project</p>
+      <h2 style="font-size:clamp(24px,3vw,36px);margin-top:12px">The yard, in four answers.</h2>
+      <p class="lede" style="margin-top:14px;color:var(--ink2);max-width:52ch">This is a planning note, not a design. Grading, drainage and plant choices belong to their site visit.</p>
+      <form id="form" autocomplete="off"><label><b>Which part of the property</b><span class="choices"><button type="button" data-choice="area" data-value="Front yard" aria-pressed="true">Front yard</button><button type="button" data-choice="area" data-value="Back yard" aria-pressed="false">Back yard</button><button type="button" data-choice="area" data-value="Both" aria-pressed="false">Both</button><button type="button" data-choice="area" data-value="A single bed or corner" aria-pressed="false">A single bed or corner</button></span>
+</label>
+<label><b>Approximate area <span style="color:var(--ink3);font-weight:400">(sq ft)</span></b>
+<input type="number" inputmode="numeric" name="size" id="f-size" min="50" max="40000" step="10" value="1200">
+<span class="hint">Pacing it out is accurate enough to start.</span><span class="bad" data-bad="size" hidden></span></label>
+<label><b>What you want from it</b><select name="goal" id="f-goal"><option value="Planting and beds">Planting and beds</option><option value="Lawn renovation">Lawn renovation</option><option value="Hardscape (patio, walkway, wall)">Hardscape (patio, walkway, wall)</option><option value="Drainage problem">Drainage problem</option><option value="Full redesign">Full redesign</option><option value="Not sure yet">Not sure yet</option></select>
+</label>
+<label><b>Access for equipment</b><span class="choices"><button type="button" data-choice="access" data-value="Open side access" aria-pressed="true">Open side access</button><button type="button" data-choice="access" data-value="Narrow gate only" aria-pressed="false">Narrow gate only</button><button type="button" data-choice="access" data-value="Through the house only" aria-pressed="false">Through the house only</button><button type="button" data-choice="access" data-value="Not sure" aria-pressed="false">Not sure</button></span>
+</label>
+<label><b>Timing</b><span class="choices"><button type="button" data-choice="when" data-value="This season" aria-pressed="true">This season</button><button type="button" data-choice="when" data-value="Next season" aria-pressed="false">Next season</button><button type="button" data-choice="when" data-value="Exploring" aria-pressed="false">Exploring</button></span>
+</label></form>
+    </div>
+    <aside class="summary">
+      <p class="eyebrow">Your brief so far</p>
+      <dl id="sum"></dl>
+      <div class="brief">
+        <label for="brief">Plain-English brief</label>
+        <textarea id="brief" rows="12" readonly></textarea>
+        <div class="row"><button class="act" id="copy" type="button">Copy brief</button>
+        <span id="status" role="status" aria-live="polite">Ready when you are.</span></div>
+      </div>
+    </aside>
+  </div></div></section>
+</main>
+
+<footer><div class="wrap">
+  <p><strong>Independent demonstration by Preview Factory.</strong> This page is not the official Oakview Landscape Construction website,
+  and no relationship or endorsement is implied. Services shown are the company's own published wording.
+  Nothing here is a quote: dimensions, availability, local requirements and price need their confirmation.</p>
+  <p style="margin-top:12px"><a href="https://www.oakviewlandscapeconstruction.com/" target="_blank" rel="noopener noreferrer">Official Oakview Landscape Construction website ↗</a></p>
+</div></footer>
+
+<script>
+(function(){
+  var Д = {"name":"Oakview Landscape Construction","region":"Decatur, Georgia","official":"https://www.oakviewlandscapeconstruction.com/","fields":[{"key":"area","type":"choice","label":"Which part of the property","options":["Front yard","Back yard","Both","A single bed or corner"]},{"key":"size","type":"number","label":"Approximate area","unit":"sq ft","min":50,"max":40000,"step":10,"value":1200,"hint":"Pacing it out is accurate enough to start."},{"key":"goal","type":"select","label":"What you want from it","options":["Planting and beds","Lawn renovation","Hardscape (patio, walkway, wall)","Drainage problem","Full redesign","Not sure yet"]},{"key":"access","type":"choice","label":"Access for equipment","options":["Open side access","Narrow gate only","Through the house only","Not sure"]},{"key":"when","type":"choice","label":"Timing","options":["This season","Next season","Exploring"]}],"lead":"Landscape project notes for Oakview Landscape Construction.","notes":[],"unknowns":["Existing irrigation and where the lines run","Slope and where water collects after rain","HOA or city rules for the street-facing side"]};
+  var выбор = {};
+  var $ = function(s){ return document.querySelector(s); };
+  // Числовое поле чистится и ПЕРЕЗАПИСЫВАЕТСЯ: экран и бриф не должны
+  // расходиться — именно на этом ломался первый планировщик.
+  function число(f, сырое){
+    var v = String(сырое == null ? '' : сырое).replace(/[^0-9.]/g, '');
+    var n = parseFloat(v);
+    if (!isFinite(n)) return null;
+    n = Math.min(f.max, Math.max(f.min, n));
+    if ((f.step || 1) >= 1) n = Math.round(n);
+    return n;
+  }
+  Д.fields.forEach(function(f){
+    if (f.type === 'number') выбор[f.key] = f.value;
+    else выбор[f.key] = f.options[0];
+  });
+  function строка(f){
+    var v = выбор[f.key];
+    if (f.type === 'number') return v + (f.unit ? ' ' + f.unit : '');
+    return String(v);
+  }
+  function рисовать(){
+    var dl = $('#sum'); dl.innerHTML = '';
+    Д.fields.forEach(function(f){
+      var dt = document.createElement('dt'); dt.textContent = f.label;
+      var dd = document.createElement('dd'); dd.textContent = строка(f);
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    $('#brief').value = текст();
+  }
+  function текст(){
+    var L = [];
+    L.push(Д.lead || ('Project notes for a conversation with ' + Д.name + '.'));
+    L.push('');
+    Д.fields.forEach(function(f){ L.push('- ' + f.label + ': ' + строка(f)); });
+    if (Д.notes.length){ L.push(''); Д.notes.forEach(function(x){ L.push('- ' + x); }); }
+    if (Д.unknowns.length){
+      L.push(''); L.push('Still to confirm with them:');
+      Д.unknowns.forEach(function(x){ L.push('- ' + x); });
+    }
+    L.push('');
+    L.push('Prepared with an independent planning demo. Not a quote and not an order.');
+    L.push(Д.name + ' — ' + Д.region + ' — ' + Д.official);
+    return L.join('\n');
+  }
+  document.addEventListener('input', function(ev){
+    var el = ev.target;
+    var f = Д.fields.filter(function(x){ return x.key === el.name; })[0];
+    if (!f) return;
+    if (f.type === 'number'){
+      var n = число(f, el.value);
+      var плохо = document.querySelector('[data-bad="' + f.key + '"]');
+      if (n === null){ if (плохо){ плохо.hidden = false; плохо.textContent = 'Enter a number between ' + f.min + ' and ' + f.max + '.'; } return; }
+      if (плохо) плохо.hidden = true;
+      if (String(n) !== el.value) el.value = n;   // экран = состояние
+      выбор[f.key] = n;
+    } else {
+      выбор[f.key] = el.value;
+    }
+    рисовать();
+  });
+  document.addEventListener('click', function(ev){
+    var b = ev.target.closest('[data-choice]');
+    if (b){
+      var k = b.getAttribute('data-choice');
+      выбор[k] = b.getAttribute('data-value');
+      Array.prototype.forEach.call(document.querySelectorAll('[data-choice="' + k + '"]'), function(x){
+        x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      рисовать();
+      return;
+    }
+    if (ev.target.id === 'copy'){
+      var t = $('#brief');
+      var готово = function(){ $('#status').textContent = 'Copied. Paste it into an email or a note.'; };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t.value).then(готово, запасной);
+      } else запасной();
+      function запасной(){
+        t.removeAttribute('readonly'); t.select();
+        try { document.execCommand('copy'); готово(); }
+        catch(e){ $('#status').textContent = 'Select the text above and copy it.'; }
+        t.setAttribute('readonly','readonly');
+      }
+    }
+  });
+  рисовать();
+})();
+</script>
+</body></html>
