@@ -14,12 +14,13 @@
     "schema": "node scripts/inject-entity-schema.js",
     "llms": "node scripts/generate-llms-txt.js",
     "facts": "npm run schema && npm run llms",
-    "all": "npm run i18n && npm run pages && npm run showcase && npm run home && npm run facts && npm run css && npm run sitemap",
+    "all": "npm run i18n && npm run pages && npm run showcase && npm run work && npm run home && npm run facts && npm run css && npm run sitemap",
     "check:ai": "node scripts/check-ai-crawlers.js",
     "check:links": "node scripts/check-links.js",
     "i18n": "python3 scripts/check-i18n.py",
     "home": "python3 scripts/build_home.py",
-    "showcase": "python3 scripts/build_showcase.py"
+    "showcase": "python3 scripts/build_showcase.py",
+    "work": "python3 scripts/build_work.py"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",

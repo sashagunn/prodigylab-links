@@ -37,6 +37,9 @@ CATALOG = os.path.join(ROOT, 'SHOWCASE.json')
 OUT = {'en': 'showcase/index.html', 'ru': 'ru/showcase/index.html',
        'es': 'es/showcase/index.html', 'pt': 'pt/showcase/index.html',
        'de': 'de/showcase/index.html'}
+РАБОТА = {'en': '/work/', 'ru': '/ru/work/', 'es': '/es/work/',
+          'pt': '/pt/work/', 'de': '/de/work/'}
+
 PAGE_PATH = {'en': '/showcase/', 'ru': '/ru/showcase/', 'es': '/es/showcase/',
              'pt': '/pt/showcase/', 'de': '/de/showcase/'}
 # Сколько карточек показывать сразу. Остальные — по кнопке: каталог будет
@@ -168,8 +171,8 @@ def карточка(it: dict, code: str, *, компактная: bool = False)
         f'<div class="sc-body">'
         f'<span class="sc-tags"><span class="mono">{e(ниша)}</span>'
         f'<span class="mono">{e(решение)}</span></span>'
-        f'<h3><a href="{демо}" target="_blank" rel="noopener" aria-label="{e(aria)}">'
-        f'{e(название)}<i aria-hidden="true">&#8599;</i></a></h3>'
+        f'<h3><a href="{РАБОТА.get(code, "/work/")}{it["slug"]}/">'
+        f'{e(название)}</a></h3>'
         f'<p>{e(it["short_description"][code])}</p>'
         f'{если_компактная}{низ}'
         f'</div></article>')
