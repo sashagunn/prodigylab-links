@@ -33,7 +33,8 @@ ASSISTANT_API = os.environ.get("PL_ASSISTANT_API",
 ОБРАЗЕЦ = '/showcase/covers/saeng-thai-house.jpg'
 
 import hero_sections as HS  # noqa: E402
-from hero_content import (ИМЕНА, КАМПАНИИ, ЯЗЫКИ, H1, НАБОРЫ, ПОДСКАЗКИ,  # noqa: E402
+from hero_content import (ИМЕНА, КАМПАНИИ, ЯЗЫКИ, H1, НАБОРЫ, ПОДСКАЗКИ,
+                          ПАРТНЁРЫ, ПАРТНЁР_ПОДПИСИ,  # noqa: E402
                           S)
 
 CSS = """
@@ -986,6 +987,18 @@ JS = """
   var список=(б.examples||[]).slice(0,2);
   var ссылка='<a class="pf-all" href="'+ссылкаГалереи(к)+'">'+экр(L.all)+' &rarr;</a>';
   if(!список.length){
+   // Своего опубликованного примера по этой задаче нет. Если направление
+   // закрывает проверенный партнёр — показываем его путь, а не пустую
+   // строку. Имя называем только там, где партнёр готов принять задачу.
+   var P=(DATA[ЯЗЫК].partners||{})[к], PL=DATA[ЯЗЫК].pl||{};
+   if(P){
+    return '<div class="pf-partner"><p class="pf-eyebrow">'+экр(PL.title||'')+'</p>'
+     +'<div class="pf-partner-n">'+экр(P.name)+'<span>'+экр(P.role)+'</span></div>'
+     +'<div class="pf-partner-two">'
+     +'<div><h4>'+экр(PL.ours||'')+'</h4><p>'+экр(P.we)+'</p></div>'
+     +'<div><h4>'+экр(PL.theirs||'')+'</h4><p>'+экр(P.role)+'</p></div></div>'
+     +'<p class="pf-note">'+экр(P.limit)+'</p></div>';
+   }
    return '<div class="pf-cases"><div class="pf-cases-h"><p class="pf-eyebrow">'
     +экр(L.example)+'</p>'+ссылка+'</div>'
     +'<p class="pf-nocase">'+экр(L.no_case)+'</p></div>';
@@ -1312,6 +1325,9 @@ def _данные() -> dict:
             "sets": НАБОРЫ[код],
             "hints": {к: v[код] for к, v in ПОДСКАЗКИ.items()},
             "sections": HS.данные(код),
+            "partners": {к: {"name": v["name"], **v[код]}
+                         for к, v in ПАРТНЁРЫ.items()},
+            "pl": ПАРТНЁР_ПОДПИСИ[код],
         }
     return из
 

@@ -530,3 +530,64 @@ def _н(main, near=()):
    'pt': ['Produtos', 'Serviços', 'Os dois'],
    'de': ['Produkte', 'Dienstleistungen', 'Beides']},
 }
+
+
+# Партнёрский путь по денежным направлениям.
+#
+# Имена называем только там, где партнёр в реестре помечен ACTIVE и готов
+# принимать передачу: Easy Pay Direct (платежи) и Narvi (банк). Остальные
+# направления ещё в ожидании ответа — там имён нет и быть не должно.
+# Ссылку здесь не даём намеренно: партнёрская ссылка отдаётся в разговоре
+# после согласия, а не висит на странице.
+ПАРТНЁРЫ = {
+ 'payments': {
+   'name': 'Easy Pay Direct',
+   'ru': dict(role='Приём платежей и merchant-аккаунты',
+              we='Мы разбираем, что произошло и на каком основании, и передаём задачу по-тёплому.',
+              limit='Решение принимает процессор. Одобрение и сроки не обещаем.'),
+   'en': dict(role='Card acceptance and merchant accounts',
+              we='We work out what happened and on what grounds, then hand the task over warmly.',
+              limit='The processor decides. We promise neither approval nor timing.'),
+   'es': dict(role='Cobros con tarjeta y cuentas de comercio',
+              we='Analizamos qué pasó y con qué fundamento, y entregamos la tarea en caliente.',
+              limit='Decide el procesador. No prometemos aprobación ni plazos.'),
+   'pt': dict(role='Recebimento de cartões e contas de comerciante',
+              we='Analisamos o que aconteceu e com que base, e passamos a tarefa de forma acompanhada.',
+              limit='Quem decide é o processador. Não prometemos aprovação nem prazos.'),
+   'de': dict(role='Kartenzahlungen und Merchant-Konten',
+              we='Wir klären, was passiert ist und auf welcher Grundlage, und übergeben die Aufgabe persönlich.',
+              limit='Es entscheidet der Prozessor. Zusagen zu Freigabe und Fristen machen wir nicht.'),
+ },
+ 'banking': {
+   'name': 'Narvi',
+   'ru': dict(role='Счёт для международных компаний и иностранных учредителей',
+              we='Мы разбираем ситуацию со счётом и передаём задачу по-тёплому.',
+              limit='Решение принимает банк. Открытие счёта и сроки не обещаем.'),
+   'en': dict(role='Accounts for international companies and foreign founders',
+              we='We work through the account situation and hand the task over warmly.',
+              limit='The bank decides. We promise neither an account nor timing.'),
+   'es': dict(role='Cuentas para empresas internacionales y fundadores extranjeros',
+              we='Analizamos la situación de la cuenta y entregamos la tarea en caliente.',
+              limit='Decide el banco. No prometemos apertura ni plazos.'),
+   'pt': dict(role='Contas para empresas internacionais e fundadores estrangeiros',
+              we='Analisamos a situação da conta e passamos a tarefa de forma acompanhada.',
+              limit='Quem decide é o banco. Não prometemos abertura nem prazos.'),
+   'de': dict(role='Konten für internationale Firmen und ausländische Gründer',
+              we='Wir gehen die Kontosituation durch und übergeben die Aufgabe persönlich.',
+              limit='Es entscheidet die Bank. Zusagen zu Konto und Fristen machen wir nicht.'),
+ },
+}
+
+# Подписи блока партнёрского пути.
+ПАРТНЁР_ПОДПИСИ = {
+ 'ru': dict(title='Кто решает эту часть', ours='Что делаем мы',
+            theirs='Что делает партнёр', note='Партнёр проверен и готов принять задачу.'),
+ 'en': dict(title='Who handles this part', ours='What we do',
+            theirs='What the partner does', note='The partner is vetted and ready to take the task.'),
+ 'es': dict(title='Quién se encarga de esta parte', ours='Qué hacemos nosotros',
+            theirs='Qué hace el socio', note='El socio está verificado y listo para asumir la tarea.'),
+ 'pt': dict(title='Quem resolve essa parte', ours='O que nós fazemos',
+            theirs='O que o parceiro faz', note='O parceiro foi verificado e está pronto para assumir.'),
+ 'de': dict(title='Wer diesen Teil übernimmt', ours='Was wir tun',
+            theirs='Was der Partner tut', note='Der Partner ist geprüft und bereit, die Aufgabe zu übernehmen.'),
+}

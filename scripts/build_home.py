@@ -810,6 +810,21 @@ body[data-flow="money"] #works,
 body[data-flow="ops"] #works{display:none}
 .wk-all{display:inline-block;margin-top:16px;color:var(--accent2);
   text-decoration:underline;text-underline-offset:4px;font-size:14.5px}
+
+/* ============================================ партнёрский путь в воронке */
+.pf-partner{background:rgba(28,126,132,.14);border:1px solid rgba(28,126,132,.4);
+  border-radius:var(--r);padding:clamp(16px,2vw,24px)}
+.pf-partner .pf-eyebrow{color:#9FD4C4}
+.pf-partner-n{margin-top:10px;font-size:20px;font-weight:600;color:#fff}
+.pf-partner-n span{display:block;font-size:14px;font-weight:400;color:var(--on-dark2);
+  margin-top:3px}
+.pf-partner-two{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(14px,1.6vw,22px)}
+.pf-partner-two h4{margin:0;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--on-dark2);font-weight:400}
+.pf-partner-two p{margin-top:6px;font-size:14px;color:var(--on-dark)}
+.pf-partner .pf-note{margin-top:14px;color:var(--on-dark2);font-size:13px}
+@media (max-width:700px){ .pf-partner-two{grid-template-columns:1fr} }
 """
 
 
