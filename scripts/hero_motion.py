@@ -227,7 +227,7 @@ JS = """
   try{ localStorage.setItem('pl-hm-sid',н); }catch(e){}
   return н;
  })();
- var занят=false, начали=false;
+ var занят=false, начали=false, ждётВыбора=null;
  var тонкая=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  var ситуация='', ключВопроса='', финалБлок=null;
 
@@ -485,6 +485,13 @@ JS = """
  // ------------------------------------------------------------------ обмен
  async function послать(тело, эхо){
   if(занят) return;
+  // Человек заговорил, не ответив на «продолжить прошлое?». Значит начинает
+  // новое: на старую сессию его реплику слать нельзя — вернётся чужое для
+  // него состояние. Прошлый разговор при этом не удаляется.
+  if(ждётВыбора){
+   ждётВыбора.querySelectorAll('button').forEach(function(б){ б.remove(); });
+   ждётВыбора=null; новаяСессия();
+  }
   занят=true; кнопка.disabled=true;
   var w=ждём();
   try{
@@ -795,18 +802,18 @@ JS = """
     }catch(e){}
    }
    var узел=сказать('note',T().resume_old+'. '+T().resume_q);
+   ждётВыбора=узел;
    var да=document.createElement('button');
    да.type='button'; да.className='tr'; да.textContent=T().resume_yes;
    var нет=document.createElement('button');
    нет.type='button'; нет.className='tr'; нет.textContent=T().resume_no;
    узел.appendChild(да); узел.appendChild(нет);
    да.addEventListener('click',function(){
-    да.remove(); нет.remove(); восстановить(d);
+    да.remove(); нет.remove(); ждётВыбора=null; восстановить(d);
    });
    нет.addEventListener('click',function(){
     // Прошлый разговор не удаляем — просто начинаем новый.
-    да.remove(); нет.remove(); новаяСессия();
-    сказать('note',T().kept);
+    да.remove(); нет.remove(); ждётВыбора=null; новаяСессия();
    });
   }catch(e){}
  }
