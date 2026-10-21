@@ -42,11 +42,16 @@ CSS = """
    шапку: иначе диалог дёргался бы при каждом открытии. */
 .lang{margin-left:auto;position:relative}
 .lang>button{font:500 12.5px/1 var(--mono);letter-spacing:.06em;color:var(--ink2);
- background:transparent;border:1px solid var(--line);padding:6px 9px;cursor:pointer}
+ background:transparent;border:1px solid var(--line);padding:6px 9px;cursor:pointer;
+ display:inline-flex;align-items:center;gap:6px}
+.lang>button::after{content:"▾";font-size:10px;line-height:1;color:var(--ink3)}
+.lang>button[aria-expanded="true"]::after{content:"▴";color:var(--accent)}
 .lang>button:hover{color:var(--ink);border-color:var(--ink3)}
 .lang>button[aria-expanded="true"]{color:var(--ink);border-color:var(--accent)}
-.lang ul{position:absolute;right:0;top:calc(100% + 5px);z-index:5;margin:0;padding:4px;
- list-style:none;background:#fff;border:1px solid var(--line);min-width:132px}
+.lang ul{position:absolute;right:0;top:calc(100% + 5px);z-index:40;margin:0;padding:4px;
+ list-style:none;background:#fff;border:1px solid var(--line);min-width:132px;
+ box-shadow:0 1px 0 var(--line)}
+.lang[data-open="1"]{z-index:40}
 .lang[hidden],.lang ul[hidden]{display:none}
 .lang li+li{margin-top:1px}
 .lang ul button{display:block;width:100%;text-align:left;font:400 14px/1.2 var(--sans);
@@ -543,6 +548,7 @@ JS = """
   чипы.querySelectorAll('button').forEach(function(x){
    x.setAttribute('aria-pressed', x===б?'true':'false'); });
   ситуация=k; заголовок(k); сказать('you',б.textContent.trim());
+  свернутьСетку(б.textContent.trim());
   послать({action:'start',situation:k,text:б.textContent.trim()});
   поле.focus({preventScroll:true});
  });
@@ -566,6 +572,7 @@ JS = """
   var открыт=кнЯз.getAttribute('aria-expanded')==='true';
   кнЯз.setAttribute('aria-expanded', открыт?'false':'true');
   списокЯз.hidden=открыт;
+  ролик.setAttribute('data-open', открыт?'0':'1');
   if(!открыт){ var п=списокЯз.querySelector('button'); if(п) п.focus(); }
  });
  списокЯз.addEventListener('click',function(ev){
@@ -765,6 +772,65 @@ JS = """
    window.setTimeout(function(){ поле.focus({preventScroll:true}); }, тонкая?0:420);
   });
   применитьРаздел('');
+ }
+
+ // ------------------------------------------------- выбор направления
+ // Одно действие на все элементы: чип в первом экране и карточка в сетке
+ // «что решаем» делают одно и то же — ставят направление в том же
+ // состоянии, которое ведёт разговор. Собранные ответы не стираются.
+ var сетка=document.getElementById('layers');
+ var выбрано=document.getElementById('layers-picked');
+ var выбраноИмя=document.getElementById('layers-name');
+ var сменитьСлой=document.getElementById('layers-change');
+
+ function свернутьСетку(имя){
+  if(!сетка||!выбрано) return;
+  сетка.hidden=true; выбрано.hidden=false;
+  if(выбраноИмя) выбраноИмя.textContent=имя||'';
+  if(сменитьСлой) сменитьСлой.textContent=T().change;
+ }
+ function развернутьСетку(){
+  if(!сетка||!выбрано) return;
+  сетка.hidden=false; выбрано.hidden=true;
+ }
+ async function выбратьНаправление(слой, имя){
+  if(занят) return;
+  if(ждётВыбора){
+   ждётВыбора.querySelectorAll('button').forEach(function(б){ б.remove(); });
+   ждётВыбора=null; новаяСессия();
+  }
+  занят=true;
+  var w=ждём();
+  try{
+   var r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
+     body:JSON.stringify({session:сессия,lang:ЯЗЫК,action:'layer',layer:слой})});
+   var d=await r.json(); w.remove();
+   if(!d.ok) throw new Error(d.error||'');
+   начали=true; поле.placeholder=T().input_next;
+   свернутьСетку(имя);
+   показатьРаздел(d['тема']||'', d['известно']);
+   var р=d['резюме']||[];
+   шаг(шагЗадача, р.length?р.join(' · '):T().undefined, р.length?'done':'');
+   if(d['вопрос']){
+    сказать('bot',d['вопрос'],d['вопрос_ключ']);
+    подсказатьК(d['вопрос_ключ']);
+    шаг(шагУточн,d['вопрос'],'live');
+   }
+   var я=document.getElementById('hm-hero');
+   if(я) я.scrollIntoView({behavior: тонкая?'auto':'smooth', block:'start'});
+   window.setTimeout(function(){ поле.focus({preventScroll:true}); }, тонкая?0:420);
+  }catch(e){ w.remove(); сказать('err',T().offline); }
+  занят=false;
+ }
+ if(сетка){
+  сетка.addEventListener('click',function(ev){
+   var б=ev.target.closest('button[data-layer]'); if(!б) return;
+   выбратьНаправление(б.getAttribute('data-layer'),
+                      (б.querySelector('b')||{}).textContent||'');
+  });
+ }
+ if(сменитьСлой){
+  сменитьСлой.addEventListener('click',function(){ развернутьСетку(); });
  }
 
  // Пока первый экран на виду, закреплённая кнопка не показывается: поле

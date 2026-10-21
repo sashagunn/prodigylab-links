@@ -47,9 +47,12 @@ backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
 .nav-mid a{font-size:14.5px;color:var(--ink2);text-decoration:none}
 .nav-mid a:hover{color:var(--accent)}
 .nav-right{display:flex;align-items:center;gap:2px}
-.langs{display:none;gap:2px;margin-right:6px}@media(min-width:960px){.langs{display:flex}}
-.langs a{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink3);
-text-decoration:none;padding:8px 6px}
+/* Языки видны на любой ширине: спрятанные в бургер, они не давали понять,
+   что у сайта вообще есть другие языки. */
+.langs{display:flex;gap:0;margin-right:4px}
+.langs a{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--ink3);
+text-decoration:none;padding:8px 4px}
+@media(min-width:600px){.langs{gap:2px;margin-right:6px}.langs a{padding:8px 6px;letter-spacing:.1em}}
 .langs a:hover,.langs a[aria-current]{color:var(--accent)}
 .icon{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;
 color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer}

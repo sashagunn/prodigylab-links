@@ -325,10 +325,10 @@ def _б(problem, approach, steps, need, limits, cta):
  'ru': _б('Бизнесу нужны деньги на рост или кассовый разрыв',
           'Сначала считаем, под что берутся деньги и чем они возвращаются. '
           'Потом смотрим, какие площадки вообще рассматривают такой профиль.',
-          [('Считаем цель', 'Подо что деньги и что они закроют'),
+          [('Считаем цель Действующего партнёра по финансированию у нас сейчас нет: следующий шаг — разбор нашей командой, а не передача конкретному провайдеру.', 'Подо что деньги и что они закроют'),
            ('Смотрим профиль', 'Возраст бизнеса, оборот, уже взятые обязательства'),
            ('Готовим пакет', 'Выписки и документы в том виде, в каком их читают'),
-           ('Передаём партнёру', 'Профильному, с вашего согласия')],
+           ('Говорим прямо', 'Что реально подходит, а что нет')],
           ['Сколько нужно и на что', 'Оборот в месяц и возраст бизнеса',
            'Уже имеющиеся кредиты'],
           'Условия, ставку и одобрение определяет кредитор. Мы не обещаем ни '
@@ -337,10 +337,10 @@ def _б(problem, approach, steps, need, limits, cta):
  'en': _б('The business needs money for growth or a cash gap',
           'First we work out what the money is for and what repays it. '
           'Then which venues even look at a profile like this.',
-          [('Count the goal', 'What the money is for and what it closes'),
+          [('Count the goal We have no active funding partner right now: the next step is a review by our own team, not a handoff to a named provider.', 'What the money is for and what it closes'),
            ('Look at the profile', 'Age, revenue, obligations already taken'),
            ('Prepare the pack', 'Statements and documents in the form they are read'),
-           ('Hand to a partner', 'A specialist one, with your consent')],
+           ('Say it straight', 'What actually fits and what does not')],
           ['How much and what for', 'Monthly revenue and age of the business',
            'Loans you already have'],
           'Terms, rate and approval are set by the lender. We promise no amount, '
@@ -349,10 +349,10 @@ def _б(problem, approach, steps, need, limits, cta):
  'es': _б('El negocio necesita dinero para crecer o cubrir caja',
           'Primero calculamos para qu\u00e9 es el dinero y con qu\u00e9 se devuelve. '
           'Luego qu\u00e9 entidades miran siquiera un perfil as\u00ed.',
-          [('Calculamos el objetivo', 'Para qu\u00e9 es el dinero y qu\u00e9 cubre'),
+          [('Calculamos el objetivo Hoy no tenemos socio activo de financiación: el siguiente paso es un análisis de nuestro equipo, no un traspaso a un proveedor concreto.', 'Para qu\u00e9 es el dinero y qu\u00e9 cubre'),
            ('Miramos el perfil', 'Antig\u00fcedad, facturaci\u00f3n, obligaciones ya tomadas'),
            ('Preparamos el paquete', 'Extractos y documentos como se leen'),
-           ('Pasamos al socio', 'Al especialista, con su consentimiento')],
+           ('Decimos claro', 'Qué encaja de verdad y qué no')],
           ['Cu\u00e1nto y para qu\u00e9', 'Facturaci\u00f3n mensual y antig\u00fcedad',
            'Pr\u00e9stamos que ya tiene'],
           'Las condiciones, la tasa y la aprobaci\u00f3n las fija el prestamista. No '
@@ -361,10 +361,10 @@ def _б(problem, approach, steps, need, limits, cta):
  'pt': _б('O neg\u00f3cio precisa de dinheiro para crescer ou cobrir caixa',
           'Primeiro calculamos para que \u00e9 o dinheiro e com o que ele volta. '
           'Depois quais institui\u00e7\u00f5es sequer olham um perfil assim.',
-          [('Calculamos o objetivo', 'Para que \u00e9 o dinheiro e o que ele cobre'),
+          [('Calculamos o objetivo Hoje não temos parceiro ativo de financiamento: o próximo passo é uma análise da nossa equipe, não um repasse a um fornecedor específico.', 'Para que \u00e9 o dinheiro e o que ele cobre'),
            ('Olhamos o perfil', 'Idade, faturamento, obriga\u00e7\u00f5es j\u00e1 assumidas'),
            ('Preparamos o pacote', 'Extratos e documentos no formato em que s\u00e3o lidos'),
-           ('Passamos ao parceiro', 'Ao especialista, com o seu consentimento')],
+           ('Falamos direto', 'O que realmente serve e o que não')],
           ['Quanto e para qu\u00ea', 'Faturamento mensal e idade do neg\u00f3cio',
            'Empr\u00e9stimos que j\u00e1 tem'],
           'Condi\u00e7\u00f5es, taxa e aprova\u00e7\u00e3o s\u00e3o do credor. N\u00e3o prometemos valor, '
@@ -373,10 +373,10 @@ def _б(problem, approach, steps, need, limits, cta):
  'de': _б('Das Gesch\u00e4ft braucht Geld f\u00fcr Wachstum oder eine Liquidit\u00e4tsl\u00fccke',
           'Zuerst rechnen wir, wof\u00fcr das Geld ist und womit es zur\u00fcckkommt. '
           'Dann, welche Stellen so ein Profil \u00fcberhaupt ansehen.',
-          [('Ziel rechnen', 'Wof\u00fcr das Geld ist und was es schlie\u00dft'),
+          [('Ziel rechnen Einen aktiven Finanzierungspartner haben wir derzeit nicht: der nächste Schritt ist eine Prüfung durch unser Team, keine Weitergabe an einen bestimmten Anbieter.', 'Wof\u00fcr das Geld ist und was es schlie\u00dft'),
            ('Profil ansehen', 'Alter, Umsatz, bereits bestehende Verpflichtungen'),
            ('Paket vorbereiten', 'Ausz\u00fcge und Unterlagen in der gelesenen Form'),
-           ('An Partner geben', 'An den Fachpartner, mit Ihrer Zustimmung')],
+           ('Klar sagen', 'Was wirklich passt und was nicht')],
           ['Wie viel und wof\u00fcr', 'Monatsumsatz und Alter des Gesch\u00e4fts',
            'Bereits bestehende Kredite'],
           'Konditionen, Zins und Zusage bestimmt der Kreditgeber. Wir versprechen '
@@ -662,7 +662,7 @@ def markup(lang: str = 'ru') -> str:
     """
     # Якоря навигации переезжают сюда вместе с содержанием: «что разбираем»
     # и «как устроено» теперь объясняет этот раздел, а не два отдельных.
-    return (f'<section id="pf"><div class="pf-in" id="problems">'
+    return (f'<section id="pf"><div class="pf-in">'
             f'{вариант("", lang, None)}</div>'
             f'<div class="pf-switch" id="pf-switch" data-on="0">'
             f'<button type="button"></button></div>'
@@ -697,3 +697,281 @@ def данные(lang: str) -> dict:
                          for и in кандидаты(направление)],
         }
     return из
+
+
+БЛОКИ['growth'] = {
+ 'ru': _б('Трафик есть, а выручки нет',
+          'Смотрим путь от показа до оплаты и ищем, на каком шаге теряются люди. '
+          'Чинить начинаем с самого дорогого обрыва, а не с самого заметного.',
+          [('Считаем путь', 'Показы, клики, заявки, продажи — по шагам'),
+           ('Находим дорогой обрыв', 'Где теряется больше всего денег'),
+           ('Меняем одно', 'Так видно, что именно сработало'),
+           ('Повторяем', 'Следующий шаг выбираем по замеру')],
+          ['Откуда сейчас идёт трафик', 'Сколько заявок и продаж в месяц',
+           'Что уже пробовали менять'],
+          'Рост в процентах заранее не называем: до замера это обещание, а не расчёт.',
+          'Разобрать воронку'),
+ 'en': _б('Traffic comes in, revenue does not',
+          'We follow the path from impression to payment and find the step where '
+          'people drop. We fix the most expensive break, not the most visible one.',
+          [('Count the path', 'Impressions, clicks, enquiries, sales — step by step'),
+           ('Find the costly break', 'Where the most money is lost'),
+           ('Change one thing', 'So it is clear what actually worked'),
+           ('Repeat', 'The next step follows the measurement')],
+          ['Where the traffic comes from now', 'Enquiries and sales per month',
+           'What you already tried to change'],
+          'We do not name a growth percentage in advance: before measuring that '
+          'is a promise, not a calculation.',
+          'Work through the funnel'),
+ 'es': _б('Hay tr\u00e1fico, pero no ingresos',
+          'Seguimos el camino de la impresi\u00f3n al pago y buscamos en qu\u00e9 paso se '
+          'pierde la gente. Arreglamos el corte m\u00e1s caro, no el m\u00e1s visible.',
+          [('Contamos el camino', 'Impresiones, clics, solicitudes, ventas'),
+           ('Hallamos el corte caro', 'D\u00f3nde se pierde m\u00e1s dinero'),
+           ('Cambiamos una cosa', 'As\u00ed se ve qu\u00e9 funcion\u00f3 de verdad'),
+           ('Repetimos', 'El siguiente paso sigue a la medici\u00f3n')],
+          ['De d\u00f3nde viene el tr\u00e1fico ahora', 'Solicitudes y ventas al mes',
+           'Qu\u00e9 ya intent\u00f3 cambiar'],
+          'No damos un porcentaje de crecimiento por adelantado: sin medir eso '
+          'es una promesa, no un c\u00e1lculo.',
+          'Analizar el embudo'),
+ 'pt': _б('H\u00e1 tr\u00e1fego, mas n\u00e3o h\u00e1 receita',
+          'Seguimos o caminho da impress\u00e3o at\u00e9 o pagamento e achamos em que passo '
+          'as pessoas saem. Consertamos a quebra mais cara, n\u00e3o a mais vis\u00edvel.',
+          [('Contamos o caminho', 'Impress\u00f5es, cliques, solicita\u00e7\u00f5es, vendas'),
+           ('Achamos a quebra cara', 'Onde se perde mais dinheiro'),
+           ('Mudamos uma coisa', 'Assim d\u00e1 para ver o que funcionou'),
+           ('Repetimos', 'O pr\u00f3ximo passo segue a medi\u00e7\u00e3o')],
+          ['De onde vem o tr\u00e1fego hoje', 'Solicita\u00e7\u00f5es e vendas por m\u00eas',
+           'O que voc\u00ea j\u00e1 tentou mudar'],
+          'N\u00e3o damos uma porcentagem de crescimento antes: sem medir isso \u00e9 '
+          'promessa, n\u00e3o c\u00e1lculo.',
+          'Analisar o funil'),
+ 'de': _б('Traffic kommt, Umsatz nicht',
+          'Wir gehen den Weg von der Einblendung bis zur Zahlung und suchen den '
+          'Schritt, an dem Leute abspringen. Wir beheben den teuersten Bruch.',
+          [('Weg z\u00e4hlen', 'Einblendungen, Klicks, Anfragen, Verk\u00e4ufe'),
+           ('Teuren Bruch finden', 'Wo das meiste Geld verloren geht'),
+           ('Eines \u00e4ndern', 'So ist klar, was wirklich gewirkt hat'),
+           ('Wiederholen', 'Der n\u00e4chste Schritt folgt der Messung')],
+          ['Woher der Traffic heute kommt', 'Anfragen und Verk\u00e4ufe pro Monat',
+           'Was Sie schon ge\u00e4ndert haben'],
+          'Eine Wachstumszahl nennen wir nicht im Voraus: ohne Messung ist das '
+          'ein Versprechen, keine Rechnung.',
+          'Den Funnel durchgehen'),
+}
+
+БЛОКИ['accounting'] = {
+ 'ru': _б('Книги отстали, а сроки — нет',
+          'Сначала понимаем, за какой период и что именно не закрыто. '
+          'Потом — что горит по срокам, а что можно разобрать спокойно.',
+          [('Смотрим период', 'За сколько месяцев книги не в порядке'),
+           ('Отделяем срочное', 'Что с дедлайнами, что без'),
+           ('Разбираем завал', 'По порядку, а не всё сразу'),
+           ('Ставим учёт', 'Чтобы это не повторилось в следующем году')],
+          ['Форма компании и штат', 'За какой период не закрыто',
+           'Есть ли письма от налоговой'],
+          'Мы не оказываем лицензированных налоговых и юридических консультаций. '
+          'Где нужен CPA или юрист, мы это говорим, а не заменяем их собой.',
+          'Разобрать ситуацию'),
+ 'en': _б('The books are behind, the deadlines are not',
+          'First we work out which period is open and what exactly is missing. '
+          'Then what is urgent and what can be cleaned up calmly.',
+          [('Look at the period', 'How many months are not in order'),
+           ('Separate the urgent', 'What has deadlines and what does not'),
+           ('Clear the backlog', 'In order, not all at once'),
+           ('Set up bookkeeping', 'So next year does not repeat this')],
+          ['Entity type and headcount', 'Which period is open',
+           'Whether letters from the tax authority arrived'],
+          'We do not provide licensed tax or legal advice. Where a CPA or a '
+          'lawyer is needed, we say so instead of standing in for them.',
+          'Work through the situation'),
+ 'es': _б('La contabilidad est\u00e1 atrasada, los plazos no',
+          'Primero vemos qu\u00e9 per\u00edodo est\u00e1 abierto y qu\u00e9 falta exactamente. '
+          'Luego qu\u00e9 es urgente y qu\u00e9 se puede ordenar con calma.',
+          [('Vemos el per\u00edodo', 'Cu\u00e1ntos meses no est\u00e1n en orden'),
+           ('Separamos lo urgente', 'Qu\u00e9 tiene plazo y qu\u00e9 no'),
+           ('Ordenamos el atraso', 'Por partes, no todo a la vez'),
+           ('Montamos el registro', 'Para que el pr\u00f3ximo a\u00f1o no se repita')],
+          ['Forma jur\u00eddica y plantilla', 'Qu\u00e9 per\u00edodo est\u00e1 abierto',
+           'Si llegaron cartas de Hacienda'],
+          'No damos asesor\u00eda fiscal ni legal licenciada. Donde hace falta un CPA '
+          'o un abogado, lo decimos en vez de sustituirlos.',
+          'Analizar la situaci\u00f3n'),
+ 'pt': _б('A contabilidade atrasou, os prazos n\u00e3o',
+          'Primeiro vemos qual per\u00edodo est\u00e1 aberto e o que exatamente falta. '
+          'Depois o que \u00e9 urgente e o que d\u00e1 para organizar com calma.',
+          [('Vemos o per\u00edodo', 'Quantos meses est\u00e3o fora de ordem'),
+           ('Separamos o urgente', 'O que tem prazo e o que n\u00e3o tem'),
+           ('Organizamos o atraso', 'Por partes, n\u00e3o tudo de uma vez'),
+           ('Montamos o registro', 'Para o pr\u00f3ximo ano n\u00e3o repetir')],
+          ['Forma jur\u00eddica e equipe', 'Qual per\u00edodo est\u00e1 aberto',
+           'Se chegaram cartas do fisco'],
+          'N\u00e3o prestamos consultoria fiscal ou jur\u00eddica licenciada. Onde \u00e9 preciso '
+          'um contador ou advogado, dizemos isso em vez de substitu\u00ed-los.',
+          'Analisar a situa\u00e7\u00e3o'),
+ 'de': _б('Die B\u00fccher sind im R\u00fcckstand, die Fristen nicht',
+          'Zuerst kl\u00e4ren wir, welcher Zeitraum offen ist und was genau fehlt. '
+          'Dann, was eilt und was in Ruhe aufger\u00e4umt werden kann.',
+          [('Zeitraum ansehen', 'Wie viele Monate nicht in Ordnung sind'),
+           ('Dringendes trennen', 'Was Fristen hat und was nicht'),
+           ('R\u00fcckstand aufr\u00e4umen', 'Der Reihe nach, nicht alles auf einmal'),
+           ('Buchhaltung aufsetzen', 'Damit sich das n\u00e4chstes Jahr nicht wiederholt')],
+          ['Rechtsform und Mitarbeiterzahl', 'Welcher Zeitraum offen ist',
+           'Ob Schreiben vom Finanzamt kamen'],
+          'Wir leisten keine lizenzierte Steuer- oder Rechtsberatung. Wo ein CPA '
+          'oder Anwalt n\u00f6tig ist, sagen wir das, statt sie zu ersetzen.',
+          'Die Lage durchgehen'),
+}
+
+
+БЛОКИ['infrastructure'] = {
+ 'ru': _б('Функции, ради которых нанимать дорого',
+          'Смотрим, какие задачи возникают регулярно, но не набирают на полную '
+          'ставку. Их закрывают инструментом или частичной занятостью.',
+          [('Считаем объём', 'Сколько часов в месяц это правда занимает'),
+           ('Отделяем повторяемое', 'Что можно описать правилом, а что нет'),
+           ('Берём инструмент', 'Там, где он дешевле и надёжнее человека'),
+           ('Оставляем человеку', 'То, где нужно решение, а не исполнение')],
+          ['Какие задачи возникают регулярно', 'Сколько времени они занимают',
+           'Что сейчас используете'],
+          'Мы не агентство по найму и не кадровое сопровождение: подбором '
+          'сотрудников и оформлением мы не занимаемся.',
+          'Разобрать задачи'),
+ 'en': _б('Functions too small to hire for',
+          'We look at which tasks come back regularly but never add up to a '
+          'full role. Those are covered by a tool or part-time help.',
+          [('Count the volume', 'How many hours a month it really takes'),
+           ('Separate the repeatable', 'What can be written as a rule and what cannot'),
+           ('Use a tool', 'Where it is cheaper and steadier than a person'),
+           ('Leave to a person', 'Where judgement is needed, not execution')],
+          ['Which tasks come back regularly', 'How much time they take',
+           'What you use now'],
+          'We are not a recruiting agency and do not handle hiring or employment '
+          'paperwork.',
+          'Work through the tasks'),
+ 'es': _б('Funciones por las que contratar sale caro',
+          'Vemos qu\u00e9 tareas vuelven con regularidad pero no llegan a un puesto '
+          'completo. Esas se cubren con una herramienta o jornada parcial.',
+          [('Contamos el volumen', 'Cu\u00e1ntas horas al mes lleva de verdad'),
+           ('Separamos lo repetible', 'Qu\u00e9 se puede escribir como regla'),
+           ('Tomamos una herramienta', 'Donde sale m\u00e1s barata y estable'),
+           ('Dejamos a la persona', 'Donde hace falta criterio, no ejecuci\u00f3n')],
+          ['Qu\u00e9 tareas vuelven con regularidad', 'Cu\u00e1nto tiempo llevan',
+           'Qu\u00e9 usa ahora'],
+          'No somos agencia de selecci\u00f3n ni gestionamos contrataci\u00f3n ni n\u00f3minas.',
+          'Analizar las tareas'),
+ 'pt': _б('Fun\u00e7\u00f5es caras demais para contratar',
+          'Vemos quais tarefas voltam com regularidade mas n\u00e3o chegam a um cargo '
+          'inteiro. Essas s\u00e3o cobertas por ferramenta ou meio per\u00edodo.',
+          [('Contamos o volume', 'Quantas horas por m\u00eas isso leva de fato'),
+           ('Separamos o repet\u00edvel', 'O que d\u00e1 para escrever como regra'),
+           ('Usamos ferramenta', 'Onde sai mais barata e est\u00e1vel'),
+           ('Deixamos \u00e0 pessoa', 'Onde \u00e9 preciso crit\u00e9rio, n\u00e3o execu\u00e7\u00e3o')],
+          ['Quais tarefas voltam sempre', 'Quanto tempo levam',
+           'O que voc\u00ea usa hoje'],
+          'N\u00e3o somos ag\u00eancia de recrutamento e n\u00e3o cuidamos de contrata\u00e7\u00e3o.',
+          'Analisar as tarefas'),
+ 'de': _б('Aufgaben, f\u00fcr die Einstellen zu teuer ist',
+          'Wir sehen, welche Aufgaben regelm\u00e4\u00dfig wiederkommen, aber keine ganze '
+          'Stelle f\u00fcllen. Die deckt ein Tool oder Teilzeit ab.',
+          [('Umfang z\u00e4hlen', 'Wie viele Stunden im Monat es wirklich kostet'),
+           ('Wiederholbares trennen', 'Was sich als Regel schreiben l\u00e4sst'),
+           ('Tool nehmen', 'Wo es g\u00fcnstiger und stabiler ist als ein Mensch'),
+           ('Mensch lassen', 'Wo Urteil n\u00f6tig ist, nicht Ausf\u00fchrung')],
+          ['Welche Aufgaben regelm\u00e4\u00dfig wiederkommen', 'Wie viel Zeit sie kosten',
+           'Was Sie heute nutzen'],
+          'Wir sind keine Personalagentur und \u00fcbernehmen weder Einstellung noch '
+          'Arbeitspapiere.',
+          'Die Aufgaben durchgehen'),
+}
+
+БЛОКИ['fulfillment'] = {
+ 'ru': _б('Вы переросли отгрузку своими силами',
+          'Считаем, во что обходится текущая схема, и сравниваем с тем, что '
+          'дают склад или 3PL под ваш объём и географию.',
+          [('Считаем объём', 'Заказы в месяц, вес, габариты, сезонность'),
+           ('Смотрим географию', 'Куда везёте и откуда разумнее'),
+           ('Сравниваем схемы', 'Свои силы, склад, 3PL — по деньгам и срокам'),
+           ('Переносим', 'Поэтапно, чтобы не встать на переходе')],
+          ['Сколько заказов в месяц', 'Откуда и куда отгружаете',
+           'Что именно не устраивает сейчас'],
+          'Мы не перевозчик и не таможенный брокер: тарифы и сроки определяет '
+          'подрядчик, а не мы.',
+          'Разобрать отгрузку'),
+ 'en': _б('You have outgrown shipping it yourself',
+          'We count what the current setup really costs and compare it with what '
+          'a warehouse or 3PL gives at your volume and geography.',
+          [('Count the volume', 'Orders per month, weight, size, seasonality'),
+           ('Look at geography', 'Where you ship and where from makes sense'),
+           ('Compare setups', 'In-house, warehouse, 3PL — by cost and time'),
+           ('Move', 'In stages, so nothing stops mid-transition')],
+          ['Orders per month', 'Where you ship from and to',
+           'What exactly does not work now'],
+          'We are not a carrier or a customs broker: rates and transit times are '
+          'set by the provider, not by us.',
+          'Work through shipping'),
+ 'es': _б('Ya no da abasto enviar por su cuenta',
+          'Calculamos cu\u00e1nto cuesta de verdad el esquema actual y lo comparamos '
+          'con lo que dan un almac\u00e9n o un 3PL a su volumen.',
+          [('Contamos el volumen', 'Pedidos al mes, peso, tama\u00f1o, temporada'),
+           ('Miramos la geograf\u00eda', 'A d\u00f3nde env\u00eda y desde d\u00f3nde conviene'),
+           ('Comparamos esquemas', 'Propio, almac\u00e9n, 3PL — en dinero y plazos'),
+           ('Migramos', 'Por etapas, para no parar en la transici\u00f3n')],
+          ['Pedidos al mes', 'Desde d\u00f3nde y hacia d\u00f3nde env\u00eda',
+           'Qu\u00e9 no funciona ahora'],
+          'No somos transportista ni agente de aduanas: tarifas y plazos los fija '
+          'el proveedor, no nosotros.',
+          'Analizar el env\u00edo'),
+ 'pt': _б('Voc\u00ea j\u00e1 passou do envio por conta pr\u00f3pria',
+          'Calculamos quanto custa de fato o esquema atual e comparamos com o que '
+          'um armaz\u00e9m ou 3PL oferece no seu volume.',
+          [('Contamos o volume', 'Pedidos por m\u00eas, peso, tamanho, sazonalidade'),
+           ('Olhamos a geografia', 'Para onde envia e de onde faz sentido'),
+           ('Comparamos esquemas', 'Pr\u00f3prio, armaz\u00e9m, 3PL — em dinheiro e prazo'),
+           ('Migramos', 'Por etapas, para n\u00e3o parar na transi\u00e7\u00e3o')],
+          ['Pedidos por m\u00eas', 'De onde e para onde envia',
+           'O que exatamente n\u00e3o funciona hoje'],
+          'N\u00e3o somos transportadora nem despachante: tarifas e prazos quem define '
+          '\u00e9 o fornecedor, n\u00e3o n\u00f3s.',
+          'Analisar o envio'),
+ 'de': _б('Selbst versenden reicht nicht mehr',
+          'Wir rechnen, was das heutige Vorgehen wirklich kostet, und vergleichen '
+          'es mit Lager oder 3PL bei Ihrem Volumen.',
+          [('Volumen z\u00e4hlen', 'Bestellungen pro Monat, Gewicht, Gr\u00f6\u00dfe, Saison'),
+           ('Geografie ansehen', 'Wohin Sie liefern und von wo es sinnvoll ist'),
+           ('Varianten vergleichen', 'Selbst, Lager, 3PL — nach Geld und Zeit'),
+           ('Umziehen', 'In Etappen, damit nichts im \u00dcbergang stehenbleibt')],
+          ['Bestellungen pro Monat', 'Von wo und wohin Sie versenden',
+           'Was heute konkret nicht passt'],
+          'Wir sind weder Spediteur noch Zollagent: Tarife und Laufzeiten bestimmt '
+          'der Dienstleister, nicht wir.',
+          'Den Versand durchgehen'),
+}
+
+
+# Партнёра по финансированию нет ни одного действующего: в реестре
+# knowledge/partners/REGISTRY.md все три заявки (National Funding, Capital
+# Source Group, SMB Funding) в статусе «подана, ждём одобрения», и
+# routing.delivery('funding') честно отдаёт HUMAN_REVIEW. Пока это так, блок
+# прямо говорит, что следующий шаг — наш разбор, а не передача провайдеру.
+# Когда партнёр станет ACTIVE, эту оговорку надо снять вместе со статусом.
+БЕЗ_ПАРТНЁРА_ФИНАНСИРОВАНИЕ = {
+    'ru': ' Действующего партнёра по финансированию у нас сейчас нет: '
+          'следующий шаг — разбор нашей командой, а не передача конкретному '
+          'провайдеру.',
+    'en': ' We have no active funding partner right now: the next step is a '
+          'review by our own team, not a handoff to a named provider.',
+    'es': ' Hoy no tenemos socio activo de financiación: el siguiente paso '
+          'es un análisis de nuestro equipo, no un traspaso a un proveedor '
+          'concreto.',
+    'pt': ' Hoje não temos parceiro ativo de financiamento: o próximo passo '
+          'é uma análise da nossa equipe, não um repasse a um fornecedor '
+          'específico.',
+    'de': ' Einen aktiven Finanzierungspartner haben wir derzeit nicht: der '
+          'nächste Schritt ist eine Prüfung durch unser Team, keine '
+          'Weitergabe an einen bestimmten Anbieter.',
+}
+for _язык, _фраза in БЕЗ_ПАРТНЁРА_ФИНАНСИРОВАНИЕ.items():
+    if _фраза not in БЛОКИ['funding'][_язык]['limits']:
+        БЛОКИ['funding'][_язык]['limits'] += _фраза

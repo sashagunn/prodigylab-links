@@ -90,9 +90,12 @@ backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
 .nav-mid a{font-size:14.5px;color:var(--ink2);text-decoration:none}
 .nav-mid a:hover{color:var(--accent)}
 .nav-right{display:flex;align-items:center;gap:2px}
-.langs{display:none;gap:2px;margin-right:6px}@media(min-width:960px){.langs{display:flex}}
-.langs a{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink3);
-text-decoration:none;padding:8px 6px}
+/* Языки видны на любой ширине: спрятанные в бургер, они не давали понять,
+   что у сайта вообще есть другие языки. */
+.langs{display:flex;gap:0;margin-right:4px}
+.langs a{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--ink3);
+text-decoration:none;padding:8px 4px}
+@media(min-width:600px){.langs{gap:2px;margin-right:6px}.langs a{padding:8px 6px;letter-spacing:.1em}}
 .langs a:hover,.langs a[aria-current]{color:var(--accent)}
 .icon{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;
 color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer}
@@ -309,7 +312,15 @@ def page(code):
         return (f'<div class="cell"{подпись}><span class="mono">{e(tag)}</span>{заголовок}'
                 f'<p>{e(p)}</p>'
                 f'<ul>{"".join(f"<li>{e(li)}</li>" for li in lis)}</ul>{extra}</div>')
-    cells = "".join(_cell(i, *pr) for i, pr in enumerate(d['problems']))
+    # Девять направлений в порядке содержимого ложатся на направления
+    # routing один к одному. Клик — то же самое действие выбора, что и чип.
+    СЛОИ = ("payments", "banking", "funding", "growth", "operations",
+            "infrastructure", "accounting", "fulfillment", "presence")
+    слои = "".join(
+        f'<button type="button" data-layer="{СЛОИ[i]}">'
+        f'<b>{e(название.split(chr(8212))[-1].strip())}</b>'
+        f'<span>{e(боль)}</span></button>'
+        for i, (название, боль, _о, _п) in enumerate(d['problems']))
     steps = "".join(
         f'<div class="step"><span class="n">{i:02d}</span><h3>{e(t)}</h3><p>{e(p)}</p></div>'
         for i, (t, p) in enumerate(d['steps'], 1))
@@ -383,6 +394,20 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 
 <main>
 {hero_block}
+
+<section class="sec alt" id="problems">
+ <div class="wrap">
+  <span class="mono">{e(d['s1_eyebrow'])}</span>
+  <h2 style="margin-top:14px;max-width:20ch">{e(d['s1_h2'])}</h2>
+  <div class="layers" id="layers">{слои}</div>
+  <p class="layers-picked" id="layers-picked" hidden>
+   <span class="mono">{e(HS.ОБЩЕЕ[code].get('picked', ''))}</span>
+   <b id="layers-name"></b>
+   <button type="button" id="layers-change"></button>
+  </p>
+ </div>
+</section>
+
 {pf_block}
 
 <section class="sec alt" id="who">

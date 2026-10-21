@@ -25,6 +25,7 @@
 
 S = {
  'ru': dict(
+   picked='Выбрано', change='Сменить', all_areas='Все направления',
    resume_q='Продолжить прошлый разговор?',
    resume_yes='Продолжить', resume_no='Начать заново',
    resume_old='Это состояние из прошлого визита',
@@ -53,6 +54,7 @@ S = {
    switched_to='Продолжаем на этом языке', show_original='Показать оригинал',
    show_translation='Показать перевод'),
  'en': dict(
+   picked='Selected', change='Change', all_areas='All areas',
    resume_q='Continue your previous conversation?',
    resume_yes='Continue', resume_no='Start over',
    resume_old='This is state from an earlier visit',
@@ -82,6 +84,7 @@ S = {
    switched_to='Continuing in this language', show_original='Show original',
    show_translation='Show translation'),
  'es': dict(
+   picked='Elegido', change='Cambiar', all_areas='Todas las &aacute;reas',
    resume_q='¿Continuar la conversación anterior?',
    resume_yes='Continuar', resume_no='Empezar de nuevo',
    resume_old='Este estado es de una visita anterior',
@@ -114,6 +117,7 @@ S = {
    switched_to='Seguimos en este idioma', show_original='Ver original',
    show_translation='Ver traducci&oacute;n'),
  'pt': dict(
+   picked='Escolhido', change='Alterar', all_areas='Todas as &aacute;reas',
    resume_q='Continuar a conversa anterior?',
    resume_yes='Continuar', resume_no='Começar de novo',
    resume_old='Este estado é de uma visita anterior',
@@ -146,6 +150,7 @@ S = {
    switched_to='Continuamos neste idioma', show_original='Ver original',
    show_translation='Ver tradu&ccedil;&atilde;o'),
  'de': dict(
+   picked='Gew&auml;hlt', change='&Auml;ndern', all_areas='Alle Bereiche',
    resume_q='Vorheriges Gespr&auml;ch fortsetzen?',
    resume_yes='Fortsetzen', resume_no='Neu beginnen',
    resume_old='Dieser Stand stammt aus einem fr&uuml;heren Besuch',
