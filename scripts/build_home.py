@@ -365,7 +365,7 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .band-who{padding:clamp(48px,6vw,88px) 0}
 .who{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);
   display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:start}
-.who-face{width:96px;height:96px;border-radius:14px;object-fit:cover;filter:grayscale(1)}
+.who-face{width:96px;height:96px;border-radius:14px;object-fit:cover}
 .who-role{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
 .who h2{font-size:clamp(24px,2.6vw,36px);max-width:22ch}
@@ -700,9 +700,9 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 /* ============================================== смена без рывка */
 /* Сцена первого экрана: старая гаснет, новая проявляется на её месте. */
 #hm-scene{position:relative}
-#hm-scene>.уходит{opacity:1;transition:opacity .28s ease}
+#hm-scene>.уходит{opacity:1;transition:opacity 1.2s cubic-bezier(.4,0,.2,1)}
 #hm-scene>.сц-новая{position:absolute;inset:0;opacity:0;
-  transition:opacity .55s ease .18s}
+  transition:opacity 1.2s cubic-bezier(.4,0,.2,1)}
 #hm-scene>.сц-новая.on{opacity:1}
 #hm-scene>.сц-новая~.уходит,#hm-scene>.уходит{opacity:.001}
 #hm-scene>.сц-новая>*{animation:none}
@@ -888,6 +888,18 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
   #hm-scene{height:300px}
   .shot-cap,.ill figcaption{flex:0 0 118px;height:118px}
 }
+/* Кто говорит — до первой строки текста. Лицо цветное: обесцвеченный
+   портрет читается как памятник, а не как живой человек. */
+.hm-who{display:flex;align-items:center;gap:13px;margin-bottom:22px}
+.hm-who img{width:54px;height:54px;border-radius:50%;object-fit:cover;
+  border:1px solid var(--line)}
+.hm-who b{display:block;font-size:14.5px;font-weight:600;color:var(--ink)}
+.hm-who span{font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink3)}
+@media (max-width:700px){ .hm-who{margin-bottom:16px} .hm-who img{width:46px;height:46px} }
+/* Герб студии в подвале — там, где ему и место. */
+.foot-mark{display:flex;align-items:center;gap:12px}
+.foot-mark img{width:44px;height:44px;object-fit:contain;opacity:.9}
 .hero-l,.hero-r,.talk,.sugg,.chips,.stream{min-width:0}
 .sugg{max-width:100%}
 @media (max-width:1080px){
@@ -1299,7 +1311,11 @@ def page(code):
     # даже когда собирается не главная.
     import hero_motion as HM
     import hero_sections as HS
-    hero_block = HM.markup(code)
+    _кто = СВОЁ_РАБОТЫ[code]['trust_role']
+    _шапка = (f'<div class="hm-who"><img src="/assets/founder.jpg" '
+              f'alt="{H.escape(d["photo_alt"])}" width="54" height="54" decoding="async">'
+              f'<span>{H.escape(_кто)}</span></div>')
+    hero_block = HM.markup(code, _шапка)
     # Разделы под задачу идут сразу за разговором: человек, ответивший на
     # пару вопросов, листает вниз и видит путь по своей задаче, а не общий
     # перечень услуг.
@@ -1342,7 +1358,7 @@ def page(code):
         f'<a href="{L[c]["home"]}"{" aria-current=\"page\"" if c == code else ""}>{n}</a>'
         for c, n in LANGNAMES)
     # «Кто мы» живёт отдельной страницей — на главной этого блока больше нет.
-    КТО = '/about-studio/' if code == 'en' else f'/{code}/about/'
+    КТО = '/about/' if code == 'en' else f'/{code}/about/'
     _nav = [(КТО if h == '#who' else h, t) for h, t in d['nav']]
     navmid = "".join(f'<a href="{h}">{e(t)}</a>' for h, t in _nav)
     # Пункт меню появляется только когда в галерее есть что показать:
@@ -1520,7 +1536,8 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 {scan_sticky}
 <footer>
  <div class="wrap">
-  <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
+  <a class="brand foot-mark" href="{d['home']}"><img src="/assets/logo-cone.png"
+     alt="Prodigy LAB" width="44" height="44" loading="lazy" decoding="async"><b>PRODIGY</b><span>LAB</span></a>
   <div class="flinks">
    {"".join(f'<a href="{h}">{e(t)}</a>' for h,t in _nav)}{showcase_foot}
    <a href="{WA}" target="_blank" rel="noopener">{PHONE_TEXT}</a>
@@ -1747,9 +1764,10 @@ document.querySelectorAll('#mob a').forEach(function(a){{a.addEventListener('cli
  'de': dict(title='Wer wir sind — Prodigy LAB', desc='Prodigy LAB (Platonaire LLC): wer wir '
             'sind und womit wir arbeiten.', back='Startseite', cta='Erzählen Sie uns das Problem'),
 }
-КТО_OUT = {'en': 'about-studio/index.html', 'ru': 'ru/about/index.html',
-           'es': 'es/about/index.html', 'pt': 'pt/about/index.html',
-           'de': 'de/about/index.html'}
+# Английская версия живёт на давно существующей /about/ — её собирает
+# build_pages.py. Второй страницы про то же самое мы не держим.
+КТО_OUT = {'ru': 'ru/about/index.html', 'es': 'es/about/index.html',
+           'pt': 'pt/about/index.html', 'de': 'de/about/index.html'}
 
 
 def страница_кто(code):
@@ -1764,7 +1782,7 @@ def страница_кто(code):
     факты = "".join(f'<div class="fact"><dt>{e(k)}</dt><dd>{e(v)}</dd></div>'
                     for k, v in d['facts'])
     языки = "".join(
-        f'<a href="{"/" if c == "en" else "/" + c + "/"}about{"-studio" if c == "en" else ""}/"'
+        f'<a href="{"/about/" if c == "en" else "/" + c + "/about/"}"'
         f'{" aria-current=page" if c == code else ""}>{n}</a>' for c, n in LANGNAMES)
     return f"""<!DOCTYPE html>
 <html lang="{code}">

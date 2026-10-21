@@ -914,7 +914,7 @@ JS = """
     обёртка.classList.remove('on');
     void обёртка.offsetHeight;
     обёртка.style.transition='';
-   },800);
+   },1400);
   }
   // Первая сцена проявляется так же, как смена: отдельного пути нет.
   if(!уход){ сКартинками(обёртка,function(){ if(мой===счётСцен) проявить(null); }); return; }
@@ -1484,7 +1484,7 @@ def встроенный_css() -> str:
     return шапка + без
 
 
-def markup(code: str = 'ru') -> str:
+def markup(code: str = 'ru', шапка: str = '') -> str:
     """Первый экран: разговор слева, сцена под задачу справа.
 
     Строки берутся из тех же данных, что ведут разговор, поэтому сервер и
@@ -1497,6 +1497,7 @@ def markup(code: str = 'ru') -> str:
  <div class="hero-ph" id="hero-ph"></div>
  <div class="hero-in">
   <div class="hero-l">
+   {шапка}
    <p class="eyebrow">{e(d['eyebrow'])}</p>
    <h1 id="h1"><span class="ln"><span>{e(h1[0])}</span></span><span class="ln"><span>{e(h1[1])}</span></span></h1>
    <p class="hm-lede">{e(d['lede'])}</p>

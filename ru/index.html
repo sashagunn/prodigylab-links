@@ -604,7 +604,7 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .band-who{padding:clamp(48px,6vw,88px) 0}
 .who{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);
   display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:start}
-.who-face{width:96px;height:96px;border-radius:14px;object-fit:cover;filter:grayscale(1)}
+.who-face{width:96px;height:96px;border-radius:14px;object-fit:cover}
 .who-role{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
 .who h2{font-size:clamp(24px,2.6vw,36px);max-width:22ch}
@@ -939,9 +939,9 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 /* ============================================== смена без рывка */
 /* Сцена первого экрана: старая гаснет, новая проявляется на её месте. */
 #hm-scene{position:relative}
-#hm-scene>.уходит{opacity:1;transition:opacity .28s ease}
+#hm-scene>.уходит{opacity:1;transition:opacity 1.2s cubic-bezier(.4,0,.2,1)}
 #hm-scene>.сц-новая{position:absolute;inset:0;opacity:0;
-  transition:opacity .55s ease .18s}
+  transition:opacity 1.2s cubic-bezier(.4,0,.2,1)}
 #hm-scene>.сц-новая.on{opacity:1}
 #hm-scene>.сц-новая~.уходит,#hm-scene>.уходит{opacity:.001}
 #hm-scene>.сц-новая>*{animation:none}
@@ -1127,6 +1127,18 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
   #hm-scene{height:300px}
   .shot-cap,.ill figcaption{flex:0 0 118px;height:118px}
 }
+/* Кто говорит — до первой строки текста. Лицо цветное: обесцвеченный
+   портрет читается как памятник, а не как живой человек. */
+.hm-who{display:flex;align-items:center;gap:13px;margin-bottom:22px}
+.hm-who img{width:54px;height:54px;border-radius:50%;object-fit:cover;
+  border:1px solid var(--line)}
+.hm-who b{display:block;font-size:14.5px;font-weight:600;color:var(--ink)}
+.hm-who span{font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink3)}
+@media (max-width:700px){ .hm-who{margin-bottom:16px} .hm-who img{width:46px;height:46px} }
+/* Герб студии в подвале — там, где ему и место. */
+.foot-mark{display:flex;align-items:center;gap:12px}
+.foot-mark img{width:44px;height:44px;object-fit:contain;opacity:.9}
 .hero-l,.hero-r,.talk,.sugg,.chips,.stream{min-width:0}
 .sugg{max-width:100%}
 @media (max-width:1080px){
@@ -1147,315 +1159,6 @@ fbq('init','1713332936325081');fbq('track','PageView');
 (function(){try{if(/[?&](initial_hypothesis|content_id|outreach_id|utm_campaign)=/.test(location.search)){
 var h=document.documentElement;h.classList.add("pl-adapt-pending");
 setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}})();</script>
-<!-- ENTITY-SCHEMA:START (генерируется scripts/inject-entity-schema.js из BUSINESS_FACTS.json — руками не править) -->
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "ProfessionalService",
- "@id": "https://prodigylab.studio/#organization",
- "name": "Prodigy LAB",
- "legalName": "Platonaire LLC",
- "url": "https://prodigylab.studio/",
- "logo": "https://prodigylab.studio/assets/prodigybot-avatar.png",
- "image": "https://prodigylab.studio/assets/prodigybot-avatar.png",
- "slogan": "Мир продаж уже не будет прежним",
- "description": "Prodigy LAB — студия цифрового роста для малого и среднего бизнеса. Собирает и чинит системы, через которые бизнес продаёт: сайты и магазины на Shopify, конверсию, рекламу в Meta и Google, ИИ-ассистентов, которые отвечают клиентам круглосуточно.",
- "telephone": "+18182690416",
- "sameAs": [
-  "https://instagram.com/sashagun_usa",
-  "https://facebook.com/sashagun_usa",
-  "https://t.me/leadsmetachat_bot"
- ],
- "areaServed": [
-  {
-   "@type": "Country",
-   "name": "United States"
-  }
- ],
- "knowsLanguage": [
-  "ru",
-  "en",
-  "es",
-  "pt",
-  "de"
- ],
- "hasOfferCatalog": {
-  "@type": "OfferCatalog",
-  "name": "Services",
-  "itemListElement": [
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/shopify-development/",
-    "priceCurrency": "USD",
-    "price": "2900",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 2900,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Shopify Development",
-     "url": "https://prodigylab.studio/shopify-development/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/shopify-redesign/",
-    "priceCurrency": "USD",
-    "price": "2900",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 2900,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Shopify Redesign",
-     "url": "https://prodigylab.studio/shopify-redesign/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/shopify-audit/",
-    "priceCurrency": "USD",
-    "price": "495",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 495,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Shopify Audit",
-     "url": "https://prodigylab.studio/shopify-audit/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/ecommerce-consulting/",
-    "priceCurrency": "USD",
-    "price": "495",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 495,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "E-commerce Consulting",
-     "url": "https://prodigylab.studio/ecommerce-consulting/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/website-development/",
-    "priceCurrency": "USD",
-    "price": "1900",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 1900,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Website Development",
-     "url": "https://prodigylab.studio/website-development/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/website-redesign/",
-    "priceCurrency": "USD",
-    "price": "2900",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 2900,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Website Redesign",
-     "url": "https://prodigylab.studio/website-redesign/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/website-audit/",
-    "priceCurrency": "USD",
-    "price": "495",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 495,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Website Audit",
-     "url": "https://prodigylab.studio/website-audit/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/conversion-rate-optimization/",
-    "priceCurrency": "USD",
-    "price": "495",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 495,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Conversion Rate Optimization",
-     "url": "https://prodigylab.studio/conversion-rate-optimization/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/ai-chatbot/",
-    "priceCurrency": "USD",
-    "price": "600",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 600,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "AI Sales Chatbot (ProdigyBot)",
-     "url": "https://prodigylab.studio/ai-chatbot/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/ai-automation/",
-    "priceCurrency": "USD",
-    "price": "600",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 600,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "AI Automation",
-     "url": "https://prodigylab.studio/ai-automation/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/meta-ads-management/",
-    "priceCurrency": "USD",
-    "price": "1500",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 1500,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Meta Ads Management",
-     "url": "https://prodigylab.studio/meta-ads-management/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/google-ads-management/",
-    "priceCurrency": "USD",
-    "price": "1500",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 1500,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Google Ads Management",
-     "url": "https://prodigylab.studio/google-ads-management/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/business-operations/",
-    "priceCurrency": "USD",
-    "price": "3900",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 3900,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Fractional Digital Operations",
-     "url": "https://prodigylab.studio/business-operations/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/business-consulting-usa/",
-    "priceCurrency": "USD",
-    "price": "495",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 495,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Business Consulting for US SMBs",
-     "url": "https://prodigylab.studio/business-consulting-usa/"
-    }
-   },
-   {
-    "@type": "Offer",
-    "url": "https://prodigylab.studio/russian-business-consulting-miami/",
-    "priceCurrency": "USD",
-    "price": "495",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "minPrice": 495,
-     "valueAddedTaxIncluded": false
-    },
-    "itemOffered": {
-     "@type": "Service",
-     "name": "Digital Operations for Russian-speaking Businesses (Miami)",
-     "url": "https://prodigylab.studio/russian-business-consulting-miami/"
-    }
-   }
-  ]
- }
-}
-</script>
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "WebSite",
- "@id": "https://prodigylab.studio/#website",
- "url": "https://prodigylab.studio/ru/",
- "name": "Prodigy LAB",
- "inLanguage": "ru",
- "publisher": {
-  "@id": "https://prodigylab.studio/#organization"
- }
-}
-</script>
-<!-- ENTITY-SCHEMA:END -->
 </head>
 <body>
 
@@ -1493,6 +1196,7 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
  <div class="hero-ph" id="hero-ph"></div>
  <div class="hero-in">
   <div class="hero-l">
+   <div class="hm-who"><img src="/assets/founder.jpg" alt="Александр, основатель Prodigy LAB" width="54" height="54" decoding="async"><span>Основатель, Prodigy LAB</span></div>
    <p class="eyebrow">РАЗБОР И РЕШЕНИЕ БИЗНЕС-ЗАДАЧ</p>
    <h1 id="h1"><span class="ln"><span>Что мешает вашему</span></span><span class="ln"><span>бизнесу расти?</span></span></h1>
    <p class="hm-lede">Платежи, банки, финансирование, операции, сайты и магазины. Начните прямо здесь — разберём и скажем, что чинить первым.</p>
@@ -1580,7 +1284,8 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
 <div class="sn-sticky" id="sn-sticky" hidden><a class="sn-btn" href="https://scan.prodigylab.studio/scan?lang=ru&amp;utm_source=site&amp;utm_medium=sticky&amp;utm_campaign=free_scan">Проверить сайт</a></div>
 <footer>
  <div class="wrap">
-  <a class="brand" href="/ru/"><b>PRODIGY</b><span>LAB</span></a>
+  <a class="brand foot-mark" href="/ru/"><img src="/assets/logo-cone.png"
+     alt="Prodigy LAB" width="44" height="44" loading="lazy" decoding="async"><b>PRODIGY</b><span>LAB</span></a>
   <div class="flinks">
    <a href="#problems">Что разбираем</a><a href="#how">Как устроено</a><a href="/ru/about/">Кто мы</a><a href="/ru/showcase/">Примеры решений</a>
    <a href="https://wa.me/18182690416" target="_blank" rel="noopener">+1 (818) 269-0416</a>
@@ -2500,7 +2205,7 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
     обёртка.classList.remove('on');
     void обёртка.offsetHeight;
     обёртка.style.transition='';
-   },800);
+   },1400);
   }
   // Первая сцена проявляется так же, как смена: отдельного пути нет.
   if(!уход){ сКартинками(обёртка,function(){ if(мой===счётСцен) проявить(null); }); return; }

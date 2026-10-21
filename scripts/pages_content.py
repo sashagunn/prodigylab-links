@@ -38,6 +38,21 @@ PAGES.append(dict(
              'Prodigy LAB builds and fixes the systems a business sells through. Most clients arrive with the same symptom — traffic exists, sales do not — and the first job is finding out which part is actually broken before anyone spends money rebuilding it.',
              [(f'{ORIGIN}/services/', 'See services', False), (SCAN, 'Free website scan', True)],
              'Platonaire LLC · California, USA · remote'),
+        ('<section class="max-w-[1200px] mx-auto px-8 pb-4">'
+         '<div class="flex flex-col sm:flex-row sm:items-center gap-8">'
+         '<img src="/assets/founder.jpg" alt="Aleksandr, founder of Prodigy LAB" '
+         'width="192" height="192" loading="lazy" decoding="async" '
+         'class="w-32 h-32 sm:w-44 sm:h-44 object-cover rounded-2xl shrink-0">'
+         '<div><span class="font-mono text-[11px] tracking-[0.3em] text-text-muted '
+         'uppercase block mb-3">Founder, Prodigy LAB</span>'
+         '<p class="text-lg text-on-surface leading-relaxed max-w-2xl mb-4">'
+         'Prodigy LAB spent years building and fixing the things a business sells '
+         'through: stores, websites, advertising, conversion, customer correspondence. '
+         'That work never stopped — and it is what lets the studio tell an '
+         'infrastructure problem from a marketing one.</p>'
+         '<img src="/assets/logo-cone.png" alt="Prodigy LAB" width="72" height="72" '
+         'loading="lazy" decoding="async" class="w-16 h-16 object-contain opacity-80">'
+         '</div></div></section>'),
         facts_table('Company facts', [
             ('Trading name', 'Prodigy LAB'),
             ('Legal entity', FACTS['identity']['legalName']),
