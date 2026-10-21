@@ -1787,6 +1787,7 @@ def страница_кто(code):
 .kt .who{{margin:0}}
 .kt-back{{display:inline-block;margin-bottom:28px;color:var(--ink2);font-size:14.5px;
   text-decoration:underline;text-underline-offset:4px}}
+.kt-txt h1{{margin:10px 0 18px}}
 .kt-txt p{{max-width:62ch;margin:0 0 14px}}
 .kt .facts{{margin-top:26px}}
 .kt-go{{display:inline-block;margin-top:30px;background:var(--ink);color:#fff;
