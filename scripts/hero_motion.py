@@ -363,6 +363,7 @@ JS = """
   уст('.tail a',d.more+' &rarr;');
   уст('.talk-n',d.panel);
   поле.placeholder=начали?d.input_next:d.input;
+  поток.setAttribute('data-hint',d.hint_start||d.input);
   кнопка.setAttribute('aria-label',d.send);
   уст('label[for="ask-i"]',d.input);
   кнЯз.textContent=NAMES[новый];
@@ -994,13 +995,20 @@ JS = """
   if(былаВысота && !тонкая){
    var сталаВысота=гнездо.getBoundingClientRect().height;
    if(Math.abs(сталаВысота-былаВысота)>24){
+    гнездо.classList.add('ведём');
     гнездо.style.transition='none';
     гнездо.style.height=былаВысота+'px';
     window.requestAnimationFrame(function(){
      гнездо.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
      гнездо.style.height=сталаВысота+'px';
-     window.setTimeout(function(){
-      гнездо.style.transition=''; гнездо.style.height=''; },950);
+     var вернуть=function(){
+      гнездо.style.transition=''; гнездо.style.height='';
+      гнездо.classList.remove('ведём');
+      гнездо.removeEventListener('transitionend',вернуть);
+     };
+     гнездо.addEventListener('transitionend',вернуть);
+     // Если переход не случился (например, вкладка в фоне) — всё равно вернём.
+     window.setTimeout(вернуть,1200);
     });
    }
   }
@@ -1383,7 +1391,7 @@ def markup(code: str = 'ru') -> str:
       <ul id="lang-list" hidden></ul>
      </div>
     </div>
-    <div class="stream" id="stream"></div>
+    <div class="stream" id="stream" data-hint="{e(d['hint_start'])}"></div>
     <div class="sugg" id="sugg"></div>
     <form id="ask" autocomplete="off">
      <label class="vh" for="ask-i">{e(d['input'])}</label>

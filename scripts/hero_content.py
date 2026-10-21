@@ -62,7 +62,8 @@ S = {
    need_short='Понадобится', desk='Компьютер', phone='Телефон',
    stage_0='Путь разбора', stage_1='Разбираем вашу ситуацию', stage_2='Собрано по вашим словам',
    view_tree='Куда может уходить причина', view_flow='Путь заявки', view_list='Что собираем',
-   known_l='Что уже знаем из разговора'),
+   known_l='Что уже знаем из разговора',
+   hint_start='Напишите своими словами — задам пару уточняющих и покажу следующий шаг.'),
  'en': dict(
    founder_alt='Aleksandr Kovalenko, founder of Prodigy LAB',
    founder_role='Founder, Prodigy LAB',
@@ -103,7 +104,8 @@ S = {
    stage_0='How we work through it', stage_1='Working through your situation',
    stage_2='Collected from your words',
    view_tree='Where the cause can sit', view_flow='The path of a request', view_list='What we collect',
-   known_l='What we already know from the conversation'),
+   known_l='What we already know from the conversation',
+   hint_start='Write it in your own words — I will ask a couple of questions and show the next step.'),
  'es': dict(
    founder_alt='Aleksandr Kovalenko, fundador de Prodigy LAB',
    founder_role='Fundador, Prodigy LAB',
@@ -146,7 +148,8 @@ S = {
    need_short='Hará falta', desk='Ordenador', phone='Móvil',
    stage_0='Cómo lo revisamos', stage_1='Revisando su situación', stage_2='Recogido de sus palabras',
    view_tree='Dónde puede estar la causa', view_flow='El camino de una solicitud', view_list='Qué reunimos',
-   known_l='Lo que ya sabemos de la conversación'),
+   known_l='Lo que ya sabemos de la conversación',
+   hint_start='Escríbalo con sus palabras: haré un par de preguntas y mostraré el siguiente paso.'),
  'pt': dict(
    founder_alt='Aleksandr Kovalenko, fundador da Prodigy LAB',
    founder_role='Fundador, Prodigy LAB',
@@ -189,7 +192,8 @@ S = {
    need_short='Vai precisar', desk='Computador', phone='Celular',
    stage_0='Como fazemos a análise', stage_1='Analisando a sua situação', stage_2='Reunido das suas palavras',
    view_tree='Onde a causa pode estar', view_flow='O caminho de uma solicitação', view_list='O que reunimos',
-   known_l='O que já sabemos da conversa'),
+   known_l='O que já sabemos da conversa',
+   hint_start='Escreva com suas palavras: farei algumas perguntas e mostrarei o próximo passo.'),
  'de': dict(
    founder_alt='Aleksandr Kovalenko, Gr&uuml;nder von Prodigy LAB',
    founder_role='Gr&uuml;nder, Prodigy LAB',
@@ -234,7 +238,8 @@ S = {
    stage_0='Wie wir das durchgehen', stage_1='Wir gehen Ihre Situation durch',
    stage_2='Aus Ihren Worten gesammelt',
    view_tree='Wo die Ursache liegen kann', view_flow='Der Weg einer Anfrage', view_list='Was wir sammeln',
-   known_l='Was wir aus dem Gespräch schon wissen'),
+   known_l='Was wir aus dem Gespräch schon wissen',
+   hint_start='Schreiben Sie es in Ihren Worten — ich stelle ein paar Fragen und zeige den nächsten Schritt.'),
 }
 
 # Заголовки — самостоятельные фразы, не подстановка в шаблон.

@@ -125,9 +125,9 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
   border:0;padding:8px 11px;font-size:14px;cursor:pointer;border-radius:8px}
 #lang-list button:hover{background:var(--paper2)}
 #lang-list button[aria-current="true"]{color:var(--accent)}
-.stream{max-height:min(38vh,360px);overflow:auto;padding:14px 16px;display:flex;
-  flex-direction:column;gap:9px;scrollbar-width:thin}
-.stream:empty{display:none}
+/* Пустая лента держит высоту и подсказывает, с чего начать. */
+.stream{min-height:150px;max-height:min(38vh,360px);overflow:auto;padding:14px 16px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:9px;scrollbar-width:thin}
 .m{font-size:15px;line-height:1.5;border-radius:16px;padding:10px 14px;max-width:92%}
 .m>b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--ink3);font-weight:400;margin-bottom:3px}
@@ -706,8 +706,9 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 #hm-scene>.сц-новая~.уходит,#hm-scene>.уходит{opacity:.001}
 #hm-scene>.сц-новая>*{animation:none}
 
-/* Полоса под задачу: высоту ведём плавно, поэтому содержимое не прыгает. */
-.pf-in{overflow:hidden}
+/* Полоса под задачу: высоту ведём плавно, поэтому содержимое не прыгает.
+   Обрезаем только на время перехода — иначе карточка не помещается. */
+.pf-in.ведём{overflow:hidden}
 
 /* Сетка направлений остаётся на месте: выбранное помечено, остальные тише. */
 #layers[data-picked] button{opacity:.45;transition:opacity .7s ease,
@@ -716,6 +717,28 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
   box-shadow:0 0 0 2px var(--accent),0 24px 44px -30px rgba(18,18,18,.55)}
 #layers[data-picked] button:hover{opacity:.85}
 #layers-picked{margin-top:18px}
+
+/* Высоты, которые раньше не совпадали между состояниями */
+/* Сцена первого экрана: один и тот же размер и под иллюстрацию, и под снимок
+   работы, и под схему — иначе первый экран прыгает при смене задачи. */
+#hm-scene{min-height:clamp(300px,34vw,440px)}
+#hm-scene>*{height:100%}
+.ill,.shot,.scheme{height:100%;display:flex;flex-direction:column}
+.ill-img,.shot-win{flex:1;min-height:0}
+.ill-img img,.shot-win img{height:100%;object-fit:cover}
+.scheme{overflow:auto}
+/* Карточка работы: одинаковая высота на компьютере и телефоне в обоих режимах */
+.wk-card{min-height:clamp(380px,30vw,460px)}
+@media (max-width:1080px){
+  #hm-scene{min-height:300px}
+}
+@media (max-width:700px){
+  #hm-scene{min-height:240px}
+  .stream{min-height:118px}
+}
+
+.stream:empty:before{content:attr(data-hint);display:block;margin:auto 0 2px;
+  font-size:14.5px;color:var(--ink3);line-height:1.5;max-width:30ch}
 """
 
 
