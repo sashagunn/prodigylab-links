@@ -4,294 +4,339 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="Independent redesign concept for Reimagine Roofing — Arizona.">
 <title>Reimagine Roofing — Roofing and windows in Arizona</title>
-<meta name="pf-expires" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#16181a; --ink2:#5b6268; --ink3:#8d9399;
-  --line:#e4e6e7; --paper:#fbfbf9; --paper2:#f2f2ef;
-  --dark:#15191d; --on-dark:#e9edef; --on-dark2:#9aa5ac;
-  --accent:#b4532a; --on-accent:#ffffff;
-  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --display:var(--sans);
-  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
-  --r:14px;
-}
+:root{--coal:#161819;--pit:#0a0b0b;--panel:#1a1c1d;--edge:#2a2d2f;
+  --rust:#a23f0f;--flare:#ff834f;--warm:#ffdbce;--cool:#c6c6c7;--paper:#f9f9ff;--ink:#151c27;
+  --sans:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-  font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img{max-width:100%;display:block}
-h1,h2,h3{margin:0;font-family:var(--display);line-height:1.04;letter-spacing:-.025em;font-weight:700}
-p{margin:0}ul,ol{margin:0;padding:0;list-style:none}a{color:inherit}
-.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink3)}
-.notice{background:#0d1012;color:#aeb6bb;font-family:var(--mono);font-size:10.5px;
-  letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;text-align:center}
-.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 92%,transparent);
-  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.top-in{display:flex;align-items:center;gap:22px;max-width:1180px;margin:0 auto;
-  padding:14px clamp(18px,4vw,44px)}
-.logo{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-.02em;text-decoration:none}
-.logo span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;
-  color:var(--ink3);font-weight:400;margin-top:2px}
-.menu{display:flex;gap:22px;margin-left:auto;font-size:14.5px}
-.menu a{text-decoration:none;color:var(--ink2)}
-.menu a:hover{color:var(--ink)}
-.call{background:var(--accent);color:var(--on-accent);text-decoration:none;border-radius:999px;
-  padding:11px 18px;font-size:14.5px;white-space:nowrap}
-.call:hover{filter:brightness(1.07)}
-.hero{position:relative;min-height:min(78vh,660px);display:flex;align-items:flex-end;
-  color:#fff;overflow:hidden}
-.hero-ph{position:absolute;inset:0}
-.hero-ph img{width:100%;height:100%;object-fit:cover}
-.hero-ph:after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(8,11,14,.52) 0%,rgba(8,11,14,.22) 34%,rgba(8,11,14,.88) 100%),
-             linear-gradient(90deg,rgba(8,11,14,.72) 0%,rgba(8,11,14,.34) 46%,rgba(8,11,14,0) 78%)}
-.hero-in{position:relative;z-index:2;width:100%;padding:clamp(34px,6vw,76px) 0}
-.hero .eyebrow{color:#cfd6da}
-.hero h1{font-size:clamp(34px,5.6vw,66px);margin-top:14px;max-width:17ch;color:#fff;
-  text-shadow:0 2px 24px rgba(0,0,0,.4)}
-.hero p{margin-top:16px;max-width:52ch;color:#e6eaec;font-size:17.5px;
-  text-shadow:0 1px 14px rgba(0,0,0,.45)}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.cta a{text-decoration:none;border-radius:999px;padding:14px 24px;font-size:15.5px}
-.cta .main{background:var(--accent);color:var(--on-accent)}
-.cta .alt{border:1px solid rgba(255,255,255,.45);color:#fff}
-.facts{background:var(--dark);color:var(--on-dark)}
-.facts ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(255,255,255,.13)}
-.facts li{background:var(--dark);padding:20px clamp(16px,2vw,26px)}
-.facts b{display:block;font-size:15.5px}
-.facts span{display:block;color:var(--on-dark2);font-size:13px;margin-top:4px}
-section{padding:clamp(44px,6vw,92px) 0}
-.head h2{font-size:clamp(28px,3.8vw,48px);max-width:18ch;margin-top:12px}
-.head p{margin-top:16px;color:var(--ink2);max-width:58ch}
-.srv{margin-top:clamp(26px,3vw,44px);display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(14px,1.8vw,22px)}
-.card{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff;
-  display:flex;flex-direction:column}
-.card .ph{aspect-ratio:4/3;background:var(--paper2);overflow:hidden}
-.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.card:hover .ph img{transform:scale(1.04)}
-.card .tx{padding:16px 18px 20px}
-.card h3{font-size:19px}
-.card p{margin-top:7px;color:var(--ink2);font-size:14.5px}
-.plain{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:22px}
-.plain li{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:#fff;font-size:15px}
-.work{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.grid{margin-top:clamp(22px,3vw,38px);display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:clamp(12px,1.6vw,18px)}
-.grid figure{margin:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#fff}
-.grid img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.grid figcaption{font-size:12px;color:var(--ink3);padding:9px 12px;border-top:1px solid var(--line)}
-.tool{background:var(--dark);color:var(--on-dark)}
-.tool .head h2{color:#fff}
-.tool .head p{color:var(--on-dark2)}
-.tool-in{margin-top:clamp(24px,3vw,40px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);
-  gap:clamp(20px,3vw,44px);align-items:start}
-.panel{background:#fff;color:var(--ink);border-radius:var(--r);padding:clamp(18px,2.4vw,28px)}
-form{display:grid;gap:15px}
-label{display:block;font-size:14px;color:var(--ink2)}
-label b{display:block;color:var(--ink);font-weight:600;font-size:15px;margin-bottom:6px}
-select,input[type=number]{width:100%;font:inherit;font-size:16px;padding:12px 13px;
-  border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
-select:focus,input:focus{outline:2px solid var(--accent);outline-offset:-1px}
-.choices{display:flex;flex-wrap:wrap;gap:8px}
-.choices button{font:inherit;font-size:14px;padding:9px 14px;border-radius:999px;border:1px solid var(--line);
-  background:#fff;color:var(--ink);cursor:pointer}
-.choices button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-.hint{font-size:12.5px;color:var(--ink3);margin-top:6px}
-.bad{display:block;font-size:12.5px;color:#9a3412;margin-top:6px}
-.out{position:sticky;top:90px;border:1px solid rgba(255,255,255,.16);border-radius:var(--r);
-  padding:clamp(18px,2.4vw,26px);background:rgba(255,255,255,.04)}
-.out .eyebrow{color:var(--on-dark2)}
-.out dl{margin:14px 0 0;display:grid;gap:9px}
-.out dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark2)}
-.out dd{margin:2px 0 0;font-size:15px;color:#fff}
-textarea{width:100%;margin-top:14px;font:inherit;font-size:13.5px;line-height:1.5;padding:12px;
-  border:1px solid rgba(255,255,255,.18);border-radius:12px;background:rgba(0,0,0,.25);
-  color:#e9edef;resize:vertical;min-height:170px}
-.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px}
-button.act{font:inherit;font-size:15px;padding:12px 20px;border-radius:999px;border:0;
-  background:var(--accent);color:var(--on-accent);cursor:pointer}
-#status{font-size:13px;color:var(--on-dark2)}
-.steps{margin-top:clamp(22px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.steps li{border-top:2px solid var(--accent);padding-top:14px}
-.steps b{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink3);display:block}
-.steps h3{font-size:18px;margin-top:8px}
-.steps p{margin-top:6px;color:var(--ink2);font-size:14.5px}
-.contact{background:var(--accent);color:var(--on-accent)}
-.contact h2{color:var(--on-accent);font-size:clamp(26px,3.4vw,42px);max-width:18ch}
-.contact p{margin-top:14px;max-width:52ch;opacity:.92}
-.contact .cta a.main{background:var(--on-accent);color:var(--accent)}
-.contact .cta a.alt{border-color:color-mix(in srgb,var(--on-accent) 55%,transparent);color:var(--on-accent)}
-footer{background:#0d1012;color:#96a0a6;padding:clamp(28px,4vw,48px) 0;font-size:13.5px}
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.02em;line-height:1.02;text-transform:uppercase}
+p{margin:0}ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:1300px;margin:0 auto;padding:0 clamp(16px,3vw,38px)}
+.m{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+.notice{background:#000;color:#8a8d8f;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;padding:7px 14px;text-align:center}
+
+/* тревожная полоса — аварийное закрытие кровли у них опубликовано */
+.alert{background:var(--rust);color:#fff}
+.alert .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  padding-top:9px;padding-bottom:9px}
+.alert p{font-family:var(--mono);font-size:11px;letter-spacing:.07em}
+.alert a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-decoration:none;
+  border:1px solid rgba(255,255,255,.55);padding:6px 13px}
+.alert a:hover{background:#fff;color:var(--rust)}
+
+/* шапка */
+.head{position:sticky;top:0;z-index:50;background:var(--coal);border-bottom:1px solid var(--edge)}
+.head .wrap{display:flex;align-items:center;gap:22px;padding-top:12px;padding-bottom:12px}
+.logo{color:#fff;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:-.01em;text-transform:uppercase;white-space:nowrap}
+.hnav{margin-left:auto;display:flex;gap:20px}
+.hnav a{color:var(--cool);text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase}
+.hnav a:hover{color:var(--flare)}
+.call{background:var(--flare);color:#2a0d00;text-decoration:none;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.08em;padding:10px 16px;white-space:nowrap;font-weight:500}
+.call:hover{background:#fff}
+
+/* дозор: данные слева, спец-панель справа */
+.dossier{background:var(--pit);color:#fff;border-bottom:1px solid var(--edge)}
+.dossier .wrap{padding-top:clamp(36px,5.4vw,78px);padding-bottom:clamp(30px,4vw,56px);
+  display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);gap:clamp(24px,4vw,64px);align-items:start}
+.dossier .m{color:var(--flare)}
+.dossier h1{font-size:clamp(34px,5.4vw,74px);margin-top:16px;max-width:15ch}
+.dossier .sub{margin-top:18px;color:#a9adaf;max-width:52ch;font-size:16.5px}
+.dossier .acts{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.dossier .acts a{text-decoration:none;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;
+  text-transform:uppercase;padding:13px 20px}
+.b1{background:var(--flare);color:#2a0d00}
+.b1:hover{background:#fff}
+.b2{border:1px solid #43484a;color:#dcdfe0}
+.b2:hover{border-color:var(--flare);color:var(--flare)}
+.spec{border:1px solid var(--edge);background:var(--panel)}
+.spec h2{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:#7e8486;font-weight:500;
+  padding:12px 16px;border-bottom:1px solid var(--edge)}
+.spec dl{margin:0}
+.spec .r{display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);gap:14px;
+  padding:12px 16px;border-bottom:1px solid var(--edge)}
+.spec .r:last-child{border-bottom:0}
+.spec dt{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7e8486}
+.spec dd{margin:0;font-size:14px;color:#e6e8e9}
+
+/* документальная лента кадров */
+.field{background:var(--coal);border-bottom:1px solid var(--edge);padding:clamp(24px,3.4vw,46px) 0}
+.field-head{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:baseline}
+.field-head h2{color:#fff;font-size:clamp(16px,1.7vw,21px)}
+.field-head p{color:#80868a;font-size:12.5px;max-width:58ch}
+.frames{margin-top:18px;display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,1vw,14px)}
+.frames figure{margin:0}
+.frames img{width:100%;aspect-ratio:3/2;object-fit:cover;filter:saturate(.92)}
+.frames figcaption{margin-top:7px;padding-top:6px;border-top:1px solid var(--edge);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#80868a}
+
+/* спец-таблица услуг — не карточки */
+.cat{padding:clamp(40px,5.4vw,80px) 0}
+.cat-head{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);gap:clamp(20px,4vw,60px);align-items:end}
+.cat-head h2{font-size:clamp(24px,3.1vw,42px);max-width:16ch;color:var(--ink)}
+.cat-head p{color:#5d646f;font-size:14.5px;max-width:56ch}
+table{width:100%;border-collapse:collapse;margin-top:clamp(22px,3vw,38px)}
+thead th{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:#7a818b;text-align:left;font-weight:500;padding:0 0 10px;border-bottom:2px solid var(--ink)}
+tbody td{padding:15px 0;border-bottom:1px solid #dfe3ea;vertical-align:baseline}
+tbody tr:hover td{background:#eef1f8}
+td.i{width:72px;font-family:var(--mono);font-size:12px;color:var(--rust)}
+td.s{font-weight:600;font-size:18px}
+td.o{text-align:right;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:#7a818b}
+
+/* полоса заявленного */
+.badges{border-top:1px solid #dfe3ea;border-bottom:1px solid #dfe3ea;background:#eef1f8}
+.badges .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding-top:0;padding-bottom:0}
+.badges li{padding:clamp(18px,2.4vw,30px) clamp(14px,2vw,28px);border-left:1px solid #dfe3ea}
+.badges li:first-child{border-left:0;padding-left:0}
+.badges b{display:block;font-size:17px;font-weight:700}
+.badges span{display:block;margin-top:6px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:#7a818b}
+
+/* наряд-заказ */
+.console{background:var(--coal);color:#fff;padding:clamp(40px,5.4vw,80px) 0}
+.console h2{font-size:clamp(24px,3.1vw,42px)}
+.console .lede{margin-top:14px;color:#9ba0a3;max-width:60ch;font-size:15.5px}
+.cols{margin-top:clamp(24px,3vw,42px);display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr);
+  gap:clamp(20px,3vw,46px);align-items:start}
+.grp{border-top:1px solid var(--edge);padding:16px 0}
+.grp:first-child{border-top:0;padding-top:0}
+.grp>span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7e8486}
+.chips{margin-top:11px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(255,255,255,.04);border:1px solid #3a3f41;color:#d9dcdd;font:inherit;font-size:13.5px;
+  padding:9px 14px;cursor:pointer}
+.chip:hover{border-color:#5f6568}
+.chip[aria-pressed="true"]{background:var(--flare);border-color:var(--flare);color:#2a0d00;font-weight:600}
+.rng{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.rng input{flex:1;min-width:180px;accent-color:var(--flare)}
+.rng output{font-family:var(--mono);font-size:14px;color:var(--warm);min-width:130px}
+.hint{margin-top:8px;font-size:12.5px;color:#7e8486}
+.ticket{background:var(--pit);border:1px solid var(--edge)}
+.ticket .tt{display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:11px 15px;border-bottom:1px solid var(--edge)}
+.ticket .tt span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7e8486}
+.ticket pre{margin:0;padding:16px 15px;font-family:var(--mono);font-size:12.5px;line-height:1.72;
+  color:#dfe3e4;white-space:pre-wrap;word-break:break-word;min-height:300px}
+.copy{background:var(--flare);color:#2a0d00;border:0;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;padding:12px 18px;cursor:pointer;width:100%;font-weight:500}
+.copy:hover{background:#fff}
+#st{display:block;padding:10px 15px 14px;font-size:12.5px;color:#9ba0a3}
+.cnote{margin-top:18px;font-size:12.5px;color:#7e8486;max-width:72ch}
+
+footer{background:var(--pit);color:#8a9094;padding:clamp(26px,4vw,48px) 0;font-size:13px}
+.foot{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+footer h4{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:#63696c;margin:0 0 10px;font-weight:500}
 footer a{color:#fff}
-footer p+p{margin-top:12px}
-@media (max-width:900px){
-  .menu{display:none}
-  .tool-in{grid-template-columns:1fr}
-  .out{position:static}
+
+@media (max-width:980px){
+  .hnav{display:none}
+  .dossier .wrap{grid-template-columns:1fr}
+  .frames{grid-template-columns:repeat(2,1fr)}
+  .cat-head{grid-template-columns:1fr;gap:14px}
+  .badges .wrap{grid-template-columns:1fr}
+  .badges li{border-left:0;padding-left:0;border-top:1px solid #dfe3ea}
+  .badges li:first-child{border-top:0}
+  .cols{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  td.o{display:none}
+  body{padding-bottom:62px}
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
+    background:var(--coal);border-top:1px solid var(--edge);padding:9px 13px}
+  .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;background:var(--flare);color:#2a0d00}
+  .bar .alt{background:transparent;color:#d9dcdd;border:1px solid #3a3f41;flex:0 0 auto;padding:13px 17px}
 }
-</style>
-</head>
+@media (min-width:981px){.bar{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style></head>
 <body>
 <p class="notice">Independent redesign concept by Preview Factory · Not the official Reimagine Roofing website</p>
 
-<header class="top"><div class="top-in">
-  <a class="logo" href="#top">Reimagine Roofing<span>ARIZONA</span></a>
-  <nav class="menu">
-    <a href="#services">Services</a><a href="#work">Our work</a>
-    <a href="#planner">Project planner</a><a href="#contact">Contact</a>
-  </nav>
+<div class="alert"><div class="wrap">
+  <p>Roof open right now? Emergency tarping is one of the services they publish.</p>
+  <a href="tel:+14809007663">Call (480) 900-7663</a>
+</div></div>
+
+<header class="head"><div class="wrap">
+  <a class="logo" href="#top">Reimagine Roofing</a>
+  <nav class="hnav"><a href="#services">Services</a><a href="#frames">Field</a>
+    <a href="#order">Work order</a></nav>
   <a class="call" href="tel:+14809007663">(480) 900-7663</a>
 </div></header>
 
 <main id="top">
-  <section class="hero">
-    <div class="hero-ph"><img src="photos/f1.jpg" alt="Work by Reimagine Roofing" width="1400" height="900"></div>
-    <div class="hero-in"><div class="wrap">
-      <p class="eyebrow">ARIZONA</p>
+  <section class="dossier"><div class="wrap">
+    <div>
+      <span class="m">Service file · Arizona</span>
       <h1>Roofing and windows, made easy.</h1>
-      <p>Shingle, tile, metal, foam and flat roofs — installed, replaced and repaired. Free roof inspections, and emergency tarping when the roof is open right now.</p>
-      <div class="cta">
-        <a class="main" href="#planner">Build a roof brief</a>
-        <a class="alt" href="https://www.reimagineroofing.com/services/free-roof-inspection/" target="_blank" rel="noopener noreferrer">Contact Reimagine Roofing</a>
+      <p class="sub">Shingle, tile, metal, foam and flat roofs — installed, replaced and repaired. Free roof inspections, and emergency tarping when the roof is open right now.</p>
+      <div class="acts">
+        <a class="b1" href="#order">Build a roof brief</a>
+        <a class="b2" href="https://www.reimagineroofing.com/services/free-roof-inspection/" target="_blank" rel="noopener noreferrer">Their free inspection page ↗</a>
       </div>
-    </div></div>
-  </section>
-
-  <section class="facts" style="padding:0"><ul><li><b>Veteran-operated</b><span>As published on their site</span></li><li><b>Licensed &amp; insured</b><span>As published on their site</span></li><li><b>Free roof inspections</b><span>One of their listed services</span></li></ul></section>
-
-  <section id="services"><div class="wrap">
-    <div class="head"><p class="eyebrow">What we do</p>
-      <h2>Every roof we install, repair and replace.</h2>
-      <p>Reimagine Roofing publishes eight roofing services on its own site, from shingle, tile, metal and foam installation to flat roof replacement, commercial work, free inspections and emergency tarping.</p></div>
-    <div class="srv"><article class="card"><div class="ph"><img src="photos/f3.jpg" alt="Shingle installation — Reimagine Roofing" loading="lazy" decoding="async" width="800" height="600"></div>
-<div class="tx"><h3>Shingle installation</h3></div></article><article class="card"><div class="ph"><img src="photos/f4.jpg" alt="Tile installation — Reimagine Roofing" loading="lazy" decoding="async" width="800" height="600"></div>
-<div class="tx"><h3>Tile installation</h3></div></article><article class="card"><div class="ph"><img src="photos/f2.jpg" alt="Metal installation — Reimagine Roofing" loading="lazy" decoding="async" width="800" height="600"></div>
-<div class="tx"><h3>Metal installation</h3></div></article><article class="card"><div class="ph"><img src="photos/f6.jpg" alt="Foam installation — Reimagine Roofing" loading="lazy" decoding="async" width="800" height="600"></div>
-<div class="tx"><h3>Foam installation</h3></div></article><article class="card"><div class="tx"><h3>Flat roof replacement</h3></div></article><article class="card"><div class="tx"><h3>Commercial roofing</h3></div></article><article class="card"><div class="tx"><h3>Free roof inspections</h3></div></article><article class="card"><div class="tx"><h3>Emergency tarping</h3></div></article></div>
-  </div></section>
-
-  <section id="work" class="work"><div class="wrap">
-    <div class="head"><p class="eyebrow">Recent work</p><h2>Recent roofs.</h2></div>
-    <div class="grid"><figure><img src="photos/f3.jpg" alt="Project photograph published by Reimagine Roofing" loading="lazy" decoding="async" width="800" height="600"><figcaption>Photograph published by Reimagine Roofing</figcaption></figure><figure><img src="photos/f4.jpg" alt="Project photograph published by Reimagine Roofing" loading="lazy" decoding="async" width="800" height="600"><figcaption>Photograph published by Reimagine Roofing</figcaption></figure><figure><img src="photos/f2.jpg" alt="Project photograph published by Reimagine Roofing" loading="lazy" decoding="async" width="800" height="600"><figcaption>Photograph published by Reimagine Roofing</figcaption></figure><figure><img src="photos/f6.jpg" alt="Project photograph published by Reimagine Roofing" loading="lazy" decoding="async" width="800" height="600"><figcaption>Photograph published by Reimagine Roofing</figcaption></figure></div>
-  </div></section>
-
-  <section id="planner" class="tool"><div class="wrap">
-    <div class="head"><p class="eyebrow">Project planner</p>
-      <h2>Say what is on the roof and what happened to it.</h2><p>Approximate numbers are fine at this stage. Measurements, condition and any code requirements need their inspection.</p></div>
-    <div class="tool-in">
-      <div class="panel"><form id="form" autocomplete="off"><label><b>Roof type</b><select name="material" id="f-material"><option>Shingle</option><option>Tile</option><option>Metal</option><option>Foam</option><option>Flat roof</option><option>Not sure yet</option></select></label><label><b>What is needed</b><span class="choices"><button type="button" data-choice="work" data-value="Replacement" aria-pressed="true">Replacement</button><button type="button" data-choice="work" data-value="New installation" aria-pressed="false">New installation</button><button type="button" data-choice="work" data-value="Repair" aria-pressed="false">Repair</button><button type="button" data-choice="work" data-value="Inspection first" aria-pressed="false">Inspection first</button></span></label><label><b>Approximate roof area <span style="color:var(--ink3);font-weight:400">(sq ft)</span></b>
-<input type="number" inputmode="numeric" name="area" id="f-area" min="100" max="40000" step="10" value="2000">
-<span class="hint">Roughly the footprint of the building is enough for a first conversation.</span><span class="bad" data-bad="area" hidden></span></label><label><b>Stories</b><span class="choices"><button type="button" data-choice="stories" data-value="One" aria-pressed="true">One</button><button type="button" data-choice="stories" data-value="Two" aria-pressed="false">Two</button><button type="button" data-choice="stories" data-value="Three or more" aria-pressed="false">Three or more</button></span></label><label><b>Timing</b><span class="choices"><button type="button" data-choice="urgency" data-value="Planning ahead" aria-pressed="true">Planning ahead</button><button type="button" data-choice="urgency" data-value="Within a month" aria-pressed="false">Within a month</button><button type="button" data-choice="urgency" data-value="Active leak — urgent" aria-pressed="false">Active leak — urgent</button></span></label></form></div>
-      <aside class="out">
-        <p class="eyebrow">Your project</p>
-        <dl id="sum"></dl>
-        <textarea id="brief" rows="10" readonly></textarea>
-        <div class="row"><button class="act" id="copy" type="button">Copy and send it to us</button>
-        <span id="status">Nothing is submitted from this page.</span></div>
-      </aside>
+    </div>
+    <div class="spec">
+      <h2>Published record</h2>
+      <dl><div class="r"><dt>Region</dt><dd>Arizona</dd></div><div class="r"><dt>Services published</dt><dd>Eight, listed in their own menu</dd></div><div class="r"><dt>Published status</dt><dd>Veteran-operated · licensed &amp; insured</dd></div><div class="r"><dt>First step they publish</dt><dd>Free roof inspection</dd></div></dl>
     </div>
   </div></section>
 
-  
+  <section class="field" id="frames"><div class="wrap">
+    <div class="field-head"><h2>Field images</h2><p>Photographs published by the company. Captions are frame numbers — we do not label someone else’s roof with a job we cannot verify.</p></div>
+    <div class="frames"><figure>
+      <img src="photos/f1.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
+      <figcaption>Frame 01 · their photograph</figcaption></figure><figure>
+      <img src="photos/f3.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
+      <figcaption>Frame 02 · their photograph</figcaption></figure><figure>
+      <img src="photos/f4.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
+      <figcaption>Frame 03 · their photograph</figcaption></figure><figure>
+      <img src="photos/f2.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
+      <figcaption>Frame 04 · their photograph</figcaption></figure><figure>
+      <img src="photos/f6.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
+      <figcaption>Frame 05 · their photograph</figcaption></figure></div>
+  </div></section>
 
-  <section id="contact" class="contact"><div class="wrap">
-    <p class="eyebrow" style="color:inherit;opacity:.75">Get in touch</p>
-    <h2>Start with a free roof inspection.</h2>
-    <p>Tell us what the roof is doing. The planner above turns it into a short brief you can send over.</p>
-    <div class="cta">
-      <a class="main" href="tel:+14809007663">(480) 900-7663</a>
-      <a class="alt" href="https://www.reimagineroofing.com/services/free-roof-inspection/" target="_blank" rel="noopener noreferrer">Book a free inspection</a>
-      <a class="alt" href="mailto:contact@reimagineroofing.com">contact@reimagineroofing.com</a>
+  <section class="cat" id="services"><div class="wrap">
+    <div class="cat-head"><h2>Eight services, exactly as they list them.</h2><p>Taken from the company’s own Services menu, in their order and their wording. Nothing has been grouped, renamed or added.</p></div>
+    <table>
+      <thead><tr><th>№</th><th>Service</th><th style="text-align:right">Source</th></tr></thead>
+      <tbody><tr>
+        <td class="i">01</td>
+        <td class="s">Shingle installation</td>
+        <td class="o">Their services menu</td></tr><tr>
+        <td class="i">02</td>
+        <td class="s">Tile installation</td>
+        <td class="o">Their services menu</td></tr><tr>
+        <td class="i">03</td>
+        <td class="s">Metal installation</td>
+        <td class="o">Their services menu</td></tr><tr>
+        <td class="i">04</td>
+        <td class="s">Foam installation</td>
+        <td class="o">Their services menu</td></tr><tr>
+        <td class="i">05</td>
+        <td class="s">Flat roof replacement</td>
+        <td class="o">Their services menu</td></tr><tr>
+        <td class="i">06</td>
+        <td class="s">Commercial roofing</td>
+        <td class="o">Their services menu</td></tr><tr>
+        <td class="i">07</td>
+        <td class="s">Free roof inspections</td>
+        <td class="o">Their services menu</td></tr><tr>
+        <td class="i">08</td>
+        <td class="s">Emergency tarping</td>
+        <td class="o">Their services menu</td></tr></tbody>
+    </table>
+  </div></section>
+
+  <section class="badges"><ul class="wrap">
+    <li><b>Veteran-operated</b><span>As published on their site</span></li><li><b>Licensed &amp; insured</b><span>As published on their site</span></li><li><b>Free roof inspections</b><span>One of their listed services</span></li>
+  </ul></section>
+
+  <section class="console" id="order"><div class="wrap">
+    <h2>Write the work order.</h2>
+    <p class="lede">Pick what is on the roof. The ticket on the right rewrites itself as you go, and the button copies it so you can send it to them.</p>
+    <div class="cols">
+      <div>
+        <div class="grp" data-group="material">
+          <span>Roof type</span>
+          <div class="chips"><button type="button" class="chip" data-val="Shingle" aria-pressed="true">Shingle</button><button type="button" class="chip" data-val="Tile" aria-pressed="false">Tile</button><button type="button" class="chip" data-val="Metal" aria-pressed="false">Metal</button><button type="button" class="chip" data-val="Foam" aria-pressed="false">Foam</button><button type="button" class="chip" data-val="Flat roof" aria-pressed="false">Flat roof</button><button type="button" class="chip" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div>
+        </div><div class="grp" data-group="work">
+          <span>What is needed</span>
+          <div class="chips"><button type="button" class="chip" data-val="Replacement" aria-pressed="true">Replacement</button><button type="button" class="chip" data-val="New installation" aria-pressed="false">New installation</button><button type="button" class="chip" data-val="Repair" aria-pressed="false">Repair</button><button type="button" class="chip" data-val="Inspection first" aria-pressed="false">Inspection first</button></div>
+        </div><div class="grp" data-group="stories">
+          <span>Stories</span>
+          <div class="chips"><button type="button" class="chip" data-val="One" aria-pressed="true">One</button><button type="button" class="chip" data-val="Two" aria-pressed="false">Two</button><button type="button" class="chip" data-val="Three or more" aria-pressed="false">Three or more</button></div>
+        </div><div class="grp" data-group="urgency">
+          <span>Timing</span>
+          <div class="chips"><button type="button" class="chip" data-val="Planning ahead" aria-pressed="true">Planning ahead</button><button type="button" class="chip" data-val="Within a month" aria-pressed="false">Within a month</button><button type="button" class="chip" data-val="Active leak — urgent" aria-pressed="false">Active leak — urgent</button></div>
+        </div>
+        <div class="grp">
+          <span>Approximate roof area</span>
+          <div class="rng">
+            <input id="num" type="range" min="100" max="40000" step="10" value="2000"
+              aria-label="Approximate roof area">
+            <output id="numout">2000 sq ft</output>
+          </div>
+          <p class="hint">Roughly the footprint of the building is enough for a first conversation.</p>
+        </div>
+      </div>
+      <div class="ticket">
+        <div class="tt"><span>Work order · draft</span><span class="m" style="color:#5d6366">Not sent</span></div>
+        <pre id="tk"></pre>
+        <button class="copy" id="cp" type="button">Copy the work order</button>
+        <span id="st"></span>
+      </div>
     </div>
+    <p class="cnote">This page sends nothing. Measurements, condition, code requirements and any insurance claim are settled with Reimagine Roofing, not here.</p>
   </div></section>
 </main>
 
-<footer><div class="wrap">
-  <p><strong>This is an independent redesign concept</strong> prepared by Preview Factory for Reimagine Roofing. It is not the
-  company's official website and no relationship or endorsement is implied. Services, photographs and contact
-  details shown here are published by Reimagine Roofing on its own site. Nothing on this page is a quote: dimensions,
-  availability, local requirements and price need the company's confirmation.</p>
-  <p><a href="https://www.reimagineroofing.com/" target="_blank" rel="noopener noreferrer">Official Reimagine Roofing website ↗</a>
-  &nbsp;·&nbsp; <a href="before-after/">See this concept beside the current site ↗</a></p>
+<div class="bar"><a class="alt" href="tel:+14809007663">Call</a><a href="#order">Work order</a></div>
+
+<footer><div class="wrap foot">
+  <div><h4>Concept</h4><p>Independent redesign concept prepared by Preview Factory for Reimagine Roofing. Not the company's
+  official website and no relationship or endorsement is implied.</p></div>
+  <div><h4>Their site</h4><p><a href="https://www.reimagineroofing.com/" target="_blank" rel="noopener noreferrer">reimagineroofing.com ↗</a><br><a href="tel:+14809007663">(480) 900-7663</a><br><a href="mailto:contact@reimagineroofing.com">contact@reimagineroofing.com</a></p></div>
+  <div><h4>Honest note</h4><p>Service names and photographs are published by Reimagine Roofing. No price, financing offer,
+  review score or warranty term appears here, because this page does not speak for the company.</p></div>
 </div></footer>
 
 <script>
 (function(){
-  var Д = {"name":"Reimagine Roofing","region":"Arizona","official":"https://www.reimagineroofing.com/","fields":[{"key":"material","type":"select","label":"Roof type","options":["Shingle","Tile","Metal","Foam","Flat roof","Not sure yet"]},{"key":"work","type":"choice","label":"What is needed","options":["Replacement","New installation","Repair","Inspection first"]},{"key":"area","type":"number","label":"Approximate roof area","unit":"sq ft","min":100,"max":40000,"step":10,"value":2000,"hint":"Roughly the footprint of the building is enough for a first conversation."},{"key":"stories","type":"choice","label":"Stories","options":["One","Two","Three or more"]},{"key":"urgency","type":"choice","label":"Timing","options":["Planning ahead","Within a month","Active leak — urgent"]}],"lead":"Roofing project notes for Reimagine Roofing.","notes":["Emergency tarping is one of their published services if the roof is open right now."],"unknowns":["Current roof age and condition","Any insurance claim already opened","Access and parking for the crew"]};
-  var выбор = {};
-  var $ = function(s){ return document.querySelector(s); };
-  function число(f, сырое){
-    var v = String(сырое == null ? '' : сырое).replace(/[^0-9.]/g, '');
-    var n = parseFloat(v);
-    if (!isFinite(n)) return null;
-    n = Math.min(f.max, Math.max(f.min, n));
-    if ((f.step || 1) >= 1) n = Math.round(n);
-    return n;
-  }
-  Д.fields.forEach(function(f){ выбор[f.key] = (f.type === 'number') ? f.value : f.options[0]; });
-  function строка(f){
-    var v = выбор[f.key];
-    return (f.type === 'number') ? v + (f.unit ? ' ' + f.unit : '') : String(v);
-  }
-  function текст(){
-    var L = [Д.lead || ('Project notes for ' + Д.name + '.'), ''];
-    Д.fields.forEach(function(f){ L.push('- ' + f.label + ': ' + строка(f)); });
-    if (Д.notes.length){ L.push(''); Д.notes.forEach(function(x){ L.push('- ' + x); }); }
-    if (Д.unknowns.length){ L.push(''); L.push('To confirm together:');
-      Д.unknowns.forEach(function(x){ L.push('- ' + x); }); }
-    L.push(''); L.push('Prepared with the project planner. Not a quote and not an order.');
-    L.push(Д.name + ' — ' + Д.region);
+  var состояние={};
+  var поля=[{"key":"material","label":"Roof type","first":"Shingle"},{"key":"work","label":"What is needed","first":"Replacement"},{"key":"stories","label":"Stories","first":"One"},{"key":"urgency","label":"Timing","first":"Planning ahead"}];
+  поля.forEach(function(f){ состояние[f.key]=f.first; });
+  var ед={"key":"area","label":"Approximate roof area","unit":"sq ft","value":2000};
+  if(ед) состояние[ед.key]=ед.value+(ед.unit?' '+ед.unit:'');
+
+  function наряд(){
+    var L=['--- WORK ORDER (DRAFT) ---','For: Reimagine Roofing',''];
+    поля.forEach(function(f){ L.push(f.label+': '+состояние[f.key]); });
+    if(ед) L.push(ед.label+': '+состояние[ед.key]);
+    L.push('','Unconfirmed, to be checked on site:');
+    ["Current roof age and condition","Any insurance claim already opened","Access and parking for the crew"].forEach(function(u){ L.push('  - '+u); });
+    ["Emergency tarping is one of their published services if the roof is open right now."].forEach(function(u){ L.push('','Note: '+u); });
+    L.push('','Written on an independent concept page. Not a quote and not an order.');
     return L.join('\n');
   }
-  function рисовать(){
-    var dl = $('#sum'); dl.innerHTML = '';
-    Д.fields.forEach(function(f){
-      var dt = document.createElement('dt'); dt.textContent = f.label;
-      var dd = document.createElement('dd'); dd.textContent = строка(f);
-      dl.appendChild(dt); dl.appendChild(dd);
+  function перерисовать(){ document.getElementById('tk').textContent=наряд(); }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.grp[data-group]'),function(g){
+    var key=g.getAttribute('data-group');
+    Array.prototype.forEach.call(g.querySelectorAll('.chip'),function(b){
+      b.addEventListener('click',function(){
+        Array.prototype.forEach.call(g.querySelectorAll('.chip'),function(x){x.setAttribute('aria-pressed','false');});
+        b.setAttribute('aria-pressed','true');
+        состояние[key]=b.getAttribute('data-val');
+        перерисовать();
+      });
     });
-    $('#brief').value = текст();
-  }
-  document.addEventListener('input', function(ev){
-    var el = ev.target, f = Д.fields.filter(function(x){ return x.key === el.name; })[0];
-    if (!f) return;
-    if (f.type === 'number'){
-      var n = число(f, el.value), плохо = document.querySelector('[data-bad="' + f.key + '"]');
-      if (n === null){ if (плохо){ плохо.hidden = false;
-        плохо.textContent = 'Enter a number between ' + f.min + ' and ' + f.max + '.'; } return; }
-      if (плохо) плохо.hidden = true;
-      if (String(n) !== el.value) el.value = n;   // экран = состояние = бриф
-      выбор[f.key] = n;
-    } else выбор[f.key] = el.value;
-    рисовать();
   });
-  document.addEventListener('click', function(ev){
-    var b = ev.target.closest('[data-choice]');
-    if (b){
-      var k = b.getAttribute('data-choice');
-      выбор[k] = b.getAttribute('data-value');
-      Array.prototype.forEach.call(document.querySelectorAll('[data-choice="' + k + '"]'), function(x){
-        x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      рисовать(); return;
-    }
-    if (ev.target.id === 'copy'){
-      var t = $('#brief');
-      var готово = function(){ $('#status').textContent = 'Copied — paste it into an email or a message.'; };
-      function запасной(){
-        t.removeAttribute('readonly'); t.select();
-        try { document.execCommand('copy'); готово(); }
-        catch(e){ $('#status').textContent = 'Select the text above and copy it.'; }
-        t.setAttribute('readonly','readonly');
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText)
-        navigator.clipboard.writeText(t.value).then(готово, запасной);
-      else запасной();
-    }
+  var num=document.getElementById('num');
+  if(num&&ед){ num.addEventListener('input',function(){
+    var v=num.value+(ед.unit?' '+ед.unit:'');
+    document.getElementById('numout').textContent=v;
+    состояние[ед.key]=v; перерисовать();
+  }); }
+
+  document.getElementById('cp').addEventListener('click',function(){
+    var t=наряд(), st=document.getElementById('st');
+    var готово=function(){ st.textContent='Copied — paste it into an email or a text message.'; };
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(готово,function(){
+      st.textContent='Select the ticket above and copy it.';
+    });
+    else st.textContent='Select the ticket above and copy it.';
   });
-  рисовать();
+  перерисовать();
 })();
 </script>
 </body></html>
