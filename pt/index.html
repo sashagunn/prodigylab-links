@@ -335,10 +335,10 @@ ul,ol{margin:0;padding:0;list-style:none}
   background:linear-gradient(90deg,var(--paper) 0%,rgba(251,251,249,.72) 26%,
     rgba(251,251,249,.10) 62%,rgba(15,23,34,.22) 100%)}
 .hero-in{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;
-  padding:0 var(--gut);display:grid;grid-template-columns:minmax(0,47fr) minmax(0,53fr);
+  padding:0 var(--gut);display:grid;grid-template-columns:minmax(0,50fr) minmax(0,50fr);
   gap:clamp(22px,3vw,54px);align-items:center}
 .hero-l{max-width:620px}
-h1#h1{font-size:clamp(38px,4.9vw,70px);margin:12px 0 0;letter-spacing:-.035em}
+h1#h1{font-size:clamp(34px,4.1vw,58px);margin:12px 0 0;letter-spacing:-.035em;max-width:16ch}
 h1#h1 .ln{display:block;overflow:hidden}
 h1#h1 .ln>span{display:block;transform:translateY(110%);opacity:0;
   transition:transform .62s cubic-bezier(.2,.7,.2,1),opacity .62s}
@@ -562,7 +562,7 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .wk-inset{position:relative;z-index:2;align-self:flex-end;width:min(100%,330px);
   border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.3);
   box-shadow:0 30px 60px -30px rgba(0,0,0,.9);margin-top:24px}
-.wk-inset img{width:100%;display:block}
+.wk-inset img{width:100%;height:auto;display:block}
 .wk[data-dev="d"] .wk-inset img{aspect-ratio:16/10;object-fit:cover;object-position:top}
 .wk[data-dev="p"] .wk-inset{width:min(60%,210px)}
 .wk[data-dev="p"] .wk-inset img{aspect-ratio:390/700;object-fit:cover;object-position:top}
@@ -578,7 +578,8 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .wk-go:hover{background:var(--accent2)}
 .wk-sec{color:var(--ink2);text-decoration:underline;text-underline-offset:4px;font-size:13.5px}
 .wk-dev{display:inline-flex;gap:4px;background:rgba(255,255,255,.92);
-  border-radius:999px;padding:3px;position:relative;z-index:2}
+  border-radius:999px;padding:3px;position:relative;z-index:2;align-self:flex-start;
+  margin-top:14px}
 .wk-dev button{background:none;border:0;border-radius:999px;padding:5px 11px;
   font-size:11.5px;cursor:pointer;color:var(--ink2)}
 .wk-dev button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
@@ -1218,9 +1219,9 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
  <div class="hero-ph" id="hero-ph"></div>
  <div class="hero-in">
   <div class="hero-l">
-   <p class="eyebrow">AN&amp;Aacute;LISE E SOLU&amp;Ccedil;&amp;Otilde;ES DE NEG&amp;Oacute;CIO</p>
+   <p class="eyebrow">ANÁLISE E SOLUÇÕES DE NEGÓCIO</p>
    <h1 id="h1"><span class="ln"><span>O que impede o seu</span></span><span class="ln"><span>negócio de avançar?</span></span></h1>
-   <p class="hm-lede">Pagamentos, bancos, financiamento, opera&amp;ccedil;&amp;otilde;es, sites e lojas. Comece aqui mesmo: analisamos a situa&amp;ccedil;&amp;atilde;o e dizemos o que corrigir primeiro.</p>
+   <p class="hm-lede">Pagamentos, bancos, financiamento, operações, sites e lojas. Comece aqui mesmo: analisamos a situação e dizemos o que corrigir primeiro.</p>
    <div class="talk">
     <div class="talk-h">
      <span class="talk-n">Assistente da Prodigy LAB</span>
@@ -1238,23 +1239,25 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
      <button id="ask-b" type="submit" aria-label="Enviar">&rarr;</button>
     </form>
    </div>
-   <ul class="chips" id="chips"><li><button type="button" data-k="site_needed" data-i="m0">Preciso de site ou loja</button></li><li><button type="button" data-k="site_no_leads" data-i="m1">O site existe, não chegam clientes</button></li><li><button type="button" data-k="payments" data-i="m2">Os pagamentos não passam</button></li><li><button type="button" data-k="banking" data-i="m3">Problema com a conta bancária</button></li><li><button type="button" data-k="funding" data-i="m4">Preciso de financiamento</button></li><li><button type="button" data-k="operations" data-i="m5">Muito trabalho manual</button></li></ul>
-   <p class="hm-pick vh">Por onde come&amp;ccedil;amos</p>
+   <ul class="chips" id="chips"></ul>
+   <p class="hm-pick vh">Por onde começamos</p>
    <div class="tail">
-    <button type="button" id="restart">A minha &amp;eacute; outra</button>
-    <a href="#works">Ver nosso trabalho &rarr;</a>
+    <button type="button" id="restart">A minha é outra</button>
+    <a href="#works" id="tail-more">Ver nosso trabalho &rarr;</a>
    </div>
   </div>
   <div class="hero-r" id="hm-r" data-mode="idle">
-   <div class="steps" id="steps"><div class="hm-step" id="s-task"><span class="hm-mono">Tarefa <i></i></span><p class="dim">estamos definindo</p></div><div class="hm-step" id="s-clar"><span class="hm-mono">Esclarecendo <i></i></span><p class="dim">estamos definindo</p></div><div class="hm-step" id="s-next"><span class="hm-mono">Pr&amp;oacute;ximo passo <i></i></span><p class="dim">estamos definindo</p></div></div>
-   <div id="hm-scene"><figure class="ill"><div class="ill-img">
-     <img src="/assets/il/neutral.jpg" alt="" width="1200" height="800" decoding="async">
-    </div></figure></div>
+   <div class="steps" id="steps">
+    <div class="hm-step" id="s-task"><span class="hm-mono">Tarefa <i></i></span><p class="dim">estamos definindo</p></div>
+    <div class="hm-step" id="s-clar"><span class="hm-mono">Esclarecendo <i></i></span><p class="dim">estamos definindo</p></div>
+    <div class="hm-step" id="s-next"><span class="hm-mono">Próximo passo <i></i></span><p class="dim">estamos definindo</p></div>
+   </div>
+   <div id="hm-scene"></div>
   </div>
  </div>
 </section>
 
-<section id="pf"><div class="pf-in"><div class="pf-v" data-route="" data-depth="0"><div class="pf-ph"></div><div class="pf-l"><p class="pf-eyebrow">Como analisamos</p><h2 class="pf-h">Ainda não está claro o que precisa de conserto</h2><p class="pf-lede">Primeiro achamos por onde o dinheiro vaza. Quase nunca onde parece.</p><span id="how" class="pf-anchor"></span><div class="pf-cta"><button type="button" class="pf-main" data-talk>Contar o que está acontecendo</button><a href="#works">Todos os exemplos &rarr;</a></div></div><div class="pf-r"><div class="pf-card"><div class="pf-card-h"><h3>Como analisamos</h3></div><ol class="pf-steps"><li><b>01</b><div><h3>Ouvimos</h3><p>O que acontece e como aparece nos números</p></div></li><li><b>02</b><div><h3>Estreitamos</h3><p>Separamos a causa do sintoma</p></div></li><li><b>03</b><div><h3>Propomos</h3><p>O que fazemos primeiro e por quê</p></div></li><li><b>04</b><div><h3>Calculamos</h3><p>Quanto custa e o que muda</p></div></li></ol><div class="pf-two"><div class="pf-need"><h3>O que vamos precisar</h3><ul><li>O que o negócio faz</li><li>O que você já tentou</li><li>Para quando precisa</li></ul></div><div class="pf-lim"><h3>Limites</h3><p>Enquanto a direção não for nomeada não há caminho concreto a mostrar, e não vamos inventá-lo.</p></div></div></div></div></div></div><div id="pf-switch" data-on="0"><button type="button"></button></div></section>
+<section id="pf"><div class="pf-in"><div class="pf-v" data-route="" data-depth="0"><div class="pf-ph"></div><div class="pf-l"><p class="pf-eyebrow">Como analisamos</p><h2 class="pf-h">Ainda não está claro o que precisa de conserto</h2><p class="pf-lede">Primeiro achamos por onde o dinheiro vaza. Quase nunca onde parece.</p><span id="how" class="pf-anchor"></span><div class="pf-cta"><button type="button" class="pf-main" data-talk>Contar o que está acontecendo</button><a href="#works">Todos os exemplos &rarr;</a></div></div><div class="pf-r"><div class="pf-card"><div class="pf-card-h"><span class="tag">Como analisamos</span></div><ol class="pf-steps"><li><b>01</b><div><h3>Ouvimos</h3><p>O que acontece e como aparece nos números</p></div></li><li><b>02</b><div><h3>Estreitamos</h3><p>Separamos a causa do sintoma</p></div></li><li><b>03</b><div><h3>Propomos</h3><p>O que fazemos primeiro e por quê</p></div></li><li><b>04</b><div><h3>Calculamos</h3><p>Quanto custa e o que muda</p></div></li></ol><div class="pf-two"><div class="pf-need"><h3>O que vamos precisar</h3><ul><li>O que o negócio faz</li><li>O que você já tentou</li><li>Para quando precisa</li></ul></div><div class="pf-lim"><h3>Limites</h3><p>Enquanto a direção não for nomeada não há caminho concreto a mostrar, e não vamos inventá-lo.</p></div></div></div></div></div></div><div id="pf-switch" data-on="0"><button type="button"></button></div></section>
 
 <section id="works" class="band-works"><div class="wk-h"><p class="eyebrow">Trabalho do estúdio</p><h2>Dois conceitos que você pode abrir e usar</h2><p>São construções nossas, não pedidos de clientes. Por isso podemos mostrá-las inteiras e por isso não atribuímos a elas resultados alheios.</p></div><div class="wk-grid"><article class="wk" data-dev="d"><div class="wk-card" style="background-image:url(/assets/ph/fence-1.jpg)"><div class="wk-top"><span class="wk-name">Planejador de cercas</span><span class="wk-tag">Conceito do estúdio</span></div><div class="wk-inset"><img src="/assets/demo/fence-desk.jpg" data-desk="/assets/demo/fence-desk.jpg" data-phone="/assets/demo/fence-phone.jpg" alt="Planejador de cercas" width="1400" height="972" loading="lazy" decoding="async"></div><div class="wk-dev"><button type="button" data-dev="d" aria-pressed="true">Computador</button><button type="button" data-dev="p" aria-pressed="false">Celular</button></div></div><div class="wk-body"><dl><dt>A tarefa</dt><dd>O instalador de cercas recebe ligações perguntando o preço, e a conversa vira esclarecimento: tipo de trabalho, material, comprimento, altura, portões e demolição.</dd><dt>O que foi feito</dt><dd>Conceito de planejador: o dono da casa escolhe tipo de trabalho, material, estilo, comprimento, altura, portões e demolição e recebe uma descrição clara do projeto para conversar com o instalador.</dd><dt>Limites</dt><dd>É um conceito independente do estúdio, não um pedido da empresa nem o site oficial dela; a página diz isso.</dd></dl><div class="wk-links"><a class="wk-go" href="/preview/neighborhood-fence/">Abrir a demo &rarr;</a><a class="wk-sec" href="/pt/work/neighborhood-fence/">Sobre este trabalho</a></div></div></article><article class="wk" data-dev="d"><div class="wk-card" style="background-image:url(/assets/ph/food-1.jpg)"><div class="wk-top"><span class="wk-name">Cardápio de restaurante e retirada</span><span class="wk-tag">Conceito do estúdio</span></div><div class="wk-inset"><img src="/assets/demo/thai-desk.jpg" data-desk="/assets/demo/thai-desk.jpg" data-phone="/assets/demo/thai-phone.jpg" alt="Cardápio de restaurante e retirada" width="1400" height="972" loading="lazy" decoding="async"></div><div class="wk-dev"><button type="button" data-dev="d" aria-pressed="true">Computador</button><button type="button" data-dev="p" aria-pressed="false">Celular</button></div></div><div class="wk-body"><dl><dt>A tarefa</dt><dd>Um restaurante é julgado pela vitrine. O cliente no celular quer ver os pratos e preços e entender como é a retirada, não ligar para perguntar.</dd><dt>O que foi feito</dt><dd>Conceito de vitrine: cada prato com sua foto, preço e opções, uma seção do que mais pedem, horários e o caminho até a retirada.</dd><dt>Limites</dt><dd>É um conceito independente do estúdio, não um pedido do restaurante nem o site oficial dele; a própria página diz isso.</dd></dl><div class="wk-links"><a class="wk-go" href="/preview/saeng-thai-house/">Abrir a demo &rarr;</a><a class="wk-sec" href="/pt/work/saeng-thai-house/">Sobre este trabalho</a></div></div></article></div></section>
 
@@ -1626,8 +1629,9 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
  }
  function шаг(узел,текст,состояние){
   var p=узел.querySelector('p'), м=узел.querySelector('.hm-mono i');
-  p.textContent=текст;
-  p.classList.toggle('dim',!текст||текст===T().undefined||текст===T().waiting);
+  var пусто=(!текст||текст===T().undefined||текст===T().waiting);
+  p.textContent=пусто?'—':текст;
+  p.classList.toggle('dim',пусто);
   узел.classList.toggle('live',состояние==='live');
   узел.classList.toggle('done',состояние==='done');
   if(м) м.textContent=(состояние==='done'?'\u2713':(состояние==='live'?'\u2192':''));
@@ -1976,7 +1980,7 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
  // нишей клиента: ресторану не показываем склад. Снимки свои на каждой
  // полосе, чтобы страница не повторяла одну картинку.
  var ФОТО = {
-  '': ['neutral-1','neutral-2','presence-2'],
+  '': ['neutral-1','operations-1','presence-2'],
   presence: ['presence-1','presence-2','fence-1'],
   growth: ['growth-1','growth-2','neutral-1'],
   payments: ['payments-1','payments-2','growth-1'],
@@ -2163,8 +2167,7 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
         +экр(ш[1])+'</p></div></li>'; }).join('');
   var нужно=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
   return '<div class="pf-card">'
-   +'<div class="pf-card-h"><h3>'+экр(L.path)+'</h3>'
-   +'<span class="tag">'+экр(T()['stage_'+глубина()]||'')+'</span></div>'
+   +'<div class="pf-card-h"><span class="tag">'+экр(T()['stage_'+глубина()]||'')+'</span></div>'
    +'<ol class="pf-steps">'+шаги+'</ol>'
    +'<div class="pf-two"><div class="pf-need"><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
    +'<div class="pf-lim"><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div></div>';
@@ -2199,14 +2202,18 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   } else if(вид==='list'){
    var пункты=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
    тело='<div class="chk"><ul>'+пункты+'</ul></div>';
-  } else {
+  } else if(к){
    var файл=(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
    тело='<div class="ill-wide"><img src="/assets/il/'+файл+'.jpg" alt="" loading="lazy" decoding="async"></div>';
    имя=имя||экр(б.problem);
+  } else {
+   тело='';
   }
   if(!тело) return '';
+  var сноска = (вид==='tree'||вид==='list') ? (t.scheme_note||'')
+             : (вид==='flow' ? (t.flow_note||'') : '');
   return '<div class="pf-visual"><p class="pf-eyebrow">'+экр(имя)+'</p>'+тело
-   +'<p class="pf-note">'+экр(t.scheme_note||'')+'</p></div>';
+   +(сноска?'<p class="pf-note">'+экр(сноска)+'</p>':'')+'</div>';
  }
  // Что собрано по словам клиента. Ничего не добавляем от себя.
  function блокСобрано(){

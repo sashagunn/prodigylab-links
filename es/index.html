@@ -335,10 +335,10 @@ ul,ol{margin:0;padding:0;list-style:none}
   background:linear-gradient(90deg,var(--paper) 0%,rgba(251,251,249,.72) 26%,
     rgba(251,251,249,.10) 62%,rgba(15,23,34,.22) 100%)}
 .hero-in{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;
-  padding:0 var(--gut);display:grid;grid-template-columns:minmax(0,47fr) minmax(0,53fr);
+  padding:0 var(--gut);display:grid;grid-template-columns:minmax(0,50fr) minmax(0,50fr);
   gap:clamp(22px,3vw,54px);align-items:center}
 .hero-l{max-width:620px}
-h1#h1{font-size:clamp(38px,4.9vw,70px);margin:12px 0 0;letter-spacing:-.035em}
+h1#h1{font-size:clamp(34px,4.1vw,58px);margin:12px 0 0;letter-spacing:-.035em;max-width:16ch}
 h1#h1 .ln{display:block;overflow:hidden}
 h1#h1 .ln>span{display:block;transform:translateY(110%);opacity:0;
   transition:transform .62s cubic-bezier(.2,.7,.2,1),opacity .62s}
@@ -562,7 +562,7 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .wk-inset{position:relative;z-index:2;align-self:flex-end;width:min(100%,330px);
   border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.3);
   box-shadow:0 30px 60px -30px rgba(0,0,0,.9);margin-top:24px}
-.wk-inset img{width:100%;display:block}
+.wk-inset img{width:100%;height:auto;display:block}
 .wk[data-dev="d"] .wk-inset img{aspect-ratio:16/10;object-fit:cover;object-position:top}
 .wk[data-dev="p"] .wk-inset{width:min(60%,210px)}
 .wk[data-dev="p"] .wk-inset img{aspect-ratio:390/700;object-fit:cover;object-position:top}
@@ -578,7 +578,8 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .wk-go:hover{background:var(--accent2)}
 .wk-sec{color:var(--ink2);text-decoration:underline;text-underline-offset:4px;font-size:13.5px}
 .wk-dev{display:inline-flex;gap:4px;background:rgba(255,255,255,.92);
-  border-radius:999px;padding:3px;position:relative;z-index:2}
+  border-radius:999px;padding:3px;position:relative;z-index:2;align-self:flex-start;
+  margin-top:14px}
 .wk-dev button{background:none;border:0;border-radius:999px;padding:5px 11px;
   font-size:11.5px;cursor:pointer;color:var(--ink2)}
 .wk-dev button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
@@ -1218,15 +1219,15 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
  <div class="hero-ph" id="hero-ph"></div>
  <div class="hero-in">
   <div class="hero-l">
-   <p class="eyebrow">AN&amp;Aacute;LISIS Y SOLUCIONES DE NEGOCIO</p>
+   <p class="eyebrow">ANÁLISIS Y SOLUCIONES DE NEGOCIO</p>
    <h1 id="h1"><span class="ln"><span>¿Qué frena el avance</span></span><span class="ln"><span>de su negocio?</span></span></h1>
-   <p class="hm-lede">Pagos, bancos, financiaci&amp;oacute;n, operaciones, sitios web y tiendas. Empiece aqu&amp;iacute; mismo: analizamos la situaci&amp;oacute;n y decimos qu&amp;eacute; arreglar primero.</p>
+   <p class="hm-lede">Pagos, bancos, financiación, operaciones, sitios web y tiendas. Empiece aquí mismo: analizamos la situación y decimos qué arreglar primero.</p>
    <div class="talk">
     <div class="talk-h">
      <span class="talk-n">Asistente de Prodigy LAB</span>
      <div class="lang" id="lang">
       <button type="button" id="lang-btn" aria-expanded="false" aria-haspopup="true"
-              aria-label="Idioma de la conversaci&amp;oacute;n">Español</button>
+              aria-label="Idioma de la conversación">Español</button>
       <ul id="lang-list" hidden></ul>
      </div>
     </div>
@@ -1238,23 +1239,25 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
      <button id="ask-b" type="submit" aria-label="Enviar">&rarr;</button>
     </form>
    </div>
-   <ul class="chips" id="chips"><li><button type="button" data-k="site_needed" data-i="m0">Necesito web o tienda</button></li><li><button type="button" data-k="site_no_leads" data-i="m1">La web está, no llegan clientes</button></li><li><button type="button" data-k="payments" data-i="m2">Los pagos no pasan</button></li><li><button type="button" data-k="banking" data-i="m3">Problema con la cuenta bancaria</button></li><li><button type="button" data-k="funding" data-i="m4">Necesito financiación</button></li><li><button type="button" data-k="operations" data-i="m5">Mucho trabajo manual</button></li></ul>
-   <p class="hm-pick vh">Por d&amp;oacute;nde empezamos</p>
+   <ul class="chips" id="chips"></ul>
+   <p class="hm-pick vh">Por dónde empezamos</p>
    <div class="tail">
-    <button type="button" id="restart">La m&amp;iacute;a es otra</button>
-    <a href="#works">Ver nuestro trabajo &rarr;</a>
+    <button type="button" id="restart">La mía es otra</button>
+    <a href="#works" id="tail-more">Ver nuestro trabajo &rarr;</a>
    </div>
   </div>
   <div class="hero-r" id="hm-r" data-mode="idle">
-   <div class="steps" id="steps"><div class="hm-step" id="s-task"><span class="hm-mono">Tarea <i></i></span><p class="dim">lo estamos definiendo</p></div><div class="hm-step" id="s-clar"><span class="hm-mono">Precisando <i></i></span><p class="dim">lo estamos definiendo</p></div><div class="hm-step" id="s-next"><span class="hm-mono">Siguiente paso <i></i></span><p class="dim">lo estamos definiendo</p></div></div>
-   <div id="hm-scene"><figure class="ill"><div class="ill-img">
-     <img src="/assets/il/neutral.jpg" alt="" width="1200" height="800" decoding="async">
-    </div></figure></div>
+   <div class="steps" id="steps">
+    <div class="hm-step" id="s-task"><span class="hm-mono">Tarea <i></i></span><p class="dim">lo estamos definiendo</p></div>
+    <div class="hm-step" id="s-clar"><span class="hm-mono">Precisando <i></i></span><p class="dim">lo estamos definiendo</p></div>
+    <div class="hm-step" id="s-next"><span class="hm-mono">Siguiente paso <i></i></span><p class="dim">lo estamos definiendo</p></div>
+   </div>
+   <div id="hm-scene"></div>
   </div>
  </div>
 </section>
 
-<section id="pf"><div class="pf-in"><div class="pf-v" data-route="" data-depth="0"><div class="pf-ph"></div><div class="pf-l"><p class="pf-eyebrow">Cómo lo analizamos</p><h2 class="pf-h">Aún no está claro qué hay que arreglar</h2><p class="pf-lede">Primero buscamos dónde se escapa el dinero. Casi nunca donde parece.</p><span id="how" class="pf-anchor"></span><div class="pf-cta"><button type="button" class="pf-main" data-talk>Contar qué está pasando</button><a href="#works">Todos los ejemplos &rarr;</a></div></div><div class="pf-r"><div class="pf-card"><div class="pf-card-h"><h3>Cómo lo analizamos</h3></div><ol class="pf-steps"><li><b>01</b><div><h3>Escuchamos</h3><p>Qué pasa y cómo se ve en las cifras</p></div></li><li><b>02</b><div><h3>Acotamos</h3><p>Separamos la causa del síntoma</p></div></li><li><b>03</b><div><h3>Proponemos</h3><p>Qué hacemos primero y por qué eso</p></div></li><li><b>04</b><div><h3>Calculamos</h3><p>Cuánto cuesta y qué cambia</p></div></li></ol><div class="pf-two"><div class="pf-need"><h3>Qué hará falta</h3><ul><li>A qué se dedica el negocio</li><li>Qué ya intentó</li><li>Para cuándo lo necesita</li></ul></div><div class="pf-lim"><h3>Límites</h3><p>Mientras no se nombre la dirección no hay camino concreto que mostrar, y no lo vamos a inventar.</p></div></div></div></div></div></div><div id="pf-switch" data-on="0"><button type="button"></button></div></section>
+<section id="pf"><div class="pf-in"><div class="pf-v" data-route="" data-depth="0"><div class="pf-ph"></div><div class="pf-l"><p class="pf-eyebrow">Cómo lo analizamos</p><h2 class="pf-h">Aún no está claro qué hay que arreglar</h2><p class="pf-lede">Primero buscamos dónde se escapa el dinero. Casi nunca donde parece.</p><span id="how" class="pf-anchor"></span><div class="pf-cta"><button type="button" class="pf-main" data-talk>Contar qué está pasando</button><a href="#works">Todos los ejemplos &rarr;</a></div></div><div class="pf-r"><div class="pf-card"><div class="pf-card-h"><span class="tag">Cómo lo analizamos</span></div><ol class="pf-steps"><li><b>01</b><div><h3>Escuchamos</h3><p>Qué pasa y cómo se ve en las cifras</p></div></li><li><b>02</b><div><h3>Acotamos</h3><p>Separamos la causa del síntoma</p></div></li><li><b>03</b><div><h3>Proponemos</h3><p>Qué hacemos primero y por qué eso</p></div></li><li><b>04</b><div><h3>Calculamos</h3><p>Cuánto cuesta y qué cambia</p></div></li></ol><div class="pf-two"><div class="pf-need"><h3>Qué hará falta</h3><ul><li>A qué se dedica el negocio</li><li>Qué ya intentó</li><li>Para cuándo lo necesita</li></ul></div><div class="pf-lim"><h3>Límites</h3><p>Mientras no se nombre la dirección no hay camino concreto que mostrar, y no lo vamos a inventar.</p></div></div></div></div></div></div><div id="pf-switch" data-on="0"><button type="button"></button></div></section>
 
 <section id="works" class="band-works"><div class="wk-h"><p class="eyebrow">Trabajo del estudio</p><h2>Dos conceptos que puede abrir y usar</h2><p>Son construcciones propias, no encargos de clientes. Por eso podemos mostrarlas enteras y por eso no les atribuimos resultados ajenos.</p></div><div class="wk-grid"><article class="wk" data-dev="d"><div class="wk-card" style="background-image:url(/assets/ph/fence-1.jpg)"><div class="wk-top"><span class="wk-name">Planificador de cercas</span><span class="wk-tag">Concepto del estudio</span></div><div class="wk-inset"><img src="/assets/demo/fence-desk.jpg" data-desk="/assets/demo/fence-desk.jpg" data-phone="/assets/demo/fence-phone.jpg" alt="Planificador de cercas" width="1400" height="972" loading="lazy" decoding="async"></div><div class="wk-dev"><button type="button" data-dev="d" aria-pressed="true">Ordenador</button><button type="button" data-dev="p" aria-pressed="false">Móvil</button></div></div><div class="wk-body"><dl><dt>La tarea</dt><dd>Al instalador de cercas le llaman para preguntar el precio y la conversación se va en aclarar: tipo de trabajo, material, longitud, altura, puertas y demolición.</dd><dt>Qué se hizo</dt><dd>Concepto de planificador: el dueño elige tipo de trabajo, material, estilo, longitud, altura, puertas y demolición y obtiene una descripción clara del proyecto para hablar con el instalador.</dd><dt>Límites</dt><dd>Es un concepto independiente del estudio, no un encargo de la empresa ni su sitio oficial; la página lo dice.</dd></dl><div class="wk-links"><a class="wk-go" href="/preview/neighborhood-fence/">Abrir la demo &rarr;</a><a class="wk-sec" href="/es/work/neighborhood-fence/">Sobre este trabajo</a></div></div></article><article class="wk" data-dev="d"><div class="wk-card" style="background-image:url(/assets/ph/food-1.jpg)"><div class="wk-top"><span class="wk-name">Menú de restaurante y recogida</span><span class="wk-tag">Concepto del estudio</span></div><div class="wk-inset"><img src="/assets/demo/thai-desk.jpg" data-desk="/assets/demo/thai-desk.jpg" data-phone="/assets/demo/thai-phone.jpg" alt="Menú de restaurante y recogida" width="1400" height="972" loading="lazy" decoding="async"></div><div class="wk-dev"><button type="button" data-dev="d" aria-pressed="true">Ordenador</button><button type="button" data-dev="p" aria-pressed="false">Móvil</button></div></div><div class="wk-body"><dl><dt>La tarea</dt><dd>A un restaurante se le juzga por su escaparate. El cliente quiere ver los platos y precios en el móvil y entender cómo es la recogida, no llamar para preguntar.</dd><dt>Qué se hizo</dt><dd>Concepto de escaparate: cada plato con su foto, precio y opciones, una sección de lo más pedido, horarios y el camino a la recogida.</dd><dt>Límites</dt><dd>Es un concepto independiente del estudio, no un encargo del restaurante ni su sitio oficial; así lo dice la propia página.</dd></dl><div class="wk-links"><a class="wk-go" href="/preview/saeng-thai-house/">Abrir la demo &rarr;</a><a class="wk-sec" href="/es/work/saeng-thai-house/">Sobre este trabajo</a></div></div></article></div></section>
 
@@ -1626,8 +1629,9 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
  }
  function шаг(узел,текст,состояние){
   var p=узел.querySelector('p'), м=узел.querySelector('.hm-mono i');
-  p.textContent=текст;
-  p.classList.toggle('dim',!текст||текст===T().undefined||текст===T().waiting);
+  var пусто=(!текст||текст===T().undefined||текст===T().waiting);
+  p.textContent=пусто?'—':текст;
+  p.classList.toggle('dim',пусто);
   узел.classList.toggle('live',состояние==='live');
   узел.classList.toggle('done',состояние==='done');
   if(м) м.textContent=(состояние==='done'?'\u2713':(состояние==='live'?'\u2192':''));
@@ -1976,7 +1980,7 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
  // нишей клиента: ресторану не показываем склад. Снимки свои на каждой
  // полосе, чтобы страница не повторяла одну картинку.
  var ФОТО = {
-  '': ['neutral-1','neutral-2','presence-2'],
+  '': ['neutral-1','operations-1','presence-2'],
   presence: ['presence-1','presence-2','fence-1'],
   growth: ['growth-1','growth-2','neutral-1'],
   payments: ['payments-1','payments-2','growth-1'],
@@ -2163,8 +2167,7 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
         +экр(ш[1])+'</p></div></li>'; }).join('');
   var нужно=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
   return '<div class="pf-card">'
-   +'<div class="pf-card-h"><h3>'+экр(L.path)+'</h3>'
-   +'<span class="tag">'+экр(T()['stage_'+глубина()]||'')+'</span></div>'
+   +'<div class="pf-card-h"><span class="tag">'+экр(T()['stage_'+глубина()]||'')+'</span></div>'
    +'<ol class="pf-steps">'+шаги+'</ol>'
    +'<div class="pf-two"><div class="pf-need"><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
    +'<div class="pf-lim"><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div></div>';
@@ -2199,14 +2202,18 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   } else if(вид==='list'){
    var пункты=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
    тело='<div class="chk"><ul>'+пункты+'</ul></div>';
-  } else {
+  } else if(к){
    var файл=(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
    тело='<div class="ill-wide"><img src="/assets/il/'+файл+'.jpg" alt="" loading="lazy" decoding="async"></div>';
    имя=имя||экр(б.problem);
+  } else {
+   тело='';
   }
   if(!тело) return '';
+  var сноска = (вид==='tree'||вид==='list') ? (t.scheme_note||'')
+             : (вид==='flow' ? (t.flow_note||'') : '');
   return '<div class="pf-visual"><p class="pf-eyebrow">'+экр(имя)+'</p>'+тело
-   +'<p class="pf-note">'+экр(t.scheme_note||'')+'</p></div>';
+   +(сноска?'<p class="pf-note">'+экр(сноска)+'</p>':'')+'</div>';
  }
  // Что собрано по словам клиента. Ничего не добавляем от себя.
  function блокСобрано(){

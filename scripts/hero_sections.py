@@ -668,7 +668,8 @@ def markup(lang: str = 'ru') -> str:
         f'<li><b>{i:02d}</b><div><h3>{e(t)}</h3><p>{e(p)}</p></div></li>'
         for i, (t, p) in enumerate(б['steps'], 1))
     нужно = "".join(f'<li>{e(x)}</li>' for x in б['need'])
-    карта = (f'<div class="pf-card"><div class="pf-card-h"><h3>{e(ОБ["path"])}</h3></div>'
+    карта = (f'<div class="pf-card"><div class="pf-card-h">'
+             f'<span class="tag">{e(ОБ.get("path", ""))}</span></div>'
              f'<ol class="pf-steps">{шаги}</ol>'
              f'<div class="pf-two"><div class="pf-need"><h3>{e(ОБ["need"])}</h3>'
              f'<ul>{нужно}</ul></div>'

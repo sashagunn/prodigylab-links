@@ -311,8 +311,9 @@ JS = """
  }
  function шаг(узел,текст,состояние){
   var p=узел.querySelector('p'), м=узел.querySelector('.hm-mono i');
-  p.textContent=текст;
-  p.classList.toggle('dim',!текст||текст===T().undefined||текст===T().waiting);
+  var пусто=(!текст||текст===T().undefined||текст===T().waiting);
+  p.textContent=пусто?'\u2014':текст;
+  p.classList.toggle('dim',пусто);
   узел.classList.toggle('live',состояние==='live');
   узел.classList.toggle('done',состояние==='done');
   if(м) м.textContent=(состояние==='done'?'\\u2713':(состояние==='live'?'\\u2192':''));
@@ -661,7 +662,7 @@ JS = """
  // нишей клиента: ресторану не показываем склад. Снимки свои на каждой
  // полосе, чтобы страница не повторяла одну картинку.
  var ФОТО = {
-  '': ['neutral-1','neutral-2','presence-2'],
+  '': ['neutral-1','operations-1','presence-2'],
   presence: ['presence-1','presence-2','fence-1'],
   growth: ['growth-1','growth-2','neutral-1'],
   payments: ['payments-1','payments-2','growth-1'],
@@ -848,8 +849,7 @@ JS = """
         +экр(ш[1])+'</p></div></li>'; }).join('');
   var нужно=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
   return '<div class="pf-card">'
-   +'<div class="pf-card-h"><h3>'+экр(L.path)+'</h3>'
-   +'<span class="tag">'+экр(T()['stage_'+глубина()]||'')+'</span></div>'
+   +'<div class="pf-card-h"><span class="tag">'+экр(T()['stage_'+глубина()]||'')+'</span></div>'
    +'<ol class="pf-steps">'+шаги+'</ol>'
    +'<div class="pf-two"><div class="pf-need"><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
    +'<div class="pf-lim"><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div></div>';
@@ -884,14 +884,18 @@ JS = """
   } else if(вид==='list'){
    var пункты=(б.need||[]).map(function(x){ return '<li>'+экр(x)+'</li>'; }).join('');
    тело='<div class="chk"><ul>'+пункты+'</ul></div>';
-  } else {
+  } else if(к){
    var файл=(window.ИЛЛЮСТРАЦИЯ||function(){return 'neutral';})(к);
    тело='<div class="ill-wide"><img src="/assets/il/'+файл+'.jpg" alt="" loading="lazy" decoding="async"></div>';
    имя=имя||экр(б.problem);
+  } else {
+   тело='';
   }
   if(!тело) return '';
+  var сноска = (вид==='tree'||вид==='list') ? (t.scheme_note||'')
+             : (вид==='flow' ? (t.flow_note||'') : '');
   return '<div class="pf-visual"><p class="pf-eyebrow">'+экр(имя)+'</p>'+тело
-   +'<p class="pf-note">'+экр(t.scheme_note||'')+'</p></div>';
+   +(сноска?'<p class="pf-note">'+экр(сноска)+'</p>':'')+'</div>';
  }
  // Что собрано по словам клиента. Ничего не добавляем от себя.
  function блокСобрано(){
@@ -1271,61 +1275,50 @@ def встроенный_css() -> str:
 def markup(code: str = 'ru') -> str:
     """Первый экран: разговор слева, сцена под задачу справа.
 
-    Сервер рисует состояние «задача не названа»: заголовок, панель разговора
-    с полем и ситуациями, трекер и нейтральная иллюстрация. Дальше страница
-    меняет сцену и фотографию под направление разговора.
+    Строки берутся из тех же данных, что ведут разговор, поэтому сервер и
+    помощник не расходятся. Фотография направления подставляется скриптом.
     """
-    import html as _h
-    import hero_content as _HC
-    e = _h.escape
-    s = _HC.S.get(code) or _HC.S['ru']
-    пара = (_HC.H1.get(code) or _HC.H1['ru'])['']
-    набор = (_HC.НАБОРЫ.get(code) or _HC.НАБОРЫ['ru'])['general']
-    чипы = "".join(
-        f'<li><button type="button" data-k="{k}" data-i="m{i}">{e(t)}</button></li>'
-        for i, (k, t) in enumerate(набор['main']))
-    чипы += "".join(
-        f'<li class="near"><button type="button" data-k="{k}" data-i="n{i}">{e(t)}</button></li>'
-        for i, (k, t) in enumerate(набор.get('near') or []))
-    шаг = lambda ид, метка: (
-        f'<div class="hm-step" id="{ид}"><span class="hm-mono">{e(метка)} <i></i></span>'
-        f'<p class="dim">{e(s["undefined"])}</p></div>')
+    d = _данные()[code]['s']
+    h1 = _данные()[code]['h1']['']
+    e = H.escape
     return f'''<section id="hm-hero"><span id="start" class="hm-anchor"></span>
  <div class="hero-ph" id="hero-ph"></div>
  <div class="hero-in">
   <div class="hero-l">
-   <p class="eyebrow">{e(s['eyebrow'])}</p>
-   <h1 id="h1"><span class="ln"><span>{e(пара[0])}</span></span><span class="ln"><span>{e(пара[1])}</span></span></h1>
-   <p class="hm-lede">{e(s['lede'])}</p>
+   <p class="eyebrow">{e(d['eyebrow'])}</p>
+   <h1 id="h1"><span class="ln"><span>{e(h1[0])}</span></span><span class="ln"><span>{e(h1[1])}</span></span></h1>
+   <p class="hm-lede">{e(d['lede'])}</p>
    <div class="talk">
     <div class="talk-h">
-     <span class="talk-n">{e(s['panel'])}</span>
+     <span class="talk-n">{e(d['panel'])}</span>
      <div class="lang" id="lang">
       <button type="button" id="lang-btn" aria-expanded="false" aria-haspopup="true"
-              aria-label="{e(s['lang_pick'])}">{e(_HC.ИМЕНА.get(code, 'Русский'))}</button>
+              aria-label="{e(d['lang_pick'])}">{e(ИМЕНА[code])}</button>
       <ul id="lang-list" hidden></ul>
      </div>
     </div>
     <div class="stream" id="stream"></div>
     <div class="sugg" id="sugg"></div>
     <form id="ask" autocomplete="off">
-     <label class="vh" for="ask-i">{e(s['input'])}</label>
-     <input id="ask-i" type="text" autocomplete="off" placeholder="{e(s['input'])}">
-     <button id="ask-b" type="submit" aria-label="{e(s['send'])}">&rarr;</button>
+     <label class="vh" for="ask-i">{e(d['input'])}</label>
+     <input id="ask-i" type="text" autocomplete="off" placeholder="{e(d['input'])}">
+     <button id="ask-b" type="submit" aria-label="{e(d['send'])}">&rarr;</button>
     </form>
    </div>
-   <ul class="chips" id="chips">{чипы}</ul>
-   <p class="hm-pick vh">{e(s['pick'])}</p>
+   <ul class="chips" id="chips"></ul>
+   <p class="hm-pick vh">{e(d['pick'])}</p>
    <div class="tail">
-    <button type="button" id="restart">{e(s['other'])}</button>
-    <a href="#works">{e(s['more'])} &rarr;</a>
+    <button type="button" id="restart">{e(d['other'])}</button>
+    <a href="#works" id="tail-more">{e(d['more'])} &rarr;</a>
    </div>
   </div>
   <div class="hero-r" id="hm-r" data-mode="idle">
-   <div class="steps" id="steps">{шаг('s-task', s['task'])}{шаг('s-clar', s['clarify'])}{шаг('s-next', s['nxt'])}</div>
-   <div id="hm-scene"><figure class="ill"><div class="ill-img">
-     <img src="/assets/il/neutral.jpg" alt="" width="1200" height="800" decoding="async">
-    </div></figure></div>
+   <div class="steps" id="steps">
+    <div class="hm-step" id="s-task"><span class="hm-mono">{e(d['task'])} <i></i></span><p class="dim">{e(d['undefined'])}</p></div>
+    <div class="hm-step" id="s-clar"><span class="hm-mono">{e(d['clarify'])} <i></i></span><p class="dim">{e(d['undefined'])}</p></div>
+    <div class="hm-step" id="s-next"><span class="hm-mono">{e(d['nxt'])} <i></i></span><p class="dim">{e(d['undefined'])}</p></div>
+   </div>
+   <div id="hm-scene"></div>
   </div>
  </div>
 </section>'''

@@ -70,7 +70,7 @@ S = {
    resume_q='Continue your previous conversation?',
    resume_yes='Continue', resume_no='Start over',
    resume_old='This is state from an earlier visit',
-   eyebrow='BUSINESS ADVISORY &amp; SOLUTIONS',
+   eyebrow='BUSINESS ADVISORY & SOLUTIONS',
    lede='Payments, banking, funding, operations, websites and stores. '
         'Start right here — we read the situation and say what to fix first.',
    input='Describe your task in your own words', input_next='Your answer',

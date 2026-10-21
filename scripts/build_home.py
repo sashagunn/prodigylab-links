@@ -96,10 +96,10 @@ ul,ol{margin:0;padding:0;list-style:none}
   background:linear-gradient(90deg,var(--paper) 0%,rgba(251,251,249,.72) 26%,
     rgba(251,251,249,.10) 62%,rgba(15,23,34,.22) 100%)}
 .hero-in{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;
-  padding:0 var(--gut);display:grid;grid-template-columns:minmax(0,47fr) minmax(0,53fr);
+  padding:0 var(--gut);display:grid;grid-template-columns:minmax(0,50fr) minmax(0,50fr);
   gap:clamp(22px,3vw,54px);align-items:center}
 .hero-l{max-width:620px}
-h1#h1{font-size:clamp(38px,4.9vw,70px);margin:12px 0 0;letter-spacing:-.035em}
+h1#h1{font-size:clamp(34px,4.1vw,58px);margin:12px 0 0;letter-spacing:-.035em;max-width:16ch}
 h1#h1 .ln{display:block;overflow:hidden}
 h1#h1 .ln>span{display:block;transform:translateY(110%);opacity:0;
   transition:transform .62s cubic-bezier(.2,.7,.2,1),opacity .62s}
@@ -323,7 +323,7 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .wk-inset{position:relative;z-index:2;align-self:flex-end;width:min(100%,330px);
   border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.3);
   box-shadow:0 30px 60px -30px rgba(0,0,0,.9);margin-top:24px}
-.wk-inset img{width:100%;display:block}
+.wk-inset img{width:100%;height:auto;display:block}
 .wk[data-dev="d"] .wk-inset img{aspect-ratio:16/10;object-fit:cover;object-position:top}
 .wk[data-dev="p"] .wk-inset{width:min(60%,210px)}
 .wk[data-dev="p"] .wk-inset img{aspect-ratio:390/700;object-fit:cover;object-position:top}
@@ -339,7 +339,8 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .wk-go:hover{background:var(--accent2)}
 .wk-sec{color:var(--ink2);text-decoration:underline;text-underline-offset:4px;font-size:13.5px}
 .wk-dev{display:inline-flex;gap:4px;background:rgba(255,255,255,.92);
-  border-radius:999px;padding:3px;position:relative;z-index:2}
+  border-radius:999px;padding:3px;position:relative;z-index:2;align-self:flex-start;
+  margin-top:14px}
 .wk-dev button{background:none;border:0;border-radius:999px;padding:5px 11px;
   font-size:11.5px;cursor:pointer;color:var(--ink2)}
 .wk-dev button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
