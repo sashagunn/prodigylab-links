@@ -726,20 +726,25 @@ JS = """
   var путь='/assets/ph/'+имя+'.jpg';
   var i=new Image();
   i.onload=function(){
+   if(узел.getAttribute('data-ph')!==имя) return;  // пока грузили, выбрали другой
    var слой=document.createElement('i');
    слой.className='ph-l';
    слой.style.backgroundImage='url('+путь+')';
    узел.appendChild(слой);
    if(класс) узел.classList.add(класс);
-   window.requestAnimationFrame(function(){
-    window.requestAnimationFrame(function(){
-     слой.classList.add('on');
-     var старые=узел.querySelectorAll('.ph-l');
-     window.setTimeout(function(){
-      for(var k=0;k<старые.length-1;k++){ if(старые[k]!==слой) старые[k].remove(); }
-     },950);
-    });
-   });
+   var снято=false;
+   // Нижние слои снимаем только когда верхний стал полностью непрозрачным.
+   // Раньше их убирали на 950 мс при переходе в 1.6 с — и фон моргал.
+   function снять(){
+    if(снято) return; снято=true;
+    var все=узел.querySelectorAll('.ph-l');
+    for(var k=0;k<все.length;k++){ if(все[k]===слой) break; все[k].remove(); }
+   }
+   слой.addEventListener('transitionend',function(e){
+    if(e.propertyName==='opacity') снять(); });
+   void слой.offsetHeight;
+   слой.classList.add('on');
+   window.setTimeout(снять,2200);   // запас, если события не будет
   };
   i.src=путь;
  }
@@ -894,22 +899,32 @@ JS = """
   var обёртка=document.createElement('div');
   обёртка.className='сц';
   обёртка.innerHTML=новое;
-  if(тонкая || !уход){ гн.innerHTML=''; гн.appendChild(обёртка); return; }
+  if(тонкая){ гн.innerHTML=''; гн.appendChild(обёртка); return; }
+  function проявить(снять){
+   обёртка.classList.add('сц-новая');
+   гн.appendChild(обёртка);
+   void обёртка.offsetHeight;
+   обёртка.classList.add('on');
+   window.setTimeout(function(){
+    if(снять) снять();
+    // Во вкладке на фоне кадры не идут и переход замирает на нуле. Снимаем
+    // переход принудительно, иначе сцена останется невидимой.
+    обёртка.style.transition='none';
+    обёртка.classList.remove('сц-новая');
+    обёртка.classList.remove('on');
+    void обёртка.offsetHeight;
+    обёртка.style.transition='';
+   },800);
+  }
+  // Первая сцена проявляется так же, как смена: отдельного пути нет.
+  if(!уход){ сКартинками(обёртка,function(){ if(мой===счётСцен) проявить(null); }); return; }
   // Старая гаснет, новая проявляется на её месте — и остаётся ТЕМ ЖЕ узлом.
   // Раньше в конце перехода сцена пересобиралась из разметки: картинка
   // создавалась заново и анимация появления шла по второму кругу.
   сКартинками(обёртка, function(){
    if(мой!==счётСцен) return;
-   обёртка.classList.add('сц-новая');
    уход.classList.add('уходит');
-   гн.appendChild(обёртка);
-   void обёртка.offsetHeight;
-   обёртка.classList.add('on');
-   window.setTimeout(function(){
-    if(уход.parentNode===гн) гн.removeChild(уход);
-    обёртка.classList.remove('сц-новая');
-    обёртка.classList.remove('on');
-   },700);
+   проявить(function(){ if(уход.parentNode===гн) гн.removeChild(уход); });
   });
  }
  document.addEventListener('click',function(ev){

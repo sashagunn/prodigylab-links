@@ -700,9 +700,9 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 /* ============================================== смена без рывка */
 /* Сцена первого экрана: старая гаснет, новая проявляется на её месте. */
 #hm-scene{position:relative}
-#hm-scene>.уходит{opacity:1;transition:opacity .6s ease}
+#hm-scene>.уходит{opacity:1;transition:opacity .28s ease}
 #hm-scene>.сц-новая{position:absolute;inset:0;opacity:0;
-  transition:opacity .6s ease}
+  transition:opacity .55s ease .18s}
 #hm-scene>.сц-новая.on{opacity:1}
 #hm-scene>.сц-новая~.уходит,#hm-scene>.уходит{opacity:.001}
 #hm-scene>.сц-новая>*{animation:none}
@@ -725,8 +725,12 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 #hm-scene{min-height:clamp(300px,34vw,440px)}
 #hm-scene>*{height:100%}
 .ill,.shot,.scheme{height:100%;display:flex;flex-direction:column}
-.ill-img,.shot-win{flex:1;min-height:0}
+.ill-img,.shot-win{flex:1 1 auto;min-height:0}
 .ill-img img,.shot-win img{height:100%;object-fit:cover}
+.shot-cap,.ill figcaption{flex:0 0 84px;height:84px;min-height:0;overflow:hidden;
+  margin-top:14px;align-content:flex-start}
+/* Скругление одинаковое: разные радиусы давали тёмную кромку на переходе. */
+.shot-win,.ill-img{border-radius:18px}
 .scheme{overflow:auto}
 /* Карточка работы: одинаковая высота на компьютере и телефоне в обоих режимах */
 .wk-card{min-height:clamp(380px,30vw,460px)}
@@ -844,9 +848,9 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
 /* Вертикальный снимок в широкой рамке обрезался в полосу и выглядел как
    случайное увеличение. В этом режиме рамка становится телефоном. */
 .shot{display:flex;flex-direction:column;height:100%}
-.shot-win{flex:1;min-height:0;display:flex;flex-direction:column}
+.shot-win{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
 .shot-win img{flex:1;min-height:0}
-.shot[data-dev="p"] .shot-win{flex:0 1 auto;height:calc(100% - 58px);width:auto;
+.shot[data-dev="p"] .shot-win{flex:1 1 auto;height:auto;width:auto;
   aspect-ratio:390/760;margin:0 auto;border-radius:28px;padding:6px;
   background:#0B0F14;border:2px solid rgba(255,255,255,.12)}
 .shot[data-dev="p"] .shot-bar{display:none}
@@ -868,6 +872,22 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
 /* Колонка не должна расширяться под содержимое: горизонтальная лента
    подсказок растягивала её до 553 px при ширине экрана 390, и чипы
    перестраивались в шесть рядов вместо трёх. */
+/* Трекер: ширина строки фиксированная, поэтому перенос всегда одинаковый.
+   Раньше пустой трекер влезал в одну строку, а заполненный занимал две —
+   и правая колонка уезжала вниз на 34 px при первом же ответе. */
+@media (min-width:701px){
+  .steps{align-content:flex-start}
+  .hm-step{flex:0 0 calc(50% - 4px);max-width:calc(50% - 4px)}
+}
+/* Сценой управляет ТОЛЬКО прозрачность. Анимация появления с fill:both
+   перебивала её в каскаде: уходящая сцена не гасла вовсе, тёмный макет
+   браузера стоял под светлой карточкой до самого удаления — это и читалось
+   как чёрная кромка, которая потом пропадает. */
+#hm-scene>.сц{animation:none}
+@media (max-width:700px){
+  #hm-scene{height:300px}
+  .shot-cap,.ill figcaption{flex:0 0 118px;height:118px}
+}
 .hero-l,.hero-r,.talk,.sugg,.chips,.stream{min-width:0}
 .sugg{max-width:100%}
 @media (max-width:1080px){

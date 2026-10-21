@@ -939,9 +939,9 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 /* ============================================== смена без рывка */
 /* Сцена первого экрана: старая гаснет, новая проявляется на её месте. */
 #hm-scene{position:relative}
-#hm-scene>.уходит{opacity:1;transition:opacity .6s ease}
+#hm-scene>.уходит{opacity:1;transition:opacity .28s ease}
 #hm-scene>.сц-новая{position:absolute;inset:0;opacity:0;
-  transition:opacity .6s ease}
+  transition:opacity .55s ease .18s}
 #hm-scene>.сц-новая.on{opacity:1}
 #hm-scene>.сц-новая~.уходит,#hm-scene>.уходит{opacity:.001}
 #hm-scene>.сц-новая>*{animation:none}
@@ -964,8 +964,12 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 #hm-scene{min-height:clamp(300px,34vw,440px)}
 #hm-scene>*{height:100%}
 .ill,.shot,.scheme{height:100%;display:flex;flex-direction:column}
-.ill-img,.shot-win{flex:1;min-height:0}
+.ill-img,.shot-win{flex:1 1 auto;min-height:0}
 .ill-img img,.shot-win img{height:100%;object-fit:cover}
+.shot-cap,.ill figcaption{flex:0 0 84px;height:84px;min-height:0;overflow:hidden;
+  margin-top:14px;align-content:flex-start}
+/* Скругление одинаковое: разные радиусы давали тёмную кромку на переходе. */
+.shot-win,.ill-img{border-radius:18px}
 .scheme{overflow:auto}
 /* Карточка работы: одинаковая высота на компьютере и телефоне в обоих режимах */
 .wk-card{min-height:clamp(380px,30vw,460px)}
@@ -1083,9 +1087,9 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
 /* Вертикальный снимок в широкой рамке обрезался в полосу и выглядел как
    случайное увеличение. В этом режиме рамка становится телефоном. */
 .shot{display:flex;flex-direction:column;height:100%}
-.shot-win{flex:1;min-height:0;display:flex;flex-direction:column}
+.shot-win{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
 .shot-win img{flex:1;min-height:0}
-.shot[data-dev="p"] .shot-win{flex:0 1 auto;height:calc(100% - 58px);width:auto;
+.shot[data-dev="p"] .shot-win{flex:1 1 auto;height:auto;width:auto;
   aspect-ratio:390/760;margin:0 auto;border-radius:28px;padding:6px;
   background:#0B0F14;border:2px solid rgba(255,255,255,.12)}
 .shot[data-dev="p"] .shot-bar{display:none}
@@ -1107,6 +1111,22 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
 /* Колонка не должна расширяться под содержимое: горизонтальная лента
    подсказок растягивала её до 553 px при ширине экрана 390, и чипы
    перестраивались в шесть рядов вместо трёх. */
+/* Трекер: ширина строки фиксированная, поэтому перенос всегда одинаковый.
+   Раньше пустой трекер влезал в одну строку, а заполненный занимал две —
+   и правая колонка уезжала вниз на 34 px при первом же ответе. */
+@media (min-width:701px){
+  .steps{align-content:flex-start}
+  .hm-step{flex:0 0 calc(50% - 4px);max-width:calc(50% - 4px)}
+}
+/* Сценой управляет ТОЛЬКО прозрачность. Анимация появления с fill:both
+   перебивала её в каскаде: уходящая сцена не гасла вовсе, тёмный макет
+   браузера стоял под светлой карточкой до самого удаления — это и читалось
+   как чёрная кромка, которая потом пропадает. */
+#hm-scene>.сц{animation:none}
+@media (max-width:700px){
+  #hm-scene{height:300px}
+  .shot-cap,.ill figcaption{flex:0 0 118px;height:118px}
+}
 .hero-l,.hero-r,.talk,.sugg,.chips,.stream{min-width:0}
 .sugg{max-width:100%}
 @media (max-width:1080px){
@@ -2305,20 +2325,25 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   var путь='/assets/ph/'+имя+'.jpg';
   var i=new Image();
   i.onload=function(){
+   if(узел.getAttribute('data-ph')!==имя) return;  // пока грузили, выбрали другой
    var слой=document.createElement('i');
    слой.className='ph-l';
    слой.style.backgroundImage='url('+путь+')';
    узел.appendChild(слой);
    if(класс) узел.classList.add(класс);
-   window.requestAnimationFrame(function(){
-    window.requestAnimationFrame(function(){
-     слой.classList.add('on');
-     var старые=узел.querySelectorAll('.ph-l');
-     window.setTimeout(function(){
-      for(var k=0;k<старые.length-1;k++){ if(старые[k]!==слой) старые[k].remove(); }
-     },950);
-    });
-   });
+   var снято=false;
+   // Нижние слои снимаем только когда верхний стал полностью непрозрачным.
+   // Раньше их убирали на 950 мс при переходе в 1.6 с — и фон моргал.
+   function снять(){
+    if(снято) return; снято=true;
+    var все=узел.querySelectorAll('.ph-l');
+    for(var k=0;k<все.length;k++){ if(все[k]===слой) break; все[k].remove(); }
+   }
+   слой.addEventListener('transitionend',function(e){
+    if(e.propertyName==='opacity') снять(); });
+   void слой.offsetHeight;
+   слой.classList.add('on');
+   window.setTimeout(снять,2200);   // запас, если события не будет
   };
   i.src=путь;
  }
@@ -2473,22 +2498,32 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   var обёртка=document.createElement('div');
   обёртка.className='сц';
   обёртка.innerHTML=новое;
-  if(тонкая || !уход){ гн.innerHTML=''; гн.appendChild(обёртка); return; }
+  if(тонкая){ гн.innerHTML=''; гн.appendChild(обёртка); return; }
+  function проявить(снять){
+   обёртка.classList.add('сц-новая');
+   гн.appendChild(обёртка);
+   void обёртка.offsetHeight;
+   обёртка.classList.add('on');
+   window.setTimeout(function(){
+    if(снять) снять();
+    // Во вкладке на фоне кадры не идут и переход замирает на нуле. Снимаем
+    // переход принудительно, иначе сцена останется невидимой.
+    обёртка.style.transition='none';
+    обёртка.classList.remove('сц-новая');
+    обёртка.classList.remove('on');
+    void обёртка.offsetHeight;
+    обёртка.style.transition='';
+   },800);
+  }
+  // Первая сцена проявляется так же, как смена: отдельного пути нет.
+  if(!уход){ сКартинками(обёртка,function(){ if(мой===счётСцен) проявить(null); }); return; }
   // Старая гаснет, новая проявляется на её месте — и остаётся ТЕМ ЖЕ узлом.
   // Раньше в конце перехода сцена пересобиралась из разметки: картинка
   // создавалась заново и анимация появления шла по второму кругу.
   сКартинками(обёртка, function(){
    if(мой!==счётСцен) return;
-   обёртка.classList.add('сц-новая');
    уход.classList.add('уходит');
-   гн.appendChild(обёртка);
-   void обёртка.offsetHeight;
-   обёртка.classList.add('on');
-   window.setTimeout(function(){
-    if(уход.parentNode===гн) гн.removeChild(уход);
-    обёртка.classList.remove('сц-новая');
-    обёртка.classList.remove('on');
-   },700);
+   проявить(function(){ if(уход.parentNode===гн) гн.removeChild(уход); });
   });
  }
  document.addEventListener('click',function(ev){
