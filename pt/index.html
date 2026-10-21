@@ -355,8 +355,12 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
   text-transform:uppercase;color:var(--ink3)}
 .lang{position:relative}
 #lang-btn{background:none;border:1px solid var(--line);border-radius:999px;
-  padding:5px 12px;font-size:12.5px;cursor:pointer;color:var(--ink2)}
+  padding:5px 12px;font-size:12.5px;letter-spacing:.06em;cursor:pointer;
+  color:var(--ink2);display:inline-flex;align-items:center;gap:6px}
 #lang-btn:hover{border-color:var(--ink3)}
+/* Галочка: кнопка должна читаться как список, а не как подпись. */
+#lang-btn::after{content:"▾";font-size:10px;line-height:1;color:var(--ink3)}
+#lang-btn[aria-expanded="true"]::after{transform:rotate(180deg)}
 #lang-list{position:absolute;right:0;top:calc(100% + 6px);background:#fff;
   border:1px solid var(--line);border-radius:12px;padding:5px;min-width:155px;
   z-index:30;box-shadow:0 24px 50px -28px rgba(18,18,18,.5)}
@@ -1139,6 +1143,10 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
 /* Герб студии в подвале — там, где ему и место. */
 .foot-mark{display:flex;align-items:center;gap:12px}
 .foot-mark img{width:44px;height:44px;object-fit:contain;opacity:.9}
+/* Шапка липкая, поэтому цели якорей отступают на её высоту: без этого
+   заголовок раздела уезжает под меню при каждом переходе по пункту. */
+#start,#how,#problems,#clients,#works,#diagnostic,.hm-anchor,.pf-anchor{
+  scroll-margin-top:84px}
 .hero-l,.hero-r,.talk,.sugg,.chips,.stream{min-width:0}
 .sugg{max-width:100%}
 @media (max-width:1080px){
@@ -2186,36 +2194,37 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
   var новое = показ ? сценаРабота(показ) : сценаИлл(к);
   if(новое===ключСцены) return;
   ключСцены=новое;
-  var мой=++счётСцен, уход=гн.firstElementChild;
+  var мой=++счётСцен;
   var обёртка=document.createElement('div');
   обёртка.className='сц';
   обёртка.innerHTML=новое;
   if(тонкая){ гн.innerHTML=''; гн.appendChild(обёртка); return; }
-  function проявить(снять){
+  // Уходящую сцену ищем ТОЛЬКО когда картинки готовы. Пока мы их ждали,
+  // человек мог нажать ещё раз — и в полосе уже другая сцена.
+  сКартинками(обёртка, function(){
+   if(мой!==счётСцен) return;            // нас обогнала следующая смена
+   // Хвосты прошлых переходов сворачиваем: видимой оставляем одну сцену.
+   // Без этого при быстром переключении статичные узлы встают друг под
+   // друга и первый экран показывает две картинки сразу.
+   var уход=гн.lastElementChild;
+   while(гн.firstElementChild && гн.firstElementChild!==уход)
+    гн.removeChild(гн.firstElementChild);
+   if(уход){ уход.style.transition=''; уход.className='сц уходит'; }
    обёртка.classList.add('сц-новая');
    гн.appendChild(обёртка);
    void обёртка.offsetHeight;
    обёртка.classList.add('on');
    window.setTimeout(function(){
-    if(снять) снять();
+    if(мой!==счётСцен) return;           // хвост уберёт тот переход, что идёт сейчас
+    var дети=гн.children, i;
+    for(i=дети.length-1;i>=0;i--) if(дети[i]!==обёртка) гн.removeChild(дети[i]);
     // Во вкладке на фоне кадры не идут и переход замирает на нуле. Снимаем
     // переход принудительно, иначе сцена останется невидимой.
     обёртка.style.transition='none';
-    обёртка.classList.remove('сц-новая');
-    обёртка.classList.remove('on');
+    обёртка.className='сц';
     void обёртка.offsetHeight;
     обёртка.style.transition='';
    },1400);
-  }
-  // Первая сцена проявляется так же, как смена: отдельного пути нет.
-  if(!уход){ сКартинками(обёртка,function(){ if(мой===счётСцен) проявить(null); }); return; }
-  // Старая гаснет, новая проявляется на её месте — и остаётся ТЕМ ЖЕ узлом.
-  // Раньше в конце перехода сцена пересобиралась из разметки: картинка
-  // создавалась заново и анимация появления шла по второму кругу.
-  сКартинками(обёртка, function(){
-   if(мой!==счётСцен) return;
-   уход.classList.add('уходит');
-   проявить(function(){ if(уход.parentNode===гн) гн.removeChild(уход); });
   });
  }
  document.addEventListener('click',function(ev){
