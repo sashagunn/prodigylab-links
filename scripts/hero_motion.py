@@ -34,7 +34,7 @@ ASSISTANT_API = os.environ.get("PL_ASSISTANT_API",
 
 import hero_sections as HS  # noqa: E402
 from hero_content import (ИМЕНА, КАМПАНИИ, ЯЗЫКИ, H1, НАБОРЫ, ПОДСКАЗКИ,
-                          ПАРТНЁРЫ, ПАРТНЁР_ПОДПИСИ,  # noqa: E402
+                          РЕШЕНИЕ, РЕШЕНИЕ_ПОДПИСЬ,  # noqa: E402
                           S)
 
 CSS = """
@@ -990,14 +990,18 @@ JS = """
    // Своего опубликованного примера по этой задаче нет. Если направление
    // закрывает проверенный партнёр — показываем его путь, а не пустую
    // строку. Имя называем только там, где партнёр готов принять задачу.
-   var P=(DATA[ЯЗЫК].partners||{})[к], PL=DATA[ЯЗЫК].pl||{};
-   if(P){
-    return '<div class="pf-partner"><p class="pf-eyebrow">'+экр(PL.title||'')+'</p>'
-     +'<div class="pf-partner-n">'+экр(P.name)+'<span>'+экр(P.role)+'</span></div>'
-     +'<div class="pf-partner-two">'
-     +'<div><h4>'+экр(PL.ours||'')+'</h4><p>'+экр(P.we)+'</p></div>'
-     +'<div><h4>'+экр(PL.theirs||'')+'</h4><p>'+экр(P.role)+'</p></div></div>'
-     +'<p class="pf-note">'+экр(P.limit)+'</p></div>';
+   // Опубликованного примера по этой задаче нет, но решение есть: показываем,
+   // что именно делается по шагам, и сразу даём действие. Имён исполнителей
+   // здесь нет — человеку важно, что задача решается.
+   var R=(DATA[ЯЗЫК].solve||{})[к];
+   if(R){
+    var шаги=R.steps.map(function(x,i){
+     return '<li><b>'+('0'+(i+1)).slice(-2)+'</b><span>'+экр(x)+'</span></li>'; }).join('');
+    return '<div class="pf-solve"><p class="pf-eyebrow">'+экр(DATA[ЯЗЫК].solve_t||'')+'</p>'
+     +'<ol class="pf-solve-l">'+шаги+'</ol>'
+     +'<p class="pf-note">'+экр(R.limit)+'</p>'
+     +'<button type="button" class="pf-main pf-solve-go" data-talk>'+экр(б.cta)+'</button>'
+     +'</div>';
    }
    return '<div class="pf-cases"><div class="pf-cases-h"><p class="pf-eyebrow">'
     +экр(L.example)+'</p>'+ссылка+'</div>'
@@ -1325,9 +1329,8 @@ def _данные() -> dict:
             "sets": НАБОРЫ[код],
             "hints": {к: v[код] for к, v in ПОДСКАЗКИ.items()},
             "sections": HS.данные(код),
-            "partners": {к: {"name": v["name"], **v[код]}
-                         for к, v in ПАРТНЁРЫ.items()},
-            "pl": ПАРТНЁР_ПОДПИСИ[код],
+            "solve": {к: v[код] for к, v in РЕШЕНИЕ.items()},
+            "solve_t": РЕШЕНИЕ_ПОДПИСЬ[код],
         }
     return из
 
