@@ -25,6 +25,8 @@
 
 S = {
  'ru': dict(
+   founder_alt='Александр Коваленко, основатель Prodigy LAB',
+   founder_role='Основатель, Prodigy LAB',
    picked='Выбрано', change='Сменить', all_areas='Все направления',
    resume_q='Продолжить прошлый разговор?',
    resume_yes='Продолжить', resume_no='Начать заново',
@@ -54,6 +56,8 @@ S = {
    switched_to='Продолжаем на этом языке', show_original='Показать оригинал',
    show_translation='Показать перевод'),
  'en': dict(
+   founder_alt='Aleksandr Kovalenko, founder of Prodigy LAB',
+   founder_role='Founder, Prodigy LAB',
    picked='Selected', change='Change', all_areas='All areas',
    resume_q='Continue your previous conversation?',
    resume_yes='Continue', resume_no='Start over',
@@ -84,6 +88,8 @@ S = {
    switched_to='Continuing in this language', show_original='Show original',
    show_translation='Show translation'),
  'es': dict(
+   founder_alt='Aleksandr Kovalenko, fundador de Prodigy LAB',
+   founder_role='Fundador, Prodigy LAB',
    picked='Elegido', change='Cambiar', all_areas='Todas las &aacute;reas',
    resume_q='¿Continuar la conversación anterior?',
    resume_yes='Continuar', resume_no='Empezar de nuevo',
@@ -117,6 +123,8 @@ S = {
    switched_to='Seguimos en este idioma', show_original='Ver original',
    show_translation='Ver traducci&oacute;n'),
  'pt': dict(
+   founder_alt='Aleksandr Kovalenko, fundador da Prodigy LAB',
+   founder_role='Fundador, Prodigy LAB',
    picked='Escolhido', change='Alterar', all_areas='Todas as &aacute;reas',
    resume_q='Continuar a conversa anterior?',
    resume_yes='Continuar', resume_no='Começar de novo',
@@ -150,6 +158,8 @@ S = {
    switched_to='Continuamos neste idioma', show_original='Ver original',
    show_translation='Ver tradu&ccedil;&atilde;o'),
  'de': dict(
+   founder_alt='Aleksandr Kovalenko, Gr&uuml;nder von Prodigy LAB',
+   founder_role='Gr&uuml;nder, Prodigy LAB',
    picked='Gew&auml;hlt', change='&Auml;ndern', all_areas='Alle Bereiche',
    resume_q='Vorheriges Gespr&auml;ch fortsetzen?',
    resume_yes='Fortsetzen', resume_no='Neu beginnen',

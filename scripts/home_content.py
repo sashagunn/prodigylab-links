@@ -2,15 +2,18 @@
 """Контент новой главной. Один источник — пять языков.
 Позиционирование: Business Advisory & Solutions (бриф 25.09.2026)."""
 
-PHONE_HREF = "tel:+18182690416"
-PHONE_TEXT = "+1 (818) 269-0416"
+# Номер 818 — только WhatsApp. Подавать его как звонок нельзя: человек
+# наберёт и не дозвонится. Поэтому и ссылка, и подпись везде про переписку.
 WA = "https://wa.me/18182690416"
+PHONE_HREF = WA
+PHONE_TEXT = "+1 (818) 269-0416"
 DIAG = "https://scan.prodigylab.studio/diagnostic?lang="
 SCAN = "https://scan.prodigylab.studio/scan?lang="
 
 L = {}
 
 L['ru'] = dict(
+  wa_label='Написать в WhatsApp',
   cases_alt='главная страница сайта клиента',
   cases_eyebrow='Доказательства',
   cases_h2='Кому уже собирали',
@@ -91,6 +94,7 @@ L['ru'] = dict(
 )
 
 L['en'] = dict(
+  wa_label='Message on WhatsApp',
   cases_alt='home page of the client site',
   cases_eyebrow='Proof',
   cases_h2='Who we have built for',
@@ -171,6 +175,7 @@ L['en'] = dict(
 )
 
 L['es'] = dict(
+  wa_label='Escribir por WhatsApp',
   cases_alt='página principal del sitio del cliente',
   cases_eyebrow='Pruebas',
   cases_h2='Para quién lo hemos hecho',
@@ -251,6 +256,7 @@ L['es'] = dict(
 )
 
 L['pt'] = dict(
+  wa_label='Escrever no WhatsApp',
   cases_alt='página inicial do site do cliente',
   cases_eyebrow='Provas',
   cases_h2='Para quem já construímos',
@@ -331,6 +337,7 @@ L['pt'] = dict(
 )
 
 L['de'] = dict(
+  wa_label='Auf WhatsApp schreiben',
   cases_alt='Startseite der Kundenwebsite',
   cases_eyebrow='Belege',
   cases_h2='Für wen wir gebaut haben',

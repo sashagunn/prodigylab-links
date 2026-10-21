@@ -58,6 +58,11 @@ CLIENTS = (("HealthHustle Academy", "https://healthhustleacademy.com", "/cases/h
            ("Nixe Beauty", "https://nixe.beauty", "/cases/nixe.jpg"),
            ("Sasha Gun Photography", "https://sashagun.com", "/cases/sashagun.jpg"))
 
+WA_SVG = ('<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+ 'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'
+ '<path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20.5l1.6-4.7A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/>'
+ '</svg>')
+
 PHONE_SVG = ('<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
  'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 '
  '19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 '
@@ -129,7 +134,8 @@ color:var(--ink3);text-decoration:none;padding:6px 2px}
 @media(min-width:860px){.who2{grid-template-columns:1.35fr 1fr;gap:1px;
  background:var(--line);border:1px solid var(--line)}
  .who2>div{background:var(--paper2);padding:30px 28px 34px}}
-.who2 .avatar{margin:0 0 20px}
+.who2-mark{display:block;width:84px;height:auto;margin:0 0 20px}
+@media(min-width:860px){.who2-mark{width:96px}}
 .who2 h2{font-size:clamp(24px,3.2vw,36px)}
 .fin-state{margin-top:22px;font-size:15.5px;color:var(--ink2)}
 .fin-state[hidden]{display:none}
@@ -370,7 +376,8 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
   <div class="nav-mid">{navmid}{showcase_link}</div>
   <div class="nav-right">
    <div class="langs">{langs}</div>
-   <a class="icon" href="{PHONE_HREF}" aria-label="{e(d['call'])} {PHONE_TEXT}" title="{PHONE_TEXT}">{PHONE_SVG}</a>
+   <a class="icon" href="{WA}" target="_blank" rel="noopener"
+      aria-label="{e(d['wa_label'])} {PHONE_TEXT}" title="{e(d['wa_label'])}">{WA_SVG}</a>
    <button id="burger" class="icon" aria-label="Menu" aria-expanded="false" onclick="tg(this)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
    </button>
@@ -379,7 +386,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
  </div>
  <div id="mob"><div class="wrap">{mobls}{showcase_mob}
   <a class="btn" href="#start">{e(d['cta1'])}</a>
-  <a class="ml" href="{PHONE_HREF}">{e(d['call'])} {PHONE_TEXT}</a>
+  <a class="ml" href="{WA}" target="_blank" rel="noopener">{e(d['wa_label'])} {PHONE_TEXT}</a>
   <div class="mlangs">{langs}</div>
  </div></div>
 </nav>
@@ -415,8 +422,8 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
   <span class="mono">{e(d['s3_eyebrow'])}</span>
   <div class="who2">
    <div class="who2-p">
-    <img class="avatar" src="/assets/founder.jpg" alt="{e(d['photo_alt'])}"
-         width="92" height="92" loading="lazy">
+    <img class="who2-mark" src="/assets/logo-cone.png" alt="Prodigy LAB"
+         width="96" height="96" loading="lazy" decoding="async">
     <h2 style="max-width:18ch">{e(d['s3_h2'])}</h2>
     <p class="lede" style="max-width:52ch;margin-top:16px">{e(d['s3_p1'])}</p>
     <div class="note"><p><b>{e(d['no_title'])}.</b> {e(d['no_p1'])}</p></div>
@@ -443,7 +450,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
    <a class="btn btn-lg btn-g" href="{WA}" target="_blank" rel="noopener">{e(d['final_cta2'])}</a>
   </div>
   <p class="fin-state" id="fin-state" hidden></p>
-  <span class="mono" style="display:block;margin-top:20px"><a href="{PHONE_HREF}" style="color:var(--accent);text-decoration:none">{e(d['call'])} {PHONE_TEXT}</a></span>
+  <span class="mono" style="display:block;margin-top:20px"><a href="{WA}" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">{e(d['wa_label'])} {PHONE_TEXT}</a></span>
  </div>
 </section>
 </main>
@@ -455,7 +462,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
   <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
   <div class="flinks">
    {"".join(f'<a href="{h}">{e(t)}</a>' for h,t in d['nav'])}{showcase_foot}
-   <a href="{PHONE_HREF}">{PHONE_TEXT}</a>
+   <a href="{WA}" target="_blank" rel="noopener">{PHONE_TEXT}</a>
    <a href="{PRIVACY[code]}">{e(d['foot_priv'])}{PRIVACY_TAG[code]}</a>
   </div>
   <div style="border-top:1px solid var(--line);padding-top:18px">

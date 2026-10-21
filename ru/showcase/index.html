@@ -86,7 +86,8 @@ color:var(--ink3);text-decoration:none;padding:6px 2px}
 @media(min-width:860px){.who2{grid-template-columns:1.35fr 1fr;gap:1px;
  background:var(--line);border:1px solid var(--line)}
  .who2>div{background:var(--paper2);padding:30px 28px 34px}}
-.who2 .avatar{margin:0 0 20px}
+.who2-mark{display:block;width:84px;height:auto;margin:0 0 20px}
+@media(min-width:860px){.who2-mark{width:96px}}
 .who2 h2{font-size:clamp(24px,3.2vw,36px)}
 .fin-state{margin-top:22px;font-size:15.5px;color:var(--ink2)}
 .fin-state[hidden]{display:none}
@@ -300,7 +301,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
   <div class="nav-mid"><a href="/ru/#problems">Что разбираем</a><a href="/ru/#how">Как устроено</a><a href="/ru/#who">Кто мы</a><a href="/ru/showcase/" aria-current="page">Примеры решений</a></div>
   <div class="nav-right">
    <div class="langs"><a href="/showcase/">EN</a><a href="/ru/showcase/" aria-current="page">RU</a><a href="/es/showcase/">ES</a><a href="/pt/showcase/">PT</a><a href="/de/showcase/">DE</a></div>
-   <a class="icon" href="tel:+18182690416" aria-label="Позвонить +1 (818) 269-0416" title="+1 (818) 269-0416"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.26-1.26a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+   <a class="icon" href="https://wa.me/18182690416" aria-label="Позвонить +1 (818) 269-0416" title="+1 (818) 269-0416"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.26-1.26a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
    <button id="burger" class="icon" aria-label="Menu" aria-expanded="false" onclick="tg(this)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
    </button>
@@ -310,7 +311,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
  <div id="mob"><div class="wrap"><a class="ml" href="/ru/#problems">Что разбираем</a><a class="ml" href="/ru/#how">Как устроено</a><a class="ml" href="/ru/#who">Кто мы</a>
   <a class="ml" href="/ru/showcase/">Примеры решений</a>
   <a class="btn" href="https://scan.prodigylab.studio/diagnostic?lang=ru" data-diag>Расскажите, что не работает</a>
-  <a class="ml" href="tel:+18182690416">Позвонить +1 (818) 269-0416</a>
+  <a class="ml" href="https://wa.me/18182690416">Позвонить +1 (818) 269-0416</a>
   <div class="mlangs"><a href="/showcase/">EN</a><a href="/ru/showcase/" aria-current="page">RU</a><a href="/es/showcase/">ES</a><a href="/pt/showcase/">PT</a><a href="/de/showcase/">DE</a></div>
  </div></div>
 </nav>
@@ -340,7 +341,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
   <div class="flinks">
    <a href="/ru/">На главную</a>
    <a href="/ru/showcase/">Примеры решений</a>
-   <a href="tel:+18182690416">+1 (818) 269-0416</a>
+   <a href="https://wa.me/18182690416">+1 (818) 269-0416</a>
    <a href="/ru/privacy/">Политика конфиденциальности</a>
   </div>
   <div style="border-top:1px solid var(--line);padding-top:18px">

@@ -183,9 +183,21 @@ outline-offset:3px}
 padding:22px 20px 26px}
 @media(min-width:1024px){.hm-r{padding:30px 40px;min-height:100svh;
 display:flex;flex-direction:column;justify-content:center;gap:20px}}
+.hm-face{display:flex;align-items:center;gap:11px;margin:0 0 16px}
+.hm-face img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:none;
+ border:1px solid var(--graphite2)}
+.hm-face span{font:500 12px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+ color:var(--on-dark2)}
+@media(min-width:1024px){.hm-face img{width:56px;height:56px}}
 .hm-steps{display:grid;gap:9px;grid-template-columns:1fr;
 transform:translate3d(var(--dx,0),var(--dy,0),0);transition:transform .3s ease-out}
-@media(min-width:640px){.hm-steps{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:640px){.hm-face{display:flex;align-items:center;gap:11px;margin:0 0 16px}
+.hm-face img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:none;
+ border:1px solid var(--graphite2)}
+.hm-face span{font:500 12px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+ color:var(--on-dark2)}
+@media(min-width:1024px){.hm-face img{width:56px;height:56px}}
+.hm-steps{grid-template-columns:repeat(3,1fr)}}
 .hm-step{border:1px solid var(--graphite2);padding:13px 14px;background:#131C28;min-height:92px;
 transition:border-color .3s,background .3s}
 .hm-step.live{border-color:var(--accent);background:#102024}
@@ -993,6 +1005,11 @@ def page(code: str = 'ru') -> str:
  </div>
 
  <div class="hm-r" id="hm-r">
+  <div class="hm-face">
+   <img src="/assets/founder.jpg" alt="{e(H.unescape(d['founder_alt']))}"
+        width="56" height="56" loading="lazy" decoding="async">
+   <span>{d['founder_role']}</span>
+  </div>
   <div class="hm-steps" id="steps">
    <div class="hm-step" id="s-task"><span class="hm-mono">{d['task']} <i></i></span>
     <p class="dim">{d['undefined']}</p></div>
