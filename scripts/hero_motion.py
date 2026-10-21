@@ -316,7 +316,7 @@ JS = """
   if(p.textContent!==новое){
    // Значение подменяется не рывком: гаснет, меняется, проявляется.
    p.classList.add('upd');
-   window.setTimeout(function(){ p.textContent=новое; p.classList.remove('upd'); },180);
+   window.setTimeout(function(){ p.textContent=новое; p.classList.remove('upd'); },260);
   }
   p.classList.toggle('dim',пусто);
   узел.classList.toggle('live',состояние==='live');
@@ -682,7 +682,11 @@ JS = """
   fencing:['fence-1','fence-2','funding-2'], restaurant:['food-1','food-2','growth-2'],
   bakery:['food-2','presence-1','growth-2'], flowers:['growth-2','presence-1','neutral-1'],
   retail:['growth-1','presence-1','fulfillment-1'],
-  logistics:['fulfillment-1','fulfillment-2','funding-1']
+  logistics:['fulfillment-1','fulfillment-2','funding-1'],
+  beauty:['growth-1','presence-1','neutral-2'], fitness:['growth-2','neutral-1','operations-1'],
+  auto:['funding-2','fulfillment-1','operations-2'], clinic:['banking-1','operations-1','accounting-2'],
+  construction:['funding-2','fence-2','fulfillment-2'], realestate:['presence-1','neutral-2','banking-2'],
+  coffee:['food-2','food-1','presence-2'], cleaning:['operations-1','fulfillment-2','neutral-1']
  };
  var ПРИМЕТЫ_НИШИ = {
   fencing:['fenc','забор','ограда','ворота','cerca','valla','zaun'],
@@ -694,7 +698,8 @@ JS = """
  };
  var ИЛЛ_НАПРАВЛЕНИЯ = ['presence','payments','banking','funding','growth',
    'operations','infrastructure','accounting','fulfillment'];
- var ИЛЛ_НИШИ = ['fencing','restaurant','bakery','flowers','retail','logistics'];
+ var ИЛЛ_НИШИ = ['fencing','restaurant','bakery','flowers','retail','logistics',
+   'beauty','fitness','auto','clinic','construction','realestate','coffee','cleaning'];
  function нишаКлиента(){
   var т=((подтверждено.business_type||'')+' '+(подтверждено.what_happened||'')).toLowerCase();
   if(!т.trim()) return '';
@@ -881,8 +886,14 @@ JS = """
   return '<div class="pf-card">'
    +'<div class="pf-card-h"><span class="tag">'+экр(T()['stage_'+глубина()]||'')+'</span></div>'
    +'<ol class="pf-steps">'+шаги+'</ol>'
-   +'<div class="pf-two"><div class="pf-need"><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
-   +'<div class="pf-lim"><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div></div>';
+   +двеКолонки(L,б,нужно)+'</div>';
+ }
+ // На телефоне два списка подряд удлиняют полосу: там они сворачиваются.
+ function двеКолонки(L,б,нужно){
+  var тело='<div class="pf-two"><div class="pf-need"><h3>'+экр(L.need)+'</h3><ul>'+нужно+'</ul></div>'
+   +'<div class="pf-lim"><h3>'+экр(L.limits)+'</h3><p>'+экр(б.limits)+'</p></div></div>';
+  if(window.innerWidth>700) return тело;
+  return '<details class="pf-two-d"><summary>'+экр(L.need)+'</summary>'+тело+'</details>';
  }
  function блокПутьКратко(к){
   var S=DATA[ЯЗЫК].sections, L=S.labels, б=S.routes[к]||S.routes[''];
@@ -1347,9 +1358,9 @@ def markup(code: str = 'ru') -> str:
   </div>
   <div class="hero-r" id="hm-r" data-mode="idle">
    <div class="steps" id="steps">
-    <div class="hm-step" id="s-task"><span class="hm-mono">{e(d['task'])} <i></i></span><p class="dim">{e(d['undefined'])}</p></div>
-    <div class="hm-step" id="s-clar"><span class="hm-mono">{e(d['clarify'])} <i></i></span><p class="dim">{e(d['undefined'])}</p></div>
-    <div class="hm-step" id="s-next"><span class="hm-mono">{e(d['nxt'])} <i></i></span><p class="dim">{e(d['undefined'])}</p></div>
+    <div class="hm-step" id="s-task"><span class="hm-mono">{e(d['task'])} <i></i></span><p class="dim">&#8212;</p></div>
+    <div class="hm-step" id="s-clar"><span class="hm-mono">{e(d['clarify'])} <i></i></span><p class="dim">&#8212;</p></div>
+    <div class="hm-step" id="s-next"><span class="hm-mono">{e(d['nxt'])} <i></i></span><p class="dim">&#8212;</p></div>
    </div>
    <div id="hm-scene"></div>
   </div>

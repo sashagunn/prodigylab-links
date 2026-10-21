@@ -102,7 +102,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 h1#h1{font-size:clamp(34px,4.1vw,58px);margin:12px 0 0;letter-spacing:-.035em;max-width:16ch}
 h1#h1 .ln{display:block;overflow:hidden}
 h1#h1 .ln>span{display:block;transform:translateY(110%);opacity:0;
-  transition:transform .62s cubic-bezier(.2,.7,.2,1),opacity .62s}
+  transition:transform .85s cubic-bezier(.25,.6,.25,1),opacity .85s ease}
 h1#h1 .ln>span.in{transform:none;opacity:1}
 .hm-lede{margin-top:16px;color:var(--ink2);font-size:18px;max-width:40ch}
 
@@ -194,7 +194,7 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .shot-win{border-radius:14px;overflow:hidden;background:var(--graphite2);
   border:1px solid rgba(15,23,34,.16);
   box-shadow:0 40px 80px -40px rgba(15,23,34,.65);
-  transform:translate3d(var(--dx,0),var(--dy,0),0);transition:transform .25s ease-out}
+  transform:translate3d(var(--dx,0),var(--dy,0),0);transition:transform .9s cubic-bezier(.25,.6,.25,1)}
 .shot-bar{display:flex;align-items:center;gap:8px;padding:9px 12px;
   background:#242B31;border-bottom:1px solid rgba(255,255,255,.08)}
 .shot-bar i{width:9px;height:9px;border-radius:50%;background:#4A535B;display:block}
@@ -452,8 +452,8 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .fin .err{margin-top:10px;color:#8A3A1C;font-size:13.5px}
 
 /* ------------------------------------------------------------- проявление */
-.rise{opacity:0;transform:translateY(16px);
-  transition:opacity .65s cubic-bezier(.2,.7,.2,1),transform .65s cubic-bezier(.2,.7,.2,1)}
+.rise{opacity:0;transform:translateY(6px);
+  transition:opacity .9s cubic-bezier(.25,.6,.25,1),transform .9s cubic-bezier(.25,.6,.25,1)}
 .rise.seen{opacity:1;transform:none}
 
 
@@ -564,10 +564,10 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .ill{margin:0;width:100%}
 .ill-img{border-radius:var(--r);overflow:hidden;background:var(--paper2);
   border:1px solid var(--line);box-shadow:0 40px 80px -46px rgba(15,23,34,.55);
-  transform:translate3d(var(--dx,0),var(--dy,0),0);transition:transform .25s ease-out}
+  transform:translate3d(var(--dx,0),var(--dy,0),0);transition:transform .9s cubic-bezier(.25,.6,.25,1)}
 .ill-img img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover;
-  animation:дыхание 9s ease-in-out infinite}
-@keyframes дыхание{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.012)}}
+  animation:дыхание 14s ease-in-out infinite}
+@keyframes дыхание{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.006)}}
 .ill figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;
   font-size:14px;color:var(--ink2)}
 .ill figcaption .tag{background:rgba(255,255,255,.85);border:1px solid var(--line);
@@ -575,17 +575,17 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 
 /* ветвление: линии прорисовываются при появлении */
 .tree-br:before{transform-origin:top;transform:scaleY(0);
-  transition:transform .45s cubic-bezier(.2,.7,.2,1) .05s}
+  transition:transform .8s cubic-bezier(.25,.6,.25,1) .05s}
 .br:before{transform-origin:top;transform:scaleY(0);
-  transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  transition:transform .7s cubic-bezier(.25,.6,.25,1)}
 .pf-visual.seen .tree-br:before{transform:scaleY(1)}
 .pf-visual.seen .br:before{transform:scaleY(1)}
 .pf-visual.seen .br:nth-child(1):before{transition-delay:.26s}
 .pf-visual.seen .br:nth-child(2):before{transition-delay:.34s}
 .pf-visual.seen .br:nth-child(3):before{transition-delay:.42s}
 .pf-visual .br,.pf-visual .tree-end,.pf-visual .fl,.pf-visual .chk li{
-  opacity:0;transform:translateY(10px);
-  transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+  opacity:0;transform:translateY(5px);
+  transition:opacity .8s ease,transform .8s cubic-bezier(.25,.6,.25,1)}
 .pf-visual.seen .br,.pf-visual.seen .tree-end,
 .pf-visual.seen .fl,.pf-visual.seen .chk li{opacity:1;transform:none}
 .pf-visual.seen .br:nth-child(1){transition-delay:.3s}
@@ -605,8 +605,8 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .flow-l:after{content:"";position:absolute;left:0;top:50%;width:10px;height:10px;
   border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(28,126,132,.22);
   opacity:0}
-.flow[data-mode="b"] .flow-l:after{opacity:1;animation:сигнал 2.4s linear infinite}
-@keyframes сигнал{0%{left:0;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:calc(100% - 10px);opacity:0}}
+.flow[data-mode="b"] .flow-l:after{opacity:1;animation:сигнал 4.5s ease-in-out infinite}
+@keyframes сигнал{0%{left:0;opacity:0}15%{opacity:.85}85%{opacity:.85}100%{left:calc(100% - 10px);opacity:0}}
 
 @media (prefers-reduced-motion:reduce){
   .ill-img img{animation:none}
@@ -627,20 +627,20 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .hero-ph,.pf-ph,.fin-ph{filter:saturate(.72) contrast(1.02) brightness(1.02)}
 .hero-ph .ph-l,.pf-ph .ph-l,.fin-ph .ph-l{position:absolute;inset:0;
   background-size:cover;background-position:center;opacity:0;
-  transition:opacity .9s cubic-bezier(.2,.7,.2,1)}
+  transition:opacity 1.6s cubic-bezier(.25,.6,.25,1)}
 .hero-ph .ph-l.on,.pf-ph .ph-l.on,.fin-ph .ph-l.on{opacity:1}
 .pf-ph:before{content:"";position:absolute;inset:0;z-index:1;
   background:radial-gradient(120% 90% at 78% 40%,rgba(28,126,132,.22),transparent 60%)}
 
 /* 2. Смена раздела и сцены больше не рывком: новое содержимое проявляется. */
-@keyframes всплыть{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes всплыть{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 @keyframes проявить{from{opacity:0}to{opacity:1}}
-.pf-v{animation:всплыть .5s cubic-bezier(.2,.7,.2,1) both}
-#hm-scene>*{animation:всплыть .45s cubic-bezier(.2,.7,.2,1) both}
-.hm-step p{transition:opacity .3s ease}
+.pf-v{animation:всплыть .9s cubic-bezier(.25,.6,.25,1) both}
+#hm-scene>*{animation:всплыть .8s cubic-bezier(.25,.6,.25,1) both}
+.hm-step p{transition:opacity .45s ease}
 .hm-step p.upd{opacity:0}
-.m{animation:всплыть .32s cubic-bezier(.2,.7,.2,1) both}
-.sugg button{animation:проявить .3s ease both}
+.m{animation:всплыть .45s cubic-bezier(.25,.6,.25,1) both}
+.sugg button{animation:проявить .5s ease both}
 
 /* 3. Полоса направлений: девять сцен вместо девяти слов. */
 #layers{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
@@ -686,6 +686,15 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
   .hero-ph .ph-l,.pf-ph .ph-l,.fin-ph .ph-l{transition:none}
   #layers button .ly-ph{transition:none}
 }
+
+/* свёрнутые списки в полосе на телефоне */
+.pf-two-d{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+.pf-two-d>summary{cursor:pointer;list-style:none;font-family:var(--mono);font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)}
+.pf-two-d>summary::-webkit-details-marker{display:none}
+.pf-two-d>summary:after{content:" +";color:var(--ink3)}
+.pf-two-d[open]>summary:after{content:" \\2212"}
+.pf-two-d .pf-two{margin-top:12px;padding-top:0;border-top:0}
 """
 
 

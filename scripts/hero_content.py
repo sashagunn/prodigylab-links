@@ -239,7 +239,7 @@ S = {
 
 # Заголовки — самостоятельные фразы, не подстановка в шаблон.
 H1 = {
- 'ru': {'': ['Что мешает вашему', 'бизнесу двигаться дальше?'],
+ 'ru': {'': ['Что мешает вашему', 'бизнесу расти?'],
         'payments': ['Не получается', 'принимать платежи?'],
         'banking': ['Банк ограничил', 'ваш счёт?'],
         'site_needed': ['Нужен сайт', 'для вашего бизнеса?'],
@@ -247,9 +247,9 @@ H1 = {
         'funding': ['Бизнесу нужны', 'деньги на рост?'],
         'operations': ['Слишком много', 'ручной работы?'],
         'unsure': ['Расскажите,', 'что не складывается']},
- 'en': {'': ['What is stopping your', 'business from moving on?'],
+ 'en': {'': ['What is holding', 'your business back?'],
         'payments': ['Payments', 'are not going through?'],
-        'banking': ['Has the bank', 'restricted your account?'],
+        'banking': ['Bank account', 'closed or limited?'],
         'site_needed': ['Need a website', 'for your business?'],
         'site_no_leads': ['Site is live,', 'enquiries are not?'],
         'funding': ['Does the business', 'need money to grow?'],
@@ -271,9 +271,9 @@ H1 = {
         'funding': ['O negócio precisa', 'de dinheiro para crescer?'],
         'operations': ['Trabalho manual', 'demais por aqui?'],
         'unsure': ['Conte o que', 'não está encaixando']},
- 'de': {'': ['Was hält Ihr Geschäft', 'davon ab, weiterzukommen?'],
+ 'de': {'': ['Was bremst', 'Ihr Geschäft?'],
         'payments': ['Zahlungen gehen', 'nicht mehr durch?'],
-        'banking': ['Hat die Bank Ihr', 'Konto eingeschränkt?'],
+        'banking': ['Bankkonto', 'gesperrt oder begrenzt?'],
         'site_needed': ['Brauchen Sie eine', 'Website für Ihr Geschäft?'],
         'site_no_leads': ['Website läuft,', 'Anfragen nicht?'],
         'funding': ['Braucht das Geschäft', 'Geld zum Wachsen?'],
