@@ -183,9 +183,10 @@ def фильтры(items, code: str) -> str:
     полосы кнопок — это не выбор, а шум.
     """
     t = S[code]
-    группы = (('niche', NICHE, t['filter_niche']), ('solution_type', SOLUTION, t['filter_solution']))
+    группы = (('niche', 'niche', NICHE, t['filter_niche']),
+              ('solution_type', 'solution', SOLUTION, t['filter_solution']))
     разбиения, куски = [], []
-    for поле, словарь, подпись in группы:
+    for поле, атрибут, словарь, подпись in группы:
         значения = sorted({i[поле] for i in items})
         if len(значения) < 2:
             continue
@@ -194,12 +195,12 @@ def фильтры(items, code: str) -> str:
             continue
         разбиения.append(разбиение)
         кнопки = "".join(
-            f'<button type="button" data-f="{поле}" data-v="{e(з)}" aria-pressed="false">'
+            f'<button type="button" data-f="{атрибут}" data-v="{e(з)}" aria-pressed="false">'
             f'{e(словарь.get(з, {}).get(code, з))}</button>' for з in значения)
         куски.append(
             f'<div class="sc-fgroup" role="group" aria-label="{e(подпись)}">'
             f'<span class="mono">{e(подпись)}</span>'
-            f'<button type="button" data-f="{поле}" data-v="" aria-pressed="true">'
+            f'<button type="button" data-f="{атрибут}" data-v="" aria-pressed="true">'
             f'{e(t["filter_all"])}</button>{кнопки}</div>')
     return (f'<div class="sc-filters" id="sc-filters" hidden>{"".join(куски)}</div>'
             if куски else '')
@@ -303,7 +304,28 @@ JS = """
  var полоса=document.getElementById('sc-filters');
  var ШАГ=%d, показано=ШАГ, выбор={};
  if(полоса) полоса.hidden=false;
+
+ // Приход из разговора: ?layer=<направление>. Это интерес к примерам по
+ // задаче, а не ответ на вопрос — на собранные ответы ссылка не влияет и
+ // в разговор ничего не записывает.
+ //
+ // Направления, у которых примеров в витрине нет вовсе, не делают вид, что
+ // галерея пуста по фильтру: человеку прямо говорится, что опубликованного
+ // примера по его задаче у нас нет.
+ var ТИПЫ_НАПРАВЛЕНИЯ={presence:['configurator','menu_ordering','store','landing'],
+                       growth:['configurator','menu_ordering','store','landing']};
+ var слой=(new URLSearchParams(location.search).get('layer')||'').toLowerCase();
+ var естьПоСлою=false;
+ if(слой){
+  var типы=ТИПЫ_НАПРАВЛЕНИЯ[слой]||[];
+  естьПоСлою=карточки.some(function(к){
+   return типы.indexOf(к.getAttribute('data-solution'))>=0; });
+ }
  function подходит(к){
+  if(слой && естьПоСлою){
+   var типы=ТИПЫ_НАПРАВЛЕНИЯ[слой]||[];
+   if(типы.indexOf(к.getAttribute('data-solution'))<0) return false;
+  }
   for(var поле in выбор){ if(выбор[поле] && к.getAttribute('data-'+поле)!==выбор[поле]) return false; }
   return true;
  }

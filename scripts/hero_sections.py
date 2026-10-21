@@ -669,6 +669,10 @@ def markup(lang: str = 'ru') -> str:
             f'</section>')
 
 
+ГАЛЕРЕЯ = {'en': '/showcase/', 'ru': '/ru/showcase/', 'es': '/es/showcase/',
+           'pt': '/pt/showcase/', 'de': '/de/showcase/'}
+
+
 def данные(lang: str) -> dict:
     """Содержимое разделов для языка: отрисовкой занимается страница.
 
@@ -677,7 +681,8 @@ def данные(lang: str) -> dict:
     собирается на месте. Так смена языка меняет и разделы, не перезагружая
     страницу и не теряя разговор.
     """
-    ОБ = ОБЩЕЕ.get(lang) or ОБЩЕЕ['ru']
+    ОБ = dict(ОБЩЕЕ.get(lang) or ОБЩЕЕ['ru'])
+    ОБ['gallery_url'] = ГАЛЕРЕЯ.get(lang, '/showcase/')
     из = {'labels': dict(ОБ), 'routes': {},
           'niche_hints': {к: list(v) for к, v in ПРИМЕТЫ_НИШИ.items()}}
     for направление, по_языкам in БЛОКИ.items():

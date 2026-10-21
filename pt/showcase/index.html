@@ -363,7 +363,28 @@ b.setAttribute('aria-expanded',String(!o));m.classList.toggle('open',!o);}
  var полоса=document.getElementById('sc-filters');
  var ШАГ=9, показано=ШАГ, выбор={};
  if(полоса) полоса.hidden=false;
+
+ // Приход из разговора: ?layer=<направление>. Это интерес к примерам по
+ // задаче, а не ответ на вопрос — на собранные ответы ссылка не влияет и
+ // в разговор ничего не записывает.
+ //
+ // Направления, у которых примеров в витрине нет вовсе, не делают вид, что
+ // галерея пуста по фильтру: человеку прямо говорится, что опубликованного
+ // примера по его задаче у нас нет.
+ var ТИПЫ_НАПРАВЛЕНИЯ={presence:['configurator','menu_ordering','store','landing'],
+                       growth:['configurator','menu_ordering','store','landing']};
+ var слой=(new URLSearchParams(location.search).get('layer')||'').toLowerCase();
+ var естьПоСлою=false;
+ if(слой){
+  var типы=ТИПЫ_НАПРАВЛЕНИЯ[слой]||[];
+  естьПоСлою=карточки.some(function(к){
+   return типы.indexOf(к.getAttribute('data-solution'))>=0; });
+ }
  function подходит(к){
+  if(слой && естьПоСлою){
+   var типы=ТИПЫ_НАПРАВЛЕНИЯ[слой]||[];
+   if(типы.indexOf(к.getAttribute('data-solution'))<0) return false;
+  }
   for(var поле in выбор){ if(выбор[поле] && к.getAttribute('data-'+поле)!==выбор[поле]) return false; }
   return true;
  }
