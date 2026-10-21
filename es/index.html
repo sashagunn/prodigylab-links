@@ -992,6 +992,27 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 @media (max-width:700px){
   .wk-card{height:clamp(320px,72vw,400px)}
 }
+
+/* ============================================ сайты, которые мы собрали */
+.band-clients{padding:clamp(48px,6vw,86px) 0;background:var(--paper)}
+.band-clients h2{font-size:clamp(26px,3vw,42px);margin-top:14px;max-width:20ch}
+.cl-lede{margin-top:14px;color:var(--ink2);max-width:58ch;font-size:16px}
+.cl-grid{margin-top:clamp(24px,3vw,40px);display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:clamp(14px,1.6vw,22px)}
+.cl{text-decoration:none;display:block}
+.cl-shot{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  background:var(--paper2)}
+.cl-shot img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:top;
+  transition:transform .8s cubic-bezier(.25,.6,.25,1)}
+.cl:hover .cl-shot img{transform:scale(1.03)}
+.cl-nm{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:14.5px;
+  font-weight:500}
+.cl-nm i{font-style:normal;color:var(--ink3);font-size:12px}
+.cl:hover .cl-nm{color:var(--accent2)}
+@media (max-width:700px){
+  .cl-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .cl-nm{font-size:13px}
+}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -1394,6 +1415,8 @@ setTimeout(function(){h.classList.remove("pl-adapt-pending")},1500);}}catch(e){}
 <section id="pf"><div class="pf-in"><div class="pf-v" data-route="" data-depth="0"><div class="pf-ph"></div><div class="pf-l"><p class="pf-eyebrow">Cómo lo analizamos</p><h2 class="pf-h">Aún no está claro qué hay que arreglar</h2><p class="pf-lede">Primero buscamos dónde se escapa el dinero. Casi nunca donde parece.</p><span id="how" class="pf-anchor"></span><div class="pf-cta"><button type="button" class="pf-main" data-talk>Contar qué está pasando</button><a href="#works">Todos los ejemplos &rarr;</a></div></div><div class="pf-r"><div class="pf-card"><div class="pf-card-h"><span class="tag">Cómo lo analizamos</span></div><ol class="pf-steps"><li><b>01</b><div><h3>Escuchamos</h3><p>Qué pasa y cómo se ve en las cifras</p></div></li><li><b>02</b><div><h3>Acotamos</h3><p>Separamos la causa del síntoma</p></div></li><li><b>03</b><div><h3>Proponemos</h3><p>Qué hacemos primero y por qué eso</p></div></li><li><b>04</b><div><h3>Calculamos</h3><p>Cuánto cuesta y qué cambia</p></div></li></ol><div class="pf-two"><div class="pf-need"><h3>Qué hará falta</h3><ul><li>A qué se dedica el negocio</li><li>Qué ya intentó</li><li>Para cuándo lo necesita</li></ul></div><div class="pf-lim"><h3>Límites</h3><p>Mientras no se nombre la dirección no hay camino concreto que mostrar, y no lo vamos a inventar.</p></div></div></div></div></div></div><div id="pf-switch" data-on="0"><button type="button"></button></div></section>
 
 <section id="works" class="band-works"><div class="wk-h"><p class="eyebrow">Trabajo del estudio</p><h2>Dos conceptos que puede abrir y usar</h2><p>Son construcciones propias, no encargos de clientes. Por eso podemos mostrarlas enteras y por eso no les atribuimos resultados ajenos.</p></div><div class="wk-grid"><article class="wk" data-dev="d"><div class="wk-card" style="background-image:url(/assets/ph/fence-1.jpg)"><div class="wk-top"><span class="wk-name">Planificador de cercas</span><span class="wk-tag">Concepto del estudio</span></div><div class="wk-inset"><img src="/assets/demo/fence-desk.jpg" data-desk="/assets/demo/fence-desk.jpg" data-phone="/assets/demo/fence-phone.jpg" alt="Planificador de cercas" width="1400" height="972" loading="lazy" decoding="async"></div><div class="wk-dev"><button type="button" data-dev="d" aria-pressed="true">Ordenador</button><button type="button" data-dev="p" aria-pressed="false">Móvil</button></div></div><div class="wk-body"><dl><dt>La tarea</dt><dd>Al instalador de cercas le llaman para preguntar el precio y la conversación se va en aclarar: tipo de trabajo, material, longitud, altura, puertas y demolición.</dd><dt>Qué se hizo</dt><dd>Concepto de planificador: el dueño elige tipo de trabajo, material, estilo, longitud, altura, puertas y demolición y obtiene una descripción clara del proyecto para hablar con el instalador.</dd></dl><details><summary>Límites</summary><p>Es un concepto independiente del estudio, no un encargo de la empresa ni su sitio oficial; la página lo dice. Los precios del planificador son ilustrativos y no se envían solicitudes. No tenemos resultados de este ejemplo.</p></details><div class="wk-links"><a class="wk-go" href="/preview/neighborhood-fence/">Abrir la demo &rarr;</a><a class="wk-sec" href="/es/work/neighborhood-fence/">Sobre este trabajo</a></div></div></article><article class="wk" data-dev="d"><div class="wk-card" style="background-image:url(/assets/ph/food-1.jpg)"><div class="wk-top"><span class="wk-name">Menú de restaurante y recogida</span><span class="wk-tag">Concepto del estudio</span></div><div class="wk-inset"><img src="/assets/demo/thai-desk.jpg" data-desk="/assets/demo/thai-desk.jpg" data-phone="/assets/demo/thai-phone.jpg" alt="Menú de restaurante y recogida" width="1400" height="972" loading="lazy" decoding="async"></div><div class="wk-dev"><button type="button" data-dev="d" aria-pressed="true">Ordenador</button><button type="button" data-dev="p" aria-pressed="false">Móvil</button></div></div><div class="wk-body"><dl><dt>La tarea</dt><dd>A un restaurante se le juzga por su escaparate. El cliente quiere ver los platos y precios en el móvil y entender cómo es la recogida, no llamar para preguntar.</dd><dt>Qué se hizo</dt><dd>Concepto de escaparate: cada plato con su foto, precio y opciones, una sección de lo más pedido, horarios y el camino a la recogida.</dd></dl><details><summary>Límites</summary><p>Es un concepto independiente del estudio, no un encargo del restaurante ni su sitio oficial; así lo dice la propia página. Las fotos son ilustrativas y no se aceptan pedidos. No tenemos resultados de este ejemplo y no vamos a atribuirlos.</p></details><div class="wk-links"><a class="wk-go" href="/preview/saeng-thai-house/">Abrir la demo &rarr;</a><a class="wk-sec" href="/es/work/saeng-thai-house/">Sobre este trabajo</a></div></div></article></div></section>
+
+<section class="band-clients" id="clients"><div class="wrap"><p class="eyebrow">Pruebas</p><h2>Para quién lo hemos hecho</h2><p class="cl-lede">Tiendas y negocios que construimos y seguimos gestionando. Esa es también la respuesta a cómo sabemos cómo funciona la parte operativa.</p><div class="cl-grid"><a class="cl" href="https://healthhustleacademy.com" target="_blank" rel="noopener"><span class="cl-shot"><img src="/cases/hha.jpg" alt="HealthHustle Academy — página principal del sitio del cliente" width="600" height="600" loading="lazy" decoding="async"></span><span class="cl-nm">HealthHustle Academy<i>&#8599;</i></span></a><a class="cl" href="https://set4pets.com" target="_blank" rel="noopener"><span class="cl-shot"><img src="/cases/set4pets.jpg" alt="Set4Pets — página principal del sitio del cliente" width="600" height="600" loading="lazy" decoding="async"></span><span class="cl-nm">Set4Pets<i>&#8599;</i></span></a><a class="cl" href="https://petaliashop.com" target="_blank" rel="noopener"><span class="cl-shot"><img src="/cases/petalia.jpg" alt="Petalia — página principal del sitio del cliente" width="600" height="600" loading="lazy" decoding="async"></span><span class="cl-nm">Petalia<i>&#8599;</i></span></a><a class="cl" href="https://kondrabags.com" target="_blank" rel="noopener"><span class="cl-shot"><img src="/cases/kondra.jpg" alt="KONDRA — página principal del sitio del cliente" width="600" height="600" loading="lazy" decoding="async"></span><span class="cl-nm">KONDRA<i>&#8599;</i></span></a><a class="cl" href="https://nixe.beauty" target="_blank" rel="noopener"><span class="cl-shot"><img src="/cases/nixe.jpg" alt="Nixe Beauty — página principal del sitio del cliente" width="600" height="600" loading="lazy" decoding="async"></span><span class="cl-nm">Nixe Beauty<i>&#8599;</i></span></a><a class="cl" href="https://sashagun.com" target="_blank" rel="noopener"><span class="cl-shot"><img src="/cases/sashagun.jpg" alt="Sasha Gun Photography — página principal del sitio del cliente" width="600" height="600" loading="lazy" decoding="async"></span><span class="cl-nm">Sasha Gun Photography<i>&#8599;</i></span></a></div></div></section>
 
 <section class="band-layers" id="problems">
  <div class="wrap">
@@ -2441,35 +2464,47 @@ document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('clic
    +'<div class="pf-r">'+блокРазбор(к)+блокПуть(к)+(г>=1?блокСобрано():'')+'</div>'
    +'</div>';
  }
-  function применитьРаздел(к){
+  // Высота полосы меняется переходом и в конце догоняет настоящую высоту
+ // содержимого: снятие фиксированной высоты одним кадром давало прыжок.
+ function вестиВысоту(узел, было){
+  var стало=узел.scrollHeight;
+  if(Math.abs(стало-было)<=24) return;
+  узел.classList.add('ведём');
+  узел.style.transition='none';
+  узел.style.height=было+'px';
+  void узел.offsetHeight;
+  узел.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
+  узел.style.height=стало+'px';
+  var отпустить=function(){
+   узел.style.transition=''; узел.style.height='';
+   узел.classList.remove('ведём');
+  };
+  var готово=false;
+  var финал=function(){
+   if(готово) return; готово=true;
+   узел.removeEventListener('transitionend',финал);
+   var сейчас=узел.scrollHeight;
+   if(Math.abs(сейчас-parseFloat(узел.style.height||'0'))>4){
+    узел.style.transition='height .35s ease';
+    узел.style.height=сейчас+'px';
+    window.setTimeout(отпустить,380);
+   } else отпустить();
+  };
+  узел.addEventListener('transitionend',финал);
+  window.setTimeout(финал,1000);
+ }
+ function применитьРаздел(к){
   if(!гнездо) return;
   var прокрутка=window.scrollY, фокус=(document.activeElement===поле);
   var старое=гнездо.querySelector('.pf-v');
   // Высоту полосы ведём плавно: иначе всё, что ниже, прыгает рывком.
+  // Важно: содержимое может дорасти уже после вставки (картинки), поэтому
+  // в конце перехода высота догоняется, а не сбрасывается одним кадром —
+  // именно этот сброс и давал прыжок на 477 px.
   var былаВысота=гнездо.getBoundingClientRect().height;
   гнездо.insertAdjacentHTML('afterbegin',собратьРаздел(к));
   if(старое) старое.remove();
-  if(былаВысота && !тонкая){
-   var сталаВысота=гнездо.getBoundingClientRect().height;
-   if(Math.abs(сталаВысота-былаВысота)>24){
-    // Без requestAnimationFrame: в фоновой вкладке кадр не приходит, и
-    // полоса оставалась обрезанной. Высоту задаём сразу, с принудительным
-    // пересчётом между двумя значениями.
-    гнездо.classList.add('ведём');
-    гнездо.style.transition='none';
-    гнездо.style.height=былаВысота+'px';
-    void гнездо.offsetHeight;
-    гнездо.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
-    гнездо.style.height=сталаВысота+'px';
-    var вернуть=function(){
-     гнездо.style.transition=''; гнездо.style.height='';
-     гнездо.classList.remove('ведём');
-     гнездо.removeEventListener('transitionend',вернуть);
-    };
-    гнездо.addEventListener('transitionend',вернуть);
-    window.setTimeout(вернуть,1200);
-   }
-  }
+  if(былаВысота && !тонкая) вестиВысоту(гнездо, былаВысота);
   тема=к;
   // Страница не должна уехать под рукой: прокрутку и фокус возвращаем.
   нарисоватьСцену(к, подобратьПример(к));

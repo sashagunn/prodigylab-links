@@ -753,6 +753,27 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 @media (max-width:700px){
   .wk-card{height:clamp(320px,72vw,400px)}
 }
+
+/* ============================================ сайты, которые мы собрали */
+.band-clients{padding:clamp(48px,6vw,86px) 0;background:var(--paper)}
+.band-clients h2{font-size:clamp(26px,3vw,42px);margin-top:14px;max-width:20ch}
+.cl-lede{margin-top:14px;color:var(--ink2);max-width:58ch;font-size:16px}
+.cl-grid{margin-top:clamp(24px,3vw,40px);display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:clamp(14px,1.6vw,22px)}
+.cl{text-decoration:none;display:block}
+.cl-shot{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  background:var(--paper2)}
+.cl-shot img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:top;
+  transition:transform .8s cubic-bezier(.25,.6,.25,1)}
+.cl:hover .cl-shot img{transform:scale(1.03)}
+.cl-nm{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:14.5px;
+  font-weight:500}
+.cl-nm i{font-style:normal;color:var(--ink3);font-size:12px}
+.cl:hover .cl-nm{color:var(--accent2)}
+@media (max-width:700px){
+  .cl-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .cl-nm{font-size:13px}
+}
 """
 
 
@@ -851,6 +872,28 @@ def кратко(текст: str) -> str:
         if ch in '.!?' and i > 50 and (i + 1 >= len(т) or т[i + 1] == ' '):
             return т[:i + 1]
     return т
+
+
+def блок_клиентов(code: str) -> str:
+    """Сайты, которые мы собрали и ведём.
+
+    Здесь только снимок, имя и ссылка: подтверждённых формулировок вклада
+    по каждому проекту у нас нет, и приписывать результаты мы не будем.
+    """
+    import html as _h
+    e = _h.escape
+    d = L[code]
+    карточки = "".join(
+        f'<a class="cl" href="{u}" target="_blank" rel="noopener">'
+        f'<span class="cl-shot"><img src="{i}" alt="{e(n)} \u2014 {e(d["cases_alt"])}" '
+        f'width="600" height="600" loading="lazy" decoding="async"></span>'
+        f'<span class="cl-nm">{e(n)}<i>&#8599;</i></span></a>'
+        for n, u, i in CLIENTS)
+    return (f'<section class="band-clients" id="clients"><div class="wrap">'
+            f'<p class="eyebrow">{e(d["cases_eyebrow"])}</p>'
+            f'<h2>{e(d["cases_h2"])}</h2>'
+            f'<p class="cl-lede">{e(d["cases_lede"])}</p>'
+            f'<div class="cl-grid">{карточки}</div></div></section>')
 
 
 def блок_работ(code: str) -> str:
@@ -1125,6 +1168,7 @@ def page(code):
     scan_hero = (f'<a class="btn btn-lg" href="{SB.scan_url(code, "hero")}">'
                  f'{SB.S[code]["cta"]} &rarr;</a>')
     works_block = блок_работ(code)
+    clients_block = блок_клиентов(code)
     С = СВОЁ_РАБОТЫ[code]
     # В блоке доверия три факта из шести: остальные уводят в юридический текст.
     facts_short = "".join(
@@ -1282,6 +1326,8 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 {pf_block}
 
 {works_block}
+
+{clients_block}
 
 <section class="band-layers" id="problems">
  <div class="wrap">

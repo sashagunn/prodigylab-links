@@ -983,35 +983,47 @@ JS = """
    +'<div class="pf-r">'+блокРазбор(к)+блокПуть(к)+(г>=1?блокСобрано():'')+'</div>'
    +'</div>';
  }
-  function применитьРаздел(к){
+  // Высота полосы меняется переходом и в конце догоняет настоящую высоту
+ // содержимого: снятие фиксированной высоты одним кадром давало прыжок.
+ function вестиВысоту(узел, было){
+  var стало=узел.scrollHeight;
+  if(Math.abs(стало-было)<=24) return;
+  узел.classList.add('ведём');
+  узел.style.transition='none';
+  узел.style.height=было+'px';
+  void узел.offsetHeight;
+  узел.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
+  узел.style.height=стало+'px';
+  var отпустить=function(){
+   узел.style.transition=''; узел.style.height='';
+   узел.classList.remove('ведём');
+  };
+  var готово=false;
+  var финал=function(){
+   if(готово) return; готово=true;
+   узел.removeEventListener('transitionend',финал);
+   var сейчас=узел.scrollHeight;
+   if(Math.abs(сейчас-parseFloat(узел.style.height||'0'))>4){
+    узел.style.transition='height .35s ease';
+    узел.style.height=сейчас+'px';
+    window.setTimeout(отпустить,380);
+   } else отпустить();
+  };
+  узел.addEventListener('transitionend',финал);
+  window.setTimeout(финал,1000);
+ }
+ function применитьРаздел(к){
   if(!гнездо) return;
   var прокрутка=window.scrollY, фокус=(document.activeElement===поле);
   var старое=гнездо.querySelector('.pf-v');
   // Высоту полосы ведём плавно: иначе всё, что ниже, прыгает рывком.
+  // Важно: содержимое может дорасти уже после вставки (картинки), поэтому
+  // в конце перехода высота догоняется, а не сбрасывается одним кадром —
+  // именно этот сброс и давал прыжок на 477 px.
   var былаВысота=гнездо.getBoundingClientRect().height;
   гнездо.insertAdjacentHTML('afterbegin',собратьРаздел(к));
   if(старое) старое.remove();
-  if(былаВысота && !тонкая){
-   var сталаВысота=гнездо.getBoundingClientRect().height;
-   if(Math.abs(сталаВысота-былаВысота)>24){
-    // Без requestAnimationFrame: в фоновой вкладке кадр не приходит, и
-    // полоса оставалась обрезанной. Высоту задаём сразу, с принудительным
-    // пересчётом между двумя значениями.
-    гнездо.classList.add('ведём');
-    гнездо.style.transition='none';
-    гнездо.style.height=былаВысота+'px';
-    void гнездо.offsetHeight;
-    гнездо.style.transition='height .9s cubic-bezier(.25,.6,.25,1)';
-    гнездо.style.height=сталаВысота+'px';
-    var вернуть=function(){
-     гнездо.style.transition=''; гнездо.style.height='';
-     гнездо.classList.remove('ведём');
-     гнездо.removeEventListener('transitionend',вернуть);
-    };
-    гнездо.addEventListener('transitionend',вернуть);
-    window.setTimeout(вернуть,1200);
-   }
-  }
+  if(былаВысота && !тонкая) вестиВысоту(гнездо, былаВысота);
   тема=к;
   // Страница не должна уехать под рукой: прокрутку и фокус возвращаем.
   нарисоватьСцену(к, подобратьПример(к));
