@@ -839,6 +839,19 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
   .stream{height:118px}
   #hm-scene{height:240px}
 }
+
+/* ======================= режим «Телефон» в сцене: рамка телефона, не браузера */
+/* Вертикальный снимок в широкой рамке обрезался в полосу и выглядел как
+   случайное увеличение. В этом режиме рамка становится телефоном. */
+.shot{display:flex;flex-direction:column;height:100%}
+.shot-win{flex:1;min-height:0;display:flex;flex-direction:column}
+.shot-win img{flex:1;min-height:0}
+.shot[data-dev="p"] .shot-win{flex:0 1 auto;height:calc(100% - 58px);width:auto;
+  aspect-ratio:390/760;margin:0 auto;border-radius:28px;padding:6px;
+  background:#0B0F14;border:2px solid rgba(255,255,255,.12)}
+.shot[data-dev="p"] .shot-bar{display:none}
+.shot[data-dev="p"] .shot-win img{border-radius:22px;object-position:top}
+.shot[data-dev="p"] .shot-phone{display:none}
 """
 
 

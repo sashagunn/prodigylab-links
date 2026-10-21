@@ -824,7 +824,7 @@ JS = """
   var s=СНИМКИ[пример.url]||(пример._desk?{d:пример._desk,p:пример._phone}:null), t=PT();
   var src=s?(устройство==='d'?s.d:s.p):пример.cover;
   var хост=(пример.url||'').replace(/^\\/preview\\//,'').replace(/\\/$/,'')+'.demo';
-  return '<div class="shot">'
+  return '<div class="shot" data-dev="'+(s?устройство:'d')+'">'
    +'<div class="shot-win"><div class="shot-bar"><i></i><i></i><i></i><span>'+экр(хост)+'</span></div>'
    +'<img src="'+src+'" alt="'+экр(пример.title)+'" decoding="async"></div>'
    +(s&&устройство==='d'?'<div class="shot-phone"><img src="'+s.p+'" alt="" decoding="async"></div>':'')
