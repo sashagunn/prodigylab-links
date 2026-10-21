@@ -740,6 +740,19 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 
 .stream:empty:before{content:attr(data-hint);display:block;margin:auto 0 2px;
   font-size:14.5px;color:var(--ink3);line-height:1.5;max-width:30ch}
+
+/* Карточка работы: один размер в обоих режимах, иначе две карточки в ряду
+   расходятся по высоте, а при переключении устройства страница прыгает. */
+.wk-card{height:clamp(380px,30vw,460px);min-height:0}
+.wk-inset{max-height:64%;margin-top:auto}
+.wk-inset img{height:100%;object-fit:cover;object-position:top}
+.wk[data-dev="d"] .wk-inset{width:min(100%,330px)}
+.wk[data-dev="d"] .wk-inset img{aspect-ratio:auto}
+.wk[data-dev="p"] .wk-inset{width:min(46%,190px)}
+.wk[data-dev="p"] .wk-inset img{aspect-ratio:auto}
+@media (max-width:700px){
+  .wk-card{height:clamp(320px,72vw,400px)}
+}
 """
 
 
