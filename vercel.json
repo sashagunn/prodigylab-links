@@ -118,7 +118,7 @@
       ]
     },
     {
-      "source": "/preview/:path*",
+      "source": "/preview/(.*)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
