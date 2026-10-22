@@ -166,8 +166,14 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 #ask-i{flex:1;min-width:0;border:1px solid var(--line);border-radius:999px;
   padding:14px 18px;font-size:16px;background:#fff}
 #ask-i:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
-#ask-b{width:46px;height:46px;border:0;border-radius:50%;background:var(--accent);
-  color:#fff;font-size:17px;cursor:pointer;flex:none;transition:transform .15s}
+/* Кнопка со словом, а не со стрелкой: стрелка не обещает ничего, а человек
+   ищет глазами «оставить заявку». Круг превращается в таблетку по
+   содержимому; поле ввода ужимается, оно гибкое. */
+#ask-b{height:46px;min-width:46px;padding:0 18px;border:0;border-radius:999px;
+background:var(--accent);color:#fff;cursor:pointer;font:inherit;font-size:14px;
+font-weight:500;white-space:nowrap;display:inline-flex;align-items:center;
+justify-content:center}
+@media(max-width:430px){#ask-b{padding:0 13px;font-size:13px}}
 #ask-b:hover{background:var(--accent2);transform:scale(1.05)}
 #ask-b:disabled{opacity:.5}
 
@@ -1272,10 +1278,33 @@ text-decoration:none;padding:8px 4px}
 color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer}
 .icon:hover{color:var(--accent)}
 #burger{display:inline-flex}@media(min-width:960px){#burger{display:none}}
-.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;
-text-decoration:none;font-size:14px;font-weight:500;padding:13px 22px;border:1px solid var(--ink)}
+/* Главное действие — фирменным бирюзовым, а не чёрным. Чёрная кнопка
+   на этой странице не читалась как действие: вокруг неё и так всё чёрное.
+   Белый текст на --accent даёт контраст 4.81:1, на наведении 9.95:1 —
+   оба проходят AA для обычного текста. */
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;
+text-decoration:none;font-size:14px;font-weight:500;padding:13px 22px;border:1px solid var(--accent)}
 .btn:hover{background:var(--accent2);border-color:var(--accent2)}
 .btn-lg{padding:17px 28px;font-size:15px}
+/* Шапка помощника: название действия и строка о том, как это устроено.
+   Человек ищет глазами слово «заявка» — оно должно быть здесь, а не
+   только внутри разговора. */
+.talk-nm{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.talk-sub{font-size:11.5px;color:var(--ink3);line-height:1.3;
+ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:520px){.talk-sub{display:none}}
+
+/* Закреплённая кнопка заявки. На телефоне — полосой снизу, на широком
+   экране — сбоку справа, чтобы не закрывать текст. Появляется, когда
+   помощник ушёл с экрана, и прячется, когда он снова виден: звать туда,
+   куда человек и так смотрит, незачем. */
+.ask-sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:61;display:flex}
+.ask-sticky .btn{flex:1;justify-content:center;box-shadow:0 6px 24px rgba(0,0,0,.22)}
+@media(min-width:760px){
+ .ask-sticky{left:auto;right:18px;bottom:auto;top:50%;transform:translateY(-50%);
+  writing-mode:vertical-rl}
+ .ask-sticky .btn{padding:18px 13px;letter-spacing:.02em}
+}
 .btn-g{background:transparent;color:var(--ink);border:1px solid var(--line)}
 .btn-g:hover{background:var(--paper2);border-color:var(--ink3);color:var(--ink)}
 .nav-cta{display:none}@media(min-width:960px){.nav-cta{display:inline-flex;margin-left:8px}}
@@ -1424,7 +1453,10 @@ def page(code):
     scan_nav = SB.nav_button(code)
     scan_main = SB.main_block(code)
     scan_after = SB.after_gallery(code)
-    scan_sticky = SB.sticky(code)
+    # Закреплённая кнопка на странице одна, и это главное действие — заявка.
+    # Скан остаётся кнопкой в своём блоке: две полосы поверх одного экрана
+    # читаются не как настойчивость, а как шум.
+    scan_sticky = ''
     scan_hero = (f'<a class="btn btn-lg" href="{SB.scan_url(code, "hero")}">'
                  f'{SB.S[code]["cta"]} &rarr;</a>')
     works_block = блок_работ(code)
@@ -1634,6 +1666,9 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 
 
 {scan_sticky}
+<div class="ask-sticky" id="ask-sticky" hidden>
+ <a class="btn" href="#start" id="ask-sticky-a">{e(d['cta1'])}</a>
+</div>
 <footer>
  <div class="wrap">
   <a class="brand foot-mark" href="{d['home']}"><img src="/assets/logo-cone.png"

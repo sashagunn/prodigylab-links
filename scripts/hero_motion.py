@@ -36,6 +36,7 @@ import hero_sections as HS  # noqa: E402
 from hero_content import (ИМЕНА, КАМПАНИИ, ЯЗЫКИ, H1, НАБОРЫ, ПОДСКАЗКИ,
                           РЕШЕНИЕ, РЕШЕНИЕ_ПОДПИСЬ,  # noqa: E402
                           S)
+from home_content import WA  # noqa: E402
 
 CSS = """
 /* Переключатель языка в шапке диалога. Названия языков — на своём языке,
@@ -101,6 +102,14 @@ transition:transform .6s cubic-bezier(.22,.8,.3,1)}
 display:flex;flex-direction:column}
 .talk-h{display:flex;align-items:center;gap:9px;padding:11px 14px;
 border-bottom:1px solid var(--line);background:#fff}
+/* Название и пояснение — в колонку: «Оставить заявку» человек ищет глазами,
+   а строкой ниже видит, что это разговор, а не анкета на двадцать полей. */
+.talk-nm{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.talk-sub{font-size:11.5px;color:var(--ink3);line-height:1.3;
+ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* На узком экране пояснение убираем: оно важное, но не настолько, чтобы
+   наезжать на переключатель языка. Название действия остаётся. */
+@media(max-width:520px){.talk-sub{display:none}}
 .talk-av{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;flex:none;
 display:inline-flex;align-items:center;justify-content:center;font-size:9.5px}
 .talk-n{font-size:13.5px;font-weight:500}
@@ -134,8 +143,12 @@ background:#fff;color:var(--ink);border:1px solid var(--line)}
 .ask input{flex:1;min-width:0;font:inherit;font-size:16px;padding:13px;border:1px solid var(--line);
 background:var(--paper);color:var(--ink)}
 .ask input:focus{border-color:var(--accent)}
-.ask button{flex:none;width:52px;min-height:48px;border:0;background:var(--accent);
-color:#fff;cursor:pointer;font-size:18px}
+/* Кнопка со словом, а не со стрелкой: стрелка не говорит, что произойдёт.
+   Ширина по содержимому, но поле ввода остаётся главным. */
+.ask button{flex:none;min-height:48px;padding:0 16px;border:0;background:var(--accent);
+color:#fff;cursor:pointer;font-size:14px;font-weight:500;white-space:nowrap;
+max-width:46%;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:430px){.ask button{padding:0 12px;font-size:13px}}
 .ask button:hover{background:var(--accent2)}
 .ask button[disabled]{opacity:.5;cursor:default}
 
@@ -227,6 +240,7 @@ JS = """
 (function(){
  var API=%(api)s, LANG_API=%(lang_api)s, LEAD_API=%(lead_api)s, STATE_API=%(state_api)s;
  var DATA=%(data)s, NAMES=%(names)s, LANGS=%(langs)s, MAP=%(map)s;
+ var WA_URL=%(wa)s;
  var ЯЗЫК=%(lang)s;
  var поток=document.getElementById('stream'), подсказки=document.getElementById('sugg');
  var поле=document.getElementById('ask-i'), форма=document.getElementById('ask');
@@ -335,6 +349,43 @@ JS = """
    подсказки.innerHTML+='<button type="button" data-say="'+экр(в)+'">'+экр(в)+'</button>'; });
  }
 
+ // ------------------------------------------- закреплённая кнопка заявки
+ // Она не открывает вторую форму: диагностика, номер заявки и передача
+ // человеку живут в помощнике. Кнопка только доводит до него и ставит
+ // курсор в поле. Если помощник молчит — уводит в WhatsApp, чтобы человек
+ // не упёрся в тишину.
+ (function(){
+  var обёртка=document.getElementById('ask-sticky');
+  var ссылка=document.getElementById('ask-sticky-a');
+  var панель=document.getElementById('start');
+  if(!обёртка||!ссылка||!панель) return;
+  var виден=true, молчит=false;
+  if('IntersectionObserver' in window){
+   new IntersectionObserver(function(з){
+    виден=з.some(function(x){return x.isIntersecting;}); решить();
+   },{rootMargin:'-15%% 0px -15%% 0px'}).observe(панель);
+  }
+  // Надпись по умолчанию уже отрисована сервером — её и держим.
+  // JS меняет её только когда есть что сказать другое.
+  var подпись=ссылка.textContent.trim();
+  function решить(){
+   var т=DATA[ЯЗЫК].s;
+   молчит=!!document.querySelector('.m-note.offline');
+   ссылка.textContent = молчит ? (т.wa_label||подпись)
+     : (поток.children.length ? (т.resume_yes||подпись) : подпись);
+   ссылка.setAttribute('href', молчит ? WA_URL : '#start');
+   обёртка.hidden = виден || window.scrollY < window.innerHeight*0.6;
+  }
+  ссылка.addEventListener('click', function(ev){
+   if(молчит) return;                       // в WhatsApp уходим как по обычной ссылке
+   ev.preventDefault();
+   панель.scrollIntoView({behavior:'smooth', block:'center'});
+   setTimeout(function(){ поле.focus({preventScroll:true}); }, 420);
+  });
+  window.addEventListener('scroll', решить, {passive:true});
+  решить();
+ })();
+
  // ------------------------------------------------------------------ язык
  function рисоватьСписок(){
   var html='';
@@ -362,7 +413,14 @@ JS = """
   уст('.hm-pick',d.pick);
   сменить.innerHTML=d.other;
   уст('.tail a',d.more+' &rarr;');
-  уст('.talk-n',d.panel);
+  уст('.talk-n',d.panel); уст('.talk-sub',d.panel_sub);
+  // Пока разговор не начат, кнопка обещает результат — «Оставить заявку».
+  // Как только человек ответил, обещание уже дано: дальше просто «Отправить».
+  if(кнопка){ var н=!поток.children.length;
+   var узко=window.matchMedia('(max-width:430px)').matches;
+   var полная = н ? d.send_first : d.send;
+   кнопка.textContent = (н && узко) ? (d.send_short||полная) : полная;
+   кнопка.setAttribute('aria-label', полная); }
   поле.placeholder=начали?d.input_next:d.input;
   поток.setAttribute('data-hint',d.hint_start||d.input);
   кнопка.setAttribute('aria-label',d.send);
@@ -1395,6 +1453,7 @@ def page(code: str = 'ru') -> str:
                "names": json.dumps(ИМЕНА, ensure_ascii=False),
                "langs": json.dumps(list(ЯЗЫКИ)),
                "map": json.dumps(КАМПАНИИ, ensure_ascii=False),
+               "wa": json.dumps(WA),
                "lang": json.dumps(code)}
     имя = H.unescape(ИМЕНА[code])
     return f"""<!DOCTYPE html>
@@ -1419,7 +1478,8 @@ def page(code: str = 'ru') -> str:
   <div class="talk">
    <div class="talk-h">
     <span class="talk-av" aria-hidden="true">PL</span>
-    <span class="talk-n">{d['panel']}</span>
+    <span class="talk-nm"><span class="talk-n">{d['panel']}</span>
+     <span class="talk-sub">{d['panel_sub']}</span></span>
     <div class="lang" id="lang">
      <button type="button" id="lang-btn" aria-expanded="false"
              aria-controls="lang-list" aria-label="{e(H.unescape(d['lang_pick']))}">{e(имя)}</button>
@@ -1432,7 +1492,8 @@ def page(code: str = 'ru') -> str:
     <label for="ask-i" style="position:absolute;left:-9999px">{d['input']}</label>
     <input id="ask-i" type="text" autocomplete="off" enterkeyhint="send"
            placeholder="{e(H.unescape(d['input']))}">
-    <button id="ask-b" type="submit" aria-label="{e(H.unescape(d['send']))}">&rarr;</button>
+    <button id="ask-b" type="submit"
+            aria-label="{e(H.unescape(d['send_first']))}">{e(H.unescape(d['send_first']))}</button>
    </form>
   </div>
 
@@ -1508,7 +1569,8 @@ def markup(code: str = 'ru', шапка: str = '') -> str:
    <p class="hm-lede">{e(d['lede'])}</p>
    <div class="talk">
     <div class="talk-h">
-     <span class="talk-n">{e(d['panel'])}</span>
+     <span class="talk-nm"><span class="talk-n">{e(d['panel'])}</span>
+      <span class="talk-sub">{e(d['panel_sub'])}</span></span>
      <div class="lang" id="lang">
       <button type="button" id="lang-btn" aria-expanded="false" aria-haspopup="true"
               aria-label="{e(d['lang_pick'])}">{e(ИМЕНА[code])}</button>
@@ -1520,7 +1582,8 @@ def markup(code: str = 'ru', шапка: str = '') -> str:
     <form id="ask" autocomplete="off">
      <label class="vh" for="ask-i">{e(d['input'])}</label>
      <input id="ask-i" type="text" autocomplete="off" placeholder="{e(d['input'])}">
-     <button id="ask-b" type="submit" aria-label="{e(d['send'])}">&rarr;</button>
+     <button id="ask-b" type="submit"
+             aria-label="{e(d['send_first'])}">{e(d['send_first'])}</button>
     </form>
    </div>
    <ul class="chips" id="chips"></ul>
