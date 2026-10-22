@@ -138,11 +138,6 @@ td.o{text-align:right;font-family:var(--mono);font-size:10.5px;letter-spacing:.1
 .brief-h span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7e8486}
 .brief pre{margin:0;padding:16px 15px;font-family:var(--mono);font-size:12.5px;line-height:1.72;
   color:#dfe3e4;white-space:pre-wrap;word-break:break-word;min-height:320px}
-#cp{display:block;width:100%;background:var(--flare);color:#2a0d00;border:0;font-family:var(--mono);
-  font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:13px 18px;cursor:pointer;font-weight:500}
-#cp:hover{background:#fff}
-#st{display:block;padding:11px 15px 0;font-size:12.5px;color:#9ba0a3;min-height:1.3em}
-#st[data-bad="1"]{color:var(--warm)}
 .warn{padding:9px 15px 15px;font-size:12px;color:#7e8486;line-height:1.55}
 
 /* источники */
@@ -157,7 +152,7 @@ td.o{text-align:right;font-family:var(--mono);font-size:10.5px;letter-spacing:.1
 
 footer{background:var(--pit);color:#8a9094;padding:clamp(26px,4vw,48px) 0;font-size:13px}
 .foot{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-footer h4{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+footer .fh{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
   color:#63696c;margin:0 0 10px;font-weight:500}
 footer a{color:#fff}
 
@@ -175,7 +170,10 @@ footer a{color:#fff}
   .src .wrap{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
   td.o{display:none}
-  body{padding-bottom:74px}
+  body .sum{display:block;position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));
+    z-index:59;background:var(--panel);border-top:1px solid var(--edge);box-shadow:0 -10px 26px rgba(0,0,0,.14)}
+  .bar{min-height:62px;padding-bottom:calc(9px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:calc(126px + env(safe-area-inset-bottom,0px))}
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
     background:var(--coal);border-top:1px solid var(--edge);padding:9px 13px}
   .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);font-size:11px;
@@ -183,6 +181,59 @@ footer a{color:#fff}
   .bar .alt{background:transparent;color:#d9dcdd;border:1px solid #3a3f41;flex:0 0 auto;padding:13px 17px}
 }
 @media (min-width:981px){.bar{display:none}}
+
+/* ── завершение: письмо, звонок, копирование ───────────────────────────── */
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.act{flex:1 1 150px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;cursor:pointer;border:1px solid var(--edge);background:transparent;
+  color:#e6e8e9;font:inherit;font-size:14px;padding:12px 14px;line-height:1.2}
+.act:first-child{background:var(--flare);border-color:var(--flare);color:#2a0d00;font-weight:600}
+.act:hover{border-color:var(--flare)}
+.act:focus-visible{outline:2px solid var(--flare);outline-offset:2px}
+.act-st{display:block;padding:2px 12px 12px;font-size:13px;min-height:1.35em;color:#e6e8e9}
+.act-st:empty{display:none}
+
+/* ── телефонное резюме выбора ──────────────────────────────────────────── */
+.sum{display:none;color:var(--ink)}
+.sum-t{display:flex;width:100%;align-items:center;gap:10px;min-height:48px;background:transparent;
+  border:0;color:#e6e8e9;font:inherit;font-size:14px;padding:12px 14px;cursor:pointer;text-align:left}
+.sum-t b{background:var(--flare);color:#2a0d00;min-width:28px;height:28px;border-radius:14px;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.sum-t span{flex:1}
+.sum-t i{font-style:normal;font-size:11px}
+.sum-t[aria-expanded="true"] i{transform:rotate(180deg);display:inline-block}
+.sum-b{max-height:44vh;overflow:auto;border-top:1px solid var(--edge)}
+.sum-l{margin:0;padding:11px 14px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);
+  gap:5px 10px;font-size:13.5px}
+.sum-l dt{color:#9aa2a6}
+.sum-l dd{margin:0;color:#e6e8e9}
+.sum-l dd[data-empty]{grid-column:1/-1;color:#9aa2a6}
+
+/* ── размер нажимаемых целей ───────────────────────────────────────────── */
+.opt{min-height:44px}
+.t-step{width:44px;height:44px;font-size:17px}
+.cta,.call,.bar a,.bar .alt{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.src .lnk a,footer a,.logo,.steps-in a,.proc a,.spec a,.rows a{
+  min-height:44px;display:inline-flex;align-items:center}
+.hnav a{min-height:44px;display:inline-flex;align-items:center}
+
+/* ── читаемость мелкой типографики ────────────────────────────────────── */
+.q-l{font-size:12px;letter-spacing:.06em}
+.c-l{font-size:11.5px;letter-spacing:.05em}
+.c-l i{color:inherit;font-weight:500}
+.m,.sc{font-size:11px}
+.strip figcaption,.frames figcaption,.plates figcaption,.details figcaption{font-size:11px}
+.brief-h,.sum-t i{font-size:10.5px}
+.warn{font-size:12.5px}
+
+/* ── контраст: цвета подобраны расчётом под AA (4.5:1) ────────────────── */
+.act{color:inherit}
+.act-st{color:inherit}
+thead th{color:#6b727a}  /* было #7a818b, стало 4.64:1 */
+footer .fh{color:#777c7f}  /* было #63696c, стало 4.67:1 */
+.alert a{min-height:44px;display:inline-flex;align-items:center}
+.q-n input[type="range"]{height:44px}
+.brief .act{border-color:#43484a}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style></head>
 <body>
@@ -220,15 +271,15 @@ footer a{color:#fff}
   <section class="field" id="frames"><div class="wrap">
     <div class="field-head"><h2>Field images</h2></div>
     <div class="frames"><figure>
-      <img src="photos/f1.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
+      <img src="photos/f1-sm.jpg" alt="Roof photograph published by Reimagine Roofing" loading="lazy" decoding="async">
       <figcaption>Frame 01</figcaption></figure><figure>
-      <img src="photos/f3.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
+      <img src="photos/f3-sm.jpg" alt="Roof photograph published by Reimagine Roofing" loading="lazy" decoding="async">
       <figcaption>Frame 02</figcaption></figure><figure>
-      <img src="photos/f4.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
+      <img src="photos/f4-sm.jpg" alt="Roof photograph published by Reimagine Roofing" loading="lazy" decoding="async">
       <figcaption>Frame 03</figcaption></figure><figure>
-      <img src="photos/f2.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
+      <img src="photos/f2-sm.jpg" alt="Roof photograph published by Reimagine Roofing" loading="lazy" decoding="async">
       <figcaption>Frame 04</figcaption></figure><figure>
-      <img src="photos/f6.jpg" alt="Roof photograph published by Reimagine Roofing" decoding="async">
+      <img src="photos/f6-sm.jpg" alt="Roof photograph published by Reimagine Roofing" loading="lazy" decoding="async">
       <figcaption>Frame 05</figcaption></figure></div>
   </div></section>
 
@@ -291,20 +342,41 @@ footer a{color:#fff}
       <div class="brief">
         <div class="brief-h"><span>Work order · draft</span><span>Not sent</span></div>
         <pre id="tk"></pre>
-        <button id="cp" type="button">Copy the work order</button>
-        <span id="st"></span>
+        <div class="acts">
+    <a class="act" data-act="mail" href="mailto:contact@reimagineroofing.com" rel="noopener">Email this to them</a>
+    <a class="act" data-act="tel" href="tel:+14809007663">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the work order</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
         <p class="warn">Nothing leaves this page. The button only copies the ticket, and none of it is a quote or a price estimate.</p>
       </div>
     </div>
   </div></section>
 </main>
 
+<div class="sum" id="sum" hidden>
+    <button class="sum-t" type="button" data-act="sheet" aria-expanded="false" aria-controls="sum-body">
+      <b data-act="count">0</b>
+      <span>Show what you picked</span>
+      <i aria-hidden="true">&#9650;</i>
+    </button>
+    <div class="sum-b" id="sum-body" hidden>
+      <dl class="sum-l" data-act="list"></dl>
+      <div class="acts">
+    <a class="act" data-act="mail" href="mailto:contact@reimagineroofing.com" rel="noopener">Email this to them</a>
+    <a class="act" data-act="tel" href="tel:+14809007663">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the work order</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
 <div class="bar"><a class="alt" href="tel:+14809007663">Call</a><a href="#order">Work order</a></div>
 
 <section class="src"><div class="wrap">
   <h2>Where this came from</h2>
   <div>
-    <p>The eight services, the published status and every photograph are taken from reimagineroofing.com. This concept adds no prices, financing offers, review scores, warranty terms or project counts.</p>
+    <p>The eight services, the published status and every photograph are taken from reimagineroofing.com. This concept adds no prices, financing offers, review scores, warranty terms or project counts. Checked on 21 October 2026.</p>
     <div class="lnk">
       <a href="https://www.reimagineroofing.com/" target="_blank" rel="noopener noreferrer">reimagineroofing.com ↗</a>
       <a href="https://www.reimagineroofing.com/services/" target="_blank" rel="noopener noreferrer">Services ↗</a>
@@ -314,10 +386,10 @@ footer a{color:#fff}
 </div></section>
 
 <footer><div class="wrap foot">
-  <div><h4>Reimagine Roofing</h4><p>Arizona<br><a href="tel:+14809007663">(480) 900-7663</a></p></div>
-  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  <div><h2 class="fh">Reimagine Roofing</h2><p>Arizona<br><a href="tel:+14809007663">(480) 900-7663</a></p></div>
+  <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's official
   website, and no relationship or endorsement is implied.</p></div>
-  <div><h4>Their site</h4><p><a href="https://www.reimagineroofing.com/" target="_blank" rel="noopener noreferrer">reimagineroofing.com ↗</a><br><a href="mailto:contact@reimagineroofing.com">contact@reimagineroofing.com</a></p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://www.reimagineroofing.com/" target="_blank" rel="noopener noreferrer">reimagineroofing.com ↗</a><br><a href="mailto:contact@reimagineroofing.com">contact@reimagineroofing.com</a></p></div>
 </div></footer>
 
 <script>
@@ -356,15 +428,90 @@ footer a{color:#fff}
     return L.join('\n');
   }
 
+  // Выбранное — для телефонного резюме. Тот же источник, что и бриф.
+  function выбранное(){
+    var пары=[];
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      if(!зн||!(Array.isArray(зн)?зн.length:String(зн).length)) return;
+      пары.push([g.getAttribute('data-label'), Array.isArray(зн)?зн.join(', '):зн]);
+    });
+    return пары;
+  }
+
   function перерисовать(){
     Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
       g.hidden=!виден(g);
     });
-    выход.textContent=бриф();
+    var текст=бриф();
+    выход.textContent=текст;
+
+    var тема="Work order · draft — from a prospective customer";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+      var адрес=(a.getAttribute('href')||'').split('?')[0];
+      a.setAttribute('href', адрес+'?subject='+encodeURIComponent(тема)+'&body='+encodeURIComponent(текст));
+    });
+
+    var пары=выбранное();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="count"]'),function(e){
+      e.textContent=пары.length;
+    });
+    var лист=document.querySelector('[data-act="list"]');
+    if(лист){
+      лист.textContent='';
+      if(!пары.length){
+        var пусто=document.createElement('dd');
+        пусто.textContent="Nothing chosen yet.";
+        пусто.setAttribute('data-empty','1');
+        лист.appendChild(пусто);
+      } else пары.forEach(function(пара){
+        var dt=document.createElement('dt'); dt.textContent=пара[0];
+        var dd=document.createElement('dd'); dd.textContent=пара[1];
+        лист.appendChild(dt); лист.appendChild(dd);
+      });
+    }
+    var полоса=document.getElementById('sum');
+    if(полоса) полоса.hidden=false;
   }
 
   Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
     var ключ=g.getAttribute('data-key');
+
+    if(g.getAttribute('data-type')==='tally'){
+      var счёт={};
+      var итого=g.parentElement.querySelector('[data-role="total"] b') ||
+                (g.nextElementSibling&&g.nextElementSibling.querySelector('b'));
+      var свести=function(){
+        var части=[],сумма=0;
+        Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+          var имя=r.getAttribute('data-name');
+          if(счёт[имя]){ части.push(имя+' '+счёт[имя]); сумма+=счёт[имя]; }
+        });
+        состояние[ключ]=части.length?части.join(', '):null;
+        if(итого) итого.textContent=сумма;
+        перерисовать();
+      };
+      Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+        var имя=r.getAttribute('data-name'), поле=r.querySelector('[data-role="n"]');
+        счёт[имя]=0;
+        var поставить=function(v){
+          // Ручной ввод чистим: пусто, минус и буквы превращаются в ноль.
+          v=parseInt(v,10); if(isNaN(v)||v<0) v=0; if(v>99) v=99;
+          счёт[имя]=v; поле.value=v;
+          r.setAttribute('data-on',v>0?'1':'0');
+          свести();
+        };
+        поле.addEventListener('input',function(){ поставить(поле.value); });
+        поле.addEventListener('blur',function(){ поставить(поле.value); });
+        Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
+          b.addEventListener('click',function(){
+            поставить(счёт[имя]+parseInt(b.getAttribute('data-step'),10));
+          });
+        });
+      });
+      return;
+    }
 
     if(g.getAttribute('data-type')==='num'){
       var ползунок=g.querySelector('[data-role="range"]');
@@ -418,24 +565,42 @@ footer a{color:#fff}
     });
   });
 
-  var кнопка=document.querySelector("#cp");
-  var строка=document.querySelector("#st");
-  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
-  кнопка.addEventListener('click',function(){
-    var t=выход.textContent;                     // ровно то, что видно на экране
-    function руками(){
-      сказать("The browser blocked copying — the ticket is selected above, copy it with Cmd+C or Ctrl+C.",true);
-      try{
-        var r=document.createRange(); r.selectNodeContents(выход);
-        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      }catch(e){}
-    }
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t).then(function(){
-        сказать("Copied. Paste it into an email or a text message.",false);
-      },руками);
-    } else руками();
+  function сказать(t,плохо){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="status"]'),function(s){
+      s.textContent=t; s.setAttribute('data-bad',плохо?'1':'0');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="copy"]'),function(кнопка){
+    кнопка.addEventListener('click',function(){
+      var t=выход.textContent;                   // ровно то, что видно на экране
+      function руками(){
+        сказать("The browser blocked copying — the ticket is selected above, copy it with Cmd+C or Ctrl+C.",true);
+        try{
+          var r=document.createRange(); r.selectNodeContents(выход);
+          var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }catch(e){}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){
+          сказать("Copied. Paste it into an email or a text message.",false);
+        },руками);
+      } else руками();
+    });
   });
+  // Письмо и звонок ничего не отправляют со страницы: открывается почтовый
+  // клиент или набор номера на устройстве человека.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+    a.addEventListener('click',function(){ сказать("Your mail app should open with the brief already written.",false); });
+  });
+  var шапка=document.querySelector('[data-act="sheet"]');
+  if(шапка){
+    var тело=document.getElementById('sum-body');
+    шапка.addEventListener('click',function(){
+      var открыт=шапка.getAttribute('aria-expanded')==='true';
+      шапка.setAttribute('aria-expanded',открыт?'false':'true');
+      тело.hidden=открыт;
+    });
+  }
   перерисовать();
 })();</script>
 </body></html>

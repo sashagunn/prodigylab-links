@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#f4f4f2;--card:#fff;--ink:#121212;--soft:#4a4a4a;--mute:#8a8a8a;
+:root{--paper:#f4f4f2;--card:#fff;--ink:#121212;--soft:#4a4a4a;--mute:#6e6e6e;
   --line:#dcdcd8;--red:#cf2130;--steel:#9aa0a6;
   --disp:Anton,Impact,sans-serif;--sans:Inter,system-ui,-apple-system,sans-serif;
   --mono:'Roboto Mono',ui-monospace,Menlo,monospace}
@@ -120,11 +120,6 @@ header .wrap{display:flex;align-items:center;gap:18px;padding-top:11px;padding-b
   letter-spacing:.11em;text-transform:uppercase;color:#8f8f8f}
 .brief pre{margin:0;padding:15px 14px;font-family:var(--mono);font-size:12px;line-height:1.76;
   white-space:pre-wrap;word-break:break-word;min-height:300px}
-#cp{display:block;width:100%;background:var(--red);color:#fff;border:0;font-family:var(--mono);
-  font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:14px;cursor:pointer;font-weight:500}
-#cp:hover{background:#fff;color:var(--ink)}
-#st{display:block;padding:10px 14px 0;font-size:12.5px;color:#9a9a9a;min-height:1.3em}
-#st[data-bad="1"]{color:#ffb3b8}
 .warn{padding:9px 14px 15px;font-size:12px;color:#8f8f8f;line-height:1.55}
 
 .src{background:var(--card);border-top:1px solid var(--line)}
@@ -137,7 +132,7 @@ header .wrap{display:flex;align-items:center;gap:18px;padding-top:11px;padding-b
 .src .lnk a{color:var(--red)}
 footer{background:var(--ink);color:#9a9a9a;padding:clamp(20px,3vw,38px) 0;font-size:13px}
 .foot{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-footer h4{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+footer .fh{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
   color:#747474;margin:0 0 9px;font-weight:400}
 footer a{color:#fff}
 
@@ -153,7 +148,10 @@ footer a{color:#fff}
   .cts-g{grid-template-columns:1fr}
   .src .wrap{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
-  body{padding-bottom:74px}
+  body .sum{display:block;position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));
+    z-index:59;background:var(--card);border-top:1px solid var(--line);box-shadow:0 -10px 26px rgba(0,0,0,.14)}
+  .bar{min-height:62px;padding-bottom:calc(9px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:calc(126px + env(safe-area-inset-bottom,0px))}
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
     background:var(--ink);padding:9px 13px}
   .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);
@@ -162,6 +160,58 @@ footer a{color:#fff}
 }
 @media (max-width:460px){.cta{display:none}}
 @media (min-width:1001px){.bar{display:none}}
+
+/* ── завершение: письмо, звонок, копирование ───────────────────────────── */
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.act{flex:1 1 150px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:transparent;
+  color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;line-height:1.2}
+.act:first-child{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+.act:hover{border-color:var(--red)}
+.act:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.act-st{display:block;padding:2px 12px 12px;font-size:13px;min-height:1.35em;color:var(--ink)}
+.act-st:empty{display:none}
+
+/* ── телефонное резюме выбора ──────────────────────────────────────────── */
+.sum{display:none;color:var(--ink)}
+.sum-t{display:flex;width:100%;align-items:center;gap:10px;min-height:48px;background:transparent;
+  border:0;color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;cursor:pointer;text-align:left}
+.sum-t b{background:var(--red);color:#fff;min-width:28px;height:28px;border-radius:14px;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.sum-t span{flex:1}
+.sum-t i{font-style:normal;font-size:11px}
+.sum-t[aria-expanded="true"] i{transform:rotate(180deg);display:inline-block}
+.sum-b{max-height:44vh;overflow:auto;border-top:1px solid var(--line)}
+.sum-l{margin:0;padding:11px 14px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);
+  gap:5px 10px;font-size:13.5px}
+.sum-l dt{color:var(--mute)}
+.sum-l dd{margin:0;color:var(--ink)}
+.sum-l dd[data-empty]{grid-column:1/-1;color:var(--mute)}
+
+/* ── размер нажимаемых целей ───────────────────────────────────────────── */
+.opt{min-height:44px}
+.t-step{width:44px;height:44px;font-size:17px}
+.cta,.call,.bar a,.bar .alt{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.src .lnk a,footer a,.logo,.steps-in a,.proc a,.spec a,.rows a{
+  min-height:44px;display:inline-flex;align-items:center}
+.hnav a{min-height:44px;display:inline-flex;align-items:center}
+
+/* ── читаемость мелкой типографики ────────────────────────────────────── */
+.q-l{font-size:12px;letter-spacing:.06em}
+.c-l{font-size:11.5px;letter-spacing:.05em}
+.c-l i{color:inherit;font-weight:500}
+.m,.sc{font-size:11px}
+.strip figcaption,.frames figcaption,.plates figcaption,.details figcaption{font-size:11px}
+.brief-h,.sum-t i{font-size:10.5px}
+.warn{font-size:12.5px}
+
+/* ── контраст: цвета подобраны расчётом под AA (4.5:1) ────────────────── */
+.act{color:inherit}
+.act-st{color:inherit}
+.area .m{color:#ffe9ea}  /* было #ffd3d6, стало 4.62:1 */
+footer .fh{color:#7f7f7f}  /* было #747474, стало 4.68:1 */
+.alert a{min-height:44px;display:inline-flex;align-items:center}
+.brief .act{border-color:#3a3a3a}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style></head>
 <body>
@@ -220,7 +270,7 @@ footer a{color:#fff}
   </div></section>
 
   <section class="area"><div class="wrap">
-    <span class="m" style="color:#ffd3d6">Where they go</span>
+    <span class="m" style="color:#ffe9ea">Where they go</span>
     <p>Chicago<i> / </i>Lincoln Park<i> / </i>Logan Square<i> / </i>Hyde Park<i> / </i>Lakeview<i> / </i>Cicero<i> / </i>Skokie<i> / </i>Evanston<i> / </i>Oak Park<i> / </i>Glenview<i> / </i>Berwyn<i> / </i>Oak Lawn<i> / </i>Deerfield<i> / </i>Arlington Heights</p>
   </div></section>
 
@@ -255,20 +305,41 @@ footer a{color:#fff}
       <div class="brief">
         <div class="brief-h"><span>Dispatch note</span><span>Not sent</span></div>
         <pre id="tk"></pre>
-        <button id="cp" type="button">Copy the dispatch note</button>
-        <span id="st"></span>
+        <div class="acts">
+    
+    <a class="act" data-act="tel" href="tel:+17739061556">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the dispatch note</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
         <p class="warn">Nothing leaves this page. The button only copies the note — to get a technician you still have to call them. None of this is a quote or a price estimate.</p>
       </div>
     </div>
   </section>
 </main>
 
+<div class="sum" id="sum" hidden>
+    <button class="sum-t" type="button" data-act="sheet" aria-expanded="false" aria-controls="sum-body">
+      <b data-act="count">0</b>
+      <span>Show what you picked</span>
+      <i aria-hidden="true">&#9650;</i>
+    </button>
+    <div class="sum-b" id="sum-body" hidden>
+      <dl class="sum-l" data-act="list"></dl>
+      <div class="acts">
+    
+    <a class="act" data-act="tel" href="tel:+17739061556">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the dispatch note</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
 <div class="bar"><a href="tel:+17739061556">Call (773) 906-1556</a><a class="alt" href="#note">Note</a></div>
 
 <section class="src"><div class="wrap">
   <h2>Where this came from</h2>
   <div>
-    <p>The thirteen products, the emergency and consultation offers, the security devices, the service area and every photograph are taken from robertsgaragedoors.com. This concept drops their price-comparison and reputation claims and their award badges, and adds no prices, review scores or response times. The safety line in the dispatch note is general advice about broken springs, not a statement by the company.</p>
+    <p>The thirteen products, the emergency and consultation offers, the security devices, the service area and every photograph are taken from robertsgaragedoors.com. This concept drops their price-comparison and reputation claims and their award badges, and adds no prices, review scores or response times. The safety line in the dispatch note is general advice about broken springs, not a statement by the company. Checked on 21 October 2026.</p>
     <div class="lnk">
       <a href="https://robertsgaragedoors.com/" target="_blank" rel="noopener noreferrer">robertsgaragedoors.com ↗</a>
       <a href="https://robertsgaragedoors.com/services/" target="_blank" rel="noopener noreferrer">Services ↗</a>
@@ -278,10 +349,10 @@ footer a{color:#fff}
 </div></section>
 
 <footer><div class="wrap foot">
-  <div><h4>Robert&#39;s Garage Door Professionals</h4><p>Chicago, Illinois<br><a href="tel:+17739061556">(773) 906-1556</a></p></div>
-  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  <div><h2 class="fh">Robert&#39;s Garage Door Professionals</h2><p>Chicago, Illinois<br><a href="tel:+17739061556">(773) 906-1556</a></p></div>
+  <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's official
   website, and no relationship or endorsement is implied.</p></div>
-  <div><h4>Their site</h4><p><a href="https://robertsgaragedoors.com/" target="_blank" rel="noopener noreferrer">robertsgaragedoors.com ↗</a></p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://robertsgaragedoors.com/" target="_blank" rel="noopener noreferrer">robertsgaragedoors.com ↗</a></p></div>
 </div></footer>
 
 <script>
@@ -320,11 +391,51 @@ footer a{color:#fff}
     return L.join('\n');
   }
 
+  // Выбранное — для телефонного резюме. Тот же источник, что и бриф.
+  function выбранное(){
+    var пары=[];
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      if(!зн||!(Array.isArray(зн)?зн.length:String(зн).length)) return;
+      пары.push([g.getAttribute('data-label'), Array.isArray(зн)?зн.join(', '):зн]);
+    });
+    return пары;
+  }
+
   function перерисовать(){
     Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
       g.hidden=!виден(g);
     });
-    выход.textContent=бриф();
+    var текст=бриф();
+    выход.textContent=текст;
+
+    var тема="Dispatch note — from a prospective customer";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+      var адрес=(a.getAttribute('href')||'').split('?')[0];
+      a.setAttribute('href', адрес+'?subject='+encodeURIComponent(тема)+'&body='+encodeURIComponent(текст));
+    });
+
+    var пары=выбранное();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="count"]'),function(e){
+      e.textContent=пары.length;
+    });
+    var лист=document.querySelector('[data-act="list"]');
+    if(лист){
+      лист.textContent='';
+      if(!пары.length){
+        var пусто=document.createElement('dd');
+        пусто.textContent="Nothing picked yet — tap what the door is doing and this note writes itself.";
+        пусто.setAttribute('data-empty','1');
+        лист.appendChild(пусто);
+      } else пары.forEach(function(пара){
+        var dt=document.createElement('dt'); dt.textContent=пара[0];
+        var dd=document.createElement('dd'); dd.textContent=пара[1];
+        лист.appendChild(dt); лист.appendChild(dd);
+      });
+    }
+    var полоса=document.getElementById('sum');
+    if(полоса) полоса.hidden=false;
   }
 
   Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
@@ -332,25 +443,33 @@ footer a{color:#fff}
 
     if(g.getAttribute('data-type')==='tally'){
       var счёт={};
+      var итого=g.parentElement.querySelector('[data-role="total"] b') ||
+                (g.nextElementSibling&&g.nextElementSibling.querySelector('b'));
       var свести=function(){
-        var части=[];
+        var части=[],сумма=0;
         Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
           var имя=r.getAttribute('data-name');
-          if(счёт[имя]) части.push(имя+' '+счёт[имя]);
+          if(счёт[имя]){ части.push(имя+' '+счёт[имя]); сумма+=счёт[имя]; }
         });
         состояние[ключ]=части.length?части.join(', '):null;
+        if(итого) итого.textContent=сумма;
         перерисовать();
       };
       Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
-        var имя=r.getAttribute('data-name'), табло=r.querySelector('[data-role="n"]');
+        var имя=r.getAttribute('data-name'), поле=r.querySelector('[data-role="n"]');
         счёт[имя]=0;
+        var поставить=function(v){
+          // Ручной ввод чистим: пусто, минус и буквы превращаются в ноль.
+          v=parseInt(v,10); if(isNaN(v)||v<0) v=0; if(v>99) v=99;
+          счёт[имя]=v; поле.value=v;
+          r.setAttribute('data-on',v>0?'1':'0');
+          свести();
+        };
+        поле.addEventListener('input',function(){ поставить(поле.value); });
+        поле.addEventListener('blur',function(){ поставить(поле.value); });
         Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
           b.addEventListener('click',function(){
-            var д=parseInt(b.getAttribute('data-step'),10);
-            счёт[имя]=Math.max(0,Math.min(99,счёт[имя]+д));
-            табло.textContent=счёт[имя];
-            r.setAttribute('data-on',счёт[имя]>0?'1':'0');
-            свести();
+            поставить(счёт[имя]+parseInt(b.getAttribute('data-step'),10));
           });
         });
       });
@@ -409,24 +528,42 @@ footer a{color:#fff}
     });
   });
 
-  var кнопка=document.querySelector("#cp");
-  var строка=document.querySelector("#st");
-  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
-  кнопка.addEventListener('click',function(){
-    var t=выход.textContent;                     // ровно то, что видно на экране
-    function руками(){
-      сказать("The browser blocked copying — the note is selected above, copy it with Cmd+C or Ctrl+C.",true);
-      try{
-        var r=document.createRange(); r.selectNodeContents(выход);
-        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      }catch(e){}
-    }
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t).then(function(){
-        сказать("Copied. Read it out when you call, or paste it into a message.",false);
-      },руками);
-    } else руками();
+  function сказать(t,плохо){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="status"]'),function(s){
+      s.textContent=t; s.setAttribute('data-bad',плохо?'1':'0');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="copy"]'),function(кнопка){
+    кнопка.addEventListener('click',function(){
+      var t=выход.textContent;                   // ровно то, что видно на экране
+      function руками(){
+        сказать("The browser blocked copying — the note is selected above, copy it with Cmd+C or Ctrl+C.",true);
+        try{
+          var r=document.createRange(); r.selectNodeContents(выход);
+          var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }catch(e){}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){
+          сказать("Copied. Read it out when you call, or paste it into a message.",false);
+        },руками);
+      } else руками();
+    });
   });
+  // Письмо и звонок ничего не отправляют со страницы: открывается почтовый
+  // клиент или набор номера на устройстве человека.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+    a.addEventListener('click',function(){ сказать("Your mail app should open with the brief already written.",false); });
+  });
+  var шапка=document.querySelector('[data-act="sheet"]');
+  if(шапка){
+    var тело=document.getElementById('sum-body');
+    шапка.addEventListener('click',function(){
+      var открыт=шапка.getAttribute('aria-expanded')==='true';
+      шапка.setAttribute('aria-expanded',открыт?'false':'true');
+      тело.hidden=открыт;
+    });
+  }
   перерисовать();
 })();</script>
 </body></html>

@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1c1c18;--paper:#fcf9f2;--stone:#f1eee7;--line:#eae2d1;--muted:#6f7a74;
+:root{--ink:#1c1c18;--paper:#fcf9f2;--stone:#f1eee7;--line:#eae2d1;--muted:#69746e;
   --deep:#00161d;--water:#0f4a57;--pale:#abccd7;
   --serif:'Playfair Display',Georgia,serif;--sans:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif}
 *{box-sizing:border-box}
@@ -23,7 +23,7 @@ p{margin:0}ul{margin:0;padding:0;list-style:none}
   text-transform:uppercase;padding:7px 14px;text-align:center}
 
 /* навигация — обычная, видимая, липкая */
-.nav{position:sticky;top:0;z-index:50;background:rgba(252,249,242,.93);backdrop-filter:blur(10px);
+.nav{position:sticky;top:0;z-index:50;background:rgba(252,249,242,.93);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
   border-bottom:1px solid rgba(28,28,24,.09)}
 .nav-in{max-width:1320px;margin:0 auto;padding:14px clamp(18px,3vw,40px);display:flex;align-items:center;gap:26px}
 .brand{font-family:var(--serif);font-size:21px;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
@@ -136,11 +136,6 @@ p{margin:0}ul{margin:0;padding:0;list-style:none}
   text-transform:uppercase;color:var(--pale)}
 .brief pre{margin:0;padding:14px;font-family:var(--sans);font-size:13px;line-height:1.72;
   white-space:pre-wrap;word-break:break-word;min-height:236px;color:#dfe6e8}
-#cp{display:block;width:100%;border:0;background:var(--pale);color:var(--deep);font:inherit;
-  font-size:14.5px;padding:14px;cursor:pointer}
-#cp:hover{background:#fff}
-#st{display:block;padding:10px 14px 0;font-size:12.5px;color:#9fb0b4;min-height:1.3em}
-#st[data-bad="1"]{color:#ffd7c9}
 .warn{padding:9px 14px 15px;font-size:12px;color:#8fa3a8;line-height:1.55}
 
 /* источники — компактно, в самом низу */
@@ -157,7 +152,7 @@ footer{background:#0a1216;color:#8f9a9e;padding:clamp(28px,4vw,52px) 0;font-size
 .foot-in{max-width:1320px;margin:0 auto;padding:0 clamp(18px,3vw,40px);
   display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 footer a{color:#fff}
-footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#6c7678;margin:0 0 10px}
+footer .fh{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#6c7678;margin:0 0 10px}
 
 @media (max-width:960px){
   .nav-links{display:none}
@@ -178,7 +173,10 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
   .cts-g{grid-template-columns:1fr}
   .src-in{grid-template-columns:1fr}
   .foot-in{grid-template-columns:1fr}
-  body{padding-bottom:78px}
+  body .sum{display:block;position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));
+    z-index:59;background:var(--stone);border-top:1px solid rgba(28,28,24,.16);box-shadow:0 -10px 26px rgba(0,0,0,.14)}
+  .bar{min-height:62px;padding-bottom:calc(9px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:calc(126px + env(safe-area-inset-bottom,0px))}
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:10px;align-items:center;
     background:rgba(252,249,242,.96);border-top:1px solid rgba(28,28,24,.12);padding:10px 14px}
   .bar a{flex:1;text-align:center;background:var(--water);color:#fff;text-decoration:none;padding:13px;border-radius:2px;font-size:15px}
@@ -186,6 +184,60 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
 }
 @media (max-width:420px){.book{display:none}.brand{font-size:19px}}
 @media (min-width:961px){.bar{display:none}}
+
+/* ── завершение: письмо, звонок, копирование ───────────────────────────── */
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.act{flex:1 1 150px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;cursor:pointer;border:1px solid rgba(28,28,24,.16);background:transparent;
+  color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;line-height:1.2}
+.act:first-child{background:var(--deep);border-color:var(--deep);color:#fcf9f2;font-weight:600}
+.act:hover{border-color:var(--deep)}
+.act:focus-visible{outline:2px solid var(--deep);outline-offset:2px}
+.act-st{display:block;padding:2px 12px 12px;font-size:13px;min-height:1.35em;color:var(--ink)}
+.act-st:empty{display:none}
+
+/* ── телефонное резюме выбора ──────────────────────────────────────────── */
+.sum{display:none;color:var(--ink)}
+.sum-t{display:flex;width:100%;align-items:center;gap:10px;min-height:48px;background:transparent;
+  border:0;color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;cursor:pointer;text-align:left}
+.sum-t b{background:var(--deep);color:#fcf9f2;min-width:28px;height:28px;border-radius:14px;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.sum-t span{flex:1}
+.sum-t i{font-style:normal;font-size:11px}
+.sum-t[aria-expanded="true"] i{transform:rotate(180deg);display:inline-block}
+.sum-b{max-height:44vh;overflow:auto;border-top:1px solid rgba(28,28,24,.16)}
+.sum-l{margin:0;padding:11px 14px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);
+  gap:5px 10px;font-size:13.5px}
+.sum-l dt{color:var(--muted)}
+.sum-l dd{margin:0;color:var(--ink)}
+.sum-l dd[data-empty]{grid-column:1/-1;color:var(--muted)}
+
+/* ── размер нажимаемых целей ───────────────────────────────────────────── */
+.opt{min-height:44px}
+.t-step{width:44px;height:44px;font-size:17px}
+.cta,.call,.bar a,.bar .alt{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.src .lnk a,footer a,.logo,.steps-in a,.proc a,.spec a,.rows a{
+  min-height:44px;display:inline-flex;align-items:center}
+.hnav a{min-height:44px;display:inline-flex;align-items:center}
+
+/* ── читаемость мелкой типографики ────────────────────────────────────── */
+.q-l{font-size:12px;letter-spacing:.06em}
+.c-l{font-size:11.5px;letter-spacing:.05em}
+.c-l i{color:inherit;font-weight:500}
+.m,.sc{font-size:11px}
+.strip figcaption,.frames figcaption,.plates figcaption,.details figcaption{font-size:11px}
+.brief-h,.sum-t i{font-size:10.5px}
+.warn{font-size:12.5px}
+
+/* ── контраст: цвета подобраны расчётом под AA (4.5:1) ────────────────── */
+.act{color:inherit}
+.act-st{color:inherit}
+.lab{color:#636d67}  /* было #69746e, стало 4.63:1 */
+.src h2{color:#636d67}  /* было #6f7a74, стало 4.63:1 */
+footer .fh{color:#768081}  /* было #6c7678, стало 4.66:1 */
+.brand{min-height:44px;display:inline-flex;align-items:center}
+.brief .act:first-child{background:var(--pale);border-color:var(--pale);color:var(--deep)}
+.brief .act{border-color:rgba(171,204,215,.4)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style></head>
 <body>
@@ -227,33 +279,33 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
     </div>
     <div class="mosaic">
       <article class="tile big">
-        <img src="photos/f1.jpg" alt="Bold Horizon by Wild Basin Pools" decoding="async">
+        <img src="photos/f1.jpg" alt="Bold Horizon by Wild Basin Pools" loading="lazy" decoding="async">
         <div class="tile-tx"><h3>Bold Horizon</h3></div>
       </article><article class="tile">
-        <img src="photos/f2.jpg" alt="The Retreat by Wild Basin Pools" decoding="async">
+        <img src="photos/f2.jpg" alt="The Retreat by Wild Basin Pools" loading="lazy" decoding="async">
         <div class="tile-tx"><h3>The Retreat</h3></div>
       </article><article class="tile">
-        <img src="photos/f4.jpg" alt="The Hilltop Deck by Wild Basin Pools" decoding="async">
+        <img src="photos/f4.jpg" alt="The Hilltop Deck by Wild Basin Pools" loading="lazy" decoding="async">
         <div class="tile-tx"><h3>The Hilltop Deck</h3></div>
       </article>
     </div>
   </section>
 
   <section id="build" class="spread">
-    <img class="wide" src="photos/f7.jpg" alt="Finished pool and terrace by Wild Basin Pools" decoding="async">
+    <img class="wide" src="photos/f7.jpg" alt="Finished pool and terrace by Wild Basin Pools" loading="lazy" decoding="async">
     <div class="spread-row">
-      <img class="tall" src="photos/f8.jpg" alt="Pool detail by Wild Basin Pools" decoding="async">
+      <img class="tall" src="photos/f8.jpg" alt="Pool detail by Wild Basin Pools" loading="lazy" decoding="async">
       <div class="spread-tx">
         <span class="lab">About the company</span>
         <h2>Locally owned, built in Austin.</h2>
         <p>Wild Basin Pools was founded in Austin by Oliver Moore and is run with his wife, Kari, and their team. Design and build stay with the same people, from the first conversation to the last day on site.</p><p>Beyond the pool: outdoor kitchens and covered patios, fire bowls and fire pits, spas, infinity edges and tanning ledges, architectural and pool lighting.</p>
       </div>
-      <img class="sq" src="photos/f3.jpg" alt="Material detail by Wild Basin Pools" decoding="async">
+      <img class="sq" src="photos/f3.jpg" alt="Material detail by Wild Basin Pools" loading="lazy" decoding="async">
     </div>
   </section>
 
   <section id="detail" class="details">
-    <figure><img src="photos/f3.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure><figure><img src="photos/f1.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure><figure><img src="photos/f2.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure><figure><img src="photos/f4.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure><figure><img src="photos/f7.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure><figure><img src="photos/f8.jpg" alt="Detail of a pool built by Wild Basin Pools" decoding="async"></figure>
+    <figure><img src="photos/f3.jpg" alt="Detail of a pool built by Wild Basin Pools" loading="lazy" decoding="async"></figure><figure><img src="photos/f1.jpg" alt="Detail of a pool built by Wild Basin Pools" loading="lazy" decoding="async"></figure><figure><img src="photos/f2.jpg" alt="Detail of a pool built by Wild Basin Pools" loading="lazy" decoding="async"></figure><figure><img src="photos/f4.jpg" alt="Detail of a pool built by Wild Basin Pools" loading="lazy" decoding="async"></figure><figure><img src="photos/f7.jpg" alt="Detail of a pool built by Wild Basin Pools" loading="lazy" decoding="async"></figure><figure><img src="photos/f8.jpg" alt="Detail of a pool built by Wild Basin Pools" loading="lazy" decoding="async"></figure>
   </section>
 
   <section id="process" class="steps"><ul class="steps-in">
@@ -265,14 +317,14 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
   </ul></section>
 
   <section id="talk" class="talk">
-    <div class="talk-ph"><img src="photos/f1.jpg" alt="Backyard built by Wild Basin Pools" decoding="async"></div>
+    <div class="talk-ph"><img src="photos/f1.jpg" alt="Backyard built by Wild Basin Pools" loading="lazy" decoding="async"></div>
     <div class="talk-form">
       <span class="lab">Start here</span>
       <h2>Tell us about the backyard.</h2>
-      <p class="sup">A few plain questions — no measurements, no technical words. The brief on the right writes itself as you answer, and you can send it when it reads right.</p>
+      <p class="sup">Five questions, no measurements and no technical words. The brief writes itself as you answer — then email it to them in one tap. Access for machinery and the lie of the land they check on site.</p>
       <div class="tool" id="tool">
         <div class="picks">
-          <div class="q" data-key="start" data-label="Project" data-branch="1"><span class="q-l">What are you thinking about?</span><div class="q-o"><button type="button" class="opt" data-val="A new pool" aria-pressed="false">A new pool</button><button type="button" class="opt" data-val="Updating the pool we have" aria-pressed="false">Updating the pool we have</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="spa" data-label="Spa" data-for="A new pool"><span class="q-l">Is a spa part of the picture?</span><div class="q-o"><button type="button" class="opt" data-val="Yes" aria-pressed="false">Yes</button><button type="button" class="opt" data-val="No" aria-pressed="false">No</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="why" data-label="Reason" data-for="Updating the pool we have"><span class="q-l">What is prompting it?</span><div class="q-o"><button type="button" class="opt" data-val="It looks dated" aria-pressed="false">It looks dated</button><button type="button" class="opt" data-val="Surface or tile is worn" aria-pressed="false">Surface or tile is worn</button><button type="button" class="opt" data-val="Equipment keeps failing" aria-pressed="false">Equipment keeps failing</button><button type="button" class="opt" data-val="We want to add a feature" aria-pressed="false">We want to add a feature</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="missing" data-label="What is missing" data-for="Not sure yet"><span class="q-l">What is missing out there now?</span><div class="q-o"><button type="button" class="opt" data-val="Somewhere to swim" aria-pressed="false">Somewhere to swim</button><button type="button" class="opt" data-val="Somewhere to sit outside" aria-pressed="false">Somewhere to sit outside</button><button type="button" class="opt" data-val="The yard is unusable" aria-pressed="false">The yard is unusable</button><button type="button" class="opt" data-val="Just curious" aria-pressed="false">Just curious</button></div></div><div class="q" data-key="feel" data-label="Feel"><span class="q-l">How should it feel?</span><div class="q-o"><button type="button" class="opt" data-val="Quiet and simple" aria-pressed="false">Quiet and simple</button><button type="button" class="opt" data-val="Resort-like" aria-pressed="false">Resort-like</button><button type="button" class="opt" data-val="Built around the kids" aria-pressed="false">Built around the kids</button><button type="button" class="opt" data-val="Sharp and modern" aria-pressed="false">Sharp and modern</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="use" data-label="Main use"><span class="q-l">How would you use it most?</span><div class="q-o"><button type="button" class="opt" data-val="Swimming" aria-pressed="false">Swimming</button><button type="button" class="opt" data-val="Lounging and entertaining" aria-pressed="false">Lounging and entertaining</button><button type="button" class="opt" data-val="Kids and friends" aria-pressed="false">Kids and friends</button><button type="button" class="opt" data-val="A bit of everything" aria-pressed="false">A bit of everything</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="extras" data-label="Also wanted" data-multi="1"><span class="q-l">Anything else in the picture? Pick as many as you like</span><div class="q-o"><button type="button" class="opt" data-val="Spa or water feature" aria-pressed="false">Spa or water feature</button><button type="button" class="opt" data-val="Outdoor kitchen or covered patio" aria-pressed="false">Outdoor kitchen or covered patio</button><button type="button" class="opt" data-val="Fire pit or fire feature" aria-pressed="false">Fire pit or fire feature</button><button type="button" class="opt" data-val="Lighting" aria-pressed="false">Lighting</button><button type="button" class="opt" data-val="Something for the yard" aria-pressed="false">Something for the yard</button><button type="button" class="opt" data-val="Just the pool for now" aria-pressed="false">Just the pool for now</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="yard" data-label="Yard"><span class="q-l">What is the yard like?</span><div class="q-o"><button type="button" class="opt" data-val="Flat" aria-pressed="false">Flat</button><button type="button" class="opt" data-val="Sloped" aria-pressed="false">Sloped</button><button type="button" class="opt" data-val="Hillside with a view" aria-pressed="false">Hillside with a view</button><button type="button" class="opt" data-val="Tight to the house" aria-pressed="false">Tight to the house</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="access" data-label="Machine access"><span class="q-l">Could machinery get in?</span><div class="q-o"><button type="button" class="opt" data-val="Wide side access" aria-pressed="false">Wide side access</button><button type="button" class="opt" data-val="Narrow gate" aria-pressed="false">Narrow gate</button><button type="button" class="opt" data-val="No side access" aria-pressed="false">No side access</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When would you like to start?</span><div class="q-o"><button type="button" class="opt" data-val="This year" aria-pressed="false">This year</button><button type="button" class="opt" data-val="Next year" aria-pressed="false">Next year</button><button type="button" class="opt" data-val="Just exploring" aria-pressed="false">Just exploring</button></div></div>
+          <div class="q" data-key="start" data-label="Project" data-branch="1"><span class="q-l">What are you thinking about?</span><div class="q-o"><button type="button" class="opt" data-val="A new pool" aria-pressed="false">A new pool</button><button type="button" class="opt" data-val="Updating the pool we have" aria-pressed="false">Updating the pool we have</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="spa" data-label="Spa" data-for="A new pool"><span class="q-l">Is a spa part of the picture?</span><div class="q-o"><button type="button" class="opt" data-val="Yes" aria-pressed="false">Yes</button><button type="button" class="opt" data-val="No" aria-pressed="false">No</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="why" data-label="Reason" data-for="Updating the pool we have"><span class="q-l">What is prompting it?</span><div class="q-o"><button type="button" class="opt" data-val="It looks dated" aria-pressed="false">It looks dated</button><button type="button" class="opt" data-val="Surface or tile is worn" aria-pressed="false">Surface or tile is worn</button><button type="button" class="opt" data-val="Equipment keeps failing" aria-pressed="false">Equipment keeps failing</button><button type="button" class="opt" data-val="We want to add a feature" aria-pressed="false">We want to add a feature</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="missing" data-label="What is missing" data-for="Not sure yet"><span class="q-l">What is missing out there now?</span><div class="q-o"><button type="button" class="opt" data-val="Somewhere to swim" aria-pressed="false">Somewhere to swim</button><button type="button" class="opt" data-val="Somewhere to sit outside" aria-pressed="false">Somewhere to sit outside</button><button type="button" class="opt" data-val="The yard is unusable" aria-pressed="false">The yard is unusable</button><button type="button" class="opt" data-val="Just curious" aria-pressed="false">Just curious</button></div></div><div class="q" data-key="use" data-label="Main use"><span class="q-l">How would you use it most?</span><div class="q-o"><button type="button" class="opt" data-val="Swimming" aria-pressed="false">Swimming</button><button type="button" class="opt" data-val="Lounging and entertaining" aria-pressed="false">Lounging and entertaining</button><button type="button" class="opt" data-val="Kids and friends" aria-pressed="false">Kids and friends</button><button type="button" class="opt" data-val="A bit of everything" aria-pressed="false">A bit of everything</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="extras" data-label="Also wanted" data-multi="1"><span class="q-l">Anything else in the picture? Pick as many as you like</span><div class="q-o"><button type="button" class="opt" data-val="Spa or water feature" aria-pressed="false">Spa or water feature</button><button type="button" class="opt" data-val="Outdoor kitchen or covered patio" aria-pressed="false">Outdoor kitchen or covered patio</button><button type="button" class="opt" data-val="Fire pit or fire feature" aria-pressed="false">Fire pit or fire feature</button><button type="button" class="opt" data-val="Lighting" aria-pressed="false">Lighting</button><button type="button" class="opt" data-val="Something for the yard" aria-pressed="false">Something for the yard</button><button type="button" class="opt" data-val="Just the pool for now" aria-pressed="false">Just the pool for now</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="yard" data-label="The yard"><span class="q-l">What is the yard like?</span><div class="q-o"><button type="button" class="opt" data-val="Flat" aria-pressed="false">Flat</button><button type="button" class="opt" data-val="Sloped" aria-pressed="false">Sloped</button><button type="button" class="opt" data-val="Hillside with a view" aria-pressed="false">Hillside with a view</button><button type="button" class="opt" data-val="Tight to the house" aria-pressed="false">Tight to the house</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When would you like to start?</span><div class="q-o"><button type="button" class="opt" data-val="This year" aria-pressed="false">This year</button><button type="button" class="opt" data-val="Next year" aria-pressed="false">Next year</button><button type="button" class="opt" data-val="Just exploring" aria-pressed="false">Just exploring</button></div></div>
           <div class="cts">
             <span class="lab">If you would like them to call you back</span>
             <div class="cts-g"><div class="c" data-key="name" data-label="Name" data-contact="1">
@@ -297,8 +349,12 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
         <aside class="brief">
           <div class="brief-h"><span>Design brief</span><span>Draft</span></div>
           <pre id="tk"></pre>
-          <button id="cp" type="button">Copy the brief</button>
-          <span id="st"></span>
+        <div class="acts">
+    <a class="act" data-act="mail" href="mailto:oliver@wildbasinpools.com" rel="noopener">Email this to them</a>
+    
+    <button class="act" data-act="copy" type="button">Copy the brief</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
           <p class="warn">Nothing leaves this page. The button only copies the text, and none of it is a quote or a price estimate.</p>
         </aside>
       </div>
@@ -306,12 +362,29 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
   </section>
 </main>
 
+<div class="sum" id="sum" hidden>
+    <button class="sum-t" type="button" data-act="sheet" aria-expanded="false" aria-controls="sum-body">
+      <b data-act="count">0</b>
+      <span>Show what you picked</span>
+      <i aria-hidden="true">&#9650;</i>
+    </button>
+    <div class="sum-b" id="sum-body" hidden>
+      <dl class="sum-l" data-act="list"></dl>
+      <div class="acts">
+    <a class="act" data-act="mail" href="mailto:oliver@wildbasinpools.com" rel="noopener">Email this to them</a>
+    
+    <button class="act" data-act="copy" type="button">Copy the brief</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
 <div class="bar"><a href="#talk">Book a consultation</a></div>
 
 <section class="src"><div class="src-in">
   <h2>Where this came from</h2>
   <div>
-    <p>Project names, photographs, the build steps and the list of what the company works on are taken from wildbasinpools.com. This concept adds no prices, timelines, review scores, awards or guarantees.</p>
+    <p>Project names, photographs, the build steps and the list of what the company works on are taken from wildbasinpools.com. This concept adds no prices, timelines, review scores, awards or guarantees. Checked on 21 October 2026.</p>
     <div class="lnk">
       <a href="https://wildbasinpools.com/" target="_blank" rel="noopener noreferrer">wildbasinpools.com ↗</a>
       <a href="https://wildbasinpools.com/contact/" target="_blank" rel="noopener noreferrer">Their contact page ↗</a>
@@ -321,10 +394,10 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
 </div></section>
 
 <footer><div class="foot-in">
-  <div><h4>Wild Basin Pools</h4><p>Austin, Texas</p></div>
-  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  <div><h2 class="fh">Wild Basin Pools</h2><p>Austin, Texas</p></div>
+  <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's official
   website, and no relationship or endorsement is implied.</p></div>
-  <div><h4>Their site</h4><p><a href="https://wildbasinpools.com/" target="_blank" rel="noopener noreferrer">wildbasinpools.com ↗</a></p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://wildbasinpools.com/" target="_blank" rel="noopener noreferrer">wildbasinpools.com ↗</a></p></div>
 </div></footer>
 
 <script>
@@ -361,15 +434,90 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
     return L.join('\n');
   }
 
+  // Выбранное — для телефонного резюме. Тот же источник, что и бриф.
+  function выбранное(){
+    var пары=[];
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      if(!зн||!(Array.isArray(зн)?зн.length:String(зн).length)) return;
+      пары.push([g.getAttribute('data-label'), Array.isArray(зн)?зн.join(', '):зн]);
+    });
+    return пары;
+  }
+
   function перерисовать(){
     Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
       g.hidden=!виден(g);
     });
-    выход.textContent=бриф();
+    var текст=бриф();
+    выход.textContent=текст;
+
+    var тема="Design brief — from a prospective customer";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+      var адрес=(a.getAttribute('href')||'').split('?')[0];
+      a.setAttribute('href', адрес+'?subject='+encodeURIComponent(тема)+'&body='+encodeURIComponent(текст));
+    });
+
+    var пары=выбранное();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="count"]'),function(e){
+      e.textContent=пары.length;
+    });
+    var лист=document.querySelector('[data-act="list"]');
+    if(лист){
+      лист.textContent='';
+      if(!пары.length){
+        var пусто=document.createElement('dd');
+        пусто.textContent="Nothing chosen yet — answer anything above and this brief fills itself in.";
+        пусто.setAttribute('data-empty','1');
+        лист.appendChild(пусто);
+      } else пары.forEach(function(пара){
+        var dt=document.createElement('dt'); dt.textContent=пара[0];
+        var dd=document.createElement('dd'); dd.textContent=пара[1];
+        лист.appendChild(dt); лист.appendChild(dd);
+      });
+    }
+    var полоса=document.getElementById('sum');
+    if(полоса) полоса.hidden=false;
   }
 
   Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
     var ключ=g.getAttribute('data-key');
+
+    if(g.getAttribute('data-type')==='tally'){
+      var счёт={};
+      var итого=g.parentElement.querySelector('[data-role="total"] b') ||
+                (g.nextElementSibling&&g.nextElementSibling.querySelector('b'));
+      var свести=function(){
+        var части=[],сумма=0;
+        Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+          var имя=r.getAttribute('data-name');
+          if(счёт[имя]){ части.push(имя+' '+счёт[имя]); сумма+=счёт[имя]; }
+        });
+        состояние[ключ]=части.length?части.join(', '):null;
+        if(итого) итого.textContent=сумма;
+        перерисовать();
+      };
+      Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+        var имя=r.getAttribute('data-name'), поле=r.querySelector('[data-role="n"]');
+        счёт[имя]=0;
+        var поставить=function(v){
+          // Ручной ввод чистим: пусто, минус и буквы превращаются в ноль.
+          v=parseInt(v,10); if(isNaN(v)||v<0) v=0; if(v>99) v=99;
+          счёт[имя]=v; поле.value=v;
+          r.setAttribute('data-on',v>0?'1':'0');
+          свести();
+        };
+        поле.addEventListener('input',function(){ поставить(поле.value); });
+        поле.addEventListener('blur',function(){ поставить(поле.value); });
+        Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
+          b.addEventListener('click',function(){
+            поставить(счёт[имя]+parseInt(b.getAttribute('data-step'),10));
+          });
+        });
+      });
+      return;
+    }
 
     if(g.getAttribute('data-type')==='num'){
       var ползунок=g.querySelector('[data-role="range"]');
@@ -423,24 +571,42 @@ footer h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-tran
     });
   });
 
-  var кнопка=document.querySelector("#cp");
-  var строка=document.querySelector("#st");
-  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
-  кнопка.addEventListener('click',function(){
-    var t=выход.textContent;                     // ровно то, что видно на экране
-    function руками(){
-      сказать("The browser blocked copying — the brief is selected above, copy it with Cmd+C or Ctrl+C.",true);
-      try{
-        var r=document.createRange(); r.selectNodeContents(выход);
-        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      }catch(e){}
-    }
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t).then(function(){
-        сказать("Copied. Paste it into an email or a message to them.",false);
-      },руками);
-    } else руками();
+  function сказать(t,плохо){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="status"]'),function(s){
+      s.textContent=t; s.setAttribute('data-bad',плохо?'1':'0');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="copy"]'),function(кнопка){
+    кнопка.addEventListener('click',function(){
+      var t=выход.textContent;                   // ровно то, что видно на экране
+      function руками(){
+        сказать("The browser blocked copying — the brief is selected above, copy it with Cmd+C or Ctrl+C.",true);
+        try{
+          var r=document.createRange(); r.selectNodeContents(выход);
+          var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }catch(e){}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){
+          сказать("Copied. Paste it into an email or a message to them.",false);
+        },руками);
+      } else руками();
+    });
   });
+  // Письмо и звонок ничего не отправляют со страницы: открывается почтовый
+  // клиент или набор номера на устройстве человека.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+    a.addEventListener('click',function(){ сказать("Your mail app should open with the brief already written.",false); });
+  });
+  var шапка=document.querySelector('[data-act="sheet"]');
+  if(шапка){
+    var тело=document.getElementById('sum-body');
+    шапка.addEventListener('click',function(){
+      var открыт=шапка.getAttribute('aria-expanded')==='true';
+      шапка.setAttribute('aria-expanded',открыт?'false':'true');
+      тело.hidden=открыт;
+    });
+  }
   перерисовать();
 })();</script>
 </body></html>

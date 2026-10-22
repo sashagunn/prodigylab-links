@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--paper:#eef2f4;--pane:#fff;--frame:#1b2a33;--glass:#cbdde6;--ink:#15202a;
-  --soft:#4c5b66;--mute:#7c8b95;--line:#d3dde2;--accent:#2f5d7c;
+  --soft:#4c5b66;--mute:#626e76;--line:#d3dde2;--accent:#2f5d7c;
   --disp:'Barlow Condensed',Impact,sans-serif;--sans:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
 *{box-sizing:border-box}
@@ -64,7 +64,9 @@ header .wrap{display:flex;align-items:center;gap:20px;padding-top:11px;padding-b
   grid-template-columns:repeat(5,1fr)}
 .cl{background:var(--pane);min-height:clamp(260px,34vw,420px);display:flex;flex-direction:column;
   justify-content:flex-end;padding:16px;position:relative;overflow:hidden}
-.cl .bg{position:absolute;inset:0;background:linear-gradient(170deg,var(--glass),#fff 62%)}
+.cl .bg{position:absolute;inset:0;background:linear-gradient(170deg,var(--glass),#fff 62%);
+  transform-origin:left center;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s}
+.cl:hover .bg,.cl:focus-within .bg{transform:perspective(900px) rotateY(-11deg);filter:brightness(1.05)}
 .cl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
 .cl .in{position:relative;z-index:2}
 .cl.ph .in{color:#fff;text-shadow:0 1px 18px rgba(10,20,26,.6)}
@@ -128,7 +130,15 @@ header .wrap{display:flex;align-items:center;gap:20px;padding-top:11px;padding-b
 .t-step{width:28px;height:28px;flex:0 0 auto;border:1px solid var(--line);background:var(--paper);
   color:var(--ink);font:inherit;font-size:15px;line-height:1;cursor:pointer}
 .t-step:hover{border-color:var(--accent)}
-.t-row output{font-family:var(--mono);font-size:13.5px;min-width:16px;text-align:center}
+.t-row input[data-role="n"]{width:46px;min-height:44px;flex:0 0 auto;text-align:center;
+  font-family:var(--mono);font-size:15px;border:1px solid var(--line);background:var(--paper);
+  color:var(--ink);padding:0 2px;-moz-appearance:textfield}
+.t-row input[data-role="n"]::-webkit-outer-spin-button,
+.t-row input[data-role="n"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.t-row input[data-role="n"]:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.t-sum{margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--soft)}
+.t-sum b{font-size:15px;color:var(--ink)}
 .cts{margin-top:18px;padding-top:15px;border-top:1px solid var(--line)}
 .cts>span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.15em;
   text-transform:uppercase;color:var(--mute)}
@@ -145,11 +155,6 @@ header .wrap{display:flex;align-items:center;gap:20px;padding-top:11px;padding-b
   letter-spacing:.17em;text-transform:uppercase;color:#8ba3b0}
 .brief pre{margin:0;padding:15px 14px;font-family:var(--mono);font-size:12px;line-height:1.76;
   white-space:pre-wrap;word-break:break-word;min-height:270px}
-#cp{display:block;width:100%;background:var(--glass);color:var(--frame);border:0;font-family:var(--mono);
-  font-size:11px;letter-spacing:.11em;text-transform:uppercase;padding:14px;cursor:pointer;font-weight:500}
-#cp:hover{background:#fff}
-#st{display:block;padding:10px 14px 0;font-size:12.5px;color:#9fb3bf;min-height:1.3em}
-#st[data-bad="1"]{color:#ffd9c6}
 .warn{padding:9px 14px 15px;font-size:12px;color:#8ba3b0;line-height:1.55}
 
 .src{background:var(--pane);border-top:1px solid var(--line)}
@@ -161,7 +166,7 @@ header .wrap{display:flex;align-items:center;gap:20px;padding-top:11px;padding-b
 .src .lnk a{color:var(--accent)}
 footer{background:var(--frame);color:#9fb3bf;padding:clamp(22px,3vw,40px) 0;font-size:13px}
 .foot{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-footer h4{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+footer .fh{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
   color:#6e8794;margin:0 0 9px;font-weight:500}
 footer a{color:#fff}
 
@@ -183,7 +188,10 @@ footer a{color:#fff}
   .cts-g{grid-template-columns:1fr}
   .src .wrap{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
-  body{padding-bottom:74px}
+  body .sum{display:block;position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));
+    z-index:59;background:var(--pane);border-top:1px solid var(--line);box-shadow:0 -10px 26px rgba(0,0,0,.14)}
+  .bar{min-height:62px;padding-bottom:calc(9px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:calc(126px + env(safe-area-inset-bottom,0px))}
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
     background:var(--pane);border-top:3px solid var(--frame);padding:9px 13px}
   .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);
@@ -192,6 +200,58 @@ footer a{color:#fff}
 }
 @media (max-width:420px){.q-t{grid-template-columns:1fr}.cta{display:none}}
 @media (min-width:1001px){.bar{display:none}}
+
+/* ── завершение: письмо, звонок, копирование ───────────────────────────── */
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.act{flex:1 1 150px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:transparent;
+  color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;line-height:1.2}
+.act:first-child{background:var(--frame);border-color:var(--frame);color:#fff;font-weight:600}
+.act:hover{border-color:var(--frame)}
+.act:focus-visible{outline:2px solid var(--frame);outline-offset:2px}
+.act-st{display:block;padding:2px 12px 12px;font-size:13px;min-height:1.35em;color:var(--ink)}
+.act-st:empty{display:none}
+
+/* ── телефонное резюме выбора ──────────────────────────────────────────── */
+.sum{display:none;color:var(--ink)}
+.sum-t{display:flex;width:100%;align-items:center;gap:10px;min-height:48px;background:transparent;
+  border:0;color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;cursor:pointer;text-align:left}
+.sum-t b{background:var(--frame);color:#fff;min-width:28px;height:28px;border-radius:14px;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.sum-t span{flex:1}
+.sum-t i{font-style:normal;font-size:11px}
+.sum-t[aria-expanded="true"] i{transform:rotate(180deg);display:inline-block}
+.sum-b{max-height:44vh;overflow:auto;border-top:1px solid var(--line)}
+.sum-l{margin:0;padding:11px 14px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);
+  gap:5px 10px;font-size:13.5px}
+.sum-l dt{color:var(--mute)}
+.sum-l dd{margin:0;color:var(--ink)}
+.sum-l dd[data-empty]{grid-column:1/-1;color:var(--mute)}
+
+/* ── размер нажимаемых целей ───────────────────────────────────────────── */
+.opt{min-height:44px}
+.t-step{width:44px;height:44px;font-size:17px}
+.cta,.call,.bar a,.bar .alt{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.src .lnk a,footer a,.logo,.steps-in a,.proc a,.spec a,.rows a{
+  min-height:44px;display:inline-flex;align-items:center}
+.hnav a{min-height:44px;display:inline-flex;align-items:center}
+
+/* ── читаемость мелкой типографики ────────────────────────────────────── */
+.q-l{font-size:12px;letter-spacing:.06em}
+.c-l{font-size:11.5px;letter-spacing:.05em}
+.c-l i{color:inherit;font-weight:500}
+.m,.sc{font-size:11px}
+.strip figcaption,.frames figcaption,.plates figcaption,.details figcaption{font-size:11px}
+.brief-h,.sum-t i{font-size:10.5px}
+.warn{font-size:12.5px}
+
+/* ── контраст: цвета подобраны расчётом под AA (4.5:1) ────────────────── */
+.act{color:inherit}
+.act-st{color:inherit}
+.area .m{color:#556067}  /* было #626e76, стало 4.62:1 */
+footer .fh{color:#7e94a0}  /* было #6e8794, стало 4.65:1 */
+.brief .act:first-child{background:var(--glass);border-color:var(--glass);color:var(--frame)}
+.brief .act{border-color:#46545d}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style></head>
 <body>
@@ -212,8 +272,8 @@ footer a{color:#fff}
       <h1>Every opening in the house, done once and done right.</h1>
       <p>Colorado’s oldest Marvin dealer — three generations in Littleton since 1973. Replacement windows, patio doors, entry doors, glass wall systems and James Hardie siding, fitted by our own crews.</p>
     </div>
-    <div class="pane"><img src="photos/g02.jpg" alt="Kitchen with replacement windows" decoding="async"></div>
-    <div class="pane"><img src="photos/g03.jpg" alt="Window seat and glazing" decoding="async"></div>
+    <div class="pane"><img src="photos/g02.jpg" alt="Kitchen with replacement windows" loading="lazy" decoding="async"></div>
+    <div class="pane"><img src="photos/g03.jpg" alt="Window seat and glazing" loading="lazy" decoding="async"></div>
   </section>
 
   <section class="facts"><ul>
@@ -259,8 +319,8 @@ footer a{color:#fff}
       <p>Gravina’s has been fitting windows in Littleton since 1973 — the oldest Marvin dealer in Colorado, now run by the third generation of the family.</p><p>Every job is finished by their own installation teams, trained to Marvin’s standards. No low-bid subcontractors, and the same team is there after installation day.</p>
     </div>
     <div class="pics">
-      <img src="photos/g07.jpg" alt="The Gravina&#39;s Window Center of Littleton team" decoding="async">
-      <img src="photos/g05.jpg" alt="A Front Range home" decoding="async">
+      <img src="photos/g07.jpg" alt="The Gravina&#39;s Window Center of Littleton team" loading="lazy" decoding="async">
+      <img src="photos/g05.jpg" alt="A Front Range home" loading="lazy" decoding="async">
     </div>
   </section>
 
@@ -282,52 +342,62 @@ footer a{color:#fff}
     <p class="lede">A window quote starts with how many openings there are and what is wrong with them. Tap through the rooms — the tally on the right is what an estimator actually needs.</p>
     <div class="tool" id="tool">
       <div class="picks">
-        <div class="q" data-key="openings" data-label="Openings" data-type="tally"><span class="q-l">How many openings, room by room?</span><div class="q-t"><div class="t-row" data-name="Kitchen">
+        <div class="q" data-key="openings" data-label="Openings" data-type="tally"><span class="q-l">How many openings, room by room? Tap the buttons or type a number</span><div class="q-t"><div class="t-row" data-name="Kitchen">
             <span>Kitchen</span>
             <button type="button" class="t-step" data-step="-1" aria-label="One fewer in Kitchen">&minus;</button>
-            <output data-role="n">0</output>
+            <input data-role="n" type="number" inputmode="numeric" min="0" max="99" step="1" value="0"
+              aria-label="Kitchen, how many">
             <button type="button" class="t-step" data-step="1" aria-label="One more in Kitchen">+</button>
           </div><div class="t-row" data-name="Living room">
             <span>Living room</span>
             <button type="button" class="t-step" data-step="-1" aria-label="One fewer in Living room">&minus;</button>
-            <output data-role="n">0</output>
+            <input data-role="n" type="number" inputmode="numeric" min="0" max="99" step="1" value="0"
+              aria-label="Living room, how many">
             <button type="button" class="t-step" data-step="1" aria-label="One more in Living room">+</button>
           </div><div class="t-row" data-name="Dining room">
             <span>Dining room</span>
             <button type="button" class="t-step" data-step="-1" aria-label="One fewer in Dining room">&minus;</button>
-            <output data-role="n">0</output>
+            <input data-role="n" type="number" inputmode="numeric" min="0" max="99" step="1" value="0"
+              aria-label="Dining room, how many">
             <button type="button" class="t-step" data-step="1" aria-label="One more in Dining room">+</button>
           </div><div class="t-row" data-name="Bedrooms">
             <span>Bedrooms</span>
             <button type="button" class="t-step" data-step="-1" aria-label="One fewer in Bedrooms">&minus;</button>
-            <output data-role="n">0</output>
+            <input data-role="n" type="number" inputmode="numeric" min="0" max="99" step="1" value="0"
+              aria-label="Bedrooms, how many">
             <button type="button" class="t-step" data-step="1" aria-label="One more in Bedrooms">+</button>
           </div><div class="t-row" data-name="Bathrooms">
             <span>Bathrooms</span>
             <button type="button" class="t-step" data-step="-1" aria-label="One fewer in Bathrooms">&minus;</button>
-            <output data-role="n">0</output>
+            <input data-role="n" type="number" inputmode="numeric" min="0" max="99" step="1" value="0"
+              aria-label="Bathrooms, how many">
             <button type="button" class="t-step" data-step="1" aria-label="One more in Bathrooms">+</button>
           </div><div class="t-row" data-name="Basement">
             <span>Basement</span>
             <button type="button" class="t-step" data-step="-1" aria-label="One fewer in Basement">&minus;</button>
-            <output data-role="n">0</output>
+            <input data-role="n" type="number" inputmode="numeric" min="0" max="99" step="1" value="0"
+              aria-label="Basement, how many">
             <button type="button" class="t-step" data-step="1" aria-label="One more in Basement">+</button>
           </div><div class="t-row" data-name="Stairwell">
             <span>Stairwell</span>
             <button type="button" class="t-step" data-step="-1" aria-label="One fewer in Stairwell">&minus;</button>
-            <output data-role="n">0</output>
+            <input data-role="n" type="number" inputmode="numeric" min="0" max="99" step="1" value="0"
+              aria-label="Stairwell, how many">
             <button type="button" class="t-step" data-step="1" aria-label="One more in Stairwell">+</button>
           </div><div class="t-row" data-name="Patio door">
             <span>Patio door</span>
             <button type="button" class="t-step" data-step="-1" aria-label="One fewer in Patio door">&minus;</button>
-            <output data-role="n">0</output>
+            <input data-role="n" type="number" inputmode="numeric" min="0" max="99" step="1" value="0"
+              aria-label="Patio door, how many">
             <button type="button" class="t-step" data-step="1" aria-label="One more in Patio door">+</button>
           </div><div class="t-row" data-name="Entry door">
             <span>Entry door</span>
             <button type="button" class="t-step" data-step="-1" aria-label="One fewer in Entry door">&minus;</button>
-            <output data-role="n">0</output>
+            <input data-role="n" type="number" inputmode="numeric" min="0" max="99" step="1" value="0"
+              aria-label="Entry door, how many">
             <button type="button" class="t-step" data-step="1" aria-label="One more in Entry door">+</button>
-          </div></div></div><div class="q" data-key="scope" data-label="Scope" data-branch="1"><span class="q-l">What are you looking at?</span><div class="q-o"><button type="button" class="opt" data-val="The whole house" aria-pressed="false">The whole house</button><button type="button" class="opt" data-val="A few problem openings" aria-pressed="false">A few problem openings</button><button type="button" class="opt" data-val="One opening" aria-pressed="false">One opening</button><button type="button" class="opt" data-val="A remodel or addition" aria-pressed="false">A remodel or addition</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="worst" data-label="Worst openings" data-for="A few problem openings|One opening"><span class="q-l">Where are the bad ones?</span><div class="q-o"><button type="button" class="opt" data-val="North side" aria-pressed="false">North side</button><button type="button" class="opt" data-val="South and west sun" aria-pressed="false">South and west sun</button><button type="button" class="opt" data-val="Ground floor" aria-pressed="false">Ground floor</button><button type="button" class="opt" data-val="Upstairs" aria-pressed="false">Upstairs</button><button type="button" class="opt" data-val="All over" aria-pressed="false">All over</button></div></div><div class="q" data-key="why" data-label="Why now" data-multi="1"><span class="q-l">What is wrong with them? Pick as many as you like</span><div class="q-o"><button type="button" class="opt" data-val="Draughty" aria-pressed="false">Draughty</button><button type="button" class="opt" data-val="Fogged or failed glass" aria-pressed="false">Fogged or failed glass</button><button type="button" class="opt" data-val="Rotting or warped frames" aria-pressed="false">Rotting or warped frames</button><button type="button" class="opt" data-val="Hard to open" aria-pressed="false">Hard to open</button><button type="button" class="opt" data-val="Street noise" aria-pressed="false">Street noise</button><button type="button" class="opt" data-val="The look of them" aria-pressed="false">The look of them</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="house" data-label="The house"><span class="q-l">The house itself</span><div class="q-o"><button type="button" class="opt" data-val="Historic Denver" aria-pressed="false">Historic Denver</button><button type="button" class="opt" data-val="Ranch" aria-pressed="false">Ranch</button><button type="button" class="opt" data-val="Two-storey" aria-pressed="false">Two-storey</button><button type="button" class="opt" data-val="Mountain modern" aria-pressed="false">Mountain modern</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="look" data-label="Interest" data-multi="1"><span class="q-l">Anything else on the list?</span><div class="q-o"><button type="button" class="opt" data-val="Patio or glass wall" aria-pressed="false">Patio or glass wall</button><button type="button" class="opt" data-val="Entry door" aria-pressed="false">Entry door</button><button type="button" class="opt" data-val="James Hardie siding" aria-pressed="false">James Hardie siding</button><button type="button" class="opt" data-val="Just the windows" aria-pressed="false">Just the windows</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When would you like it done?</span><div class="q-o"><button type="button" class="opt" data-val="This season" aria-pressed="false">This season</button><button type="button" class="opt" data-val="Within the year" aria-pressed="false">Within the year</button><button type="button" class="opt" data-val="Just pricing it up" aria-pressed="false">Just pricing it up</button></div></div>
+          </div></div>
+        <p class="t-sum" data-role="total" aria-live="polite">Openings so far: <b>0</b></p></div><div class="q" data-key="scope" data-label="Scope" data-branch="1"><span class="q-l">What are you looking at?</span><div class="q-o"><button type="button" class="opt" data-val="The whole house" aria-pressed="false">The whole house</button><button type="button" class="opt" data-val="A few problem openings" aria-pressed="false">A few problem openings</button><button type="button" class="opt" data-val="One opening" aria-pressed="false">One opening</button><button type="button" class="opt" data-val="A remodel or addition" aria-pressed="false">A remodel or addition</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="worst" data-label="Worst openings" data-for="A few problem openings|One opening"><span class="q-l">Where are the bad ones?</span><div class="q-o"><button type="button" class="opt" data-val="North side" aria-pressed="false">North side</button><button type="button" class="opt" data-val="South and west sun" aria-pressed="false">South and west sun</button><button type="button" class="opt" data-val="Ground floor" aria-pressed="false">Ground floor</button><button type="button" class="opt" data-val="Upstairs" aria-pressed="false">Upstairs</button><button type="button" class="opt" data-val="All over" aria-pressed="false">All over</button></div></div><div class="q" data-key="why" data-label="Why now" data-multi="1"><span class="q-l">What is wrong with them? Pick as many as you like</span><div class="q-o"><button type="button" class="opt" data-val="Draughty" aria-pressed="false">Draughty</button><button type="button" class="opt" data-val="Fogged or failed glass" aria-pressed="false">Fogged or failed glass</button><button type="button" class="opt" data-val="Rotting or warped frames" aria-pressed="false">Rotting or warped frames</button><button type="button" class="opt" data-val="Hard to open" aria-pressed="false">Hard to open</button><button type="button" class="opt" data-val="Street noise" aria-pressed="false">Street noise</button><button type="button" class="opt" data-val="The look of them" aria-pressed="false">The look of them</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="house" data-label="The house"><span class="q-l">The house itself</span><div class="q-o"><button type="button" class="opt" data-val="Historic Denver" aria-pressed="false">Historic Denver</button><button type="button" class="opt" data-val="Ranch" aria-pressed="false">Ranch</button><button type="button" class="opt" data-val="Two-storey" aria-pressed="false">Two-storey</button><button type="button" class="opt" data-val="Mountain modern" aria-pressed="false">Mountain modern</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="look" data-label="Interest" data-multi="1"><span class="q-l">Anything else on the list?</span><div class="q-o"><button type="button" class="opt" data-val="Patio or glass wall" aria-pressed="false">Patio or glass wall</button><button type="button" class="opt" data-val="Entry door" aria-pressed="false">Entry door</button><button type="button" class="opt" data-val="James Hardie siding" aria-pressed="false">James Hardie siding</button><button type="button" class="opt" data-val="Just the windows" aria-pressed="false">Just the windows</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When would you like it done?</span><div class="q-o"><button type="button" class="opt" data-val="This season" aria-pressed="false">This season</button><button type="button" class="opt" data-val="Within the year" aria-pressed="false">Within the year</button><button type="button" class="opt" data-val="Just pricing it up" aria-pressed="false">Just pricing it up</button></div></div>
         <div class="cts">
           <span>If you want them to come and measure</span>
           <div class="cts-g"><div class="c" data-key="name" data-label="Name" data-contact="1">
@@ -352,20 +422,41 @@ footer a{color:#fff}
       <div class="brief">
         <div class="brief-h"><span>Opening tally</span><span>Not sent</span></div>
         <pre id="tk"></pre>
-        <button id="cp" type="button">Copy the tally</button>
-        <span id="st"></span>
+        <div class="acts">
+    <a class="act" data-act="mail" href="mailto:info@gravinawindow.com" rel="noopener">Email this to them</a>
+    
+    <button class="act" data-act="copy" type="button">Copy the tally</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
         <p class="warn">Nothing leaves this page. The button only copies the tally, and none of it is a quote or a price estimate.</p>
       </div>
     </div>
   </section>
 </main>
 
+<div class="sum" id="sum" hidden>
+    <button class="sum-t" type="button" data-act="sheet" aria-expanded="false" aria-controls="sum-body">
+      <b data-act="count">0</b>
+      <span>Show what you picked</span>
+      <i aria-hidden="true">&#9650;</i>
+    </button>
+    <div class="sum-b" id="sum-body" hidden>
+      <dl class="sum-l" data-act="list"></dl>
+      <div class="acts">
+    <a class="act" data-act="mail" href="mailto:info@gravinawindow.com" rel="noopener">Email this to them</a>
+    
+    <button class="act" data-act="copy" type="button">Copy the tally</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
 <div class="bar"><a href="#tally">Count openings</a></div>
 
 <section class="src"><div class="wrap">
   <h2>Where this came from</h2>
   <div>
-    <p>The collections, materials, service area, the 1973 date and every photograph are taken from windowsdenver.com. This concept adds no prices, finance offers, review scores or delivery promises. Marvin® and James Hardie® are their manufacturers’ trademarks, named here because the company names them.</p>
+    <p>The collections, materials, service area, the 1973 date and every photograph are taken from windowsdenver.com. This concept adds no prices, finance offers, review scores or delivery promises. Marvin® and James Hardie® are their manufacturers’ trademarks, named here because the company names them. Checked on 21 October 2026.</p>
     <div class="lnk">
       <a href="https://windowsdenver.com/" target="_blank" rel="noopener noreferrer">windowsdenver.com ↗</a>
       <a href="https://windowsdenver.com/window-replacement/" target="_blank" rel="noopener noreferrer">Window replacement ↗</a>
@@ -375,10 +466,10 @@ footer a{color:#fff}
 </div></section>
 
 <footer><div class="wrap foot">
-  <div><h4>Gravina&#39;s Window Center of Littleton</h4><p>Denver, Colorado<br><a href="mailto:info@gravinawindow.com">info@gravinawindow.com</a></p></div>
-  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  <div><h2 class="fh">Gravina&#39;s Window Center of Littleton</h2><p>Denver, Colorado<br><a href="mailto:info@gravinawindow.com">info@gravinawindow.com</a></p></div>
+  <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's official
   website, and no relationship or endorsement is implied.</p></div>
-  <div><h4>Their site</h4><p><a href="https://windowsdenver.com/" target="_blank" rel="noopener noreferrer">windowsdenver.com ↗</a></p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://windowsdenver.com/" target="_blank" rel="noopener noreferrer">windowsdenver.com ↗</a></p></div>
 </div></footer>
 
 <script>
@@ -415,11 +506,51 @@ footer a{color:#fff}
     return L.join('\n');
   }
 
+  // Выбранное — для телефонного резюме. Тот же источник, что и бриф.
+  function выбранное(){
+    var пары=[];
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      if(!зн||!(Array.isArray(зн)?зн.length:String(зн).length)) return;
+      пары.push([g.getAttribute('data-label'), Array.isArray(зн)?зн.join(', '):зн]);
+    });
+    return пары;
+  }
+
   function перерисовать(){
     Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
       g.hidden=!виден(g);
     });
-    выход.textContent=бриф();
+    var текст=бриф();
+    выход.textContent=текст;
+
+    var тема="Opening tally — from a prospective customer";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+      var адрес=(a.getAttribute('href')||'').split('?')[0];
+      a.setAttribute('href', адрес+'?subject='+encodeURIComponent(тема)+'&body='+encodeURIComponent(текст));
+    });
+
+    var пары=выбранное();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="count"]'),function(e){
+      e.textContent=пары.length;
+    });
+    var лист=document.querySelector('[data-act="list"]');
+    if(лист){
+      лист.textContent='';
+      if(!пары.length){
+        var пусто=document.createElement('dd');
+        пусто.textContent="Nothing counted yet — tap a room above and the tally fills itself in.";
+        пусто.setAttribute('data-empty','1');
+        лист.appendChild(пусто);
+      } else пары.forEach(function(пара){
+        var dt=document.createElement('dt'); dt.textContent=пара[0];
+        var dd=document.createElement('dd'); dd.textContent=пара[1];
+        лист.appendChild(dt); лист.appendChild(dd);
+      });
+    }
+    var полоса=document.getElementById('sum');
+    if(полоса) полоса.hidden=false;
   }
 
   Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
@@ -427,25 +558,33 @@ footer a{color:#fff}
 
     if(g.getAttribute('data-type')==='tally'){
       var счёт={};
+      var итого=g.parentElement.querySelector('[data-role="total"] b') ||
+                (g.nextElementSibling&&g.nextElementSibling.querySelector('b'));
       var свести=function(){
-        var части=[];
+        var части=[],сумма=0;
         Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
           var имя=r.getAttribute('data-name');
-          if(счёт[имя]) части.push(имя+' '+счёт[имя]);
+          if(счёт[имя]){ части.push(имя+' '+счёт[имя]); сумма+=счёт[имя]; }
         });
         состояние[ключ]=части.length?части.join(', '):null;
+        if(итого) итого.textContent=сумма;
         перерисовать();
       };
       Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
-        var имя=r.getAttribute('data-name'), табло=r.querySelector('[data-role="n"]');
+        var имя=r.getAttribute('data-name'), поле=r.querySelector('[data-role="n"]');
         счёт[имя]=0;
+        var поставить=function(v){
+          // Ручной ввод чистим: пусто, минус и буквы превращаются в ноль.
+          v=parseInt(v,10); if(isNaN(v)||v<0) v=0; if(v>99) v=99;
+          счёт[имя]=v; поле.value=v;
+          r.setAttribute('data-on',v>0?'1':'0');
+          свести();
+        };
+        поле.addEventListener('input',function(){ поставить(поле.value); });
+        поле.addEventListener('blur',function(){ поставить(поле.value); });
         Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
           b.addEventListener('click',function(){
-            var д=parseInt(b.getAttribute('data-step'),10);
-            счёт[имя]=Math.max(0,Math.min(99,счёт[имя]+д));
-            табло.textContent=счёт[имя];
-            r.setAttribute('data-on',счёт[имя]>0?'1':'0');
-            свести();
+            поставить(счёт[имя]+parseInt(b.getAttribute('data-step'),10));
           });
         });
       });
@@ -504,24 +643,42 @@ footer a{color:#fff}
     });
   });
 
-  var кнопка=document.querySelector("#cp");
-  var строка=document.querySelector("#st");
-  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
-  кнопка.addEventListener('click',function(){
-    var t=выход.textContent;                     // ровно то, что видно на экране
-    function руками(){
-      сказать("The browser blocked copying — the tally is selected above, copy it with Cmd+C or Ctrl+C.",true);
-      try{
-        var r=document.createRange(); r.selectNodeContents(выход);
-        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      }catch(e){}
-    }
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t).then(function(){
-        сказать("Copied. Paste it into an email or a message to them.",false);
-      },руками);
-    } else руками();
+  function сказать(t,плохо){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="status"]'),function(s){
+      s.textContent=t; s.setAttribute('data-bad',плохо?'1':'0');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="copy"]'),function(кнопка){
+    кнопка.addEventListener('click',function(){
+      var t=выход.textContent;                   // ровно то, что видно на экране
+      function руками(){
+        сказать("The browser blocked copying — the tally is selected above, copy it with Cmd+C or Ctrl+C.",true);
+        try{
+          var r=document.createRange(); r.selectNodeContents(выход);
+          var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }catch(e){}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){
+          сказать("Copied. Paste it into an email or a message to them.",false);
+        },руками);
+      } else руками();
+    });
   });
+  // Письмо и звонок ничего не отправляют со страницы: открывается почтовый
+  // клиент или набор номера на устройстве человека.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+    a.addEventListener('click',function(){ сказать("Your mail app should open with the brief already written.",false); });
+  });
+  var шапка=document.querySelector('[data-act="sheet"]');
+  if(шапка){
+    var тело=document.getElementById('sum-body');
+    шапка.addEventListener('click',function(){
+      var открыт=шапка.getAttribute('aria-expanded')==='true';
+      шапка.setAttribute('aria-expanded',открыт?'false':'true');
+      тело.hidden=открыт;
+    });
+  }
   перерисовать();
 })();</script>
 </body></html>

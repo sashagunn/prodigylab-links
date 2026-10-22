@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#f7f6f3;--card:#fff;--ink:#1a1c1e;--soft:#4b5157;--mute:#878d93;
+:root{--paper:#f7f6f3;--card:#fff;--ink:#1a1c1e;--soft:#4b5157;--mute:#6b6f74;
   --line:#dcd9d3;--slate:#41586b;--pen:#b3341f;
   --sans:Archivo,system-ui,-apple-system,sans-serif;--mono:'Courier Prime',ui-monospace,Menlo,monospace}
 *{box-sizing:border-box}
@@ -56,6 +56,13 @@ header .wrap{display:flex;align-items:center;gap:18px;padding-top:10px;padding-b
 .cut-t{font-family:'Courier Prime',monospace;font-size:15px;fill:#6b7177;letter-spacing:.12em}
 .cut-l{stroke:#1a1c1e;stroke-width:1.1;fill:none}
 .cut-a{font-family:'Courier Prime',monospace;font-size:14px;fill:#1a1c1e}
+.cut .pier{transform:translateY(16px);transition:transform 1.2s cubic-bezier(.2,.8,.2,1) .25s}
+.sheetbox.on .cut .pier{transform:translateY(0)}
+.cut .drop{opacity:0}
+.sheetbox.on .cut .drop{animation:капля 3.4s ease-in infinite}
+.sheetbox.on .cut .d2{animation-delay:1.1s}
+@keyframes капля{0%{opacity:0;transform:translateY(-6px)}
+  18%{opacity:1}70%{opacity:1;transform:translateY(96px)}100%{opacity:0;transform:translateY(120px)}}
 
 /* признаки */
 .signs{padding:clamp(24px,3.2vw,52px) 0;border-top:1px solid var(--line)}
@@ -134,11 +141,6 @@ header .wrap{display:flex;align-items:center;gap:18px;padding-top:10px;padding-b
   letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}
 .brief pre{margin:0;padding:14px 13px;font-family:var(--mono);font-size:12.5px;line-height:1.7;
   white-space:pre-wrap;word-break:break-word;min-height:300px}
-#cp{display:block;width:100%;background:var(--ink);color:#fff;border:0;font-family:var(--mono);
-  font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:14px;cursor:pointer}
-#cp:hover{background:var(--pen)}
-#st{display:block;padding:10px 13px 0;font-size:12.5px;color:var(--soft);min-height:1.3em}
-#st[data-bad="1"]{color:var(--pen)}
 .warn{padding:9px 13px 14px;font-size:12px;color:var(--mute);line-height:1.55}
 
 .src{border-top:1px solid var(--line)}
@@ -150,7 +152,7 @@ header .wrap{display:flex;align-items:center;gap:18px;padding-top:10px;padding-b
 .src .lnk a{color:var(--pen)}
 footer{background:var(--ink);color:#9aa1a7;padding:clamp(20px,3vw,38px) 0;font-size:13px}
 .foot{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-footer h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+footer .fh{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
   color:#777e84;margin:0 0 9px;font-weight:400}
 footer a{color:#fff}
 
@@ -168,7 +170,10 @@ footer a{color:#fff}
   .cts-g{grid-template-columns:1fr}
   .src .wrap{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
-  body{padding-bottom:74px}
+  body .sum{display:block;position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));
+    z-index:59;background:var(--card);border-top:1px solid var(--line);box-shadow:0 -10px 26px rgba(0,0,0,.14)}
+  .bar{min-height:62px;padding-bottom:calc(9px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:calc(126px + env(safe-area-inset-bottom,0px))}
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
     background:var(--card);border-top:2px solid var(--ink);padding:9px 13px}
   .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);
@@ -177,6 +182,55 @@ footer a{color:#fff}
 }
 @media (max-width:460px){.strip{grid-template-columns:repeat(2,1fr)}.cta{display:none}}
 @media (min-width:1001px){.bar{display:none}}
+
+/* ── завершение: письмо, звонок, копирование ───────────────────────────── */
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.act{flex:1 1 150px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:transparent;
+  color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;line-height:1.2}
+.act:first-child{background:var(--pen);border-color:var(--pen);color:#fff;font-weight:600}
+.act:hover{border-color:var(--pen)}
+.act:focus-visible{outline:2px solid var(--pen);outline-offset:2px}
+.act-st{display:block;padding:2px 12px 12px;font-size:13px;min-height:1.35em;color:var(--ink)}
+.act-st:empty{display:none}
+
+/* ── телефонное резюме выбора ──────────────────────────────────────────── */
+.sum{display:none;color:var(--ink)}
+.sum-t{display:flex;width:100%;align-items:center;gap:10px;min-height:48px;background:transparent;
+  border:0;color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;cursor:pointer;text-align:left}
+.sum-t b{background:var(--pen);color:#fff;min-width:28px;height:28px;border-radius:14px;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.sum-t span{flex:1}
+.sum-t i{font-style:normal;font-size:11px}
+.sum-t[aria-expanded="true"] i{transform:rotate(180deg);display:inline-block}
+.sum-b{max-height:44vh;overflow:auto;border-top:1px solid var(--line)}
+.sum-l{margin:0;padding:11px 14px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);
+  gap:5px 10px;font-size:13.5px}
+.sum-l dt{color:var(--mute)}
+.sum-l dd{margin:0;color:var(--ink)}
+.sum-l dd[data-empty]{grid-column:1/-1;color:var(--mute)}
+
+/* ── размер нажимаемых целей ───────────────────────────────────────────── */
+.opt{min-height:44px}
+.t-step{width:44px;height:44px;font-size:17px}
+.cta,.call,.bar a,.bar .alt{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.src .lnk a,footer a,.logo,.steps-in a,.proc a,.spec a,.rows a{
+  min-height:44px;display:inline-flex;align-items:center}
+.hnav a{min-height:44px;display:inline-flex;align-items:center}
+
+/* ── читаемость мелкой типографики ────────────────────────────────────── */
+.q-l{font-size:12px;letter-spacing:.06em}
+.c-l{font-size:11.5px;letter-spacing:.05em}
+.c-l i{color:inherit;font-weight:500}
+.m,.sc{font-size:11px}
+.strip figcaption,.frames figcaption,.plates figcaption,.details figcaption{font-size:11px}
+.brief-h,.sum-t i{font-size:10.5px}
+.warn{font-size:12.5px}
+
+/* ── контраст: цвета подобраны расчётом под AA (4.5:1) ────────────────── */
+.act{color:inherit}
+.act-st{color:inherit}
+footer .fh{color:#7f868b}  /* было #777e84, стало 4.63:1 */
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style></head>
 <body>
@@ -244,7 +298,7 @@ footer a{color:#fff}
   <path d="M250 250 l26 16 l-18 18 l20 16" fill="none" stroke="#b3341f" stroke-width="2.6"/>
 
   <!-- свая до плотного слоя -->
-  <rect x="200" y="404" width="22" height="22" fill="#41586b"/>
+  <g class="pier"><rect x="200" y="404" width="22" height="22" fill="#41586b"/></g>
   <rect x="205" y="426" width="12" height="90" fill="#41586b"/>
   <path d="M211 516 v26" stroke="#41586b" stroke-width="4" stroke-dasharray="6 6"/>
 
@@ -253,8 +307,8 @@ footer a{color:#fff}
   <path d="M625 400 H250" stroke="#41586b" stroke-width="1.4" stroke-dasharray="4 5"/>
 
   <!-- вода снаружи -->
-  <path d="M700 214 q14 24 0 42 q-14 -18 0 -42Z" fill="#8fb4c9" stroke="#41586b" stroke-width="1.2"/>
-  <path d="M740 214 q14 24 0 42 q-14 -18 0 -42Z" fill="#8fb4c9" stroke="#41586b" stroke-width="1.2"/>
+  <path class="drop d1" d="M700 214 q14 24 0 42 q-14 -18 0 -42Z" fill="#8fb4c9" stroke="#41586b" stroke-width="1.2"/>
+  <path class="drop d2" d="M740 214 q14 24 0 42 q-14 -18 0 -42Z" fill="#8fb4c9" stroke="#41586b" stroke-width="1.2"/>
 
   <g class="cut-l">
     <path d="M232 262 H150"/><path d="M196 414 H120"/><path d="M656 398 H760"/>
@@ -309,19 +363,19 @@ footer a{color:#fff}
     <div class="plates-h"><h2>From the job sites</h2><span class="m">Kansas City metro</span></div>
     <div class="strip">
       <figure>
-        <img src="photos/f3.jpg" alt="Excavating along the wall" decoding="async">
+        <img src="photos/f3-sm.jpg" alt="Excavating along the wall" loading="lazy" decoding="async">
         <figcaption>Excavating along the wall</figcaption></figure><figure>
-        <img src="photos/f1.jpg" alt="Pier bracket at the footing" decoding="async">
+        <img src="photos/f1-sm.jpg" alt="Pier bracket at the footing" loading="lazy" decoding="async">
         <figcaption>Pier bracket at the footing</figcaption></figure><figure>
-        <img src="photos/f8.jpg" alt="Wall rebuilt in the trench" decoding="async">
+        <img src="photos/f8-sm.jpg" alt="Wall rebuilt in the trench" loading="lazy" decoding="async">
         <figcaption>Wall rebuilt in the trench</figcaption></figure><figure>
-        <img src="photos/f4.jpg" alt="Vapour barrier going up" decoding="async">
+        <img src="photos/f4-sm.jpg" alt="Vapour barrier going up" loading="lazy" decoding="async">
         <figcaption>Vapour barrier going up</figcaption></figure><figure>
-        <img src="photos/f5.jpg" alt="An old stone basement" decoding="async">
+        <img src="photos/f5-sm.jpg" alt="An old stone basement" loading="lazy" decoding="async">
         <figcaption>An old stone basement</figcaption></figure><figure>
-        <img src="photos/f7.jpg" alt="Encapsulated and dry" decoding="async">
+        <img src="photos/f7-sm.jpg" alt="Encapsulated and dry" loading="lazy" decoding="async">
         <figcaption>Encapsulated and dry</figcaption></figure><figure>
-        <img src="photos/f6.jpg" alt="Drainage work in the yard" decoding="async">
+        <img src="photos/f6-sm.jpg" alt="Drainage work in the yard" loading="lazy" decoding="async">
         <figcaption>Drainage work in the yard</figcaption></figure>
     </div>
   </section>
@@ -357,20 +411,41 @@ footer a{color:#fff}
       <div class="brief">
         <div class="brief-h"><span>Observation sheet</span><span>Not sent</span></div>
         <pre id="tk"></pre>
-        <button id="cp" type="button">Copy the sheet</button>
-        <span id="st"></span>
+        <div class="acts">
+    
+    <a class="act" data-act="tel" href="tel:+18164083651">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the sheet</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
         <p class="warn">Nothing leaves this page. The button only copies the sheet, and none of it is a diagnosis, a quote or a price estimate.</p>
       </div>
     </div>
   </div></section>
 </main>
 
+<div class="sum" id="sum" hidden>
+    <button class="sum-t" type="button" data-act="sheet" aria-expanded="false" aria-controls="sum-body">
+      <b data-act="count">0</b>
+      <span>Show what you picked</span>
+      <i aria-hidden="true">&#9650;</i>
+    </button>
+    <div class="sum-b" id="sum-body" hidden>
+      <dl class="sum-l" data-act="list"></dl>
+      <div class="acts">
+    
+    <a class="act" data-act="tel" href="tel:+18164083651">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the sheet</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
 <div class="bar"><a class="alt" href="tel:+18164083651">Call</a><a href="#sheet">Observation sheet</a></div>
 
 <section class="src"><div class="wrap">
   <h2>Where this came from</h2>
   <div>
-    <p>The six services and their descriptions, the methods, the two-metro focus, the clay, the free 45-minute analysis and every photograph are taken from jlbfoundationandwaterproofing.com. This concept adds no prices, finance offers, warranty terms, review scores or project counts, and nothing on this page is a diagnosis.</p>
+    <p>The six services and their descriptions, the methods, the two-metro focus, the clay, the free 45-minute analysis and every photograph are taken from jlbfoundationandwaterproofing.com. This concept adds no prices, finance offers, warranty terms, review scores or project counts, and nothing on this page is a diagnosis. Checked on 21 October 2026.</p>
     <div class="lnk">
       <a href="https://jlbfoundationandwaterproofing.com/locations/kansas-city-mo/" target="_blank" rel="noopener noreferrer">jlbfoundationandwaterproofing.com ↗</a>
       <a href="https://jlbfoundationandwaterproofing.com/services/" target="_blank" rel="noopener noreferrer">Services ↗</a>
@@ -380,10 +455,10 @@ footer a{color:#fff}
 </div></section>
 
 <footer><div class="wrap foot">
-  <div><h4>JLB Foundation Repair &amp; Waterproofing</h4><p>Kansas City, Missouri<br><a href="tel:+18164083651">(816) 408-3651</a></p></div>
-  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  <div><h2 class="fh">JLB Foundation Repair &amp; Waterproofing</h2><p>Kansas City, Missouri<br><a href="tel:+18164083651">(816) 408-3651</a></p></div>
+  <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's official
   website, and no relationship or endorsement is implied.</p></div>
-  <div><h4>Their site</h4><p><a href="https://jlbfoundationandwaterproofing.com/locations/kansas-city-mo/" target="_blank" rel="noopener noreferrer">jlbfoundationandwaterproofing.com ↗</a></p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://jlbfoundationandwaterproofing.com/locations/kansas-city-mo/" target="_blank" rel="noopener noreferrer">jlbfoundationandwaterproofing.com ↗</a></p></div>
 </div></footer>
 
 <script>
@@ -420,11 +495,51 @@ footer a{color:#fff}
     return L.join('\n');
   }
 
+  // Выбранное — для телефонного резюме. Тот же источник, что и бриф.
+  function выбранное(){
+    var пары=[];
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      if(!зн||!(Array.isArray(зн)?зн.length:String(зн).length)) return;
+      пары.push([g.getAttribute('data-label'), Array.isArray(зн)?зн.join(', '):зн]);
+    });
+    return пары;
+  }
+
   function перерисовать(){
     Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
       g.hidden=!виден(g);
     });
-    выход.textContent=бриф();
+    var текст=бриф();
+    выход.textContent=текст;
+
+    var тема="Observation sheet — from a prospective customer";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+      var адрес=(a.getAttribute('href')||'').split('?')[0];
+      a.setAttribute('href', адрес+'?subject='+encodeURIComponent(тема)+'&body='+encodeURIComponent(текст));
+    });
+
+    var пары=выбранное();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="count"]'),function(e){
+      e.textContent=пары.length;
+    });
+    var лист=document.querySelector('[data-act="list"]');
+    if(лист){
+      лист.textContent='';
+      if(!пары.length){
+        var пусто=document.createElement('dd');
+        пусто.textContent="Nothing ticked yet — answer anything above and this sheet writes itself.";
+        пусто.setAttribute('data-empty','1');
+        лист.appendChild(пусто);
+      } else пары.forEach(function(пара){
+        var dt=document.createElement('dt'); dt.textContent=пара[0];
+        var dd=document.createElement('dd'); dd.textContent=пара[1];
+        лист.appendChild(dt); лист.appendChild(dd);
+      });
+    }
+    var полоса=document.getElementById('sum');
+    if(полоса) полоса.hidden=false;
   }
 
   Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
@@ -432,25 +547,33 @@ footer a{color:#fff}
 
     if(g.getAttribute('data-type')==='tally'){
       var счёт={};
+      var итого=g.parentElement.querySelector('[data-role="total"] b') ||
+                (g.nextElementSibling&&g.nextElementSibling.querySelector('b'));
       var свести=function(){
-        var части=[];
+        var части=[],сумма=0;
         Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
           var имя=r.getAttribute('data-name');
-          if(счёт[имя]) части.push(имя+' '+счёт[имя]);
+          if(счёт[имя]){ части.push(имя+' '+счёт[имя]); сумма+=счёт[имя]; }
         });
         состояние[ключ]=части.length?части.join(', '):null;
+        if(итого) итого.textContent=сумма;
         перерисовать();
       };
       Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
-        var имя=r.getAttribute('data-name'), табло=r.querySelector('[data-role="n"]');
+        var имя=r.getAttribute('data-name'), поле=r.querySelector('[data-role="n"]');
         счёт[имя]=0;
+        var поставить=function(v){
+          // Ручной ввод чистим: пусто, минус и буквы превращаются в ноль.
+          v=parseInt(v,10); if(isNaN(v)||v<0) v=0; if(v>99) v=99;
+          счёт[имя]=v; поле.value=v;
+          r.setAttribute('data-on',v>0?'1':'0');
+          свести();
+        };
+        поле.addEventListener('input',function(){ поставить(поле.value); });
+        поле.addEventListener('blur',function(){ поставить(поле.value); });
         Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
           b.addEventListener('click',function(){
-            var д=parseInt(b.getAttribute('data-step'),10);
-            счёт[имя]=Math.max(0,Math.min(99,счёт[имя]+д));
-            табло.textContent=счёт[имя];
-            r.setAttribute('data-on',счёт[имя]>0?'1':'0');
-            свести();
+            поставить(счёт[имя]+parseInt(b.getAttribute('data-step'),10));
           });
         });
       });
@@ -509,24 +632,57 @@ footer a{color:#fff}
     });
   });
 
-  var кнопка=document.querySelector("#cp");
-  var строка=document.querySelector("#st");
-  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
-  кнопка.addEventListener('click',function(){
-    var t=выход.textContent;                     // ровно то, что видно на экране
-    function руками(){
-      сказать("The browser blocked copying — the sheet is selected above, copy it with Cmd+C or Ctrl+C.",true);
-      try{
-        var r=document.createRange(); r.selectNodeContents(выход);
-        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      }catch(e){}
-    }
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t).then(function(){
-        сказать("Copied. Paste it into an email or a message to them.",false);
-      },руками);
-    } else руками();
+  function сказать(t,плохо){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="status"]'),function(s){
+      s.textContent=t; s.setAttribute('data-bad',плохо?'1':'0');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="copy"]'),function(кнопка){
+    кнопка.addEventListener('click',function(){
+      var t=выход.textContent;                   // ровно то, что видно на экране
+      function руками(){
+        сказать("The browser blocked copying — the sheet is selected above, copy it with Cmd+C or Ctrl+C.",true);
+        try{
+          var r=document.createRange(); r.selectNodeContents(выход);
+          var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }catch(e){}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){
+          сказать("Copied. Paste it into an email or a message to them.",false);
+        },руками);
+      } else руками();
+    });
   });
+  // Письмо и звонок ничего не отправляют со страницы: открывается почтовый
+  // клиент или набор номера на устройстве человека.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+    a.addEventListener('click',function(){ сказать("Your mail app should open with the brief already written.",false); });
+  });
+  var шапка=document.querySelector('[data-act="sheet"]');
+  if(шапка){
+    var тело=document.getElementById('sum-body');
+    шапка.addEventListener('click',function(){
+      var открыт=шапка.getAttribute('aria-expanded')==='true';
+      шапка.setAttribute('aria-expanded',открыт?'false':'true');
+      тело.hidden=открыт;
+    });
+  }
   перерисовать();
 })();</script>
+<script>
+(function(){
+  // Движение включается, только когда блок виден, и выключается у тех, кто
+  // просил меньше движения в системе.
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var цели=document.querySelectorAll('.sheetbox');
+  if(!цели.length||!('IntersectionObserver' in window)){
+    Array.prototype.forEach.call(цели,function(e){e.classList.add('on')}); return;
+  }
+  var н=new IntersectionObserver(function(список){
+    список.forEach(function(з){ if(з.isIntersecting) з.target.classList.add('on'); });
+  },{threshold:.25});
+  Array.prototype.forEach.call(цели,function(e){ н.observe(e); });
+})();
+</script>
 </body></html>

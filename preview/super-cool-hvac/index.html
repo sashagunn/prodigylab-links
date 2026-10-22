@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#fff;--ink:#15181b;--soft:#4a545c;--mute:#8793a0;--line:#e2e7ea;
+:root{--paper:#fff;--ink:#15181b;--soft:#4a545c;--mute:#6c7680;--line:#e2e7ea;
   --cool:#dcebf3;--cool-ink:#15536e;--warm:#f8e5d6;--warm-ink:#8a3c1e;
   --sans:Figtree,system-ui,-apple-system,sans-serif;--mono:'DM Mono',ui-monospace,Menlo,monospace}
 *{box-sizing:border-box}
@@ -22,7 +22,7 @@ p{margin:0}ul{margin:0;padding:0;list-style:none}
 .notice{background:var(--ink);color:#8e99a3;font-family:var(--mono);font-size:10px;
   letter-spacing:.1em;text-transform:uppercase;padding:7px 14px;text-align:center}
 
-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;gap:18px;padding-top:11px;padding-bottom:11px}
 .logo{text-decoration:none;font-weight:800;font-size:18px;letter-spacing:-.035em;white-space:nowrap}
@@ -65,8 +65,10 @@ header .wrap{display:flex;align-items:center;gap:18px;padding-top:11px;padding-b
 .seam{padding:clamp(30px,4vw,64px) 0}
 .seam h2{font-size:clamp(24px,2.9vw,42px);max-width:18ch}
 .seam .list{margin-top:clamp(20px,2.6vw,34px);position:relative}
-.seam .list:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;
-  background:var(--line);transform:translateX(-50%)}
+.seam .list:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--cool-ink),var(--line) 50%,var(--warm-ink));
+  transform:translateX(-50%);clip-path:inset(0 0 100% 0);transition:clip-path 1.4s ease-out}
+.seam .list.on:before{clip-path:inset(0 0 0 0)}
 .sv{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,50px);padding:clamp(12px,1.6vw,20px) 0}
 .sv .box{position:relative}
 .sv.c .box{grid-column:1;text-align:right;padding-right:clamp(10px,1.6vw,24px)}
@@ -121,11 +123,6 @@ header .wrap{display:flex;align-items:center;gap:18px;padding-top:11px;padding-b
   letter-spacing:.1em;text-transform:uppercase;color:#8e99a3}
 .brief pre{margin:0;padding:15px 14px;font-family:var(--mono);font-size:12px;line-height:1.76;
   white-space:pre-wrap;word-break:break-word;min-height:310px}
-#cp{display:block;width:100%;background:var(--cool);color:#0e3a4d;border:0;font-family:var(--mono);
-  font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:14px;cursor:pointer;font-weight:500}
-#cp:hover{background:#fff}
-#st{display:block;padding:10px 14px 0;font-size:12.5px;color:#8e99a3;min-height:1.3em}
-#st[data-bad="1"]{color:#ffc9ab}
 .warn{padding:9px 14px 15px;font-size:12px;color:#8e99a3;line-height:1.55}
 
 .src{border-top:1px solid var(--line);background:#fafbfc}
@@ -137,7 +134,7 @@ header .wrap{display:flex;align-items:center;gap:18px;padding-top:11px;padding-b
 .src .lnk a{color:var(--cool-ink)}
 footer{background:var(--ink);color:#8e99a3;padding:clamp(20px,3vw,38px) 0;font-size:13px}
 .foot{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-footer h4{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+footer .fh{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
   color:#6f7a83;margin:0 0 9px;font-weight:400}
 footer a{color:#fff}
 
@@ -159,7 +156,10 @@ footer a{color:#fff}
   .cts-g{grid-template-columns:1fr}
   .src .wrap{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
-  body{padding-bottom:74px}
+  body .sum{display:block;position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));
+    z-index:59;background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 26px rgba(0,0,0,.14)}
+  .bar{min-height:62px;padding-bottom:calc(9px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:calc(126px + env(safe-area-inset-bottom,0px))}
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
     background:#fff;border-top:1px solid var(--line);padding:9px 13px}
   .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);
@@ -168,6 +168,58 @@ footer a{color:#fff}
 }
 @media (max-width:420px){.cta{display:none}}
 @media (min-width:1001px){.bar{display:none}}
+
+/* ── завершение: письмо, звонок, копирование ───────────────────────────── */
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.act{flex:1 1 150px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:transparent;
+  color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;line-height:1.2}
+.act:first-child{background:var(--cool-ink);border-color:var(--cool-ink);color:#fff;font-weight:600}
+.act:hover{border-color:var(--cool-ink)}
+.act:focus-visible{outline:2px solid var(--cool-ink);outline-offset:2px}
+.act-st{display:block;padding:2px 12px 12px;font-size:13px;min-height:1.35em;color:var(--ink)}
+.act-st:empty{display:none}
+
+/* ── телефонное резюме выбора ──────────────────────────────────────────── */
+.sum{display:none;color:var(--ink)}
+.sum-t{display:flex;width:100%;align-items:center;gap:10px;min-height:48px;background:transparent;
+  border:0;color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;cursor:pointer;text-align:left}
+.sum-t b{background:var(--cool-ink);color:#fff;min-width:28px;height:28px;border-radius:14px;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.sum-t span{flex:1}
+.sum-t i{font-style:normal;font-size:11px}
+.sum-t[aria-expanded="true"] i{transform:rotate(180deg);display:inline-block}
+.sum-b{max-height:44vh;overflow:auto;border-top:1px solid var(--line)}
+.sum-l{margin:0;padding:11px 14px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);
+  gap:5px 10px;font-size:13.5px}
+.sum-l dt{color:var(--mute)}
+.sum-l dd{margin:0;color:var(--ink)}
+.sum-l dd[data-empty]{grid-column:1/-1;color:var(--mute)}
+
+/* ── размер нажимаемых целей ───────────────────────────────────────────── */
+.opt{min-height:44px}
+.t-step{width:44px;height:44px;font-size:17px}
+.cta,.call,.bar a,.bar .alt{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.src .lnk a,footer a,.logo,.steps-in a,.proc a,.spec a,.rows a{
+  min-height:44px;display:inline-flex;align-items:center}
+.hnav a{min-height:44px;display:inline-flex;align-items:center}
+
+/* ── читаемость мелкой типографики ────────────────────────────────────── */
+.q-l{font-size:12px;letter-spacing:.06em}
+.c-l{font-size:11.5px;letter-spacing:.05em}
+.c-l i{color:inherit;font-weight:500}
+.m,.sc{font-size:11px}
+.strip figcaption,.frames figcaption,.plates figcaption,.details figcaption{font-size:11px}
+.brief-h,.sum-t i{font-size:10.5px}
+.warn{font-size:12.5px}
+
+/* ── контраст: цвета подобраны расчётом под AA (4.5:1) ────────────────── */
+.act{color:inherit}
+.act-st{color:inherit}
+.src h2{color:#6a747d}  /* было #6c7680, стало 4.6:1 */
+footer .fh{color:#79838c}  /* было #6f7a83, стало 4.62:1 */
+.brief .act:first-child{background:var(--cool);border-color:var(--cool);color:#0e3a4d}
+.brief .act{border-color:#39424a}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style></head>
 <body>
@@ -233,7 +285,7 @@ footer a{color:#fff}
     </div>
     <div>
       <p>Super Cool has been mostly electric since 2022 — fourteen of its fifteen service vehicles are fully electric, which is not a claim many HVAC companies in Charlotte can make.</p><p>Refrigerant is recycled rather than vented. The company points out that residential refrigerants can be up to 3000 times worse for global warming than CO₂.</p><p>The team plants trees with TreesCharlotte.</p>
-      <img style="margin-top:18px" src="photos/f4.jpg" alt="A Super Cool technician at work" decoding="async">
+      <img style="margin-top:18px" src="photos/f4.jpg" alt="A Super Cool technician at work" loading="lazy" decoding="async">
     </div>
   </div></section>
 
@@ -268,20 +320,41 @@ footer a{color:#fff}
       <div class="brief">
         <div class="brief-h"><span>Service note</span><span>Not sent</span></div>
         <pre id="tk"></pre>
-        <button id="cp" type="button">Copy the service note</button>
-        <span id="st"></span>
+        <div class="acts">
+    
+    <a class="act" data-act="tel" href="tel:+17048992665">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the service note</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
         <p class="warn">Nothing leaves this page. The button only copies the note — to get a technician you still have to call. None of this is a diagnosis, a quote or a price estimate.</p>
       </div>
     </div>
   </section>
 </main>
 
+<div class="sum" id="sum" hidden>
+    <button class="sum-t" type="button" data-act="sheet" aria-expanded="false" aria-controls="sum-body">
+      <b data-act="count">0</b>
+      <span>Show what you picked</span>
+      <i aria-hidden="true">&#9650;</i>
+    </button>
+    <div class="sum-b" id="sum-body" hidden>
+      <dl class="sum-l" data-act="list"></dl>
+      <div class="acts">
+    
+    <a class="act" data-act="tel" href="tel:+17048992665">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the service note</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
 <div class="bar"><a href="tel:+17048992665">Call (704) 899-2665</a><a class="alt" href="#note">Note</a></div>
 
 <section class="src"><div class="wrap">
   <h2>Where this came from</h2>
   <div>
-    <p>The seven services and their descriptions, the electric fleet and refrigerant recycling, the tree planting, the address and every photograph are taken from supercoolcharlotte.com. This concept adds no prices, finance offers, review scores or response times. The two safety lines in the service note are general advice about gas and carbon monoxide, not statements by the company.</p>
+    <p>The seven services and their descriptions, the electric fleet and refrigerant recycling, the tree planting, the address and every photograph are taken from supercoolcharlotte.com. This concept adds no prices, finance offers, review scores or response times. The two safety lines in the service note are general advice about gas and carbon monoxide, not statements by the company. Checked on 21 October 2026.</p>
     <div class="lnk">
       <a href="http://www.supercoolcharlotte.com/" target="_blank" rel="noopener noreferrer">supercoolcharlotte.com ↗</a>
       <a href="https://supercoolcharlotte.com/services/" target="_blank" rel="noopener noreferrer">Services ↗</a>
@@ -291,10 +364,10 @@ footer a{color:#fff}
 </div></section>
 
 <footer><div class="wrap foot">
-  <div><h4>Super Cool HVAC</h4><p>954 N Davidson St, Charlotte, NC 28206<br><a href="tel:+17048992665">(704) 899-2665</a></p></div>
-  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  <div><h2 class="fh">Super Cool HVAC</h2><p>954 N Davidson St, Charlotte, NC 28206<br><a href="tel:+17048992665">(704) 899-2665</a></p></div>
+  <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's official
   website, and no relationship or endorsement is implied.</p></div>
-  <div><h4>Their site</h4><p><a href="http://www.supercoolcharlotte.com/" target="_blank" rel="noopener noreferrer">supercoolcharlotte.com ↗</a></p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="http://www.supercoolcharlotte.com/" target="_blank" rel="noopener noreferrer">supercoolcharlotte.com ↗</a></p></div>
 </div></footer>
 
 <script>
@@ -333,11 +406,51 @@ footer a{color:#fff}
     return L.join('\n');
   }
 
+  // Выбранное — для телефонного резюме. Тот же источник, что и бриф.
+  function выбранное(){
+    var пары=[];
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      if(!зн||!(Array.isArray(зн)?зн.length:String(зн).length)) return;
+      пары.push([g.getAttribute('data-label'), Array.isArray(зн)?зн.join(', '):зн]);
+    });
+    return пары;
+  }
+
   function перерисовать(){
     Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
       g.hidden=!виден(g);
     });
-    выход.textContent=бриф();
+    var текст=бриф();
+    выход.textContent=текст;
+
+    var тема="Service note — from a prospective customer";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+      var адрес=(a.getAttribute('href')||'').split('?')[0];
+      a.setAttribute('href', адрес+'?subject='+encodeURIComponent(тема)+'&body='+encodeURIComponent(текст));
+    });
+
+    var пары=выбранное();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="count"]'),function(e){
+      e.textContent=пары.length;
+    });
+    var лист=document.querySelector('[data-act="list"]');
+    if(лист){
+      лист.textContent='';
+      if(!пары.length){
+        var пусто=document.createElement('dd');
+        пусто.textContent="Nothing picked yet — tap what the system is doing and this note writes itself.";
+        пусто.setAttribute('data-empty','1');
+        лист.appendChild(пусто);
+      } else пары.forEach(function(пара){
+        var dt=document.createElement('dt'); dt.textContent=пара[0];
+        var dd=document.createElement('dd'); dd.textContent=пара[1];
+        лист.appendChild(dt); лист.appendChild(dd);
+      });
+    }
+    var полоса=document.getElementById('sum');
+    if(полоса) полоса.hidden=false;
   }
 
   Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
@@ -345,25 +458,33 @@ footer a{color:#fff}
 
     if(g.getAttribute('data-type')==='tally'){
       var счёт={};
+      var итого=g.parentElement.querySelector('[data-role="total"] b') ||
+                (g.nextElementSibling&&g.nextElementSibling.querySelector('b'));
       var свести=function(){
-        var части=[];
+        var части=[],сумма=0;
         Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
           var имя=r.getAttribute('data-name');
-          if(счёт[имя]) части.push(имя+' '+счёт[имя]);
+          if(счёт[имя]){ части.push(имя+' '+счёт[имя]); сумма+=счёт[имя]; }
         });
         состояние[ключ]=части.length?части.join(', '):null;
+        if(итого) итого.textContent=сумма;
         перерисовать();
       };
       Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
-        var имя=r.getAttribute('data-name'), табло=r.querySelector('[data-role="n"]');
+        var имя=r.getAttribute('data-name'), поле=r.querySelector('[data-role="n"]');
         счёт[имя]=0;
+        var поставить=function(v){
+          // Ручной ввод чистим: пусто, минус и буквы превращаются в ноль.
+          v=parseInt(v,10); if(isNaN(v)||v<0) v=0; if(v>99) v=99;
+          счёт[имя]=v; поле.value=v;
+          r.setAttribute('data-on',v>0?'1':'0');
+          свести();
+        };
+        поле.addEventListener('input',function(){ поставить(поле.value); });
+        поле.addEventListener('blur',function(){ поставить(поле.value); });
         Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
           b.addEventListener('click',function(){
-            var д=parseInt(b.getAttribute('data-step'),10);
-            счёт[имя]=Math.max(0,Math.min(99,счёт[имя]+д));
-            табло.textContent=счёт[имя];
-            r.setAttribute('data-on',счёт[имя]>0?'1':'0');
-            свести();
+            поставить(счёт[имя]+parseInt(b.getAttribute('data-step'),10));
           });
         });
       });
@@ -422,24 +543,57 @@ footer a{color:#fff}
     });
   });
 
-  var кнопка=document.querySelector("#cp");
-  var строка=document.querySelector("#st");
-  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
-  кнопка.addEventListener('click',function(){
-    var t=выход.textContent;                     // ровно то, что видно на экране
-    function руками(){
-      сказать("The browser blocked copying — the note is selected above, copy it with Cmd+C or Ctrl+C.",true);
-      try{
-        var r=document.createRange(); r.selectNodeContents(выход);
-        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      }catch(e){}
-    }
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t).then(function(){
-        сказать("Copied. Read it out when you call, or paste it into a message.",false);
-      },руками);
-    } else руками();
+  function сказать(t,плохо){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="status"]'),function(s){
+      s.textContent=t; s.setAttribute('data-bad',плохо?'1':'0');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="copy"]'),function(кнопка){
+    кнопка.addEventListener('click',function(){
+      var t=выход.textContent;                   // ровно то, что видно на экране
+      function руками(){
+        сказать("The browser blocked copying — the note is selected above, copy it with Cmd+C or Ctrl+C.",true);
+        try{
+          var r=document.createRange(); r.selectNodeContents(выход);
+          var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }catch(e){}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){
+          сказать("Copied. Read it out when you call, or paste it into a message.",false);
+        },руками);
+      } else руками();
+    });
   });
+  // Письмо и звонок ничего не отправляют со страницы: открывается почтовый
+  // клиент или набор номера на устройстве человека.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+    a.addEventListener('click',function(){ сказать("Your mail app should open with the brief already written.",false); });
+  });
+  var шапка=document.querySelector('[data-act="sheet"]');
+  if(шапка){
+    var тело=document.getElementById('sum-body');
+    шапка.addEventListener('click',function(){
+      var открыт=шапка.getAttribute('aria-expanded')==='true';
+      шапка.setAttribute('aria-expanded',открыт?'false':'true');
+      тело.hidden=открыт;
+    });
+  }
   перерисовать();
 })();</script>
+<script>
+(function(){
+  // Движение включается, только когда блок виден, и выключается у тех, кто
+  // просил меньше движения в системе.
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var цели=document.querySelectorAll('.seam .list');
+  if(!цели.length||!('IntersectionObserver' in window)){
+    Array.prototype.forEach.call(цели,function(e){e.classList.add('on')}); return;
+  }
+  var н=new IntersectionObserver(function(список){
+    список.forEach(function(з){ if(з.isIntersecting) з.target.classList.add('on'); });
+  },{threshold:.25});
+  Array.prototype.forEach.call(цели,function(e){ н.observe(e); });
+})();
+</script>
 </body></html>

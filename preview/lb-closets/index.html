@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#efeae2;--cell:#fbf9f6;--ink:#231c17;--walnut:#3a2e26;--soft:#5b5048;--mute:#8d8278;
+:root{--paper:#efeae2;--cell:#fbf9f6;--ink:#231c17;--walnut:#3a2e26;--soft:#5b5048;--mute:#6f665e;
   --brass:#b08b52;--line:#ded6ca;
   --sans:Sora,system-ui,-apple-system,sans-serif;--mono:'Azeret Mono',ui-monospace,Menlo,monospace}
 *{box-sizing:border-box}
@@ -22,7 +22,7 @@ p{margin:0}ul{margin:0;padding:0;list-style:none}
 .notice{background:var(--walnut);color:#b5a899;font-family:var(--mono);font-size:9.5px;
   letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;text-align:center}
 
-header{position:sticky;top:0;z-index:50;background:rgba(239,234,226,.95);backdrop-filter:blur(8px);
+header{position:sticky;top:0;z-index:50;background:rgba(239,234,226,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   border-bottom:1px solid var(--brass)}
 header .wrap{display:flex;align-items:center;gap:18px;padding-top:11px;padding-bottom:11px}
 .logo{text-decoration:none;font-weight:700;font-size:18px;letter-spacing:-.04em;white-space:nowrap}
@@ -111,11 +111,6 @@ header .wrap{display:flex;align-items:center;gap:18px;padding-top:11px;padding-b
   letter-spacing:.12em;text-transform:uppercase;color:#b5a899}
 .brief pre{margin:0;padding:15px 14px;font-family:var(--mono);font-size:11.5px;line-height:1.78;
   white-space:pre-wrap;word-break:break-word;min-height:300px}
-#cp{display:block;width:100%;background:var(--brass);color:#2a2017;border:0;font-family:var(--mono);
-  font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;padding:14px;cursor:pointer;font-weight:500}
-#cp:hover{background:#fff}
-#st{display:block;padding:10px 14px 0;font-size:12.5px;color:#b5a899;min-height:1.3em}
-#st[data-bad="1"]{color:#f0c9a0}
 .warn{padding:9px 14px 15px;font-size:12px;color:#b5a899;line-height:1.55}
 
 .src{background:var(--cell);border-top:1px solid var(--line)}
@@ -127,7 +122,7 @@ header .wrap{display:flex;align-items:center;gap:18px;padding-top:11px;padding-b
 .src .lnk a{color:var(--brass)}
 footer{background:var(--walnut);color:#b5a899;padding:clamp(20px,3vw,38px) 0;font-size:13px}
 .foot{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-footer h4{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+footer .fh{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
   color:#8d8075;margin:0 0 9px;font-weight:400}
 footer a{color:#fff}
 
@@ -145,7 +140,10 @@ footer a{color:#fff}
   .cts-g{grid-template-columns:1fr}
   .src .wrap{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
-  body{padding-bottom:74px}
+  body .sum{display:block;position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));
+    z-index:59;background:var(--cell);border-top:1px solid var(--line);box-shadow:0 -10px 26px rgba(0,0,0,.14)}
+  .bar{min-height:62px;padding-bottom:calc(9px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:calc(126px + env(safe-area-inset-bottom,0px))}
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
     background:var(--paper);border-top:1px solid var(--brass);padding:9px 13px}
   .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);
@@ -154,6 +152,59 @@ footer a{color:#fff}
 }
 @media (max-width:460px){.grid{grid-template-columns:1fr}.cta{display:none}}
 @media (min-width:1001px){.bar{display:none}}
+
+/* ── завершение: письмо, звонок, копирование ───────────────────────────── */
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.act{flex:1 1 150px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:transparent;
+  color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;line-height:1.2}
+.act:first-child{background:var(--walnut);border-color:var(--walnut);color:#f6f1ea;font-weight:600}
+.act:hover{border-color:var(--walnut)}
+.act:focus-visible{outline:2px solid var(--walnut);outline-offset:2px}
+.act-st{display:block;padding:2px 12px 12px;font-size:13px;min-height:1.35em;color:var(--ink)}
+.act-st:empty{display:none}
+
+/* ── телефонное резюме выбора ──────────────────────────────────────────── */
+.sum{display:none;color:var(--ink)}
+.sum-t{display:flex;width:100%;align-items:center;gap:10px;min-height:48px;background:transparent;
+  border:0;color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;cursor:pointer;text-align:left}
+.sum-t b{background:var(--walnut);color:#f6f1ea;min-width:28px;height:28px;border-radius:14px;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.sum-t span{flex:1}
+.sum-t i{font-style:normal;font-size:11px}
+.sum-t[aria-expanded="true"] i{transform:rotate(180deg);display:inline-block}
+.sum-b{max-height:44vh;overflow:auto;border-top:1px solid var(--line)}
+.sum-l{margin:0;padding:11px 14px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);
+  gap:5px 10px;font-size:13.5px}
+.sum-l dt{color:var(--mute)}
+.sum-l dd{margin:0;color:var(--ink)}
+.sum-l dd[data-empty]{grid-column:1/-1;color:var(--mute)}
+
+/* ── размер нажимаемых целей ───────────────────────────────────────────── */
+.opt{min-height:44px}
+.t-step{width:44px;height:44px;font-size:17px}
+.cta,.call,.bar a,.bar .alt{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.src .lnk a,footer a,.logo,.steps-in a,.proc a,.spec a,.rows a{
+  min-height:44px;display:inline-flex;align-items:center}
+.hnav a{min-height:44px;display:inline-flex;align-items:center}
+
+/* ── читаемость мелкой типографики ────────────────────────────────────── */
+.q-l{font-size:12px;letter-spacing:.06em}
+.c-l{font-size:11.5px;letter-spacing:.05em}
+.c-l i{color:inherit;font-weight:500}
+.m,.sc{font-size:11px}
+.strip figcaption,.frames figcaption,.plates figcaption,.details figcaption{font-size:11px}
+.brief-h,.sum-t i{font-size:10.5px}
+.warn{font-size:12.5px}
+
+/* ── контраст: цвета подобраны расчётом под AA (4.5:1) ────────────────── */
+.act{color:inherit}
+.act-st{color:inherit}
+.steps .s span{color:#896c40}  /* было #b08b52, стало 4.67:1 */
+.src .lnk a{color:#896c40}  /* было #b08b52, стало 4.67:1 */
+footer .fh{color:#a3988f}  /* было #8d8075, стало 4.66:1 */
+.brief .act:first-child{background:var(--brass);border-color:var(--brass);color:#2a2017}
+.brief .act{border-color:#584a40}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style></head>
 <body>
@@ -175,11 +226,11 @@ footer a{color:#fff}
         <p>Walk-in and reach-in closets, garages, home offices, laundry rooms and pantries across Arizona. It starts with a designer at your kitchen table and a 3D model of the space before anything is cut.</p>
       </div>
       <div class="cell c12"><img src="photos/f11.jpg" alt="Walk-in closet built by LB Closets" decoding="async"></div>
-      <div class="cell"><img src="photos/f12.jpg" alt="Closet system detail" decoding="async"></div>
-      <div class="cell"><img src="photos/f9.jpg" alt="Hanging and shelving" decoding="async"></div>
+      <div class="cell"><img src="photos/f12-sm.jpg" alt="Closet system detail" decoding="async"></div>
+      <div class="cell"><img src="photos/f9-sm.jpg" alt="Hanging and shelving" decoding="async"></div>
       <div class="cell c21"><img src="photos/f4.jpg" alt="Shelving and drawers" decoding="async"></div>
-      <div class="cell"><img src="photos/f10.jpg" alt="Closet island" decoding="async"></div>
-      <div class="cell"><img src="photos/f1.jpg" alt="Closet in colour" decoding="async"></div>
+      <div class="cell"><img src="photos/f10-sm.jpg" alt="Closet island" decoding="async"></div>
+      <div class="cell"><img src="photos/f1-sm.jpg" alt="Closet in colour" decoding="async"></div>
     </div>
     <ul class="facts"><li>Designer comes to you, with samples</li><li>3D model before anything is cut</li><li>Tempe, serving Arizona</li></ul>
   </section>
@@ -188,10 +239,10 @@ footer a{color:#fff}
     <h2>Six spaces, one system.</h2>
     <div class="grid">
       
-      <article class="sp"><img src="photos/f6.jpg" alt="Walk-in closets" decoding="async">
-          <b>Walk-in closets</b></article><article class="sp"><img src="photos/f5.jpg" alt="Reach-in closets" decoding="async">
-          <b>Reach-in closets</b></article><article class="sp"><img src="photos/f3.jpg" alt="Garage storage" decoding="async">
-          <b>Garage storage</b></article><article class="sp"><img src="photos/hero.jpg" alt="Kitchen pantry" decoding="async">
+      <article class="sp"><img src="photos/f6.jpg" alt="Walk-in closets" loading="lazy" decoding="async">
+          <b>Walk-in closets</b></article><article class="sp"><img src="photos/f5.jpg" alt="Reach-in closets" loading="lazy" decoding="async">
+          <b>Reach-in closets</b></article><article class="sp"><img src="photos/f3.jpg" alt="Garage storage" loading="lazy" decoding="async">
+          <b>Garage storage</b></article><article class="sp"><img src="photos/hero.jpg" alt="Kitchen pantry" loading="lazy" decoding="async">
           <b>Kitchen pantry</b></article><article class="sp txt"><b>Home office</b><p>Desk runs, filing and shelving, built in.</p></article><article class="sp txt"><b>Laundry room</b><p>Folding, hanging and storage around the machines.</p></article>
     </div>
   </section>
@@ -237,20 +288,41 @@ footer a{color:#fff}
       <div class="brief">
         <div class="brief-h"><span>Configuration</span><span>Not sent</span></div>
         <pre id="tk"></pre>
-        <button id="cp" type="button">Copy the configuration</button>
-        <span id="st"></span>
+        <div class="acts">
+    <a class="act" data-act="mail" href="mailto:korrena@lbclosets.com" rel="noopener">Email this to them</a>
+    <a class="act" data-act="tel" href="tel:+14803593646">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the configuration</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
         <p class="warn">Nothing leaves this page. The button only copies the configuration, and none of it is a quote or a price estimate.</p>
       </div>
     </div>
   </section>
 </main>
 
+<div class="sum" id="sum" hidden>
+    <button class="sum-t" type="button" data-act="sheet" aria-expanded="false" aria-controls="sum-body">
+      <b data-act="count">0</b>
+      <span>Show what you picked</span>
+      <i aria-hidden="true">&#9650;</i>
+    </button>
+    <div class="sum-b" id="sum-body" hidden>
+      <dl class="sum-l" data-act="list"></dl>
+      <div class="acts">
+    <a class="act" data-act="mail" href="mailto:korrena@lbclosets.com" rel="noopener">Email this to them</a>
+    <a class="act" data-act="tel" href="tel:+14803593646">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the configuration</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
 <div class="bar"><a class="alt" href="tel:+14803593646">Call</a><a href="#config">Configure</a></div>
 
 <section class="src"><div class="wrap">
   <h2>Where this came from</h2>
   <div>
-    <p>The six spaces, the three steps, the address and every photograph are taken from lbclosets.com. This concept leaves out their warranty, their financing offer and their superlatives, and adds no prices, timelines, review scores or project counts.</p>
+    <p>The six spaces, the three steps, the address and every photograph are taken from lbclosets.com. This concept leaves out their warranty, their financing offer and their superlatives, and adds no prices, timelines, review scores or project counts. Checked on 21 October 2026.</p>
     <div class="lnk">
       <a href="https://www.lbclosets.com/" target="_blank" rel="noopener noreferrer">lbclosets.com ↗</a>
       <a href="https://www.lbclosets.com/design-process" target="_blank" rel="noopener noreferrer">Design process ↗</a>
@@ -260,10 +332,10 @@ footer a{color:#fff}
 </div></section>
 
 <footer><div class="wrap foot">
-  <div><h4>LB Closets</h4><p>1750 South Los Feliz Drive STE 102, Tempe, AZ 85281<br><a href="tel:+14803593646">(480) 359-3646</a><br><a href="mailto:korrena@lbclosets.com">korrena@lbclosets.com</a></p></div>
-  <div><h4>Concept</h4><p>Independent redesign concept by Preview Factory. Not the company's official
+  <div><h2 class="fh">LB Closets</h2><p>1750 South Los Feliz Drive STE 102, Tempe, AZ 85281<br><a href="tel:+14803593646">(480) 359-3646</a><br><a href="mailto:korrena@lbclosets.com">korrena@lbclosets.com</a></p></div>
+  <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's official
   website, and no relationship or endorsement is implied.</p></div>
-  <div><h4>Their site</h4><p><a href="https://www.lbclosets.com/" target="_blank" rel="noopener noreferrer">lbclosets.com ↗</a></p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://www.lbclosets.com/" target="_blank" rel="noopener noreferrer">lbclosets.com ↗</a></p></div>
 </div></footer>
 
 <script>
@@ -300,11 +372,51 @@ footer a{color:#fff}
     return L.join('\n');
   }
 
+  // Выбранное — для телефонного резюме. Тот же источник, что и бриф.
+  function выбранное(){
+    var пары=[];
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      if(!зн||!(Array.isArray(зн)?зн.length:String(зн).length)) return;
+      пары.push([g.getAttribute('data-label'), Array.isArray(зн)?зн.join(', '):зн]);
+    });
+    return пары;
+  }
+
   function перерисовать(){
     Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
       g.hidden=!виден(g);
     });
-    выход.textContent=бриф();
+    var текст=бриф();
+    выход.textContent=текст;
+
+    var тема="Configuration — from a prospective customer";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+      var адрес=(a.getAttribute('href')||'').split('?')[0];
+      a.setAttribute('href', адрес+'?subject='+encodeURIComponent(тема)+'&body='+encodeURIComponent(текст));
+    });
+
+    var пары=выбранное();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="count"]'),function(e){
+      e.textContent=пары.length;
+    });
+    var лист=document.querySelector('[data-act="list"]');
+    if(лист){
+      лист.textContent='';
+      if(!пары.length){
+        var пусто=document.createElement('dd');
+        пусто.textContent="Nothing picked yet — choose a space above and this configuration writes itself.";
+        пусто.setAttribute('data-empty','1');
+        лист.appendChild(пусто);
+      } else пары.forEach(function(пара){
+        var dt=document.createElement('dt'); dt.textContent=пара[0];
+        var dd=document.createElement('dd'); dd.textContent=пара[1];
+        лист.appendChild(dt); лист.appendChild(dd);
+      });
+    }
+    var полоса=document.getElementById('sum');
+    if(полоса) полоса.hidden=false;
   }
 
   Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
@@ -312,25 +424,33 @@ footer a{color:#fff}
 
     if(g.getAttribute('data-type')==='tally'){
       var счёт={};
+      var итого=g.parentElement.querySelector('[data-role="total"] b') ||
+                (g.nextElementSibling&&g.nextElementSibling.querySelector('b'));
       var свести=function(){
-        var части=[];
+        var части=[],сумма=0;
         Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
           var имя=r.getAttribute('data-name');
-          if(счёт[имя]) части.push(имя+' '+счёт[имя]);
+          if(счёт[имя]){ части.push(имя+' '+счёт[имя]); сумма+=счёт[имя]; }
         });
         состояние[ключ]=части.length?части.join(', '):null;
+        if(итого) итого.textContent=сумма;
         перерисовать();
       };
       Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
-        var имя=r.getAttribute('data-name'), табло=r.querySelector('[data-role="n"]');
+        var имя=r.getAttribute('data-name'), поле=r.querySelector('[data-role="n"]');
         счёт[имя]=0;
+        var поставить=function(v){
+          // Ручной ввод чистим: пусто, минус и буквы превращаются в ноль.
+          v=parseInt(v,10); if(isNaN(v)||v<0) v=0; if(v>99) v=99;
+          счёт[имя]=v; поле.value=v;
+          r.setAttribute('data-on',v>0?'1':'0');
+          свести();
+        };
+        поле.addEventListener('input',function(){ поставить(поле.value); });
+        поле.addEventListener('blur',function(){ поставить(поле.value); });
         Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
           b.addEventListener('click',function(){
-            var д=parseInt(b.getAttribute('data-step'),10);
-            счёт[имя]=Math.max(0,Math.min(99,счёт[имя]+д));
-            табло.textContent=счёт[имя];
-            r.setAttribute('data-on',счёт[имя]>0?'1':'0');
-            свести();
+            поставить(счёт[имя]+parseInt(b.getAttribute('data-step'),10));
           });
         });
       });
@@ -389,24 +509,42 @@ footer a{color:#fff}
     });
   });
 
-  var кнопка=document.querySelector("#cp");
-  var строка=document.querySelector("#st");
-  function сказать(t,плохо){ строка.textContent=t; строка.setAttribute('data-bad',плохо?'1':'0'); }
-  кнопка.addEventListener('click',function(){
-    var t=выход.textContent;                     // ровно то, что видно на экране
-    function руками(){
-      сказать("The browser blocked copying — the configuration is selected above, copy it with Cmd+C or Ctrl+C.",true);
-      try{
-        var r=document.createRange(); r.selectNodeContents(выход);
-        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      }catch(e){}
-    }
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t).then(function(){
-        сказать("Copied. Paste it into an email or a message to them.",false);
-      },руками);
-    } else руками();
+  function сказать(t,плохо){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="status"]'),function(s){
+      s.textContent=t; s.setAttribute('data-bad',плохо?'1':'0');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="copy"]'),function(кнопка){
+    кнопка.addEventListener('click',function(){
+      var t=выход.textContent;                   // ровно то, что видно на экране
+      function руками(){
+        сказать("The browser blocked copying — the configuration is selected above, copy it with Cmd+C or Ctrl+C.",true);
+        try{
+          var r=document.createRange(); r.selectNodeContents(выход);
+          var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }catch(e){}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){
+          сказать("Copied. Paste it into an email or a message to them.",false);
+        },руками);
+      } else руками();
+    });
   });
+  // Письмо и звонок ничего не отправляют со страницы: открывается почтовый
+  // клиент или набор номера на устройстве человека.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+    a.addEventListener('click',function(){ сказать("Your mail app should open with the brief already written.",false); });
+  });
+  var шапка=document.querySelector('[data-act="sheet"]');
+  if(шапка){
+    var тело=document.getElementById('sum-body');
+    шапка.addEventListener('click',function(){
+      var открыт=шапка.getAttribute('aria-expanded')==='true';
+      шапка.setAttribute('aria-expanded',открыт?'false':'true');
+      тело.hidden=открыт;
+    });
+  }
   перерисовать();
 })();</script>
 </body></html>
