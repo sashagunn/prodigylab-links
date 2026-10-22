@@ -1,0 +1,70 @@
+name: SEO — IndexNow on deploy
+
+# Уведомляем Bing / Yandex / Seznam / Naver о страницах, изменившихся в этом пуше.
+# Состояние (.indexnow-state.json) в git не хранится, поэтому список URL берём
+# из diff самого пуша — так CI не шлёт весь сайт на каждый коммит.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - 'sitemap.xml'
+  workflow_dispatch:
+    inputs:
+      all:
+        description: 'Отправить все URL из sitemap (использовать редко)'
+        type: boolean
+        default: false
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Ждём раскатку Vercel
+        # Поисковик пойдёт проверять URL сразу. Если прод ещё не обновился,
+        # он увидит старую версию или 404 и заявка сгорит впустую.
+        run: sleep 90
+
+      - name: Собираем список изменившихся URL
+        id: urls
+        run: |
+          if [ "${{ inputs.all }}" = "true" ]; then
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git diff --name-only --diff-filter=ACM ${{ github.event.before }} ${{ github.sha }} \
+            | grep -E '\.html$' \
+            | grep -vE '^(node_modules/|scripts/|newdesign\.html$|course\.html$)' \
+            | sed -e 's#index\.html$##' -e 's#^#https://prodigylab.studio/#' \
+            | sort -u > changed.txt || true
+          echo "mode=list" >> "$GITHUB_OUTPUT"
+          echo "Изменилось URL: $(wc -l < changed.txt)"
+          cat changed.txt
+
+      - name: Отправка в IndexNow
+        run: |
+          if [ "${{ steps.urls.outputs.mode }}" = "all" ]; then
+            node scripts/indexnow-submit.js --all
+          elif [ -s changed.txt ]; then
+            xargs -a changed.txt node scripts/indexnow-submit.js
+          else
+            echo "Изменившихся страниц нет — ничего не отправляю."
+          fi
+
+      - name: Логи отправки
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: indexnow-logs
+          path: logs/indexnow/
+          if-no-files-found: ignore
+          retention-days: 30

@@ -1,0 +1,546 @@
+/* Дизайн-система Stitch «Heritage Editorial» — палитра, пара Playfair
+   Display + Plus Jakarta Sans, радиус, шкала отступов — взята за основу и
+   уведена в тёмную сторону: первый экран держится на свете, а не на бумаге.
+
+   Движение сделано на CSS и только там, где помогает: появление секций,
+   медленный дрейф фоновой графики, состояния кнопок. На телефоне дрейф
+   выключен, при prefers-reduced-motion выключено всё. */
+:root{
+  --night:#17120F; --night-2:#1F1915; --canvas:#FBF6EE; --ink:#241F1C;
+  --copper:#C8551F; --copper-lt:#E2A06E; --sage:#6E7B5F; --sage-lt:#9FB08A;
+  --muted:#5E5852; --hair:#E8DEC8; --paper:#FFFFFF;
+  --dim:#CFC6BC; --dark-hair:#3A322C;
+  --r:10px; --r-sm:4px; --dock:66px;
+  --serif:"Playfair Display","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--sans);
+  font-size:.9375rem;line-height:1.55rem;overflow-x:hidden;padding-bottom:var(--dock)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0}
+p{margin:0 0 .75rem}
+a{color:inherit}
+ul{list-style:none;margin:0;padding:0}
+img{display:block}
+
+.concept{background:var(--sage);color:#fff;font-size:.6875rem;line-height:1.05rem;
+  margin:0;padding:.45rem 1rem;text-align:center}
+.concept a{color:#fff}
+
+/* ——— шапка ——— */
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:.75rem;
+  background:rgba(23,18,15,.92);backdrop-filter:blur(10px);color:var(--canvas);padding:.6rem 1rem}
+.mark{font-weight:700;font-size:.6875rem;letter-spacing:.14em;text-decoration:none}
+.top nav{display:none}
+.top nav a{text-decoration:none;color:var(--dim);font-size:.8125rem;font-weight:600;
+  padding:.3rem 0;border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
+.top nav a:hover{color:var(--canvas);border-color:var(--copper)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--r);
+  padding:.85rem 1.2rem;font-weight:700;font-size:.9375rem;text-decoration:none;
+  border:1px solid transparent;min-height:50px;transition:background .25s,color .25s,
+  border-color .25s,transform .18s,box-shadow .25s}
+.btn:active{transform:translateY(1px)}
+.btn-sm{margin-left:auto;padding:.4rem .85rem;min-height:38px;font-size:.75rem;
+  background:var(--copper);color:#fff}
+.btn-sm:hover{background:#E0652A;box-shadow:0 6px 18px rgba(200,85,31,.35)}
+.btn-primary{background:var(--copper);color:#fff}
+.btn-primary:hover{background:#E0652A;box-shadow:0 10px 26px rgba(200,85,31,.35)}
+.btn-line{border-color:currentColor;background:transparent}
+.hero .btn-line{color:var(--canvas)}
+.hero .btn-line:hover{background:var(--canvas);color:var(--night)}
+.btn-line:hover{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
+
+/* ——— первый экран ——— */
+.hero{position:relative;overflow:hidden;background:var(--night);color:var(--canvas);
+  padding:2.5rem 1rem 2.75rem;isolation:isolate}
+.hero-art{position:absolute;inset:-6% -6% -6% -6%;z-index:-2;
+  background:url("photos/art-hero.jpg") center/cover no-repeat;
+  animation:drift 32s ease-in-out infinite alternate}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(23,18,15,.55) 0%,rgba(23,18,15,.80) 45%,rgba(23,18,15,.96) 100%)}
+@keyframes drift{from{transform:scale(1.04) translate3d(0,0,0)}
+                 to{transform:scale(1.12) translate3d(-2%,-1.5%,0)}}
+.hero-inner{position:relative;max-width:1100px;margin:0 auto}
+.eyebrow{font-size:.625rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--copper-lt);margin:0 0 1rem}
+.hero h1{font-size:clamp(2.75rem,13vw,4.25rem);line-height:.95;letter-spacing:-.025em;margin:0 0 1rem}
+.hero h1 span{display:block}
+.hero h1 span:last-child{color:var(--copper-lt);font-style:italic}
+.since{font-size:1.0625rem;line-height:1.6rem;color:var(--dim);max-width:30ch;margin:0 0 1.5rem;
+  text-wrap:balance}
+.since strong{color:var(--canvas)}
+.cta{display:grid;gap:.6rem}
+.hero-note span{display:inline-block;margin-top:.15rem;opacity:.72}
+.hero-note{font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--sage-lt);margin:1.25rem 0 0}
+
+main{max-width:1100px;margin:0 auto;padding:0 1rem}
+.section-kicker{font-size:.625rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sage);margin:0 0 .75rem}
+
+/* ——— избранные блюда: разный масштаб ——— */
+.featured{padding:2.5rem 0 1rem;scroll-margin-top:56px}
+/* Три равные карточки: одинаковая рамка, одинаковый снимок, одинаковый вес.
+   Разный масштаб уместен между секциями, а не внутри одного ряда — там он
+   читается как «эту позицию нам выгоднее продать». */
+.picks{display:grid;gap:1.25rem}
+.pick{display:flex;flex-direction:column;gap:.45rem;background:var(--card);
+  border:1px solid var(--hair);border-radius:var(--r);padding:1rem}
+.pick img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:var(--r-sm);display:block;margin-bottom:.35rem}
+.pick h3{font-size:1.375rem;line-height:1.7rem;margin:0}
+.pick-desc{font-size:.8125rem;line-height:1.2rem;margin:0;color:var(--muted)}
+.pick-price{color:var(--copper);font-weight:700;margin:.15rem 0 0}
+
+  background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);
+  padding:1rem;margin:0 0 .85rem}
+.kicker{font-size:.5625rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sage);margin:0 0 .3rem}
+.lead-desc{font-size:.8125rem;line-height:1.2rem;color:var(--muted);margin:0 0 .5rem}
+.lead-price{font-size:1.375rem;font-weight:700;color:var(--copper);margin:0}
+  background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);padding:.8rem}
+.side-desc{font-size:.75rem;line-height:1.1rem;color:var(--muted);margin:0 0 .35rem}
+.side-price{font-size:1rem;font-weight:700;color:var(--copper);margin:0}
+
+/* ——— история: смена фона, крупный переход ——— */
+.story{background:var(--night-2);color:var(--canvas);margin:2rem -1rem;padding:2.5rem 1rem}
+.story .section-kicker{color:var(--sage-lt)}
+.story h2{font-size:clamp(1.75rem,8vw,2.75rem);line-height:1.1;letter-spacing:-.02em;margin:0 0 1rem}
+.story p{color:var(--dim);max-width:52ch}
+.story-small{font-size:.75rem;line-height:1.15rem;color:var(--sage-lt);margin:1.25rem 0 0}
+
+/* ——— каталог ——— */
+.menu{padding:1.5rem 0 1rem;scroll-margin-top:56px}
+.menu h2{font-size:clamp(1.5rem,7vw,2.25rem);line-height:1.15;margin:0 0 .6rem}
+.lunch-note{font-size:.8125rem;line-height:1.25rem;color:var(--muted);max-width:60ch;
+  border-left:2px solid var(--copper);padding-left:.75rem;margin:0 0 1.25rem}
+/* Ничего не уезжает за правый край: список переносится по строкам на
+   телефоне и становится колонкой на большом экране. Скрытый
+   горизонтальный скролл прятал от глаза половину разделов. */
+.cats{margin:0 0 1.5rem}
+.cats ul{display:flex;flex-wrap:wrap;gap:.4rem}
+.cats a{display:block;white-space:nowrap;font-size:.6875rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;text-decoration:none;background:var(--paper);border:1px solid var(--hair);
+  border-radius:999px;padding:.5rem .85rem;transition:background .22s,color .22s,border-color .22s}
+.cats a:hover{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
+.cats a.is-active{background:var(--copper);border-color:var(--copper);color:#fff}
+.groups{display:grid;gap:1.75rem}
+.group{scroll-margin-top:60px}
+.group h3{font-size:1.25rem;line-height:1.6rem;margin:0 0 .6rem;padding-bottom:.4rem;
+  border-bottom:1px solid var(--hair)}
+/* Каталог — не прайс-лист. Каждая позиция показывает блюдо: в тайской кухне
+   по названию не понять, что принесут. Два в ряд на телефоне, три на большом
+   экране — снимок остаётся крупным, а не превращается в иконку. */
+.dishes{display:grid;grid-template-columns:1fr 1fr;gap:1rem .75rem;list-style:none;padding:0;margin:0}
+.dish{display:flex;flex-direction:column;gap:.4rem}
+.dish img,.dish-nophoto{width:100%;height:auto;aspect-ratio:1;object-fit:cover;
+  border-radius:var(--r-sm);background:var(--hair);display:block}
+.dish-name{font-size:.8125rem;line-height:1.1rem}
+.dish-price{color:var(--copper);font-weight:700;font-size:.8125rem;margin-top:auto}
+.to-order{display:grid;gap:.5rem;justify-items:center;text-align:center;margin:2rem 0 1rem}
+.to-order span{font-size:.75rem;color:var(--muted)}
+
+/* ——— посещение ——— */
+.visit{padding:1.5rem 0 2rem;scroll-margin-top:56px;border-top:1px solid var(--hair)}
+.visit-grid{display:grid;gap:1.25rem}
+.visit h2{font-size:clamp(1.5rem,7vw,2.25rem);line-height:1.15;margin:0 0 .5rem}
+.addr{font-size:1.0625rem;line-height:1.6rem;margin:0 0 1rem}
+.visit-actions{display:grid;gap:.5rem;margin:0}
+.hours-card{background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);padding:1.1rem}
+.hours-card h3{font-family:var(--sans);font-size:.625rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--sage);margin:0 0 .6rem}
+.hours{border-collapse:collapse;width:100%}
+.hours th,.hours td{text-align:left;padding:.4rem 0;border-bottom:1px solid var(--hair);font-size:.9375rem}
+.hours th{color:var(--muted);font-weight:600;width:42%}
+.hours tr:last-child th,.hours tr:last-child td{border-bottom:0}
+.closed{font-size:.75rem;line-height:1.1rem;color:var(--muted);margin:.8rem 0 0}
+
+footer{background:var(--night);color:var(--dim);padding:2rem 1rem 2.25rem}
+footer .mark{color:var(--canvas);display:block;margin:0 0 .5rem;font-size:.6875rem;letter-spacing:.14em}
+footer p{font-size:.8125rem}
+.fine{font-size:.625rem;line-height:1rem;color:#9C938A;border-top:1px solid var(--dark-hair);
+  padding-top:.8rem;margin:1rem 0 0}
+
+/* ——— нижняя панель: заказ, звонок, маршрут ——— */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;
+  grid-template-columns:1fr auto auto;align-items:stretch;height:var(--dock);
+  background:rgba(23,18,15,.96);backdrop-filter:blur(10px);
+  box-shadow:0 -2px 16px rgba(23,18,15,.25)}
+.dock a{display:flex;align-items:center;justify-content:center;color:var(--canvas);
+  text-decoration:none;font-weight:700;font-size:.8125rem;padding:0 1.1rem;
+  border-left:1px solid var(--dark-hair);transition:background .22s}
+.dock a:hover{background:#2A221C}
+.dock-main{background:var(--copper);border-left:0;font-size:1rem}
+.dock-main:hover{background:#E0652A}
+
+/* ——— появление секций ——— */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 24%}
+    @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-art{animation:none}
+  html{scroll-behavior:auto}
+}
+/* На телефоне фоновая графика не дрейфует: батарея дороже эффекта. */
+@media (max-width:759px){ .hero-art{animation:none} }
+
+@media (min-width:760px){
+  body{padding-bottom:0}
+  main{padding:0 2rem}
+  .top{padding:.7rem 2rem}
+  .top nav{display:flex;gap:1.5rem;margin-left:1.5rem}
+  .btn-sm{font-size:.8125rem}
+  .hero{padding:5rem 2rem 5.5rem}
+  .hero h1{font-size:clamp(4rem,9vw,6.5rem)}
+  .since{font-size:1.25rem;max-width:42ch}
+  .cta{grid-auto-flow:column;justify-content:start;gap:.75rem}
+  .featured{padding:4rem 0 1.5rem}
+  .picks{grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .pick-desc{font-size:.875rem;line-height:1.35rem}
+  .story{margin:3rem -2rem 0;padding:3rem 2rem}
+  .menu{padding:3rem 0 1.5rem}
+  /* Разделы слева, блюда справа. Две категории рядом давали шесть карточек
+     поперёк экрана: снимки ещё читались, подписи уже нет. */
+  .menu-layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:0 3rem;align-items:start}
+  .cats{position:sticky;top:4.5rem;margin:0}
+  .cats ul{flex-direction:column;flex-wrap:nowrap;gap:.25rem}
+  .cats a{text-align:left}
+  .groups{grid-template-columns:minmax(0,1fr);gap:3rem}
+  .dishes{grid-template-columns:repeat(3,1fr);gap:1.5rem 1.25rem}
+  .dish-name{font-size:.9375rem;line-height:1.25rem}
+  .dish-price{font-size:.9375rem}
+  .visit-grid{grid-template-columns:1.2fr .8fr;gap:3rem;align-items:start}
+  .visit-actions{grid-auto-flow:column;justify-content:start}
+  .dock{display:none}
+  footer{padding:3rem 2rem}
+}
+
+/* ——— движение: типографика и курсор ———
+   Референсы сходятся на одном: страница должна отвечать на действие, а не
+   проигрывать ролик. Поэтому крупные заголовки появляются строками, а
+   ботаника в первом экране идёт за курсором. */
+
+/* Строки заголовка выезжают из-под собственной маски. */
+.split span{display:block;overflow:hidden}
+.split span i{display:block;font-style:inherit}
+@media (prefers-reduced-motion: no-preference){
+  .hero .split span i{transform:translateY(105%);animation:line .9s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:var(--d,0ms)}
+  @keyframes line{to{transform:translateY(0)}}
+}
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .story .split span i,.menu .split span i{
+      animation:line linear both;animation-timeline:view();animation-range:entry 10% cover 30%}
+  }
+}
+
+/* Тёплое пятно света, которое ходит за курсором отдельно от фона:
+   два слоя с разной скоростью дают глубину без 3D и без видео. */
+.hero-glow{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(42% 46% at 28% 42%,rgba(226,160,110,.20) 0%,transparent 70%);
+  transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.hero-art{transition:transform .5s cubic-bezier(.22,1,.36,1)}
+@media (pointer: fine) and (prefers-reduced-motion: no-preference){
+  .hero-art{animation:none}
+}
+
+/* Кнопка слегка подаётся навстречу курсору. */
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-line:hover{transform:translateY(-2px)}
+
+/* Запасной путь, если браузер не умеет animation-timeline. */
+.js-hidden{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.js-hidden.seen{opacity:1;transform:none}
+.hero .js-hidden{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  .split span i{transform:none;animation:none}
+  .hero-glow,.hero-art{transition:none}
+}
+
+/* ——— закрывающий блок: призыв, огромный логотип, колонки ———
+   Паттерн из галерей компонентов: последний экран не список ссылок, а
+   последнее слово. Призыв, имя во всю ширину, и только потом мелочи. */
+.close{background:var(--night);color:var(--dim);padding:3rem 1rem 2rem;overflow:hidden}
+.close-cta{max-width:1100px;margin:0 auto 2.5rem}
+.close-cta h2{font-size:clamp(2.5rem,14vw,4.5rem);line-height:1;letter-spacing:-.03em;
+  color:var(--canvas);margin:0 0 .75rem}
+.close-cta p{max-width:46ch;margin:0 0 1.5rem}
+.close-actions{display:grid;gap:.6rem}
+.close .btn-line{color:var(--canvas);border-color:rgba(251,246,238,.45)}
+.close .btn-line:hover{background:var(--canvas);color:var(--night);border-color:var(--canvas)}
+
+/* Имя во всю ширину — подпись, а не навигация. */
+.giant{font-family:var(--serif);font-weight:600;letter-spacing:-.02em;line-height:.9;
+  font-size:clamp(1.25rem,9.1vw,7.5rem);color:transparent;margin:1.5rem 0 1.75rem;
+  -webkit-text-stroke:1px rgba(251,246,238,.28);white-space:nowrap;text-align:center;
+  transition:color .6s ease}
+.close:hover .giant{color:rgba(251,246,238,.06)}
+
+.close-cols{max-width:1100px;margin:0 auto;display:grid;gap:1.5rem;
+  border-top:1px solid var(--dark-hair);padding-top:1.75rem}
+.close-cols h3{font-family:var(--sans);font-size:.625rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--sage-lt);margin:0 0 .5rem}
+.close-cols p{font-size:.8125rem;line-height:1.4rem;margin:0}
+.close-cols a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .22s,color .22s}
+.close-cols a:hover{color:var(--canvas);border-color:var(--copper)}
+.close .fine{max-width:1100px;margin:1.75rem auto 0}
+
+@media (min-width:760px){
+  .close{padding:5rem 2rem 2.5rem}
+  .close-cta h2{font-size:clamp(4rem,8vw,6.5rem)}
+  .close-actions{grid-auto-flow:column;justify-content:start;gap:.75rem}
+  .close-cols{grid-template-columns:repeat(4,1fr);gap:2.5rem}
+}
+
+/* ——— еда ведёт композицию ———
+   Первый экран: на телефоне снимок стоит сразу под названием, на компьютере
+   занимает половину. Ботаника ушла в подложку — она аккомпанемент. */
+.hero{padding-bottom:0}
+.hero-art{opacity:.5}
+.hero-grid{position:relative;max-width:1100px;margin:0 auto;display:grid;gap:1.5rem}
+.hero-food{margin:0;border-radius:var(--r);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.hero-food img{width:100%;height:auto;display:block}
+
+/* Полосы между разделами: изображение крупно, подпись поверх. */
+.band{position:relative;margin:2.5rem -1rem;overflow:hidden}
+.band img{width:100%;height:clamp(240px,52vw,420px);object-fit:cover;display:block}
+.band figcaption{position:absolute;left:1rem;right:1rem;bottom:1rem;display:grid;gap:.2rem;
+  text-shadow:0 2px 18px rgba(0,0,0,.85)}
+.band-kicker{font-size:.625rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--copper-lt)}
+.band-line{font-family:var(--serif);font-size:clamp(1.25rem,5.5vw,2rem);line-height:1.15;color:var(--canvas)}
+
+@media (min-width:760px){
+  .hero{padding-bottom:0}
+  .hero-grid{grid-template-columns:1.12fr .88fr;gap:3rem;align-items:center}
+  .hero-food img{height:min(56vh,480px);object-fit:cover}
+  .band{margin:4rem -2rem}
+  .band img{height:clamp(320px,34vw,520px)}
+  .band-wide img{height:clamp(380px,40vw,620px)}
+  .band figcaption{left:2rem;right:2rem;bottom:2rem}
+}
+
+/* Маска строки срезала выносные элементы букв — даём им место и не даём
+   заголовку перерасти свою колонку, когда рядом встаёт снимок. */
+.split span{padding-bottom:.1em;margin-bottom:-.1em}
+.hero h1{font-size:clamp(2.5rem,11vw,3.5rem)}
+@media (min-width:760px){
+  .hero h1{font-size:clamp(3rem,5vw,4.5rem);line-height:1.02}
+  .hero .since{font-size:1.125rem;max-width:30ch}
+}
+
+/* ——— телефон: еда в первом экране, не под сгибом ———
+   Снимок встаёт первым, текст поджимается так, чтобы название, еда и кнопка
+   заказа помещались вместе. Это и есть задача первого экрана. */
+@media (max-width:759px){
+  .hero{padding:0 0 1.25rem}
+  .hero-grid{gap:0}
+  .hero-food{order:-1;border-radius:0;margin:0 0 1.1rem;box-shadow:none}
+  .hero-food img{height:min(38vh,290px);object-fit:cover}
+  .hero-inner{padding:0 1rem}
+  .eyebrow{font-size:.5625rem;letter-spacing:.16em;margin:0 0 .5rem}
+  .hero h1{font-size:clamp(2.1rem,9.5vw,2.75rem);margin:0 0 .5rem}
+  .since{font-size:.9375rem;line-height:1.35rem;margin:0 0 .9rem;max-width:34ch}
+  .cta{gap:.5rem}
+  .hero .btn{min-height:46px;padding:.7rem 1rem}
+  .hero-note{font-size:.5625rem;letter-spacing:.08em;margin:.75rem 0 0;line-height:.95rem}
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Демонстрационный заказ: карточка блюда, корзина, сводка.
+
+   Форма повторяет то, к чему человек привык в доставке: на телефоне панель
+   снизу, на компьютере компактное окно в две колонки. Кнопка добавления и
+   цена всегда на виду — длинный список дополнений прокручивается внутри
+   панели, а не уносит итог за нижний край.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Плитка блюда — кнопка. Нажимается вся, включая снимок и название. */
+.dish-btn,.pick-btn{display:flex;flex-direction:column;gap:.4rem;width:100%;
+  background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;
+  text-align:left;cursor:pointer;border-radius:var(--r-sm)}
+.dish-btn:focus-visible,.pick-btn:focus-visible,.btn:focus-visible,
+.cats a:focus-visible,.cart-actions button:focus-visible,.stepper button:focus-visible,
+.x:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+.dish-btn img{transition:opacity .2s ease}
+.dish-btn:hover img,.pick-btn:hover img{opacity:.88}
+.dish-btn:hover .dish-name{text-decoration:underline;text-underline-offset:2px}
+.pick-btn .pick-name{font-family:var(--serif);font-size:1.375rem;line-height:1.7rem}
+.pick-btn .kicker{display:block}
+
+.btn-cart{display:inline-flex;align-items:center;gap:.4rem;background:none;
+  border:1px solid var(--dark-hair);color:var(--canvas);cursor:pointer}
+.btn-cart:hover{border-color:var(--canvas)}
+/* [hidden] должен побеждать: display:inline-flex перебивал его, и пустой
+   счётчик оставался оранжевой точкой рядом с «Demo cart». */
+.btn-cart b[hidden],.dock-main b[hidden]{display:none}
+.btn-cart b,.dock-main b{display:inline-flex;align-items:center;justify-content:center;
+  min-width:1.25rem;height:1.25rem;padding:0 .3rem;border-radius:999px;
+  background:var(--copper);color:#fff;font-size:.6875rem;font-weight:700}
+.dock-main{font:inherit;border:0;cursor:pointer;gap:.5rem}
+.dock-main b{background:#fff;color:var(--copper)}
+
+/* Окно. Тёмная подложка, без прыжка страницы под ней. */
+body.locked{position:fixed;left:0;right:0;width:100%;overflow:hidden}
+dialog.sheet{border:0;padding:0;background:var(--canvas);color:var(--ink);
+  width:100%;max-width:none;max-height:none;font-family:var(--sans)}
+dialog.sheet::backdrop{background:rgba(18,13,10,.62)}
+.sheet-body{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1rem 1rem 1.25rem}
+.sheet-foot{display:grid;grid-template-columns:auto 1fr;gap:.6rem;align-items:center;
+  padding:.75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+  background:var(--paper);border-top:1px solid var(--hair)}
+.sheet-foot .btn{width:100%;justify-content:center}
+.x{position:absolute;top:.5rem;right:.5rem;z-index:2;width:2.25rem;height:2.25rem;
+  border-radius:999px;border:0;background:rgba(255,255,255,.92);color:var(--ink);
+  font-size:1rem;line-height:1;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.14)}
+.x:hover{background:#fff}
+
+.dish-photo{margin:-1rem -1rem .9rem;overflow:hidden}
+.dish-photo img{width:100%;height:clamp(180px,42vw,260px);object-fit:cover}
+.dish-main h3{font-size:1.5rem;line-height:1.9rem;margin:0 0 .3rem}
+.dish-desc{font-size:.875rem;line-height:1.3rem;color:var(--muted);margin:0 0 .4rem}
+.dish-base{color:var(--copper);font-weight:700;margin:0 0 1rem}
+
+.ogroup{border:0;padding:0;margin:0 0 1.1rem;min-width:0}
+.ogroup legend{display:block;width:100%;font-size:.75rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:0 0 .35rem;
+  border-bottom:1px solid var(--hair);margin-bottom:.35rem}
+.ogroup .req{color:var(--copper);letter-spacing:.06em}
+.ogroup .opt{color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:none}
+.ogroup.needs legend{color:var(--copper)}
+.opt-row{display:flex;align-items:center;gap:.6rem;padding:.42rem .25rem;
+  border-radius:var(--r-sm);cursor:pointer;min-height:44px}
+.opt-row:hover{background:var(--card,#F4EDE2)}
+.opt-row input{width:1.1rem;height:1.1rem;accent-color:var(--copper);flex:none;margin:0}
+.opt-name{flex:1;font-size:.9375rem}
+.opt-plus{color:var(--copper);font-weight:700;font-size:.875rem;white-space:nowrap}
+
+.note{display:block;margin:0 0 .25rem}
+.note span{display:block;font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:.35rem}
+.note i{color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:none}
+.note textarea{width:100%;font:inherit;font-size:.9375rem;padding:.6rem .7rem;
+  border:1px solid var(--hair);border-radius:var(--r-sm);background:var(--paper);
+  color:inherit;resize:vertical}
+.note textarea:focus-visible{outline:2px solid var(--copper);outline-offset:1px}
+
+.stepper{display:inline-flex;align-items:center;gap:.1rem;border:1px solid var(--hair);
+  border-radius:999px;background:var(--paper)}
+.stepper button{width:2.75rem;height:2.75rem;border:0;background:none;cursor:pointer;
+  font-size:1.125rem;color:var(--ink);border-radius:999px}
+.stepper button:hover{background:var(--hair)}
+.stepper span{min-width:1.75rem;text-align:center;font-weight:700}
+.stepper.small button{width:2.25rem;height:2.25rem;font-size:1rem}
+.btn:disabled{background:var(--hair);border-color:var(--hair);color:var(--muted);cursor:not-allowed}
+
+/* Корзина */
+.demo-flag{display:block;background:var(--sage);color:#fff;font-size:.75rem;
+  line-height:1.05rem;padding:.5rem .7rem;border-radius:var(--r-sm);margin:0 0 1rem}
+.cart .sheet-body h3{font-size:1.5rem;margin:0 0 .6rem}
+.cart-empty{color:var(--muted);font-size:.875rem;line-height:1.3rem;padding:1.5rem 0 2rem}
+.cart-empty strong{display:block;font-size:1rem;color:var(--ink);margin-bottom:.25rem}
+.cart-line{display:grid;grid-template-columns:64px 1fr auto;gap:.75rem;
+  padding:.85rem 0;border-bottom:1px solid var(--hair)}
+.cart-line img{width:64px;height:64px;object-fit:cover;border-radius:var(--r-sm)}
+.cart-info h4{font-size:1rem;line-height:1.3rem;margin:0 0 .15rem}
+.cart-opts,.cart-note{font-size:.8125rem;line-height:1.1rem;color:var(--muted);margin:0 0 .2rem}
+.cart-actions{display:flex;gap:.75rem;margin:.25rem 0 0}
+.cart-actions button{border:0;background:none;padding:0;font:inherit;font-size:.8125rem;
+  color:var(--copper);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.cart-right{display:grid;gap:.4rem;justify-items:end;align-content:start}
+.cart-price{font-weight:700;margin:0}
+.cart-sum{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  margin:0;font-size:.875rem;grid-column:1/-1}
+.cart-sum b{font-size:1.125rem}
+.cart-sum.big{border-top:1px solid var(--hair);padding-top:.75rem;margin:1rem 0 1rem}
+#cart-foot{grid-template-columns:1fr}
+
+.review-lines{display:grid;gap:.6rem;margin:0 0 .5rem;padding:0;list-style:none}
+.review-lines li{display:grid;grid-template-columns:2.25rem 1fr auto;gap:.5rem;
+  font-size:.875rem;line-height:1.2rem}
+.review-lines i{color:var(--muted);font-style:normal;font-size:.8125rem}
+.rq{color:var(--muted);font-weight:700}
+.rp{font-weight:700;white-space:nowrap}
+.review-note,.review-real{font-size:.8125rem;line-height:1.15rem;color:var(--muted)}
+.review-real strong{color:var(--ink)}
+.review-actions{display:grid;gap:.5rem;margin-top:1rem}
+.review-actions .btn{width:100%;justify-content:center}
+
+/* Телефон: панель снизу, итог и кнопка всегда на виду. */
+@media (max-width:759px){
+  dialog.sheet[open]{margin:0 0 0 auto;top:auto;bottom:0;left:0;right:0;
+    height:auto;max-height:92dvh;border-radius:14px 14px 0 0;
+    display:flex;flex-direction:column}
+  .sheet-body{flex:1 1 auto;min-height:0}
+}
+
+/* Компьютер: компактное окно, слева снимок, справа параметры. */
+@media (min-width:760px){
+  dialog.sheet[open]{max-width:720px;width:calc(100% - 3rem);max-height:86vh;
+    border-radius:var(--r);margin:auto;display:flex;flex-direction:column;overflow:hidden}
+  .sheet-body{padding:0}
+  #dish-body{display:grid;grid-template-columns:260px minmax(0,1fr);align-items:stretch}
+  .dish-photo{margin:0;height:100%}
+  .dish-photo img{height:100%;min-height:340px}
+  .dish-main{padding:1.5rem 1.5rem .5rem;overflow-y:auto;max-height:66vh}
+  .sheet-foot{grid-template-columns:auto 1fr}
+  .sheet-foot .btn{width:auto;justify-self:end;min-width:16rem}
+  .cart .sheet-body{padding:1.5rem}
+  #cart-foot{grid-template-columns:1fr auto;gap:1.5rem}
+  #cart-foot .btn{min-width:14rem}
+  .review-actions{grid-auto-flow:column;justify-content:start}
+  .review-actions .btn{width:auto}
+}
+
+/* Демо-аккаунт. На телефоне — кружок рядом с корзиной, на компьютере с
+   подписью. Вход нужен только чтобы показать шаг: меню и корзина работают
+   без него, и это сказано на самом экране. */
+.btn-acct{display:inline-flex;align-items:center;gap:.4rem;background:none;
+  border:1px solid var(--dark-hair);color:var(--canvas);cursor:pointer}
+.btn-acct:hover{border-color:var(--canvas)}
+.acct-icon{width:1.1rem;height:1.1rem;border-radius:999px;background:var(--sage-lt);
+  color:var(--night);font-size:.5rem;display:inline-flex;align-items:center;justify-content:center}
+.acct-text{display:none}
+.acct-lead{font-size:.875rem;line-height:1.25rem;color:var(--muted)}
+.acct-cols{display:grid;gap:1rem;margin:.5rem 0 .25rem}
+.acct-cols h4{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  font-family:var(--sans);margin:0 0 .4rem;padding-bottom:.3rem;border-bottom:1px solid var(--hair)}
+.acct-fields{display:grid;gap:.3rem;font-size:.875rem;color:var(--muted)}
+.acct-fields li{padding-left:1rem;position:relative}
+.acct-fields li::before{content:'';position:absolute;left:0;top:.55rem;width:.4rem;height:.4rem;
+  border:1px solid var(--hair);border-radius:1px}
+.acct-nofields{font-size:.75rem;color:var(--muted);margin:.25rem 0 0}
+.acct-profile{display:grid;grid-template-columns:auto 1fr;gap:.2rem .9rem;margin:0 0 1.25rem;
+  font-size:.875rem}
+.acct-profile dt{color:var(--muted)}
+.acct-profile dd{margin:0}
+.acct-h{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-family:var(--sans);
+  margin:0 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid var(--hair)}
+.acct-order{padding:.5rem 0 .75rem;border-bottom:1px solid var(--hair)}
+.acct-when{font-size:.8125rem;color:var(--muted);margin:0 0 .3rem}
+.acct-order ul{display:grid;gap:.15rem;font-size:.875rem;margin:0 0 .5rem}
+.acct-order i{color:var(--muted);font-style:normal;font-size:.8125rem}
+.acct-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0}
+.btn-xs{padding:.35rem .7rem;font-size:.75rem}
+
+@media (min-width:760px){
+  .acct-text{display:inline}
+  .acct-cols{grid-template-columns:1fr 1fr;gap:2rem}
+}
+
+/* Телефон: в шапке только имя, профиль и настоящий заказ. Демо-корзина живёт
+   в нижней панели — две корзины в одном ряду не помещаются и ломают имя
+   ресторана на три строки. */
+@media (max-width:759px){
+  .top .btn-cart{display:none}
+  .mark{white-space:nowrap}
+  .top{gap:.5rem}
+  .top .btn-sm{padding:.45rem .6rem;font-size:.6875rem}
+  .btn-acct{padding:.45rem .55rem}
+}

@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Independent redesign concept for Reimagine Roofing — Arizona.">
+<title>Reimagine Roofing — Roofing and windows in Arizona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--coal:#161819;--pit:#0a0b0b;--panel:#1a1c1d;--edge:#2a2d2f;
+  --rust:#a23f0f;--flare:#ff834f;--warm:#ffdbce;--cool:#c6c6c7;--paper:#f9f9ff;--ink:#151c27;
+  --sans:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.02em;line-height:1.02;text-transform:uppercase}
+p{margin:0}ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:1300px;margin:0 auto;padding:0 clamp(16px,3vw,38px)}
+.m{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+.notice{background:#000;color:#8a8d8f;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;padding:7px 14px;text-align:center}
+
+/* тревожная полоса — аварийное закрытие кровли у них опубликовано */
+.alert{background:var(--rust);color:#fff}
+.alert .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  padding-top:9px;padding-bottom:9px}
+.alert p{font-family:var(--mono);font-size:11px;letter-spacing:.07em}
+.alert a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-decoration:none;
+  border:1px solid rgba(255,255,255,.55);padding:6px 13px}
+.alert a:hover{background:#fff;color:var(--rust)}
+
+/* шапка */
+.head{position:sticky;top:0;z-index:50;background:var(--coal);border-bottom:1px solid var(--edge)}
+.head .wrap{display:flex;align-items:center;gap:22px;padding-top:12px;padding-bottom:12px}
+.logo{color:#fff;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:-.01em;text-transform:uppercase;white-space:nowrap}
+.hnav{margin-left:auto;display:flex;gap:20px}
+.hnav a{color:var(--cool);text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase}
+.hnav a:hover{color:var(--flare)}
+.call{background:var(--flare);color:#2a0d00;text-decoration:none;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.08em;padding:10px 16px;white-space:nowrap;font-weight:500}
+.call:hover{background:#fff}
+
+/* дозор: данные слева, спец-панель справа */
+.dossier{background:var(--pit);color:#fff;border-bottom:1px solid var(--edge)}
+.dossier .wrap{padding-top:clamp(36px,5.4vw,78px);padding-bottom:clamp(30px,4vw,56px);
+  display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);gap:clamp(24px,4vw,64px);align-items:start}
+.dossier .m{color:var(--flare)}
+.dossier h1{font-size:clamp(34px,5.4vw,74px);margin-top:16px;max-width:15ch}
+.dossier .sub{margin-top:18px;color:#a9adaf;max-width:52ch;font-size:16.5px}
+.dossier .acts{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.dossier .acts a{text-decoration:none;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;
+  text-transform:uppercase;padding:13px 20px}
+.b1{background:var(--flare);color:#2a0d00}
+.b1:hover{background:#fff}
+.b2{border:1px solid #43484a;color:#dcdfe0}
+.b2:hover{border-color:var(--flare);color:var(--flare)}
+.spec{border:1px solid var(--edge);background:var(--panel)}
+.spec h2{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:#7e8486;font-weight:500;
+  padding:12px 16px;border-bottom:1px solid var(--edge)}
+.spec dl{margin:0}
+.spec .r{display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);gap:14px;
+  padding:12px 16px;border-bottom:1px solid var(--edge)}
+.spec .r:last-child{border-bottom:0}
+.spec dt{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7e8486}
+.spec dd{margin:0;font-size:14px;color:#e6e8e9}
+
+/* документальная лента кадров */
+.field{background:var(--coal);border-bottom:1px solid var(--edge);padding:clamp(24px,3.4vw,46px) 0}
+.field-head{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:baseline}
+.field-head h2{color:#fff;font-size:clamp(16px,1.7vw,21px)}
+.field-head p{color:#80868a;font-size:12.5px;max-width:58ch}
+.frames{margin-top:18px;display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,1vw,14px)}
+.frames figure{margin:0}
+.frames img{width:100%;aspect-ratio:3/2;object-fit:cover;filter:saturate(.92)}
+.frames figcaption{margin-top:7px;padding-top:6px;border-top:1px solid var(--edge);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#80868a}
+
+/* спец-таблица услуг — не карточки */
+.cat{padding:clamp(40px,5.4vw,80px) 0}
+.cat-head{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);gap:clamp(20px,4vw,60px);align-items:end}
+.cat-head h2{font-size:clamp(24px,3.1vw,42px);max-width:16ch;color:var(--ink)}
+.cat-head p{color:#5d646f;font-size:14.5px;max-width:56ch}
+table{width:100%;border-collapse:collapse;margin-top:clamp(22px,3vw,38px)}
+thead th{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:#7a818b;text-align:left;font-weight:500;padding:0 0 10px;border-bottom:2px solid var(--ink)}
+tbody td{padding:15px 0;border-bottom:1px solid #dfe3ea;vertical-align:baseline}
+tbody tr:hover td{background:#eef1f8}
+td.i{width:72px;font-family:var(--mono);font-size:12px;color:var(--rust)}
+td.s{font-weight:600;font-size:18px}
+td.o{text-align:right;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:#7a818b}
+
+/* полоса заявленного */
+.badges{border-top:1px solid #dfe3ea;border-bottom:1px solid #dfe3ea;background:#eef1f8}
+.badges .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding-top:0;padding-bottom:0}
+.badges li{padding:clamp(18px,2.4vw,30px) clamp(14px,2vw,28px);border-left:1px solid #dfe3ea}
+.badges li:first-child{border-left:0;padding-left:0}
+.badges b{display:block;font-size:17px;font-weight:700}
+.badges span{display:block;margin-top:6px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:#7a818b}
+
+/* наряд-заказ */
+.console{background:var(--coal);color:#fff;padding:clamp(40px,5.4vw,80px) 0}
+.console h2{font-size:clamp(24px,3.1vw,42px)}
+.console .lede{margin-top:14px;color:#9ba0a3;max-width:66ch;font-size:15.5px}
+.tool{margin-top:clamp(24px,3vw,42px);display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr);
+  gap:clamp(20px,3vw,46px);align-items:start}
+.q{border-top:1px solid var(--edge);padding:16px 0}
+.q:first-child{border-top:0;padding-top:0}
+.q[hidden]{display:none}
+.q-l{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#7e8486}
+.q-o{margin-top:11px;display:flex;flex-wrap:wrap;gap:8px}
+.opt{background:rgba(255,255,255,.04);border:1px solid #3a3f41;color:#d9dcdd;font:inherit;
+  font-size:13.5px;padding:9px 14px;cursor:pointer}
+.opt:hover{border-color:#5f6568}
+.opt[aria-pressed="true"]{background:var(--flare);border-color:var(--flare);color:#2a0d00;font-weight:600}
+.opt:focus-visible{outline:2px solid var(--flare);outline-offset:2px}
+.q-n{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.q-n input[type="range"]{flex:1;min-width:170px;accent-color:var(--flare)}
+.q-n input[type="range"]:disabled{opacity:.42}
+.q-n output{font-family:var(--mono);font-size:13.5px;color:var(--warm);min-width:118px}
+.cts{border-top:1px solid var(--edge);padding-top:16px;margin-top:16px}
+.cts>span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#7e8486}
+.cts-g{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.c-l{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:#7e8486;margin-bottom:6px}
+.c-l i{font-style:normal;color:#5d6366}
+.c-i{width:100%;font:inherit;font-size:15.5px;background:var(--pit);border:1px solid #3a3f41;
+  color:#e6e8e9;padding:10px 12px}
+.c-i:focus{outline:0;border-color:var(--flare)}
+.brief{position:sticky;top:76px;background:var(--pit);border:1px solid var(--edge)}
+.brief-h{display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:11px 15px;border-bottom:1px solid var(--edge)}
+.brief-h span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7e8486}
+.brief pre{margin:0;padding:16px 15px;font-family:var(--mono);font-size:12.5px;line-height:1.72;
+  color:#dfe3e4;white-space:pre-wrap;word-break:break-word;min-height:320px}
+.warn{padding:9px 15px 15px;font-size:12px;color:#7e8486;line-height:1.55}
+
+/* источники */
+.src{background:var(--coal);border-top:1px solid var(--edge);color:#9ba0a3}
+.src .wrap{padding:clamp(22px,3vw,38px) clamp(16px,3vw,38px);
+  display:grid;grid-template-columns:minmax(0,24fr) minmax(0,76fr);gap:clamp(16px,3vw,44px)}
+.src h2{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:#7e8486;font-weight:500}
+.src p{font-size:13.5px;max-width:86ch}
+.src .lnk{margin-top:10px;display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px}
+.src .lnk a{color:var(--flare)}
+
+footer{background:var(--pit);color:#8a9094;padding:clamp(26px,4vw,48px) 0;font-size:13px}
+.foot{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+footer .fh{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:#63696c;margin:0 0 10px;font-weight:500}
+footer a{color:#fff}
+
+@media (max-width:980px){
+  .hnav{display:none}
+  .dossier .wrap{grid-template-columns:1fr}
+  .frames{grid-template-columns:repeat(2,1fr)}
+  .cat-head{grid-template-columns:1fr;gap:14px}
+  .badges .wrap{grid-template-columns:1fr}
+  .badges li{border-left:0;padding-left:0;border-top:1px solid #dfe3ea}
+  .badges li:first-child{border-top:0}
+  .tool{grid-template-columns:1fr}
+  .brief{position:static}
+  .cts-g{grid-template-columns:1fr}
+  .src .wrap{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  td.o{display:none}
+  body .sum{display:block;position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));
+    z-index:59;background:var(--panel);border-top:1px solid var(--edge);box-shadow:0 -10px 26px rgba(0,0,0,.14)}
+  .bar{min-height:62px;padding-bottom:calc(9px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:calc(126px + env(safe-area-inset-bottom,0px))}
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
+    background:var(--coal);border-top:1px solid var(--edge);padding:9px 13px}
+  .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;background:var(--flare);color:#2a0d00}
+  .bar .alt{background:transparent;color:#d9dcdd;border:1px solid #3a3f41;flex:0 0 auto;padding:13px 17px}
+}
+@media (min-width:981px){.bar{display:none}}
+
+/* ── завершение: письмо, звонок, копирование ───────────────────────────── */
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.act{flex:1 1 150px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;cursor:pointer;border:1px solid var(--edge);background:transparent;
+  color:#e6e8e9;font:inherit;font-size:14px;padding:12px 14px;line-height:1.2}
+.act:first-child{background:var(--flare);border-color:var(--flare);color:#2a0d00;font-weight:600}
+.act:hover{border-color:var(--flare)}
+.act:focus-visible{outline:2px solid var(--flare);outline-offset:2px}
+.act-st{display:block;padding:2px 12px 12px;font-size:13px;min-height:1.35em;color:#e6e8e9}
+.act-st:empty{display:none}
+
+/* ── телефонное резюме выбора ──────────────────────────────────────────── */
+.sum{display:none;color:var(--ink)}
+.sum-t{display:flex;width:100%;align-items:center;gap:10px;min-height:48px;background:transparent;
+  border:0;color:#e6e8e9;font:inherit;font-size:14px;padding:12px 14px;cursor:pointer;text-align:left}
+.sum-t b{background:var(--flare);color:#2a0d00;min-width:28px;height:28px;border-radius:14px;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.sum-t span{flex:1}
+.sum-t i{font-style:normal;font-size:11px}
+.sum-t[aria-expanded="true"] i{transform:rotate(180deg);display:inline-block}
+.sum-b{max-height:44vh;overflow:auto;border-top:1px solid var(--edge)}
+.sum-l{margin:0;padding:11px 14px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);
+  gap:5px 10px;font-size:13.5px}
+.sum-l dt{color:#9aa2a6}
+.sum-l dd{margin:0;color:#e6e8e9}
+.sum-l dd[data-empty]{grid-column:1/-1;color:#9aa2a6}
+
+/* ── размер нажимаемых целей ───────────────────────────────────────────── */
+.opt{min-height:44px}
+.t-step{width:44px;height:44px;font-size:17px}
+.cta,.call,.bar a,.bar .alt{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.src .lnk a,footer a,.logo,.steps-in a,.proc a,.spec a,.rows a{
+  min-height:44px;display:inline-flex;align-items:center}
+.hnav a{min-height:44px;display:inline-flex;align-items:center}
+
+/* ── читаемость мелкой типографики ────────────────────────────────────── */
+.q-l{font-size:12px;letter-spacing:.06em}
+.c-l{font-size:11.5px;letter-spacing:.05em}
+.c-l i{color:inherit;font-weight:500}
+.m,.sc{font-size:11px}
+.strip figcaption,.frames figcaption,.plates figcaption,.details figcaption{font-size:11px}
+.brief-h,.sum-t i{font-size:10.5px}
+.warn{font-size:12.5px}
+
+/* ── контраст: цвета подобраны расчётом под AA (4.5:1) ────────────────── */
+.act{color:inherit}
+.act-st{color:inherit}
+thead th{color:#6b727a}  /* было #7a818b, стало 4.64:1 */
+footer .fh{color:#777c7f}  /* было #63696c, стало 4.67:1 */
+.alert a{min-height:44px;display:inline-flex;align-items:center}
+.q-n input[type="range"]{height:44px}
+.brief .act{border-color:#43484a}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style></head>
+<body>
+<p class="notice">Independent redesign concept by Preview Factory · Not the official Reimagine Roofing website</p>
+
+<div class="alert"><div class="wrap">
+  <p>Roof open right now? Emergency tarping is one of their services.</p>
+  <a href="tel:+14809007663">Call (480) 900-7663</a>
+</div></div>
+
+<header class="head"><div class="wrap">
+  <a class="logo" href="#top">Reimagine Roofing</a>
+  <nav class="hnav"><a href="#services">Services</a><a href="#frames">Field</a>
+    <a href="#order">Work order</a></nav>
+  <a class="call" href="tel:+14809007663">(480) 900-7663</a>
+</div></header>
+
+<main id="top">
+  <section class="dossier"><div class="wrap">
+    <div>
+      <span class="m">Service file · Arizona</span>
+      <h1>Roofing and windows, made easy.</h1>
+      <p class="sub">Shingle, tile, metal, foam and flat roofs — installed, replaced and repaired. Free roof inspections, and emergency tarping when the roof is open right now.</p>
+      <div class="acts">
+        <a class="b1" href="#order">Build a roof brief</a>
+        <a class="b2" href="https://www.reimagineroofing.com/services/free-roof-inspection/" target="_blank" rel="noopener noreferrer">Their free inspection page ↗</a>
+      </div>
+    </div>
+    <div class="spec">
+      <h2>Published record</h2>
+      <dl><div class="r"><dt>Region</dt><dd>Arizona</dd></div><div class="r"><dt>Services</dt><dd>Eight, from shingle to emergency tarping</dd></div><div class="r"><dt>Status</dt><dd>Veteran-operated · licensed &amp; insured</dd></div><div class="r"><dt>First step</dt><dd>Free roof inspection</dd></div></dl>
+    </div>
+  </div></section>
+
+  <section class="field" id="frames"><div class="wrap">
+    <div class="field-head"><h2>Field images</h2></div>
+    <div class="frames"><figure>
+      <img src="photos/f1-sm.jpg" alt="Roof photograph published by Reimagine Roofing" loading="lazy" decoding="async">
+      <figcaption>Frame 01</figcaption></figure><figure>
+      <img src="photos/f3-sm.jpg" alt="Roof photograph published by Reimagine Roofing" loading="lazy" decoding="async">
+      <figcaption>Frame 02</figcaption></figure><figure>
+      <img src="photos/f4-sm.jpg" alt="Roof photograph published by Reimagine Roofing" loading="lazy" decoding="async">
+      <figcaption>Frame 03</figcaption></figure><figure>
+      <img src="photos/f2-sm.jpg" alt="Roof photograph published by Reimagine Roofing" loading="lazy" decoding="async">
+      <figcaption>Frame 04</figcaption></figure><figure>
+      <img src="photos/f6-sm.jpg" alt="Roof photograph published by Reimagine Roofing" loading="lazy" decoding="async">
+      <figcaption>Frame 05</figcaption></figure></div>
+  </div></section>
+
+  <section class="cat" id="services"><div class="wrap">
+    <div class="cat-head"><h2>Eight services.</h2><p>Shingle, tile, metal, foam and flat roofs — installation, replacement and repair, plus inspections and emergency work.</p></div>
+    <table>
+      <thead><tr><th>№</th><th>Service</th></tr></thead>
+      <tbody><tr>
+        <td class="i">01</td>
+        <td class="s">Shingle installation</td></tr><tr>
+        <td class="i">02</td>
+        <td class="s">Tile installation</td></tr><tr>
+        <td class="i">03</td>
+        <td class="s">Metal installation</td></tr><tr>
+        <td class="i">04</td>
+        <td class="s">Foam installation</td></tr><tr>
+        <td class="i">05</td>
+        <td class="s">Flat roof replacement</td></tr><tr>
+        <td class="i">06</td>
+        <td class="s">Commercial roofing</td></tr><tr>
+        <td class="i">07</td>
+        <td class="s">Free roof inspections</td></tr><tr>
+        <td class="i">08</td>
+        <td class="s">Emergency tarping</td></tr></tbody>
+    </table>
+  </div></section>
+
+  <section class="badges"><ul class="wrap">
+    <li><b>Veteran-operated</b></li><li><b>Licensed &amp; insured</b></li><li><b>Free roof inspections</b></li>
+  </ul></section>
+
+  <section class="console" id="order"><div class="wrap">
+    <h2>Write the work order.</h2>
+    <p class="lede">Say what is on the roof and what happened to it. The ticket on the right rewrites itself, and anything you do not know stays blank — that is useful information too.</p>
+    <div class="tool" id="tool">
+      <div class="picks">
+        <div class="q" data-key="material" data-label="Roof type"><span class="q-l">What is on the roof?</span><div class="q-o"><button type="button" class="opt" data-val="Shingle" aria-pressed="false">Shingle</button><button type="button" class="opt" data-val="Tile" aria-pressed="false">Tile</button><button type="button" class="opt" data-val="Metal" aria-pressed="false">Metal</button><button type="button" class="opt" data-val="Foam" aria-pressed="false">Foam</button><button type="button" class="opt" data-val="Flat roof" aria-pressed="false">Flat roof</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="work" data-label="What is needed"><span class="q-l">What do you need done?</span><div class="q-o"><button type="button" class="opt" data-val="Replacement" aria-pressed="false">Replacement</button><button type="button" class="opt" data-val="New installation" aria-pressed="false">New installation</button><button type="button" class="opt" data-val="Repair" aria-pressed="false">Repair</button><button type="button" class="opt" data-val="An inspection first" aria-pressed="false">An inspection first</button></div></div><div class="q" data-key="stories" data-label="Stories"><span class="q-l">How many stories?</span><div class="q-o"><button type="button" class="opt" data-val="One" aria-pressed="false">One</button><button type="button" class="opt" data-val="Two" aria-pressed="false">Two</button><button type="button" class="opt" data-val="Three or more" aria-pressed="false">Three or more</button></div></div><div class="q" data-key="urgency" data-label="Timing"><span class="q-l">How soon?</span><div class="q-o"><button type="button" class="opt" data-val="Planning ahead" aria-pressed="false">Planning ahead</button><button type="button" class="opt" data-val="Within a month" aria-pressed="false">Within a month</button><button type="button" class="opt" data-val="Active leak — urgent" aria-pressed="false">Active leak — urgent</button></div></div><div class="q" data-key="area" data-label="Approximate roof area" data-type="num"><span class="q-l">Approximate roof area</span><div class="q-n">
+          <input type="range" min="100" max="40000" step="100" value="100"
+            data-role="range" aria-label="Approximate roof area" disabled>
+          <output data-role="numout">Not stated</output>
+          <button type="button" class="opt" data-role="unknown" aria-pressed="true">I don’t know the area</button>
+        </div></div>
+        <div class="cts">
+          <span>If you want a call back</span>
+          <div class="cts-g"><div class="c" data-key="name" data-label="Name" data-contact="1">
+      <label class="c-l" for="ct-name">Name <i>optional</i></label>
+      <input class="c-i" id="ct-name" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="phone" data-label="Phone" data-contact="1">
+      <label class="c-l" for="ct-phone">Phone <i>optional</i></label>
+      <input class="c-i" id="ct-phone" type="tel"
+        inputmode="tel" autocomplete="off">
+    </div><div class="c" data-key="email" data-label="Email" data-contact="1">
+      <label class="c-l" for="ct-email">Email <i>optional</i></label>
+      <input class="c-i" id="ct-email" type="email"
+         autocomplete="off">
+    </div></div>
+        </div>
+      </div>
+      <div class="brief">
+        <div class="brief-h"><span>Work order · draft</span><span>Not sent</span></div>
+        <pre id="tk"></pre>
+        <div class="acts">
+    <a class="act" data-act="mail" href="mailto:contact@reimagineroofing.com" rel="noopener">Email this to them</a>
+    <a class="act" data-act="tel" href="tel:+14809007663">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the work order</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+        <p class="warn">Nothing leaves this page. The button only copies the ticket, and none of it is a quote or a price estimate.</p>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<div class="sum" id="sum" hidden>
+    <button class="sum-t" type="button" data-act="sheet" aria-expanded="false" aria-controls="sum-body">
+      <b data-act="count">0</b>
+      <span>Show what you picked</span>
+      <i aria-hidden="true">&#9650;</i>
+    </button>
+    <div class="sum-b" id="sum-body" hidden>
+      <dl class="sum-l" data-act="list"></dl>
+      <div class="acts">
+    <a class="act" data-act="mail" href="mailto:contact@reimagineroofing.com" rel="noopener">Email this to them</a>
+    <a class="act" data-act="tel" href="tel:+14809007663">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the work order</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
+<div class="bar"><a class="alt" href="tel:+14809007663">Call</a><a href="#order">Work order</a></div>
+
+<section class="src"><div class="wrap">
+  <h2>Where this came from</h2>
+  <div>
+    <p>The eight services, the published status and every photograph are taken from reimagineroofing.com. This concept adds no prices, financing offers, review scores, warranty terms or project counts. Checked on 21 October 2026.</p>
+    <div class="lnk">
+      <a href="https://www.reimagineroofing.com/" target="_blank" rel="noopener noreferrer">reimagineroofing.com ↗</a>
+      <a href="https://www.reimagineroofing.com/services/" target="_blank" rel="noopener noreferrer">Services ↗</a>
+      <a href="https://www.reimagineroofing.com/services/free-roof-inspection/" target="_blank" rel="noopener noreferrer">Free inspection ↗</a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <div><h2 class="fh">Reimagine Roofing</h2><p>Arizona<br><a href="tel:+14809007663">(480) 900-7663</a></p></div>
+  <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's official
+  website, and no relationship or endorsement is implied.</p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://www.reimagineroofing.com/" target="_blank" rel="noopener noreferrer">reimagineroofing.com ↗</a><br><a href="mailto:contact@reimagineroofing.com">contact@reimagineroofing.com</a></p></div>
+</div></footer>
+
+<script>
+(function(){
+  var root=document.querySelector("#tool");
+  if(!root) return;
+  var выход=document.querySelector("#tk");
+  var состояние={}, ветка=null;
+  var РЕЖИМ="all", НЕТ="not stated";
+
+  function виден(g){
+    return !g.hasAttribute('data-for') ||
+      g.getAttribute('data-for').split('|').indexOf(ветка)>=0;
+  }
+
+  function бриф(){
+    var L=["WORK ORDER"+' (draft)','For: '+"Reimagine Roofing",''];
+    var отвечено=false, хвостКонтактов=[];
+    var длина=function(x){ return Array.isArray(x)?x.length:String(x).length; };
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      var строка=g.getAttribute('data-label')+': ';
+      var есть=!!(зн&&длина(зн));
+      if(есть) отвечено=true;
+      var текст=есть?(Array.isArray(зн)?зн.join(', '):зн):НЕТ;
+      if(g.hasAttribute('data-contact')){ if(есть) хвостКонтактов.push(строка+текст); return; }
+      if(есть||РЕЖИМ==='all') L.push(строка+текст);
+    });
+    if(!отвечено&&РЕЖИМ!=='all') L.push("Nothing chosen yet — pick an answer and this brief fills itself in.");
+    if(хвостКонтактов.length){ L.push(''); L=L.concat(хвостКонтактов); }
+    
+    L.push('', "To be checked on site:");
+    ["Current roof age and condition","Any insurance claim already opened","Access and parking for the crew"].forEach(function(x){ L.push('  - '+x); });
+    L.push('','Prepared on an independent concept page. Not a quote and not an order.');
+    return L.join('\n');
+  }
+
+  // Выбранное — для телефонного резюме. Тот же источник, что и бриф.
+  function выбранное(){
+    var пары=[];
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      if(!зн||!(Array.isArray(зн)?зн.length:String(зн).length)) return;
+      пары.push([g.getAttribute('data-label'), Array.isArray(зн)?зн.join(', '):зн]);
+    });
+    return пары;
+  }
+
+  function перерисовать(){
+    Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
+      g.hidden=!виден(g);
+    });
+    var текст=бриф();
+    выход.textContent=текст;
+
+    var тема="Work order · draft — from a prospective customer";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+      var адрес=(a.getAttribute('href')||'').split('?')[0];
+      a.setAttribute('href', адрес+'?subject='+encodeURIComponent(тема)+'&body='+encodeURIComponent(текст));
+    });
+
+    var пары=выбранное();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="count"]'),function(e){
+      e.textContent=пары.length;
+    });
+    var лист=document.querySelector('[data-act="list"]');
+    if(лист){
+      лист.textContent='';
+      if(!пары.length){
+        var пусто=document.createElement('dd');
+        пусто.textContent="Nothing chosen yet.";
+        пусто.setAttribute('data-empty','1');
+        лист.appendChild(пусто);
+      } else пары.forEach(function(пара){
+        var dt=document.createElement('dt'); dt.textContent=пара[0];
+        var dd=document.createElement('dd'); dd.textContent=пара[1];
+        лист.appendChild(dt); лист.appendChild(dd);
+      });
+    }
+    var полоса=document.getElementById('sum');
+    if(полоса) полоса.hidden=false;
+  }
+
+  Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+    var ключ=g.getAttribute('data-key');
+
+    if(g.getAttribute('data-type')==='tally'){
+      var счёт={};
+      var итого=g.parentElement.querySelector('[data-role="total"] b') ||
+                (g.nextElementSibling&&g.nextElementSibling.querySelector('b'));
+      var свести=function(){
+        var части=[],сумма=0;
+        Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+          var имя=r.getAttribute('data-name');
+          if(счёт[имя]){ части.push(имя+' '+счёт[имя]); сумма+=счёт[имя]; }
+        });
+        состояние[ключ]=части.length?части.join(', '):null;
+        if(итого) итого.textContent=сумма;
+        перерисовать();
+      };
+      Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+        var имя=r.getAttribute('data-name'), поле=r.querySelector('[data-role="n"]');
+        счёт[имя]=0;
+        var поставить=function(v){
+          // Ручной ввод чистим: пусто, минус и буквы превращаются в ноль.
+          v=parseInt(v,10); if(isNaN(v)||v<0) v=0; if(v>99) v=99;
+          счёт[имя]=v; поле.value=v;
+          r.setAttribute('data-on',v>0?'1':'0');
+          свести();
+        };
+        поле.addEventListener('input',function(){ поставить(поле.value); });
+        поле.addEventListener('blur',function(){ поставить(поле.value); });
+        Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
+          b.addEventListener('click',function(){
+            поставить(счёт[имя]+parseInt(b.getAttribute('data-step'),10));
+          });
+        });
+      });
+      return;
+    }
+
+    if(g.getAttribute('data-type')==='num'){
+      var ползунок=g.querySelector('[data-role="range"]');
+      var табло=g.querySelector('[data-role="numout"]');
+      var незнаю=g.querySelector('[data-role="unknown"]');
+      var ед="sq ft";
+      var неизвестноТекст="Not stated";
+      var поставить=function(){
+        состояние[ключ]=ползунок.value+(ед?' '+ед:'');
+        ползунок.disabled=false; незнаю.setAttribute('aria-pressed','false');
+        табло.textContent=состояние[ключ]; перерисовать();
+      };
+      var снять=function(){
+        состояние[ключ]=null; ползунок.disabled=true;
+        незнаю.setAttribute('aria-pressed','true');
+        табло.textContent=неизвестноТекст; перерисовать();
+      };
+      незнаю.addEventListener('click',function(){ if(ползунок.disabled) поставить(); else снять(); });
+      ползунок.addEventListener('input',поставить);
+      return;
+    }
+
+    var поле=g.querySelector('input[type]:not([type="range"])');
+    if(поле){
+      поле.addEventListener('input',function(){
+        состояние[ключ]=(поле.value||'').trim()||null; перерисовать();
+      });
+      return;
+    }
+
+    var мульти=g.hasAttribute('data-multi'), ветковый=g.hasAttribute('data-branch');
+    Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(b){
+      b.addEventListener('click',function(){
+        var v=b.getAttribute('data-val');
+        if(мульти){
+          var было=(состояние[ключ]||[]).slice();
+          var i=было.indexOf(v);
+          if(i<0) было.push(v); else было.splice(i,1);
+          состояние[ключ]=было.length?было:null;
+          b.setAttribute('aria-pressed', было.indexOf(v)>=0?'true':'false');
+        } else {
+          var тот= состояние[ключ]===v;
+          Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(x){
+            x.setAttribute('aria-pressed','false'); });
+          состояние[ключ]= тот?null:v;
+          b.setAttribute('aria-pressed', тот?'false':'true');
+          if(ветковый) ветка=состояние[ключ];
+        }
+        перерисовать();
+      });
+    });
+  });
+
+  function сказать(t,плохо){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="status"]'),function(s){
+      s.textContent=t; s.setAttribute('data-bad',плохо?'1':'0');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="copy"]'),function(кнопка){
+    кнопка.addEventListener('click',function(){
+      var t=выход.textContent;                   // ровно то, что видно на экране
+      function руками(){
+        сказать("The browser blocked copying — the ticket is selected above, copy it with Cmd+C or Ctrl+C.",true);
+        try{
+          var r=document.createRange(); r.selectNodeContents(выход);
+          var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }catch(e){}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){
+          сказать("Copied. Paste it into an email or a text message.",false);
+        },руками);
+      } else руками();
+    });
+  });
+  // Письмо и звонок ничего не отправляют со страницы: открывается почтовый
+  // клиент или набор номера на устройстве человека.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+    a.addEventListener('click',function(){ сказать("Your mail app should open with the brief already written.",false); });
+  });
+  var шапка=document.querySelector('[data-act="sheet"]');
+  if(шапка){
+    var тело=document.getElementById('sum-body');
+    шапка.addEventListener('click',function(){
+      var открыт=шапка.getAttribute('aria-expanded')==='true';
+      шапка.setAttribute('aria-expanded',открыт?'false':'true');
+      тело.hidden=открыт;
+    });
+  }
+  перерисовать();
+})();</script>
+</body></html>

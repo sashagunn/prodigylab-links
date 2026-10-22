@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Independent redesign concept for Oakview Landscape Construction — Decatur, Georgia.">
+<title>Oakview Landscape Construction — Landscape construction in Decatur, Georgia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f1efe7;--card:#faf9f4;--ink:#1d2721;--soft:#5b6a5f;--mute:#636c63;
+  --grid:#ddd9cb;--line:#cfcbbc;--moss:#456b4a;--clay:#b46a46;
+  --sans:'Space Grotesk',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  background:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px}
+img{display:block;max-width:100%}a{color:inherit}
+h1,h2,h3{margin:0;font-weight:500;line-height:1.04;letter-spacing:-.015em}
+p{margin:0}ul{margin:0;padding:0;list-style:none}
+.wrap{max-width:1300px;margin:0 auto;padding:0 clamp(14px,2.6vw,34px)}
+.m{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mute)}
+.notice{background:var(--ink);color:#9eaa9f;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;padding:7px 14px;text-align:center}
+
+header{position:sticky;top:0;z-index:50;background:rgba(241,239,231,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--ink)}
+header .wrap{display:flex;align-items:center;gap:20px;padding-top:11px;padding-bottom:11px}
+.logo{text-decoration:none;font-weight:600;font-size:18px;letter-spacing:-.02em;white-space:nowrap}
+.hnav{margin-left:auto;display:flex;gap:20px}
+.hnav a{text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--soft)}
+.hnav a:hover{color:var(--moss)}
+.cta{border:1px solid var(--ink);text-decoration:none;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.11em;text-transform:uppercase;padding:10px 15px;white-space:nowrap}
+.cta:hover{background:var(--ink);color:var(--paper)}
+
+/* чертёжный лист */
+.sheet{padding:clamp(24px,3.4vw,54px) 0 clamp(18px,2.6vw,34px)}
+.sheet-in{display:grid;grid-template-columns:minmax(0,33fr) minmax(0,67fr);gap:clamp(20px,3vw,46px);align-items:start}
+.sheet h1{font-size:clamp(30px,3.9vw,56px);max-width:15ch;margin-top:14px}
+.sheet .sup{margin-top:16px;color:var(--soft);max-width:44ch}
+.sheet .facts{margin-top:22px;border-top:1px solid var(--ink)}
+.sheet .facts li{padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.sheet .go{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+.sheet .go a{text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;padding:12px 17px}
+.b1{background:var(--ink);color:var(--paper)}
+.b1:hover{background:var(--moss)}
+.b2{border:1px solid var(--line)}
+.b2:hover{border-color:var(--ink)}
+
+.frame{background:var(--card);border:1px solid var(--ink);padding:clamp(10px,1.4vw,18px)}
+.frame-h{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid var(--line)}
+.frame-h b{font-size:17px;font-weight:500}
+.plan{width:100%;height:auto;display:block}
+.plan .pl-h{font-family:'IBM Plex Mono',monospace;font-size:15px;fill:#5b6a5f;letter-spacing:.14em}
+.plan .pl-n{font-family:'IBM Plex Mono',monospace;font-size:21px;fill:#1d2721;font-weight:500}
+.plan .lead{stroke:#1d2721;stroke-width:1.2;fill:none;stroke-dasharray:3 4}
+.plan .pin{cursor:pointer}
+.plan .pin:hover,.plan .pin:focus{fill:var(--clay)}
+.legend div{transition:background .2s,border-color .2s;border-left:3px solid transparent;
+  padding-left:9px;cursor:default}
+.legend div[data-hot]{background:#e9ece2;border-left-color:var(--clay)}
+.legend div:focus-visible{outline:2px solid var(--moss);outline-offset:2px}
+.plan .pin[data-hot]{fill:var(--clay)}
+.legend{margin-top:12px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;
+  border-top:1px solid var(--line);padding-top:11px}
+.legend b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--clay)}
+.legend span{display:block;margin-top:3px;font-size:14px;font-weight:500}
+.legend i{display:block;margin-top:2px;font-style:normal;font-size:12.5px;color:var(--mute);line-height:1.45}
+
+/* полевые снимки */
+.plates{padding:clamp(22px,3vw,44px) 0}
+.plates-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.plates-h h2{font-size:clamp(20px,2.3vw,30px)}
+.strip{margin-top:16px;display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(8px,1.2vw,16px)}
+.strip figure{margin:0;background:var(--card);border:1px solid var(--line);padding:7px}
+.strip img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.strip figcaption{margin-top:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);line-height:1.5}
+
+/* с 1997 */
+.story{padding:clamp(26px,3.4vw,56px) 0;border-top:1px solid var(--line)}
+.story-in{display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);gap:clamp(18px,3vw,50px);align-items:start}
+.story h2{font-size:clamp(24px,2.9vw,40px);max-width:12ch}
+.story p{color:var(--soft);max-width:60ch}
+.story p+p{margin-top:13px}
+
+/* что уезжает с участка */
+.green{padding:clamp(24px,3.2vw,52px) 0;border-top:1px solid var(--line)}
+.green-h{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.green-h h2{font-size:clamp(22px,2.6vw,36px)}
+.flow{margin-top:18px;border-top:1px solid var(--ink)}
+.flow .r{display:grid;grid-template-columns:minmax(0,26fr) 34px minmax(0,74fr);gap:12px;align-items:center;
+  padding:13px 0;border-bottom:1px solid var(--line)}
+.flow b{font-weight:500;font-size:16px}
+.flow .ar{font-family:var(--mono);color:var(--moss);font-size:15px}
+.flow p{color:var(--soft);font-size:14.5px}
+
+/* инструмент */
+.tool-s{padding:clamp(28px,3.6vw,60px) 0;border-top:1px solid var(--line)}
+.tool-s h2{font-size:clamp(24px,2.9vw,42px)}
+.tool-s .lede{margin-top:12px;color:var(--soft);max-width:62ch}
+.tool{margin-top:clamp(18px,2.4vw,32px);display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,384px);gap:clamp(18px,2.6vw,36px);align-items:start}
+.q{padding:14px 0;border-top:1px solid var(--line)}
+.q:first-child{border-top:0;padding-top:0}
+.q[hidden]{display:none}
+.q-l{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mute)}
+.q-o{margin-top:10px;display:flex;flex-wrap:wrap;gap:7px}
+.opt{background:var(--card);border:1px solid var(--line);color:var(--ink);font:inherit;
+  font-size:14.5px;padding:9px 14px;cursor:pointer}
+.opt:hover{border-color:var(--moss)}
+.opt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.opt:focus-visible{outline:2px solid var(--moss);outline-offset:2px}
+.cts{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.cts>span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mute)}
+.cts-g{margin-top:11px;display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.c-l{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--mute);margin-bottom:5px}
+.c-l i{font-style:normal;color:#aab3a7}
+.c-i{width:100%;font:inherit;font-size:16px;padding:10px 11px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink)}
+.c-i:focus{outline:0;border-color:var(--moss)}
+.brief{position:sticky;top:74px;background:var(--card);border:1px solid var(--ink)}
+.brief-h{display:flex;justify-content:space-between;gap:10px;padding:10px 13px;
+  border-bottom:1px solid var(--line);font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.brief pre{margin:0;padding:14px 13px;font-family:var(--mono);font-size:12px;line-height:1.76;
+  white-space:pre-wrap;word-break:break-word;min-height:280px;color:var(--ink)}
+.warn{padding:9px 13px 14px;font-size:12px;color:var(--mute);line-height:1.55}
+
+.src{border-top:1px solid var(--ink);background:var(--card)}
+.src .wrap{padding-top:clamp(18px,2.4vw,32px);padding-bottom:clamp(18px,2.4vw,32px);
+  display:grid;grid-template-columns:minmax(0,24fr) minmax(0,76fr);gap:clamp(14px,3vw,40px)}
+.src h2{font-family:var(--mono);font-size:10px;letter-spacing:.17em;color:var(--mute);font-weight:400}
+.src p{font-size:13px;color:var(--soft);max-width:92ch}
+.src .lnk{margin-top:9px;display:flex;gap:17px;flex-wrap:wrap;font-size:13px}
+.src .lnk a{color:var(--moss)}
+footer{background:var(--ink);color:#9eaa9f;padding:clamp(20px,3vw,38px) 0;font-size:13px}
+.foot{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+footer .fh{font-family:var(--mono);font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;
+  color:#74836f;margin:0 0 9px;font-weight:400}
+footer a{color:#fff}
+
+@media (max-width:1000px){
+  .hnav{display:none}
+  .sheet-in,.story-in{grid-template-columns:1fr}
+  .legend{grid-template-columns:repeat(2,1fr)}
+  .strip{grid-template-columns:repeat(3,1fr)}
+  .flow .r{grid-template-columns:1fr;gap:3px}
+  .flow .ar{display:none}
+  .tool{grid-template-columns:1fr}
+  .brief{position:static}
+  .cts-g{grid-template-columns:1fr}
+  .src .wrap{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  body .sum{display:block;position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));
+    z-index:59;background:var(--card);border-top:1px solid var(--line);box-shadow:0 -10px 26px rgba(0,0,0,.14)}
+  .bar{min-height:62px;padding-bottom:calc(9px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:calc(126px + env(safe-area-inset-bottom,0px))}
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;
+    background:var(--paper);border-top:1px solid var(--ink);padding:9px 13px}
+  .bar a{flex:1;text-align:center;text-decoration:none;padding:13px;font-family:var(--mono);
+    font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;background:var(--ink);color:var(--paper)}
+  .bar .alt{background:transparent;color:var(--ink);border:1px solid var(--ink);flex:0 0 auto;padding:13px 16px}
+}
+@media (max-width:460px){.strip{grid-template-columns:repeat(2,1fr)}.cta{display:none}}
+@media (min-width:1001px){.bar{display:none}}
+
+/* ── завершение: письмо, звонок, копирование ───────────────────────────── */
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.act{flex:1 1 150px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:transparent;
+  color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;line-height:1.2}
+.act:first-child{background:var(--ink);border-color:var(--ink);color:var(--paper);font-weight:600}
+.act:hover{border-color:var(--ink)}
+.act:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.act-st{display:block;padding:2px 12px 12px;font-size:13px;min-height:1.35em;color:var(--ink)}
+.act-st:empty{display:none}
+
+/* ── телефонное резюме выбора ──────────────────────────────────────────── */
+.sum{display:none;color:var(--ink)}
+.sum-t{display:flex;width:100%;align-items:center;gap:10px;min-height:48px;background:transparent;
+  border:0;color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;cursor:pointer;text-align:left}
+.sum-t b{background:var(--ink);color:var(--paper);min-width:28px;height:28px;border-radius:14px;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.sum-t span{flex:1}
+.sum-t i{font-style:normal;font-size:11px}
+.sum-t[aria-expanded="true"] i{transform:rotate(180deg);display:inline-block}
+.sum-b{max-height:44vh;overflow:auto;border-top:1px solid var(--line)}
+.sum-l{margin:0;padding:11px 14px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);
+  gap:5px 10px;font-size:13.5px}
+.sum-l dt{color:var(--mute)}
+.sum-l dd{margin:0;color:var(--ink)}
+.sum-l dd[data-empty]{grid-column:1/-1;color:var(--mute)}
+
+/* ── размер нажимаемых целей ───────────────────────────────────────────── */
+.opt{min-height:44px}
+.t-step{width:44px;height:44px;font-size:17px}
+.cta,.call,.bar a,.bar .alt{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.src .lnk a,footer a,.logo,.steps-in a,.proc a,.spec a,.rows a{
+  min-height:44px;display:inline-flex;align-items:center}
+.hnav a{min-height:44px;display:inline-flex;align-items:center}
+
+/* ── читаемость мелкой типографики ────────────────────────────────────── */
+.q-l{font-size:12px;letter-spacing:.06em}
+.c-l{font-size:11.5px;letter-spacing:.05em}
+.c-l i{color:inherit;font-weight:500}
+.m,.sc{font-size:11px}
+.strip figcaption,.frames figcaption,.plates figcaption,.details figcaption{font-size:11px}
+.brief-h,.sum-t i{font-size:10.5px}
+.warn{font-size:12.5px}
+
+/* ── контраст: цвета подобраны расчётом под AA (4.5:1) ────────────────── */
+.act{color:inherit}
+.act-st{color:inherit}
+footer .fh{color:#83917f}  /* было #74836f, стало 4.63:1 */
+.sheet .go a,.go a{min-height:44px;display:inline-flex;align-items:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style></head>
+<body>
+<p class="notice">Independent redesign concept by Preview Factory · Not the official Oakview Landscape Construction website</p>
+
+<header><div class="wrap">
+  <a class="logo" href="#top">Oakview</a>
+  <nav class="hnav"><a href="#work">Their work</a><a href="#story">Since 1997</a>
+    <a href="#green">Off the site</a><a href="#walk">Walk the yard</a></nav>
+  <a class="cta" href="tel:+14049668292">(404) 966-8292</a>
+</div></header>
+
+<main id="top">
+  <section class="sheet wrap"><div class="sheet-in">
+    <div>
+      <span class="m">Decatur, Georgia · Sheet 01</span>
+      <h1>Hardscaping and gardens in metro Atlanta since 1997.</h1>
+      <p class="sup">Patios, pathways, retaining walls, fencing and planting — new gardens and old ones brought back. Working with your designer, or straight with you.</p>
+      <ul class="facts"><li>Metro Atlanta since 1997</li><li>Founded by Peter Coyne</li><li>With your designer, or direct</li></ul>
+      <div class="go">
+        <a class="b1" href="#walk">Walk the yard</a>
+        <a class="b2" href="https://www.oakviewlandscapeconstruction.com/contact-us" target="_blank" rel="noopener noreferrer">Their contact page ↗</a>
+      </div>
+    </div>
+    <div class="frame">
+      <div class="frame-h"><b>What a job can take in.</b><span class="m">A key to the five things they build — not a drawing of anyone’s garden.</span></div>
+      
+<svg class="plan" viewBox="0 0 1180 680" role="img" aria-label="Key to the five kinds of work: garden installation, walls, patios and pathways, fencing and special installation">
+  <defs>
+    <pattern id="hatch" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#9aa89c" stroke-width="1.4"/>
+    </pattern>
+    <pattern id="paving" width="26" height="18" patternUnits="userSpaceOnUse">
+      <rect width="26" height="18" fill="none"/>
+      <path d="M0 0h26M0 9h26M0 18h26M0 0v18M13 0v9M26 0v18M6 9v9M19 9v9" stroke="#b9c3b4" stroke-width="1"/>
+    </pattern>
+    <pattern id="stip" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.4" fill="#86a187"/><circle cx="8" cy="8" r="1.1" fill="#9db79d"/>
+    </pattern>
+    <marker id="dot" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5">
+      <circle cx="3.5" cy="3.5" r="2.6" fill="#1d2721"/></marker>
+  </defs>
+
+  <rect x="40" y="40" width="1100" height="600" fill="none" stroke="#1d2721" stroke-width="2.4"/>
+
+  <!-- 05 особое: водная чаша -->
+  <circle cx="930" cy="470" r="52" fill="#dfe8e6" stroke="#5b6a5f" stroke-width="1.6"/>
+  <circle cx="930" cy="470" r="30" fill="none" stroke="#5b6a5f" stroke-width="1"/>
+
+  <!-- дом -->
+  <rect x="80" y="80" width="330" height="200" fill="url(#hatch)" stroke="#1d2721" stroke-width="2"/>
+  <text x="96" y="110" class="pl-h">HOUSE</text>
+
+  <!-- 03 патио -->
+  <rect x="440" y="110" width="300" height="190" fill="url(#paving)" stroke="#5b6a5f" stroke-width="1.6"/>
+
+  <!-- 03 дорожка и ступени -->
+  <path d="M250 280 L250 380 L560 380 L560 470" fill="none" stroke="#5b6a5f" stroke-width="16" stroke-linejoin="round" opacity=".32"/>
+  <path d="M250 280 L250 380 L560 380 L560 470" fill="none" stroke="#1d2721" stroke-width="1.4" stroke-dasharray="7 7"/>
+  <g stroke="#5b6a5f" stroke-width="1.4">
+    <path d="M520 470h80M526 492h68M532 514h56"/>
+  </g>
+
+  <!-- 02 подпорная стена -->
+  <path d="M80 560 H700" stroke="#1d2721" stroke-width="7"/>
+  <g stroke="#5b6a5f" stroke-width="1.4">
+    <path d="M110 560v26M170 560v26M230 560v26M290 560v26M350 560v26M410 560v26M470 560v26M530 560v26M590 560v26M650 560v26"/>
+  </g>
+
+  <!-- 01 посадки -->
+  <path d="M760 330 q70 -40 150 -14 q70 24 44 90 q-26 64 -112 50 q-86 -14 -82 -70 z" fill="url(#stip)" stroke="#6f8a71" stroke-width="1.4"/>
+  <path d="M100 330 q60 -34 120 -10 q58 24 26 76 q-32 50 -106 36 q-74 -14 -40 -102 z" fill="url(#stip)" stroke="#6f8a71" stroke-width="1.4"/>
+
+  <!-- 04 забор по границе -->
+  <path d="M1140 40 V640" stroke="#1d2721" stroke-width="3"/>
+  <g stroke="#1d2721" stroke-width="1.2">
+    <path d="M1128 70h24M1128 130h24M1128 190h24M1128 250h24M1128 310h24M1128 370h24M1128 430h24M1128 490h24M1128 550h24M1128 610h24"/>
+  </g>
+
+  <!-- выноски -->
+  <g class="lead" marker-end="url(#dot)">
+    <path d="M196 236 L196 398"/>
+    <path d="M520 560 L590 206"/>
+    <path d="M870 150 L740 200"/>
+    <path d="M1060 90 L1134 90"/>
+    <path d="M840 596 L916 500"/>
+  </g>
+  <g class="pl-n">
+    <text class="pin" data-pin="1" x="178" y="226" aria-hidden="true">01</text>
+    <text class="pin" data-pin="2" x="500" y="578" aria-hidden="true">02</text>
+    <text class="pin" data-pin="3" x="876" y="142" aria-hidden="true">03</text>
+    <text class="pin" data-pin="4" x="1020" y="86" aria-hidden="true">04</text>
+    <text class="pin" data-pin="5" x="796" y="604" aria-hidden="true">05</text>
+  </g>
+</svg>
+      <div class="legend">
+        <div data-leg="1" tabindex="0"><b>01</b><span>Garden installation</span><i>New gardens, and old ones rejuvenated.</i></div><div data-leg="2" tabindex="0"><b>02</b><span>Walls</span><i>Retaining walls and garden walls.</i></div><div data-leg="3" tabindex="0"><b>03</b><span>Patios and pathways</span><i>Exterior hardscaping, their specialism.</i></div><div data-leg="4" tabindex="0"><b>04</b><span>Fencing</span><i>Boundaries and privacy.</i></div><div data-leg="5" tabindex="0"><b>05</b><span>Special installation</span><i>The one-off pieces a garden needs.</i></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="plates wrap" id="work">
+    <div class="plates-h"><h2>From their work</h2><span class="m">Site photographs</span></div>
+    <div class="strip">
+      <figure>
+        <img src="photos/p1-sm.jpg" alt="Retaining wall and planting" loading="lazy" decoding="async">
+        <figcaption>Retaining wall and planting</figcaption></figure><figure>
+        <img src="photos/p2-sm.jpg" alt="Stone wall and bench" loading="lazy" decoding="async">
+        <figcaption>Stone wall and bench</figcaption></figure><figure>
+        <img src="photos/p6-sm.jpg" alt="Steps and gravel path" loading="lazy" decoding="async">
+        <figcaption>Steps and gravel path</figcaption></figure><figure>
+        <img src="photos/p4-sm.jpg" alt="Fence line" loading="lazy" decoding="async">
+        <figcaption>Fence line</figcaption></figure><figure>
+        <img src="photos/p3-sm.jpg" alt="Flagstone inlay" loading="lazy" decoding="async">
+        <figcaption>Flagstone inlay</figcaption></figure><figure>
+        <img src="photos/p5-sm.jpg" alt="Garden urn" loading="lazy" decoding="async">
+        <figcaption>Garden urn</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="story wrap" id="story"><div class="story-in">
+    <h2>Decatur, since 1997.</h2>
+    <div><p>Oakview has been building gardens across metro Atlanta since 1997. The company was founded by Peter Coyne, a New Zealander who settled in Decatur.</p><p>Work comes two ways: alongside a landscape designer, or straight from the homeowner. Projects run big and small — a whole garden, or one wall that has started to lean.</p></div>
+  </div></section>
+
+  <section class="green wrap" id="green">
+    <div class="green-h"><h2>What leaves the site.</h2><span class="m">Oakview works to keep its projects out of landfill.</span></div>
+    <div class="flow">
+      <div class="r"><b>Old concrete</b><span class="ar">&rarr;</span><p>Crushed into reusable gravel at a recycling plant</p></div><div class="r"><b>Plants and prunings</b><span class="ar">&rarr;</span><p>Taken away to be composted</p></div><div class="r"><b>Steel and plastic</b><span class="ar">&rarr;</span><p>Recycled wherever it can be</p></div><div class="r"><b>Excess soil</b><span class="ar">&rarr;</span><p>Stored and reused on another site</p></div>
+    </div>
+  </section>
+
+  <section class="tool-s wrap" id="walk">
+    <span class="m">Walk the yard</span>
+    <h2>Say what the yard should become.</h2>
+    <p class="lede">Pick the parts you want built and what is wrong out there now. The site note on the right writes itself — it is what they would ask on a first walk round.</p>
+    <div class="tool" id="tool">
+      <div class="picks">
+        <div class="q" data-key="stage" data-label="Stage" data-branch="1"><span class="q-l">Where are you with it?</span><div class="q-o"><button type="button" class="opt" data-val="A drawing from a designer" aria-pressed="false">A drawing from a designer</button><button type="button" class="opt" data-val="An idea, no drawings" aria-pressed="false">An idea, no drawings</button><button type="button" class="opt" data-val="Something has failed" aria-pressed="false">Something has failed</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="drawing" data-label="Drawings" data-for="A drawing from a designer"><span class="q-l">What do you have?</span><div class="q-o"><button type="button" class="opt" data-val="A full planting and hardscape plan" aria-pressed="false">A full planting and hardscape plan</button><button type="button" class="opt" data-val="A sketch" aria-pressed="false">A sketch</button><button type="button" class="opt" data-val="Just measurements" aria-pressed="false">Just measurements</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="failed" data-label="What has failed" data-for="Something has failed"><span class="q-l">What has gone wrong?</span><div class="q-o"><button type="button" class="opt" data-val="A wall is leaning or bulging" aria-pressed="false">A wall is leaning or bulging</button><button type="button" class="opt" data-val="Paving has lifted or sunk" aria-pressed="false">Paving has lifted or sunk</button><button type="button" class="opt" data-val="Water collects after rain" aria-pressed="false">Water collects after rain</button><button type="button" class="opt" data-val="The fence is going" aria-pressed="false">The fence is going</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="zones" data-label="Wanted" data-multi="1"><span class="q-l">What should be built? Pick as many as you like</span><div class="q-o"><button type="button" class="opt" data-val="Patio" aria-pressed="false">Patio</button><button type="button" class="opt" data-val="Pathway or steps" aria-pressed="false">Pathway or steps</button><button type="button" class="opt" data-val="Retaining wall" aria-pressed="false">Retaining wall</button><button type="button" class="opt" data-val="Garden wall" aria-pressed="false">Garden wall</button><button type="button" class="opt" data-val="Fence" aria-pressed="false">Fence</button><button type="button" class="opt" data-val="Planting" aria-pressed="false">Planting</button><button type="button" class="opt" data-val="Drainage" aria-pressed="false">Drainage</button><button type="button" class="opt" data-val="Something one-off" aria-pressed="false">Something one-off</button><button type="button" class="opt" data-val="Not sure yet" aria-pressed="false">Not sure yet</button></div></div><div class="q" data-key="trouble" data-label="Trouble now" data-multi="1"><span class="q-l">What is wrong out there today?</span><div class="q-o"><button type="button" class="opt" data-val="Water pools after rain" aria-pressed="false">Water pools after rain</button><button type="button" class="opt" data-val="The slope is eroding" aria-pressed="false">The slope is eroding</button><button type="button" class="opt" data-val="Nothing grows" aria-pressed="false">Nothing grows</button><button type="button" class="opt" data-val="No privacy" aria-pressed="false">No privacy</button><button type="button" class="opt" data-val="The space is unusable" aria-pressed="false">The space is unusable</button><button type="button" class="opt" data-val="It is just tired" aria-pressed="false">It is just tired</button><button type="button" class="opt" data-val="Nothing — starting fresh" aria-pressed="false">Nothing — starting fresh</button></div></div><div class="q" data-key="ground" data-label="Ground"><span class="q-l">The ground itself</span><div class="q-o"><button type="button" class="opt" data-val="Flat" aria-pressed="false">Flat</button><button type="button" class="opt" data-val="Gentle slope" aria-pressed="false">Gentle slope</button><button type="button" class="opt" data-val="Steep slope" aria-pressed="false">Steep slope</button><button type="button" class="opt" data-val="Already terraced" aria-pressed="false">Already terraced</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="size" data-label="Size of job"><span class="q-l">How big does it feel?</span><div class="q-o"><button type="button" class="opt" data-val="One corner" aria-pressed="false">One corner</button><button type="button" class="opt" data-val="Part of the garden" aria-pressed="false">Part of the garden</button><button type="button" class="opt" data-val="The whole garden" aria-pressed="false">The whole garden</button><button type="button" class="opt" data-val="I don’t know" aria-pressed="false">I don’t know</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When would you like it done?</span><div class="q-o"><button type="button" class="opt" data-val="This season" aria-pressed="false">This season</button><button type="button" class="opt" data-val="Later this year" aria-pressed="false">Later this year</button><button type="button" class="opt" data-val="Just thinking" aria-pressed="false">Just thinking</button></div></div>
+        <div class="cts">
+          <span>If you would like them to come and look</span>
+          <div class="cts-g"><div class="c" data-key="name" data-label="Name" data-contact="1">
+      <label class="c-l" for="ct-name">Name <i>optional</i></label>
+      <input class="c-i" id="ct-name" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="area" data-label="Neighbourhood" data-contact="1">
+      <label class="c-l" for="ct-area">Neighbourhood <i>optional</i></label>
+      <input class="c-i" id="ct-area" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="phone" data-label="Phone" data-contact="1">
+      <label class="c-l" for="ct-phone">Phone <i>optional</i></label>
+      <input class="c-i" id="ct-phone" type="tel"
+        inputmode="tel" autocomplete="off">
+    </div><div class="c" data-key="email" data-label="Email" data-contact="1">
+      <label class="c-l" for="ct-email">Email <i>optional</i></label>
+      <input class="c-i" id="ct-email" type="email"
+         autocomplete="off">
+    </div></div>
+        </div>
+      </div>
+      <div class="brief">
+        <div class="brief-h"><span>Site note</span><span>Not sent</span></div>
+        <pre id="tk"></pre>
+        <div class="acts">
+    <a class="act" data-act="mail" href="mailto:oakview@mindspring.com" rel="noopener">Email this to them</a>
+    <a class="act" data-act="tel" href="tel:+14049668292">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the site note</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+        <p class="warn">Nothing leaves this page. The button only copies the note, and none of it is a quote or a price estimate.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="sum" id="sum" hidden>
+    <button class="sum-t" type="button" data-act="sheet" aria-expanded="false" aria-controls="sum-body">
+      <b data-act="count">0</b>
+      <span>Show what you picked</span>
+      <i aria-hidden="true">&#9650;</i>
+    </button>
+    <div class="sum-b" id="sum-body" hidden>
+      <dl class="sum-l" data-act="list"></dl>
+      <div class="acts">
+    <a class="act" data-act="mail" href="mailto:oakview@mindspring.com" rel="noopener">Email this to them</a>
+    <a class="act" data-act="tel" href="tel:+14049668292">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the site note</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
+<div class="bar"><a class="alt" href="tel:+14049668292">Call</a><a href="#walk">Walk the yard</a></div>
+
+<section class="src"><div class="wrap">
+  <h2>Where this came from</h2>
+  <div>
+    <p>The five service headings, the 1997 date, Peter Coyne, the recycling practice, the phone number and every photograph are taken from oakviewlandscapeconstruction.com. This concept adds no prices, timelines, review scores or project counts. Checked on 21 October 2026.</p>
+    <div class="lnk">
+      <a href="https://www.oakviewlandscapeconstruction.com/" target="_blank" rel="noopener noreferrer">oakviewlandscapeconstruction.com ↗</a>
+      <a href="https://www.oakviewlandscapeconstruction.com/our-services" target="_blank" rel="noopener noreferrer">Our services ↗</a>
+      <a href="https://www.oakviewlandscapeconstruction.com/contact-us" target="_blank" rel="noopener noreferrer">Contact ↗</a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <div><h2 class="fh">Oakview Landscape Construction</h2><p>Decatur, Georgia<br><a href="tel:+14049668292">(404) 966-8292</a><br><a href="mailto:oakview@mindspring.com">oakview@mindspring.com</a></p></div>
+  <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's official
+  website, and no relationship or endorsement is implied.</p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://www.oakviewlandscapeconstruction.com/" target="_blank" rel="noopener noreferrer">oakviewlandscapeconstruction.com ↗</a></p></div>
+</div></footer>
+
+<script>
+(function(){
+  var root=document.querySelector("#tool");
+  if(!root) return;
+  var выход=document.querySelector("#tk");
+  var состояние={}, ветка=null;
+  var РЕЖИМ="omit", НЕТ="not stated";
+
+  function виден(g){
+    return !g.hasAttribute('data-for') ||
+      g.getAttribute('data-for').split('|').indexOf(ветка)>=0;
+  }
+
+  function бриф(){
+    var L=["SITE NOTE"+' (draft)','For: '+"Oakview Landscape Construction",''];
+    var отвечено=false, хвостКонтактов=[];
+    var длина=function(x){ return Array.isArray(x)?x.length:String(x).length; };
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      var строка=g.getAttribute('data-label')+': ';
+      var есть=!!(зн&&длина(зн));
+      if(есть) отвечено=true;
+      var текст=есть?(Array.isArray(зн)?зн.join(', '):зн):НЕТ;
+      if(g.hasAttribute('data-contact')){ if(есть) хвостКонтактов.push(строка+текст); return; }
+      if(есть||РЕЖИМ==='all') L.push(строка+текст);
+    });
+    if(!отвечено&&РЕЖИМ!=='all') L.push("Nothing chosen yet — pick anything above and this note writes itself.");
+    if(хвостКонтактов.length){ L.push(''); L=L.concat(хвостКонтактов); }
+    
+    L.push('','Prepared on an independent concept page. Not a quote and not an order.');
+    return L.join('\n');
+  }
+
+  // Выбранное — для телефонного резюме. Тот же источник, что и бриф.
+  function выбранное(){
+    var пары=[];
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      if(!зн||!(Array.isArray(зн)?зн.length:String(зн).length)) return;
+      пары.push([g.getAttribute('data-label'), Array.isArray(зн)?зн.join(', '):зн]);
+    });
+    return пары;
+  }
+
+  function перерисовать(){
+    Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
+      g.hidden=!виден(g);
+    });
+    var текст=бриф();
+    выход.textContent=текст;
+
+    var тема="Site note — from a prospective customer";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+      var адрес=(a.getAttribute('href')||'').split('?')[0];
+      a.setAttribute('href', адрес+'?subject='+encodeURIComponent(тема)+'&body='+encodeURIComponent(текст));
+    });
+
+    var пары=выбранное();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="count"]'),function(e){
+      e.textContent=пары.length;
+    });
+    var лист=document.querySelector('[data-act="list"]');
+    if(лист){
+      лист.textContent='';
+      if(!пары.length){
+        var пусто=document.createElement('dd');
+        пусто.textContent="Nothing chosen yet — pick anything above and this note writes itself.";
+        пусто.setAttribute('data-empty','1');
+        лист.appendChild(пусто);
+      } else пары.forEach(function(пара){
+        var dt=document.createElement('dt'); dt.textContent=пара[0];
+        var dd=document.createElement('dd'); dd.textContent=пара[1];
+        лист.appendChild(dt); лист.appendChild(dd);
+      });
+    }
+    var полоса=document.getElementById('sum');
+    if(полоса) полоса.hidden=false;
+  }
+
+  Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+    var ключ=g.getAttribute('data-key');
+
+    if(g.getAttribute('data-type')==='tally'){
+      var счёт={};
+      var итого=g.parentElement.querySelector('[data-role="total"] b') ||
+                (g.nextElementSibling&&g.nextElementSibling.querySelector('b'));
+      var свести=function(){
+        var части=[],сумма=0;
+        Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+          var имя=r.getAttribute('data-name');
+          if(счёт[имя]){ части.push(имя+' '+счёт[имя]); сумма+=счёт[имя]; }
+        });
+        состояние[ключ]=части.length?части.join(', '):null;
+        if(итого) итого.textContent=сумма;
+        перерисовать();
+      };
+      Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+        var имя=r.getAttribute('data-name'), поле=r.querySelector('[data-role="n"]');
+        счёт[имя]=0;
+        var поставить=function(v){
+          // Ручной ввод чистим: пусто, минус и буквы превращаются в ноль.
+          v=parseInt(v,10); if(isNaN(v)||v<0) v=0; if(v>99) v=99;
+          счёт[имя]=v; поле.value=v;
+          r.setAttribute('data-on',v>0?'1':'0');
+          свести();
+        };
+        поле.addEventListener('input',function(){ поставить(поле.value); });
+        поле.addEventListener('blur',function(){ поставить(поле.value); });
+        Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
+          b.addEventListener('click',function(){
+            поставить(счёт[имя]+parseInt(b.getAttribute('data-step'),10));
+          });
+        });
+      });
+      return;
+    }
+
+    if(g.getAttribute('data-type')==='num'){
+      var ползунок=g.querySelector('[data-role="range"]');
+      var табло=g.querySelector('[data-role="numout"]');
+      var незнаю=g.querySelector('[data-role="unknown"]');
+      var ед="";
+      var неизвестноТекст="Not stated";
+      var поставить=function(){
+        состояние[ключ]=ползунок.value+(ед?' '+ед:'');
+        ползунок.disabled=false; незнаю.setAttribute('aria-pressed','false');
+        табло.textContent=состояние[ключ]; перерисовать();
+      };
+      var снять=function(){
+        состояние[ключ]=null; ползунок.disabled=true;
+        незнаю.setAttribute('aria-pressed','true');
+        табло.textContent=неизвестноТекст; перерисовать();
+      };
+      незнаю.addEventListener('click',function(){ if(ползунок.disabled) поставить(); else снять(); });
+      ползунок.addEventListener('input',поставить);
+      return;
+    }
+
+    var поле=g.querySelector('input[type]:not([type="range"])');
+    if(поле){
+      поле.addEventListener('input',function(){
+        состояние[ключ]=(поле.value||'').trim()||null; перерисовать();
+      });
+      return;
+    }
+
+    var мульти=g.hasAttribute('data-multi'), ветковый=g.hasAttribute('data-branch');
+    Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(b){
+      b.addEventListener('click',function(){
+        var v=b.getAttribute('data-val');
+        if(мульти){
+          var было=(состояние[ключ]||[]).slice();
+          var i=было.indexOf(v);
+          if(i<0) было.push(v); else было.splice(i,1);
+          состояние[ключ]=было.length?было:null;
+          b.setAttribute('aria-pressed', было.indexOf(v)>=0?'true':'false');
+        } else {
+          var тот= состояние[ключ]===v;
+          Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(x){
+            x.setAttribute('aria-pressed','false'); });
+          состояние[ключ]= тот?null:v;
+          b.setAttribute('aria-pressed', тот?'false':'true');
+          if(ветковый) ветка=состояние[ключ];
+        }
+        перерисовать();
+      });
+    });
+  });
+
+  function сказать(t,плохо){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="status"]'),function(s){
+      s.textContent=t; s.setAttribute('data-bad',плохо?'1':'0');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="copy"]'),function(кнопка){
+    кнопка.addEventListener('click',function(){
+      var t=выход.textContent;                   // ровно то, что видно на экране
+      function руками(){
+        сказать("The browser blocked copying — the note is selected above, copy it with Cmd+C or Ctrl+C.",true);
+        try{
+          var r=document.createRange(); r.selectNodeContents(выход);
+          var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }catch(e){}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){
+          сказать("Copied. Paste it into an email or a message to them.",false);
+        },руками);
+      } else руками();
+    });
+  });
+  // Письмо и звонок ничего не отправляют со страницы: открывается почтовый
+  // клиент или набор номера на устройстве человека.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+    a.addEventListener('click',function(){ сказать("Your mail app should open with the brief already written.",false); });
+  });
+  var шапка=document.querySelector('[data-act="sheet"]');
+  if(шапка){
+    var тело=document.getElementById('sum-body');
+    шапка.addEventListener('click',function(){
+      var открыт=шапка.getAttribute('aria-expanded')==='true';
+      шапка.setAttribute('aria-expanded',открыт?'false':'true');
+      тело.hidden=открыт;
+    });
+  }
+  перерисовать();
+})();</script>
+<script>
+(function(){
+  // Легенда и план подсвечивают друг друга. Ведёт легенда: её строки крупные
+  // и доступны с клавиатуры, а цифры на чертеже слишком мелкие, чтобы быть
+  // кнопкой, — они только отзываются.
+  var пары=[];
+  Array.prototype.forEach.call(document.querySelectorAll('.plan .pin'),function(t){
+    var n=t.getAttribute('data-pin');
+    var пункт=document.querySelector('.legend [data-leg="'+n+'"]');
+    if(пункт) пары.push([t,пункт]);
+  });
+  пары.forEach(function(пара){
+    var цифра=пара[0], пункт=пара[1];
+    var вкл=function(){ цифра.setAttribute('data-hot','1'); пункт.setAttribute('data-hot','1'); };
+    var выкл=function(){ цифра.removeAttribute('data-hot'); пункт.removeAttribute('data-hot'); };
+    пункт.addEventListener('mouseenter',вкл); пункт.addEventListener('mouseleave',выкл);
+    пункт.addEventListener('focus',вкл); пункт.addEventListener('blur',выкл);
+    цифра.addEventListener('mouseenter',вкл); цифра.addEventListener('mouseleave',выкл);
+  });
+})();
+</script>
+</body></html>

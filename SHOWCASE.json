@@ -1,0 +1,674 @@
+{
+ "_readme": [
+  "Каталог публичной галереи примеров. Единственный источник: из него собираются",
+  "и /showcase/, и блок на главной, и подбор примера под задачу. Отдельных",
+  "списков не вести.",
+  "",
+  "ДВА НЕЗАВИСИМЫХ ПРИЗНАКА. Их нельзя смешивать.",
+  "",
+  "publication_status — готовность САМОГО ДЕМО:",
+  "  draft     — новое демо. Значение по умолчанию: персональное демо не",
+  "              публикуется само собой только потому, что файл появился в preview/.",
+  "  review    — предложено к показу, ждёт решения владельца.",
+  "  published — демо живое и его можно показывать компании по прямой ссылке.",
+  "  retired   — снято с показа, запись остаётся ради истории.",
+  "",
+  "showcase — отбор в ПУБЛИЧНОЕ ПОРТФОЛИО (true/false):",
+  "  true  — пример показывается в /showcase/, может попасть на главную и",
+  "          подставляться как публичный пример под задачу.",
+  "  false — демо живое и открывается по своей ссылке, но в витрине его нет.",
+  "",
+  "Готовое и опубликованное демо НЕ попадает в портфолио само собой: нужно",
+  "showcase: true. Портфолио — отобранная коллекция сильных решений, а не",
+  "полный журнал производства.",
+  "",
+  "Что считается новым публичным примером: существенное отличие — композиция,",
+  "типографика, визуальный характер, взаимодействие или другая задача клиента.",
+  "Смена цвета, фотографий и названия на том же шаблоне самостоятельным",
+  "дизайном не считается: несколько таких карточек рядом показывают повтор",
+  "шаблона, а не размах студии.",
+  "",
+  "Демо с showcase: false — страницы по ссылке, а не приватное хранилище.",
+  "Пароля на них нет и не нужно; у них стоит noindex, и весь /preview/",
+  "исключён из sitemap (scripts/generate-sitemap.js).",
+  "",
+  "project_type:",
+  "  concept        — наш концепт, компания его не заказывала и не подтверждала.",
+  "  client_project — только при подтверждённом внедрении И разрешении показывать.",
+  "",
+  "Как добавить следующий пример — scripts/build_showcase.py, раздел в начале файла."
+ ],
+ "updated": "2026-10-22",
+ "items": [
+  {
+   "id": "pf-001",
+   "slug": "castillo-fencing",
+   "title": {
+    "en": "Fence project planner",
+    "ru": "Планировщик забора",
+    "es": "Planificador de cercas",
+    "pt": "Planejador de cercas",
+    "de": "Zaun-Projektplaner"
+   },
+   "niche": "fencing",
+   "solution_type": "configurator",
+   "short_description": {
+    "en": "A homeowner picks material, length, height and gates, and gets a clear project brief to bring to the contractor. No price guesses, nothing is sent anywhere.",
+    "ru": "Хозяин дома выбирает материал, длину, высоту и количество калиток и получает понятное техзадание для разговора с подрядчиком. Цены не выдумываются, никуда ничего не уходит.",
+    "es": "El propietario elige material, longitud, altura y puertas y obtiene un resumen claro del proyecto para hablar con el contratista. Sin precios inventados, sin envíos.",
+    "pt": "O proprietário escolhe material, comprimento, altura e portões e recebe um resumo claro do projeto para levar ao empreiteiro. Sem preços inventados, nada é enviado.",
+    "de": "Der Hausbesitzer wählt Material, Länge, Höhe und Tore und erhält ein klares Projektbriefing für das Gespräch mit dem Handwerker. Keine Preisschätzungen, nichts wird gesendet."
+   },
+   "demo_url": "/preview/castillo-fencing/",
+   "cover": "/showcase/covers/castillo-fencing.jpg",
+   "cover_alt": {
+    "en": "Fence project planner demo: headline and the button that builds the brief",
+    "ru": "Демонстрация планировщика забора: заголовок и кнопка сборки техзадания",
+    "es": "Demo del planificador de cercas: titular y botón para generar el resumen",
+    "pt": "Demo do planejador de cercas: título e botão que gera o resumo",
+    "de": "Demo des Zaunplaners: Überschrift und Button für das Briefing"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 10,
+   "publication_status": "draft",
+   "showcase": false
+  },
+  {
+   "id": "pf-002",
+   "slug": "saeng-thai-house",
+   "title": {
+    "en": "Restaurant menu and pickup",
+    "ru": "Меню ресторана и самовывоз",
+    "es": "Menú de restaurante y recogida",
+    "pt": "Cardápio de restaurante e retirada",
+    "de": "Restaurantkarte und Abholung"
+   },
+   "niche": "restaurant",
+   "solution_type": "menu_ordering",
+   "short_description": {
+    "en": "Every dish with its own photo, price and options, so a guest decides on the phone instead of calling to ask. Ordering stays on the restaurant's own service.",
+    "ru": "Каждое блюдо со своим снимком, ценой и опциями: гость решает в телефоне, а не звонит уточнять. Сам заказ остаётся в сервисе самого ресторана.",
+    "es": "Cada plato con su foto, precio y opciones: el comensal decide en el móvil en lugar de llamar. El pedido se queda en el servicio del propio restaurante.",
+    "pt": "Cada prato com foto, preço e opções: o cliente decide no celular em vez de ligar. O pedido permanece no serviço do próprio restaurante.",
+    "de": "Jedes Gericht mit eigenem Foto, Preis und Optionen: Der Gast entscheidet am Handy, statt anzurufen. Die Bestellung bleibt im Dienst des Restaurants."
+   },
+   "demo_url": "/preview/saeng-thai-house/",
+   "cover": "/showcase/covers/saeng-thai-house.jpg",
+   "cover_alt": {
+    "en": "Restaurant demo: dark hero with a photo of Thai dishes and a pickup button",
+    "ru": "Демонстрация ресторана: тёмная обложка со снимком тайских блюд и кнопкой самовывоза",
+    "es": "Demo de restaurante: portada oscura con platos tailandeses y botón de recogida",
+    "pt": "Demo de restaurante: capa escura com pratos tailandeses e botão de retirada",
+    "de": "Restaurant-Demo: dunkles Hero mit thailändischen Gerichten und Abhol-Button"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": true,
+   "sort_order": 20,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-003",
+   "slug": "viking-fence",
+   "title": {
+    "en": "Fence project planner (second build)",
+    "ru": "Планировщик забора (вторая сборка)",
+    "es": "Planificador de cercas (segunda versión)",
+    "pt": "Planejador de cercas (segunda versão)",
+    "de": "Zaun-Projektplaner (zweite Fassung)"
+   },
+   "niche": "fencing",
+   "solution_type": "configurator",
+   "short_description": {
+    "en": "The same planner rebuilt for a second company from its own material list. Kept in the catalogue as proof the build repeats, not shown publicly: one solution should appear once.",
+    "ru": "Тот же планировщик, собранный для второй компании по её собственному списку материалов. Лежит в каталоге как доказательство повторяемости, но публично не показывается: одно решение должно быть видно один раз.",
+    "es": "El mismo planificador reconstruido para una segunda empresa. Se mantiene en el catálogo como prueba de repetibilidad, no se muestra públicamente.",
+    "pt": "O mesmo planejador refeito para uma segunda empresa. Mantido no catálogo como prova de repetibilidade, não exibido publicamente.",
+    "de": "Derselbe Planer für ein zweites Unternehmen gebaut. Bleibt im Katalog als Beleg der Wiederholbarkeit, wird öffentlich nicht gezeigt."
+   },
+   "demo_url": "/preview/viking-fence/",
+   "cover": "/showcase/covers/viking-fence.jpg",
+   "cover_alt": {
+    "en": "Fence planner demo built for a second company",
+    "ru": "Планировщик забора, собранный для второй компании",
+    "es": "Planificador de cercas para una segunda empresa",
+    "pt": "Planejador de cercas para uma segunda empresa",
+    "de": "Zaunplaner für ein zweites Unternehmen"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 30,
+   "publication_status": "draft",
+   "showcase": false
+  },
+  {
+   "id": "pf-004",
+   "slug": "neighborhood-fence",
+   "title": {
+    "en": "Fence project planner",
+    "ru": "Планировщик забора",
+    "es": "Planificador de cercas",
+    "pt": "Planejador de cercas",
+    "de": "Zaun-Projektplaner"
+   },
+   "niche": "fencing",
+   "solution_type": "configurator",
+   "short_description": {
+    "en": "A homeowner picks the type of work, material, style, length, height, gates and tear-out, and gets a plain description of the project to bring to the contractor. One published price range, clearly bounded. Nothing is sent anywhere.",
+    "ru": "Хозяин дома выбирает тип работ, материал, стиль, длину, высоту, ворота и демонтаж и получает понятное описание проекта для разговора с подрядчиком. Одна опубликованная вилка цены, с ясными границами. Никуда ничего не уходит.",
+    "es": "El propietario elige tipo de trabajo, material, estilo, longitud, altura, puertas y retirada, y obtiene una descripción clara del proyecto para el contratista. Un único rango de precio publicado, con límites claros. No se envía nada.",
+    "pt": "O proprietário escolhe tipo de obra, material, estilo, comprimento, altura, portões e remoção e recebe uma descrição clara do projeto para o empreiteiro. Uma única faixa de preço publicada, com limites claros. Nada é enviado.",
+    "de": "Der Hausbesitzer wählt Arbeitsart, Material, Stil, Länge, Höhe, Tore und Rückbau und erhält eine klare Projektbeschreibung für den Handwerker. Eine veröffentlichte Preisspanne, klar abgegrenzt. Es wird nichts gesendet."
+   },
+   "demo_url": "/preview/neighborhood-fence/",
+   "cover": "/showcase/covers/neighborhood-fence.jpg",
+   "cover_alt": {
+    "en": "Fence planner demo: headline, a photograph of a finished yard and the planner button",
+    "ru": "Демонстрация планировщика забора: заголовок, снимок готового двора и кнопка планировщика",
+    "es": "Demo del planificador de cercas: titular, foto de un patio terminado y el botón del planificador",
+    "pt": "Demo do planejador de cercas: título, foto de um quintal pronto e o botão do planejador",
+    "de": "Demo des Zaunplaners: Überschrift, Foto eines fertigen Gartens und der Planer-Button"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": true,
+   "sort_order": 20,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-005",
+   "slug": "florida-fence",
+   "title": {
+    "en": "Fence planner for a free estimate",
+    "ru": "Планировщик забора к бесплатному замеру",
+    "es": "Planificador de cercas para el presupuesto gratuito",
+    "pt": "Planejador de cercas para o orçamento gratuito",
+    "de": "Zaunplaner für das kostenlose Aufmaß"
+   },
+   "niche": "fencing",
+   "solution_type": "configurator",
+   "short_description": {
+    "en": "A homeowner picks the work, material, style, length, height, gates and tear-out, and gets a plain description of the project to bring to the free estimate. The company publishes no prices, so none are shown.",
+    "ru": "Хозяин дома выбирает работы, материал, стиль, длину, высоту, ворота и демонтаж и получает понятное описание проекта для бесплатного замера. Цен компания не публикует — их здесь и нет.",
+    "es": "El propietario elige el trabajo, material, estilo, longitud, altura, puertas y retirada, y obtiene una descripción clara del proyecto para el presupuesto gratuito. La empresa no publica precios, así que aquí no aparecen.",
+    "pt": "O proprietário escolhe o trabalho, material, estilo, comprimento, altura, portões e remoção, e recebe uma descrição clara do projeto para o orçamento gratuito. A empresa não publica preços, por isso nenhum aparece aqui.",
+    "de": "Hausbesitzer wählen Arbeit, Material, Stil, Länge, Höhe, Tore und Abriss und erhalten eine klare Projektbeschreibung für den kostenlosen Aufmaßtermin. Das Unternehmen veröffentlicht keine Preise, daher stehen hier keine."
+   },
+   "demo_url": "/preview/florida-fence/",
+   "cover": "/showcase/covers/florida-fence.jpg",
+   "cover_alt": {
+    "en": "Concept home page for a Tampa fence company, with a project planner",
+    "ru": "Концепт главной страницы заборной компании из Тампы с планировщиком проекта",
+    "es": "Página de inicio conceptual de una empresa de cercas de Tampa, con planificador",
+    "pt": "Página inicial conceitual de uma empresa de cercas de Tampa, com planejador",
+    "de": "Konzept-Startseite eines Zaunbauers aus Tampa mit Projektplaner"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 40,
+   "publication_status": "published",
+   "showcase": false
+  },
+  {
+   "id": "pf-006",
+   "slug": "bulldog-fence",
+   "title": {
+    "en": "Fence planner for a phone quote",
+    "ru": "Планировщик забора для разговора по телефону",
+    "es": "Planificador de cercas para el presupuesto por teléfono",
+    "pt": "Planejador de cercas para o orçamento por telefone",
+    "de": "Zaunplaner für das Preisgespräch am Telefon"
+   },
+   "niche": "fencing",
+   "solution_type": "configurator",
+   "short_description": {
+    "en": "Wood, vinyl, iron and chain link, with the styles the company lists itself. The planner turns six answers into a description the homeowner can read out on the phone. No prices: the company quotes at the free measure.",
+    "ru": "Дерево, винил, железо и рабица со стилями, которые компания перечисляет сама. Планировщик превращает шесть ответов в описание, которое можно зачитать по телефону. Цен нет: компания называет их на бесплатном замере.",
+    "es": "Madera, vinilo, hierro y malla, con los estilos que la propia empresa enumera. El planificador convierte seis respuestas en una descripción que el propietario puede leer por teléfono. Sin precios: la empresa los da en la medición gratuita.",
+    "pt": "Madeira, vinil, ferro e alambrado, com os estilos que a própria empresa lista. O planejador transforma seis respostas em uma descrição que o proprietário pode ler ao telefone. Sem preços: a empresa os informa na medição gratuita.",
+    "de": "Holz, Vinyl, Eisen und Maschendraht mit den Stilen, die das Unternehmen selbst nennt. Der Planer macht aus sechs Antworten eine Beschreibung, die man am Telefon vorlesen kann. Keine Preise: genannt werden sie beim kostenlosen Aufmaß."
+   },
+   "demo_url": "/preview/bulldog-fence/",
+   "cover": "/showcase/covers/bulldog-fence.jpg",
+   "cover_alt": {
+    "en": "Concept home page for a Spokane fence company, with a project planner",
+    "ru": "Концепт главной страницы заборной компании из Спокана с планировщиком проекта",
+    "es": "Página de inicio conceptual de una empresa de cercas de Spokane, con planificador",
+    "pt": "Página inicial conceitual de uma empresa de cercas de Spokane, com planejador",
+    "de": "Konzept-Startseite eines Zaunbauers aus Spokane mit Projektplaner"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 50,
+   "publication_status": "published",
+   "showcase": false
+  },
+  {
+   "id": "pf-007",
+   "slug": "evergreen-fence",
+   "title": {
+    "en": "Fence planner with cost guides",
+    "ru": "Планировщик забора с ориентирами по стоимости",
+    "es": "Planificador de cercas con guías de coste",
+    "pt": "Planejador de cercas com guias de custo",
+    "de": "Zaunplaner mit Kostenorientierung"
+   },
+   "niche": "fencing",
+   "solution_type": "configurator",
+   "short_description": {
+    "en": "The company's own cost and permit guides sit deep in its site; the planner brings them into the path. Five materials, the styles it names itself, and a description to carry into the written estimate.",
+    "ru": "Их собственные руководства по стоимости и разрешениям лежат в глубине сайта — планировщик выводит их на путь клиента. Пять материалов, стили их же словами и описание, которое можно принести на письменную смету.",
+    "es": "Las propias guías de coste y permisos de la empresa están enterradas en su web; el planificador las trae al camino del cliente. Cinco materiales, los estilos que ella misma nombra y una descripción para el presupuesto escrito.",
+    "pt": "Os próprios guias de custo e licenças da empresa ficam no fundo do site; o planejador os traz para o caminho do cliente. Cinco materiais, os estilos que ela mesma nomeia e uma descrição para o orçamento por escrito.",
+    "de": "Die eigenen Kosten- und Genehmigungs-Leitfäden liegen tief in ihrer Website; der Planer holt sie auf den Kundenweg. Fünf Materialien, die selbst genannten Stile und eine Beschreibung für das schriftliche Angebot."
+   },
+   "demo_url": "/preview/evergreen-fence/",
+   "cover": "/showcase/covers/evergreen-fence.jpg",
+   "cover_alt": {
+    "en": "Concept home page for a Portland fence and gate company, with a project planner",
+    "ru": "Концепт главной страницы портлендской компании по заборам и воротам с планировщиком",
+    "es": "Página de inicio conceptual de una empresa de cercas y puertas de Portland, con planificador",
+    "pt": "Página inicial conceitual de uma empresa de cercas e portões de Portland, com planejador",
+    "de": "Konzept-Startseite eines Zaun- und Torbauers aus Portland mit Projektplaner"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 60,
+   "publication_status": "published",
+   "showcase": false
+  },
+  {
+   "id": "pf-008",
+   "slug": "sereno-fence",
+   "title": {
+    "en": "Fence planner before booking",
+    "ru": "Планировщик забора перед записью",
+    "es": "Planificador de cercas antes de reservar",
+    "pt": "Planejador de cercas antes de agendar",
+    "de": "Zaunplaner vor der Terminbuchung"
+   },
+   "niche": "fencing",
+   "solution_type": "configurator",
+   "short_description": {
+    "en": "Their booking tool sets a time but never asks about the fence. The planner covers the missing half: material, work, length, height, gates and tear-out become a description to paste into the booking or read out on the call.",
+    "ru": "Их сервис записи назначает время, но про забор не спрашивает ни разу. Планировщик закрывает недостающую половину: материал, работы, длина, высота, ворота и демонтаж складываются в описание, которое можно вставить в запись или зачитать в звонке.",
+    "es": "Su herramienta de reservas fija una hora pero nunca pregunta por la cerca. El planificador cubre la mitad que falta: material, trabajo, longitud, altura, puertas y retirada se convierten en una descripción para pegar en la reserva o leer en la llamada.",
+    "pt": "A ferramenta de agendamento marca um horário, mas nunca pergunta sobre a cerca. O planejador cobre a metade que falta: material, trabalho, comprimento, altura, portões e remoção viram uma descrição para colar no agendamento ou ler na ligação.",
+    "de": "Ihr Buchungstool legt einen Termin fest, fragt aber nie nach dem Zaun. Der Planer schließt die fehlende Hälfte: Material, Arbeit, Länge, Höhe, Tore und Abriss werden zu einer Beschreibung für die Buchung oder das Telefonat."
+   },
+   "demo_url": "/preview/sereno-fence/",
+   "cover": "/showcase/covers/sereno-fence.jpg",
+   "cover_alt": {
+    "en": "Concept home page for a Phoenix fence and gate company, with a project planner",
+    "ru": "Концепт главной страницы финиксовской компании по заборам и воротам с планировщиком",
+    "es": "Página de inicio conceptual de una empresa de cercas y puertas de Phoenix, con planificador",
+    "pt": "Página inicial conceitual de uma empresa de cercas e portões de Phoenix, com planejador",
+    "de": "Konzept-Startseite eines Zaun- und Torbauers aus Phoenix mit Projektplaner"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 70,
+   "publication_status": "published",
+   "showcase": false
+  },
+  {
+   "id": "pf-009",
+   "slug": "reimagine-roofing",
+   "title": {
+    "en": "Roof work order",
+    "ru": "Наряд-заказ на кровлю",
+    "es": "Orden de trabajo para tejados",
+    "pt": "Ordem de serviço para telhados",
+    "de": "Arbeitsauftrag Dach"
+   },
+   "niche": "roofing",
+   "solution_type": "work_order",
+   "short_description": {
+    "en": "The homeowner says what is on the roof and what happened to it; the ticket writes itself. What they do not know stays unknown — the roof area is never guessed for them.",
+    "ru": "Человек говорит, что на крыше и что с ней случилось, — билет пишется сам. Чего он не знает, остаётся неизвестным: площадь кровли за него никто не придумывает.",
+    "es": "El propietario dice qué hay en el tejado y qué le pasó; el parte se escribe solo. Lo que no sabe sigue sin saberse: la superficie no se inventa por él.",
+    "pt": "O morador diz o que há no telhado e o que aconteceu; a ordem se escreve sozinha. O que ele não sabe continua desconhecido: a área não é inventada.",
+    "de": "Der Hausbesitzer sagt, was auf dem Dach ist und was passiert ist — der Auftrag schreibt sich selbst. Was er nicht weiß, bleibt offen: die Dachfläche wird nicht geraten."
+   },
+   "demo_url": "/preview/reimagine-roofing/",
+   "cover": "/showcase/covers/reimagine-roofing.jpg",
+   "cover_alt": {
+    "en": "Dark dossier layout: headline, published record panel and a row of field images",
+    "ru": "Тёмное досье: заголовок, панель опубликованных данных и лента полевых кадров",
+    "es": "Dosier oscuro: titular, panel de datos publicados y tira de fotos de obra",
+    "pt": "Dossiê escuro: título, painel de dados publicados e faixa de fotos de obra",
+    "de": "Dunkles Dossier: Überschrift, Datenpanel und eine Reihe Feldaufnahmen"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 80,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-010",
+   "slug": "kitchen-design-concepts",
+   "title": {
+    "en": "Kitchen project letter",
+    "ru": "Письмо по кухне",
+    "es": "Carta del proyecto de cocina",
+    "pt": "Carta do projeto de cozinha",
+    "de": "Küchen-Projektbrief"
+   },
+   "niche": "kitchen_remodel",
+   "solution_type": "project_letter",
+   "short_description": {
+    "en": "Two routes, full remodel or a lighter refresh, and the questions change with the one you pick. The letter composes itself in the magazine typography of the page.",
+    "ru": "Два маршрута — полная переделка или лёгкое обновление, — и вопросы меняются вместе с выбором. Письмо собирается само, в журнальной типографике страницы.",
+    "es": "Dos caminos, reforma completa o renovación ligera, y las preguntas cambian con el elegido. La carta se redacta sola en la tipografía editorial de la página.",
+    "pt": "Dois caminhos, reforma completa ou renovação leve, e as perguntas mudam com a escolha. A carta se escreve sozinha na tipografia editorial da página.",
+    "de": "Zwei Wege — Komplettumbau oder leichte Auffrischung — und die Fragen ändern sich mit der Wahl. Der Brief schreibt sich selbst, in der Magazin-Typografie der Seite."
+   },
+   "demo_url": "/preview/kitchen-design-concepts/",
+   "cover": "/showcase/covers/kitchen-design-concepts.jpg",
+   "cover_alt": {
+    "en": "Printed monograph layout: centred masthead and a full-width kitchen plate",
+    "ru": "Печатный разворот: титул по центру и плита-фотография кухни во всю ширину",
+    "es": "Monografía impresa: cabecera centrada y una lámina de cocina a todo ancho",
+    "pt": "Monografia impressa: cabeçalho centrado e uma prancha de cozinha em largura total",
+    "de": "Gedruckte Monografie: zentrierter Titelkopf und eine ganzseitige Küchentafel"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 90,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-011",
+   "slug": "oakview-landscape",
+   "title": {
+    "en": "Yard walk note",
+    "ru": "Заметка с обхода участка",
+    "es": "Nota del recorrido del jardín",
+    "pt": "Nota da visita ao jardim",
+    "de": "Notiz vom Gartenrundgang"
+   },
+   "niche": "landscaping",
+   "solution_type": "site_note",
+   "short_description": {
+    "en": "A drawn site plan carries the page instead of photographs, and the tool asks what should be built and what is wrong out there now — the questions of a first walk round.",
+    "ru": "Страницу держит нарисованный план участка, а не фотографии, и инструмент спрашивает, что строить и что сейчас не так, — вопросы первого обхода.",
+    "es": "Un plano dibujado sostiene la página en lugar de fotos, y la herramienta pregunta qué construir y qué falla ahora: las preguntas del primer recorrido.",
+    "pt": "Uma planta desenhada sustenta a página no lugar das fotos, e a ferramenta pergunta o que construir e o que está errado agora — as perguntas da primeira visita.",
+    "de": "Ein gezeichneter Lageplan trägt die Seite statt Fotos, und das Werkzeug fragt, was gebaut werden soll und was dort gerade nicht stimmt — die Fragen des ersten Rundgangs."
+   },
+   "demo_url": "/preview/oakview-landscape/",
+   "cover": "/showcase/covers/oakview-landscape.jpg",
+   "cover_alt": {
+    "en": "Drafting-paper layout: headline beside a drawn site plan with numbered callouts",
+    "ru": "Лист на миллиметровке: заголовок рядом с нарисованным планом участка и выносками",
+    "es": "Papel de dibujo: titular junto a un plano con llamadas numeradas",
+    "pt": "Papel milimetrado: título ao lado de uma planta com chamadas numeradas",
+    "de": "Millimeterpapier: Überschrift neben einem Lageplan mit nummerierten Hinweisen"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 100,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-012",
+   "slug": "gravinas-windows",
+   "title": {
+    "en": "Window opening tally",
+    "ru": "Подсчёт оконных проёмов",
+    "es": "Recuento de huecos de ventana",
+    "pt": "Contagem de vãos de janela",
+    "de": "Fensteröffnungen zählen"
+   },
+   "niche": "windows_doors",
+   "solution_type": "opening_tally",
+   "short_description": {
+    "en": "A window quote starts with how many openings there are, so the tool counts them room by room — tap or type — and keeps a running total the estimator actually needs.",
+    "ru": "Смета на окна начинается с числа проёмов, поэтому инструмент считает их по комнатам — кнопками или вводом — и держит итог, который и нужен сметчику.",
+    "es": "Un presupuesto de ventanas empieza por cuántos huecos hay: la herramienta los cuenta habitación por habitación y mantiene el total que necesita el técnico.",
+    "pt": "Um orçamento de janelas começa por quantos vãos existem: a ferramenta conta cômodo a cômodo e mantém o total de que o orçamentista precisa.",
+    "de": "Ein Fensterangebot beginnt mit der Zahl der Öffnungen: das Werkzeug zählt Raum für Raum und führt die Summe mit, die der Kalkulator braucht."
+   },
+   "demo_url": "/preview/gravinas-windows/",
+   "cover": "/showcase/covers/gravinas-windows.jpg",
+   "cover_alt": {
+    "en": "Window-frame grid: the page divided into panes by dark mullions",
+    "ru": "Решётка переплёта: страница разделена тёмными импостами на стёкла",
+    "es": "Retícula de marco: la página dividida en cristales por montantes oscuros",
+    "pt": "Grelha de caixilho: a página dividida em vidros por montantes escuros",
+    "de": "Fensterraster: die Seite durch dunkle Sprossen in Scheiben geteilt"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 110,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-013",
+   "slug": "wild-basin-pools",
+   "title": {
+    "en": "Pool design brief",
+    "ru": "Бриф по бассейну",
+    "es": "Briefing de diseño de piscina",
+    "pt": "Briefing de projeto de piscina",
+    "de": "Pool-Design-Briefing"
+   },
+   "niche": "pools",
+   "solution_type": "design_brief",
+   "short_description": {
+    "en": "Five plain questions, no measurements and no technical words, and the brief writes itself beside the answers. Access and the lie of the land are left to the site visit.",
+    "ru": "Пять простых вопросов, без размеров и технических слов, и бриф пишется рядом с ответами. Проезд техники и рельеф оставлены выезду на участок.",
+    "es": "Cinco preguntas sencillas, sin medidas ni tecnicismos, y el briefing se escribe junto a las respuestas. El acceso y el terreno quedan para la visita.",
+    "pt": "Cinco perguntas simples, sem medidas nem termos técnicos, e o briefing se escreve ao lado das respostas. Acesso e terreno ficam para a visita.",
+    "de": "Fünf einfache Fragen, ohne Maße und Fachbegriffe, und das Briefing schreibt sich neben den Antworten. Zufahrt und Gelände bleiben dem Ortstermin."
+   },
+   "demo_url": "/preview/wild-basin-pools/",
+   "cover": "/showcase/covers/wild-basin-pools.jpg",
+   "cover_alt": {
+    "en": "Full-bleed pool photograph with a serif headline across the bottom",
+    "ru": "Кадр бассейна во весь экран и серифный заголовок внизу",
+    "es": "Foto de piscina a sangre con un titular con serifa abajo",
+    "pt": "Foto de piscina em tela cheia com título serifado embaixo",
+    "de": "Randabfallendes Poolfoto mit Serifen-Überschrift unten"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 120,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-014",
+   "slug": "jlb-foundation",
+   "title": {
+    "en": "Foundation observation sheet",
+    "ru": "Лист наблюдений по фундаменту",
+    "es": "Hoja de observaciones de cimentación",
+    "pt": "Folha de observações da fundação",
+    "de": "Beobachtungsbogen Fundament"
+   },
+   "niche": "foundation",
+   "solution_type": "observation_sheet",
+   "short_description": {
+    "en": "A drawn section explains what happens under the house, and the sheet collects what the owner actually sees. It diagnoses nothing and says so.",
+    "ru": "Разрез объясняет, что происходит под домом, а лист собирает то, что человек действительно видит. Диагноза страница не ставит и прямо об этом говорит.",
+    "es": "Una sección dibujada explica qué pasa bajo la casa y la hoja recoge lo que el dueño ve. No diagnostica nada y lo dice.",
+    "pt": "Um corte desenhado explica o que acontece sob a casa e a folha reúne o que o morador vê. Não diagnostica nada e diz isso.",
+    "de": "Ein Schnitt erklärt, was unter dem Haus passiert, und der Bogen sammelt, was der Eigentümer tatsächlich sieht. Er stellt keine Diagnose und sagt das auch."
+   },
+   "demo_url": "/preview/jlb-foundation/",
+   "cover": "/showcase/covers/jlb-foundation.jpg",
+   "cover_alt": {
+    "en": "Field-report layout: typewriter header beside a cross-section of a house and soil",
+    "ru": "Полевой отчёт: машинописная шапка рядом с разрезом дома и грунта",
+    "es": "Informe de campo: cabecera mecanografiada junto a una sección de la casa y el suelo",
+    "pt": "Relatório de campo: cabeçalho datilografado ao lado de um corte da casa e do solo",
+    "de": "Feldbericht: Schreibmaschinenkopf neben einem Schnitt durch Haus und Boden"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 130,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-015",
+   "slug": "sun-diego-solar",
+   "title": {
+    "en": "Solar site check",
+    "ru": "Проверка площадки под солнечные панели",
+    "es": "Revisión del sitio para solar",
+    "pt": "Verificação do local para solar",
+    "de": "Standort-Check für Solar"
+   },
+   "niche": "solar",
+   "solution_type": "site_check",
+   "short_description": {
+    "en": "A single-line diagram explains the system in a second, and the tool asks about the roof, the shade and the electrical panel instead of the power bill.",
+    "ru": "Однолинейная схема объясняет систему за секунду, а инструмент спрашивает про кровлю, затенение и щит — вместо счёта за электричество.",
+    "es": "Un diagrama unifilar explica el sistema en un segundo, y la herramienta pregunta por el tejado, la sombra y el cuadro eléctrico, no por la factura.",
+    "pt": "Um diagrama unifilar explica o sistema num segundo, e a ferramenta pergunta sobre o telhado, a sombra e o quadro elétrico, não sobre a conta de luz.",
+    "de": "Ein Strangschema erklärt die Anlage in einer Sekunde, und das Werkzeug fragt nach Dach, Verschattung und Zählerschrank statt nach der Stromrechnung."
+   },
+   "demo_url": "/preview/sun-diego-solar/",
+   "cover": "/showcase/covers/sun-diego-solar.jpg",
+   "cover_alt": {
+    "en": "Daylight page with a single-line diagram: sun, array, inverters, battery, panel",
+    "ru": "Дневная страница с однолинейной схемой: солнце, массив, инверторы, батарея, щит",
+    "es": "Página diurna con diagrama unifilar: sol, paneles, inversores, batería, cuadro",
+    "pt": "Página clara com diagrama unifilar: sol, painéis, inversores, bateria, quadro",
+    "de": "Helle Seite mit Strangschema: Sonne, Module, Wechselrichter, Speicher, Verteiler"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 140,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-016",
+   "slug": "roberts-garage-doors",
+   "title": {
+    "en": "Garage door dispatch note",
+    "ru": "Диспетчерская записка по воротам",
+    "es": "Nota de despacho para puertas de garaje",
+    "pt": "Nota de despacho para portões",
+    "de": "Einsatznotiz Garagentor"
+   },
+   "niche": "garage_doors",
+   "solution_type": "dispatch_note",
+   "short_description": {
+    "en": "A technician decides what to bring from the symptom, not the make, so the note is built from what the door is doing — and it can be read out on the phone.",
+    "ru": "Техник решает, что везти, по симптому, а не по марке, поэтому записка собирается из того, что делает дверь, — и её можно зачитать в трубку.",
+    "es": "El técnico decide qué llevar por el síntoma, no por la marca: la nota se arma con lo que hace la puerta y puede leerse por teléfono.",
+    "pt": "O técnico decide o que levar pelo sintoma, não pela marca: a nota se monta pelo que a porta está fazendo e pode ser lida ao telefone.",
+    "de": "Der Techniker entscheidet nach dem Symptom, nicht nach der Marke: die Notiz entsteht aus dem, was das Tor tut, und lässt sich am Telefon vorlesen."
+   },
+   "demo_url": "/preview/roberts-garage-doors/",
+   "cover": "/showcase/covers/roberts-garage-doors.jpg",
+   "cover_alt": {
+    "en": "Poster layout built like a sectional door: huge headline over four photo panels",
+    "ru": "Плакат, собранный как секционные ворота: огромный заголовок над четырьмя панелями",
+    "es": "Cartel construido como una puerta seccional: titular enorme sobre cuatro paneles",
+    "pt": "Cartaz montado como um portão seccionado: título enorme sobre quatro painéis",
+    "de": "Plakat wie ein Sektionaltor: riesige Überschrift über vier Bildpaneelen"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 150,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-017",
+   "slug": "super-cool-hvac",
+   "title": {
+    "en": "HVAC service note",
+    "ru": "Сервисная записка по климату",
+    "es": "Nota de servicio de climatización",
+    "pt": "Nota de serviço de climatização",
+    "de": "Servicenotiz Heizung und Klima"
+   },
+   "niche": "hvac",
+   "solution_type": "service_note",
+   "short_description": {
+    "en": "The page is split down the middle by season, cool on one side and warm on the other, and the note collects the symptom, the system and how long it has been going on.",
+    "ru": "Страница разрезана по сезону: холодная половина и тёплая, — а записка собирает симптом, систему и давность.",
+    "es": "La página está partida por estación, fría a un lado y cálida al otro, y la nota reúne el síntoma, el equipo y desde cuándo ocurre.",
+    "pt": "A página é dividida por estação, fria de um lado e quente do outro, e a nota reúne o sintoma, o sistema e há quanto tempo acontece.",
+    "de": "Die Seite ist nach Jahreszeit geteilt, kühl auf der einen, warm auf der anderen Seite, und die Notiz sammelt Symptom, Anlage und Dauer."
+   },
+   "demo_url": "/preview/super-cool-hvac/",
+   "cover": "/showcase/covers/super-cool-hvac.jpg",
+   "cover_alt": {
+    "en": "Page split by season: a cool half and a warm half under one headline",
+    "ru": "Страница, разрезанная по сезону: холодная половина и тёплая под общим заголовком",
+    "es": "Página dividida por estación: una mitad fría y otra cálida bajo un titular",
+    "pt": "Página dividida por estação: uma metade fria e outra quente sob um título",
+    "de": "Nach Jahreszeit geteilte Seite: eine kühle und eine warme Hälfte unter einer Überschrift"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 160,
+   "publication_status": "published",
+   "showcase": true
+  },
+  {
+   "id": "pf-018",
+   "slug": "lb-closets",
+   "title": {
+    "en": "Storage space configurator",
+    "ru": "Конфигуратор пространства хранения",
+    "es": "Configurador de espacio de almacenaje",
+    "pt": "Configurador de espaço de armazenamento",
+    "de": "Konfigurator für Stauraum"
+   },
+   "niche": "storage",
+   "solution_type": "space_config",
+   "short_description": {
+    "en": "A closet designer counts what has to fit, not square footage, so the questions change with the room and the measuring is left to the designer who comes out.",
+    "ru": "Проектировщик шкафов считает не метры, а то, что должно поместиться, поэтому вопросы меняются под помещение, а мерить приедут они.",
+    "es": "Un diseñador de armarios cuenta lo que debe caber, no los metros: las preguntas cambian según la estancia y medir queda para su visita.",
+    "pt": "Um projetista de closets conta o que precisa caber, não os metros: as perguntas mudam conforme o cômodo e medir fica para a visita.",
+    "de": "Ein Schrankplaner zählt, was hineinpassen muss, nicht die Quadratmeter: die Fragen richten sich nach dem Raum, das Messen übernimmt der Planer vor Ort."
+   },
+   "demo_url": "/preview/lb-closets/",
+   "cover": "/showcase/covers/lb-closets.jpg",
+   "cover_alt": {
+    "en": "Modular grid of compartments of different heights, like a storage system",
+    "ru": "Модульная решётка ячеек разной высоты, как сама система хранения",
+    "es": "Retícula modular de compartimentos de distintas alturas, como el propio sistema",
+    "pt": "Grelha modular de compartimentos de alturas diferentes, como o próprio sistema",
+    "de": "Modulares Raster aus Fächern unterschiedlicher Höhe, wie das Stauraumsystem selbst"
+   },
+   "project_type": "concept",
+   "language": "en",
+   "featured": false,
+   "sort_order": 170,
+   "publication_status": "published",
+   "showcase": true
+  }
+ ]
+}

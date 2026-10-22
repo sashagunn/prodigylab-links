@@ -1,0 +1,68 @@
+/* prodigylab.studio — общие стили поверх Tailwind (nav-бургер, reveal, marquee, focus, reduced-motion) */
+/* hero scroll hint */
+        .scroll-hint{display:flex;flex-direction:column;align-items:center;gap:8px;position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#9ca3af;z-index:2;}
+        .scroll-hint-line{width:1px;height:40px;background:linear-gradient(to bottom,#1C7E84,transparent);animation:scrollPulse 1.8s ease-in-out infinite;transform-origin:top;}
+        @keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:1;}50%{transform:scaleY(.6);opacity:.35;}}
+        /* guaranteed green hover for header + footer text links */
+        nav a[href^="#"]:hover,
+        footer a[href^="#"]:hover,
+        footer a[href^="/musiclab"]:hover { color: #1C7E84 !important; }
+        body {
+            background-color: #FFFFFF;
+            color: #111111;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Geist', sans-serif;
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            max-width: 100%;
+            user-select: none;
+            display: flex;
+            gap: 4rem;
+        }
+
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: 4rem;
+            animation: scroll 40s linear infinite;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .45s cubic-bezier(0.16,1,0.3,1), transform .45s cubic-bezier(0.16,1,0.3,1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 { letter-spacing: -0.04em; line-height: 1.05; }
+        h2 { letter-spacing: -0.02em; line-height: 1.1; }
+        h3, h4, h5 { letter-spacing: -0.01em; }
+        /* #3 kill horizontal scroll without breaking sticky */
+        body { overflow-x: clip; }
+        /* #7 visible keyboard focus (forms plugin strips it) */
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+            outline: 2px solid #1C7E84 !important; outline-offset: 2px; border-radius: 2px;
+        }
+        /* #5 touch feedback (no :hover on phones) */
+        @media (hover: none) { a:active, button:active { opacity: .82; } }
+        /* #6 respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+            .reveal-up { opacity: 1 !important; transform: none !important; }
+            .marquee-content, .scroll-hint-line { animation: none !important; }
+        }
+    #navBurger{display:none;color:#111}@media(max-width:767px){#navBurger{display:inline-flex}}#navMobile{display:none}#navMobile.open{display:flex;flex-direction:column}@media(min-width:768px){#navMobile.open{display:none}}#navMobile a{display:block;padding:12px 4px;font-size:16px;font-weight:500;color:#111}

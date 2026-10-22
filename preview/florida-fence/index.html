@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Florida Fence of Tampa Inc — fence project planner concept</title>
+<meta name="description" content="Independent design concept for Florida Fence of Tampa Inc, Tampa, Florida."/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Public+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="tw.css"/>
+<style>
+  /* Готовая цель нажатия. ВАЖНО: здесь НЕТ свойства display, и добавлять его
+     нельзя. Композиционный CSS подключается ПОСЛЕ tw.css, поэтому своё
+     display:inline-flex в таком классе побеждает утилиту hidden — элемент
+     перестаёт прятаться там, где должен: в шапке на 1440 появляются два
+     телефона сразу. Случилось трижды подряд. display задаёт утилита. */
+  .pf-tap{min-height:44px;align-items:center}
+
+  /* Значки — свои, из templates/icons.mjs: сборка подставляет их в готовую
+     разметку, страница ничего не грузит. Класс остался прежним, и правило
+     задаёт коробку по кеглю — на случай, если композиция напишет значок
+     вручную. Прежде здесь был шрифт Material Symbols; пока он не приходил,
+     браузер рисовал само слово («check_box») шириной под 180 px, и на
+     390 px ряд кнопок давал горизонтальную прокрутку. */
+  .material-symbols-outlined{display:inline-block;width:1em;
+    vertical-align:middle;flex:none}
+
+  :root{color-scheme:light}
+  html{scroll-behavior:smooth}
+  body{-webkit-font-smoothing:antialiased}
+
+  /* «Типографика как инструмент»: заголовок первого экрана появляется
+     строками, а не целиком — строка за строкой читается как речь. */
+  .line-mask{display:block;overflow:hidden}
+  .line-mask > span{display:block;transform:translateY(105%);opacity:0;
+    animation:lineUp .62s cubic-bezier(.22,.61,.36,1) forwards}
+  .line-mask:nth-of-type(2) > span{animation-delay:.09s}
+  .line-mask:nth-of-type(3) > span{animation-delay:.18s}
+  @keyframes lineUp{to{transform:translateY(0);opacity:1}}
+
+  /* Секции проявляются при подходе — «сайт как книга». Базовое состояние
+     ВИДИМОЕ: если таймлайн прокрутки не продвинется (а он не продвигается,
+     когда элемент уже в кадре и прокрутки не было), содержимое всё равно
+     читается. Скрывать контент по умолчанию нельзя — отказ анимации не
+     должен стирать страницу. */
+  .reveal{opacity:1;transform:none}
+  @supports (animation-timeline: view()){
+    @media (prefers-reduced-motion: no-preference){
+      .reveal{animation:revealIn linear both;animation-timeline:view();
+        animation-range:entry 0% entry 40%}
+    }
+  }
+  @keyframes revealIn{from{opacity:.55;transform:translateY(12px)}
+                      to{opacity:1;transform:none}}
+
+  /* Снимок на первом экране получает лёгкую глубину от курсора — вместо
+     видео, как в разборах. На телефоне и при reduce это выключено. */
+  .depth{transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+  @media (hover:hover) and (prefers-reduced-motion: no-preference){
+    .depth-host:hover .depth{transform:scale(1.025)}
+  }
+
+  /* Состояния выбора в конфигураторе: видно, что нажато, что пройдено и
+     чего не хватает. Это и есть обратная связь, без неё шаги слепые. */
+  /* Палец — не курсор: любой вариант выбора не ниже 44px. Кнопки высот в
+     сетке по три получались 34px, и попасть в них на телефоне тяжело. */
+  .opt-btn{min-height:44px;transition:background-color .16s ease,border-color .16s ease,color .16s ease}
+  .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .opt-btn:focus-visible,.step-link:focus-visible,.btn:focus-visible,
+  input:focus-visible,textarea:focus-visible{outline:2px solid #8d5116;outline-offset:2px}
+  .step-link[data-state="done"] .step-dot{background:#1d1e23;color:#fff;border-color:#1d1e23}
+  .step-link[data-state="now"]{background:#fff;border-color:#1d1e23}
+  .step-link[data-state="now"] .step-dot{background:#8d5116;color:#fff;border-color:#8d5116}
+  .rail-row{transition:background-color .35s ease}
+  .rail-row.bump{background:#e5a579}
+
+  /* Числа в сводке не должны «прыгать» при пересчёте. */
+  .tnum{font-variant-numeric:tabular-nums}
+
+  /* Телефон: итог и действие всегда под рукой, как в ресторанном превью —
+     там это и проверено. Панель появляется, только когда есть что показать. */
+  .dock{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;
+    align-items:center;justify-content:space-between;gap:.75rem;
+    padding:.6rem 1rem calc(.6rem + env(safe-area-inset-bottom));
+    background:#1e2224;color:#fff;border-top:1px solid #74777a;
+    transform:translateY(110%);transition:transform .3s cubic-bezier(.22,.61,.36,1)}
+  .dock.on{transform:translateY(0)}
+  @media (max-width:1023px){.dock{display:flex}body{padding-bottom:4.25rem}}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .line-mask > span{transform:none;opacity:1}
+    .reveal{opacity:1;transform:none}
+    .dock{transition:none}
+  }
+
+  input:focus-visible,textarea:focus-visible,.opt-btn:focus-visible,.step-link:focus-visible,.btn:focus-visible,a:focus-visible{outline:2px solid #55662a;outline-offset:2px}
+  .step-link[data-state="done"] .step-dot{background:#1c2a20;border-color:#1c2a20}
+  .step-link[data-state="now"]{border-color:#1c2a20}
+  .step-link[data-state="now"] .step-dot{background:#55662a;border-color:#55662a}
+  .rail-row.bump{background:#bfd4e8;color:#14202b}
+  .dock{background:#1c2a20;border-top-color:#6c7a6d}
+</style>
+</head>
+<body class="bg-background font-body-md text-body-md text-on-surface">
+
+<p class="bg-primary-container text-on-primary font-specs-meta text-[12px] text-center px-4 py-2">
+Independent design concept by Prodigy LAB. Not the official site of Florida Fence of Tampa Inc. <a class="underline" href="https://www.floridafence.com/" rel="noopener nofollow" target="_blank">Official site ↗</a></p>
+
+<header class="w-full bg-surface border-b border-outline-variant sticky top-0 z-30">
+<div class="max-w-[1380px] mx-auto px-margin-mobile md:px-margin h-[64px] flex items-center justify-between gap-3 md:gap-6">
+<a class="min-w-0" href="#top">
+<p class="font-headline-sm text-[13px] min-[400px]:text-[15px] md:text-[19px] truncate text-primary tracking-tight leading-none">FLORIDA FENCE OF TAMPA INC</p>
+<p class="font-specs-meta text-[11px] text-on-surface-variant mt-1 truncate">TAMPA, FL · EST. 1972</p>
+</a>
+<nav class="hidden xl:flex items-center gap-7 font-body-md text-body-md whitespace-nowrap">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#materials">Materials</a>
+<a class="text-primary border-b-2 border-secondary pb-1" href="#planner">Project planner</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#work">Our work</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#visit">Contact</a>
+</nav>
+<div class="flex items-center gap-3 shrink-0">
+<a class="hidden sm:flex items-center gap-1.5 font-label-tabular text-label-tabular text-on-surface-variant hover:text-primary" href="tel:+18132370056">
+<svg class="material-symbols-outlined text-[18px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2Z"/></svg>813-237-0056</a>
+<a class="btn bg-primary text-on-primary px-4 py-2.5 font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors" href="#planner"><span class="min-[400px]:hidden">Plan</span><span class="hidden min-[400px]:inline">Plan your fence</span></a>
+</div>
+</div>
+</header>
+
+<main id="top">
+
+<section class="relative bg-surface-container-low border-b border-outline-variant overflow-hidden">
+<div class="max-w-[1380px] mx-auto px-margin-mobile md:px-margin py-12 md:py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+<div>
+<div class="flex items-center gap-2 mb-5">
+<span class="w-2.5 h-2.5 bg-secondary inline-block"></span>
+<span class="font-label-caps text-label-caps text-primary uppercase">TAMPA, FLORIDA · FREE ESTIMATES</span>
+</div>
+<h1 class="font-display-hero text-display-hero-mobile md:text-display-hero text-primary mb-6">
+<span class="line-mask"><span>Tampa Bay fences,</span></span>
+<span class="line-mask"><span>built on site</span></span>
+<span class="line-mask"><span>since 1972.</span></span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-8">Fence installation and repair for homes and businesses across Hillsborough, Pinellas and South Pasco County, plus automatic gates. Every fence is built on site by the same crew, and every project starts with a free estimate.</p>
+<div class="flex flex-wrap gap-3 mb-10">
+<a class="btn bg-primary text-on-primary px-6 py-3.5 font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors" href="#planner">Plan your fence</a>
+<a class="btn bg-surface-container-lowest border border-outline text-primary px-6 py-3.5 font-label-caps text-label-caps uppercase hover:bg-surface-container transition-colors" href="#work">See our work</a>
+</div>
+<div class="grid grid-cols-3 gap-x-6 gap-y-4 pt-6 border-t border-outline-variant max-w-xl">
+<div><p class="font-label-tabular text-label-tabular text-primary font-bold">SINCE 1972</p><p class="font-body-sm text-body-sm text-on-surface-variant">Over 50 years in Tampa Bay</p></div>
+<div><p class="font-label-tabular text-label-tabular text-primary font-bold">BUILT ON SITE</p><p class="font-body-sm text-body-sm text-on-surface-variant">Not pre-fabricated</p></div>
+<div><p class="font-label-tabular text-label-tabular text-primary font-bold">FREE ESTIMATE</p><p class="font-body-sm text-body-sm text-on-surface-variant">No obligation</p></div>
+</div>
+</div>
+<figure class="relative border border-outline bg-surface-container overflow-hidden depth-host">
+<img alt="White vinyl privacy fence along a Tampa Bay backyard, built by Florida Fence of Tampa" class="w-full h-full object-cover aspect-[4/3] lg:aspect-[3/2] depth" fetchpriority="high" decoding="async" width="960" height="720" src="photos/149304365_252890302952118_7907911634420029405_n.jpg"/>
+<figcaption class="absolute bottom-3 left-3 right-3 bg-surface/95 border border-outline-variant px-3 py-2 font-specs-meta text-[12px] text-on-surface flex items-center gap-2">
+<svg class="material-symbols-outlined text-[16px] text-secondary" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="m22 12-2.4-2.8.3-3.7-3.6-.8-1.9-3.2L12 2.9 8.6 1.5 6.7 4.7l-3.6.8.3 3.7L1 12l2.4 2.8-.3 3.7 3.6.8 1.9 3.2L12 21.1l3.4 1.4 1.9-3.2 3.6-.8-.3-3.7L22 12Zm-11.4 4.5L7 12.9l1.4-1.4 2.2 2.2 5.3-5.3L17.3 10l-6.7 6.5Z"/></svg>White vinyl privacy fence</figcaption>
+</figure>
+</div>
+</section>
+
+<section class="w-full bg-surface-container border-b border-outline-variant">
+<div class="max-w-[1380px] mx-auto px-margin-mobile md:px-margin py-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x md:divide-outline-variant">
+<div class="md:pr-10"><p class="font-label-caps text-label-caps text-secondary uppercase mb-2">Free estimate</p><p class="font-headline-sm text-headline-sm text-primary mb-1.5">Review, measure, plan</p><p class="font-body-sm text-body-sm text-on-surface-variant">The team reviews your property, goals and material preferences, measures the site and designs a fence plan to your specifications.</p></div>
+<div class="md:px-10"><p class="font-label-caps text-label-caps text-secondary uppercase mb-2">Where they work</p><p class="font-headline-sm text-headline-sm text-primary mb-1.5">Three Tampa Bay counties</p><p class="font-body-sm text-body-sm text-on-surface-variant">Hillsborough, Pinellas and South Pasco County, for residential and commercial properties.</p></div>
+<div class="md:pl-10"><p class="font-label-caps text-label-caps text-secondary uppercase mb-2">Licensed</p><p class="font-headline-sm text-headline-sm text-primary mb-1.5">PCCLB License No. C-7071</p><p class="font-body-sm text-body-sm text-on-surface-variant">Open Mon–Fri, 7:30 AM – 4:30 PM. Two phone lines: Hillsborough and Pinellas.</p></div>
+</div>
+</section>
+
+<section class="py-16 md:py-20 bg-background border-b border-outline-variant" id="materials">
+<div class="max-w-[1380px] mx-auto px-margin-mobile md:px-margin">
+<div class="border-b border-outline pb-6 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2"><span class="w-2.5 h-2.5 bg-secondary inline-block"></span>
+<span class="font-label-caps text-label-caps text-primary uppercase">Materials</span></div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">Four ways to fence a yard.</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Wood, PVC vinyl, aluminum and chain link — the materials Florida Fence installs, in their own words.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+<div class="bg-surface-container-lowest border border-outline flex flex-col reveal">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container border-b border-outline-variant depth-host">
+<img alt="Wood fence installed by Florida Fence of Tampa Inc" class="w-full h-full object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/Horizontal_5.jpg"/>
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 bg-primary-container text-on-primary font-specs-meta text-[11px] border border-outline-variant">WOOD</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-sm text-[18px] text-primary">Wood</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-1">A classic choice for residential privacy, with custom sizing and natural curb appeal.</p>
+
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline flex flex-col reveal">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container border-b border-outline-variant depth-host">
+<img alt="PVC vinyl fence installed by Florida Fence of Tampa Inc" class="w-full h-full object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/pvc-b7274828.jpg"/>
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 bg-primary-container text-on-primary font-specs-meta text-[11px] border border-outline-variant">PVC VINYL</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-sm text-[18px] text-primary">PVC vinyl</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-1">Low-maintenance and resistant to Tampa’s high humidity and salt air.</p>
+
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline flex flex-col reveal">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container border-b border-outline-variant depth-host">
+<img alt="Aluminum fence installed by Florida Fence of Tampa Inc" class="w-full h-full object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/Frriedman.jpg"/>
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 bg-primary-container text-on-primary font-specs-meta text-[11px] border border-outline-variant">ALUMINUM</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-sm text-[18px] text-primary">Aluminum</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-1">A durable, rust-resistant option for Florida’s wet climate, with decorative appeal for homes and businesses.</p>
+
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline flex flex-col reveal">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container border-b border-outline-variant depth-host">
+<img alt="Chain link fence installed by Florida Fence of Tampa Inc" class="w-full h-full object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/FB_IMG_1619573078881.jpg"/>
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 bg-primary-container text-on-primary font-specs-meta text-[11px] border border-outline-variant">CHAIN LINK</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-sm text-[18px] text-primary">Chain link</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-1">A practical, cost-effective way to secure commercial sites, yards and properties.</p>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16 md:py-20 bg-surface-container-low border-b border-outline-variant scroll-mt-16" id="planner">
+<div class="max-w-[1380px] mx-auto px-margin-mobile md:px-margin">
+<div class="border-b border-outline pb-6 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2"><span class="w-2.5 h-2.5 bg-secondary inline-block"></span>
+<span class="font-label-caps text-label-caps text-primary uppercase">Project planner</span></div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">Six answers, and you can talk numbers.</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">These are the questions a fence company asks first. Answer them here, keep the result, and bring it to the free estimate.</p>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+<div class="lg:col-span-7 bg-surface-container-lowest border border-outline p-5 md:p-8">
+<div class="flex items-center justify-between border-b border-outline-variant pb-4 mb-7">
+<span class="font-specs-meta text-specs-meta text-on-surface-variant uppercase">Project details</span>
+<span class="font-label-tabular text-label-tabular text-secondary font-bold tnum" id="progress">0 OF 6 ANSWERED</span>
+</div>
+<div class="space-y-8" id="groups"></div>
+</div>
+
+<aside class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
+<div class="bg-primary-container text-on-primary border border-outline">
+<div class="flex items-center justify-between px-5 py-3.5 border-b border-outline/60">
+<span class="font-specs-meta text-specs-meta uppercase">Your project</span>
+<span class="font-specs-meta text-[11px] px-2 py-0.5 border border-outline/60" id="ready">IN PROGRESS</span>
+</div>
+<div class="px-5 py-4 space-y-0.5 font-label-tabular text-label-tabular" id="rail"></div>
+<div class="px-5 pb-5 hidden" id="price"></div>
+</div>
+
+<div class="bg-surface-container-lowest border border-outline p-5">
+<p class="font-specs-meta text-specs-meta text-on-surface-variant uppercase mb-3">Plain-text description</p>
+<textarea aria-label="Project description" class="w-full border border-outline-variant bg-surface p-3 font-label-tabular text-[13px] leading-5 text-on-surface" id="brief" readonly rows="12" placeholder="Answer the questions and your project description appears here."></textarea>
+<div class="flex flex-wrap gap-3 mt-4">
+<button class="btn bg-primary text-on-primary px-5 py-3 font-label-caps text-label-caps uppercase disabled:bg-surface-container-high disabled:text-on-surface-variant transition-colors inline-flex items-center gap-2" id="copy" type="button" disabled>
+<svg class="material-symbols-outlined text-[18px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M15 1H4a2 2 0 0 0-2 2v12h2V3h11V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h10v14Z"/></svg>Copy description</button>
+<button class="btn bg-surface-container-lowest border border-outline text-primary px-5 py-3 font-label-caps text-label-caps uppercase hover:bg-surface-container transition-colors" id="restart" type="button">Start over</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-3" id="say" role="status" aria-live="polite">Measurements are approximate and are confirmed on site.</p>
+</div>
+</aside>
+
+</div>
+<noscript><p class="font-body-md text-on-surface-variant mt-6">The planner needs JavaScript. Nothing is submitted either way.</p></noscript>
+</div>
+</section>
+
+<section class="py-16 md:py-20 bg-background border-b border-outline-variant" id="work">
+<div class="max-w-[1380px] mx-auto px-margin-mobile md:px-margin">
+<div class="border-b border-outline pb-6 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2"><span class="w-2.5 h-2.5 bg-secondary inline-block"></span>
+<span class="font-label-caps text-label-caps text-primary uppercase">Our work</span></div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">Fences standing around Tampa Bay.</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Wood, vinyl, aluminum and chain link, from their own photo gallery.</p>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+<figure class="relative group overflow-hidden border border-outline bg-surface-container depth-host reveal">
+<img alt="Horizontal wood fence by Florida Fence of Tampa Inc" class="w-full aspect-[4/3] object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/Horizontal_6.jpg"/>
+<figcaption class="absolute bottom-0 left-0 right-0 bg-primary-container/90 text-on-primary px-2.5 py-1.5 font-specs-meta text-[11px] leading-[14px]">Horizontal wood fence</figcaption>
+</figure>
+<figure class="relative group overflow-hidden border border-outline bg-surface-container depth-host reveal">
+<img alt="Board-on-board wood privacy fence by Florida Fence of Tampa Inc" class="w-full aspect-[4/3] object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/Bayshore-393d91af.jpg"/>
+<figcaption class="absolute bottom-0 left-0 right-0 bg-primary-container/90 text-on-primary px-2.5 py-1.5 font-specs-meta text-[11px] leading-[14px]">Board-on-board wood privacy fence</figcaption>
+</figure>
+<figure class="relative group overflow-hidden border border-outline bg-surface-container depth-host reveal">
+<img alt="Sweep-top vertical shadowbox wood fence by Florida Fence of Tampa Inc" class="w-full aspect-[4/3] object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/VSB_Sweep_top_2.jpg"/>
+<figcaption class="absolute bottom-0 left-0 right-0 bg-primary-container/90 text-on-primary px-2.5 py-1.5 font-specs-meta text-[11px] leading-[14px]">Sweep-top vertical shadowbox wood fence</figcaption>
+</figure>
+<figure class="relative group overflow-hidden border border-outline bg-surface-container depth-host reveal">
+<img alt="Board-on-board wood privacy fence by Florida Fence of Tampa Inc" class="w-full aspect-[4/3] object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/IMG_1844.jpg"/>
+<figcaption class="absolute bottom-0 left-0 right-0 bg-primary-container/90 text-on-primary px-2.5 py-1.5 font-specs-meta text-[11px] leading-[14px]">Board-on-board wood privacy fence</figcaption>
+</figure>
+<figure class="relative group overflow-hidden border border-outline bg-surface-container depth-host reveal">
+<img alt="White vinyl picket fence by Florida Fence of Tampa Inc" class="w-full aspect-[4/3] object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/FB_IMG_1628509722556.jpg"/>
+<figcaption class="absolute bottom-0 left-0 right-0 bg-primary-container/90 text-on-primary px-2.5 py-1.5 font-specs-meta text-[11px] leading-[14px]">White vinyl picket fence</figcaption>
+</figure>
+<figure class="relative group overflow-hidden border border-outline bg-surface-container depth-host reveal">
+<img alt="White picket fence with dog-ear pickets by Florida Fence of Tampa Inc" class="w-full aspect-[4/3] object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/FB_IMG_1628509726201.jpg"/>
+<figcaption class="absolute bottom-0 left-0 right-0 bg-primary-container/90 text-on-primary px-2.5 py-1.5 font-specs-meta text-[11px] leading-[14px]">White picket fence with dog-ear pickets</figcaption>
+</figure>
+<figure class="relative group overflow-hidden border border-outline bg-surface-container depth-host reveal">
+<img alt="White vinyl trash corral fence by Florida Fence of Tampa Inc" class="w-full aspect-[4/3] object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/160182785_272303091010839_5444563990439493027_n.jpg"/>
+<figcaption class="absolute bottom-0 left-0 right-0 bg-primary-container/90 text-on-primary px-2.5 py-1.5 font-specs-meta text-[11px] leading-[14px]">White vinyl trash corral fence</figcaption>
+</figure>
+<figure class="relative group overflow-hidden border border-outline bg-surface-container depth-host reveal">
+<img alt="Black vinyl-coated chain link around a tennis court fence by Florida Fence of Tampa Inc" class="w-full aspect-[4/3] object-cover depth" loading="lazy" decoding="async" width="720" height="570" src="photos/Resized_20210727_133357.jpeg.jpg"/>
+<figcaption class="absolute bottom-0 left-0 right-0 bg-primary-container/90 text-on-primary px-2.5 py-1.5 font-specs-meta text-[11px] leading-[14px]">Black vinyl-coated chain link around a tennis court</figcaption>
+</figure>
+</div>
+<p class="mt-6"><a class="font-body-md text-secondary underline underline-offset-4" href="https://www.floridafence.com/gallery" rel="noopener nofollow" target="_blank">Their full gallery ↗</a></p>
+</div>
+</section>
+
+<section class="py-16 md:py-20 bg-surface-container-low border-b border-outline-variant">
+<div class="max-w-[1380px] mx-auto px-margin-mobile md:px-margin">
+<div class="border-b border-outline pb-6 mb-10">
+<div class="flex items-center gap-2 mb-2"><span class="w-2.5 h-2.5 bg-secondary inline-block"></span>
+<span class="font-label-caps text-label-caps text-primary uppercase">Good to know</span></div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">Straight answers, from their own site.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+<div class="bg-surface-container-lowest border border-outline p-6 reveal">
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="m15.6 10.6-5.2-5.2 1.4-1.4L13.5 6 17 2.5 21.5 7 18 10.5l2 2-1.4 1.4-3-2.9ZM2.5 19.1l7.8-7.8 1.4 1.4-7.8 7.8-1.4-1.4ZM8.4 13.5l-1.4-1.4 5.2-5.2 1.4 1.4-5.2 5.2ZM2 21h10v2H2v-2Z"/></svg>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Permits</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Permit requirements vary by municipality, fence height and property type. Florida Fence says it can assist with the permit process in Hillsborough County.</p>
+</div>
+
+<div class="bg-surface-container-lowest border border-outline p-6 reveal">
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v2h-2V7Zm0 4h2v6h-2v-6Z"/></svg>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Free estimate</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Every project starts with a free, no-obligation estimate. They review the property, goals and material preferences.</p>
+</div>
+
+<div class="bg-surface-container-lowest border border-outline p-6 reveal">
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v2h-2V7Zm0 4h2v6h-2v-6Z"/></svg>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Built on site</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Fences are built on site, not pre-fabricated, so they fit the terrain and property lines. The same crew builds every fence, not subcontractors.</p>
+</div>
+
+<div class="bg-surface-container-lowest border border-outline p-6 reveal">
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v2h-2V7Zm0 4h2v6h-2v-6Z"/></svg>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Materials</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sourced from brands including Ideal® and Enduris®.</p>
+</div>
+
+<div class="bg-surface-container-lowest border border-outline p-6 reveal">
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v2h-2V7Zm0 4h2v6h-2v-6Z"/></svg>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Gates</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Automatic gate installation and servicing, in addition to fences.</p>
+</div>
+
+<div class="bg-surface-container-lowest border border-outline p-6 reveal">
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v2h-2V7Zm0 4h2v6h-2v-6Z"/></svg>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Special offer</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Buy 100 feet of wood fence or more and get a free standard walk gate. Mention the offer when making an appointment.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16 md:py-20 bg-background border-b border-outline-variant" id="visit">
+<div class="max-w-[1380px] mx-auto px-margin-mobile md:px-margin grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+<div>
+<div class="flex items-center gap-2 mb-2"><span class="w-2.5 h-2.5 bg-secondary inline-block"></span>
+<span class="font-label-caps text-label-caps text-primary uppercase">Contact</span></div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight mb-6">4607 N Florida Ave, Tampa, FL 33603</h2>
+<div class="flex flex-wrap gap-3">
+<a class="btn bg-primary text-on-primary px-6 py-3.5 font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors" href="tel:+18132370056">Call 813-237-0056</a>
+<a class="btn bg-surface-container-lowest border border-outline text-primary px-6 py-3.5 font-label-caps text-label-caps uppercase hover:bg-surface-container transition-colors" href="https://maps.google.com/?q=4607+N+Florida+Ave,+Tampa,+FL+33603" rel="noopener" target="_blank">Directions ↗</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-4">Pinellas 727-536-7841 · ffense@gmail.com</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline p-6">
+<p class="font-label-caps text-label-caps text-secondary uppercase mb-2">Free on-site estimate</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Every project starts with a free, no-obligation estimate: they review the property, goals and material preferences, then measure the site. Bring the description from the planner and the visit goes faster.</p>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="bg-primary-container text-on-primary border-t border-outline">
+<div class="max-w-[1380px] mx-auto px-margin-mobile md:px-margin py-14">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<div>
+<p class="font-headline-sm text-headline-sm mb-3">FLORIDA FENCE OF TAMPA INC</p>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim">4607 N Florida Ave, Tampa, FL 33603<br>813-237-0056 · 727-536-7841<br>ffense@gmail.com</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps uppercase mb-3">Materials</p>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim">Wood<br>PVC vinyl<br>Aluminum<br>Chain link</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps uppercase mb-3">Official</p>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim">
+<a class="underline" href="https://www.floridafence.com/" rel="noopener nofollow" target="_blank">www.floridafence.com ↗</a><br>
+<a class="underline" href="https://www.floridafence.com/gallery" rel="noopener nofollow" target="_blank">Their gallery ↗</a></p>
+</div>
+</div>
+<p class="font-body-sm text-[12px] leading-5 text-on-primary-container mt-12 pt-6 border-t border-outline/50 max-w-4xl">Independent design concept by Prodigy LAB. Not the official site of Florida Fence of Tampa Inc. Prodigy LAB is not affiliated with the business, and the business has not reviewed or endorsed this page. All project photographs are Florida Fence of Tampa’s own, taken from their website gallery. Materials, service area, process, hours, licence number, address, phone numbers and the special offer are taken from the company’s own website, checked 20 October 2026. Their PCCLB licence number is shown because the company publishes it. No prices, warranty terms, insurance figures or project addresses appear here, because the company publishes none of them. The planner has no submission endpoint, no payment and no analytics.</p>
+</div>
+</footer>
+
+<div class="dock" id="dock">
+<div class="min-w-0">
+<p class="font-specs-meta text-[11px] text-primary-fixed-dim uppercase">Your project</p>
+<p class="font-label-tabular text-label-tabular truncate tnum" id="dock-line">—</p>
+</div>
+<a class="btn bg-secondary-container text-on-secondary-fixed px-4 py-2.5 font-label-caps text-label-caps uppercase shrink-0" href="#brief" id="dock-btn">See it</a>
+</div>
+
+<script type="application/json" id="fence-data">{"name":"Florida Fence of Tampa Inc","served":"Hillsborough, Pinellas and South Pasco County","work":["New installation","Replacement","Repair"],"heights":[3,4,5,6,7,8],"materials":[{"key":"Wood","name":"Wood","styles":["Privacy","Board-on-board","Shadowbox","Horizontal","Not sure yet"]},{"key":"PVC vinyl","name":"PVC vinyl","styles":["Privacy","Picket","Not sure yet"]},{"key":"Aluminum","name":"Aluminum","styles":["Decorative","Pool or security","Not sure yet"]},{"key":"Chain link","name":"Chain link","styles":["Galvanized","Black vinyl-coated","Not sure yet"]}],"priceGuide":null,"permit":{"overFeet":null,"city":"Hillsborough County","text":"","lineNote":"Permit requirements vary by municipality, fence height and property type. Florida Fence says it can assist with the permit process in Hillsborough County."}}</script>
+<script>
+(() => {
+  'use strict';
+  const узел = document.getElementById('fence-data');
+  if (!узел) return;
+  const Д = JSON.parse(узел.textContent);
+  const $ = (с) => document.querySelector(с);
+  const экр = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  const выбор = {work: null, material: null, style: null, length: null,
+                 height: null, gates: null, removal: null, removalFeet: null,
+                 notes: ''};
+
+  // Поле длины принимает только цифры, и на экране должно быть ровно то, что
+  // ушло в состояние. Раньше минус просто вырезался: человек набирал -20,
+  // поле показывало -20, а в сводку и в описание проекта уходило 20. Страница
+  // говорила одно, копируемый текст другое — и так у всех превью.
+  // Чистим значение И возвращаем его в поле, поэтому разойтись они больше не
+  // могут. Отдельно про type=number: при одном минусе браузер отдаёт пустую
+  // строку, а минус держит в своём буфере; запись в value этот буфер сбрасывает.
+  function только_цифры(поле) {
+    const чисто = String(поле.value || '').replace(/[^0-9]/g, '');
+    if (поле.value !== чисто) {
+      поле.value = чисто;
+      const n = чисто.length;
+      try { поле.setSelectionRange(n, n); } catch (e) { /* number не везде это умеет */ }
+    }
+    return чисто;
+  }
+
+  const плохаяДлинаСейчас = () =>
+    выбор.length !== null && выбор.length !== '' && длина() === null;
+
+  // Перерисовка заменяет разметку целиком, поэтому поле ввода теряет фокус.
+  // Возвращаем его и ставим каретку в конец, иначе человек напечатает один
+  // символ и вывалится из поля.
+  function перерисоватьСохранивКаретку(id) {
+    рисовать();
+    const поле = document.getElementById(id);
+    if (!поле) return;
+    поле.focus();
+    const n = поле.value.length;
+    try { поле.setSelectionRange(n, n); } catch (e) { /* не всякий тип это умеет */ }
+  }
+
+  const материал = () => Д.materials.find((m) => m.key === выбор.material) || null;
+  const длина = () => {
+    const n = Number(выбор.length);
+    return Number.isFinite(n) && n >= 1 && n <= 10000 ? n : null;
+  };
+
+  // Порог высоты для разрешения есть только у тех, кто опубликовал его числом.
+  // У остальных показываем их собственную формулировку без привязки к высоте:
+  // придумывать за них порог нельзя.
+  const естьПорог = () => Boolean(Д.permit) && typeof Д.permit.overFeet === 'number';
+  const разрешениеВидно = (h) => Boolean(Д.permit) && (Д.permit.text || Д.permit.lineNote) &&
+    (естьПорог() ? Boolean(h) && Number(h) > Д.permit.overFeet : Boolean(h));
+
+  const ГОТОВ = {
+    work: () => !!выбор.work,
+    material: () => !!выбор.material,
+    style: () => !!выбор.style,
+    size: () => длина() !== null && !!выбор.height,
+    gates: () => выбор.gates !== null,
+    removal: () => выбор.removal !== null &&
+      (выбор.removal === 'No' || Number(выбор.removalFeet) >= 1),
+  };
+  const ключи = Object.keys(ГОТОВ);
+  const сделано = () => ключи.filter((k) => ГОТОВ[k]()).length;
+  const всё = () => сделано() === ключи.length;
+
+  // ─── разметка групп, по образцу экрана Stitch ─────────────────────────
+  const опция = (поле, значение, подпись, подзаголовок) =>
+    '<button type="button" class="opt-btn p-3.5 text-left border font-body-md font-medium ' +
+    'flex items-center justify-between gap-2 ' +
+    (String(выбор[поле]) === String(значение)
+      ? 'border-primary bg-primary text-on-primary'
+      : 'border-outline-variant bg-surface-container-lowest text-primary hover:bg-surface-container') +
+    '" data-field="' + поле + '" data-value="' + экр(значение) + '">' +
+    '<span class="min-w-0"><span class="block leading-snug">' + экр(подпись) + '</span>' +
+    (подзаголовок ? '<span class="block font-specs-meta text-[11px] opacity-70">' +
+      экр(подзаголовок) + '</span>' : '') + '</span>' +
+    '<svg class="material-symbols-outlined text-[18px]' +
+    (String(выбор[поле]) === String(значение) ? '' : ' opacity-0') + '" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><circle cx="12" cy="12" r="4"/></svg></button>';
+
+  const группа = (n, имя, заголовок, тело, готово) =>
+    '<div class="planner-group" data-group="' + имя + '">' +
+    '<label class="flex items-center gap-2 font-label-caps text-label-caps text-on-surface-variant uppercase mb-3">' +
+    '<span class="step-dot inline-flex items-center justify-center w-5 h-5 border ' +
+    (готово ? 'bg-primary text-on-primary border-primary' : 'border-outline-variant text-on-surface-variant') +
+    ' font-specs-meta text-[11px]">' + (готово ? '✓' : n) + '</span>' +
+    экр(заголовок) + '</label>' + тело + '</div>';
+
+  const КЛЮЧ = 'pf-planner-' + (Д.slug || Д.name || 'fence');
+
+  function сохранитьСостояние() {
+    // Пустой выбор не храним: после «Start over» иначе остаётся запись из
+    // одних null. Пользователю она не видна, но это след в чужом хранилище
+    // без всякой причины — а раз причины нет, его и не должно быть.
+    const естьЧто = Object.entries(выбор)
+      .some(([k, v]) => k === 'notes' ? String(v || '').trim() !== '' : v !== null && v !== '');
+    try {
+      if (естьЧто) localStorage.setItem(КЛЮЧ, JSON.stringify(выбор));
+      else localStorage.removeItem(КЛЮЧ);
+    } catch (e) { /* без памяти тоже работает */ }
+  }
+
+  function прочитатьСостояние() {
+    try {
+      const сырое = localStorage.getItem(КЛЮЧ);
+      if (!сырое) return;
+      const было = JSON.parse(сырое);
+      if (!было || typeof было !== 'object') return;
+      // Переносим только известные поля и только те значения, которые
+      // компания публикует сейчас: материал мог исчезнуть из конфигурации,
+      // и подставлять его обратно нельзя.
+      for (const k of Object.keys(выбор)) {
+        if (!(k in было)) continue;
+        const v = было[k];
+        if (k === 'material' && v && !Д.materials.some((m) => m.key === v)) continue;
+        if (k === 'style' && v) {
+          const м = Д.materials.find((m) => m.key === было.material);
+          if (!м || !(м.styles || []).includes(v)) continue;
+        }
+        выбор[k] = v;
+      }
+    } catch (e) { /* испорченная запись — начинаем с чистого листа */ }
+  }
+
+  function рисовать() {
+    const м = материал();
+    let h = '';
+
+    h += группа(1, 'work', '01. Type of work',
+      '<div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">' +
+      Д.work.map((w) => опция('work', w, w)).join('') + '</div>', ГОТОВ.work());
+
+    h += группа(2, 'material', '02. Material',
+      '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">' +
+      Д.materials.map((m) => опция('material', m.key, m.name)).join('') + '</div>', ГОТОВ.material());
+
+    h += группа(3, 'style', '03. Style',
+      м ? ('<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">' +
+           м.styles.map((s) => опция('style', s, s)).join('') + '</div>')
+        : '<p class="font-body-sm text-body-sm text-on-surface-variant border border-dashed border-outline-variant p-3.5">Pick a material first — styles differ by material.</p>',
+      ГОТОВ.style());
+
+    const плохаяДлина = выбор.length !== null && выбор.length !== '' && длина() === null;
+    h += группа(4, 'size', '04. Length and height',
+      '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">' +
+      '<label class="block"><span class="block font-body-sm text-body-sm text-on-surface-variant mb-1.5">Approximate length, linear feet</span>' +
+      '<input id="f-length" type="number" inputmode="numeric" min="1" max="10000" step="1" placeholder="150" value="' +
+      (выбор.length == null ? '' : экр(выбор.length)) +
+      '" class="w-full p-3.5 border ' + (плохаяДлина ? 'border-error' : 'border-outline-variant') +
+      ' bg-surface-container-lowest font-label-tabular text-label-tabular text-primary"></label>' +
+      '<div><span class="block font-body-sm text-body-sm text-on-surface-variant mb-1.5">Height, feet</span>' +
+      '<div class="grid grid-cols-3 gap-2">' +
+      Д.heights.map((ft) => опция('height', ft, ft + '′')).join('') + '</div></div></div>' +
+      (плохаяДлина
+        ? '<p class="font-body-sm text-body-sm text-error">Enter a length between 1 and 10,000 feet.</p>'
+        : '<p class="font-body-sm text-body-sm text-on-surface-variant">Pace it out or measure roughly. This is for planning, not for a quote.</p>') +
+      (разрешениеВидно(выбор.height)
+        ? '<p class="mt-3 p-3.5 bg-secondary-fixed text-on-secondary-fixed font-body-sm text-body-sm border-l-2 border-secondary">' +
+          экр(Д.permit.text || Д.permit.lineNote) + '</p>' : ''),
+      ГОТОВ.size());
+
+    h += группа(5, 'gates', '05. Gates',
+      '<div class="grid grid-cols-5 gap-2">' +
+      [0, 1, 2, 3, 4].map((g) => опция('gates', g, String(g))).join('') + '</div>' +
+      '<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Walk gates and drive gates both count.</p>',
+      ГОТОВ.gates());
+
+    const нуженМетраж = выбор.removal === 'Yes';
+    h += группа(6, 'removal', '06. Old fence removal',
+      '<div class="grid grid-cols-2 gap-3">' +
+      опция('removal', 'No', 'Nothing to remove') +
+      опция('removal', 'Yes', 'Remove and haul away') + '</div>' +
+      (нуженМетраж
+        ? '<label class="block mt-3"><span class="block font-body-sm text-body-sm text-on-surface-variant mb-1.5">Roughly how many feet to remove?</span>' +
+          '<input id="f-removal" type="number" inputmode="numeric" min="1" max="10000" step="1" placeholder="150" value="' +
+          (выбор.removalFeet == null ? '' : экр(выбор.removalFeet)) +
+          '" class="w-full p-3.5 border border-outline-variant bg-surface-container-lowest font-label-tabular text-label-tabular text-primary"></label>'
+        : '') +
+      '<label class="block mt-3"><span class="block font-body-sm text-body-sm text-on-surface-variant mb-1.5">Anything about the site we should know? <i class="opacity-70">optional</i></span>' +
+      '<textarea id="f-notes" rows="2" maxlength="300" placeholder="Slope along the back, sprinkler line, dogs…" ' +
+      'class="w-full p-3.5 border border-outline-variant bg-surface-container-lowest font-body-md text-body-md text-primary">' +
+      экр(выбор.notes) + '</textarea></label>',
+      ГОТОВ.removal());
+
+    $('#groups').innerHTML = h;
+    сводка();
+  }
+
+  // ─── живая сводка ─────────────────────────────────────────────────────
+  let прежнее = {};
+  function сводка() {
+    сохранитьСостояние();
+    const строки = [
+      ['Work', выбор.work], ['Material', выбор.material], ['Style', выбор.style],
+      ['Length', длина() ? длина() + ' ft' : null],
+      ['Height', выбор.height ? выбор.height + ' ft' : null],
+      ['Gates', выбор.gates === null ? null : String(выбор.gates)],
+      ['Removal', выбор.removal === 'Yes'
+        ? ((Number(выбор.removalFeet) >= 1 ? выбор.removalFeet + ' ft' : 'yes') + ' to remove')
+        : выбор.removal],
+    ];
+    $('#rail').innerHTML = строки.map(([k, v]) =>
+      '<div class="rail-row flex items-baseline justify-between gap-3 py-1.5 border-b border-outline/30 last:border-0" data-k="' +
+      экр(k) + '"><span class="text-primary-fixed-dim">' + экр(k) + '</span>' +
+      '<b class="text-right tnum ' + (v ? 'text-on-primary' : 'text-on-primary-container') + '">' +
+      (v ? экр(v) : '—') + '</b></div>').join('');
+
+    // Изменившаяся строка коротко подсвечивается: без этого непонятно,
+    // что именно в сводке только что поменялось.
+    строки.forEach(([k, v]) => {
+      if (прежнее[k] !== undefined && прежнее[k] !== v && v) {
+        const э = $('#rail .rail-row[data-k="' + k.replace(/"/g, '') + '"]');
+        if (э) { э.classList.add('bump'); setTimeout(() => э.classList.remove('bump'), 700); }
+      }
+      прежнее[k] = v;
+    });
+
+    const n = сделано();
+    $('#progress').textContent = n + ' OF ' + ключи.length + ' ANSWERED';
+    $('#ready').textContent = всё() ? 'READY' : 'IN PROGRESS';
+    $('#ready').className = 'font-specs-meta text-[11px] px-2 py-0.5 border ' +
+      (всё() ? 'border-secondary-container bg-secondary-container text-on-secondary-fixed'
+             : 'border-outline/60');
+
+    цена();
+    итог();
+    док();
+  }
+
+  function расчёт() {
+    const p = Д.priceGuide, ft = длина();
+    if (!p || !ft) return null;
+    if (выбор.material !== p.material || выбор.style !== p.style) return null;
+    return {low: Math.round(p.low * ft), high: Math.round(p.high * ft), p: p, ft: ft};
+  }
+
+  function цена() {
+    const ц = расчёт(), б = $('#price');
+    if (!ц) { б.className = 'px-5 pb-5 hidden'; б.innerHTML = ''; return; }
+    б.className = 'px-5 pb-5 block';
+    const вне = [];
+    if (Number(выбор.gates) > 0) {
+      вне.push(выбор.gates + (Number(выбор.gates) === 1 ? ' gate' : ' gates'));
+    }
+    if (выбор.removal === 'Yes') {
+      вне.push('tear-out of ' + (выбор.removalFeet || '—') + ' ft');
+    }
+    б.innerHTML =
+      '<div class="pt-4 border-t border-outline/40">' +
+      '<p class="font-specs-meta text-[11px] uppercase text-primary-fixed-dim mb-1">Fence run only · vinyl privacy</p>' +
+      '<p class="font-headline-lg text-headline-md text-on-primary tnum">$' +
+      ц.low.toLocaleString('en-US') + ' – $' + ц.high.toLocaleString('en-US') + '</p>' +
+      '<p class="font-body-sm text-[12px] leading-5 text-primary-fixed-dim mt-1.5">' +
+      ц.ft + ' ft × $' + ц.p.low + '–$' + ц.p.high + ' ' + экр(ц.p.unit) + '. ' +
+      экр(ц.p.caveat) + '</p>' +
+      (вне.length
+        ? '<p class="font-body-sm text-[12px] leading-5 text-secondary-fixed-dim mt-2 pt-2 border-t border-outline/30">' +
+          '<b>Not included:</b> ' + экр(вне.join(' and ')) +
+          '. Those are priced separately after the on-site measure.</p>'
+        : '<p class="font-body-sm text-[12px] leading-5 text-primary-fixed-dim mt-2 pt-2 border-t border-outline/30">' +
+          'Covers the fence run. Gates and tear-out are priced separately.</p>') +
+      '</div>';
+  }
+
+  function текст() {
+    const ц = расчёт();
+    const с = [
+      'FENCE PROJECT — ' + Д.name,
+      Д.served,
+      '',
+      'Type of work:   ' + выбор.work,
+      'Material:       ' + выбор.material,
+      'Style:          ' + выбор.style,
+      'Length:         ' + длина() + ' linear feet (approximate)',
+      'Height:         ' + выбор.height + ' feet',
+      'Gates:          ' + выбор.gates,
+      'Old fence:      ' + (выбор.removal === 'Yes'
+        ? ('remove approximately ' + выбор.removalFeet + ' feet') : 'nothing to remove'),
+    ];
+    if (выбор.notes.trim()) с.push('Site notes:     ' + выбор.notes.trim());
+    с.push('');
+    if (естьПорог() && Number(выбор.height) > Д.permit.overFeet) с.push('Permit: ' + Д.permit.text);
+    if (Д.permit && Д.permit.lineNote) с.push(Д.permit.lineNote);
+    if (ц) {
+      const вне = [];
+      if (Number(выбор.gates) > 0) {
+        вне.push(выбор.gates + (Number(выбор.gates) === 1 ? ' gate' : ' gates'));
+      }
+      if (выбор.removal === 'Yes') вне.push('tear-out of ' + (выбор.removalFeet || '—') + ' ft');
+      с.push('');
+      с.push('Budget, fence run only: $' + ц.low.toLocaleString('en-US') + '-$' +
+        ц.high.toLocaleString('en-US') + ' (' + ц.ft + ' ft at $' + ц.p.low + '-$' +
+        ц.p.high + ' ' + ц.p.unit + ', published ' + ц.p.asOf + '). ' + ц.p.caveat);
+      с.push('NOT included: ' + (вне.length ? вне.join(' and ') : 'gates and tear-out') +
+        '. Priced separately after the on-site measure.');
+    }
+    с.push('');
+    с.push('Measurements are approximate and need confirmation on site.');
+    с.push('Prepared on an independent design concept by Prodigy LAB.');
+    с.push('It is not a quote, and nothing has been sent to anyone.');
+    return с.join('\n');
+  }
+
+  function итог() {
+    const ок = всё();
+    $('#brief').value = ок ? текст() : '';
+    $('#copy').disabled = !ок;
+    if (!ок) {
+      const нет = ключи.find((k) => !ГОТОВ[k]());
+      $('#say').textContent = 'Still needed: ' + ({
+        work: 'type of work', material: 'material', style: 'style',
+        size: 'length and height', gates: 'number of gates', removal: 'old fence removal',
+      })[нет] + '.';
+    } else {
+      $('#say').textContent = 'Measurements are approximate and are confirmed on site.';
+    }
+  }
+
+  function док() {
+    const d = $('#dock');
+    if (!d) return;
+    const n = сделано();
+    d.classList.toggle('on', n > 0);
+    const строка = $('#dock-line'), кн = $('#dock-btn');
+    if (!строка || !кн) return;
+    строка.textContent = всё()
+      ? (выбор.material + ' · ' + длина() + ' ft · ' + выбор.height + ' ft')
+      : (n + ' of ' + ключи.length + ' answered');
+    кн.textContent = всё() ? 'See it' : 'Continue';
+  }
+
+  // ─── события ──────────────────────────────────────────────────────────
+  $('#groups').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-field]');
+    if (!b) return;
+    const поле = b.dataset.field;
+    let v = b.dataset.value;
+    if (поле === 'gates' || поле === 'height') v = Number(v);
+    // Повторное нажатие на уже выбранный вариант ничего не снимает: все
+    // шесть шагов обязательны, и случайный повторный клик не должен
+    // обнулять ответ. Передумать можно, выбрав другой вариант, а начать
+    // заново — кнопкой «Start over».
+    const сменился = String(выбор[поле]) !== String(v);
+    выбор[поле] = v;
+    if (поле === 'material' && сменился) выбор.style = null;
+    if (поле === 'removal' && выбор.removal !== 'Yes') выбор.removalFeet = null;
+    рисовать();
+  });
+
+  $('#groups').addEventListener('input', (e) => {
+    const id = e.target.id;
+    if (id === 'f-length') {
+      const былоПлохо = плохаяДлинаСейчас();
+      выбор.length = только_цифры(e.target);
+      if (плохаяДлинаСейчас() !== былоПлохо) { перерисоватьСохранивКаретку('f-length'); }
+      else { сводка(); }
+    }
+    else if (id === 'f-removal') { выбор.removalFeet = только_цифры(e.target); сводка(); }
+    else if (id === 'f-notes') { выбор.notes = e.target.value; сводка(); }
+  });
+
+  $('#copy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText($('#brief').value);
+      $('#say').textContent = 'Copied. Paste it into an email or read it over the phone.';
+    } catch (err) {
+      $('#brief').select();
+      $('#say').textContent = 'Press Cmd+C or Ctrl+C to copy the selected text.';
+    }
+  });
+
+  $('#restart').addEventListener('click', () => {
+    Object.keys(выбор).forEach((k) => { выбор[k] = (k === 'notes') ? '' : null; });
+    try { localStorage.removeItem(КЛЮЧ); } catch (e) { /* нечего стирать */ }
+    прежнее = {};
+    рисовать();
+    document.getElementById('planner').scrollIntoView({block: 'start'});
+  });
+
+  // Нижняя панель есть не во всякой композиции. Без проверки обработчик
+  // падал на null и уносил с собой весь конфигуратор.
+  const кнопкаДока = $('#dock-btn');
+  if (кнопкаДока) кнопкаДока.addEventListener('click', (e) => {
+    e.preventDefault();
+    const цель = всё() ? '#brief' : '#groups';
+    document.querySelector(цель).scrollIntoView({block: 'center', behavior: 'smooth'});
+  });
+
+  прочитатьСостояние();
+  рисовать();
+})();
+</script>
+
+</body></html>
