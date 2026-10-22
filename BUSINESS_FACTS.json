@@ -43,11 +43,6 @@
         "icon": "youtube"
       },
       {
-        "name": "Facebook",
-        "url": "https://www.facebook.com/Prodigylab.studio",
-        "icon": "facebook"
-      },
-      {
         "name": "LinkedIn",
         "url": "https://www.linkedin.com/in/sasha-gun-28a288426",
         "icon": "linkedin"
@@ -61,9 +56,9 @@
     "telegram": "https://t.me/leadsmetachat_bot",
     "messenger": "https://m.me/sashagun_usa",
     "instagram": "https://www.instagram.com/sashagun_usa/",
-    "facebook": "https://www.facebook.com/Prodigylab.studio",
     "hasPhysicalOffice": false,
-    "physicalAddressNote": "Публичного офиса, куда приходят клиенты, нет. Бизнес работает удалённо. Адрес нигде не указывается — выдуманный адрес запрещён."
+    "physicalAddressNote": "Публичного офиса, куда приходят клиенты, нет. Бизнес работает удалённо. Адрес нигде не указывается — выдуманный адрес запрещён.",
+    "facebookNote": "Страница Facebook не работает — ссылку нигде не показываем (22.10.2026)."
   },
   "geography": {
     "baseRegion": "California, United States",
