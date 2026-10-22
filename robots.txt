@@ -1,7 +1,12 @@
 # robots.txt — prodigylab.studio
-# Политика: публичный коммерческий контент открыт для поиска и AI-ответов.
-# Правила ниже — явная запись уже действовавшей политики (было "User-agent: * Allow: /").
-# Ни один краулер этим файлом не был закрыт.
+# Политика: публичный коммерческий контент открыт для поиска и AI-ответов,
+# служебные разделы закрыты для ВСЕХ краулеров.
+#
+# ВАЖНО ПРИ ПРАВКАХ: по спецификации краулер подчиняется только своей группе
+# и правила из группы "*" на него НЕ распространяются. Поэтому блок служебных
+# Disallow повторён в каждой группе дословно. Добавляешь новый Disallow —
+# добавь его во все группы, иначе раздел останется открытым для 16 агентов.
+# Сверка: npm run check:ai
 
 # ---------- Общее правило ----------
 User-agent: *
@@ -18,63 +23,127 @@ Disallow: /preview/
 # OAI-SearchBot — индексация для ChatGPT Search. Нужен для цитирования. Открыт.
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 # ChatGPT-User — переход по ссылке, инициированный пользователем в ChatGPT. Открыт.
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 # OAI-AdsBot — проверка страниц для рекламы в ChatGPT. Открыт на будущее.
 User-agent: OAI-AdsBot
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 # GPTBot — сбор данных, который может использоваться для обучения моделей.
 # Это НЕ то же самое, что OAI-SearchBot: закрытие GPTBot не мешает цитированию в ChatGPT Search.
 # Сейчас разрешён (так было и раньше по правилу "*"). Смена политики — решение владельца.
 User-agent: GPTBot
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 # ---------- Anthropic ----------
 # Официально задокументированы три агента: ClaudeBot, Claude-User, Claude-SearchBot.
 User-agent: ClaudeBot
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 User-agent: Claude-User
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 User-agent: Claude-SearchBot
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 # ---------- Perplexity ----------
 User-agent: PerplexityBot
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 User-agent: Perplexity-User
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 # ---------- Microsoft / Bing / Copilot ----------
 User-agent: bingbot
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 # ---------- Google ----------
 User-agent: Googlebot
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 # Google-Extended управляет использованием контента в Gemini и AI-обзорах.
 User-agent: Google-Extended
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 # ---------- Apple ----------
 User-agent: Applebot
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 # ---------- Прочие ----------
 User-agent: Amazonbot
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 User-agent: meta-externalagent
 Allow: /
+Disallow: /pricecard-9k2x7m/
+Disallow: /newdesign.html
+Disallow: /course.html
+Disallow: /preview/
 
 Sitemap: https://prodigylab.studio/sitemap.xml
