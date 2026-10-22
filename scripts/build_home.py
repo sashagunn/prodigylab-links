@@ -8,6 +8,9 @@ CSS встроен в страницу намеренно: главная не �
 import os, sys, html as H
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from home_content import L, PHONE_HREF, PHONE_TEXT, WA, SCAN, DIAG
+import socials as SOC
+
+СОЦПОДПИСЬ = {'ru': 'Мы в соцсетях', 'en': 'Follow us', 'es': 'Síguenos', 'pt': 'Siga-nos', 'de': 'Folgen Sie uns'}
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -1288,6 +1291,7 @@ color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer}
 text-decoration:none;font-size:14px;font-weight:500;padding:13px 22px;border:1px solid var(--accent)}
 .btn:hover{background:var(--accent2);border-color:var(--accent2)}
 .btn-lg{padding:17px 28px;font-size:15px}
+"""+SOC.CSS+"""
 /* Шапка помощника: название действия и строка о том, как это устроено.
    Человек ищет глазами слово «заявка» — оно должно быть здесь, а не
    только внутри разговора. */
@@ -1684,6 +1688,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
    <span class="mono" style="display:block;margin-bottom:10px">{H.escape(SERVICE_HEAD[code])}</span>
    <div class="flinks" style="margin:0">{service_links(code)}</div>
   </div>
+  {SOC.блок(СОЦПОДПИСЬ.get(code, ''))}
   <p class="fmeta">© 2026 Prodigy LAB · Platonaire LLC · California, USA<br>{e(d['foot_legal'])}</p>
  </div>
 </footer>
@@ -1976,6 +1981,7 @@ def страница_кто(code):
  </div>
 </main>
 <footer class="foot"><div class="wrap">
+ {SOC.блок()}
  <span>{e(_F['identity']['legalName'])} &middot; {e(_F['identity']['name'])}</span>
 </div></footer>
 </body>

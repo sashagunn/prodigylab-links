@@ -13,6 +13,7 @@ build_pages.py — генератор статических страниц Prod
 Запуск: npm run pages
 """
 import json, os, re, html as H
+import socials as SOC
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FACTS = json.load(open(os.path.join(ROOT, 'BUSINESS_FACTS.json'), encoding='utf-8'))
@@ -96,12 +97,20 @@ def footer(lang):
               ('/prodigybot/', 'ProdigyBot'), ('/scan/', 'Free scan'),
               ('/privacy/', 'Privacy Policy')])
     ls = "".join(f'<a class="inline-block py-2 hover:text-accent-green transition-colors" href="{h}">{n}</a>' for h, n in links)
+    соцсети = "".join(
+        f'<a href="{с["url"]}" target="_blank" rel="noopener me" aria-label="{с["name"]}" '
+        f'title="{с["name"]}" class="inline-flex items-center justify-center w-10 h-10 '
+        f'rounded-full border border-border-subtle text-text-muted '
+        f'hover:text-accent-green hover:border-accent-green transition-colors">'
+        f'{SOC.ИКОНКИ.get(с.get("icon",""),"")}</a>'
+        for с in SOC.СЕТИ if SOC.ИКОНКИ.get(с.get("icon","")))
     return f'''</main>
 <footer class="bg-white border-t border-border-subtle py-20">
 <div class="max-w-[1200px] mx-auto px-8">
 <div class="text-2xl font-bold tracking-tighter mb-4"><span class="text-accent-green">PRODIGY</span> <span class="font-light">LAB</span></div>
 <p class="text-lg italic text-accent-green mb-8 max-w-sm">{slogan}</p>
 <div class="flex flex-wrap gap-x-10 gap-y-3 text-[11px] font-mono uppercase tracking-widest text-text-muted mb-8">{ls}</div>
+<div class="flex flex-wrap gap-2 mb-8">{соцсети}</div>
 <div class="font-mono text-[11px] uppercase tracking-[0.3em] text-text-muted">© 2026 Prodigy LAB · {FACTS['identity']['legalName']} · California, USA</div>
 </div>
 </footer>

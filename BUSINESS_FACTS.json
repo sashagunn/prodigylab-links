@@ -10,7 +10,49 @@
     "description_en": "Prodigy LAB is a digital growth studio for small and mid-sized businesses. It builds and fixes the systems a business sells through: Shopify and custom websites, conversion rate optimisation, Meta and Google advertising, and AI assistants that answer customer enquiries around the clock.",
     "description_ru": "Prodigy LAB — студия цифрового роста для малого и среднего бизнеса. Собирает и чинит системы, через которые бизнес продаёт: сайты и магазины на Shopify, конверсию, рекламу в Meta и Google, ИИ-ассистентов, которые отвечают клиентам круглосуточно.",
     "slogan_en": "The world of sales will never be the same",
-    "slogan_ru": "Мир продаж уже не будет прежним"
+    "slogan_ru": "Мир продаж уже не будет прежним",
+    "socials": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/sashagun_usa/",
+        "icon": "instagram"
+      },
+      {
+        "name": "TikTok",
+        "url": "https://www.tiktok.com/@sashagun_usa",
+        "icon": "tiktok"
+      },
+      {
+        "name": "Threads",
+        "url": "https://www.threads.com/@sashagun_usa",
+        "icon": "threads"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/sashagun_usa",
+        "icon": "x"
+      },
+      {
+        "name": "Telegram",
+        "url": "https://t.me/sashagun_usa",
+        "icon": "telegram"
+      },
+      {
+        "name": "YouTube",
+        "url": "https://www.youtube.com/@prodigylab.studio",
+        "icon": "youtube"
+      },
+      {
+        "name": "Facebook",
+        "url": "https://www.facebook.com/Prodigylab.studio",
+        "icon": "facebook"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/in/sasha-gun-28a288426",
+        "icon": "linkedin"
+      }
+    ]
   },
   "contact": {
     "businessPhone": "+18182690416",
@@ -18,8 +60,8 @@
     "whatsapp": "https://wa.me/18182690416",
     "telegram": "https://t.me/leadsmetachat_bot",
     "messenger": "https://m.me/sashagun_usa",
-    "instagram": "https://instagram.com/sashagun_usa",
-    "facebook": "https://facebook.com/sashagun_usa",
+    "instagram": "https://www.instagram.com/sashagun_usa/",
+    "facebook": "https://www.facebook.com/Prodigylab.studio",
     "hasPhysicalOffice": false,
     "physicalAddressNote": "Публичного офиса, куда приходят клиенты, нет. Бизнес работает удалённо. Адрес нигде не указывается — выдуманный адрес запрещён."
   },

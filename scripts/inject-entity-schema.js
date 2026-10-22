@@ -28,11 +28,14 @@ const PAGES = [
   { file: 'de/index.html', url: `${ORIGIN}/de/`, lang: 'de' },
 ];
 
+// sameAs — то, по чему поисковик связывает разрозненные профили с одной
+// компанией. Пока их было три, Google в обзоре описывал другую фирму
+// Prodigy Labs. Берём весь список соцсетей из фактов, чтобы он правился
+// в одном месте вместе с иконками в подвале.
 const sameAs = [
-  F.contact.instagram,
-  F.contact.facebook,
+  ...(F.identity.socials || []).map((s) => s.url),
   F.contact.telegram,
-].filter(Boolean);
+].filter((v, i, a) => v && a.indexOf(v) === i);
 
 function organization(lang) {
   const org = {

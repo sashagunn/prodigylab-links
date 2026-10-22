@@ -58,10 +58,41 @@ text-decoration:none;padding:8px 4px}
 color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer}
 .icon:hover{color:var(--accent)}
 #burger{display:inline-flex}@media(min-width:960px){#burger{display:none}}
-.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;
-text-decoration:none;font-size:14px;font-weight:500;padding:13px 22px;border:1px solid var(--ink)}
+/* Главное действие — фирменным бирюзовым, а не чёрным. Чёрная кнопка
+   на этой странице не читалась как действие: вокруг неё и так всё чёрное.
+   Белый текст на --accent даёт контраст 4.81:1, на наведении 9.95:1 —
+   оба проходят AA для обычного текста. */
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;
+text-decoration:none;font-size:14px;font-weight:500;padding:13px 22px;border:1px solid var(--accent)}
 .btn:hover{background:var(--accent2);border-color:var(--accent2)}
 .btn-lg{padding:17px 28px;font-size:15px}
+
+/* Соцсети в подвале: восемь иконок одной строкой, без подписей. Подписи
+   удлиняют подвал вдвое и ничего не добавляют — иконки узнаются. */
+.soc{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.soc a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
+ border:1px solid var(--line);border-radius:999px;color:var(--ink2);text-decoration:none}
+.soc a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* Шапка помощника: название действия и строка о том, как это устроено.
+   Человек ищет глазами слово «заявка» — оно должно быть здесь, а не
+   только внутри разговора. */
+.talk-nm{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.talk-sub{font-size:11.5px;color:var(--ink3);line-height:1.3;
+ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:520px){.talk-sub{display:none}}
+
+/* Закреплённая кнопка заявки. На телефоне — полосой снизу, на широком
+   экране — сбоку справа, чтобы не закрывать текст. Появляется, когда
+   помощник ушёл с экрана, и прячется, когда он снова виден: звать туда,
+   куда человек и так смотрит, незачем. */
+.ask-sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:61;display:flex}
+.ask-sticky .btn{flex:1;justify-content:center;box-shadow:0 6px 24px rgba(0,0,0,.22)}
+@media(min-width:760px){
+ .ask-sticky{left:auto;right:18px;bottom:auto;top:50%;transform:translateY(-50%);
+  writing-mode:vertical-rl}
+ .ask-sticky .btn{padding:18px 13px;letter-spacing:.02em}
+}
 .btn-g{background:transparent;color:var(--ink);border:1px solid var(--line)}
 .btn-g:hover{background:var(--paper2);border-color:var(--ink3);color:var(--ink)}
 .nav-cta{display:none}@media(min-width:960px){.nav-cta{display:inline-flex;margin-left:8px}}
@@ -366,12 +397,12 @@ fbq('init','1713332936325081');fbq('track','PageView');
    <button id="burger" class="icon" aria-label="Menu" aria-expanded="false" onclick="tg(this)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
    </button>
-   <a class="btn nav-cta" href="https://scan.prodigylab.studio/diagnostic?lang=es" data-diag>Cuéntanos qué no funciona</a>
+   <a class="btn nav-cta" href="https://scan.prodigylab.studio/diagnostic?lang=es" data-diag>Dejar una solicitud</a>
   </div>
  </div>
  <div id="mob"><div class="wrap"><a class="ml" href="/es/#problems">Qué resolvemos</a><a class="ml" href="/es/#how">Cómo funciona</a><a class="ml" href="/es/#who">Quiénes somos</a>
   <a class="ml" href="/es/showcase/">Ejemplos</a>
-  <a class="btn" href="https://scan.prodigylab.studio/diagnostic?lang=es" data-diag>Cuéntanos qué no funciona</a>
+  <a class="btn" href="https://scan.prodigylab.studio/diagnostic?lang=es" data-diag>Dejar una solicitud</a>
   <a class="ml" href="https://wa.me/18182690416" target="_blank" rel="noopener">Escribir por WhatsApp +1 (818) 269-0416</a>
   <div class="mlangs"><a href="/showcase/">EN</a><a href="/ru/showcase/">RU</a><a href="/es/showcase/" aria-current="page">ES</a><a href="/pt/showcase/">PT</a><a href="/de/showcase/">DE</a></div>
  </div></div>
@@ -409,6 +440,7 @@ fbq('init','1713332936325081');fbq('track','PageView');
    <span class="mono" style="display:block;margin-bottom:10px">Servicios especializados — en inglés</span>
    <div class="flinks" style="margin:0"><a href="/shopify-development/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Shopify Development (EN)</a><a href="/shopify-redesign/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Shopify Redesign (EN)</a><a href="/shopify-audit/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Shopify Audit (EN)</a><a href="/ecommerce-consulting/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">E-commerce Consulting (EN)</a><a href="/website-development/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Website Development (EN)</a><a href="/website-redesign/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Website Redesign (EN)</a><a href="/website-audit/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Website Audit (EN)</a><a href="/conversion-rate-optimization/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Conversion Rate Optimization (EN)</a><a href="/ai-chatbot/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">AI Sales Chatbot (ProdigyBot) (EN)</a><a href="/ai-automation/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">AI Automation (EN)</a><a href="/meta-ads-management/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Meta Ads Management (EN)</a><a href="/google-ads-management/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Google Ads Management (EN)</a><a href="/business-operations/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Fractional Digital Operations (EN)</a><a href="/business-consulting-usa/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Business Consulting for US SMBs (EN)</a><a href="/russian-business-consulting-miami/" hreflang="en" style="font-size:12.5px;color:var(--ink3)">Digital Operations for Russian-speaking Businesses (Miami) (EN)</a></div>
   </div>
+  <div class="soc-wrap"><span class="mono" style="display:block;margin-bottom:6px">Síguenos</span><div class="soc"><a href="https://www.instagram.com/sashagun_usa/" target="_blank" rel="noopener me" aria-label="Instagram" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a><a href="https://www.tiktok.com/@sashagun_usa" target="_blank" rel="noopener me" aria-label="TikTok" title="TikTok"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 6.2A5 5 0 0 0 19 9"/></svg></a><a href="https://www.threads.com/@sashagun_usa" target="_blank" rel="noopener me" aria-label="Threads" title="Threads"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8.6C15.2 7 13.8 6.2 12 6.2c-3 0-5 2.3-5 5.8s2 5.8 5 5.8c2.6 0 4.3-1.4 4.6-3.3"/><path d="M9.6 13.1c0-1.3 1.2-2 2.7-2 2 0 3.3 1 3.3 2.6 0 1.8-1.5 2.8-3.2 2.8-1.4 0-2.3-.7-2.3-1.7"/></svg></a><a href="https://x.com/sashagun_usa" target="_blank" rel="noopener me" aria-label="X" title="X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg></a><a href="https://t.me/sashagun_usa" target="_blank" rel="noopener me" aria-label="Telegram" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4.5L2.8 11.3l5.3 1.8L19 6.6l-8.2 8.2.4 5 2.6-3.6 4.3 3.1z"/></svg></a><a href="https://www.youtube.com/@prodigylab.studio" target="_blank" rel="noopener me" aria-label="YouTube" title="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5v5l4.5-2.5z"/></svg></a><a href="https://www.facebook.com/Prodigylab.studio" target="_blank" rel="noopener me" aria-label="Facebook" title="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V9H7v3h2v9h3v-9h2.5l.5-3H12V6.5a1 1 0 0 1 1-1h2z"/></svg></a><a href="https://www.linkedin.com/in/sasha-gun-28a288426" target="_blank" rel="noopener me" aria-label="LinkedIn" title="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-3.2a1.8 1.8 0 0 1 3.6 0v3.2"/></svg></a></div></div>
   <p class="fmeta">© 2026 Prodigy LAB · Platonaire LLC · California, USA<br>Prodigy LAB no es un procesador de pagos, un banco, ni un proveedor con licencia de asesoría legal, fiscal o financiera.</p>
  </div>
 </footer>

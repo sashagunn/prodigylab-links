@@ -1,0 +1,16 @@
+#!/bin/bash
+# Коммит с удалением файлов останавливается. 22.10.2026 так уехало 737
+# удалений разом: картинки, vercel.json, страницы услуг, демо. Удаление
+# бывает законным, но оно должно быть осознанным, а не «заодно со сборкой».
+# Имена переменных только латиницей: bash не принимает кириллические.
+deleted=$(git diff --cached --name-only --diff-filter=D | wc -l | tr -d ' ')
+allow=${ALLOW_DELETIONS:-0}
+if [ "$deleted" -gt "$allow" ]; then
+  echo "СТОП: в коммите $deleted удалённых файлов."
+  git diff --cached --name-only --diff-filter=D | head -15 | sed 's/^/  − /'
+  if [ "$deleted" -gt 15 ]; then echo "  … и ещё $((deleted-15))"; fi
+  echo
+  echo "Если удаление задумано:  ALLOW_DELETIONS=$deleted git commit …"
+  exit 1
+fi
+exit 0

@@ -31,6 +31,9 @@ from build_home import CSS, WA_SVG, PHONE_HREF, PHONE_TEXT, DIAG, PIXEL, ORIGIN,
     LANGNAMES, PRIVACY, PRIVACY_TAG, SERVICE_HEAD, service_links
 from home_content import L
 from showcase_content import S, HOME, NICHE, SOLUTION
+import socials as SOC
+
+СОЦПОДПИСЬ = {'ru':'Мы в соцсетях','en':'Follow us','es':'Síguenos','pt':'Siga-nos','de':'Folgen Sie uns'}
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'SHOWCASE.json')
@@ -498,6 +501,7 @@ fbq('init','{PIXEL}');fbq('track','PageView');
    <span class="mono" style="display:block;margin-bottom:10px">{e(SERVICE_HEAD[code])}</span>
    <div class="flinks" style="margin:0">{service_links(code)}</div>
   </div>
+  {SOC.блок(СОЦПОДПИСЬ.get(code, ''))}
   <p class="fmeta">© 2026 Prodigy LAB · Platonaire LLC · California, USA<br>{e(d['foot_legal'])}</p>
  </div>
 </footer>

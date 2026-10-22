@@ -17,6 +17,7 @@ from __future__ import annotations
 import html as H
 import json
 import os
+import socials as SOC
 
 КОРЕНЬ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ЯЗЫКИ = ("en", "ru", "es", "pt", "de")
@@ -265,7 +266,7 @@ def страница(it: dict, lang: str) -> str:
   <a href="{ГАЛЕРЕЯ[lang]}">{e(п['back'])}</a>
  </div>
 </div></main>
-<footer><div class="wrap">© 2026 Prodigy LAB · Platonaire LLC</div></footer>
+<footer><div class="wrap">{SOC.блок()}© 2026 Prodigy LAB · Platonaire LLC</div></footer>
 </body>
 </html>"""
 
