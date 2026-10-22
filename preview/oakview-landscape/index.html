@@ -63,8 +63,11 @@ header .wrap{display:flex;align-items:center;gap:20px;padding-top:11px;padding-b
 .plan .lead{stroke:#1d2721;stroke-width:1.2;fill:none;stroke-dasharray:3 4}
 .plan .pin{cursor:pointer}
 .plan .pin:hover,.plan .pin:focus{fill:var(--clay)}
-.legend div{transition:background .2s,border-color .2s;border-left:3px solid transparent;padding-left:9px}
+.legend div{transition:background .2s,border-color .2s;border-left:3px solid transparent;
+  padding-left:9px;cursor:default}
 .legend div[data-hot]{background:#e9ece2;border-left-color:var(--clay)}
+.legend div:focus-visible{outline:2px solid var(--moss);outline-offset:2px}
+.plan .pin[data-hot]{fill:var(--clay)}
 .legend{margin-top:12px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;
   border-top:1px solid var(--line);padding-top:11px}
 .legend b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--clay)}
@@ -309,15 +312,15 @@ footer .fh{color:#83917f}  /* было #74836f, стало 4.63:1 */
     <path d="M840 596 L916 500"/>
   </g>
   <g class="pl-n">
-    <text class="pin" data-pin="1" x="178" y="226" tabindex="0" role="button" aria-label="Garden installation">01</text>
-    <text class="pin" data-pin="2" x="500" y="578" tabindex="0" role="button" aria-label="Walls">02</text>
-    <text class="pin" data-pin="3" x="876" y="142" tabindex="0" role="button" aria-label="Patios and pathways">03</text>
-    <text class="pin" data-pin="4" x="1020" y="86" tabindex="0" role="button" aria-label="Fencing">04</text>
-    <text class="pin" data-pin="5" x="796" y="604" tabindex="0" role="button" aria-label="Special installation">05</text>
+    <text class="pin" data-pin="1" x="178" y="226" aria-hidden="true">01</text>
+    <text class="pin" data-pin="2" x="500" y="578" aria-hidden="true">02</text>
+    <text class="pin" data-pin="3" x="876" y="142" aria-hidden="true">03</text>
+    <text class="pin" data-pin="4" x="1020" y="86" aria-hidden="true">04</text>
+    <text class="pin" data-pin="5" x="796" y="604" aria-hidden="true">05</text>
   </g>
 </svg>
       <div class="legend">
-        <div data-leg="1"><b>01</b><span>Garden installation</span><i>New gardens, and old ones rejuvenated.</i></div><div data-leg="2"><b>02</b><span>Walls</span><i>Retaining walls and garden walls.</i></div><div data-leg="3"><b>03</b><span>Patios and pathways</span><i>Exterior hardscaping, their specialism.</i></div><div data-leg="4"><b>04</b><span>Fencing</span><i>Boundaries and privacy.</i></div><div data-leg="5"><b>05</b><span>Special installation</span><i>The one-off pieces a garden needs.</i></div>
+        <div data-leg="1" tabindex="0"><b>01</b><span>Garden installation</span><i>New gardens, and old ones rejuvenated.</i></div><div data-leg="2" tabindex="0"><b>02</b><span>Walls</span><i>Retaining walls and garden walls.</i></div><div data-leg="3" tabindex="0"><b>03</b><span>Patios and pathways</span><i>Exterior hardscaping, their specialism.</i></div><div data-leg="4" tabindex="0"><b>04</b><span>Fencing</span><i>Boundaries and privacy.</i></div><div data-leg="5" tabindex="0"><b>05</b><span>Special installation</span><i>The one-off pieces a garden needs.</i></div>
       </div>
     </div>
   </div></section>
@@ -645,16 +648,22 @@ footer .fh{color:#83917f}  /* было #74836f, стало 4.63:1 */
 })();</script>
 <script>
 (function(){
-  // Выноска плана подсвечивает свой пункт легенды. Мышью и с клавиатуры.
-  var пины=document.querySelectorAll('.plan .pin');
-  Array.prototype.forEach.call(пины,function(t){
+  // Легенда и план подсвечивают друг друга. Ведёт легенда: её строки крупные
+  // и доступны с клавиатуры, а цифры на чертеже слишком мелкие, чтобы быть
+  // кнопкой, — они только отзываются.
+  var пары=[];
+  Array.prototype.forEach.call(document.querySelectorAll('.plan .pin'),function(t){
     var n=t.getAttribute('data-pin');
     var пункт=document.querySelector('.legend [data-leg="'+n+'"]');
-    if(!пункт) return;
-    var вкл=function(){ пункт.setAttribute('data-hot','1'); };
-    var выкл=function(){ пункт.removeAttribute('data-hot'); };
-    t.addEventListener('mouseenter',вкл); t.addEventListener('mouseleave',выкл);
-    t.addEventListener('focus',вкл); t.addEventListener('blur',выкл);
+    if(пункт) пары.push([t,пункт]);
+  });
+  пары.forEach(function(пара){
+    var цифра=пара[0], пункт=пара[1];
+    var вкл=function(){ цифра.setAttribute('data-hot','1'); пункт.setAttribute('data-hot','1'); };
+    var выкл=function(){ цифра.removeAttribute('data-hot'); пункт.removeAttribute('data-hot'); };
+    пункт.addEventListener('mouseenter',вкл); пункт.addEventListener('mouseleave',выкл);
+    пункт.addEventListener('focus',вкл); пункт.addEventListener('blur',выкл);
+    цифра.addEventListener('mouseenter',вкл); цифра.addEventListener('mouseleave',выкл);
   });
 })();
 </script>
