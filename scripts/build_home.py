@@ -793,13 +793,22 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
    Отличаются подписью и заливкой, чтобы их не читали как ещё один сайт. */
 .cl-kind{display:block;margin-top:3px;font-family:var(--mono);font-size:9.5px;
   letter-spacing:.15em;text-transform:uppercase;color:var(--ink3)}
-.cl-shot-all{display:flex;align-items:center;justify-content:center;
-  aspect-ratio:1/1;background:var(--paper2);text-align:center}
-.cl-shot-all span{font-size:15px;line-height:1.35;color:var(--ink);
-  padding:0 14px;display:inline-flex;align-items:center;gap:7px;flex-wrap:wrap;
-  justify-content:center}
-.cl-shot-all i{font-style:normal;color:var(--accent2)}
-.cl-all:hover .cl-shot-all{background:var(--accent-soft)}
+.cl-shot-all{position:relative;display:flex;align-items:flex-end;
+  aspect-ratio:1/1;background:var(--graphite);border-color:var(--graphite);
+  overflow:hidden}
+/* Две дуги по диагонали — продолжение той же графики, что в схеме разбора.
+   Пустой серый квадрат читался как незагрузившаяся картинка. */
+.cl-shot-all:before,.cl-shot-all:after{content:"";position:absolute;
+  border:1px solid rgba(232,236,239,.14);border-radius:50%}
+.cl-shot-all:before{width:120%;height:120%;right:-45%;top:-38%}
+.cl-shot-all:after{width:78%;height:78%;right:-24%;top:-14%;
+  border-color:rgba(28,126,132,.45)}
+.cl-shot-all span{position:relative;z-index:1;padding:0 18px 20px;
+  font-size:clamp(16px,1.5vw,19px);line-height:1.25;color:var(--on-dark);
+  display:block;font-weight:500}
+.cl-shot-all i{font-style:normal;color:var(--accent);margin-left:6px}
+.cl-all:hover .cl-shot-all{background:var(--graphite2)}
+.cl-all:hover .cl-shot-all:after{border-color:var(--accent)}
 .cl:hover .cl-nm{color:var(--accent2)}
 @media (max-width:700px){
   .cl-grid{grid-template-columns:1fr 1fr;gap:12px}
@@ -1056,6 +1065,20 @@ def _каталог():
     return было[:МАКС_РАБОТ]
 
 
+def _обложка(работа: dict) -> str:
+    """Квадратная обложка, если она есть.
+
+    Обложки каталога сделаны 800×500 — в квадратной плитке они сминались
+    в полосу с белым хвостом внизу. Для плитки держим отдельный файл
+    «-square»: снимок телефона на тёмном фоне, в родных пропорциях.
+    """
+    import os as _os
+    квадрат = f'/showcase/covers/{работа["slug"]}-square.jpg'
+    if _os.path.exists(_os.path.join(КОРЕНЬ, квадрат.lstrip('/'))):
+        return квадрат
+    return работа['cover']
+
+
 def блок_клиентов(code: str) -> str:
     """Сайты, которые мы собрали и ведём.
 
@@ -1081,7 +1104,7 @@ def блок_клиентов(code: str) -> str:
         пример = витрина[0]
         карточки += (
             f'<a class="cl cl-demo" href="{_ПУТЬ_РАБОТЫ[code]}{пример["slug"]}/">'
-            f'<span class="cl-shot"><img src="{пример["cover"]}" '
+            f'<span class="cl-shot"><img src="{_обложка(пример)}" '
             f'alt="{e(пример["title"][code])}" width="600" height="600" '
             f'loading="lazy" decoding="async"></span>'
             f'<span class="cl-nm">{e(пример["title"][code])}<i>&#8599;</i></span>'

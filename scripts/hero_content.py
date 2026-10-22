@@ -481,6 +481,220 @@ def _н(main, near=()):
 # как «сайта нет», «Bastan las solicitudes» — как «магазин не нужен». Иначе
 # нажатие кнопки легло бы в карточку сырой фразой.
 ПОДСКАЗКИ = {
+# Варианты под вопросом: короткий путь для тех, кто не хочет печатать.
+# Поле ввода остаётся — вариант это подсказка, а не выбор из списка.
+# Ключ постоянный: «направление.поле» из routing.ид_вопроса. Текст вопроса
+# ключом быть не может — его правят и переводят.
+ 'funding.amount': {
+   'ru': ['До $25k', '$25–100k', '$100–500k', 'Больше $500k'],
+   'en': ['Up to $25k', '$25–100k', '$100–500k', 'Over $500k'],
+   'es': ['Hasta $25k', '$25–100k', '$100–500k', 'Más de $500k'],
+   'pt': ['Até $25k', '$25–100k', '$100–500k', 'Mais de $500k'],
+   'de': ['Bis $25k', '$25–100k', '$100–500k', 'Über $500k']},
+ 'funding.purpose': {
+   'ru': ['Закупка', 'Кассовый разрыв', 'Рост', 'Оборудование'],
+   'en': ['Inventory', 'Cash gap', 'Growth', 'Equipment'],
+   'es': ['Compra de stock', 'Falta de caja', 'Crecimiento', 'Equipamiento'],
+   'pt': ['Compra de estoque', 'Falta de caixa', 'Crescimento', 'Equipamento'],
+   'de': ['Wareneinkauf', 'Liquiditätslücke', 'Wachstum', 'Ausrüstung']},
+ 'funding.scale': {
+   'ru': ['До $10k', '$10–50k', '$50–200k', 'Больше $200k'],
+   'en': ['Up to $10k', '$10–50k', '$50–200k', 'Over $200k'],
+   'es': ['Hasta $10k', '$10–50k', '$50–200k', 'Más de $200k'],
+   'pt': ['Até $10k', '$10–50k', '$50–200k', 'Mais de $200k'],
+   'de': ['Bis $10k', '$10–50k', '$50–200k', 'Über $200k']},
+ 'funding.time_in_business': {
+   'ru': ['Меньше года', '1–2 года', '2–5 лет', 'Больше 5 лет'],
+   'en': ['Under a year', '1–2 years', '2–5 years', 'Over 5 years'],
+   'es': ['Menos de un año', '1–2 años', '2–5 años', 'Más de 5 años'],
+   'pt': ['Menos de um ano', '1–2 anos', '2–5 anos', 'Mais de 5 anos'],
+   'de': ['Unter einem Jahr', '1–2 Jahre', '2–5 Jahre', 'Über 5 Jahre']},
+ 'funding.business_credit': {
+   'ru': ['Ничего нет', 'Есть кредитки', 'Есть кредит', 'Есть и то, и другое'],
+   'en': ['Nothing yet', 'Business cards', 'A loan', 'Both'],
+   'es': ['Nada todavía', 'Tarjetas', 'Un préstamo', 'Ambos'],
+   'pt': ['Nada ainda', 'Cartões', 'Um empréstimo', 'Os dois'],
+   'de': ['Noch nichts', 'Firmenkarten', 'Ein Kredit', 'Beides']},
+ 'funding.personal_score': {
+   'ru': ['Ниже 600', '600–680', '680–750', 'Выше 750', 'Не знаю'],
+   'en': ['Under 600', '600–680', '680–750', 'Above 750', 'Not sure'],
+   'es': ['Menos de 600', '600–680', '680–750', 'Más de 750', 'No sé'],
+   'pt': ['Abaixo de 600', '600–680', '680–750', 'Acima de 750', 'Não sei'],
+   'de': ['Unter 600', '600–680', '680–750', 'Über 750', 'Weiß nicht']},
+ 'funding.urgency': {
+   'ru': ['Срочно', 'В течение месяца', 'Не горит'],
+   'en': ['Urgent', 'Within a month', 'No rush'],
+   'es': ['Urgente', 'En un mes', 'Sin prisa'],
+   'pt': ['Urgente', 'Em um mês', 'Sem pressa'],
+   'de': ['Dringend', 'Innerhalb eines Monats', 'Keine Eile']},
+ 'fulfillment.orders_month': {
+   'ru': ['До 100', '100–500', '500–2000', 'Больше 2000'],
+   'en': ['Up to 100', '100–500', '500–2000', 'Over 2000'],
+   'es': ['Hasta 100', '100–500', '500–2000', 'Más de 2000'],
+   'pt': ['Até 100', '100–500', '500–2000', 'Mais de 2000'],
+   'de': ['Bis 100', '100–500', '500–2000', 'Über 2000']},
+ 'fulfillment.current_setup': {
+   'ru': ['Отгружаем сами', 'Свой склад', '3PL', 'Дропшиппинг'],
+   'en': ['We ship ourselves', 'Own warehouse', '3PL', 'Dropshipping'],
+   'es': ['Enviamos nosotros', 'Almacén propio', '3PL', 'Dropshipping'],
+   'pt': ['Enviamos nós', 'Armazém próprio', '3PL', 'Dropshipping'],
+   'de': ['Wir versenden selbst', 'Eigenes Lager', '3PL', 'Dropshipping']},
+ 'fulfillment.geography': {
+   'ru': ['По США', 'США и Канада', 'По всему миру', 'Один штат'],
+   'en': ['Across the US', 'US and Canada', 'Worldwide', 'One state'],
+   'es': ['Todo EE. UU.', 'EE. UU. y Canadá', 'Todo el mundo', 'Un estado'],
+   'pt': ['Todo os EUA', 'EUA e Canadá', 'Mundo todo', 'Um estado'],
+   'de': ['USA-weit', 'USA und Kanada', 'Weltweit', 'Ein Bundesstaat']},
+ 'fulfillment.what_happened': {
+   'ru': ['Долго собираем', 'Дорогая доставка', 'Ошибки в заказах', 'Нет места'],
+   'en': ['Slow picking', 'Shipping costs', 'Order errors', 'Out of space'],
+   'es': ['Preparación lenta', 'Envío caro', 'Errores en pedidos', 'Sin espacio'],
+   'pt': ['Separação lenta', 'Frete caro', 'Erros nos pedidos', 'Sem espaço'],
+   'de': ['Langsames Picken', 'Teurer Versand', 'Fehler in Bestellungen', 'Kein Platz']},
+ 'accounting.what_happened': {
+   'ru': ['Текущий учёт', 'Отчётность', 'Разобрать запущенное'],
+   'en': ['Ongoing bookkeeping', 'Filings', 'Clean up a backlog'],
+   'es': ['Contabilidad corriente', 'Declaraciones', 'Poner al día'],
+   'pt': ['Contabilidade corrente', 'Declarações', 'Colocar em dia'],
+   'de': ['Laufende Buchhaltung', 'Erklärungen', 'Rückstand aufräumen']},
+ 'accounting.business_type': {
+   'ru': ['LLC', 'C-Corp', 'S-Corp', 'Sole proprietor'],
+   'en': ['LLC', 'C-Corp', 'S-Corp', 'Sole proprietor'],
+   'es': ['LLC', 'C-Corp', 'S-Corp', 'Autónomo'],
+   'pt': ['LLC', 'C-Corp', 'S-Corp', 'Autônomo'],
+   'de': ['LLC', 'C-Corp', 'S-Corp', 'Einzelunternehmen']},
+ 'accounting.scale': {
+   'ru': ['До $10k', '$10–50k', '$50–200k', 'Больше $200k'],
+   'en': ['Up to $10k', '$10–50k', '$50–200k', 'Over $200k'],
+   'es': ['Hasta $10k', '$10–50k', '$50–200k', 'Más de $200k'],
+   'pt': ['Até $10k', '$10–50k', '$50–200k', 'Mais de $200k'],
+   'de': ['Bis $10k', '$10–50k', '$50–200k', 'Über $200k']},
+ 'accounting.urgency': {
+   'ru': ['Письмо из налоговой', 'Скоро дедлайн', 'Без срока'],
+   'en': ['Letter from the IRS', 'Deadline coming', 'No deadline'],
+   'es': ['Carta del fisco', 'Fecha límite cerca', 'Sin fecha'],
+   'pt': ['Carta do fisco', 'Prazo chegando', 'Sem prazo'],
+   'de': ['Schreiben vom Finanzamt', 'Frist steht an', 'Keine Frist']},
+ 'infrastructure.scale': {
+   'ru': ['Один', '2–5 человек', '5–20', 'Больше 20'],
+   'en': ['Just me', '2–5 people', '5–20', 'Over 20'],
+   'es': ['Solo yo', '2–5 personas', '5–20', 'Más de 20'],
+   'pt': ['Só eu', '2–5 pessoas', '5–20', 'Mais de 20'],
+   'de': ['Nur ich', '2–5 Personen', '5–20', 'Über 20']},
+ 'infrastructure.urgency': {
+   'ru': ['Срочно', 'В течение месяца', 'Не горит'],
+   'en': ['Urgent', 'Within a month', 'No rush'],
+   'es': ['Urgente', 'En un mes', 'Sin prisa'],
+   'pt': ['Urgente', 'Em um mês', 'Sem pressa'],
+   'de': ['Dringend', 'Innerhalb eines Monats', 'Keine Eile']},
+ 'growth.what_happened': {
+   'ru': ['Мало заявок', 'Дорогая реклама', 'Заявки не покупают', 'Продажи упали'],
+   'en': ['Too few leads', 'Ads cost too much', 'Leads do not buy', 'Sales dropped'],
+   'es': ['Pocos contactos', 'Publicidad cara', 'No compran', 'Bajaron las ventas'],
+   'pt': ['Poucos contatos', 'Anúncios caros', 'Não compram', 'Vendas caíram'],
+   'de': ['Zu wenige Anfragen', 'Werbung zu teuer', 'Anfragen kaufen nicht', 'Umsatz gefallen']},
+ 'growth.scale': {
+   'ru': ['До $10k в месяц', '$10–50k', '$50–200k', 'Больше $200k'],
+   'en': ['Up to $10k a month', '$10–50k', '$50–200k', 'Over $200k'],
+   'es': ['Hasta $10k al mes', '$10–50k', '$50–200k', 'Más de $200k'],
+   'pt': ['Até $10k por mês', '$10–50k', '$50–200k', 'Mais de $200k'],
+   'de': ['Bis $10k im Monat', '$10–50k', '$50–200k', 'Über $200k']},
+ 'growth.goal': {
+   'ru': ['Больше заявок', 'Дешевле заявка', 'Больше выручки'],
+   'en': ['More leads', 'Cheaper leads', 'More revenue'],
+   'es': ['Más contactos', 'Contactos más baratos', 'Más ingresos'],
+   'pt': ['Mais contatos', 'Contatos mais baratos', 'Mais receita'],
+   'de': ['Mehr Anfragen', 'Günstigere Anfragen', 'Mehr Umsatz']},
+ 'growth.urgency': {
+   'ru': ['Срочно', 'В течение месяца', 'Не горит'],
+   'en': ['Urgent', 'Within a month', 'No rush'],
+   'es': ['Urgente', 'En un mes', 'Sin prisa'],
+   'pt': ['Urgente', 'Em um mês', 'Sem pressa'],
+   'de': ['Dringend', 'Innerhalb eines Monats', 'Keine Eile']},
+ 'operations.what_happened': {
+   'ru': ['Переписка', 'Ручной ввод данных', 'Заказы и отгрузка', 'Отчёты'],
+   'en': ['Messaging', 'Manual data entry', 'Orders and shipping', 'Reports'],
+   'es': ['Mensajes', 'Captura manual', 'Pedidos y envíos', 'Informes'],
+   'pt': ['Mensagens', 'Digitação manual', 'Pedidos e envios', 'Relatórios'],
+   'de': ['Nachrichten', 'Manuelle Eingabe', 'Bestellungen und Versand', 'Berichte']},
+ 'operations.current_setup': {
+   'ru': ['Один человек', '2–5 человек', 'Больше 5', 'Всё в таблицах'],
+   'en': ['One person', '2–5 people', 'More than 5', 'All in spreadsheets'],
+   'es': ['Una persona', '2–5 personas', 'Más de 5', 'Todo en hojas'],
+   'pt': ['Uma pessoa', '2–5 pessoas', 'Mais de 5', 'Tudo em planilhas'],
+   'de': ['Eine Person', '2–5 Personen', 'Mehr als 5', 'Alles in Tabellen']},
+ 'operations.goal': {
+   'ru': ['Ничего не теряется', 'Меньше ручной работы', 'Видно статус'],
+   'en': ['Nothing gets lost', 'Less manual work', 'Status is visible'],
+   'es': ['Que no se pierda nada', 'Menos trabajo manual', 'Ver el estado'],
+   'pt': ['Nada se perde', 'Menos trabalho manual', 'Status visível'],
+   'de': ['Nichts geht verloren', 'Weniger Handarbeit', 'Status sichtbar']},
+ 'presence.what_happened': {
+   'ru': ['Мало заявок', 'Выглядит устарело', 'Медленно грузится', 'Неудобно на телефоне'],
+   'en': ['Too few leads', 'Looks dated', 'Loads slowly', 'Awkward on mobile'],
+   'es': ['Pocos contactos', 'Se ve anticuado', 'Carga lento', 'Incómodo en móvil'],
+   'pt': ['Poucos contatos', 'Parece antigo', 'Carrega devagar', 'Ruim no celular'],
+   'de': ['Zu wenige Anfragen', 'Wirkt veraltet', 'Lädt langsam', 'Mobil unpraktisch']},
+ 'presence.scale': {
+   'ru': ['Shopify', 'WordPress', 'Wix', 'Своя разработка', 'Не знаю'],
+   'en': ['Shopify', 'WordPress', 'Wix', 'Custom build', 'Not sure'],
+   'es': ['Shopify', 'WordPress', 'Wix', 'Desarrollo propio', 'No sé'],
+   'pt': ['Shopify', 'WordPress', 'Wix', 'Desenvolvimento próprio', 'Não sei'],
+   'de': ['Shopify', 'WordPress', 'Wix', 'Eigenentwicklung', 'Weiß nicht']},
+ 'payments.current_provider': {
+   'ru': ['Stripe', 'Square', 'PayPal', 'Authorize.net', 'Другой'],
+   'en': ['Stripe', 'Square', 'PayPal', 'Authorize.net', 'Other'],
+   'es': ['Stripe', 'Square', 'PayPal', 'Authorize.net', 'Otro'],
+   'pt': ['Stripe', 'Square', 'PayPal', 'Authorize.net', 'Outro'],
+   'de': ['Stripe', 'Square', 'PayPal', 'Authorize.net', 'Anderer']},
+ 'payments.what_happened': {
+   'ru': ['Закрыли аккаунт', 'Держат деньги', 'Много споров', 'Отказали при открытии'],
+   'en': ['Account closed', 'Funds held', 'Too many disputes', 'Declined at signup'],
+   'es': ['Cerraron la cuenta', 'Retienen el dinero', 'Muchas disputas', 'Rechazaron el alta'],
+   'pt': ['Conta encerrada', 'Dinheiro retido', 'Muitas disputas', 'Recusaram o cadastro'],
+   'de': ['Konto gekündigt', 'Geld einbehalten', 'Viele Disputes', 'Antrag abgelehnt']},
+ 'payments.urgency': {
+   'ru': ['Полностью остановлен', 'Частично работает'],
+   'en': ['Fully stopped', 'Partly working'],
+   'es': ['Totalmente detenido', 'Funciona en parte'],
+   'pt': ['Totalmente parado', 'Funciona em parte'],
+   'de': ['Völlig gestoppt', 'Teilweise aktiv']},
+ 'payments.scale': {
+   'ru': ['До $10k', '$10–50k', '$50–200k', 'Больше $200k'],
+   'en': ['Up to $10k', '$10–50k', '$50–200k', 'Over $200k'],
+   'es': ['Hasta $10k', '$10–50k', '$50–200k', 'Más de $200k'],
+   'pt': ['Até $10k', '$10–50k', '$50–200k', 'Mais de $200k'],
+   'de': ['Bis $10k', '$10–50k', '$50–200k', 'Über $200k']},
+ 'payments.business_type': {
+   'ru': ['Товары', 'Услуги', 'И то, и другое'],
+   'en': ['Products', 'Services', 'Both'],
+   'es': ['Productos', 'Servicios', 'Ambos'],
+   'pt': ['Produtos', 'Serviços', 'Os dois'],
+   'de': ['Produkte', 'Dienstleistungen', 'Beides']},
+ 'banking.business_type': {
+   'ru': ['LLC', 'C-Corp', 'Нерезидент США', 'Ещё не открыли'],
+   'en': ['LLC', 'C-Corp', 'Non-US resident', 'Not registered yet'],
+   'es': ['LLC', 'C-Corp', 'No residente en EE. UU.', 'Aún sin registrar'],
+   'pt': ['LLC', 'C-Corp', 'Não residente nos EUA', 'Ainda não registrada'],
+   'de': ['LLC', 'C-Corp', 'Nicht in den USA ansässig', 'Noch nicht gegründet']},
+ 'banking.goal': {
+   'ru': ['Счёт в долларах', 'Wires', 'Карты для команды', 'Несколько валют'],
+   'en': ['A dollar account', 'Wires', 'Team cards', 'Several currencies'],
+   'es': ['Cuenta en dólares', 'Transferencias', 'Tarjetas de equipo', 'Varias monedas'],
+   'pt': ['Conta em dólares', 'Transferências', 'Cartões da equipe', 'Várias moedas'],
+   'de': ['Dollarkonto', 'Überweisungen', 'Teamkarten', 'Mehrere Währungen']},
+ 'credit.goal': {
+   'ru': ['Финансирование', 'Заём', 'Аренда', 'Просто разобраться'],
+   'en': ['Funding', 'A loan', 'A lease', 'Just to understand it'],
+   'es': ['Financiación', 'Un préstamo', 'Un alquiler', 'Solo entenderlo'],
+   'pt': ['Financiamento', 'Um empréstimo', 'Um aluguel', 'Só entender'],
+   'de': ['Finanzierung', 'Ein Kredit', 'Eine Miete', 'Nur verstehen']},
+ 'credit.current_setup': {
+   'ru': ['Credit Karma', 'Experian', 'Банк', 'Ничего не смотрел'],
+   'en': ['Credit Karma', 'Experian', 'My bank', 'Nothing yet'],
+   'es': ['Credit Karma', 'Experian', 'Mi banco', 'Nada todavía'],
+   'pt': ['Credit Karma', 'Experian', 'Meu banco', 'Nada ainda'],
+   'de': ['Credit Karma', 'Experian', 'Meine Bank', 'Noch nichts']},
  'presence.has_site': {
    'ru': ['Сайта нет', 'Сайт есть'],
    'en': ['No website', 'We have a website'],
@@ -505,30 +719,12 @@ def _н(main, near=()):
    'es': ['Urgente', 'En un mes', 'Sin prisa'],
    'pt': ['Urgente', 'Em um mês', 'Sem pressa'],
    'de': ['Dringend', 'Innerhalb eines Monats', 'Keine Eile']},
- 'Какой процессор сейчас и что именно произошло?': {
-   'ru': ['Stripe', 'Square', 'PayPal', 'Authorize.net', 'Другой'],
-   'en': ['Stripe', 'Square', 'PayPal', 'Authorize.net', 'Other'],
-   'es': ['Stripe', 'Square', 'PayPal', 'Authorize.net', 'Otro'],
-   'pt': ['Stripe', 'Square', 'PayPal', 'Authorize.net', 'Outro'],
-   'de': ['Stripe', 'Square', 'PayPal', 'Authorize.net', 'Anderer']},
- 'Приём платежей сейчас работает хоть как-то или остановлен полностью?': {
-   'ru': ['Полностью остановлен', 'Частично работает'],
-   'en': ['Fully stopped', 'Partly working'],
-   'es': ['Totalmente detenido', 'Funciona en parte'],
-   'pt': ['Totalmente parado', 'Funciona em parte'],
-   'de': ['Völlig gestoppt', 'Teilweise aktiv']},
  'Что произошло со счётом: отказ, закрытие или ограничения?': {
    'ru': ['Отказали', 'Закрыли', 'Ограничили'],
    'en': ['Declined', 'Closed', 'Restricted'],
    'es': ['Rechazaron', 'Cerraron', 'Limitaron'],
    'pt': ['Recusaram', 'Encerraram', 'Limitaram'],
    'de': ['Abgelehnt', 'Gekündigt', 'Eingeschränkt']},
- 'Что продаёте?': {
-   'ru': ['Товары', 'Услуги', 'И то, и другое'],
-   'en': ['Products', 'Services', 'Both'],
-   'es': ['Productos', 'Servicios', 'Ambos'],
-   'pt': ['Produtos', 'Serviços', 'Os dois'],
-   'de': ['Produkte', 'Dienstleistungen', 'Beides']},
 }
 
 
