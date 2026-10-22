@@ -35,12 +35,32 @@ _О = ('xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height
 }
 
 CSS = """
-/* Соцсети в подвале: восемь иконок одной строкой, без подписей. Подписи
-   удлиняют подвал вдвое и ничего не добавляют — иконки узнаются. */
+/* Соцсети: восемь иконок одной строкой, без подписей. Подписи удлиняют
+   подвал вдвое и ничего не добавляют — иконки узнаются. */
 .soc{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
 .soc a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
  border:1px solid var(--line);border-radius:999px;color:var(--ink2);text-decoration:none}
 .soc a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* В подвале иконки стоят в одной строке с логотипом и прижаты вправо.
+   На узком экране строка переносится и они уходят под логотип. */
+.foot-top{display:flex;align-items:center;justify-content:space-between;gap:16px 20px;flex-wrap:wrap}
+.foot-top .soc-wrap{margin:0}
+.foot-top .soc{margin:0}
+
+/* В шапке — тот же набор, но без кружков и мельче: это вторая по важности
+   группа, рядом с языками и кнопкой. Показываем только там, где хватает
+   ширины; на узких экранах иконки живут в выпадающем меню. */
+.soc-top{display:none;align-items:center;gap:0;margin-right:6px}
+@media(min-width:1180px){.soc-top{display:flex}}
+.soc-top a{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;
+ color:var(--ink3);text-decoration:none}
+.soc-top a:hover{color:var(--accent)}
+.soc-top svg{width:16px;height:16px}
+.soc-mob{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.soc-mob a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
+ border:1px solid var(--line);border-radius:999px;color:var(--ink2);text-decoration:none}
+@media(min-width:1180px){.soc-mob{display:none}}
 """
 
 
@@ -48,10 +68,24 @@ def блок(заголовок: str = "") -> str:
     """Строка иконок со ссылками. Пустая строка, если сетей в фактах нет."""
     if not СЕТИ:
         return ""
-    ссылки = "".join(
+    ссылки = _ссылки()
+    шапка = f'<span class="mono" style="display:block;margin-bottom:6px">{H.escape(заголовок)}</span>' if заголовок else ""
+    return f'<div class="soc-wrap">{шапка}<div class="soc">{ссылки}</div></div>'
+
+
+def _ссылки() -> str:
+    return "".join(
         f'<a href="{H.escape(с["url"])}" target="_blank" rel="noopener me" '
         f'aria-label="{H.escape(с["name"])}" title="{H.escape(с["name"])}">'
         f'{ИКОНКИ.get(с.get("icon",""), "")}</a>'
         for с in СЕТИ if ИКОНКИ.get(с.get("icon", "")))
-    шапка = f'<span class="mono" style="display:block;margin-bottom:6px">{H.escape(заголовок)}</span>' if заголовок else ""
-    return f'<div class="soc-wrap">{шапка}<div class="soc">{ссылки}</div></div>'
+
+
+def шапка() -> str:
+    """Компактный ряд для верхней панели. Пустая строка, если сетей нет."""
+    return f'<div class="soc-top">{_ссылки()}</div>' if СЕТИ else ""
+
+
+def меню() -> str:
+    """Тот же ряд для выпадающего меню на узком экране."""
+    return f'<div class="soc-mob">{_ссылки()}</div>' if СЕТИ else ""

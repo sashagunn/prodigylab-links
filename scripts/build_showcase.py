@@ -452,6 +452,7 @@ fbq('init','{PIXEL}');fbq('track','PageView');
   <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
   <div class="nav-mid">{navmid}<a href="{PAGE_PATH[code]}" aria-current="page">{e(t['nav'])}</a></div>
   <div class="nav-right">
+   {SOC.шапка()}
    <div class="langs">{langs}</div>
    <a class="icon" href="{PHONE_HREF}" target="_blank" rel="noopener"
       aria-label="{e(d['wa_label'])} {PHONE_TEXT}" title="{e(d['wa_label'])}">{WA_SVG}</a>
@@ -466,6 +467,7 @@ fbq('init','{PIXEL}');fbq('track','PageView');
   <a class="btn" href="{diag}" data-diag>{e(d['cta1'])}</a>
   <a class="ml" href="{PHONE_HREF}" target="_blank" rel="noopener">{e(d['wa_label'])} {PHONE_TEXT}</a>
   <div class="mlangs">{langs}</div>
+  {SOC.меню()}
  </div></div>
 </nav>
 
@@ -490,7 +492,10 @@ fbq('init','{PIXEL}');fbq('track','PageView');
 
 <footer>
  <div class="wrap">
-  <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
+  <div class="foot-top">
+   <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
+   {SOC.блок()}
+  </div>
   <div class="flinks">
    <a href="{d['home']}">{e(t['footer_back'])}</a>
    <a href="{PAGE_PATH[code]}">{e(t['nav'])}</a>
@@ -501,7 +506,6 @@ fbq('init','{PIXEL}');fbq('track','PageView');
    <span class="mono" style="display:block;margin-bottom:10px">{e(SERVICE_HEAD[code])}</span>
    <div class="flinks" style="margin:0">{service_links(code)}</div>
   </div>
-  {SOC.блок(СОЦПОДПИСЬ.get(code, ''))}
   <p class="fmeta">© 2026 Prodigy LAB · Platonaire LLC · California, USA<br>{e(d['foot_legal'])}</p>
  </div>
 </footer>

@@ -1598,6 +1598,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
   <a class="brand" href="{d['home']}"><b>PRODIGY</b><span>LAB</span></a>
   <div class="nav-mid">{navmid}{showcase_link}</div>
   <div class="nav-right">
+   {SOC.шапка()}
    <div class="langs">{langs}</div>
    <a class="icon" href="{WA}" target="_blank" rel="noopener"
       aria-label="{e(d['wa_label'])} {PHONE_TEXT}" title="{e(d['wa_label'])}">{WA_SVG}</a>
@@ -1611,6 +1612,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
   <a class="btn" href="#start">{e(d['cta1'])}</a>
   <a class="ml" href="{WA}" target="_blank" rel="noopener">{e(d['wa_label'])} {PHONE_TEXT}</a>
   <div class="mlangs">{langs}</div>
+  {SOC.меню()}
  </div></div>
 </nav>
 
@@ -1677,8 +1679,11 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
 </div>
 <footer>
  <div class="wrap">
-  <a class="brand foot-mark" href="{d['home']}"><img src="/assets/logo-cone.png"
-     alt="Prodigy LAB" width="44" height="44" loading="lazy" decoding="async"><b>PRODIGY</b><span>LAB</span></a>
+  <div class="foot-top">
+   <a class="brand foot-mark" href="{d['home']}"><img src="/assets/logo-cone.png"
+      alt="Prodigy LAB" width="44" height="44" loading="lazy" decoding="async"><b>PRODIGY</b><span>LAB</span></a>
+   {SOC.блок()}
+  </div>
   <div class="flinks">
    {"".join(f'<a href="{h}">{e(t)}</a>' for h,t in _nav)}{showcase_foot}
    <a href="{WA}" target="_blank" rel="noopener">WhatsApp {PHONE_TEXT}</a>
@@ -1688,7 +1693,6 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
    <span class="mono" style="display:block;margin-bottom:10px">{H.escape(SERVICE_HEAD[code])}</span>
    <div class="flinks" style="margin:0">{service_links(code)}</div>
   </div>
-  {SOC.блок(СОЦПОДПИСЬ.get(code, ''))}
   <p class="fmeta">© 2026 Prodigy LAB · Platonaire LLC · California, USA<br>{e(d['foot_legal'])}</p>
  </div>
 </footer>
@@ -1961,7 +1965,7 @@ def страница_кто(code):
 <nav>
  <div class="wrap nav-in">
   <a class="brand" href="{дом}"><b>PRODIGY</b><span>LAB</span></a>
-  <div class="nav-right"><div class="langs">{языки}</div></div>
+  <div class="nav-right">{SOC.шапка()}<div class="langs">{языки}</div></div>
  </div>
 </nav>
 <main class="kt">
@@ -1981,8 +1985,10 @@ def страница_кто(code):
  </div>
 </main>
 <footer class="foot"><div class="wrap">
- {SOC.блок()}
- <span>{e(_F['identity']['legalName'])} &middot; {e(_F['identity']['name'])}</span>
+ <div class="foot-top">
+  <span>{e(_F['identity']['legalName'])} &middot; {e(_F['identity']['name'])}</span>
+  {SOC.блок()}
+ </div>
 </div></footer>
 </body>
 </html>"""

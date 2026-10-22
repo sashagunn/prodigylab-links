@@ -248,7 +248,7 @@ def страница(it: dict, lang: str) -> str:
 <body>
 <header><div class="wrap">
  <a class="brand" href="{ГЛАВНАЯ[lang]}"><b>PRODIGY</b> LAB</a>
- <nav class="langs">{языки}</nav>
+ <span style="display:flex;align-items:center">{SOC.шапка()}<nav class="langs">{языки}</nav></span>
 </div></header>
 <main><div class="wrap">
  <span class="mono">{e(п['eyebrow'])}</span>
@@ -266,7 +266,7 @@ def страница(it: dict, lang: str) -> str:
   <a href="{ГАЛЕРЕЯ[lang]}">{e(п['back'])}</a>
  </div>
 </div></main>
-<footer><div class="wrap">{SOC.блок()}© 2026 Prodigy LAB · Platonaire LLC</div></footer>
+<footer><div class="wrap"><div class="foot-top"><span>© 2026 Prodigy LAB · Platonaire LLC</span>{SOC.блок()}</div></div></footer>
 </body>
 </html>"""
 

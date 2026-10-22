@@ -70,6 +70,13 @@ def nav(lang):
     t = dict(sv='Услуги', pr='Цены', ab='О студии', cs='Кейсы', cta='Написать') if lang == 'ru' \
         else dict(sv='Services', pr='Pricing', ab='About', cs='Cases', cta='Talk to us')
     home = '/ru/' if lang == 'ru' else '/'
+    соцверх = "".join(
+        f'<a href="{с["url"]}" target="_blank" rel="noopener me" aria-label="{с["name"]}" '
+        f'title="{с["name"]}" style="width:28px;height:28px" '
+        f'class="inline-flex items-center justify-center text-text-muted '
+        f'hover:text-accent-green transition-colors">'
+        f'{SOC.ИКОНКИ.get(с.get("icon",""),"").replace(chr(34)+"18"+chr(34), chr(34)+"16"+chr(34))}</a>'
+        for с in SOC.СЕТИ if SOC.ИКОНКИ.get(с.get("icon","")))
     return f'''
 <nav class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-border-subtle" aria-label="{'Основная навигация' if lang=='ru' else 'Primary'}">
 <div class="flex justify-between items-center max-w-[1200px] mx-auto px-8 h-20">
@@ -80,7 +87,7 @@ def nav(lang):
 <a {A_MUTED} href="/case-studies/">{t['cs']}</a>
 <a {A_MUTED} href="/en/pricing/">{t['pr']}</a>
 </div>
-<a href="https://wa.me/18182690416" target="_blank" rel="noopener" aria-label="WhatsApp +1 818 269-0416" title="WhatsApp +1 818 269-0416" class="w-11 h-11 inline-flex items-center justify-center text-on-surface hover:text-accent-green transition-colors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20.5l1.6-4.7A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg></a><a href="https://wa.me/18182690416" target="_blank" rel="noopener" class="bg-accent-green text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:brightness-90 hover:scale-[1.02] active:scale-[0.98] transition-all">{t['cta']}</a>
+<div class="hidden xl:flex items-center">{соцверх}</div><a href="https://wa.me/18182690416" target="_blank" rel="noopener" aria-label="WhatsApp +1 818 269-0416" title="WhatsApp +1 818 269-0416" class="w-11 h-11 inline-flex items-center justify-center text-on-surface hover:text-accent-green transition-colors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20.5l1.6-4.7A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg></a><a href="https://wa.me/18182690416" target="_blank" rel="noopener" class="bg-accent-green text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:brightness-90 hover:scale-[1.02] active:scale-[0.98] transition-all">{t['cta']}</a>
 </div>
 </nav>
 <main id="main">'''
@@ -107,10 +114,12 @@ def footer(lang):
     return f'''</main>
 <footer class="bg-white border-t border-border-subtle py-20">
 <div class="max-w-[1200px] mx-auto px-8">
-<div class="text-2xl font-bold tracking-tighter mb-4"><span class="text-accent-green">PRODIGY</span> <span class="font-light">LAB</span></div>
+<div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+<div class="text-2xl font-bold tracking-tighter"><span class="text-accent-green">PRODIGY</span> <span class="font-light">LAB</span></div>
+<div class="flex flex-wrap gap-2">{соцсети}</div>
+</div>
 <p class="text-lg italic text-accent-green mb-8 max-w-sm">{slogan}</p>
 <div class="flex flex-wrap gap-x-10 gap-y-3 text-[11px] font-mono uppercase tracking-widest text-text-muted mb-8">{ls}</div>
-<div class="flex flex-wrap gap-2 mb-8">{соцсети}</div>
 <div class="font-mono text-[11px] uppercase tracking-[0.3em] text-text-muted">© 2026 Prodigy LAB · {FACTS['identity']['legalName']} · California, USA</div>
 </div>
 </footer>
