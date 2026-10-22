@@ -27,7 +27,7 @@ import sys
 import html as H
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_home import CSS, PHONE_SVG, PHONE_HREF, PHONE_TEXT, DIAG, PIXEL, ORIGIN, \
+from build_home import CSS, WA_SVG, PHONE_HREF, PHONE_TEXT, DIAG, PIXEL, ORIGIN, \
     LANGNAMES, PRIVACY, PRIVACY_TAG, SERVICE_HEAD, service_links
 from home_content import L
 from showcase_content import S, HOME, NICHE, SOLUTION
@@ -450,7 +450,8 @@ fbq('init','{PIXEL}');fbq('track','PageView');
   <div class="nav-mid">{navmid}<a href="{PAGE_PATH[code]}" aria-current="page">{e(t['nav'])}</a></div>
   <div class="nav-right">
    <div class="langs">{langs}</div>
-   <a class="icon" href="{PHONE_HREF}" aria-label="{e(d['call'])} {PHONE_TEXT}" title="{PHONE_TEXT}">{PHONE_SVG}</a>
+   <a class="icon" href="{PHONE_HREF}" target="_blank" rel="noopener"
+      aria-label="{e(d['wa_label'])} {PHONE_TEXT}" title="{e(d['wa_label'])}">{WA_SVG}</a>
    <button id="burger" class="icon" aria-label="Menu" aria-expanded="false" onclick="tg(this)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
    </button>
@@ -460,7 +461,7 @@ fbq('init','{PIXEL}');fbq('track','PageView');
  <div id="mob"><div class="wrap">{mobls}
   <a class="ml" href="{PAGE_PATH[code]}">{e(t['nav'])}</a>
   <a class="btn" href="{diag}" data-diag>{e(d['cta1'])}</a>
-  <a class="ml" href="{PHONE_HREF}">{e(d['call'])} {PHONE_TEXT}</a>
+  <a class="ml" href="{PHONE_HREF}" target="_blank" rel="noopener">{e(d['wa_label'])} {PHONE_TEXT}</a>
   <div class="mlangs">{langs}</div>
  </div></div>
 </nav>
@@ -490,7 +491,7 @@ fbq('init','{PIXEL}');fbq('track','PageView');
   <div class="flinks">
    <a href="{d['home']}">{e(t['footer_back'])}</a>
    <a href="{PAGE_PATH[code]}">{e(t['nav'])}</a>
-   <a href="{PHONE_HREF}">{PHONE_TEXT}</a>
+   <a href="{PHONE_HREF}">WhatsApp {PHONE_TEXT}</a>
    <a href="{PRIVACY[code]}">{e(d['foot_priv'])}{PRIVACY_TAG[code]}</a>
   </div>
   <div style="border-top:1px solid var(--line);padding-top:18px">

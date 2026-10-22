@@ -325,7 +325,7 @@ def _б(problem, approach, steps, need, limits, cta):
  'ru': _б('Бизнесу нужны деньги на рост или кассовый разрыв',
           'Сначала считаем, под что берутся деньги и чем они возвращаются. '
           'Потом смотрим, какие площадки вообще рассматривают такой профиль.',
-          [('Считаем цель Действующего партнёра по финансированию у нас сейчас нет: следующий шаг — разбор нашей командой, а не передача конкретному провайдеру.', 'Подо что деньги и что они закроют'),
+          [('Считаем цель', 'Подо что деньги и что они закроют'),
            ('Смотрим профиль', 'Возраст бизнеса, оборот, уже взятые обязательства'),
            ('Готовим пакет', 'Выписки и документы в том виде, в каком их читают'),
            ('Говорим прямо', 'Что реально подходит, а что нет')],
@@ -337,7 +337,7 @@ def _б(problem, approach, steps, need, limits, cta):
  'en': _б('The business needs money for growth or a cash gap',
           'First we work out what the money is for and what repays it. '
           'Then which venues even look at a profile like this.',
-          [('Count the goal We have no active funding partner right now: the next step is a review by our own team, not a handoff to a named provider.', 'What the money is for and what it closes'),
+          [('Count the goal', 'What the money is for and what it closes'),
            ('Look at the profile', 'Age, revenue, obligations already taken'),
            ('Prepare the pack', 'Statements and documents in the form they are read'),
            ('Say it straight', 'What actually fits and what does not')],
@@ -349,7 +349,7 @@ def _б(problem, approach, steps, need, limits, cta):
  'es': _б('El negocio necesita dinero para crecer o cubrir caja',
           'Primero calculamos para qu\u00e9 es el dinero y con qu\u00e9 se devuelve. '
           'Luego qu\u00e9 entidades miran siquiera un perfil as\u00ed.',
-          [('Calculamos el objetivo Hoy no tenemos socio activo de financiación: el siguiente paso es un análisis de nuestro equipo, no un traspaso a un proveedor concreto.', 'Para qu\u00e9 es el dinero y qu\u00e9 cubre'),
+          [('Calculamos el objetivo', 'Para qu\u00e9 es el dinero y qu\u00e9 cubre'),
            ('Miramos el perfil', 'Antig\u00fcedad, facturaci\u00f3n, obligaciones ya tomadas'),
            ('Preparamos el paquete', 'Extractos y documentos como se leen'),
            ('Decimos claro', 'Qué encaja de verdad y qué no')],
@@ -361,7 +361,7 @@ def _б(problem, approach, steps, need, limits, cta):
  'pt': _б('O neg\u00f3cio precisa de dinheiro para crescer ou cobrir caixa',
           'Primeiro calculamos para que \u00e9 o dinheiro e com o que ele volta. '
           'Depois quais institui\u00e7\u00f5es sequer olham um perfil assim.',
-          [('Calculamos o objetivo Hoje não temos parceiro ativo de financiamento: o próximo passo é uma análise da nossa equipe, não um repasse a um fornecedor específico.', 'Para que \u00e9 o dinheiro e o que ele cobre'),
+          [('Calculamos o objetivo', 'Para que \u00e9 o dinheiro e o que ele cobre'),
            ('Olhamos o perfil', 'Idade, faturamento, obriga\u00e7\u00f5es j\u00e1 assumidas'),
            ('Preparamos o pacote', 'Extratos e documentos no formato em que s\u00e3o lidos'),
            ('Falamos direto', 'O que realmente serve e o que não')],
@@ -373,7 +373,7 @@ def _б(problem, approach, steps, need, limits, cta):
  'de': _б('Das Gesch\u00e4ft braucht Geld f\u00fcr Wachstum oder eine Liquidit\u00e4tsl\u00fccke',
           'Zuerst rechnen wir, wof\u00fcr das Geld ist und womit es zur\u00fcckkommt. '
           'Dann, welche Stellen so ein Profil \u00fcberhaupt ansehen.',
-          [('Ziel rechnen Einen aktiven Finanzierungspartner haben wir derzeit nicht: der nächste Schritt ist eine Prüfung durch unser Team, keine Weitergabe an einen bestimmten Anbieter.', 'Wof\u00fcr das Geld ist und was es schlie\u00dft'),
+          [('Ziel rechnen', 'Wof\u00fcr das Geld ist und was es schlie\u00dft'),
            ('Profil ansehen', 'Alter, Umsatz, bereits bestehende Verpflichtungen'),
            ('Paket vorbereiten', 'Ausz\u00fcge und Unterlagen in der gelesenen Form'),
            ('Klar sagen', 'Was wirklich passt und was nicht')],

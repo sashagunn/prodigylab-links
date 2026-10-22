@@ -372,7 +372,8 @@ JS = """
   уст('#s-task .hm-mono',d.task+' <i></i>');
   уст('#s-clar .hm-mono',d.clarify+' <i></i>');
   уст('#s-next .hm-mono',d.nxt+' <i></i>');
-  уст('.hm-shot figcaption','<span class="tag">'+d.sample+'</span>'+d.sample_cap);
+  уст('.hm-shot figcaption','<span class="tag">'+d.sample+'</span>'
+      +'<span class="cap-t">'+d.sample_cap+'</span>');
   // Подписи «Вы» и «Помощник» — наши, их обновляем. Текст реплик клиента
   // не трогаем ни при каких условиях: это его слова.
   поток.querySelectorAll('.m-you>b').forEach(function(b){ b.textContent=d.you; });
@@ -466,7 +467,10 @@ JS = """
    +'<input id="fin-n" type="text" autocomplete="off">'
    +'<div class="row"><button type="button" class="hm-go" data-send>'+экр(T().send_lead)+'</button>'
    +'<span data-msg></span></div>';
-  поток.appendChild(d); поток.scrollTop=поток.scrollHeight;
+  поток.appendChild(d);
+  // Итоговый блок высокий: мотать в самый низ бессмысленно — человек увидит
+  // кнопку отправки и не увидит, что именно отправляет. Показываем его начало.
+  поток.scrollTop=Math.max(0, d.offsetTop - поток.offsetTop - 8);
   финалБлок=d;
 
   var способ='';
@@ -866,7 +870,7 @@ JS = """
   return '<figure class="ill">'
    +'<div class="ill-img"><img src="/assets/il/'+файл+'.jpg" alt="" decoding="async"></div>'
    +'<figcaption><span class="tag">'+экр(t.scheme||'')+'</span>'
-   +экр(б.problem)+'</figcaption></figure>';
+   +'<span class="cap-t">'+экр(б.problem)+'</span></figcaption></figure>';
  }
  var ключСцены='', счётСцен=0;
  // Ждём, пока снимки новой сцены лягут в кеш. Иначе кадр проявляется пустым,

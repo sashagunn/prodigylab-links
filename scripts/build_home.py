@@ -131,7 +131,13 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 #lang-list button[aria-current="true"]{color:var(--accent)}
 /* Пустая лента держит высоту и подсказывает, с чего начать. */
 .stream{min-height:150px;max-height:min(38vh,360px);overflow:auto;padding:14px 16px;
-  display:flex;flex-direction:column;justify-content:flex-end;gap:9px;scrollbar-width:thin}
+  display:flex;flex-direction:column;gap:9px;scrollbar-width:thin}
+/* Прижимаем переписку к низу отступом первого сообщения, а НЕ justify-content.
+   В прокручиваемой флекс-колонке justify-content:flex-end обрезает всё, что не
+   влезло сверху, и до него нельзя домотать: scrollHeight даже не растёт.
+   Из-за этого форма заявки оказывалась наполовину за краем, способ связи
+   нельзя было выбрать, а лента «не крутилась». */
+.stream>:first-child{margin-top:auto}
 .m{font-size:15px;line-height:1.5;border-radius:16px;padding:10px 14px;max-width:92%}
 .m>b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--ink3);font-weight:400;margin-bottom:3px}
@@ -577,6 +583,12 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
   font-size:14px;color:var(--ink2)}
 .ill figcaption .tag{background:rgba(255,255,255,.85);border:1px solid var(--line);
   padding:4px 9px;border-radius:999px}
+/* Подпись лежит поверх фотографии, а фотография у каждой задачи своя. Серый
+   текст без подложки на светлом снимке не читается вовсе. Даём плашку, как
+   у метки слева: обводка и тень по тексту запрещены, читаемость — только
+   подложкой. */
+.ill figcaption .cap-t{background:rgba(255,255,255,.92);
+  border:1px solid var(--line);border-radius:12px;padding:5px 11px;color:var(--ink)}
 
 /* ветвление: линии прорисовываются при появлении */
 .tree-br:before{transform-origin:top;transform:scaleY(0);
@@ -777,6 +789,17 @@ h1#h1 .ln>span.in{transform:none;opacity:1}
 .cl-nm{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:14.5px;
   font-weight:500}
 .cl-nm i{font-style:normal;color:var(--ink3);font-size:12px}
+/* Две последние плитки — не клиенты: пример решения и вход в каталог.
+   Отличаются подписью и заливкой, чтобы их не читали как ещё один сайт. */
+.cl-kind{display:block;margin-top:3px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--ink3)}
+.cl-shot-all{display:flex;align-items:center;justify-content:center;
+  aspect-ratio:1/1;background:var(--paper2);text-align:center}
+.cl-shot-all span{font-size:15px;line-height:1.35;color:var(--ink);
+  padding:0 14px;display:inline-flex;align-items:center;gap:7px;flex-wrap:wrap;
+  justify-content:center}
+.cl-shot-all i{font-style:normal;color:var(--accent2)}
+.cl-all:hover .cl-shot-all{background:var(--accent-soft)}
 .cl:hover .cl-nm{color:var(--accent2)}
 @media (max-width:700px){
   .cl-grid{grid-template-columns:1fr 1fr;gap:12px}
@@ -837,6 +860,9 @@ body[data-flow="ops"] #works{display:none}
 h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content:flex-end}
 /* Лента фиксированной высоты: сообщения прокручиваются внутри, панель не растёт. */
 .stream{height:150px;min-height:0;max-height:none}
+/* Исключение — итоговый блок с формой заявки: в 150 px он не живёт. Лента
+   разово вырастает на последнем шаге, когда человек оставляет контакты. */
+.stream:has(.fin){height:auto;min-height:150px;max-height:min(62vh,560px)}
 /* Сцена одной высоты во всех трёх видах — вместе с подписью и переключателем. */
 #hm-scene{height:clamp(300px,34vw,440px);min-height:0}
 @media (max-width:1080px){
@@ -845,6 +871,7 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
 @media (max-width:700px){
   h1#h1{min-height:calc(2.2em)}
   .stream{height:118px}
+  .stream:has(.fin){height:auto;min-height:118px;max-height:72vh}
   #hm-scene{height:240px}
 }
 
@@ -1044,6 +1071,26 @@ def блок_клиентов(code: str) -> str:
         f'width="600" height="600" loading="lazy" decoding="async"></span>'
         f'<span class="cl-nm">{e(n)}<i>&#8599;</i></span></a>'
         for n, u, i in CLIENTS)
+    # Два последних места в сетке занимают не клиенты: сначала живой пример
+    # решения, потом переход в каталог. Пустые клетки в ряду выглядели
+    # недоделкой, а показать больше клиентских сайтов нам нечем.
+    from build_showcase import PAGE_PATH as _ПУТЬ_ВИТРИНЫ, РАБОТА as _ПУТЬ_РАБОТЫ
+    from showcase_content import S as _ВИТРИНА
+    витрина = _каталог()
+    if витрина:
+        пример = витрина[0]
+        карточки += (
+            f'<a class="cl cl-demo" href="{_ПУТЬ_РАБОТЫ[code]}{пример["slug"]}/">'
+            f'<span class="cl-shot"><img src="{пример["cover"]}" '
+            f'alt="{e(пример["title"][code])}" width="600" height="600" '
+            f'loading="lazy" decoding="async"></span>'
+            f'<span class="cl-nm">{e(пример["title"][code])}<i>&#8599;</i></span>'
+            f'<span class="cl-kind">{e(d["cases_demo"])}</span></a>')
+        карточки += (
+            f'<a class="cl cl-all" href="{_ПУТЬ_ВИТРИНЫ[code]}">'
+            f'<span class="cl-shot cl-shot-all"><span>{e(_ВИТРИНА[code]["nav"])}'
+            f'<i>&#8594;</i></span></span>'
+            f'<span class="cl-nm">{e(d["cases_all"])}<i>&#8599;</i></span></a>')
     return (f'<section class="band-clients" id="clients"><div class="wrap">'
             f'<p class="eyebrow">{e(d["cases_eyebrow"])}</p>'
             f'<h2>{e(d["cases_h2"])}</h2>'
@@ -1548,7 +1595,7 @@ setTimeout(function(){{h.classList.remove("pl-adapt-pending")}},1500);}}}}catch(
      alt="Prodigy LAB" width="44" height="44" loading="lazy" decoding="async"><b>PRODIGY</b><span>LAB</span></a>
   <div class="flinks">
    {"".join(f'<a href="{h}">{e(t)}</a>' for h,t in _nav)}{showcase_foot}
-   <a href="{WA}" target="_blank" rel="noopener">{PHONE_TEXT}</a>
+   <a href="{WA}" target="_blank" rel="noopener">WhatsApp {PHONE_TEXT}</a>
    <a href="{PRIVACY[code]}">{e(d['foot_priv'])}{PRIVACY_TAG[code]}</a>
   </div>
   <div style="border-top:1px solid var(--line);padding-top:18px">
