@@ -1523,6 +1523,7 @@ def page(code):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {'<meta name="msvalidate.01" content="F49FB5139071EDA53E1B8CC76652A8D8" />' if code=='ru' else ''}
+<meta name="msvalidate.01" content="754F45B8A8E3588C51D1176ED2B2B224" />
 <title>{e(d['title'])}</title>
 <meta name="description" content="{e(d['desc'])}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
