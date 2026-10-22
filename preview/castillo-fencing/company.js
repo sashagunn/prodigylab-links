@@ -1,1 +1,0 @@
-export const company = Object.freeze({name: "Castillo Fencing", region: "Sacramento, California", officialUrl: "https://www.castillofencingnorcal.com/", materials: ["Redwood","Vinyl","Wrought iron / aluminum","Chain link","Galvanized frames","Custom"]});

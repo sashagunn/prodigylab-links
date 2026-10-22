@@ -8,9 +8,24 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Public+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="tw.css"/>
 <style>
+  /* Готовая цель нажатия. ВАЖНО: здесь НЕТ свойства display, и добавлять его
+     нельзя. Композиционный CSS подключается ПОСЛЕ tw.css, поэтому своё
+     display:inline-flex в таком классе побеждает утилиту hidden — элемент
+     перестаёт прятаться там, где должен: в шапке на 1440 появляются два
+     телефона сразу. Случилось трижды подряд. display задаёт утилита. */
+  .pf-tap{min-height:44px;align-items:center}
+
+  /* Значки — свои, из templates/icons.mjs: сборка подставляет их в готовую
+     разметку, страница ничего не грузит. Класс остался прежним, и правило
+     задаёт коробку по кеглю — на случай, если композиция напишет значок
+     вручную. Прежде здесь был шрифт Material Symbols; пока он не приходил,
+     браузер рисовал само слово («check_box») шириной под 180 px, и на
+     390 px ряд кнопок давал горизонтальную прокрутку. */
+  .material-symbols-outlined{display:inline-block;width:1em;
+    vertical-align:middle;flex:none}
+
   :root{color-scheme:light}
   html{scroll-behavior:smooth}
   body{-webkit-font-smoothing:antialiased}
@@ -107,7 +122,7 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
 </nav>
 <div class="flex items-center gap-3 shrink-0">
 <a class="hidden sm:flex items-center gap-1.5 font-label-tabular text-label-tabular text-on-surface-variant hover:text-primary" href="tel:+16023537385">
-<span class="material-symbols-outlined text-[18px]">call</span>(602) 353-7385</a>
+<svg class="material-symbols-outlined text-[18px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2Z"/></svg>(602) 353-7385</a>
 <a class="btn bg-primary text-on-primary px-4 py-2.5 font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors" href="#planner"><span class="min-[400px]:hidden">Plan</span><span class="hidden min-[400px]:inline">Plan your fence</span></a>
 </div>
 </div>
@@ -141,7 +156,7 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
 <figure class="relative border border-outline bg-surface-container overflow-hidden depth-host">
 <img alt="Dark bronze metal privacy fence and sliding gate along a concrete driveway in Phoenix, built by Sereno Custom Fence &amp; Gates" class="w-full h-full object-cover aspect-[4/3] lg:aspect-[3/2] depth" fetchpriority="high" decoding="async" width="2500" height="1125" src="photos/bronze-privacy-gate-driveway.jpg"/>
 <figcaption class="absolute bottom-3 left-3 right-3 bg-surface/95 border border-outline-variant px-3 py-2 font-specs-meta text-[12px] text-on-surface flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>Bronze privacy fence and sliding gate, Phoenix</figcaption>
+<svg class="material-symbols-outlined text-[16px] text-secondary" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="m22 12-2.4-2.8.3-3.7-3.6-.8-1.9-3.2L12 2.9 8.6 1.5 6.7 4.7l-3.6.8.3 3.7L1 12l2.4 2.8-.3 3.7 3.6.8 1.9 3.2L12 21.1l3.4 1.4 1.9-3.2 3.6-.8-.3-3.7L22 12Zm-11.4 4.5L7 12.9l1.4-1.4 2.2 2.2 5.3-5.3L17.3 10l-6.7 6.5Z"/></svg>Bronze privacy fence and sliding gate, Phoenix</figcaption>
 </figure>
 </div>
 </section>
@@ -270,7 +285,7 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
 <textarea aria-label="Project description" class="w-full border border-outline-variant bg-surface p-3 font-label-tabular text-[13px] leading-5 text-on-surface" id="brief" readonly rows="12" placeholder="Answer the questions and your project description appears here."></textarea>
 <div class="flex flex-wrap gap-3 mt-4">
 <button class="btn bg-primary text-on-primary px-5 py-3 font-label-caps text-label-caps uppercase disabled:bg-surface-container-high disabled:text-on-surface-variant transition-colors inline-flex items-center gap-2" id="copy" type="button" disabled>
-<span class="material-symbols-outlined text-[18px]">content_copy</span>Copy description</button>
+<svg class="material-symbols-outlined text-[18px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M15 1H4a2 2 0 0 0-2 2v12h2V3h11V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h10v14Z"/></svg>Copy description</button>
 <button class="btn bg-surface-container-lowest border border-outline text-primary px-5 py-3 font-label-caps text-label-caps uppercase hover:bg-surface-container transition-colors" id="restart" type="button">Start over</button>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant mt-3" id="say" role="status" aria-live="polite">Measurements are approximate and are confirmed on site.</p>
@@ -348,37 +363,37 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
 
 <div class="bg-surface-container-lowest border border-outline p-6 reveal">
-<span class="material-symbols-outlined text-secondary text-[28px]">gavel</span>
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="m15.6 10.6-5.2-5.2 1.4-1.4L13.5 6 17 2.5 21.5 7 18 10.5l2 2-1.4 1.4-3-2.9ZM2.5 19.1l7.8-7.8 1.4 1.4-7.8 7.8-1.4-1.4ZM8.4 13.5l-1.4-1.4 5.2-5.2 1.4 1.4-5.2 5.2ZM2 21h10v2H2v-2Z"/></svg>
 <h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Permits</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Sereno says permit applications and zoning compliance are handled as part of the project. Their block wall page lists property permits and local height and design regulations among the things to settle before work starts.</p>
 </div>
 
 <div class="bg-surface-container-lowest border border-outline p-6 reveal">
-<span class="material-symbols-outlined text-secondary text-[28px]">info</span>
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v2h-2V7Zm0 4h2v6h-2v-6Z"/></svg>
 <h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Free on-site estimate</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Their FAQ says free on-site consultations are offered throughout Phoenix and the surrounding Valley, with a detailed estimate before work begins.</p>
 </div>
 
 <div class="bg-surface-container-lowest border border-outline p-6 reveal">
-<span class="material-symbols-outlined text-secondary text-[28px]">info</span>
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v2h-2V7Zm0 4h2v6h-2v-6Z"/></svg>
 <h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Warranty</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Asked whether their fences come with warranties, their FAQ answers: “Yes, we stand behind our work with warranties that provide Phoenix homeowners with peace of mind regarding durability and quality.” Terms are not published.</p>
 </div>
 
 <div class="bg-surface-container-lowest border border-outline p-6 reveal">
-<span class="material-symbols-outlined text-secondary text-[28px]">info</span>
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v2h-2V7Zm0 4h2v6h-2v-6Z"/></svg>
 <h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Gates</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Swing, sliding and automated gates, RV gates, gate replacement, and matching a new gate to an existing fence.</p>
 </div>
 
 <div class="bg-surface-container-lowest border border-outline p-6 reveal">
-<span class="material-symbols-outlined text-secondary text-[28px]">info</span>
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v2h-2V7Zm0 4h2v6h-2v-6Z"/></svg>
 <h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Beyond fencing</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Trash enclosures, handrails, guard rails, temporary fencing for construction sites and events, and mobile welding.</p>
 </div>
 
 <div class="bg-surface-container-lowest border border-outline p-6 reveal">
-<span class="material-symbols-outlined text-secondary text-[28px]">info</span>
+<svg class="material-symbols-outlined text-secondary text-[28px]" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v2h-2V7Zm0 4h2v6h-2v-6Z"/></svg>
 <h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">How long it takes</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Their FAQ says residential fence installations are typically completed in a few days, depending on yard size and materials.</p>
 </div>
@@ -452,6 +467,38 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
                  height: null, gates: null, removal: null, removalFeet: null,
                  notes: ''};
 
+  // Поле длины принимает только цифры, и на экране должно быть ровно то, что
+  // ушло в состояние. Раньше минус просто вырезался: человек набирал -20,
+  // поле показывало -20, а в сводку и в описание проекта уходило 20. Страница
+  // говорила одно, копируемый текст другое — и так у всех превью.
+  // Чистим значение И возвращаем его в поле, поэтому разойтись они больше не
+  // могут. Отдельно про type=number: при одном минусе браузер отдаёт пустую
+  // строку, а минус держит в своём буфере; запись в value этот буфер сбрасывает.
+  function только_цифры(поле) {
+    const чисто = String(поле.value || '').replace(/[^0-9]/g, '');
+    if (поле.value !== чисто) {
+      поле.value = чисто;
+      const n = чисто.length;
+      try { поле.setSelectionRange(n, n); } catch (e) { /* number не везде это умеет */ }
+    }
+    return чисто;
+  }
+
+  const плохаяДлинаСейчас = () =>
+    выбор.length !== null && выбор.length !== '' && длина() === null;
+
+  // Перерисовка заменяет разметку целиком, поэтому поле ввода теряет фокус.
+  // Возвращаем его и ставим каретку в конец, иначе человек напечатает один
+  // символ и вывалится из поля.
+  function перерисоватьСохранивКаретку(id) {
+    рисовать();
+    const поле = document.getElementById(id);
+    if (!поле) return;
+    поле.focus();
+    const n = поле.value.length;
+    try { поле.setSelectionRange(n, n); } catch (e) { /* не всякий тип это умеет */ }
+  }
+
   const материал = () => Д.materials.find((m) => m.key === выбор.material) || null;
   const длина = () => {
     const n = Number(выбор.length);
@@ -489,8 +536,8 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
     '<span class="min-w-0"><span class="block leading-snug">' + экр(подпись) + '</span>' +
     (подзаголовок ? '<span class="block font-specs-meta text-[11px] opacity-70">' +
       экр(подзаголовок) + '</span>' : '') + '</span>' +
-    '<span class="material-symbols-outlined text-[18px]' +
-    (String(выбор[поле]) === String(значение) ? '' : ' opacity-0') + '">check_box</span></button>';
+    '<svg class="material-symbols-outlined text-[18px]' +
+    (String(выбор[поле]) === String(значение) ? '' : ' opacity-0') + '" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:middle;flex:none"><circle cx="12" cy="12" r="4"/></svg></button>';
 
   const группа = (n, имя, заголовок, тело, готово) =>
     '<div class="planner-group" data-group="' + имя + '">' +
@@ -499,6 +546,42 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
     (готово ? 'bg-primary text-on-primary border-primary' : 'border-outline-variant text-on-surface-variant') +
     ' font-specs-meta text-[11px]">' + (готово ? '✓' : n) + '</span>' +
     экр(заголовок) + '</label>' + тело + '</div>';
+
+  const КЛЮЧ = 'pf-planner-' + (Д.slug || Д.name || 'fence');
+
+  function сохранитьСостояние() {
+    // Пустой выбор не храним: после «Start over» иначе остаётся запись из
+    // одних null. Пользователю она не видна, но это след в чужом хранилище
+    // без всякой причины — а раз причины нет, его и не должно быть.
+    const естьЧто = Object.entries(выбор)
+      .some(([k, v]) => k === 'notes' ? String(v || '').trim() !== '' : v !== null && v !== '');
+    try {
+      if (естьЧто) localStorage.setItem(КЛЮЧ, JSON.stringify(выбор));
+      else localStorage.removeItem(КЛЮЧ);
+    } catch (e) { /* без памяти тоже работает */ }
+  }
+
+  function прочитатьСостояние() {
+    try {
+      const сырое = localStorage.getItem(КЛЮЧ);
+      if (!сырое) return;
+      const было = JSON.parse(сырое);
+      if (!было || typeof было !== 'object') return;
+      // Переносим только известные поля и только те значения, которые
+      // компания публикует сейчас: материал мог исчезнуть из конфигурации,
+      // и подставлять его обратно нельзя.
+      for (const k of Object.keys(выбор)) {
+        if (!(k in было)) continue;
+        const v = было[k];
+        if (k === 'material' && v && !Д.materials.some((m) => m.key === v)) continue;
+        if (k === 'style' && v) {
+          const м = Д.materials.find((m) => m.key === было.material);
+          if (!м || !(м.styles || []).includes(v)) continue;
+        }
+        выбор[k] = v;
+      }
+    } catch (e) { /* испорченная запись — начинаем с чистого листа */ }
+  }
 
   function рисовать() {
     const м = материал();
@@ -567,6 +650,7 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
   // ─── живая сводка ─────────────────────────────────────────────────────
   let прежнее = {};
   function сводка() {
+    сохранитьСостояние();
     const строки = [
       ['Work', выбор.work], ['Material', выбор.material], ['Style', выбор.style],
       ['Length', длина() ? длина() + ' ft' : null],
@@ -698,10 +782,12 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
     if (!d) return;
     const n = сделано();
     d.classList.toggle('on', n > 0);
-    $('#dock-line').textContent = всё()
+    const строка = $('#dock-line'), кн = $('#dock-btn');
+    if (!строка || !кн) return;
+    строка.textContent = всё()
       ? (выбор.material + ' · ' + длина() + ' ft · ' + выбор.height + ' ft')
       : (n + ' of ' + ключи.length + ' answered');
-    $('#dock-btn').textContent = всё() ? 'See it' : 'Continue';
+    кн.textContent = всё() ? 'See it' : 'Continue';
   }
 
   // ─── события ──────────────────────────────────────────────────────────
@@ -724,8 +810,13 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
 
   $('#groups').addEventListener('input', (e) => {
     const id = e.target.id;
-    if (id === 'f-length') { выбор.length = e.target.value.replace(/[^0-9]/g, ''); сводка(); }
-    else if (id === 'f-removal') { выбор.removalFeet = e.target.value.replace(/[^0-9]/g, ''); сводка(); }
+    if (id === 'f-length') {
+      const былоПлохо = плохаяДлинаСейчас();
+      выбор.length = только_цифры(e.target);
+      if (плохаяДлинаСейчас() !== былоПлохо) { перерисоватьСохранивКаретку('f-length'); }
+      else { сводка(); }
+    }
+    else if (id === 'f-removal') { выбор.removalFeet = только_цифры(e.target); сводка(); }
     else if (id === 'f-notes') { выбор.notes = e.target.value; сводка(); }
   });
 
@@ -741,17 +832,22 @@ Independent design concept by Prodigy LAB. Not the official site of Sereno Custo
 
   $('#restart').addEventListener('click', () => {
     Object.keys(выбор).forEach((k) => { выбор[k] = (k === 'notes') ? '' : null; });
+    try { localStorage.removeItem(КЛЮЧ); } catch (e) { /* нечего стирать */ }
     прежнее = {};
     рисовать();
     document.getElementById('planner').scrollIntoView({block: 'start'});
   });
 
-  $('#dock-btn').addEventListener('click', (e) => {
+  // Нижняя панель есть не во всякой композиции. Без проверки обработчик
+  // падал на null и уносил с собой весь конфигуратор.
+  const кнопкаДока = $('#dock-btn');
+  if (кнопкаДока) кнопкаДока.addEventListener('click', (e) => {
     e.preventDefault();
     const цель = всё() ? '#brief' : '#groups';
     document.querySelector(цель).scrollIntoView({block: 'center', behavior: 'smooth'});
   });
 
+  прочитатьСостояние();
   рисовать();
 })();
 </script>

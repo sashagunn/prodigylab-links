@@ -1,1 +1,0 @@
-export const company = Object.freeze({name: "Viking Fence", region: "Austin, Texas", officialUrl: "https://vikingfence.com/", materials: ["Western red cedar","Wrought iron","Chain link","Vinyl","Masonry","Custom"]});
