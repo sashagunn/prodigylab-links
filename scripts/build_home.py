@@ -953,7 +953,7 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
 
 
 СВОЁ_РАБОТЫ = {'ru': {'eyebrow': 'Работы студии',
-        'h': '{n} концепт{а}, которые можно открыть и потрогать',
+        'h': 'Концепты, которые можно открыть и потрогать',
         'lede': 'Это наши собственные сборки, а не заказы клиентов. Поэтому их можно показывать '
                 'целиком — и поэтому мы не приписываем им чужих результатов.',
         'desk': 'Компьютер',
@@ -969,7 +969,7 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
         'nav_works': 'Работы',
         'nav_about': 'О нас'},
  'en': {'eyebrow': 'Studio work',
-        'h': '{n} concepts you can open and use',
+        'h': 'Concepts you can open and use',
         'lede': 'These are our own builds, not client orders. That is why we can show them in '
                 'full — and why we do not attach anyone else’s results to them.',
         'desk': 'Desktop',
@@ -984,7 +984,7 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
         'nav_works': 'Work',
         'nav_about': 'About'},
  'es': {'eyebrow': 'Trabajo del estudio',
-        'h': '{n} conceptos que puede abrir y usar',
+        'h': 'Conceptos que puede abrir y usar',
         'lede': 'Son construcciones propias, no encargos de clientes. Por eso podemos mostrarlas '
                 'enteras y por eso no les atribuimos resultados ajenos.',
         'desk': 'Ordenador',
@@ -1000,7 +1000,7 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
         'nav_works': 'Trabajos',
         'nav_about': 'Nosotros'},
  'pt': {'eyebrow': 'Trabalho do estúdio',
-        'h': '{n} conceitos que você pode abrir e usar',
+        'h': 'Conceitos que você pode abrir e usar',
         'lede': 'São construções nossas, não pedidos de clientes. Por isso podemos mostrá-las '
                 'inteiras e por isso não atribuímos a elas resultados alheios.',
         'desk': 'Computador',
@@ -1016,7 +1016,7 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
         'nav_works': 'Trabalhos',
         'nav_about': 'Sobre nós'},
  'de': {'eyebrow': 'Studio-Arbeit',
-        'h': '{n} Konzepte, die Sie öffnen und benutzen können',
+        'h': 'Konzepte, die Sie öffnen und benutzen können',
         'lede': 'Das sind eigene Arbeiten, keine Kundenaufträge. Deshalb können wir sie ganz '
                 'zeigen — und deshalb schreiben wir ihnen keine fremden Ergebnisse zu.',
         'desk': 'Computer',
@@ -1052,25 +1052,15 @@ h1#h1{min-height:calc(3.18em);display:flex;flex-direction:column;justify-content
 МАКС_РАБОТ = 6
 
 # Числа словами: в заголовке блока работ цифра выглядит как счётчик, а слово —
-# как фраза. Русскому нужен ещё и падеж: два концептА, но шесть концептОВ.
-ЧИСЛА_СЛОВАМИ = {
-    'ru': {1: 'Один', 2: 'Два', 3: 'Три', 4: 'Четыре', 5: 'Пять', 6: 'Шесть'},
-    'en': {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six'},
-    'es': {1: 'Un', 2: 'Dos', 3: 'Tres', 4: 'Cuatro', 5: 'Cinco', 6: 'Seis'},
-    'pt': {1: 'Um', 2: 'Dois', 3: 'Três', 4: 'Quatro', 5: 'Cinco', 6: 'Seis'},
-    'de': {1: 'Ein', 2: 'Zwei', 3: 'Drei', 4: 'Vier', 5: 'Fünf', 6: 'Sechs'},
-}
+# Числа в заголовке больше нет. На главной показываются не все работы, а
+# первые шесть, и «Шесть концептов» противоречило каталогу, где их больше:
+# человек переходит по ссылке и видит другое число. Заголовок без счёта
+# верен при любом размере каталога.
 
 
 def заголовок_работ(шаблон: str, code: str, n: int) -> str:
-    """Подставляет число словами и русское окончание.
-
-    Если работ окажется больше, чем слов в словаре, пишем цифрой: лучше
-    «12 концептов», чем выдуманное слово.
-    """
-    слово = ЧИСЛА_СЛОВАМИ.get(code, {}).get(n, str(n))
-    хвост = 'а' if n % 10 in (2, 3, 4) and n % 100 not in (12, 13, 14) else 'ов'
-    return шаблон.replace('{n}', слово).replace('{а}', хвост)
+    """Заголовок раздела работ. Число не подставляется — см. выше."""
+    return шаблон
 
 
 
