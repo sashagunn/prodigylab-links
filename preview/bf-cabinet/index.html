@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Independent redesign concept for B&amp;F Cabinet Stone &amp; Floor — Commerce, Los Angeles County, California.">
+<title>B&amp;F Cabinet Stone &amp; Floor — Independent redesign concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>:root{
+  --paper:#f4f5f6;--cell:#ffffff;--ink:#1a1d21;--soft:#4a5056;--mute:#646b72;
+  --accent:#1f5f7a;--deep:#12161a;--line:#dcdfe3;--onDeep:#f2f5f7;
+  --sans:'Inter Tight',system-ui,sans-serif;--disp:'Inter Tight',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--tight:-.035em}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:600;line-height:1.07;letter-spacing:var(--tight)}
+p{margin:0}ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(16px,2.4vw,32px)}
+.m{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute)}
+.ph{position:relative;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.notice{background:var(--deep);color:var(--onDeep);font-family:var(--mono);font-size:11px;
+  letter-spacing:.09em;text-transform:uppercase;padding:8px 14px;text-align:center;margin:0}
+
+header{position:sticky;top:0;z-index:50;background:rgba(244,245,246,0.94);
+  -webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:18px;padding-top:10px;padding-bottom:10px}
+.logo{text-decoration:none;font-family:var(--disp);font-weight:700;font-size:18px;
+  letter-spacing:var(--tight);white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;
+  min-width:0;overflow:hidden}
+.hnav{margin-left:auto;display:flex;gap:18px}
+.hnav a{text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--soft);min-height:44px;display:inline-flex;align-items:center}
+.hnav a:hover{color:var(--ink)}
+.cta{background:var(--deep);color:var(--onDeep);text-decoration:none;font-family:var(--mono);
+  font-size:12px;letter-spacing:.06em;padding:0 16px;white-space:nowrap;min-height:44px;
+  display:inline-flex;align-items:center;justify-content:center}
+.cta:hover{background:var(--accent);color:var(--onDeep)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;
+  background:var(--deep);color:var(--onDeep);text-decoration:none;font-size:15px;font-weight:600}
+.btn:hover{background:var(--accent)}
+
+/* факты: только измеримое, снятое с их сайта */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line)}
+.facts li{background:var(--paper);padding:clamp(14px,1.8vw,22px);font-weight:600;
+  font-size:clamp(15px,1.5vw,19px)}
+.facts li i{display:block;font-style:normal;font-family:var(--mono);font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:400;margin-bottom:6px}
+
+/* инструмент */
+.tool-s{padding:clamp(28px,3.6vw,60px) 0;border-top:1px solid var(--line)}
+.tool-s h2{font-size:clamp(24px,2.9vw,42px)}
+.tool-s .lede{margin-top:12px;color:var(--soft);max-width:64ch}
+.tool{margin-top:clamp(18px,2.4vw,32px);display:grid;gap:clamp(18px,2.6vw,36px);align-items:start}
+.tool.right{grid-template-columns:minmax(0,1fr) minmax(0,384px)}
+.tool.below{grid-template-columns:minmax(0,1fr)}
+.q{padding:14px 0;border-top:1px solid var(--line)}
+.q:first-child{border-top:0;padding-top:0}
+.q[hidden]{display:none}
+.q-l{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--mute)}
+.q-o{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.opt{background:var(--cell);border:1px solid var(--line);color:var(--ink);font:inherit;font-size:14px;
+  padding:9px 14px;cursor:pointer;min-height:44px}
+.opt:hover{border-color:var(--accent)}
+.opt[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:var(--onDeep)}
+.opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.t-step{width:44px;height:44px;font-size:17px;background:var(--cell);border:1px solid var(--line);
+  color:var(--ink);cursor:pointer}
+.t-step:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* числовой вопрос и счётчики */
+.q-n{margin-top:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.q-n input[type=range]{flex:1 1 200px;min-height:44px;accent-color:var(--accent)}
+.q-n output{font-family:var(--mono);font-size:14px;min-width:9ch}
+.q-t{margin-top:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.t-row{display:flex;align-items:center;gap:8px;background:var(--cell);border:1px solid var(--line);padding:7px 9px}
+.t-row[data-on="1"]{border-color:var(--accent)}
+.t-row>span{flex:1;font-size:13.5px;min-width:0}
+.t-row input[data-role="n"]{width:46px;min-height:44px;flex:0 0 auto;text-align:center;font:inherit;
+  font-size:15px;border:1px solid var(--line);background:var(--paper);color:var(--ink);-moz-appearance:textfield}
+.t-row input[data-role="n"]::-webkit-outer-spin-button,
+.t-row input[data-role="n"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.t-row input[data-role="n"]:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.t-sum{margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--mute)}
+.t-sum b{font-size:15px;color:var(--ink)}
+@media (max-width:640px){.q-t{grid-template-columns:1fr}}
+
+.cts{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.cts>span{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--mute)}
+.cts-g{margin-top:11px;display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.c-l{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--mute);margin-bottom:5px}
+.c-l i{font-style:normal;color:inherit;font-weight:500}
+.c-i{width:100%;font:inherit;font-size:16px;padding:11px;border:1px solid var(--line);
+  background:var(--cell);color:var(--ink);min-height:44px}
+.c-i:focus{outline:0;border-color:var(--accent)}
+.brief{background:var(--deep);color:var(--onDeep)}
+.tool.right .brief{position:sticky;top:72px}
+.brief-h{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;
+  border-bottom:1px solid #43474b;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.brief pre{margin:0;padding:15px 14px;font-family:var(--mono);font-size:12px;line-height:1.75;
+  white-space:pre-wrap;word-break:break-word;min-height:280px}
+.warn{padding:9px 14px 15px;font-size:12.5px;line-height:1.55}
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.act{flex:1 1 150px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;cursor:pointer;border:1px solid #5e6265;
+  background:transparent;color:inherit;font:inherit;font-size:14px;padding:12px 14px;line-height:1.2}
+.act:first-child{background:var(--accent);border-color:var(--accent);color:var(--onDeep);font-weight:600}
+.act:focus-visible{outline:2px solid var(--onDeep);outline-offset:2px}
+.act-st{display:block;padding:2px 12px 12px;font-size:13px;min-height:1.35em;color:inherit}
+.act-st:empty{display:none}
+
+/* телефонное резюме выбора */
+.sum{display:none;color:var(--ink)}
+.sum-t{display:flex;width:100%;align-items:center;gap:10px;min-height:48px;background:transparent;
+  border:0;color:var(--ink);font:inherit;font-size:14px;padding:12px 14px;cursor:pointer;text-align:left}
+.sum-t b{background:var(--deep);color:var(--onDeep);min-width:28px;height:28px;border-radius:14px;
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.sum-t span{flex:1}.sum-t i{font-style:normal;font-size:11px}
+.sum-t[aria-expanded="true"] i{transform:rotate(180deg);display:inline-block}
+.sum-b{max-height:44vh;overflow:auto;border-top:1px solid var(--line)}
+.sum-l{margin:0;padding:11px 14px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);
+  gap:5px 10px;font-size:13.5px}
+.sum-l dt{color:var(--mute)}.sum-l dd{margin:0}
+.sum-l dd[data-empty]{grid-column:1/-1;color:var(--mute)}
+
+/* источники и подвал */
+.src{background:var(--cell);border-top:1px solid var(--line)}
+.src .wrap{padding:clamp(18px,2.4vw,32px) clamp(16px,2.4vw,32px);
+  display:grid;grid-template-columns:minmax(0,24fr) minmax(0,76fr);gap:clamp(14px,3vw,40px)}
+.src h2{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--mute);font-weight:400}
+.src p{font-size:13px;color:var(--soft);max-width:94ch}
+.src .lnk{margin-top:9px;display:flex;gap:18px;flex-wrap:wrap;font-size:13px}
+.src .lnk a{min-height:44px;display:inline-flex;align-items:center}
+footer{background:var(--deep);color:var(--onDeep);padding:clamp(20px,3vw,38px) 0;font-size:13px}
+.foot{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+footer .fh{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  margin:0 0 9px;font-weight:400;color:#c1c4c6}
+footer a{min-height:44px;display:inline-flex;align-items:center}
+
+/* нижняя панель телефона */
+.bar{display:none}
+/* У компаний с длинным названием кнопка с телефоном выталкивала страницу
+   за край экрана. На телефоне звонок и так живёт в нижней панели, поэтому
+   в шапке её убираем, а не ужимаем название до многоточия. */
+@media (max-width:560px){.cta{display:none}}
+@media (max-width:1000px){
+  .hnav{display:none}
+  .tool.right{grid-template-columns:1fr}
+  .tool.right .brief{position:static}
+  .cts-g{grid-template-columns:1fr}
+  .src .wrap{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  body{padding-bottom:calc(126px + env(safe-area-inset-bottom,0px))}
+  body .sum{display:block;position:fixed;left:0;right:0;z-index:59;
+    bottom:calc(62px + env(safe-area-inset-bottom,0px));background:var(--cell);
+    border-top:1px solid var(--line);box-shadow:0 -10px 26px rgba(0,0,0,.14)}
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:9px;background:var(--paper);
+    border-top:1px solid var(--line);padding:9px 13px calc(9px + env(safe-area-inset-bottom,0px))}
+  .bar a{flex:1;min-height:44px;display:inline-flex;align-items:center;justify-content:center;
+    text-align:center;text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+    text-transform:uppercase;background:var(--deep);color:var(--onDeep)}
+  .bar .alt{background:transparent;color:var(--ink);border:1px solid var(--line);flex:0 0 auto;padding:0 16px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}}
+
+.h-frame{padding:clamp(24px,3.6vw,64px) 0 0}
+.h-frame .top{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);gap:clamp(16px,3vw,42px);align-items:end}
+.h-frame h1{font-size:clamp(30px,4.6vw,70px);max-width:20ch}
+.h-frame p{color:var(--soft);max-width:44ch}
+.h-frame .ph{margin-top:clamp(20px,2.6vw,38px);aspect-ratio:21/9;border:1px solid var(--line);background:var(--cell)}
+@media (max-width:860px){.h-frame .top{grid-template-columns:1fr}.h-frame .ph{aspect-ratio:3/2}}
+
+.r-tab{margin-top:clamp(18px,2.4vw,32px);border-top:1px solid var(--ink)}
+.r-tab .tr{display:grid;grid-template-columns:minmax(0,34fr) minmax(0,66fr);gap:clamp(12px,2.4vw,32px);
+  padding:clamp(13px,1.8vw,20px) 0;border-bottom:1px solid var(--line)}
+.r-tab b{font-size:clamp(17px,1.9vw,24px);font-family:var(--disp);letter-spacing:var(--tight)}
+.r-tab p{color:var(--soft)}
+.r-tab .wide{margin-top:clamp(16px,2.4vw,30px)}
+.r-tab .wide .ph{aspect-ratio:21/9}
+@media (max-width:700px){.r-tab .tr{grid-template-columns:1fr;gap:6px}}
+
+.s-grid{margin-top:clamp(18px,2.4vw,30px);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1px;background:var(--line)}
+.s-grid .s{background:var(--cell);padding:clamp(16px,2vw,26px)}
+.s-grid span{font-family:var(--mono);font-size:11px;letter-spacing:.11em;color:var(--mute)}
+.s-grid b{display:block;margin-top:9px;font-size:clamp(17px,1.8vw,23px);font-family:var(--disp)}
+.s-grid p{margin-top:9px;color:var(--soft);font-size:14.5px}
+
+.sec{padding:clamp(26px,3.6vw,58px) 0;border-top:1px solid var(--line)}
+     .sec h2{font-size:clamp(24px,2.9vw,42px)}
+     .sec .lede{margin-top:11px;color:var(--soft);max-width:62ch}
+     .tool-s.panel{background:var(--cell)}
+</style></head>
+<body>
+<p class="notice">Independent redesign concept by Preview Factory · Not the official B&amp;F Cabinet Stone &amp; Floor website</p>
+<header><div class="wrap">
+  <a class="logo" href="#top">B&amp;F Cabinet</a>
+  <nav class="hnav"><a href="#work">What they supply</a><a href="#how">How it goes</a><a href="#config">Shortlist</a></nav>
+  <a class="cta" href="tel:+15624597320">(562) 459-7320</a>
+</div></header>
+<main>
+<section class="h-frame" id="top"><div class="wrap"><div class="top">
+  <div><span class="m">Commerce, Los Angeles County, California</span><h1>Pick the three materials, then walk into the showroom.</h1></div>
+  <div><p>Cabinets, a countertop and a floor are three decisions that have to agree with each other. This concept lets you put a shortlist together first, so the showroom visit starts with your list instead of the whole catalogue.</p><p style="margin-top:18px"><a class="btn" href="#config">Build a materials shortlist</a></p></div>
+</div><div class="ph"><img src="photos/01.jpg" alt="Completed project by B&amp;F Cabinet Stone &amp; Floor" decoding="async"></div></div></section>
+<section class="sec" id="work"><div class="wrap">
+    <h2>What they supply, from their own pages.</h2><p class="lede">Their services page and about page, nothing added.</p>
+    <div class="r-tab"><div class="tr"><b>Kitchen cabinets</b>
+  <p>Prefabricated door styles kept in stock, listed as their core line.</p></div><div class="tr"><b>Stone countertops</b>
+  <p>Stone counters are named alongside cabinets as one order.</p></div><div class="tr"><b>Flooring</b>
+  <p>The third of the three materials in their own company name.</p></div><div class="tr"><b>Free 3D design planning</b>
+  <p>Their own term for the design step before ordering.</p></div><div class="tr"><b>On-site measurement</b>
+  <p>They measure at the house rather than taking your numbers.</p></div><div class="tr"><b>Delivery to the job site</b>
+  <p>Listed as what separates them from counter retail.</p></div>
+  <div class="wide"><div class="ph"><img src="photos/02.jpg" alt="Completed project by B&amp;F Cabinet Stone &amp; Floor" loading="lazy" decoding="async"></div></div></div></div></section>
+<section class="wrap" style="margin-top:1px"><ul class="facts"><li><i>Showroom</i>7320 Slauson Ave, Commerce</li><li><i>Three materials</i>Cabinets, stone and floors in one order</li><li><i>Design step</i>Free 3D plan before ordering</li><li><i>Measuring</i>On site, not over the phone</li></ul></section>
+<section class="sec" id="how"><div class="wrap">
+    <h2>How an order goes on their pages.</h2>
+    <div class="s-grid"><div class="s">
+  <span>Step 01</span><b>Showroom or consultation</b><p>They publish a showroom in Commerce with posted hours and a consultation booking.</p></div><div class="s">
+  <span>Step 02</span><b>Free 3D design plan</b><p>Their design step: a 3D plan of the kitchen before anything is ordered.</p></div><div class="s">
+  <span>Step 03</span><b>Measure and deliver</b><p>On-site measurement, then delivery to the job site.</p></div></div></div></section>
+<section class="tool-s" id="config"><div class="wrap">
+  <span class="m">Before the showroom</span>
+  <h2>Three materials, one shortlist.</h2>
+  <p class="lede">Cabinet door, countertop, floor. Answer here and you arrive with a list their designer can price and plan against, instead of starting from the whole showroom.</p>
+  <div class="tool right" id="tool">
+    <div class="picks">
+      <div class="q" data-key="door" data-label="Cabinet door" data-branch="1"><span class="q-l">Which cabinet door are you drawn to?</span><div class="q-o"><button type="button" class="opt" data-val="Shaker" aria-pressed="false">Shaker</button><button type="button" class="opt" data-val="Flat slab" aria-pressed="false">Flat slab</button><button type="button" class="opt" data-val="High gloss" aria-pressed="false">High gloss</button><button type="button" class="opt" data-val="Show me the options" aria-pressed="false">Show me the options</button></div></div><div class="q" data-key="tone" data-label="Cabinet tone"><span class="q-l">And the tone?</span><div class="q-o"><button type="button" class="opt" data-val="White or off-white" aria-pressed="false">White or off-white</button><button type="button" class="opt" data-val="Wood tone" aria-pressed="false">Wood tone</button><button type="button" class="opt" data-val="Grey" aria-pressed="false">Grey</button><button type="button" class="opt" data-val="Dark" aria-pressed="false">Dark</button><button type="button" class="opt" data-val="Not decided" aria-pressed="false">Not decided</button></div></div><div class="q" data-key="stone" data-label="Countertop"><span class="q-l">Which countertop stone?</span><div class="q-o"><button type="button" class="opt" data-val="Quartz" aria-pressed="false">Quartz</button><button type="button" class="opt" data-val="Granite" aria-pressed="false">Granite</button><button type="button" class="opt" data-val="Marble" aria-pressed="false">Marble</button><button type="button" class="opt" data-val="Need advice" aria-pressed="false">Need advice</button></div></div><div class="q" data-key="floor" data-label="Floor"><span class="q-l">What about the floor?</span><div class="q-o"><button type="button" class="opt" data-val="Replacing it with them" aria-pressed="false">Replacing it with them</button><button type="button" class="opt" data-val="Keeping the existing floor" aria-pressed="false">Keeping the existing floor</button><button type="button" class="opt" data-val="Still deciding" aria-pressed="false">Still deciding</button></div></div><div class="q" data-key="size" data-label="Kitchen size" data-type="num"><span class="q-l">Roughly how many square feet is the kitchen?</span><div class="q-n">
+          <input type="range" min="60" max="450" step="10" value="60"
+            data-role="range" aria-label="Roughly how many square feet is the kitchen?" disabled>
+          <output data-role="numout">Not stated</output>
+          <button type="button" class="opt" data-role="unknown" aria-pressed="true">I don’t know</button>
+        </div></div><div class="q" data-key="who" data-label="Installation"><span class="q-l">Who installs it?</span><div class="q-o"><button type="button" class="opt" data-val="They do" aria-pressed="false">They do</button><button type="button" class="opt" data-val="My own contractor" aria-pressed="false">My own contractor</button><button type="button" class="opt" data-val="Not decided" aria-pressed="false">Not decided</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When do you need the materials?</span><div class="q-o"><button type="button" class="opt" data-val="Within a month" aria-pressed="false">Within a month</button><button type="button" class="opt" data-val="One to three months" aria-pressed="false">One to three months</button><button type="button" class="opt" data-val="Later" aria-pressed="false">Later</button><button type="button" class="opt" data-val="Just pricing it out" aria-pressed="false">Just pricing it out</button></div></div>
+      <div class="cts"><span>If you want a designer to get back to you</span>
+        <div class="cts-g"><div class="c" data-key="name" data-label="Name" data-contact="1">
+      <label class="c-l" for="ct-name">Name <i>optional</i></label>
+      <input class="c-i" id="ct-name" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="area" data-label="City" data-contact="1">
+      <label class="c-l" for="ct-area">City <i>optional</i></label>
+      <input class="c-i" id="ct-area" type="text"
+         autocomplete="off">
+    </div><div class="c" data-key="phone" data-label="Phone" data-contact="1">
+      <label class="c-l" for="ct-phone">Phone <i>optional</i></label>
+      <input class="c-i" id="ct-phone" type="tel"
+        inputmode="tel" autocomplete="off">
+    </div><div class="c" data-key="email" data-label="Email" data-contact="1">
+      <label class="c-l" for="ct-email">Email <i>optional</i></label>
+      <input class="c-i" id="ct-email" type="email"
+         autocomplete="off">
+    </div></div></div>
+    </div>
+    <div class="brief">
+    <div class="brief-h"><span>Materials shortlist</span><span>Not sent</span></div>
+    <pre id="tk"></pre>
+    <div class="acts">
+    <a class="act" data-act="mail" href="mailto:sales@bfcabinets.com" rel="noopener">Email this to them</a>
+    <a class="act" data-act="tel" href="tel:+15624597320">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the shortlist</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    <p class="warn">Nothing is sent anywhere. The buttons only copy this shortlist or open your own email app. No prices are shown because they do not publish any.</p>
+  </div>
+  </div>
+</div></section>
+</main>
+<div class="sum" id="sum" hidden>
+    <button class="sum-t" type="button" data-act="sheet" aria-expanded="false" aria-controls="sum-body">
+      <b data-act="count">0</b>
+      <span>Show what you picked</span>
+      <i aria-hidden="true">&#9650;</i>
+    </button>
+    <div class="sum-b" id="sum-body" hidden>
+      <dl class="sum-l" data-act="list"></dl>
+      <div class="acts">
+    <a class="act" data-act="mail" href="mailto:sales@bfcabinets.com" rel="noopener">Email this to them</a>
+    <a class="act" data-act="tel" href="tel:+15624597320">Call and read it out</a>
+    <button class="act" data-act="copy" type="button">Copy the shortlist</button>
+  </div>
+  <span class="act-st" data-act="status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+<div class="bar"><a class="alt" href="tel:+15624597320">Call</a><a href="#config">Shortlist</a></div>
+<section class="src"><div class="wrap">
+  <h2>Where everything here came from</h2>
+  <div><p>The services, the 3D design step, on-site measurement, the showroom address and the contact details are all taken from bfcabinet.com. Their advertising claims and superlatives are left out on purpose, and no prices, lead times or guarantees appear here because they do not publish any. Only their own cabinet photographs are used — the stock images on their site are not shown here as their work. Checked on 22 October 2026.</p>
+  <div class="lnk"><a href="https://bfcabinet.com/" target="_blank" rel="noopener noreferrer">bfcabinet.com ↗</a><a href="https://bfcabinet.com/services/" target="_blank" rel="noopener noreferrer">Their services page ↗</a><a href="https://bfcabinet.com/contact-us/" target="_blank" rel="noopener noreferrer">Their showroom and contact page ↗</a></div></div>
+</div></section>
+<footer><div class="wrap foot">
+  <div><h2 class="fh">B&amp;F Cabinet Stone &amp; Floor</h2><p>7320 Slauson Ave, Commerce, CA 90040<br><a href="tel:+15624597320">(562) 459-7320</a><br><a href="mailto:sales@bfcabinets.com">sales@bfcabinets.com</a></p></div>
+  <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's
+  official website, and no relationship or endorsement is implied. Nothing on this page is submitted anywhere.</p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://bfcabinet.com/" target="_blank" rel="noopener noreferrer">bfcabinet.com ↗</a></p></div>
+</div></footer>
+<script>
+(function(){
+  var root=document.querySelector("#tool");
+  if(!root) return;
+  var выход=document.querySelector("#tk");
+  var состояние={}, ветка=null;
+  var РЕЖИМ="omit", НЕТ="not stated";
+
+  function виден(g){
+    return !g.hasAttribute('data-for') ||
+      g.getAttribute('data-for').split('|').indexOf(ветка)>=0;
+  }
+
+  function бриф(){
+    var L=["MATERIALS SHORTLIST"+' (draft)','For: '+"B&F Cabinet Stone & Floor",''];
+    var отвечено=false, хвостКонтактов=[];
+    var длина=function(x){ return Array.isArray(x)?x.length:String(x).length; };
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      var строка=g.getAttribute('data-label')+': ';
+      var есть=!!(зн&&длина(зн));
+      if(есть) отвечено=true;
+      var текст=есть?(Array.isArray(зн)?зн.join(', '):зн):НЕТ;
+      if(g.hasAttribute('data-contact')){ if(есть) хвостКонтактов.push(строка+текст); return; }
+      if(есть||РЕЖИМ==='all') L.push(строка+текст);
+    });
+    if(!отвечено&&РЕЖИМ!=='all') L.push("Nothing picked yet — start with the cabinet door and the shortlist writes itself.");
+    if(хвостКонтактов.length){ L.push(''); L=L.concat(хвостКонтактов); }
+    
+    L.push('','Prepared on an independent concept page. Not a quote and not an order.');
+    return L.join('\n');
+  }
+
+  // Выбранное — для телефонного резюме. Тот же источник, что и бриф.
+  function выбранное(){
+    var пары=[];
+    Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+      if(!виден(g)) return;
+      var зн=состояние[g.getAttribute('data-key')];
+      if(!зн||!(Array.isArray(зн)?зн.length:String(зн).length)) return;
+      пары.push([g.getAttribute('data-label'), Array.isArray(зн)?зн.join(', '):зн]);
+    });
+    return пары;
+  }
+
+  function перерисовать(){
+    Array.prototype.forEach.call(root.querySelectorAll('[data-for]'),function(g){
+      g.hidden=!виден(g);
+    });
+    var текст=бриф();
+    выход.textContent=текст;
+
+    var тема="Materials shortlist — from a prospective customer";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+      var адрес=(a.getAttribute('href')||'').split('?')[0];
+      a.setAttribute('href', адрес+'?subject='+encodeURIComponent(тема)+'&body='+encodeURIComponent(текст));
+    });
+
+    var пары=выбранное();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="count"]'),function(e){
+      e.textContent=пары.length;
+    });
+    var лист=document.querySelector('[data-act="list"]');
+    if(лист){
+      лист.textContent='';
+      if(!пары.length){
+        var пусто=document.createElement('dd');
+        пусто.textContent="Nothing picked yet — start with the cabinet door and the shortlist writes itself.";
+        пусто.setAttribute('data-empty','1');
+        лист.appendChild(пусто);
+      } else пары.forEach(function(пара){
+        var dt=document.createElement('dt'); dt.textContent=пара[0];
+        var dd=document.createElement('dd'); dd.textContent=пара[1];
+        лист.appendChild(dt); лист.appendChild(dd);
+      });
+    }
+    var полоса=document.getElementById('sum');
+    if(полоса) полоса.hidden=false;
+  }
+
+  Array.prototype.forEach.call(root.querySelectorAll('[data-key]'),function(g){
+    var ключ=g.getAttribute('data-key');
+
+    if(g.getAttribute('data-type')==='tally'){
+      var счёт={};
+      var итого=g.parentElement.querySelector('[data-role="total"] b') ||
+                (g.nextElementSibling&&g.nextElementSibling.querySelector('b'));
+      var свести=function(){
+        var части=[],сумма=0;
+        Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+          var имя=r.getAttribute('data-name');
+          if(счёт[имя]){ части.push(имя+' '+счёт[имя]); сумма+=счёт[имя]; }
+        });
+        состояние[ключ]=части.length?части.join(', '):null;
+        if(итого) итого.textContent=сумма;
+        перерисовать();
+      };
+      Array.prototype.forEach.call(g.querySelectorAll('[data-name]'),function(r){
+        var имя=r.getAttribute('data-name'), поле=r.querySelector('[data-role="n"]');
+        счёт[имя]=0;
+        var поставить=function(v){
+          // Ручной ввод чистим: пусто, минус и буквы превращаются в ноль.
+          v=parseInt(v,10); if(isNaN(v)||v<0) v=0; if(v>99) v=99;
+          счёт[имя]=v; поле.value=v;
+          r.setAttribute('data-on',v>0?'1':'0');
+          свести();
+        };
+        поле.addEventListener('input',function(){ поставить(поле.value); });
+        поле.addEventListener('blur',function(){ поставить(поле.value); });
+        Array.prototype.forEach.call(r.querySelectorAll('[data-step]'),function(b){
+          b.addEventListener('click',function(){
+            поставить(счёт[имя]+parseInt(b.getAttribute('data-step'),10));
+          });
+        });
+      });
+      return;
+    }
+
+    if(g.getAttribute('data-type')==='num'){
+      var ползунок=g.querySelector('[data-role="range"]');
+      var табло=g.querySelector('[data-role="numout"]');
+      var незнаю=g.querySelector('[data-role="unknown"]');
+      var ед="";
+      var неизвестноТекст="Not stated";
+      var поставить=function(){
+        состояние[ключ]=ползунок.value+(ед?' '+ед:'');
+        ползунок.disabled=false; незнаю.setAttribute('aria-pressed','false');
+        табло.textContent=состояние[ключ]; перерисовать();
+      };
+      var снять=function(){
+        состояние[ключ]=null; ползунок.disabled=true;
+        незнаю.setAttribute('aria-pressed','true');
+        табло.textContent=неизвестноТекст; перерисовать();
+      };
+      незнаю.addEventListener('click',function(){ if(ползунок.disabled) поставить(); else снять(); });
+      ползунок.addEventListener('input',поставить);
+      return;
+    }
+
+    var поле=g.querySelector('input[type]:not([type="range"])');
+    if(поле){
+      поле.addEventListener('input',function(){
+        состояние[ключ]=(поле.value||'').trim()||null; перерисовать();
+      });
+      return;
+    }
+
+    var мульти=g.hasAttribute('data-multi'), ветковый=g.hasAttribute('data-branch');
+    Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(b){
+      b.addEventListener('click',function(){
+        var v=b.getAttribute('data-val');
+        if(мульти){
+          var было=(состояние[ключ]||[]).slice();
+          var i=было.indexOf(v);
+          if(i<0) было.push(v); else было.splice(i,1);
+          состояние[ключ]=было.length?было:null;
+          b.setAttribute('aria-pressed', было.indexOf(v)>=0?'true':'false');
+        } else {
+          var тот= состояние[ключ]===v;
+          Array.prototype.forEach.call(g.querySelectorAll('button[data-val]'),function(x){
+            x.setAttribute('aria-pressed','false'); });
+          состояние[ключ]= тот?null:v;
+          b.setAttribute('aria-pressed', тот?'false':'true');
+          if(ветковый) ветка=состояние[ключ];
+        }
+        перерисовать();
+      });
+    });
+  });
+
+  function сказать(t,плохо){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act="status"]'),function(s){
+      s.textContent=t; s.setAttribute('data-bad',плохо?'1':'0');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="copy"]'),function(кнопка){
+    кнопка.addEventListener('click',function(){
+      var t=выход.textContent;                   // ровно то, что видно на экране
+      function руками(){
+        сказать("The browser blocked copying — the text is selected above, copy it with Cmd+C or Ctrl+C.",true);
+        try{
+          var r=document.createRange(); r.selectNodeContents(выход);
+          var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }catch(e){}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){
+          сказать("Copied. Paste it into an email or a message to them.",false);
+        },руками);
+      } else руками();
+    });
+  });
+  // Письмо и звонок ничего не отправляют со страницы: открывается почтовый
+  // клиент или набор номера на устройстве человека.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="mail"]'),function(a){
+    a.addEventListener('click',function(){ сказать("Your mail app should open with the brief already written.",false); });
+  });
+  var шапка=document.querySelector('[data-act="sheet"]');
+  if(шапка){
+    var тело=document.getElementById('sum-body');
+    шапка.addEventListener('click',function(){
+      var открыт=шапка.getAttribute('aria-expanded')==='true';
+      шапка.setAttribute('aria-expanded',открыт?'false':'true');
+      тело.hidden=открыт;
+    });
+  }
+  перерисовать();
+})();</script>
+</body></html>
