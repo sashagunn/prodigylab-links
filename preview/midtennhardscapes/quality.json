@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "midtennhardscapes",
+  "niche": "landscape",
+  "goal": "Choose outdoor use and project scope",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61ec312b52e7361fc362dc4d/50720438-b2ee-48a0-b7f1-58e8248590f1/IMG_1006.jpg",
+      "assetType": "project",
+      "subject": "IMG_1006.jpg",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61ec312b52e7361fc362dc4d/781b0931-0dc4-4a65-bc95-4067eeaec41b/IMG_2921.jpg",
+      "assetType": "project",
+      "subject": "IMG_2921.jpg",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61ec312b52e7361fc362dc4d/b8673edc-081a-4477-ae27-e8182578f379/IMG_7010.jpg",
+      "assetType": "project",
+      "subject": "IMG_7010.jpg",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61ec312b52e7361fc362dc4d/e0cb854e-74f0-4382-93c3-04606ee6691b/IMG_8847.jpg",
+      "assetType": "project",
+      "subject": "IMG_8847.jpg",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61ec312b52e7361fc362dc4d/33cae753-68c8-4569-a69d-3e8365b46c62/IMG_1279.jpg",
+      "assetType": "project",
+      "subject": "IMG_1279.jpg",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61ec312b52e7361fc362dc4d/3b8867bf-450f-409b-bb06-68e2b7596f37/IMG_1264.jpg",
+      "assetType": "project",
+      "subject": "IMG_1264.jpg",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
