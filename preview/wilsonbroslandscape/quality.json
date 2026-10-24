@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "wilsonbroslandscape",
+  "niche": "landscape",
+  "goal": "Choose outdoor use and project scope",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://www.wilsonbroslandscape.com/wp-content/uploads/photo-gallery/Smith_copy.jpg?bwg=1542316496",
+      "assetType": "project",
+      "subject": "Back Yard Design",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://www.wilsonbroslandscape.com/wp-content/uploads/photo-gallery/Hart.jpg?bwg=1542316944",
+      "assetType": "project",
+      "subject": "Front Yard Design",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://www.wilsonbroslandscape.com/wp-content/uploads/photo-gallery/Hutchison.jpg?bwg=1542316496",
+      "assetType": "project",
+      "subject": "Full Lot Design",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://www.wilsonbroslandscape.com/wp-content/uploads/photo-gallery/imported_from_media_libray/IMG_0168.jpg?bwg=1686581821",
+      "assetType": "project",
+      "subject": "Decorative Lock Board Fence",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://www.wilsonbroslandscape.com/wp-content/uploads/photo-gallery/imported_from_media_libray/IMG_0191.jpg?bwg=1686581821",
+      "assetType": "project",
+      "subject": "Vertical Lockboard Privacy Fence with Decorative Picket Top Rail",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://www.wilsonbroslandscape.com/wp-content/uploads/photo-gallery/imported_from_media_libray/IMG_0192.jpg?bwg=1686581821",
+      "assetType": "project",
+      "subject": "Privacy Fence with Lattice Top Rail",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
