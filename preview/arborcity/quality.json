@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "slug": "arborcity",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://arborcity.co/wp-content/uploads/2024/03/Installed-Wood-Fence.jpg",
+      "assetType": "project",
+      "subject": "New wood fence with a new concrete patio",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://arborcity.co/wp-content/uploads/2024/03/Wood-Fence-Closeup.jpg",
+      "assetType": "project",
+      "subject": "Closeup of a new wood fence in a backyard",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://arborcity.co/wp-content/uploads/2024/03/Wood-Fence-Installed-in-Denver-CO.jpg",
+      "assetType": "project",
+      "subject": "Newly installed wood fence in a backyard",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://arborcity.co/wp-content/uploads/2024/03/New-Field-Fence-in-Denver-CO.jpg",
+      "assetType": "project",
+      "subject": "Wood field fence installed in a yard in Denver, Co",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://arborcity.co/wp-content/uploads/2024/03/Arbor-City-Fence-Wood-Fence.png",
+      "assetType": "project",
+      "subject": "Wood fence installed by Arbor City Fence",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
