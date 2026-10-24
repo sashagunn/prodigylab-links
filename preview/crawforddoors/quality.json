@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "crawforddoors",
+  "niche": "garage",
+  "goal": "Separate urgent repair and planned installation",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/5e932261/dms3rep/multi/opt/IMG_4156-600h.JPG",
+      "assetType": "project",
+      "subject": "Large, gray folding door partially open under a concrete structure nea",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/5e932261/dms3rep/multi/opt/IMG_4179-600h.JPG",
+      "assetType": "project",
+      "subject": "Open, folded overhead door reveals a street with a vehicle and buildin",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/5e932261/dms3rep/multi/opt/NCS+-+Cornell+May+-13+014-600h.jpg",
+      "assetType": "project",
+      "subject": "Loading docks with open doors on a modern, gray building; a white pick",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/5e932261/dms3rep/multi/opt/NCS+-+Cornell+May+-13+273-600h.jpg",
+      "assetType": "project",
+      "subject": "Large room with partially extended, movable wall panels; a person stan",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/5e932261/dms3rep/multi/opt/5th+and+Broad+Summit+Wall-600h.jpg",
+      "assetType": "project",
+      "subject": "A wall with horizontal panels, light color, next to a door frame. Ceil",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/5e932261/dms3rep/multi/opt/Centennial+Hospital-a697333e-600h.jpg",
+      "assetType": "project",
+      "subject": "Rolling door with a nighttime cityscape scene. Buildings with lights, ",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
