@@ -2,14 +2,14 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="Independent redesign concept for Bant Roofing (Brabant Roofing) — Atlanta, Georgia.">
+<meta name="description" content="Independent redesign concept for Bant Roofing (Brabant Roofing) — Atlanta.">
 <title>Bant Roofing (Brabant Roofing) — Independent redesign concept</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>:root{
   --paper:#f4f5f6;--cell:#ffffff;--ink:#1a1d21;--soft:#4a5056;--mute:#646b72;
   --accent:#1f5f7a;--deep:#12161a;--line:#dcdfe3;--onDeep:#f2f5f7;
-  --sans:Inter,system-ui,sans-serif;--disp:Fraunces,Georgia,serif;--mono:ui-monospace,Menlo,monospace;--tight:-.02em}
+  --sans:Inter,system-ui,sans-serif;--disp:'Roboto Slab',Georgia,serif;--mono:ui-monospace,Menlo,monospace;--tight:-.02em}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 @media(max-width:700px){img[style*="--photo-mobile"]{object-position:var(--photo-mobile)!important}}
@@ -171,23 +171,21 @@ footer a{min-height:44px;display:inline-flex;align-items:center}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}
   html{scroll-behavior:auto}}
 
-.h-split{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);align-items:stretch;
-  border-bottom:1px solid var(--line)}
-.h-split .tx{padding:clamp(26px,4vw,72px) clamp(16px,3vw,56px);display:flex;flex-direction:column;justify-content:center}
-.h-split h1{font-size:clamp(32px,4.4vw,64px);max-width:18ch}
-.h-split p{margin-top:15px;color:var(--soft);max-width:46ch}
-.h-split .ph{min-height:clamp(300px,52vh,620px)}
-@media (max-width:900px){.h-split{grid-template-columns:1fr}.h-split .ph{min-height:300px}}
+.h-frame{padding:clamp(24px,3.6vw,64px) 0 0}
+.h-frame .top{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);gap:clamp(16px,3vw,42px);align-items:end}
+.h-frame h1{font-size:clamp(30px,4.6vw,70px);max-width:20ch}
+.h-frame p{color:var(--soft);max-width:44ch}
+.h-frame .ph{margin-top:clamp(20px,2.6vw,38px);aspect-ratio:21/9;border:1px solid var(--line);background:var(--cell)}
+@media (max-width:860px){.h-frame .top{grid-template-columns:1fr}.h-frame .ph{aspect-ratio:3/2}}
 
-.r-zig{margin-top:clamp(18px,2.4vw,32px);display:grid;gap:clamp(14px,2vw,26px)}
-.r-zig article{display:grid;grid-template-columns:repeat(12,1fr);align-items:end;gap:clamp(10px,1.6vw,22px)}
-.r-zig .ph{grid-column:1/span 7;aspect-ratio:3/2}
-.r-zig .tx{grid-column:8/span 5;padding-bottom:6px}
-.r-zig article:nth-child(even) .ph{grid-column:6/span 7}
-.r-zig article:nth-child(even) .tx{grid-column:1/span 5;order:-1}
-.r-zig b{font-size:clamp(18px,2vw,26px);font-family:var(--disp)}
-.r-zig p{margin-top:8px;color:var(--soft);font-size:14.5px}
-@media (max-width:760px){.r-zig .ph,.r-zig .tx,.r-zig article:nth-child(even) .ph,.r-zig article:nth-child(even) .tx{grid-column:1/-1;order:0}}
+.r-rows{margin-top:clamp(18px,2.4vw,32px);border-top:1px solid var(--line)}
+.r-rows article{display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);gap:clamp(14px,3vw,38px);
+  padding:clamp(16px,2.4vw,30px) 0;border-bottom:1px solid var(--line);align-items:center}
+.r-rows article:nth-child(even) .ph{order:-1}
+.r-rows .ph{aspect-ratio:16/9}
+.r-rows b{font-size:clamp(19px,2.2vw,30px);font-family:var(--disp);letter-spacing:var(--tight)}
+.r-rows p{margin-top:9px;color:var(--soft)}
+@media (max-width:760px){.r-rows article{grid-template-columns:1fr}.r-rows article:nth-child(even) .ph{order:0}}
 
 .s-line{margin-top:clamp(18px,2.4vw,30px);display:grid;gap:0}
 .s-line .s{display:grid;grid-template-columns:clamp(54px,7vw,92px) minmax(0,1fr);gap:clamp(12px,2vw,28px);
@@ -196,12 +194,12 @@ footer a{min-height:44px;display:inline-flex;align-items:center}
 .s-line span{font-family:var(--mono);font-size:clamp(20px,2.6vw,34px);color:var(--accent);line-height:1}
 .s-line b{font-size:clamp(18px,2vw,26px);font-family:var(--disp)}
 .s-line p{margin-top:7px;color:var(--soft);max-width:70ch}
-
+.ph{background:var(--cell);padding:8px}
 .sec{padding:clamp(26px,3.6vw,58px) 0;border-top:1px solid var(--line)}
      .sec h2{font-size:clamp(24px,2.9vw,42px)}
      .sec .lede{margin-top:11px;color:var(--soft);max-width:62ch}
      .tool-s.panel{background:var(--cell)}
-</style><meta name="prodigy-quality-schema" content="1"><meta name="prodigy-cloud-version" content="morning20-20261024-bantroofing-50fa8b1f.bantroofing"></head>
+</style><meta name="prodigy-quality-schema" content="1"><meta name="prodigy-cloud-version" content="bantroofing.2026-10-28"></head>
 <body>
 <p class="notice">Independent redesign concept by Preview Factory · Not the official Bant Roofing (Brabant Roofing) website</p>
 <header><div class="wrap">
@@ -210,22 +208,22 @@ footer a{min-height:44px;display:inline-flex;align-items:center}
   
 </div></header>
 <main>
-<section class="h-split" id="top"><div class="tx"><span class="m">Atlanta, Georgia</span>
-  <h1>Prepare a roof brief before the estimate.</h1><p>Explore the services shown on the company website, then put the details you want to discuss into a written project brief.</p>
-  <p style="margin-top:22px"><a class="btn" href="#config">Prepare a project brief</a></p></div>
-  <div class="ph"><img style="--photo-desktop:50% 50%;--photo-mobile:50% 50%;object-position:var(--photo-desktop)" src="photos/01.jpg" alt="Photograph published by Bant Roofing (Brabant Roofing)" decoding="async"></div></section>
+<section class="h-frame" id="top"><div class="wrap"><div class="top">
+  <div><span class="m">Atlanta</span><h1>Prepare a roof brief before the estimate.</h1></div>
+  <div><p>Explore the services shown on the company website, then put the details you want to discuss into a written project brief.</p><p style="margin-top:18px"><a class="btn" href="#config">Prepare a project brief</a></p></div>
+</div><div class="ph"><img style="--photo-desktop:50% 50%;--photo-mobile:50% 50%;object-position:var(--photo-desktop)" src="photos/01.jpg" alt="Photograph published by Bant Roofing (Brabant Roofing)" decoding="async"></div></div></section>
 
 <section class="sec" id="work"><div class="wrap">
     <h2>Services</h2>
-    <div class="r-zig"><article>
-  <div></div>
-  <div class="tx"><b>Roofing</b></div></article></div></div></section>
+    <div class="r-rows"><article>
+  <div><b>Roofing</b></div>
+  <div></div></article></div></div></section>
 
 <section class="tool-s" id="config"><div class="wrap">
   <span class="m">Roof project</span>
   <h2>Prepare a roof brief before the estimate.</h2>
   <p class="lede">Choose the details you want to discuss, then keep a written brief for the first conversation.</p>
-  <div class="tool right" id="tool">
+  <div class="tool below" id="tool">
     <div class="picks">
       <div class="q" data-key="service" data-label="Work" data-branch="1"><span class="q-l">Which service would you like to discuss?</span><div class="q-o"><button type="button" class="opt" data-val="Roofing" aria-pressed="false">Roofing</button><button type="button" class="opt" data-val="Need advice" aria-pressed="false">Need advice</button></div></div><div class="q" data-key="context" data-label="Work"><span class="q-l">What would you like to discuss?</span><div class="q-o"><button type="button" class="opt" data-val="An existing concern" aria-pressed="false">An existing concern</button><button type="button" class="opt" data-val="Replacing the roof" aria-pressed="false">Replacing the roof</button><button type="button" class="opt" data-val="Options for a future project" aria-pressed="false">Options for a future project</button><button type="button" class="opt" data-val="Need advice" aria-pressed="false">Need advice</button></div></div><div class="q" data-key="priorities" data-label="Property"><span class="q-l">What kind of property is it?</span><div class="q-o"><button type="button" class="opt" data-val="One-story home" aria-pressed="false">One-story home</button><button type="button" class="opt" data-val="Multi-story home" aria-pressed="false">Multi-story home</button><button type="button" class="opt" data-val="Another building" aria-pressed="false">Another building</button><button type="button" class="opt" data-val="Not sure" aria-pressed="false">Not sure</button></div></div><div class="q" data-key="stage" data-label="Planning stage"><span class="q-l">Where are you with the project?</span><div class="q-o"><button type="button" class="opt" data-val="Exploring options" aria-pressed="false">Exploring options</button><button type="button" class="opt" data-val="Have notes or photographs" aria-pressed="false">Have notes or photographs</button><button type="button" class="opt" data-val="Have measurements" aria-pressed="false">Have measurements</button><button type="button" class="opt" data-val="Need advice" aria-pressed="false">Need advice</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When are you considering the work?</span><div class="q-o"><button type="button" class="opt" data-val="No date yet" aria-pressed="false">No date yet</button><button type="button" class="opt" data-val="Within a month" aria-pressed="false">Within a month</button><button type="button" class="opt" data-val="One to three months" aria-pressed="false">One to three months</button><button type="button" class="opt" data-val="Later" aria-pressed="false">Later</button></div></div>
       <div class="cts"><span>Optional contact details to include in your draft</span>
@@ -280,14 +278,14 @@ footer a{min-height:44px;display:inline-flex;align-items:center}
 <div class="bar"><a href="#config">Project brief</a></div>
 <section class="src"><div class="wrap">
   <h2>Where this came from</h2>
-  <div><p>Service names and contact details come from the company website. Photographs are selected from its project portfolio. No prices, schedules or guarantees are inferred. Checked on 2026-10-24.</p>
-  <div class="lnk"><a href="https://bantroofing.com" target="_blank" rel="noopener noreferrer">bantroofing.com ↗</a><a href="https://www.bantroofing.com/atlanta-roofing-services/" target="_blank" rel="noopener noreferrer">Services on their website ↗</a><a href="https://www.bantroofing.com/contact-us/" target="_blank" rel="noopener noreferrer">Their contact page ↗</a></div></div>
+  <div><p>Service names and contact details come from the company website. Photographs are selected from its project portfolio. No prices, schedules or guarantees are inferred. Checked on 2026-10-28.</p>
+  <div class="lnk"><a href="https://bantroofing.com/" target="_blank" rel="noopener noreferrer">bantroofing.com ↗</a><a href="https://www.bantroofing.com/atlanta-roofing-services/" target="_blank" rel="noopener noreferrer">Services on their website ↗</a><a href="https://www.bantroofing.com/contact-us/" target="_blank" rel="noopener noreferrer">Their contact page ↗</a></div></div>
 </div></section>
 <footer><div class="wrap foot">
   <div><h2 class="fh">Bant Roofing (Brabant Roofing)</h2><p><br><a href="mailto:bant@bantroofing.com">bant@bantroofing.com</a></p></div>
   <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's
   official website, and no relationship or endorsement is implied. Nothing on this page is submitted anywhere.</p></div>
-  <div><h2 class="fh">Their site</h2><p><a href="https://bantroofing.com" target="_blank" rel="noopener noreferrer">bantroofing.com ↗</a></p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://bantroofing.com/" target="_blank" rel="noopener noreferrer">bantroofing.com ↗</a></p></div>
 </div></footer>
 <script>
 (function(){

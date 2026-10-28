@@ -24,6 +24,27 @@
       "subject": "",
       "desktopPosition": "50% 50%",
       "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://www.bantroofing.com/wp-content/uploads/2024/06/126247256_l_normal_none-scaled.webp",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://www.bantroofing.com/wp-content/uploads/2024/07/131261850.webp",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://www.bantroofing.com/wp-content/uploads/2024/07/128529492.webp",
+      "assetType": "site",
+      "subject": "Atlanta Roofing services from Bant Roofing",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
     }
   }
 }

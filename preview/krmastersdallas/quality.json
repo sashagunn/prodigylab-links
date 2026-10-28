@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "krmastersdallas",
+  "niche": "kitchen",
+  "goal": "Choose materials and scope before consultation",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://krmastersdallas.com/wp-content/uploads/2025/07/Luxury-Kitchen-Remodeling.webp",
+      "assetType": "project",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://krmastersdallas.com/wp-content/uploads/2025/11/JA_00833-HDR-1-scaled.webp",
+      "assetType": "project",
+      "subject": "Modern kitchen with black cabinets, marble countertops, a large island",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://krmastersdallas.com/wp-content/uploads/2025/11/JA_00837-HDR-scaled.webp",
+      "assetType": "project",
+      "subject": "Modern open-plan kitchen and living area with a dark round table, gold",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://krmastersdallas.com/wp-content/uploads/2025/11/JA_00858-HDR-scaled.webp",
+      "assetType": "project",
+      "subject": "A modern kitchen with dark cabinetry, a center island with built-in ap",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://krmastersdallas.com/wp-content/uploads/2025/11/JAV01070-scaled.webp",
+      "assetType": "project",
+      "subject": "Modern kitchen with white cabinets, stainless steel appliances, marble",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://krmastersdallas.com/wp-content/uploads/2025/11/JAV01073-HDR-1-scaled.webp",
+      "assetType": "project",
+      "subject": "A modern kitchen with white cabinets, stainless steel appliances, a do",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

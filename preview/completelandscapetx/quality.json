@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "slug": "completelandscapetx",
+  "niche": "landscape",
+  "goal": "Choose outdoor use and project scope",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/2a938d70b6264aceb513b4661d04a35e.jpg/v1/fill/w_1440,h_445,al_c,q_85,usm_1.20_1.00_0.01,enc_avif,quality_auto/2a938d70b6264aceb513b4661d04a35e.jpg",
+      "assetType": "project",
+      "subject": "Plants",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/1f7d15_19654f2277ce4065a94e4f9a83f0336f~mv2.jpg/v1/fill/w_1440,h_446,al_c,q_85,usm_1.20_1.00_0.01,enc_avif,quality_auto/1f7d15_19654f2277ce4065a94e4f9a83f0336f~mv2.jpg",
+      "assetType": "site",
+      "subject": "Lakemont House - Front Yard.jpg",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

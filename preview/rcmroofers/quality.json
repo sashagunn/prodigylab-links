@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "rcmroofers",
+  "niche": "roof",
+  "goal": "Separate active leak from planned work",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://rcmroofers.com/wp-content/uploads/2025/07/Standing-Seam-Metal-Roof-Install-Rome-GA-1-scaled.jpg",
+      "assetType": "site",
+      "subject": "Donna Roche",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://rcmroofers.com/wp-content/uploads/2026/05/RCM-Roofers-Roofing-Specialist-in-Atlanta-and-Macon-GA-1-768x576.jpg",
+      "assetType": "site",
+      "subject": "RCM Roofers - Roofing Specialist in Atlanta and Macon, GA (1)",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://rcmroofers.com/wp-content/uploads/2026/05/RCM-Roofers-Roofing-Specialist-in-Atlanta-and-Macon-GA-10-768x576.jpg",
+      "assetType": "site",
+      "subject": "RCM Roofers - Roofing Specialist in Atlanta and Macon, GA (10)",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://rcmroofers.com/wp-content/uploads/2026/05/RCM-Roofers-Roofing-Specialist-in-Atlanta-and-Macon-GA-11-768x576.jpg",
+      "assetType": "site",
+      "subject": "RCM Roofers - Roofing Specialist in Atlanta and Macon, GA (11)",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://rcmroofers.com/wp-content/uploads/2026/05/RCM-Roofers-Roofing-Specialist-in-Atlanta-and-Macon-GA-12-768x576.jpg",
+      "assetType": "site",
+      "subject": "RCM Roofers - Roofing Specialist in Atlanta and Macon, GA (12)",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "07.jpg": {
+      "sourceUrl": "https://rcmroofers.com/wp-content/uploads/2026/05/RCM-Roofers-Roofing-Specialist-in-Atlanta-and-Macon-GA-13-1-768x576.jpg",
+      "assetType": "site",
+      "subject": "RCM Roofers - Roofing Specialist in Atlanta and Macon, GA (13)",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

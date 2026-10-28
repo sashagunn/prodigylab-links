@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "remodelrepublic",
+  "niche": "kitchen",
+  "goal": "Choose materials and scope before consultation",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://cdn.nmg-platform.com/remodelrepublic/Parallax/bg-kitchen.webp",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://cdn.nmg-platform.com/remodelrepublic/Assets%20CMS/Our%20Process/bg-ourprocess.webp",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://cdn.nmg-platform.com/remodelrepublic/Assets%20CMS/Our%20Process/our-process-02.webp",
+      "assetType": "site",
+      "subject": "research graphic",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://cdn.nmg-platform.com/remodelrepublic/Assets%20CMS/Our%20Process/our-process-07.webp",
+      "assetType": "site",
+      "subject": "research graphic",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://cdn.nmg-platform.com/remodelrepublic/Assets%20CMS/Our%20Process/re-made.webp",
+      "assetType": "site",
+      "subject": "research graphic",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://cdn.nmg-platform.com/remodelrepublic/Assets%20CMS/Our%20Process/re-novate.webp",
+      "assetType": "site",
+      "subject": "research graphic",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

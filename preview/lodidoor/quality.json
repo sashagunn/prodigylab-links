@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "slug": "lodidoor",
+  "niche": "garage",
+  "goal": "Separate urgent repair and planned installation",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://lodidoor.com/wp-content/uploads/2024/01/lodi-doors-home-garage.webp",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://lodidoor.com/wp-content/uploads/2024/01/lodi-drone-video-still.webp",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://lodidoor.com/wp-content/uploads/2026/08/lodi-garage-doors.webp",
+      "assetType": "site",
+      "subject": "Lodi Garage Doors",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://lodidoor.com/wp-content/uploads/2026/04/lodi-garage-tech-2png.webp",
+      "assetType": "site",
+      "subject": "Lodi Door Garage Tech",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://lodidoor.com/wp-content/uploads/2023/10/lodi-team-13.webp",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

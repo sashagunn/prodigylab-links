@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "libertyfencecompany",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/b819e358/dms3rep/multi/opt/Aluminum+2+Rail+Flush+Bottom+Pool+Code_NoSpace-1920w.jpg",
+      "assetType": "site",
+      "subject": "A black metal fence with a shadow on a white background.",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/b819e358/dms3rep/multi/opt/Aluminum+3+Rail+Standard_NoSpace-1920w.jpg",
+      "assetType": "site",
+      "subject": "A black metal fence with a shadow on a white background.",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/b819e358/dms3rep/multi/opt/Aluminum+Alternating+Spear_NoSpace-1920w.jpg",
+      "assetType": "site",
+      "subject": "A wooden fence , a white fence , a black fence , and a chain link fenc",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/b819e358/dms3rep/multi/opt/privacy-chain-link-fence-warped-1920w.png",
+      "assetType": "site",
+      "subject": "A chain link fence is shown in a black and white photo.",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/b819e358/dms3rep/multi/opt/Shadowbox+Privacy_NoSpace-1920w.jpg",
+      "assetType": "site",
+      "subject": "A wooden fence is sitting on top of a white surface.",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/b819e358/dms3rep/multi/opt/Vinyl+Privacy_NoSpace-1920w.jpg",
+      "assetType": "site",
+      "subject": "A white vinyl fence with a square post on a white background.",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
