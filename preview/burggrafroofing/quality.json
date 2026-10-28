@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "slug": "burggrafroofing",
+  "niche": "roof",
+  "goal": "Separate active leak from planned work",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://cdn-ildccpn.nitrocdn.com/EwYAwvSdfCyVSeEYmAUQoegQfBgBSBmS/assets/images/optimized/rev-bdce522/burggrafroofing.com/wp-content/uploads/Mask-group.png",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://cdn-ildccpn.nitrocdn.com/EwYAwvSdfCyVSeEYmAUQoegQfBgBSBmS/assets/images/optimized/rev-bdce522/burggrafroofing.com/wp-content/uploads/Mask-group-11.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://cdn-ildccpn.nitrocdn.com/EwYAwvSdfCyVSeEYmAUQoegQfBgBSBmS/assets/images/optimized/rev-bdce522/burggrafroofing.com/wp-content/uploads/image-14.png",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://cdn-ildccpn.nitrocdn.com/EwYAwvSdfCyVSeEYmAUQoegQfBgBSBmS/assets/images/optimized/rev-bdce522/burggrafroofing.com/wp-content/uploads/ChatGPT-Image-Jul-16-2026-04_43_40-PM.png",
+      "assetType": "site",
+      "subject": "Tulsa World Best in the World 2024",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://cdn-ildccpn.nitrocdn.com/EwYAwvSdfCyVSeEYmAUQoegQfBgBSBmS/assets/images/optimized/rev-bdce522/burggrafroofing.com/wp-content/uploads/Mask-group-1-1.png",
+      "assetType": "site",
+      "subject": "Mask group (1) (1)",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

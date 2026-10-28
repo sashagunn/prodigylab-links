@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "cabreracabinets",
+  "niche": "kitchen",
+  "goal": "Choose materials and scope before consultation",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://www.cabreracabinets.com/__l5e/assets-v1/25d892ac-5a69-4ccb-8242-29565dfd1668/step-install.jpg",
+      "assetType": "site",
+      "subject": "Installer finishing a white kitchen in Tampa",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://www.cabreracabinets.com/__l5e/assets-v1/93e0ad6a-846a-4298-a781-5daec8938265/hero-kitchen-2.jpg",
+      "assetType": "site",
+      "subject": "Custom white kitchen cabinets built and installed by Cabrera Cabinets ",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://www.cabreracabinets.com/__l5e/assets-v1/1c57abf1-4ca2-4fc8-8768-7084d0f84b82/step-design-render.png",
+      "assetType": "site",
+      "subject": "3D render of a custom white kitchen with island",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://www.cabreracabinets.com/__l5e/assets-v1/8fc08543-7f94-462d-8950-ca8552385609/mat-thermofoil-real.jpg",
+      "assetType": "site",
+      "subject": "Thermofoil cabinet finish close-up",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://www.cabreracabinets.com/assets/step-consult-CaF0HVIe.jpg",
+      "assetType": "site",
+      "subject": "Cabrera Cabinets consultation with a homeowner reviewing samples",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://www.cabreracabinets.com/__l5e/assets-v1/07111f45-656d-4f8c-8fd2-b9f27f5b68a5/A7408764-Edit.jpg",
+      "assetType": "site",
+      "subject": "Augusto Escobar, Sales Director",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

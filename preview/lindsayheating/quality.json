@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "lindsayheating",
+  "niche": "hvac",
+  "goal": "Separate repair, replacement and maintenance",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://lindsayheating.com/wp-content/uploads/2024/06/IMG_0975-scaled.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://lindsayheating.com/wp-content/uploads/2024/10/lindsayheatingheader.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://lindsayheating.com/wp-content/uploads/2024/10/lindsay1.jpg",
+      "assetType": "site",
+      "subject": "lindsay1",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://lindsayheating.com/wp-content/uploads/2024/10/lindsay2.jpg",
+      "assetType": "site",
+      "subject": "lindsay2",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://lindsayheating.com/wp-content/uploads/2024/10/lindsay3.jpg",
+      "assetType": "site",
+      "subject": "lindsay3",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://lindsayheating.com/wp-content/uploads/2024/06/ac5.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

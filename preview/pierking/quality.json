@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "slug": "pierking",
+  "niche": "foundation",
+  "goal": "Describe observed symptoms without diagnosis",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://www.pierking.com/wp-content/uploads/2025/04/13-trevor.webp",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

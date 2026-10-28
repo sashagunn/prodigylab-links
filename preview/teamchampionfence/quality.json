@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "slug": "teamchampionfence",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://teamchampionfence.com/images/commercial-fence.jpg",
+      "assetType": "site",
+      "subject": "Denver fence company",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
