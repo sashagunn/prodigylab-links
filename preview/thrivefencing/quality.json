@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "thrivefencing",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://thrivefencing.com/wp-content/uploads/2024/08/after-woodland-scaled.jpg",
+      "assetType": "project",
+      "subject": "Wooden privacy fence and gate with metal hinges, set on a brick pathwa",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://thrivefencing.com/wp-content/uploads/2024/07/after-bluestream-wood-fence-1.jpg",
+      "assetType": "project",
+      "subject": "Bluestream New VInyl Fence",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://thrivefencing.com/wp-content/uploads/2024/07/before-bluestream-wood-fence-1.jpg",
+      "assetType": "project",
+      "subject": "Bluestream Old Wooden Fence",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://thrivefencing.com/wp-content/uploads/2024/10/before-woodland-fence-thrive-fencing.jpg",
+      "assetType": "project",
+      "subject": "Wood fence in a backyard, broken and missing parts",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://thrivefencing.com/wp-content/uploads/2024/10/before-woodland-thrive.jpg",
+      "assetType": "project",
+      "subject": "Wooden fence leaning to the side before using Thrive Fencing services",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://thrivefencing.com/wp-content/uploads/2024/10/after-woodland-wooden-fence-thrive.jpg",
+      "assetType": "project",
+      "subject": "Final result of a wood fence installed by Thrive Fencing",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
