@@ -132,8 +132,12 @@
   ],
   "rewrites": [
     {
-      "source": "/preview/:path*",
-      "destination": "https://sashagunn.github.io/prodigylab-previews/preview/:path*"
+      "source": "/preview/:slug/",
+      "destination": "https://sashagunn.github.io/prodigylab-previews/preview/:slug/"
+    },
+    {
+      "source": "/preview/:slug/:file*",
+      "destination": "https://sashagunn.github.io/prodigylab-previews/preview/:slug/:file*"
     }
   ]
 }
