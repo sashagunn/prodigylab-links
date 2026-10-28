@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "fencehaven",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://fencehaven.com/wp-content/uploads/2025/12/Screenshot-2025-12-17-at-12.09.56-PM-1.jpg",
+      "assetType": "project",
+      "subject": "chainlink automatic gate install",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://fencehaven.com/wp-content/uploads/2025/11/idtidgn7upu43rp6nb8h.webp",
+      "assetType": "project",
+      "subject": "Black aluminum fence installed along a sloped backyard with new landsc",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://fencehaven.com/wp-content/uploads/2025/11/IMG_1714.webp",
+      "assetType": "project",
+      "subject": "Wood privacy fence enclosing a residential backyard with mature trees ",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://fencehaven.com/wp-content/uploads/2025/11/jhgajlqd4ft4w7gktjlp.webp",
+      "assetType": "project",
+      "subject": "Black metal gate installation beside a brick house with a Fence Haven ",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://fencehaven.com/wp-content/uploads/2025/11/nxqzcxx2dmbk2wzmwajf.webp",
+      "assetType": "project",
+      "subject": "Black aluminum fence installed on a sloped backyard beside a modern po",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://fencehaven.com/wp-content/uploads/2025/11/z3ombntotuyxkcsxjqat.webp",
+      "assetType": "project",
+      "subject": "Black aluminum fence installed along a concrete driveway and open gree",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

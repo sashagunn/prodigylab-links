@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "vectorfence",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://vectorfence.com/wp-content/uploads/2025/12/aoa-temporary-fencing.jpg",
+      "assetType": "project",
+      "subject": "AOA temporary fence panels with chain-link fencing, concrete barriers,",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://vectorfence.com/wp-content/uploads/2025/12/automatc-gates.jpg",
+      "assetType": "project",
+      "subject": "Vertical lift automatic security gate highlighting Vector Fence’s auto",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://vectorfence.com/wp-content/uploads/2025/12/automatic-driveway-gate-installation.jpg",
+      "assetType": "project",
+      "subject": "Residential automatic driveway gate with modern steel design showcased",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://vectorfence.com/wp-content/uploads/2025/12/automatic-gates.jpg",
+      "assetType": "project",
+      "subject": "Modern white automatic driveway gate with keypad access installed at a",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://vectorfence.com/wp-content/uploads/2025/12/building-custom-gate.jpg",
+      "assetType": "project",
+      "subject": "Vector Fence technician measuring and fabricating a custom steel gate ",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://vectorfence.com/wp-content/uploads/2025/12/cantilever-automatic-gate.jpg",
+      "assetType": "project",
+      "subject": "Commercial cantilever automated gate with barbed wire security top, sh",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
