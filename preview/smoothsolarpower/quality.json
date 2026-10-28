@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "smoothsolarpower",
+  "niche": "solar",
+  "goal": "Separate solar, battery and EV charging",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/11062b_6d0881d113554690899a2cfeebfa521f~mv2.jpg/v1/fill/w_1440,h_1140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_6d0881d113554690899a2cfeebfa521f~mv2.jpg",
+      "assetType": "site",
+      "subject": "Solar Energy",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/4ddd25_e41fcfea1cb046ea8fffe3e33229af6e~mv2.jpg/v1/fill/w_1560,h_1010,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Touching%20Solar%20Panel_edited_edited_edite.jpg",
+      "assetType": "site",
+      "subject": "Touching Solar Panel_edited_edited_edite",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/11062b_887678ebe2bd440da1dbbae29a1a99bf~mv2.jpg/v1/fill/w_1440,h_988,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_887678ebe2bd440da1dbbae29a1a99bf~mv2.jpg",
+      "assetType": "site",
+      "subject": "Sunset on Solar Panels",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/4ddd25_f57940e950f4497f8bfc563deef27701~mv2.jpg/v1/fill/w_900,h_675,al_t,q_85,enc_avif,quality_auto/4ddd25_f57940e950f4497f8bfc563deef27701~mv2.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/11062b_eabd301974574c65bcc4460efe44a27d~mv2.jpeg/v1/fill/w_1052,h_1018,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Solar%20Panels%20on%20Trees.jpeg",
+      "assetType": "site",
+      "subject": "Solar Panels on Trees",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/4ddd25_b4ffb65dd3294dd1bca5b0490245516d~mv2.png/v1/fill/w_1024,h_1024,al_c,q_90,enc_avif,quality_auto/DALL%C2%B7E%202023-01-27%2014_edited.png",
+      "assetType": "site",
+      "subject": "DALL·E 2023-01-27 14_edited.png",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

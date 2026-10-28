@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "slug": "honestlandscapefl",
+  "niche": "landscape",
+  "goal": "Choose outdoor use and project scope",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://honestlandscapefl.com/assets/tropical-landscaping-backdrop.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://honestlandscapefl.com/assets/about-honest-landscape.png",
+      "assetType": "site",
+      "subject": "Honest Property & Landscape crew working on a Tampa Bay landscaping pr",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

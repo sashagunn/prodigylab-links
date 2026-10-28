@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "slug": "chicagogaragedoorrepair",
+  "niche": "garage",
+  "goal": "Separate urgent repair and planned installation",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://chicagogaragedoorrepair.com/img/special-offers.jpg",
+      "assetType": "site",
+      "subject": "Garage Door Special Offers",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://chicagogaragedoorrepair.com/img/chicago-garage-door-repair.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://chicagogaragedoorrepair.com/img/garage-door-opener-and-spring.jpg",
+      "assetType": "site",
+      "subject": "Garage Door Cables and Springs Chicago IL",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://chicagogaragedoorrepair.com/img/garage-door-cypress.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

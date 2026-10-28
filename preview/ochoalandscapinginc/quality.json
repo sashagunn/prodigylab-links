@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "ochoalandscapinginc",
+  "niche": "landscape",
+  "goal": "Choose outdoor use and project scope",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/c991b2b5/dms3rep/multi/opt/GettyImages-1395431550-2880w.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://lirp.cdn-website.com/c991b2b5/dms3rep/multi/opt/GettyImages-1156192693-1920w.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://lirp.cdn-website.com/c991b2b5/dms3rep/multi/opt/GettyImages-174816813-1920w.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://lirp.cdn-website.com/c991b2b5/dms3rep/multi/opt/GettyImages-943535646-1920w.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/c991b2b5/dms3rep/multi/opt/GettyImages-958113950-1440w.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://irp.cdn-website.com/c991b2b5/dms3rep/multi/opt/GettyImages-1925730560-720w.jpg",
+      "assetType": "site",
+      "subject": "An Aerial View of a Large Glass Building with a Sunset in the Backgrou",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

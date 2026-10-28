@@ -2,14 +2,14 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="Independent redesign concept for Rondo Pools — Phoenix, Arizona.">
+<meta name="description" content="Independent redesign concept for Rondo Pools — Phoenix.">
 <title>Rondo Pools — Independent redesign concept</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>:root{
   --paper:#f4f5f6;--cell:#ffffff;--ink:#1a1d21;--soft:#4a5056;--mute:#646b72;
   --accent:#1f5f7a;--deep:#12161a;--line:#dcdfe3;--onDeep:#f2f5f7;
-  --sans:Archivo,system-ui,sans-serif;--disp:Archivo,system-ui,sans-serif;--mono:'Roboto Mono',ui-monospace,monospace;--tight:-.025em}
+  --sans:'Inter Tight',system-ui,sans-serif;--disp:'Inter Tight',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--tight:-.035em}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 @media(max-width:700px){img[style*="--photo-mobile"]{object-position:var(--photo-mobile)!important}}
@@ -184,28 +184,26 @@ footer a{min-height:44px;display:inline-flex;align-items:center}
 .h-band p{margin-top:14px;max-width:52ch;font-size:clamp(15px,1.5vw,18px)}
 .h-band .m{color:#e6e0d8}
 
-.r-rows{margin-top:clamp(18px,2.4vw,32px);border-top:1px solid var(--line)}
-.r-rows article{display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);gap:clamp(14px,3vw,38px);
-  padding:clamp(16px,2.4vw,30px) 0;border-bottom:1px solid var(--line);align-items:center}
-.r-rows article:nth-child(even) .ph{order:-1}
-.r-rows .ph{aspect-ratio:16/9}
-.r-rows b{font-size:clamp(19px,2.2vw,30px);font-family:var(--disp);letter-spacing:var(--tight)}
-.r-rows p{margin-top:9px;color:var(--soft)}
-@media (max-width:760px){.r-rows article{grid-template-columns:1fr}.r-rows article:nth-child(even) .ph{order:0}}
+.r-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:clamp(18px,2.4vw,32px)}
+.r-cards article{background:var(--cell)}
+.r-cards .ph{aspect-ratio:4/3}
+.r-cards b{display:block;padding:14px 15px 0;font-size:17px}
+.r-cards p{padding:8px 15px 16px;color:var(--soft);font-size:14px}
+@media (max-width:860px){.r-cards{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.r-cards{grid-template-columns:1fr}}
 
-.s-line{margin-top:clamp(18px,2.4vw,30px);display:grid;gap:0}
-.s-line .s{display:grid;grid-template-columns:clamp(54px,7vw,92px) minmax(0,1fr);gap:clamp(12px,2vw,28px);
-  padding:clamp(14px,2vw,24px) 0;border-top:1px solid var(--line)}
-.s-line .s:last-child{border-bottom:1px solid var(--line)}
-.s-line span{font-family:var(--mono);font-size:clamp(20px,2.6vw,34px);color:var(--accent);line-height:1}
-.s-line b{font-size:clamp(18px,2vw,26px);font-family:var(--disp)}
-.s-line p{margin-top:7px;color:var(--soft);max-width:70ch}
-.ph{border:1px solid var(--line)}
+.s-grid{margin-top:clamp(18px,2.4vw,30px);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1px;background:var(--line)}
+.s-grid .s{background:var(--cell);padding:clamp(16px,2vw,26px)}
+.s-grid span{font-family:var(--mono);font-size:11px;letter-spacing:.11em;color:var(--mute)}
+.s-grid b{display:block;margin-top:9px;font-size:clamp(17px,1.8vw,23px);font-family:var(--disp)}
+.s-grid p{margin-top:9px;color:var(--soft);font-size:14.5px}
+
 .sec{padding:clamp(26px,3.6vw,58px) 0;border-top:1px solid var(--line)}
      .sec h2{font-size:clamp(24px,2.9vw,42px)}
      .sec .lede{margin-top:11px;color:var(--soft);max-width:62ch}
      .tool-s.panel{background:var(--cell)}
-</style><meta name="prodigy-quality-schema" content="1"><meta name="prodigy-cloud-version" content="morning20-20261024-rondopools-3cdbda3e.rondopools"></head>
+</style><meta name="prodigy-quality-schema" content="1"><meta name="prodigy-cloud-version" content="rondopools.2026-10-28"></head>
 <body>
 <p class="notice">Independent redesign concept by Preview Factory · Not the official Rondo Pools website</p>
 <header><div class="wrap">
@@ -215,20 +213,20 @@ footer a{min-height:44px;display:inline-flex;align-items:center}
 </div></header>
 <main>
 <section class="h-band" id="top"><div class="ph"><img style="--photo-desktop:50% 50%;--photo-mobile:50% 50%;object-position:var(--photo-desktop)" src="photos/01.jpg" alt="Photograph published by Rondo Pools" decoding="async"></div>
-  <div class="wrap in"><span class="m">Phoenix, Arizona</span><h1>Bring a clearer pool brief to the conversation.</h1>
+  <div class="wrap in"><span class="m">Phoenix</span><h1>Bring a clearer pool brief to the conversation.</h1>
   <p>Explore the services shown on the company website, then put the details you want to discuss into a written project brief.</p><p style="margin-top:20px"><a class="btn" href="#config">Prepare a project brief</a></p></div></section>
 
 <section class="sec" id="work"><div class="wrap">
     <h2>Pool projects and services</h2>
-    <div class="r-rows"><article>
-  <div><b>Pool construction</b></div>
-  <div></div></article></div></div></section>
+    <div class="r-cards"><article>
+  
+  <b>Pool construction</b></article></div></div></section>
 
 <section class="tool-s" id="config"><div class="wrap">
   <span class="m">Pool project</span>
   <h2>Bring a clearer pool brief to the conversation.</h2>
   <p class="lede">Choose the details you want to discuss, then keep a written brief for the first conversation.</p>
-  <div class="tool below" id="tool">
+  <div class="tool right" id="tool">
     <div class="picks">
       <div class="q" data-key="service" data-label="Work" data-branch="1"><span class="q-l">Which service would you like to discuss?</span><div class="q-o"><button type="button" class="opt" data-val="Pool construction" aria-pressed="false">Pool construction</button><button type="button" class="opt" data-val="Need advice" aria-pressed="false">Need advice</button></div></div><div class="q" data-key="context" data-label="Existing pool"><span class="q-l">What are you starting with?</span><div class="q-o"><button type="button" class="opt" data-val="An existing pool" aria-pressed="false">An existing pool</button><button type="button" class="opt" data-val="A site without a pool" aria-pressed="false">A site without a pool</button><button type="button" class="opt" data-val="Not decided" aria-pressed="false">Not decided</button></div></div><div class="q" data-key="priorities" data-label="Priorities"><span class="q-l">What would you like to discuss first?</span><div class="q-o"><button type="button" class="opt" data-val="How the pool will be used" aria-pressed="false">How the pool will be used</button><button type="button" class="opt" data-val="Appearance and finishes" aria-pressed="false">Appearance and finishes</button><button type="button" class="opt" data-val="Existing conditions" aria-pressed="false">Existing conditions</button><button type="button" class="opt" data-val="Need advice" aria-pressed="false">Need advice</button></div></div><div class="q" data-key="stage" data-label="Planning stage"><span class="q-l">Where are you with the project?</span><div class="q-o"><button type="button" class="opt" data-val="Exploring options" aria-pressed="false">Exploring options</button><button type="button" class="opt" data-val="Have notes or photographs" aria-pressed="false">Have notes or photographs</button><button type="button" class="opt" data-val="Have measurements" aria-pressed="false">Have measurements</button><button type="button" class="opt" data-val="Need advice" aria-pressed="false">Need advice</button></div></div><div class="q" data-key="when" data-label="Timing"><span class="q-l">When are you considering the work?</span><div class="q-o"><button type="button" class="opt" data-val="No date yet" aria-pressed="false">No date yet</button><button type="button" class="opt" data-val="Within a month" aria-pressed="false">Within a month</button><button type="button" class="opt" data-val="One to three months" aria-pressed="false">One to three months</button><button type="button" class="opt" data-val="Later" aria-pressed="false">Later</button></div></div>
       <div class="cts"><span>Optional contact details to include in your draft</span>
@@ -283,14 +281,14 @@ footer a{min-height:44px;display:inline-flex;align-items:center}
 <div class="bar"><a href="#config">Project brief</a></div>
 <section class="src"><div class="wrap">
   <h2>Where this came from</h2>
-  <div><p>Service names and contact details come from the company website. Photographs are selected from its project portfolio. No prices, schedules or guarantees are inferred. Checked on 2026-10-24.</p>
-  <div class="lnk"><a href="https://rondopools.com" target="_blank" rel="noopener noreferrer">rondopools.com ↗</a><a href="https://rondopools.com/services/3d-design/" target="_blank" rel="noopener noreferrer">Services on their website ↗</a><a href="https://rondopools.com/contact-us/" target="_blank" rel="noopener noreferrer">Their contact page ↗</a></div></div>
+  <div><p>Service names and contact details come from the company website. Photographs are selected from its project portfolio. No prices, schedules or guarantees are inferred. Checked on 2026-10-28.</p>
+  <div class="lnk"><a href="https://rondopools.com/" target="_blank" rel="noopener noreferrer">rondopools.com ↗</a><a href="https://rondopools.com/services/3d-design/" target="_blank" rel="noopener noreferrer">Services on their website ↗</a><a href="https://rondopools.com/contact-us/" target="_blank" rel="noopener noreferrer">Their contact page ↗</a></div></div>
 </div></section>
 <footer><div class="wrap foot">
   <div><h2 class="fh">Rondo Pools</h2><p><br><a href="mailto:info@rondopools.com">info@rondopools.com</a></p></div>
   <div><h2 class="fh">Concept</h2><p>Independent redesign concept by Preview Factory. Not the company's
   official website, and no relationship or endorsement is implied. Nothing on this page is submitted anywhere.</p></div>
-  <div><h2 class="fh">Their site</h2><p><a href="https://rondopools.com" target="_blank" rel="noopener noreferrer">rondopools.com ↗</a></p></div>
+  <div><h2 class="fh">Their site</h2><p><a href="https://rondopools.com/" target="_blank" rel="noopener noreferrer">rondopools.com ↗</a></p></div>
 </div></footer>
 <script>
 (function(){

@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "poolsbydesignaz",
+  "niche": "pool",
+  "goal": "Separate new build, remodel and service",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://poolsbydesignaz.com/media/2400/01153478-acf0-4688-a480-9a81f245b985/desert-modern-dusk-pool-fire-mountain-original.jpg",
+      "assetType": "project",
+      "subject": "Dark vanishing-edge pool, fire feature and desert home below a boulder",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://poolsbydesignaz.com/media/2400/46778605-a54b-4275-9a82-1018debcbb46/modern-entertainer-dusk-aerial-original.jpg",
+      "assetType": "project",
+      "subject": "Glass-tiled raised spa, lit stepping pads, water arcs and fire troughs",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://poolsbydesignaz.com/media/2400/4ef93039-4895-4fcb-b85e-0c328737a18c/saguaro-lagoon-dusk-spa-wide-original.jpg",
+      "assetType": "project",
+      "subject": "Round raised spa and lagoon pool with in-pool loungers and a saguaro u",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://poolsbydesignaz.com/media/2400/79b7aeee-faa2-4a5f-9791-69a42db50411/desert-lap-pool-lane-view-original.jpg",
+      "assetType": "project",
+      "subject": "Long dark lap pool with a lane marker running toward rocky desert hill",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://poolsbydesignaz.com/media/2400/ace39627-d732-4313-b9b9-a0df5ef32500/geometric-pavilion-sunset-wide-original.jpg",
+      "assetType": "project",
+      "subject": "Angular turquoise pool with an open pavilion, travertine deck and loun",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://poolsbydesignaz.com/media/2400/c8b8b7e9-45ac-4245-a3cc-bdb975157382/city-lights-golden-pool-over-city-original.jpg",
+      "assetType": "project",
+      "subject": "Curved vanishing-edge pool and round mosaic spa above the valley with ",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

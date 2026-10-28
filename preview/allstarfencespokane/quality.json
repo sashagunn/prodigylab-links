@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "allstarfencespokane",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://allstarfencespokane.com/wp-content/uploads/2026/10/all-star-fence-spokane-privacy-02.jpg",
+      "assetType": "project",
+      "subject": "Long run of tan vinyl privacy fence at a Spokane-area hotel",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://allstarfencespokane.com/wp-content/uploads/2026/10/all-star-fence-spokane-privacy-03.jpg",
+      "assetType": "project",
+      "subject": "Tan vinyl privacy fence on a new-construction lot",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://allstarfencespokane.com/wp-content/uploads/2026/10/all-star-fence-spokane-vinyl-10.jpg",
+      "assetType": "project",
+      "subject": "Gray horizontal vinyl fence installed by All Star Fence",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://allstarfencespokane.com/wp-content/uploads/2026/10/all-star-fence-spokane-privacy-06.jpg",
+      "assetType": "project",
+      "subject": "White vinyl privacy fence behind a landscaped bed",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://allstarfencespokane.com/wp-content/uploads/2026/10/all-star-fence-spokane-privacy-07.jpg",
+      "assetType": "project",
+      "subject": "Tan vinyl privacy fence with double drive gate",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://allstarfencespokane.com/wp-content/uploads/2026/10/all-star-fence-spokane-privacy-08.jpg",
+      "assetType": "project",
+      "subject": "Tan vinyl privacy fence with walk gate in a backyard",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

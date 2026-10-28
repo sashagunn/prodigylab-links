@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "slug": "lowefencing",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/349738_d6aff2ae4d664bda88a1bc5443d64d88~mv2.jpg/v1/fill/w_1440,h_1068,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/349738_d6aff2ae4d664bda88a1bc5443d64d88~mv2.jpg",
+      "assetType": "site",
+      "subject": "0K1A3044.jpg",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/349738_aa1eb697fc3443e58e06ebb7f3e8be33f000.jpg/v1/fill/w_1440,h_900,al_c,q_85,usm_0.33_1.00_0.00,enc_avif,quality_auto/349738_aa1eb697fc3443e58e06ebb7f3e8be33f000.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/66fe2a_ff96ae88c390479bb2f0c8c650d273ab~mv2.jpg/v1/fill/w_851,h_532,al_c,q_85,enc_avif,quality_auto/66fe2a_ff96ae88c390479bb2f0c8c650d273ab~mv2.jpg",
+      "assetType": "site",
+      "subject": "",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://static.wixstatic.com/media/349738_6fa877129efd41d2888a256c79b6357b~mv2.jpg/v1/fill/w_1728,h_683,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/349738_6fa877129efd41d2888a256c79b6357b~mv2.jpg",
+      "assetType": "site",
+      "subject": "0K1A2592.jpg",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
