@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "raincityfence",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://raincityfence.com/wp-content/uploads/2023/01/Seattle-eastside-fence-retaining-wall1-1.jpg",
+      "assetType": "project",
+      "subject": "Seattle-eastside-fence-retaining-wall1",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://raincityfence.com/wp-content/uploads/2023/01/Seattle-eastside-fence-retaining-wall4-1.jpg",
+      "assetType": "project",
+      "subject": "Seattle-eastside-fence-retaining-wall4",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://raincityfence.com/wp-content/uploads/2023/01/Seattle-eastside-fence-square-lattice-top10-1.jpg",
+      "assetType": "project",
+      "subject": "Seattle-eastside-fence-square-lattice-top10",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://raincityfence.com/wp-content/uploads/2023/01/Seattle-eastside-fence-square-lattice-top10.jpg",
+      "assetType": "project",
+      "subject": "Seattle-eastside-fence-square-lattice-top10",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://raincityfence.com/wp-content/uploads/2023/01/Seattle-eastside-fence-square-lattice-top11.jpg",
+      "assetType": "project",
+      "subject": "Seattle-eastside-fence-square-lattice-top11",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://raincityfence.com/wp-content/uploads/2023/01/Seattle-eastside-fence-square-lattice-top3.jpg",
+      "assetType": "project",
+      "subject": "Seattle-eastside-fence-square-lattice-top3",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "pridefencekc",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://pridefencekc.com/wp-content/uploads/2026/06/horizontal.webp",
+      "assetType": "project",
+      "subject": "Horizontal wood fence modern design Kansas City",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://pridefencekc.com/wp-content/uploads/2026/06/red-cedar-1.webp",
+      "assetType": "project",
+      "subject": "Red cedar wood fence style 2 Kansas City by Pride Fence KC",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://pridefencekc.com/wp-content/uploads/2026/06/red-cedar.webp",
+      "assetType": "project",
+      "subject": "Red cedar wood fence Kansas City by Pride Fence KC",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://pridefencekc.com/wp-content/uploads/2026/06/sloped-steel.webp",
+      "assetType": "project",
+      "subject": "Sloped ornamental steel fence Kansas City by Pride Fence KC",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://pridefencekc.com/wp-content/uploads/2026/06/Solid-Old-Style-Picture-Frame-scaled.webp",
+      "assetType": "project",
+      "subject": "Solid old style picture frame wood fence Kansas City",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://pridefencekc.com/wp-content/uploads/2026/06/spacd-dogear.webp",
+      "assetType": "project",
+      "subject": "Spaced dog ear wood fence Kansas City by Pride Fence KC",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}

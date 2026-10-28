@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "jackfencing",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://jackfencing.com/resources/photo-gallery/images/lafayette-louisiana-fence-company-131.jpg",
+      "assetType": "project",
+      "subject": "Fence Contractors in Lafayette, Louisiana",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://jackfencing.com/resources/photo-gallery/images/lafayette-louisiana-fence-company-169.jpg",
+      "assetType": "project",
+      "subject": "Lafayette, Louisiana Fence Company",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://jackfencing.com/resources/photo-gallery/images/lafayette-louisiana-fence-company-66.jpg",
+      "assetType": "project",
+      "subject": "Lafayette, Louisiana Fence Company",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://jackfencing.com/resources/photo-gallery/images/lafayette-louisiana-fence-company-77.jpg",
+      "assetType": "project",
+      "subject": "Lafayette Fence Company",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://jackfencing.com/resources/photo-gallery/images/lafayette-louisiana-fence-company-79.jpg",
+      "assetType": "project",
+      "subject": "Exceptional Fence Company in Lafayette",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://jackfencing.com/resources/photo-gallery/images/wood-fence-lafayette-louisiana-fence-company-11.jpg",
+      "assetType": "project",
+      "subject": "Lafayette Wood Fence",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
