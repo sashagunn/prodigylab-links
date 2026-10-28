@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "slug": "fencecompanyoftulsa",
+  "niche": "fence",
+  "goal": "Compare actual fence options and describe the project",
+  "photos": {
+    "01.jpg": {
+      "sourceUrl": "https://fencecompanyoftulsa.com/images/sap-midtown-tulsa-hero.webp",
+      "assetType": "project",
+      "subject": "Black ornamental iron fence with brick columns in front of a grand red",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "02.jpg": {
+      "sourceUrl": "https://fencecompanyoftulsa.com/images/cedar-wood-privacy-fence-tulsa.webp",
+      "assetType": "project",
+      "subject": "New cedar privacy fence with dog-ear pickets, a privacy fence Tulsa, O",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "03.jpg": {
+      "sourceUrl": "https://fencecompanyoftulsa.com/images/stained-cedar-privacy-fence-tulsa.webp",
+      "assetType": "project",
+      "subject": "Stained cedar privacy fence lining a street, a privacy fence Tulsa, OK",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "04.jpg": {
+      "sourceUrl": "https://fencecompanyoftulsa.com/images/cedar-double-gate-tulsa.webp",
+      "assetType": "project",
+      "subject": "Cedar double gate with decorative hinges, a custom gate built in Tulsa",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "05.jpg": {
+      "sourceUrl": "https://fencecompanyoftulsa.com/images/cedar-privacy-fence-tulsa-backyard.webp",
+      "assetType": "project",
+      "subject": "Cedar privacy fence beside a brick home, a backyard privacy fence Tuls",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    },
+    "06.jpg": {
+      "sourceUrl": "https://fencecompanyoftulsa.com/images/decorative-cedar-crossbuck-fence-tulsa.webp",
+      "assetType": "project",
+      "subject": "Long cedar crossbuck fence across a backyard, a decorative fence style",
+      "desktopPosition": "50% 50%",
+      "mobilePosition": "50% 50%"
+    }
+  }
+}
